@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMenu.html" title="Simple class for generating menus. " alt="" coords="5,5,63,32"/>
+<area shape="rect" id="node1" href="$classMenuItem.html" title="Abstract Menu item. " alt="" coords="5,81,92,108"/>
+<area shape="rect" id="node2" href="$classMenuEdit.html" title="Input box, either used for key binding, or text input from user. " alt="" coords="151,5,232,32"/>
+<area shape="rect" id="node3" href="$classMenuLink.html" title="Menu link to another menu or action. " alt="" coords="150,56,233,83"/>
+<area shape="rect" id="node4" href="$classMenuSetting.html" title="Static Setting item, showing a list of values defined in XML. " alt="" coords="140,107,243,133"/>
+<area shape="rect" id="node6" href="$classMenuSlider.html" title="Slider Setting item, accept any value within defined range. " alt="" coords="145,157,238,184"/>
+<area shape="rect" id="node5" href="$classMenuDynamicSetting.html" title="Dynamic Setting item, showing a list of values known only at runtime. " alt="" coords="291,107,449,133"/>
 </map>

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -149,6 +150,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::echo</b> (<
 <tr class="memitem:a6cfb223a9b5b99372dd46ac74e45f05e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cfb223a9b5b99372dd46ac74e45f05e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::execute</b> (<a class="el" href="classEngine.html">Engine</a> &amp;e, std::vector&lt; std::string &gt; *)</td></tr>
 <tr class="separator:a6cfb223a9b5b99372dd46ac74e45f05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2ed019214585600c55af1ea5321f5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a2ed019214585600c55af1ea5321f5e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::debugInfo</b> (<a class="el" href="classEngine.html">Engine</a> &amp;e, std::vector&lt; std::string &gt; *)</td></tr>
+<tr class="separator:a1a2ed019214585600c55af1ea5321f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a9b5986047b6c3857a47309939338ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a9b5986047b6c3857a47309939338ea"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::findCmd</b> (<a class="el" href="classEngine.html">Engine</a> &amp;e, std::vector&lt; std::string &gt; *)</td></tr>
 <tr class="separator:a5a9b5986047b6c3857a47309939338ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +165,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::writeToLog<
 <tr class="memitem:a0b95e01fe5e51b1f1b7442169d22d016"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b95e01fe5e51b1f1b7442169d22d016"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::setConLog</b> (<a class="el" href="classEngine.html">Engine</a> &amp;, std::vector&lt; std::string &gt; *argv)</td></tr>
 <tr class="separator:a0b95e01fe5e51b1f1b7442169d22d016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7a45b2963a957135791b293a2bb060"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea7a45b2963a957135791b293a2bb060"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::toggleHUDElement</b> (<a class="el" href="classEngine.html">Engine</a> &amp;, std::vector&lt; std::string &gt; *argv)</td></tr>
+<tr class="separator:aea7a45b2963a957135791b293a2bb060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02b2eb6659d7cf38798162dfae520105"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02b2eb6659d7cf38798162dfae520105"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Commands::timestampLog</b> (<a class="el" href="classEngine.html">Engine</a> &amp;, std::vector&lt; std::string &gt; *argv)</td></tr>
 <tr class="separator:a02b2eb6659d7cf38798162dfae520105"><td class="memSeparator" colspan="2">&#160;</td></tr>

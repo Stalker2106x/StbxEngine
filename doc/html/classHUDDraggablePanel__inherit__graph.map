@@ -1,3 +1,4 @@
 <map id="HUDDraggablePanel" name="HUDDraggablePanel">
-<area shape="rect" id="node2" href="$classHUDPanel.html" title="Panel for HUD. " alt="" coords="38,5,125,32"/>
+<area shape="rect" id="node2" href="$classHUDPanel.html" title="Panel for HUD. " alt="" coords="38,80,125,107"/>
+<area shape="rect" id="node3" href="$classHUDElement.html" title="Abstract HUD Element superclass. " alt="" coords="29,5,134,32"/>
 </map>

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,22 +91,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Main <a class="el" href="classHUD.html" title="Main HUD Component. ">HUD</a> Component.  
+<p>Heads up display module.  
  <a href="classHUD.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="HUD_8hh_source.html">HUD.hh</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a61d0f5b86fcff5c3e0b8d77570e49a01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61d0f5b86fcff5c3e0b8d77570e49a01"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
+<tr class="separator:a61d0f5b86fcff5c3e0b8d77570e49a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a616285923c9f5227a8303cf086cca65e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a616285923c9f5227a8303cf086cca65e"></a>
+<a class="el" href="classHUDElement.html">HUDElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getElement</b> (const std::string &amp;id)</td></tr>
+<tr class="separator:a616285923c9f5227a8303cf086cca65e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5f23b2129575fd5dfd5a19c27098c93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5f23b2129575fd5dfd5a19c27098c93"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>toggle</b> ()</td></tr>
 <tr class="separator:aa5f23b2129575fd5dfd5a19c27098c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe87c4e45a06efda524d51efedb7893b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe87c4e45a06efda524d51efedb7893b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addPanel</b> ()</td></tr>
-<tr class="separator:abe87c4e45a06efda524d51efedb7893b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a216eebf9f3e09e589a67d14741c957a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a216eebf9f3e09e589a67d14741c957a2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addIndicator</b> ()</td></tr>
-<tr class="separator:a216eebf9f3e09e589a67d14741c957a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c42c3d52218efb5f82644f737371687"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c42c3d52218efb5f82644f737371687"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addPanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const sf::Color &amp;color)</td></tr>
+<tr class="separator:a5c42c3d52218efb5f82644f737371687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f898d59b1c66fb599381b08e2badd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34f898d59b1c66fb599381b08e2badd1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addPanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;resource)</td></tr>
+<tr class="separator:a34f898d59b1c66fb599381b08e2badd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae85048a2633d0a70c6ee5c7ac619b9cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae85048a2633d0a70c6ee5c7ac619b9cb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addDraggablePanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const sf::Color &amp;headerColor, const sf::Color &amp;frameColor)</td></tr>
+<tr class="separator:ae85048a2633d0a70c6ee5c7ac619b9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf08cc80513575a00e9bad93dd3134e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf08cc80513575a00e9bad93dd3134e4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addDraggablePanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;headerResource, const std::string &amp;frameResource)</td></tr>
+<tr class="separator:abf08cc80513575a00e9bad93dd3134e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99049f1d6455bce1646860208b080166"><td class="memTemplParams" colspan="2"><a class="anchor" id="a99049f1d6455bce1646860208b080166"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a99049f1d6455bce1646860208b080166"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addIndicator</b> (const sf::Vector2f &amp;pos, const int &amp;fontSize, std::string *label, T &amp;var)</td></tr>
+<tr class="separator:a99049f1d6455bce1646860208b080166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc7d84ce7782ddd54f849d957243130e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc7d84ce7782ddd54f849d957243130e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleHideElement</b> (const std::string &amp;id)</td></tr>
+<tr class="separator:abc7d84ce7782ddd54f849d957243130e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2751cc6d18d97dd36c03d2a0a00049dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2751cc6d18d97dd36c03d2a0a00049dc"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Event &amp;e)</td></tr>
 <tr class="separator:a2751cc6d18d97dd36c03d2a0a00049dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,8 +134,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderW
 <tr class="separator:a5d80e6adb4670b6358147fd93539967d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Main <a class="el" href="classHUD.html" title="Main HUD Component. ">HUD</a> Component. </p>
-<p>This class is the <a class="el" href="classHUD.html" title="Main HUD Component. ">HUD</a> component itself. It is a container for <a class="el" href="classHUD.html" title="Main HUD Component. ">HUD</a> Elements like Panels and Indicators </p>
+<div class="textblock"><p>Heads up display module. </p>
+<p>This classes set provide usable GUI to draw info over the renderer frame. It acts as a container for <a class="el" href="classHUD.html" title="Heads up display module. ">HUD</a> Elements like static or dynamic Panels and Indicators to be added anywhere on screen. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="HUD_8hh_source.html">HUD.hh</a></li>
 </ul>

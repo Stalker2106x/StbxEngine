@@ -1,0 +1,6 @@
+<map id="HUDElement" name="HUDElement">
+<area shape="rect" id="node2" href="$classHUDPanel.html" title="Panel for HUD. " alt="" coords="50,80,137,107"/>
+<area shape="rect" id="node4" href="$classHUDSIndicator.html" title="Abstract HUD Indicator Superclass. " alt="" coords="183,80,299,107"/>
+<area shape="rect" id="node3" href="$classHUDDraggablePanel.html" title="Draggable implementation of panel. " alt="" coords="5,155,157,181"/>
+<area shape="rect" id="node5" href="$classHUDIndicator.html" title="Templated class to track a variable value on screen. " alt="" coords="181,155,325,181"/>
+</map>

@@ -3,6 +3,6 @@
 <area shape="rect" id="node3" href="$classMenuItem.html" title="Abstract Menu item. " alt="" coords="93,184,180,211"/>
 <area shape="rect" id="node4" href="$classEngine.html" title="Main class for graphic conception. " alt="" coords="104,95,169,121"/>
 <area shape="rect" id="node5" href="$classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,84,32"/>
-<area shape="rect" id="node6" href="$classHUD.html" title="Main HUD Component. " alt="" coords="111,5,163,32"/>
+<area shape="rect" id="node6" href="$classHUD.html" title="Heads up display module. " alt="" coords="111,5,163,32"/>
 <area shape="rect" id="node7" href="$classConsole.html" title="Integrated toggleable developer console. " alt="" coords="187,5,260,32"/>
 </map>

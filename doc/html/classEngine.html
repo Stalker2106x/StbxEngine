@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,7 +103,7 @@ Collaboration diagram for Engine:</div>
 <div class="dyncontent">
 <div class="center"><img src="classEngine__coll__graph.png" border="0" usemap="#Engine_coll__map" alt="Collaboration graph"/></div>
 <map name="Engine_coll__map" id="Engine_coll__map">
-<area shape="rect" id="node2" href="classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,84,32"/><area shape="rect" id="node3" href="classHUD.html" title="Main HUD Component. " alt="" coords="111,5,163,32"/><area shape="rect" id="node4" href="classConsole.html" title="Integrated toggleable developer console. " alt="" coords="187,5,260,32"/></map>
+<area shape="rect" id="node2" href="classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,84,32"/><area shape="rect" id="node3" href="classHUD.html" title="Heads up display module. " alt="" coords="111,5,163,32"/><area shape="rect" id="node4" href="classConsole.html" title="Integrated toggleable developer console. " alt="" coords="187,5,260,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -128,9 +129,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>videoParamSet</b> (co
 <tr class="memitem:abffb4aa8da34832c14c7b041b1c864b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abffb4aa8da34832c14c7b041b1c864b8"></a>
 sf::Image&#160;</td><td class="memItemRight" valign="bottom"><b>capture</b> ()</td></tr>
 <tr class="separator:abffb4aa8da34832c14c7b041b1c864b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e0654bb674af345b9f7ca3f31219ec2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e0654bb674af345b9f7ca3f31219ec2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>graphicsLoop</b> ()</td></tr>
-<tr class="separator:a8e0654bb674af345b9f7ca3f31219ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04f3ee9b4ddc0d67406536a2fe525f31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04f3ee9b4ddc0d67406536a2fe525f31"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()=0</td></tr>
 <tr class="separator:a04f3ee9b4ddc0d67406536a2fe525f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,15 +147,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>quit</b> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8de2605cee789558ae211e4fac46b5e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8de2605cee789558ae211e4fac46b5e1"></a>
-static char&#160;</td><td class="memItemRight" valign="bottom"><b>getChar</b> (sf::Event event, CharType type, bool useBinds=true)</td></tr>
-<tr class="separator:a8de2605cee789558ae211e4fac46b5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fd36135a1090fc05947f4969bedacb6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fd36135a1090fc05947f4969bedacb6"></a>
+static char&#160;</td><td class="memItemRight" valign="bottom"><b>getChar</b> (sf::Event event, CharType type)</td></tr>
+<tr class="separator:a7fd36135a1090fc05947f4969bedacb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb9db1b96d86458ae665b2614fd0bd9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb9db1b96d86458ae665b2614fd0bd9b"></a>
 static struct tm *&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
 <tr class="separator:afb9db1b96d86458ae665b2614fd0bd9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad89df061e48c5dfb14632b67fc77fe0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad89df061e48c5dfb14632b67fc77fe0c"></a>
 static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTimestamp</b> ()</td></tr>
 <tr class="separator:ad89df061e48c5dfb14632b67fc77fe0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5758881641937de544325f5eebaabb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b5758881641937de544325f5eebaabb"></a>
+static sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getMousePosition</b> ()</td></tr>
+<tr class="separator:a4b5758881641937de544325f5eebaabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>

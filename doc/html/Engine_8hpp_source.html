@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,15 +118,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordtype">void</span> videoParamSet(<span class="keyword">const</span> std::string &amp;, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  sf::Image capture();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordtype">void</span> graphicsLoop();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw() = 0;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordtype">bool</span> updateLoop();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> update(sf::Event &amp;) = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keywordtype">int</span> mainLoop();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">char</span> getChar(sf::Event event, CharType type, <span class="keywordtype">bool</span> useBinds = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">static</span> <span class="keyword">struct </span>tm *getTime();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keyword">static</span> std::string getTimestamp();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw() = 0;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">bool</span> updateLoop();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> update(sf::Event &amp;) = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keywordtype">int</span> mainLoop();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">char</span> getChar(sf::Event event, CharType type);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">static</span> <span class="keyword">struct </span>tm *getTime();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">static</span> std::string getTimestamp();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keyword">static</span> sf::Vector2f getMousePosition();</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordtype">void</span> quit();</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
@@ -142,13 +143,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ENGINE_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="HUD_8hh_html"><div class="ttname"><a href="HUD_8hh.html">HUD.hh</a></div><div class="ttdoc">Heads up display module. </div></div>
+<div class="ttc" id="HUD_8hh_html"><div class="ttname"><a href="HUD_8hh.html">HUD.hh</a></div></div>
 <div class="ttc" id="classConsole_html"><div class="ttname"><a href="classConsole.html">Console</a></div><div class="ttdoc">Integrated toggleable developer console. </div><div class="ttdef"><b>Definition:</b> Console.hh:28</div></div>
 <div class="ttc" id="classKeybinds_html"><div class="ttname"><a href="classKeybinds.html">Keybinds</a></div><div class="ttdoc">Dictionnary of current bound keys at runtime. </div><div class="ttdef"><b>Definition:</b> Keybinds.hh:21</div></div>
 <div class="ttc" id="classEngine_html"><div class="ttname"><a href="classEngine.html">Engine</a></div><div class="ttdoc">Main class for graphic conception. </div><div class="ttdef"><b>Definition:</b> Engine.hpp:26</div></div>
 <div class="ttc" id="Console_8hh_html"><div class="ttname"><a href="Console_8hh.html">Console.hh</a></div></div>
 <div class="ttc" id="Keybinds_8hh_html"><div class="ttname"><a href="Keybinds_8hh.html">Keybinds.hh</a></div></div>
-<div class="ttc" id="classHUD_html"><div class="ttname"><a href="classHUD.html">HUD</a></div><div class="ttdoc">Main HUD Component. </div><div class="ttdef"><b>Definition:</b> HUD.hh:90</div></div>
+<div class="ttc" id="classHUD_html"><div class="ttname"><a href="classHUD.html">HUD</a></div><div class="ttdoc">Heads up display module. </div><div class="ttdef"><b>Definition:</b> HUD.hh:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -84,35 +85,87 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classHUDPanel-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HUDPanel Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Panel for <a class="el" href="classHUD.html" title="Main HUD Component. ">HUD</a>.  
+<p>Panel for <a class="el" href="classHUD.html" title="Heads up display module. ">HUD</a>.  
  <a href="classHUDPanel.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="HUD_8hh_source.html">HUD.hh</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="HUDElement_8hh_source.html">HUDElement.hh</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for HUDPanel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHUDPanel__inherit__graph.png" border="0" usemap="#HUDPanel_inherit__map" alt="Inheritance graph"/></div>
 <map name="HUDPanel_inherit__map" id="HUDPanel_inherit__map">
-<area shape="rect" id="node2" href="classHUDDynamicPanel.html" title="Draggable implementation of panel. " alt="" coords="5,80,148,107"/></map>
+<area shape="rect" id="node3" href="classHUDDraggablePanel.html" title="Draggable implementation of panel. " alt="" coords="5,155,157,181"/><area shape="rect" id="node2" href="classHUDElement.html" title="Abstract HUD Element superclass. " alt="" coords="29,5,134,32"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for HUDPanel:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHUDPanel__coll__graph.png" border="0" usemap="#HUDPanel_coll__map" alt="Collaboration graph"/></div>
+<map name="HUDPanel_coll__map" id="HUDPanel_coll__map">
+<area shape="rect" id="node2" href="classHUDElement.html" title="Abstract HUD Element superclass. " alt="" coords="5,5,111,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae6c5932dd593acb659e948f405149e7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6c5932dd593acb659e948f405149e7e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>HUDPanel</b> (const sf::Vector2f &amp;pos, const sf::Vector2f &amp;size)</td></tr>
-<tr class="separator:ae6c5932dd593acb659e948f405149e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf625067dac75f0626ec42acb647239c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf625067dac75f0626ec42acb647239c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>HUDPanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const sf::Color &amp;color)</td></tr>
+<tr class="separator:acf625067dac75f0626ec42acb647239c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbdc06882df1f4417a402edd52f533ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbdc06882df1f4417a402edd52f533ce"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>HUDPanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;name)</td></tr>
+<tr class="separator:acbdc06882df1f4417a402edd52f533ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7eaa602790660b2e2f8f6b05b0ade6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c7eaa602790660b2e2f8f6b05b0ade6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const sf::Vector2f &amp;pos)</td></tr>
+<tr class="separator:a7c7eaa602790660b2e2f8f6b05b0ade6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59ac97674a53602bac61fe34b6896e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa59ac97674a53602bac61fe34b6896e1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addElement</b> (<a class="el" href="classHUDElement.html">HUDElement</a> *element)</td></tr>
+<tr class="separator:aa59ac97674a53602bac61fe34b6896e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8c3fa8fb89497327a7decd07bc4bc64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8c3fa8fb89497327a7decd07bc4bc64"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf::Event &amp;e)</td></tr>
+<tr class="separator:ac8c3fa8fb89497327a7decd07bc4bc64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf6d437be52717d51311c5cfe0763f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdf6d437be52717d51311c5cfe0763f0"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow *win)</td></tr>
+<tr class="separator:afdf6d437be52717d51311c5cfe0763f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classHUDElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classHUDElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classHUDElement.html">HUDElement</a></td></tr>
+<tr class="memitem:a6eeab15bf2cd1cce14a4212e689da5f5 inherit pub_methods_classHUDElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6eeab15bf2cd1cce14a4212e689da5f5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>HUDElement</b> (const std::string &amp;id)</td></tr>
+<tr class="separator:a6eeab15bf2cd1cce14a4212e689da5f5 inherit pub_methods_classHUDElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a453704cb8bbdf56422e72d2c2913ee92 inherit pub_methods_classHUDElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a453704cb8bbdf56422e72d2c2913ee92"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>toggle</b> ()</td></tr>
+<tr class="separator:a453704cb8bbdf56422e72d2c2913ee92 inherit pub_methods_classHUDElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7338ad7903e7327a7c404eb465a48195 inherit pub_methods_classHUDElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7338ad7903e7327a7c404eb465a48195"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> ()</td></tr>
+<tr class="separator:a7338ad7903e7327a7c404eb465a48195 inherit pub_methods_classHUDElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a1ac0aa3678465977bf504d441b6ca58f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ac0aa3678465977bf504d441b6ca58f"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_id</b></td></tr>
+<tr class="separator:a1ac0aa3678465977bf504d441b6ca58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4495c3fb5b4fcc19ca5e555b6aa09ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4495c3fb5b4fcc19ca5e555b6aa09ac"></a>
+sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>_frame</b></td></tr>
+<tr class="separator:aa4495c3fb5b4fcc19ca5e555b6aa09ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a256825d354babcea717770a3784a60b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a256825d354babcea717770a3784a60b6"></a>
+std::vector&lt; <a class="el" href="classHUDElement.html">HUDElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_elements</b></td></tr>
+<tr class="separator:a256825d354babcea717770a3784a60b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classHUDElement"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classHUDElement')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classHUDElement.html">HUDElement</a></td></tr>
+<tr class="memitem:af2ff8c695a7a3ba994467abbbda8e2d3 inherit pro_attribs_classHUDElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2ff8c695a7a3ba994467abbbda8e2d3"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_id</b></td></tr>
+<tr class="separator:af2ff8c695a7a3ba994467abbbda8e2d3 inherit pro_attribs_classHUDElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c3fdd33775f2f1d79ff2376ba3d3fdb inherit pro_attribs_classHUDElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c3fdd33775f2f1d79ff2376ba3d3fdb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_active</b></td></tr>
+<tr class="separator:a9c3fdd33775f2f1d79ff2376ba3d3fdb inherit pro_attribs_classHUDElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Panel for <a class="el" href="classHUD.html" title="Main HUD Component. ">HUD</a>. </p>
+<div class="textblock"><p>Panel for <a class="el" href="classHUD.html" title="Heads up display module. ">HUD</a>. </p>
 <p>This class is a panel to group indicators, or set custom actions bars, ... </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="HUD_8hh_source.html">HUD.hh</a></li>
+<li>include/<a class="el" href="HUDElement_8hh_source.html">HUDElement.hh</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

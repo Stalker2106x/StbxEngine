@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -70,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,11 +92,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr id="row_0_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Console_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Console_8hh.html" target="_self">Console.hh</a></td><td class="desc"></td></tr>
 <tr id="row_0_2_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Control_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Control_8hh.html" target="_self">Control.hh</a></td><td class="desc"></td></tr>
 <tr id="row_0_3_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Engine_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="Engine_8hpp.html" target="_self">Engine.hpp</a></td><td class="desc"></td></tr>
-<tr id="row_0_4_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="HUD_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="HUD_8hh.html" target="_self">HUD.hh</a></td><td class="desc">Heads up display module </td></tr>
-<tr id="row_0_5_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Keybinds_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Keybinds_8hh.html" target="_self">Keybinds.hh</a></td><td class="desc"></td></tr>
-<tr id="row_0_6_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Menu_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Menu_8hh.html" target="_self">Menu.hh</a></td><td class="desc"></td></tr>
-<tr id="row_0_7_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="MenuItem_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="MenuItem_8hh.html" target="_self">MenuItem.hh</a></td><td class="desc"><a class="el" href="classMenu.html" title="Simple class for generating menus. ">Menu</a> items (links, settings, sliders, text inputs, ...) </td></tr>
-<tr id="row_0_8_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Resolver_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Resolver_8hh.html" target="_self">Resolver.hh</a></td><td class="desc"></td></tr>
+<tr id="row_0_4_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="HUD_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="HUD_8hh.html" target="_self">HUD.hh</a></td><td class="desc"></td></tr>
+<tr id="row_0_5_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="HUDElement_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="HUDElement_8hh.html" target="_self">HUDElement.hh</a></td><td class="desc">Heads up display module </td></tr>
+<tr id="row_0_6_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Keybinds_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Keybinds_8hh.html" target="_self">Keybinds.hh</a></td><td class="desc"></td></tr>
+<tr id="row_0_7_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Menu_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Menu_8hh.html" target="_self">Menu.hh</a></td><td class="desc"></td></tr>
+<tr id="row_0_8_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="MenuItem_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="MenuItem_8hh.html" target="_self">MenuItem.hh</a></td><td class="desc"><a class="el" href="classMenu.html" title="Simple class for generating menus. ">Menu</a> items (links, settings, sliders, text inputs, ...) </td></tr>
+<tr id="row_0_9_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="Resolver_8hh_source.html"><span class="icondoc"></span></a><a class="el" href="Resolver_8hh.html" target="_self">Resolver.hh</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->

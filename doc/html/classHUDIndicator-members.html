@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -89,10 +90,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>HUDIndicator</b>(const std::string *label, const T &amp;var) (defined in <a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>HUDSIndicator</b>() (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~HUDIndicator</b>() (defined in <a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~HUDSIndicator</b>() (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_active</b> (defined in <a class="el" href="classHUDElement.html">HUDElement</a>)</td><td class="entry"><a class="el" href="classHUDElement.html">HUDElement</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>_id</b> (defined in <a class="el" href="classHUDElement.html">HUDElement</a>)</td><td class="entry"><a class="el" href="classHUDElement.html">HUDElement</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_label</b> (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>_value</b> (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>draw</b>(sf::RenderWindow *win) (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getId</b>() (defined in <a class="el" href="classHUDElement.html">HUDElement</a>)</td><td class="entry"><a class="el" href="classHUDElement.html">HUDElement</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>HUDElement</b>(const std::string &amp;id) (defined in <a class="el" href="classHUDElement.html">HUDElement</a>)</td><td class="entry"><a class="el" href="classHUDElement.html">HUDElement</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>HUDIndicator</b>(T &amp;var) (defined in <a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>HUDIndicator</b>(const std::string &amp;label, T &amp;var) (defined in <a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>HUDSIndicator</b>(const std::string &amp;label) (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setFontsize</b>(const int &amp;fontSize) (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setPosition</b>(const sf::Vector2f &amp;pos) (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>toggle</b>() (defined in <a class="el" href="classHUDElement.html">HUDElement</a>)</td><td class="entry"><a class="el" href="classHUDElement.html">HUDElement</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>update</b>(const sf::Event &amp;e) (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~HUDElement</b>() (defined in <a class="el" href="classHUDElement.html">HUDElement</a>)</td><td class="entry"><a class="el" href="classHUDElement.html">HUDElement</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~HUDIndicator</b>() (defined in <a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a>)</td><td class="entry"><a class="el" href="classHUDIndicator.html">HUDIndicator&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~HUDSIndicator</b>() (defined in <a class="el" href="classHUDSIndicator.html">HUDSIndicator</a>)</td><td class="entry"><a class="el" href="classHUDSIndicator.html">HUDSIndicator</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

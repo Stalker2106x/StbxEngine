@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,7 +107,7 @@ Collaboration diagram for MenuLink:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMenuLink__coll__graph.png" border="0" usemap="#MenuLink_coll__map" alt="Collaboration graph"/></div>
 <map name="MenuLink_coll__map" id="MenuLink_coll__map">
-<area shape="rect" id="node2" href="classMenuItem.html" title="Abstract Menu item. " alt="" coords="93,184,180,211"/><area shape="rect" id="node3" href="classEngine.html" title="Main class for graphic conception. " alt="" coords="104,95,169,121"/><area shape="rect" id="node4" href="classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,84,32"/><area shape="rect" id="node5" href="classHUD.html" title="Main HUD Component. " alt="" coords="111,5,163,32"/><area shape="rect" id="node6" href="classConsole.html" title="Integrated toggleable developer console. " alt="" coords="187,5,260,32"/></map>
+<area shape="rect" id="node2" href="classMenuItem.html" title="Abstract Menu item. " alt="" coords="93,184,180,211"/><area shape="rect" id="node3" href="classEngine.html" title="Main class for graphic conception. " alt="" coords="104,95,169,121"/><area shape="rect" id="node4" href="classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,84,32"/><area shape="rect" id="node5" href="classHUD.html" title="Heads up display module. " alt="" coords="111,5,163,32"/><area shape="rect" id="node6" href="classConsole.html" title="Integrated toggleable developer console. " alt="" coords="187,5,260,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -120,6 +121,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (const 
 <tr class="memitem:aead63aac98e3b371551415ac15161449"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aead63aac98e3b371551415ac15161449"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCustomAction</b> (void(*fptr)(void *), void *cparam)</td></tr>
 <tr class="separator:aead63aac98e3b371551415ac15161449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15eb84d043216fb0c94edfeb9ea23cc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15eb84d043216fb0c94edfeb9ea23cc2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCommand</b> (const std::string &amp;command)</td></tr>
+<tr class="separator:a15eb84d043216fb0c94edfeb9ea23cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1a568e55ba536b4980d3f052bdd8bdb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1a568e55ba536b4980d3f052bdd8bdb"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onClick</b> ()</td></tr>
 <tr class="separator:aa1a568e55ba536b4980d3f052bdd8bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,15 +149,18 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setColor</b> 
 <tr class="memitem:af27266333438130b97044313ca966f94 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af27266333438130b97044313ca966f94"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setFontsize</b> (const int &amp;size)</td></tr>
 <tr class="separator:af27266333438130b97044313ca966f94 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a138a903e28410a05a7692610ea11a8c7 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a138a903e28410a05a7692610ea11a8c7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setXOffset</b> (const int &amp;x)</td></tr>
-<tr class="separator:a138a903e28410a05a7692610ea11a8c7 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afca53d52571a031ca9256bba1d62b0c5 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afca53d52571a031ca9256bba1d62b0c5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setYOffset</b> (const int &amp;y)</td></tr>
-<tr class="separator:afca53d52571a031ca9256bba1d62b0c5 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a8c4edcb5d83ef32d54a897816d06aa inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a8c4edcb5d83ef32d54a897816d06aa"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setOffset</b> (const int &amp;x, const int &amp;y)</td></tr>
-<tr class="separator:a4a8c4edcb5d83ef32d54a897816d06aa inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8540cc1cabeab6848bf3bb06e8cafd80 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8540cc1cabeab6848bf3bb06e8cafd80"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setXOffset</b> (const float &amp;x)</td></tr>
+<tr class="separator:a8540cc1cabeab6848bf3bb06e8cafd80 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a114fb596a6c7f5dc907ab11916de265b inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a114fb596a6c7f5dc907ab11916de265b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setYOffset</b> (const float &amp;y)</td></tr>
+<tr class="separator:a114fb596a6c7f5dc907ab11916de265b inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca67e9a387de350c404969b00f6fbb9c inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca67e9a387de350c404969b00f6fbb9c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setOffset</b> (const float &amp;x, const float &amp;y)</td></tr>
+<tr class="separator:aca67e9a387de350c404969b00f6fbb9c inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00bed95a6cdc5f0c598f91ce853874a3 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00bed95a6cdc5f0c598f91ce853874a3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialUpdate</b> ()</td></tr>
+<tr class="separator:a00bed95a6cdc5f0c598f91ce853874a3 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f23be00dc774bf15f90494635dc856b inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f23be00dc774bf15f90494635dc856b"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onValueHover</b> (const bool &amp;triggered)</td></tr>
 <tr class="separator:a1f23be00dc774bf15f90494635dc856b inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>

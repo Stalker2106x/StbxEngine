@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['stabax_20engine',['STABAX ENGINE',['../md_README.html',1,'']]]
+  ['resolver',['Resolver',['../classResolver.html',1,'']]],
+  ['resolver_2ehh',['Resolver.hh',['../Resolver_8hh.html',1,'']]]
 ];

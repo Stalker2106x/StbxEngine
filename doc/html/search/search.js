@@ -7,16 +7,18 @@
 
 var indexSectionsWithContent =
 {
-  0: "cehkmr",
+  0: "ceghkmr",
   1: "cehkmr",
-  2: "cehkmr"
+  2: "cehkmr",
+  3: "g"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "files"
+  2: "files",
+  3: "pages"
 };
 
 function convertToId(search)
