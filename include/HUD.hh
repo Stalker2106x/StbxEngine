@@ -31,8 +31,8 @@ public:
 	void addIndicator(const sf::Vector2f &pos, const int &fontSize, std::string *label, T &var)
 	{
 		_elements.push_back(new HUDIndicator<T>(label, var));
-		_elements.back()->setPosition(pos);
-		_elements.back()->setFontsize(fontSize);
+		static_cast<HUDSIndicator *>(_elements.back())->setPosition(pos);
+		static_cast<HUDSIndicator *>(_elements.back())->setFontsize(fontSize);
 	}
 
 	void toggleHideElement(const int &id);
