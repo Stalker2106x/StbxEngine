@@ -63,7 +63,7 @@ $(NAME): $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LIBS) $(LIBFLAGS)
 
 test: $(TESTOBJS)
-	$(CC) -o $(TEST) $(TESTOBJS) -L$(BINDIR) -lsengine
+	$(CC) -o $(TEST) $(TESTOBJS) -L$(BINDIR) $(LIBS) $(LIBFLAGS) -lsengine
 
 clean:
 	$(RM) $(OBJS) $(TESTOBJS)
