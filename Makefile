@@ -51,6 +51,7 @@ SRCS =				$(EXTLIB)/pugixml/src/pugixml.cpp	\
 				$(SRCDIR)/Menu.cpp			\
 				$(SRCDIR)/MenuItem.cpp			\
 				$(SRCDIR)/HUD.cpp			\
+				$(SRCDIR)/HUDElement.hh			\
 				$(SRCDIR)/Resolver.cpp
 
 OBJS = $(SRCS:.cpp=.o)
