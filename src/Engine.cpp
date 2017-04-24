@@ -38,11 +38,8 @@ bool Engine::updateLoop()
 	  _win->close();
 	  return (false);
 	}
-      if (_console->isActive())
-	_console->update(event);
+      _console->update(event);
     }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
-    _console->toggle();  
   return (true);
 }
 
@@ -59,17 +56,22 @@ int Engine::mainLoop()
 
 char Engine::getChar(sf::Event event, CharType type)
 {
+  
+  if (event.key.code == sf::Keyboard::BackSpace)
+    return ('\b');
+  if (event.key.code == sf::Keyboard::Space)
+    return (' ');
+  else if (event.type != sf::Event::TextEntered)
+    return ('\0');
   if (type == alphanumeric || type == numeric)
     {
       if (event.key.code >= sf::Keyboard::Num0 && event.key.code <= sf::Keyboard::Num9)
-	return (static_cast<char>(event.key.code + 48));
+	return (static_cast<char>(event.text.unicode));
     }
   if (type == alphanumeric || type == alphabetic)
     {
       if (event.key.code >= sf::Keyboard::A && event.key.code <= sf::Keyboard::Z)
-	return (static_cast<char>(event.key.code + 97));
+	return (static_cast<char>(event.text.unicode));
     }
-  if (event.key.code == sf::Keyboard::BackSpace)
-    return ('\b');
   return ('\0');
 }

@@ -27,7 +27,7 @@ void Console::initGraphics(const sf::Vector2i &winsize)
   _inputValue.setFont(_font);
   _inputValue.setCharacterSize(_fontSize);
   _inputValue.setColor(sf::Color::White);
-  _inputValue.setPosition(6, winsize.x / 4 - _inputArea.getLocalBounds().height - 4);
+  _inputValue.setPosition(6, winsize.y / 4 - _inputArea.getLocalBounds().height - 2);
   bg.create(winsize.x, winsize.y / 4);
   _bg.setTexture(bg);
   _bg.setColor(sf::Color(48,48,48));
@@ -49,7 +49,9 @@ bool Console::isActive()
 
 void Console::update(const sf::Event &event)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _currentIndex > 0)
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
+    toggle();
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _currentIndex > 0)
     _currentIndex--;
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _currentIndex < _input.size())
     _currentIndex++;
@@ -58,10 +60,14 @@ void Console::update(const sf::Event &event)
       char c;
 
       c = Engine::getChar(event, alphanumeric);
+      std::cout << "::" << c << "::" << "\n";
       if (c != '\0')
-	_input.back() += c;
-      if (c == '\b')
-	_input.back().pop_back();
+	{	  
+	  if (c == '\b')
+	    _input.back().pop_back();
+	  else
+	    _input.back() += c;
+	}
     }
   _inputValue.setString(_input[_currentIndex]);
   std::cout << _input[_currentIndex] << "\n";
