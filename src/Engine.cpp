@@ -59,19 +59,13 @@ char Engine::getChar(sf::Event event, CharType type)
   
   if (event.key.code == sf::Keyboard::BackSpace)
     return ('\b');
-  if (event.key.code == sf::Keyboard::Space)
+  else if (event.key.code == sf::Keyboard::Space)
     return (' ');
   else if (event.type != sf::Event::TextEntered)
     return ('\0');
-  if (type == alphanumeric || type == numeric)
-    {
-      if (event.key.code >= sf::Keyboard::Num0 && event.key.code <= sf::Keyboard::Num9)
-	return (static_cast<char>(event.text.unicode));
-    }
-  if (type == alphanumeric || type == alphabetic)
-    {
-      if (event.key.code >= sf::Keyboard::A && event.key.code <= sf::Keyboard::Z)
-	return (static_cast<char>(event.text.unicode));
-    }
+  if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
+      return (event.text.unicode);
+  if ((event.text.unicode >= 'a' && event.text.unicode <= 'z') && (type == alphanumeric || type == alphabetic))
+      return (event.text.unicode);
   return ('\0');
 }
