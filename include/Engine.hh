@@ -20,6 +20,7 @@ public:
   bool openWindow(int , int);
 
   sf::Vector2i getWindowSize() const;
+  void setMaxFPS(const unsigned int &);
   
   void graphicsLoop();
   bool updateLoop();

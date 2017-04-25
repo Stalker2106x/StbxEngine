@@ -8,6 +8,7 @@ namespace Commands {
     {"exec", &execute},
     {"exit", &quit},
     {"find", &findCmd},
+    {"fps_max", &setMaxFPS},
     {"toggleconsole", &consoleToggle},
     {"videomode", &windowSize}
   };
@@ -68,7 +69,10 @@ namespace Commands {
     std::string cmd;
     
     if (&argv == NULL || argv.size() < 1)
-      c.output("exec: Nothing to execute");
+      {
+	c.output("exec: Nothing to execute");
+	return;
+      }
     ifs.open(argv[0]);
     if (!ifs.is_open())
       {
@@ -86,7 +90,10 @@ namespace Commands {
     std::vector<std::string> available;
 
     if (&argv == NULL || argv.size() < 1)
-      c.output("find: Nothing to search for");    
+      {
+	c.output("find: Nothing to search for");
+	return;
+      }
     for (iter = cmdlist.begin(); iter != cmdlist.end(); iter++)
       {
 	if ((*iter).first.find(argv[0]) != std::string::npos)
@@ -106,10 +113,23 @@ namespace Commands {
     e.quit();
   }
 
+  void setMaxFPS(Console &c, Engine &e, std::vector<std::string> &argv)
+  {
+    if (&argv == NULL || argv.size() < 1)
+      {
+	c.output("fps_max: No value given");
+	return;
+      }
+    e.setMaxFPS(atoi(argv[0].c_str()));
+  }
+
   void windowSize(Console &c, Engine &e, std::vector<std::string> &argv)
   {
     if (&argv == NULL || argv.size() < 2)
-      c.output("videomode: Incorrect or no mode given");
+      {
+	c.output("videomode: Incorrect or no mode given");
+	return;
+      }
     e.openWindow(atoi(argv[0].c_str()), atoi(argv[0].c_str()));
     c.initGraphics(e.getWindowSize());
   }

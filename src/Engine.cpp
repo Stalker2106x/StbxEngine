@@ -19,8 +19,6 @@ bool Engine::openWindow(int width, int height)
   if (_win != NULL)
     delete (_win);
   _win = new sf::RenderWindow();
-  _win->setVerticalSyncEnabled(false);
-  _win->setFramerateLimit(120);
   _win->setKeyRepeatEnabled(false);
   _win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA");
   _console->initGraphics(_winsize);
@@ -30,6 +28,11 @@ bool Engine::openWindow(int width, int height)
 sf::Vector2i Engine::getWindowSize() const
 {
   return (_winsize);
+}
+
+void Engine::setMaxFPS(const unsigned int &fps)
+{
+  _win->setFramerateLimit(fps);
 }
 
 void Engine::graphicsLoop()
