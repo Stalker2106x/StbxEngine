@@ -13,19 +13,17 @@ namespace Commands {
   {
     std::vector<std::string> *argv;
     std::string buffer;
-    int pos;
+    size_t pos;
     
     if (command.find(' ') == std::string::npos)
       return (NULL);
     argv = new std::vector<std::string>();
     buffer = command;
-    std::cout << "::::" << buffer << "::::\n";
     while ((pos = buffer.find(' ')) != std::string::npos)
       {
 	while (buffer[pos] == ' ')
 	  pos++;
 	buffer = buffer.substr(pos, buffer.length() - pos);
-	std::cout << "::" << buffer << "::\n";
 	if ((pos = buffer.find(' ')) != std::string::npos)
 	  argv->push_back(buffer.substr(0, pos));
 	else
@@ -51,12 +49,12 @@ namespace Commands {
     return (true);
   }
   
-  void quit(Console &c, Engine &e, std::vector<std::string> &argv)
+  void quit(Console &, Engine &e, std::vector<std::string> &)
   {
     e.quit();
   }
 
-  void clear(Console &c, Engine &e, std::vector<std::string> &argv)
+  void clear(Console &c, Engine &, std::vector<std::string> &)
   {
     c.clear();
   }
@@ -75,10 +73,7 @@ namespace Commands {
 	  return;
       }
     while (std::getline(ifs, cmd))
-      {
-	std::cout << ":" << cmd << ":\n";
-	parseCmd(c, e, cmd);
-      }
+      parseCmd(c, e, cmd);
     delete (&argv);
   }
   
