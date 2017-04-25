@@ -4,9 +4,11 @@
 namespace Commands {
 
   std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> &)> cmdlist = {
+    {"clear", &consoleClear},
+    {"exec", &execute},
     {"exit", &quit},
-    {"clear", &clear},
-    {"exec", &execute}
+    {"toggleconsole", &consoleToggle},
+    {"videomode", &windowSize}
   };
 
   std::vector<std::string> *getArgs(std::string &command)
@@ -49,16 +51,16 @@ namespace Commands {
     return (true);
   }
   
-  void quit(Console &, Engine &e, std::vector<std::string> &)
-  {
-    e.quit();
-  }
-
-  void clear(Console &c, Engine &, std::vector<std::string> &)
+  void consoleClear(Console &c, Engine &, std::vector<std::string> &)
   {
     c.clear();
   }
 
+  void consoleToggle(Console &c, Engine &, std::vector<std::string> &)
+  {
+    c.toggle();
+  }
+  
   void execute(Console &c, Engine &e, std::vector<std::string> &argv)
   {
     std::ifstream ifs;
@@ -77,4 +79,17 @@ namespace Commands {
     delete (&argv);
   }
   
+  void quit(Console &, Engine &e, std::vector<std::string> &)
+  {
+    e.quit();
+  }
+
+  void windowSize(Console &c, Engine &e, std::vector<std::string> &argv)
+  {
+    if (&argv == NULL || argv.size() < 2)
+      c.output("videomode: Incorrect or no mode given");
+    e.openWindow(atoi(argv[0].c_str()), atoi(argv[0].c_str()));
+    c.initGraphics(e.getWindowSize());
+  }
+
 }

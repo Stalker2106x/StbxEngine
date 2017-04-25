@@ -1,7 +1,7 @@
 #include "Console.hh"
 #include "Engine.hh"
 
-Console::Console(const sf::Vector2i &winsize, Engine &e) : _engine(e)
+Console::Console(Engine &e) : _engine(e)
 {
   _active = false;
 
@@ -10,9 +10,6 @@ Console::Console(const sf::Vector2i &winsize, Engine &e) : _engine(e)
   _lineCount = 16;
   _fontSize = 25;
   _currentIndex = 0;
-
-  initGraphics(winsize);
-  
   _input.push_back("");
 }
 

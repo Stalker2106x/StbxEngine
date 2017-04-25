@@ -14,11 +14,13 @@ enum CharType {
 class Engine
 {
 public:
-  Engine();
+  Engine(int width = 800, int height = 600);
   ~Engine();
 
-  bool openWindow();
+  bool openWindow(int , int);
 
+  sf::Vector2i getWindowSize() const;
+  
   void graphicsLoop();
   bool updateLoop();
   int mainLoop();

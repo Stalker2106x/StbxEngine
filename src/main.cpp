@@ -2,11 +2,10 @@
 
 int main(int argc, char **argv)
 {
-  Engine engine;
+  Engine engine(1280, 1024);
 
   (void)argc;
   (void)argv;
-  engine.openWindow();
   engine.mainLoop();  
   return (0);
 }

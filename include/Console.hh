@@ -11,7 +11,7 @@
 class Console
 {
 public:
-  Console(const sf::Vector2i &winsize, Engine &e);
+  Console(Engine &e);
   ~Console();
 
   void initGraphics(const sf::Vector2i &winsize);

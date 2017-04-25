@@ -1,14 +1,11 @@
 #include "Engine.hh"
 
-Engine::Engine()
+Engine::Engine(int width, int height)
 {
   _quit = false;
-  _winsize = sf::Vector2i(1024, 768);
-  _win = new sf::RenderWindow();
-  _win->setVerticalSyncEnabled(false);
-  _win->setFramerateLimit(120);
-  _win->setKeyRepeatEnabled(false);
-  _console = new Console(_winsize, *this);
+  _win = NULL;
+  _console = new Console(*this);
+  openWindow(width, height);
 }
 
 Engine::~Engine()
@@ -16,10 +13,23 @@ Engine::~Engine()
 
 }
 
-bool Engine::openWindow()
+bool Engine::openWindow(int width, int height)
 {
+  _winsize = sf::Vector2i(width, height);
+  if (_win != NULL)
+    delete (_win);
+  _win = new sf::RenderWindow();
+  _win->setVerticalSyncEnabled(false);
+  _win->setFramerateLimit(120);
+  _win->setKeyRepeatEnabled(false);
   _win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA");
+  _console->initGraphics(_winsize);
   return (true);
+}
+
+sf::Vector2i Engine::getWindowSize() const
+{
+  return (_winsize);
 }
 
 void Engine::graphicsLoop()
@@ -60,14 +70,11 @@ char Engine::getChar(sf::Event event, CharType type)
   
   if (event.key.code == sf::Keyboard::BackSpace)
     return ('\b');
-  else if (event.key.code == sf::Keyboard::Space)
-    return (' ');
   else if (event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
     return ('\0');
   if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
       return (event.text.unicode);
-  if (((event.text.unicode >= 'a' && event.text.unicode <= 'z') || (event.text.unicode >= 'A' && event.text.unicode <= 'Z'))
-      && (type == alphanumeric || type == alphabetic))
+  if ((event.text.unicode >= ' ' && event.text.unicode <= '~') && (type == alphanumeric || type == alphabetic))
       return (event.text.unicode);
   return ('\0');
 }
