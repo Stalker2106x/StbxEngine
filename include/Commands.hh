@@ -16,6 +16,7 @@ namespace Commands {
   void consoleClear(Console &c, Engine &e, std::vector<std::string> &);
   void consoleToggle(Console &c, Engine &e, std::vector<std::string> &);
   void execute(Console &c, Engine &e, std::vector<std::string> &);
+  void findCmd(Console &c, Engine &e, std::vector<std::string> &);
   void quit(Console &c, Engine &e, std::vector<std::string> &);
   void windowSize(Console &c, Engine &e, std::vector<std::string> &);
   

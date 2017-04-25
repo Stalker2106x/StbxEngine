@@ -7,6 +7,7 @@ namespace Commands {
     {"clear", &consoleClear},
     {"exec", &execute},
     {"exit", &quit},
+    {"find", &findCmd},
     {"toggleconsole", &consoleToggle},
     {"videomode", &windowSize}
   };
@@ -76,6 +77,27 @@ namespace Commands {
       }
     while (std::getline(ifs, cmd))
       parseCmd(c, e, cmd);
+    delete (&argv);
+  }
+
+  void findCmd(Console &c, Engine &, std::vector<std::string> &argv)
+  {
+    std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> &)>::iterator iter;
+    std::vector<std::string> available;
+
+    if (&argv == NULL || argv.size() < 1)
+      c.output("find: Nothing to search for");    
+    for (iter = cmdlist.begin(); iter != cmdlist.end(); iter++)
+      {
+	if ((*iter).first.find(argv[0]) != std::string::npos)
+	  available.push_back((*iter).first);
+      }
+    for (size_t i = 0; i < available.size(); i++)
+      {
+	c.output(available[i]);
+	if (i < available.size() - 1)
+	  c.output(", ");
+      }
     delete (&argv);
   }
   
