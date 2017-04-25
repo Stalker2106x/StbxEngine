@@ -1,1 +1,1 @@
-bind 'l' "toggleconsole"
+exec test

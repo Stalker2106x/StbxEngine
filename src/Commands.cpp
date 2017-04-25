@@ -19,30 +19,35 @@ namespace Commands {
       return (NULL);
     argv = new std::vector<std::string>();
     buffer = command;
+    std::cout << "::::" << buffer << "::::\n";
     while ((pos = buffer.find(' ')) != std::string::npos)
       {
-	buffer = buffer.substr(pos + 2, buffer.length() - pos);
-	std::cout << buffer << "\n";
+	while (buffer[pos] == ' ')
+	  pos++;
+	buffer = buffer.substr(pos, buffer.length() - pos);
+	std::cout << "::" << buffer << "::\n";
 	if ((pos = buffer.find(' ')) != std::string::npos)
 	  argv->push_back(buffer.substr(0, pos));
 	else
 	  argv->push_back(buffer);
       }
-    command = command.substr(0, command.find(' '));
     return (argv);
   }
   
   bool parseCmd(Console &c, Engine &e, std::string cmd)
   {
     std::vector<std::string> *argv;
+    std::string command;
 
-    argv = getArgs(cmd);
-    if (cmdlist.find(cmd) == cmdlist.end())
+    command = cmd.substr(0, cmd.find(' '));
+    std::transform(command.begin(), command.end(), command.begin(), ::tolower);
+    if (cmdlist.find(command) == cmdlist.end())
       {
-	c.output(cmd+": Uknown command");
+	c.output(command+": Uknown command");
 	return (false);
       }
-    cmdlist[cmd](c, e, *argv);
+    argv = getArgs(cmd);
+    cmdlist[command](c, e, *argv);
     return (true);
   }
   
@@ -70,7 +75,10 @@ namespace Commands {
 	  return;
       }
     while (std::getline(ifs, cmd))
-      parseCmd(c, e, cmd);
+      {
+	std::cout << ":" << cmd << ":\n";
+	parseCmd(c, e, cmd);
+      }
     delete (&argv);
   }
   

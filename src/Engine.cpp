@@ -66,7 +66,7 @@ char Engine::getChar(sf::Event event, CharType type)
     return ('\0');
   if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
       return (event.text.unicode);
-  if ((event.text.unicode >= 'a' && event.text.unicode <= 'z') && (type == alphanumeric || type == alphabetic))
+  if ((event.text.unicode >= 'a' && event.text.unicode <= 'z') || (event.text.unicode >= 'A' && event.text.unicode <= 'Z') && (type == alphanumeric || type == alphabetic))
       return (event.text.unicode);
   return ('\0');
 }
