@@ -86,7 +86,7 @@ namespace Commands {
 
   void findCmd(Console &c, Engine &, std::vector<std::string> *argv)
   {
-    std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> *)>::iterator iter;
+    std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> &)>::iterator iter;
     std::vector<std::string> available;
 
     if (argv == NULL || argv->size() < 1)

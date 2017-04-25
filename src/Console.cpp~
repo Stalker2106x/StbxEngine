@@ -8,7 +8,7 @@ Console::Console(Engine &e) : _engine(e)
   if (!_font.loadFromFile("Data/font/console.ttf"))
     throw std::runtime_error("Resource not found");
   _lineCount = 16;
-  _fontSize = 18;
+  _fontSize = 25;
   _currentIndex = 0;
   _outputIndex = 0;
   _input.push_back("");
