@@ -67,10 +67,15 @@ void Console::output(const std::string &msg)
 
 void Console::input()
 {
-  output(">"+_input.back());
-  Commands::parseCmd(*this, _engine, _input.back());
-  _input.push_back("");
-  _currentIndex++;
+  if (_input[_currentIndex].size() < 1)
+    return;
+  output(">"+_input[_currentIndex]);
+  Commands::parseCmd(*this, _engine, _input[_currentIndex]);
+  if (_currentIndex == _input.size() - 1)
+    _input.push_back("");
+  else
+    _input.insert(--_input.end(), _input[_currentIndex]);
+  _currentIndex = _input.size() - 1;
 }
 
 void Console::updateInput(const sf::Event &event)
@@ -80,6 +85,11 @@ void Console::updateInput(const sf::Event &event)
   c = Engine::getChar(event, alphanumeric);
   if (c != '\0')
     {
+      if (_currentIndex != _input.size() - 1)
+	{
+	  _input.back() = _input[_currentIndex];
+	  _currentIndex = _input.size() - 1;
+	}
       if (c == '\b' && _input.back().length() > 0)
 	_input.back().pop_back();
       else
@@ -104,7 +114,7 @@ void Console::update(const sf::Event &event)
 {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
     toggle();
-  else if (_input.back().size() > 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
     input();
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _currentIndex > 0)
     _currentIndex--;
