@@ -2,12 +2,13 @@
 
 Engine::Engine()
 {
+  _quit = false;
   _winsize = sf::Vector2i(1024, 768);
   _win = new sf::RenderWindow();
   _win->setVerticalSyncEnabled(false);
   _win->setFramerateLimit(120);
   _win->setKeyRepeatEnabled(false);
-  _console = new Console(_winsize);
+  _console = new Console(_winsize, *this);
 }
 
 Engine::~Engine()
@@ -45,7 +46,7 @@ bool Engine::updateLoop()
 
 int Engine::mainLoop()
 {
-  while (_win->isOpen() && updateLoop())
+  while (!_quit && _win->isOpen() && updateLoop())
     {
       _win->clear(sf::Color::Black);
       graphicsLoop();
@@ -61,11 +62,16 @@ char Engine::getChar(sf::Event event, CharType type)
     return ('\b');
   else if (event.key.code == sf::Keyboard::Space)
     return (' ');
-  else if (event.type != sf::Event::TextEntered)
+  else if (event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
     return ('\0');
   if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
       return (event.text.unicode);
   if ((event.text.unicode >= 'a' && event.text.unicode <= 'z') && (type == alphanumeric || type == alphabetic))
       return (event.text.unicode);
   return ('\0');
+}
+
+void Engine::quit()
+{
+  _quit = true;
 }

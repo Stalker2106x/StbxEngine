@@ -28,8 +28,8 @@ endif
 
 SRCS =				$(SRCDIR)/main.cpp		\
 				$(SRCDIR)/Engine.cpp		\
-				$(SRCDIR)/Graphics.cpp		\
-				$(SRCDIR)/Console.cpp
+				$(SRCDIR)/Console.cpp		\
+				$(SRCDIR)/Commands.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Graphics.hh"
 #include "Console.hh"
 
 enum CharType {
@@ -25,8 +24,11 @@ public:
   int mainLoop();
 
   static char getChar(sf::Event event, CharType type);
+
+  void quit();
   
 private:
+  bool _quit;
   sf::Vector2i _winsize;
   sf::RenderWindow *_win;
   Console *_console;

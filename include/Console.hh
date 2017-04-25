@@ -5,17 +5,19 @@
 #include <deque>
 #include <stdexcept>
 #include <iostream>
-#include "Graphics.hh"
+#include <SFML/Graphics.hpp>
+#include "Commands.hh"
 
 class Console
 {
 public:
-  Console(const sf::Vector2i &winsize);
+  Console(const sf::Vector2i &winsize, Engine &e);
   ~Console();
 
   void initGraphics(const sf::Vector2i &winsize);
   
   void toggle();
+  void clear();
 
   bool isActive() const;
 
@@ -23,18 +25,22 @@ public:
   void input();
 
   void updateInput(const sf::Event &event);
+  void updateOutput();
   void update(const sf::Event &event);
   void draw(sf::RenderWindow *win);
   
 private:
+  Engine &_engine;
+  
   bool _active;
   sf::Sprite _bg, _inputArea;
   sf::Font _font;
   sf::Text _inputValue;
 
-  std::deque<sf::Text *> _output;
+  std::list<sf::Text *> _output;
   std::deque<std::string> _input;
-  int _currentIndex, _fontSize;
+  int _currentIndex;
+  unsigned int _fontSize, _lineCount;
 };
 
 #endif /* !CONSOLE_HH_ */
