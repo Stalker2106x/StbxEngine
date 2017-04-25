@@ -39,7 +39,7 @@ private:
 
   std::list<sf::Text *> _output;
   std::deque<std::string> _input;
-  size_t _currentIndex;
+  size_t _currentIndex, _outputIndex;
   unsigned int _fontSize, _lineCount;
 };
 

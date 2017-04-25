@@ -10,6 +10,7 @@ Console::Console(Engine &e) : _engine(e)
   _lineCount = 16;
   _fontSize = 25;
   _currentIndex = 0;
+  _outputIndex = 0;
   _input.push_back("");
 }
 
@@ -52,8 +53,8 @@ bool Console::isActive() const
 
 void Console::output(const std::string &msg)
 {
-  if (_output.size() == (_lineCount - 2))
-    _output.pop_front();
+  if (_output.size() >= (_lineCount - 2))
+    _outputIndex++;
   _output.push_back(new sf::Text());
   _output.back()->setFont(_font);
   _output.back()->setCharacterSize(_fontSize);
@@ -97,13 +98,15 @@ void Console::updateInput(const sf::Event &event)
 
 void Console::updateOutput()
 {
-  std::list<sf::Text *>::iterator iter;
+  std::list<sf::Text *>::iterator begIter = _output.begin();
   unsigned int posy = 0;
-  
-  for (iter = _output.begin(); iter != _output.end(); iter++)
+
+  std::advance(begIter, _outputIndex);
+  for (size_t i = 0; i < _lineCount && begIter != _output.end(); i++)
     {
-      (*iter)->setPosition(5, posy);
+      (*begIter)->setPosition(5, posy);
       posy += _fontSize;
+      begIter++;
     }
 }
 
@@ -117,17 +120,31 @@ void Console::update(const sf::Event &event)
     _currentIndex--;
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _currentIndex < _input.size())
     _currentIndex++;
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp) && _outputIndex > 0)
+    {
+      _outputIndex--;
+      updateOutput();
+    }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown) && _outputIndex + _lineCount < _output.size())
+    {
+      _outputIndex++;
+      updateOutput();
+    }
   else
     updateInput(event);
 }
 
 void Console::draw(sf::RenderWindow *win)
 {
-  std::list<sf::Text *>::iterator iter;
+  std::list<sf::Text *>::iterator begIter = _output.begin();
   
   win->draw(_bg);
   win->draw(_inputArea);
   win->draw(_inputValue);
-  for (iter = _output.begin(); iter != _output.end(); iter++)
-    win->draw(*(*iter));
+  std::advance(begIter, _outputIndex);
+  for (size_t i = 0; i < _lineCount && begIter != _output.end(); i++)
+    {
+      win->draw(*(*begIter));
+      begIter++;
+    }
 }
