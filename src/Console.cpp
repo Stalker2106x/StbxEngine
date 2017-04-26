@@ -93,10 +93,7 @@ void Console::updateInput(const sf::Event &event)
 	  _input.back() = _input[_currentIndex];
 	  _currentIndex = _input.size() - 1;
 	}
-      if (c == '\b' && _input.back().length() > 0)
-	_input.back().pop_back();
-      else
-	_input.back() += c;
+      _input.back() += c;
     }
   _inputValue.setString(_input[_currentIndex]);
 }
@@ -117,26 +114,29 @@ void Console::updateOutput()
 
 void Console::update(const sf::Event &event)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
+  updateInput(event);
+  if (event.type != sf::Event::KeyPressed)
+    return;
+  if (event.key.code == sf::Keyboard::F1)
     toggle();
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+  else if (event.key.code == sf::Keyboard::Return)
     input();
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _currentIndex > 0)
+  else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 0)
+    _input[_currentIndex].pop_back();
+  else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
     _currentIndex--;
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _currentIndex < _input.size())
+  else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size())
     _currentIndex++;
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp) && _outputIndex > 0)
+  else if (event.key.code == sf::Keyboard::PageUp && _outputIndex > 0)
     {
       _outputIndex--;
       updateOutput();
     }
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown) && _outputIndex + _lineCount < _output.size())
+  else if (event.key.code == sf::Keyboard::Return && _outputIndex + _lineCount < _output.size())
     {
       _outputIndex++;
       updateOutput();
     }
-  else
-    updateInput(event);
 }
 
 void Console::draw(sf::RenderWindow *win)

@@ -1,0 +1,5 @@
+-Add color to output
+-Add command maxline to change console linecount
+-add command echo to echo something
+-remove output of command from exec
+-add command to enable or disable vsync

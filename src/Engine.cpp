@@ -71,9 +71,7 @@ int Engine::mainLoop()
 char Engine::getChar(sf::Event event, CharType type)
 {
   
-  if (event.key.code == sf::Keyboard::BackSpace)
-    return ('\b');
-  else if (event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
+  if (event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
     return ('\0');
   if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
       return (event.text.unicode);
