@@ -1,5 +1,25 @@
--Add color to output
--Add command maxline to change console linecount
--add command echo to echo something
+bug:
+
 -remove output of command from exec
 -duplicate commands when invoking text
+-change use of list with a typedef for cmdlist
+
+feature:
+
+-Add color to output
+-Add command "maxline" to change console linecount
+-add command "echo" to echo something
+
+-add a command "log_file" to set a log path
+-add a command "log_write" to write to log
+-add a command "log_timestamp" to enable time in log
+
+-add a command "screenshot" to take jpg
+-add a command "debuginfo" to draw fps, debug nodes and info
+
+-add a command "hud_show" to enable or not hud
+-add a command "hud_color" to set HUD color
+-add a command "cwd" to get working dir of console
+
+-add a command "mouse_sensivity" to set mouse sensivity
+-add a command "sound_stop" to stop all sounds
