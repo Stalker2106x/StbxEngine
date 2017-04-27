@@ -30,9 +30,12 @@ sf::Vector2i Engine::getWindowSize() const
   return (_winsize);
 }
 
-void Engine::setMaxFPS(const unsigned int &fps)
+void Engine::videoParamSet(const std::string &ent, const int &value)
 {
-  _win->setFramerateLimit(fps);
+  if (ent == "FPS")
+    _win->setFramerateLimit(value);
+  else if (ent == "VSYNC")
+    _win->setVerticalSyncEnabled(static_cast<bool>(value));
 }
 
 void Engine::graphicsLoop()

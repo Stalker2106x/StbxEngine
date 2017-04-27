@@ -10,13 +10,24 @@ namespace Commands {
     {"find", &findCmd},
     {"fps_max", &setMaxFPS},
     {"toggleconsole", &consoleToggle},
-    {"videomode", &windowSize}
+    {"videomode", &windowSize},
+    {"vsync", &setVSync}
   };
 
+  bool convertBool(std::string arg)
+  {
+    std::transform(arg.begin(), arg.end(), arg.begin(), ::tolower);
+    if (arg == "true")
+      return (true);
+    else
+      return (false);
+  }
+  
   std::vector<std::string> *getArgs(std::string &command)
   {
     std::vector<std::string> *argv;
     std::string buffer;
+    char delimiter;
     size_t pos;
     
     if (command.find(' ') == std::string::npos)
@@ -25,10 +36,16 @@ namespace Commands {
     buffer = command;
     while ((pos = buffer.find(' ')) != std::string::npos)
       {
+	delimiter = ' ';
 	while (buffer[pos] == ' ')
 	  pos++;
 	buffer = buffer.substr(pos, buffer.length() - pos);
-	if ((pos = buffer.find(' ')) != std::string::npos)
+	if (buffer[0] == '"')
+	  {
+	    buffer.erase(0, 1);
+	    delimiter = '"';
+	  }
+	if ((pos = buffer.find(delimiter)) != std::string::npos)
 	  argv->push_back(buffer.substr(0, pos));
 	else
 	  argv->push_back(buffer);
@@ -45,7 +62,7 @@ namespace Commands {
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
     if (cmdlist.find(command) == cmdlist.end())
       {
-	c.output(command+": Uknown command");
+	c.output(command+": Unknown command");
 	return (false);
       }
     argv = getArgs(cmd);
@@ -120,7 +137,17 @@ namespace Commands {
 	c.output("fps_max: No value given");
 	return;
       }
-    e.setMaxFPS(atoi((*argv)[0].c_str()));
+    e.videoParamSet("FPS", atoi((*argv)[0].c_str()));
+  }
+
+  void setVSync(Console &c, Engine &e, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output("vsync: No value given");
+	return;
+      }
+    e.videoParamSet("VSYNC", convertBool((*argv)[0]));    
   }
 
   void windowSize(Console &c, Engine &e, std::vector<std::string> *argv)
@@ -130,7 +157,7 @@ namespace Commands {
 	c.output("videomode: Incorrect or no mode given");
 	return;
       }
-    e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[0].c_str()));
+    e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));
     c.initGraphics(e.getWindowSize());
   }
 
