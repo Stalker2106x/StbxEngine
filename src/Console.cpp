@@ -25,7 +25,8 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 
   _inputValue.setFont(_font);
   _inputValue.setCharacterSize(_fontSize);
-  _inputValue.setColor(sf::Color::White);
+  _inputValue.setOutlineColor(sf::Color::White);
+  _inputValue.setFillColor(sf::Color::Cyan);
   bg.create(winsize.x, (_lineCount * _fontSize) + (_fontSize + 2));
   _bg.setTexture(bg);
   _bg.setColor(sf::Color(48,48,48));
@@ -58,7 +59,7 @@ void Console::output(const std::string &msg)
   _output.push_back(new sf::Text());
   _output.back()->setFont(_font);
   _output.back()->setCharacterSize(_fontSize);
-  _output.back()->setColor(sf::Color::White);
+  _output.back()->setFillColor(sf::Color::White);
   _output.back()->setString(msg);
   updateOutput();
 }
