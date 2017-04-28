@@ -1,5 +1,0 @@
--Add color to output
--Add command maxline to change console linecount
--add command echo to echo something
--remove output of command from exec
--duplicate commands when invoking text

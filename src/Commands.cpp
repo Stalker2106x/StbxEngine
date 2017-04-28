@@ -3,15 +3,17 @@
 
 namespace Commands {
 
-  std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> *)> cmdlist = {
+  cmdMap cmdlist = {
     {"clear", &consoleClear},
+    {"echo", &echo},
     {"exec", &execute},
     {"exit", &quit},
     {"find", &findCmd},
     {"fps_max", &setMaxFPS},
     {"toggleconsole", &consoleToggle},
     {"videomode", &windowSize},
-    {"vsync", &setVSync}
+    {"vsync", &setVSync},
+    {"cwd", &printCWD}
   };
 
   bool convertBool(std::string arg)
@@ -79,6 +81,11 @@ namespace Commands {
   {
     c.toggle();
   }
+
+  void echo(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    c.output((*argv)[0]);
+  }
   
   void execute(Console &c, Engine &e, std::vector<std::string> *argv)
   {
@@ -103,7 +110,7 @@ namespace Commands {
 
   void findCmd(Console &c, Engine &, std::vector<std::string> *argv)
   {
-    std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> *)>::iterator iter;
+    cmdMap::iterator iter;
     std::vector<std::string> available;
 
     if (argv == NULL || argv->size() < 1)
@@ -120,9 +127,19 @@ namespace Commands {
       {
 	c.output(available[i]);
 	if (i < available.size() - 1)
-	  c.output(", ");
+	  c.insertLastOutput(", ");
       }
+    if (available.empty())
+      c.output("find: No commands found");
     delete (argv);
+  }
+
+  void printCWD(Console &c, Engine &, std::vector<std::string> *)
+  {
+    char *cwd = getcwd(NULL, 0);
+
+    c.output(std::string(cwd));
+    delete (cwd);
   }
   
   void quit(Console &, Engine &e, std::vector<std::string> *)

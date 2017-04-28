@@ -64,6 +64,11 @@ void Console::output(const std::string &msg)
   updateOutput();
 }
 
+void Console::insertLastOutput(const std::string &msg)
+{
+  _output.back()->setString(_output.back()->getString()+msg);
+}
+
 void Console::input()
 {
   if (_input[_currentIndex].size() < 1)
@@ -74,9 +79,9 @@ void Console::input()
     _input.push_back("");
   else
     _input.insert(--_input.end(), _input[_currentIndex]);
-  if (_output.size() > _lineCount)
+  if (_output.size() >= _lineCount)
     {
-      _outputIndex = (_output.size() - 1) - _lineCount;
+      _outputIndex = (_output.size() - _lineCount) + 1;
       updateOutput();
     }
   _currentIndex = _input.size() - 1;
@@ -133,7 +138,7 @@ void Console::update(const sf::Event &event)
       _outputIndex--;
       updateOutput();
     }
-  else if (event.key.code == sf::Keyboard::Return && _outputIndex + _lineCount < _output.size())
+  else if (event.key.code == sf::Keyboard::PageDown && _outputIndex + _lineCount <= _output.size())
     {
       _outputIndex++;
       updateOutput();

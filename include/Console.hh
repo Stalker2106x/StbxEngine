@@ -22,6 +22,7 @@ public:
   bool isActive() const;
 
   void output(const std::string &msg);
+  void insertLastOutput(const std::string &msg);
   void input();
 
   void updateInput(const sf::Event &event);
