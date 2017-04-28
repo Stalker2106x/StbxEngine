@@ -5,6 +5,7 @@ namespace Commands {
 
   cmdMap cmdlist = {
     {"clear", &consoleClear},
+    {"con_maxline", &setLineCount},
     {"echo", &echo},
     {"exec", &execute},
     {"exit", &quit},
@@ -147,6 +148,17 @@ namespace Commands {
     e.quit();
   }
 
+  void setLineCount(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output("con_maxline: No value given");
+	return;
+      }
+    c.setLineCount(atoi((*argv)[0].c_str()));
+    delete (argv);
+  }
+  
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -155,6 +167,7 @@ namespace Commands {
 	return;
       }
     e.videoParamSet("FPS", atoi((*argv)[0].c_str()));
+    delete (argv);
   }
 
   void setVSync(Console &c, Engine &e, std::vector<std::string> *argv)
@@ -164,7 +177,8 @@ namespace Commands {
 	c.output("vsync: No value given");
 	return;
       }
-    e.videoParamSet("VSYNC", convertBool((*argv)[0]));    
+    e.videoParamSet("VSYNC", convertBool((*argv)[0]));
+    delete (argv);
   }
 
   void windowSize(Console &c, Engine &e, std::vector<std::string> *argv)
@@ -176,6 +190,7 @@ namespace Commands {
       }
     e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));
     c.initGraphics(e.getWindowSize());
+    delete (argv);
   }
 
 }

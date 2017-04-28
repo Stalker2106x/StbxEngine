@@ -3,7 +3,6 @@ bug:
 feature:
 
 -Add color to output
--Add command "maxline" to change console linecount
 
 -add a command "log_file" to set a log path
 -add a command "log_write" to write to log

@@ -20,7 +20,8 @@ public:
   void clear();
 
   bool isActive() const;
-
+  void setLineCount(const unsigned int &count);
+  
   void output(const std::string &msg);
   void insertLastOutput(const std::string &msg);
   void input();

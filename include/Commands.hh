@@ -23,6 +23,7 @@ namespace Commands {
   void findCmd(Console &c, Engine &e, std::vector<std::string> *);
   void printCWD(Console &c, Engine &e, std::vector<std::string> *);
   void quit(Console &c, Engine &e, std::vector<std::string> *);
+  void setLineCount(Console &c, Engine &e, std::vector<std::string> *);
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *);
   void setVSync(Console &c, Engine &e, std::vector<std::string> *);
   void windowSize(Console &c, Engine &e, std::vector<std::string> *);

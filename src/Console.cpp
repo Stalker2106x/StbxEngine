@@ -11,7 +11,7 @@ Console::Console(Engine &e) : _engine(e)
   _fontSize = 18;
   _currentIndex = 0;
   _outputIndex = 0;
-  _input.push_back("");
+  _input.push_back("_");
 }
 
 Console::~Console()
@@ -52,6 +52,12 @@ bool Console::isActive() const
   return (_active);
 }
 
+void Console::setLineCount(const unsigned int &count)
+{
+  _lineCount = count;
+  updateOutput();
+}
+
 void Console::output(const std::string &msg)
 {
   if (_output.size() >= _lineCount)
@@ -73,10 +79,11 @@ void Console::input()
 {
   if (_input[_currentIndex].size() < 1)
     return;
+  _input[_currentIndex].pop_back();
   output(">"+_input[_currentIndex]);
   Commands::parseCmd(*this, _engine, _input[_currentIndex]);
   if (_currentIndex == _input.size() - 1)
-    _input.push_back("");
+    _input.push_back("_");
   else
     _input.insert(--_input.end(), _input[_currentIndex]);
   if (_output.size() >= _lineCount)
@@ -96,10 +103,10 @@ void Console::updateInput(const sf::Event &event)
     {
       if (_currentIndex != _input.size() - 1)
 	{
-	  _input.back() = _input[_currentIndex];
+	  _input.back() = _input[_currentIndex]+"_";  
 	  _currentIndex = _input.size() - 1;
 	}
-      _input.back() += c;
+      _input.back().insert(--_input.back().end(), c);
     }
   _inputValue.setString(_input[_currentIndex]);
 }
