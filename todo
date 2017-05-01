@@ -1,6 +1,16 @@
 bug:
 
+-segfault on "screenshot" command without args
+-segfault if delete on no char.
+-if you select another entry in history, cursor does not appear.
+-maxlines does not rescale GUI and move input
+-input is possible if string is empty.
+-change color of console text and bg.
+
 feature:
+
+-Allow cursor movement with leftarrow, rightarrow
+-Add keybinding layer.
 
 -Add color to output
 -add a command "mouse_sensivity" to set mouse sensivity
