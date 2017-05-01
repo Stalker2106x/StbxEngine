@@ -11,7 +11,7 @@ Console::Console(Engine &e) : _engine(e)
   _fontSize = 18;
   _currentIndex = 0;
   _outputIndex = 0;
-  _input.push_back("_");
+  _input.push_back(CURSOR);
 }
 
 Console::~Console()
@@ -80,10 +80,10 @@ void Console::input()
   if (_input[_currentIndex].size() < 1)
     return;
   _input[_currentIndex].pop_back();
-  output(">"+_input[_currentIndex]);
+  output(PROMPT+_input[_currentIndex]);
   Commands::parseCmd(*this, _engine, _input[_currentIndex]);
   if (_currentIndex == _input.size() - 1)
-    _input.push_back("_");
+    _input.push_back(CURSOR);
   else
     _input.insert(--_input.end(), _input[_currentIndex]);
   if (_output.size() >= _lineCount)
@@ -103,7 +103,7 @@ void Console::updateInput(const sf::Event &event)
     {
       if (_currentIndex != _input.size() - 1)
 	{
-	  _input.back() = _input[_currentIndex]+"_";  
+	  _input.back() = _input[_currentIndex]+CURSOR;
 	  _currentIndex = _input.size() - 1;
 	}
       _input.back().insert(--_input.back().end(), c);
@@ -132,10 +132,12 @@ void Console::update(const sf::Event &event)
     return;
   if (event.key.code == sf::Keyboard::F1)
     toggle();
+  else if (!_active)
+    return;
   else if (event.key.code == sf::Keyboard::Return)
     input();
   else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 0)
-    _input[_currentIndex].pop_back();
+    _input[_currentIndex].erase(_input[_currentIndex].size() - 2, 1);
   else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
     _currentIndex--;
   else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size())
@@ -155,7 +157,7 @@ void Console::update(const sf::Event &event)
 void Console::draw(sf::RenderWindow *win)
 {
   std::list<sf::Text *>::iterator begIter = _output.begin();
-  
+
   win->draw(_bg);
   win->draw(_inputArea);
   win->draw(_inputValue);

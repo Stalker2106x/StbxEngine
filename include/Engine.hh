@@ -21,7 +21,8 @@ public:
 
   sf::Vector2i getWindowSize() const;
   void videoParamSet(const std::string &, const int &);
-  
+  sf::Image capture();
+
   void graphicsLoop();
   bool updateLoop();
   int mainLoop();
@@ -29,7 +30,7 @@ public:
   static char getChar(sf::Event event, CharType type);
 
   void quit();
-  
+
 private:
   bool _quit;
   sf::Vector2i _winsize;

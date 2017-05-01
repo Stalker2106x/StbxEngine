@@ -1,20 +1,22 @@
 #include "Engine.hh"
 #include "Commands.hh"
+#include <unistd.h>
 
 namespace Commands {
 
   cmdMap cmdlist = {
     {"clear", &consoleClear},
     {"con_maxline", &setLineCount},
+    {"cwd", &printCWD},
     {"echo", &echo},
     {"exec", &execute},
     {"exit", &quit},
     {"find", &findCmd},
     {"fps_max", &setMaxFPS},
+    {"screenshot", &screenshot},
     {"toggleconsole", &consoleToggle},
     {"videomode", &windowSize},
-    {"vsync", &setVSync},
-    {"cwd", &printCWD}
+    {"vsync", &setVSync}
   };
 
   bool convertBool(std::string arg)
@@ -25,14 +27,14 @@ namespace Commands {
     else
       return (false);
   }
-  
+
   std::vector<std::string> *getArgs(std::string &command)
   {
     std::vector<std::string> *argv;
     std::string buffer;
     char delimiter;
     size_t pos;
-    
+
     if (command.find(' ') == std::string::npos)
       return (NULL);
     argv = new std::vector<std::string>();
@@ -55,7 +57,7 @@ namespace Commands {
       }
     return (argv);
   }
-  
+
   bool parseCmd(Console &c, Engine &e, std::string cmd)
   {
     std::vector<std::string> *argv;
@@ -72,7 +74,7 @@ namespace Commands {
     cmdlist[command](c, e, argv);
     return (true);
   }
-  
+
   void consoleClear(Console &c, Engine &, std::vector<std::string> *)
   {
     c.clear();
@@ -87,12 +89,12 @@ namespace Commands {
   {
     c.output((*argv)[0]);
   }
-  
+
   void execute(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     std::ifstream ifs;
     std::string cmd;
-    
+
     if (argv == NULL || argv->size() < 1)
       {
 	c.output("exec: Nothing to execute");
@@ -142,10 +144,26 @@ namespace Commands {
     c.output(std::string(cwd));
     delete (cwd);
   }
-  
+
   void quit(Console &, Engine &e, std::vector<std::string> *)
   {
     e.quit();
+  }
+
+  void screenshot(Console &c, Engine &e, std::vector<std::string> *argv)
+  {
+    static int id = 0;
+    sf::Image shot;
+    std::string file = "Data/screenshots/";
+
+    shot = e.capture();
+    if (argv == NULL || argv->size() < 1)
+      file += (*argv)[0]+".jpg";
+    else
+      file += "0.jpg";
+    id++;
+    if (!shot.saveToFile(file))
+      screenshot(c, e, argv);
   }
 
   void setLineCount(Console &c, Engine &, std::vector<std::string> *argv)
@@ -158,7 +176,7 @@ namespace Commands {
     c.setLineCount(atoi((*argv)[0].c_str()));
     delete (argv);
   }
-  
+
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)

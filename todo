@@ -3,16 +3,14 @@ bug:
 feature:
 
 -Add color to output
+-add a command "mouse_sensivity" to set mouse sensivity
+-add a command "sound_stop" to stop all sounds
 
 -add a command "log_file" to set a log path
 -add a command "log_write" to write to log
 -add a command "log_timestamp" to enable time in log
 
--add a command "screenshot" to take jpg
 -add a command "debuginfo" to draw fps, debug nodes and info
 
 -add a command "hud_show" to enable or not hud
 -add a command "hud_color" to set HUD color
-
--add a command "mouse_sensivity" to set mouse sensivity
--add a command "sound_stop" to stop all sounds

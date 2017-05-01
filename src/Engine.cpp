@@ -38,6 +38,11 @@ void Engine::videoParamSet(const std::string &ent, const int &value)
     _win->setVerticalSyncEnabled(static_cast<bool>(value));
 }
 
+sf::Image Engine::capture()
+{
+    return (_win->capture());
+}
+
 void Engine::graphicsLoop()
 {
   if (_console->isActive())
@@ -73,7 +78,7 @@ int Engine::mainLoop()
 
 char Engine::getChar(sf::Event event, CharType type)
 {
-  
+
   if (event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
     return ('\0');
   if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))

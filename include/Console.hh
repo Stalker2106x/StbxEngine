@@ -8,6 +8,9 @@
 #include <SFML/Graphics.hpp>
 #include "Commands.hh"
 
+#define PROMPT (">")
+#define CURSOR ("_")
+
 class Console
 {
 public:
@@ -15,13 +18,13 @@ public:
   ~Console();
 
   void initGraphics(const sf::Vector2i &winsize);
-  
+
   void toggle();
   void clear();
 
   bool isActive() const;
   void setLineCount(const unsigned int &count);
-  
+
   void output(const std::string &msg);
   void insertLastOutput(const std::string &msg);
   void input();
@@ -30,10 +33,10 @@ public:
   void updateOutput();
   void update(const sf::Event &event);
   void draw(sf::RenderWindow *win);
-  
+
 private:
   Engine &_engine;
-  
+
   bool _active;
   sf::Sprite _bg, _inputArea;
   sf::Font _font;
