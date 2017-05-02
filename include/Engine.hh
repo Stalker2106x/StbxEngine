@@ -28,7 +28,9 @@ public:
   int mainLoop();
 
   static char getChar(sf::Event event, CharType type);
-
+  static struct tm *getTime();
+  static std::string getTimestamp();
+  
   void quit();
 
 private:

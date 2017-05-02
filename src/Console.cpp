@@ -77,7 +77,7 @@ void Console::insertLastOutput(const std::string &msg)
 
 void Console::input()
 {
-  if (_input[_currentIndex].size() < 1)
+  if (_input[_currentIndex].size() <= 1)
     return;
   _input[_currentIndex].pop_back();
   output(PROMPT+_input[_currentIndex]);
@@ -136,7 +136,7 @@ void Console::update(const sf::Event &event)
     return;
   else if (event.key.code == sf::Keyboard::Return)
     input();
-  else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 0)
+  else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 1)
     _input[_currentIndex].erase(_input[_currentIndex].size() - 2, 1);
   else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
     _currentIndex--;

@@ -88,6 +88,25 @@ char Engine::getChar(sf::Event event, CharType type)
   return ('\0');
 }
 
+struct tm *Engine::getTime()
+{
+  time_t t = time(0);
+  struct tm *stamp = localtime(&t);
+  
+  return (stamp);
+}
+
+std::string Engine::getTimestamp()
+{
+  struct tm *time = Engine::getTime();
+  std::string stamp;
+
+  stamp = std::to_string(time->tm_hour)+":"+std::to_string(time->tm_min)+":"+std::to_string(time->tm_sec)+" ";
+  stamp += std::to_string(time->tm_mday)+"-"+std::to_string(time->tm_mon)+"-"+std::to_string(time->tm_year);
+  delete (time);
+  return (stamp);
+}
+
 void Engine::quit()
 {
   _quit = true;

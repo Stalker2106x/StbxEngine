@@ -9,7 +9,7 @@ SRCDIR = src
 BINDIR = bin
 
 ifeq ($(OS),Windows_NT)
-	CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR)
+	CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -IC:mingw64/include
 	LIBS = -lsfml-system -lsfml-window -lsfml-graphics
 	NAME = $(BINDIR)/sengine-win32.exe
 else

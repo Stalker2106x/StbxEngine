@@ -158,12 +158,14 @@ namespace Commands {
 
     shot = e.capture();
     if (argv == NULL || argv->size() < 1)
-      file += (*argv)[0]+".jpg";
+      file += Engine::getTimestamp()+".png";
     else
-      file += "0.jpg";
+      file += (*argv)[0]+".png";
     id++;
     if (!shot.saveToFile(file))
-      screenshot(c, e, argv);
+      c.output("screenshot: Unable to save screenshot");
+    else
+      c.output("screenshot: Successfully saved \""+file+"\"");
   }
 
   void setLineCount(Console &c, Engine &, std::vector<std::string> *argv)

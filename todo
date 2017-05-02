@@ -1,10 +1,7 @@
 bug:
 
--segfault on "screenshot" command without args
--segfault if delete on no char.
 -if you select another entry in history, cursor does not appear.
 -maxlines does not rescale GUI and move input
--input is possible if string is empty.
 -change color of console text and bg.
 
 feature:
