@@ -25,6 +25,7 @@ namespace Commands {
   void quit(Console &c, Engine &e, std::vector<std::string> *);
   void screenshot(Console &c, Engine &e, std::vector<std::string> *argv);
   void setLineCount(Console &c, Engine &e, std::vector<std::string> *);
+  void setConColor(Console &c, Engine &e, std::vector<std::string> *);
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *);
   void setVSync(Console &c, Engine &e, std::vector<std::string> *);
   void windowSize(Console &c, Engine &e, std::vector<std::string> *);

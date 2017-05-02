@@ -34,6 +34,8 @@ public:
 
   bool isActive() const;
   void setLineCount(const unsigned int &count);
+  void setColor(sf::Color bg, sf::Color input);
+
   sf::Color convertColorCode(std::string code);
   
   void output(std::string msg);

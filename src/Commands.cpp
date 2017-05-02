@@ -7,6 +7,7 @@ namespace Commands {
   cmdMap cmdlist = {
     {"clear", &consoleClear},
     {"con_maxline", &setLineCount},
+    {"con_color", &setConColor},
     {"cwd", &printCWD},
     {"echo", &echo},
     {"exec", &execute},
@@ -173,7 +174,7 @@ namespace Commands {
       c.output("screenshot: Successfully saved \""+file+"\"");
   }
 
-  void setLineCount(Console &c, Engine &, std::vector<std::string> *argv)
+  void setLineCount(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
       {
@@ -181,6 +182,24 @@ namespace Commands {
 	return;
       }
     c.setLineCount(atoi((*argv)[0].c_str()));
+    c.initGraphics(e.getWindowSize());
+    delete (argv);
+  }
+
+  void setConColor(Console &c, Engine &e, std::vector<std::string> *argv)
+  {
+    sf::Color cbg, cinput;
+    
+    if (argv == NULL || argv->size() < 2
+	|| (*argv)[0].length() < 9 || (*argv)[1].length() < 9)
+      c.output(COLOR_ERROR, "con_color: Invalid colors or no colors given");
+    cbg.r = atoi((*argv)[0].substr(0, 3).c_str());
+    cbg.g = atoi((*argv)[0].substr(3, 3).c_str());
+    cbg.b = atoi((*argv)[0].substr(6, 3).c_str());
+    cinput.r = atoi((*argv)[1].substr(0, 3).c_str());
+    cinput.g = atoi((*argv)[1].substr(3, 3).c_str());
+    cinput.b = atoi((*argv)[1].substr(6, 3).c_str());
+    c.setColor(cbg, cinput);
     delete (argv);
   }
 

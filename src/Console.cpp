@@ -13,6 +13,13 @@ Console::Console(Engine &e) : _engine(e)
   _outputIndex = 0;
   _cursorIndex = 0;
   _input.push_back("");
+  //FONT SET
+  _inputValue.setFont(_font);
+  _cursor.setFont(_font);
+  //FONT SIZE
+  _inputValue.setCharacterSize(_fontSize);
+  _cursor.setCharacterSize(_fontSize);
+  _cursor.setString(CURSOR);
 }
 
 Console::~Console()
@@ -24,23 +31,14 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 {
   sf::Texture bg, inputArea;
 
-  _inputValue.setFont(_font);
-  _inputValue.setCharacterSize(_fontSize);
-  _inputValue.setOutlineColor(sf::Color::White);
-  _inputValue.setFillColor(sf::Color::Cyan);
   bg.create(winsize.x, (_lineCount * _fontSize) + (_fontSize + 2));
   _bg.setTexture(bg);
-  _bg.setColor(sf::Color(48,48,48));
   inputArea.create(winsize.x - 10, _fontSize + 2);
   _inputArea.setTexture(inputArea);
-  _inputArea.setColor(sf::Color(128,128,128));
   _inputArea.setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
   _inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea.getLocalBounds().height + 4)));
-  _cursor.setString(CURSOR);
-  _cursor.setFont(_font);
-  _cursor.setCharacterSize(_fontSize);
-  _cursor.setFillColor(sf::Color::White);
   _cursor.setPosition(5 + (_fontSize * _cursorIndex), _inputValue.getPosition().y);
+  setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));
 }
 
 void Console::toggle()
@@ -62,6 +60,15 @@ void Console::setLineCount(const unsigned int &count)
 {
   _lineCount = count;
   updateOutput();
+}
+
+void Console::setColor(sf::Color bg, sf::Color input)
+{
+  _bg.setColor(bg);
+  _inputArea.setColor(input);
+  _inputValue.setOutlineColor(sf::Color::White);
+  _inputValue.setFillColor(sf::Color::Cyan);
+  _cursor.setFillColor(sf::Color::White);
 }
 
 sf::Color Console::convertColorCode(std::string code)
