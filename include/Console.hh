@@ -40,11 +40,11 @@ private:
   bool _active;
   sf::Sprite _bg, _inputArea;
   sf::Font _font;
-  sf::Text _inputValue;
+  sf::Text _inputValue, _cursor;
 
   std::list<sf::Text *> _output;
   std::deque<std::string> _input;
-  size_t _currentIndex, _outputIndex;
+  size_t _currentIndex, _outputIndex, _cursorIndex;
   unsigned int _fontSize, _lineCount;
 };
 

@@ -1,12 +1,11 @@
 bug:
 
--if you select another entry in history, cursor does not appear.
 -maxlines does not rescale GUI and move input
 -change color of console text and bg.
+-cursor lateral movement is not based on exact font width
 
 feature:
 
--Allow cursor movement with leftarrow, rightarrow
 -Add keybinding layer.
 
 -Add color to output

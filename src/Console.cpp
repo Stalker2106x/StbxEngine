@@ -11,7 +11,8 @@ Console::Console(Engine &e) : _engine(e)
   _fontSize = 18;
   _currentIndex = 0;
   _outputIndex = 0;
-  _input.push_back(CURSOR);
+  _cursorIndex = 0;
+  _input.push_back("");
 }
 
 Console::~Console()
@@ -35,6 +36,11 @@ void Console::initGraphics(const sf::Vector2i &winsize)
   _inputArea.setColor(sf::Color(128,128,128));
   _inputArea.setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
   _inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea.getLocalBounds().height + 4)));
+  _cursor.setString(CURSOR);
+  _cursor.setFont(_font);
+  _cursor.setCharacterSize(_fontSize);
+  _cursor.setFillColor(sf::Color::White);
+  _cursor.setPosition(5 + (_fontSize * _cursorIndex), _inputValue.getPosition().y);
 }
 
 void Console::toggle()
@@ -79,11 +85,10 @@ void Console::input()
 {
   if (_input[_currentIndex].size() <= 1)
     return;
-  _input[_currentIndex].pop_back();
   output(PROMPT+_input[_currentIndex]);
   Commands::parseCmd(*this, _engine, _input[_currentIndex]);
   if (_currentIndex == _input.size() - 1)
-    _input.push_back(CURSOR);
+    _input.push_back("");
   else
     _input.insert(--_input.end(), _input[_currentIndex]);
   if (_output.size() >= _lineCount)
@@ -92,10 +97,12 @@ void Console::input()
       updateOutput();
     }
   _currentIndex = _input.size() - 1;
+  _cursorIndex = 0;
 }
 
 void Console::updateInput(const sf::Event &event)
 {
+  std::string::iterator it;
   char c;
 
   c = Engine::getChar(event, alphanumeric);
@@ -103,12 +110,17 @@ void Console::updateInput(const sf::Event &event)
     {
       if (_currentIndex != _input.size() - 1)
 	{
-	  _input.back() = _input[_currentIndex]+CURSOR;
+	  _input.back() = _input[_currentIndex];
 	  _currentIndex = _input.size() - 1;
+	  _cursorIndex = _input.back().size();
 	}
-      _input.back().insert(--_input.back().end(), c);
+      it = _input.back().begin();
+      std::advance(it, _cursorIndex);
+      _input.back().insert(it, c);
+      _cursorIndex++;
     }
   _inputValue.setString(_input[_currentIndex]);
+  _cursor.setPosition(5 + ((_fontSize * 0.62f) * _cursorIndex), _inputValue.getPosition().y);
 }
 
 void Console::updateOutput()
@@ -136,12 +148,25 @@ void Console::update(const sf::Event &event)
     return;
   else if (event.key.code == sf::Keyboard::Return)
     input();
-  else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 1)
-    _input[_currentIndex].erase(_input[_currentIndex].size() - 2, 1);
+  else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 0)
+    {
+      _input[_currentIndex].erase(_cursorIndex - 1, 1);
+      _cursorIndex--;
+    }
   else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
-    _currentIndex--;
+    {
+      _currentIndex--;
+      _cursorIndex = _input[_currentIndex].size();
+    }
   else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size())
-    _currentIndex++;
+    {
+      _currentIndex++;
+      _cursorIndex = _input[_currentIndex].size();
+    }
+  else if (event.key.code == sf::Keyboard::Left && _cursorIndex > 0)
+    _cursorIndex--;
+  else if (event.key.code == sf::Keyboard::Right && _cursorIndex < _input[_currentIndex].size())
+    _cursorIndex++;
   else if (event.key.code == sf::Keyboard::PageUp && _outputIndex > 0)
     {
       _outputIndex--;
@@ -156,11 +181,13 @@ void Console::update(const sf::Event &event)
 
 void Console::draw(sf::RenderWindow *win)
 {
-  std::list<sf::Text *>::iterator begIter = _output.begin();
+  std::list<sf::Text *>::iterator begIter;
 
   win->draw(_bg);
   win->draw(_inputArea);
   win->draw(_inputValue);
+  win->draw(_cursor);
+  begIter = _output.begin();
   std::advance(begIter, _outputIndex);
   for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)
     {
