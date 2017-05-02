@@ -184,6 +184,8 @@ void Console::update(const sf::Event &event)
       _input[_currentIndex].erase(_cursorIndex - 1, 1);
       _cursorIndex--;
     }
+  else if (event.key.code == sf::Keyboard::Delete && _cursorIndex - _input[_currentIndex].size() > 0)
+    _input[_currentIndex].erase(_cursorIndex, 1);
   else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
     {
       _currentIndex--;
