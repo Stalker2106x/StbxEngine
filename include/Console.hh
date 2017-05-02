@@ -5,11 +5,21 @@
 #include <deque>
 #include <stdexcept>
 #include <iostream>
+#include <cstring>
 #include <SFML/Graphics.hpp>
 #include "Commands.hh"
 
-#define PROMPT (">")
-#define CURSOR ("_")
+#define PROMPT		(">")
+#define CURSOR		("_")
+#define COLOR_ESC	("\\\\#")
+#define COLOR_ERROR	("\\\\#240077077")
+
+typedef struct s_color
+{
+  int r;
+  int g;
+  int b;
+} t_color;
 
 class Console
 {
@@ -24,8 +34,10 @@ public:
 
   bool isActive() const;
   void setLineCount(const unsigned int &count);
-
-  void output(const std::string &msg);
+  sf::Color convertColorCode(std::string code);
+  
+  void output(std::string msg);
+  void output(std::string color, std::string msg);
   void insertLastOutput(const std::string &msg);
   void input();
 

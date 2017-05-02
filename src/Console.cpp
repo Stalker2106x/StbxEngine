@@ -64,16 +64,47 @@ void Console::setLineCount(const unsigned int &count)
   updateOutput();
 }
 
-void Console::output(const std::string &msg)
+sf::Color Console::convertColorCode(std::string code)
 {
+  t_color color;
+
+  code = code.substr(strlen(COLOR_ESC), 9);
+  if ((color.r = atoi(code.substr(0, 3).c_str())) > 255)
+    color.r = 255;
+  if ((color.g = atoi(code.substr(3, 3).c_str())) > 255)
+    color.g = 255;
+  if ((color.b = atoi(code.substr(6, 3).c_str())) > 255)
+    color.b = 255;
+  return (sf::Color(color.r, color.g, color.b, 255));
+}
+
+void Console::output(std::string msg)
+{ 
   if (_output.size() >= _lineCount)
     _outputIndex++;
   _output.push_back(new sf::Text());
   _output.back()->setFont(_font);
   _output.back()->setCharacterSize(_fontSize);
-  _output.back()->setFillColor(sf::Color::White);
+  if (msg.find(COLOR_ESC) == 0)
+    {
+      if (msg.length() < strlen(COLOR_ESC) + 9)
+	{
+	  _output.pop_back();
+	  output("Syntax: Invalid color code");
+	  return;
+	}
+      _output.back()->setFillColor(convertColorCode(msg));
+      msg.erase(0, strlen(COLOR_ESC) + 9);
+    }
+  else
+    _output.back()->setFillColor(sf::Color::White);
   _output.back()->setString(msg);
   updateOutput();
+}
+
+void Console::output(std::string color, std::string msg)
+{
+  output(color+msg);
 }
 
 void Console::insertLastOutput(const std::string &msg)

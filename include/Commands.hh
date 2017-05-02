@@ -12,6 +12,7 @@ namespace Commands {
 
   typedef std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> *)> cmdMap;
 
+  bool convertBool(Console &c, std::string &arg);
   std::vector<std::string> *getArgs(std::string &command);
   bool parseCmd(Console &c, Engine &e, std::string);
 

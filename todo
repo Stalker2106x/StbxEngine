@@ -9,7 +9,7 @@ feature:
 -Add keybinding layer.
 
 -Add color to output
--add a command "mouse_sensivity" to set mouse sensivity
+-add a command "mouse_sensivity" to set mouse sensivity => NOT SUPPORTED BY SFML
 -add a command "sound_stop" to stop all sounds
 
 -add a command "log_file" to set a log path

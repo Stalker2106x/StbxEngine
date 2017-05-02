@@ -19,15 +19,20 @@ namespace Commands {
     {"vsync", &setVSync}
   };
 
-  bool convertBool(std::string arg)
+  bool convertBool(Console &c, std::string &arg)
   {
     std::transform(arg.begin(), arg.end(), arg.begin(), ::tolower);
-    if (arg == "true")
+    if (arg == "true" || arg == "1")
       return (true);
-    else
+    else if (arg == "false" || arg == "0")
       return (false);
+    else
+      {
+	c.output(COLOR_ERROR, "Syntax: Invalid argument, expected boolean");
+	return (false);
+      }
   }
-
+  
   std::vector<std::string> *getArgs(std::string &command)
   {
     std::vector<std::string> *argv;
@@ -67,7 +72,7 @@ namespace Commands {
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
     if (cmdlist.find(command) == cmdlist.end())
       {
-	c.output(command+": Unknown command");
+	c.output(COLOR_ERROR+command+": Unknown command");
 	return (false);
       }
     argv = getArgs(cmd);
@@ -97,13 +102,13 @@ namespace Commands {
 
     if (argv == NULL || argv->size() < 1)
       {
-	c.output("exec: Nothing to execute");
+	c.output(COLOR_ERROR, "exec: Nothing to execute");
 	return;
       }
     ifs.open((*argv)[0]);
     if (!ifs.is_open())
       {
-	c.output("exec: Cannot open \""+(*argv)[0]+"\"");
+	c.output(COLOR_ERROR, "exec: Cannot open \""+(*argv)[0]+"\"");
 	  return;
       }
     while (std::getline(ifs, cmd))
@@ -118,7 +123,7 @@ namespace Commands {
 
     if (argv == NULL || argv->size() < 1)
       {
-	c.output("find: Nothing to search for");
+	c.output(COLOR_ERROR, "find: Nothing to search for");
 	return;
       }
     for (iter = cmdlist.begin(); iter != cmdlist.end(); iter++)
@@ -163,7 +168,7 @@ namespace Commands {
       file += (*argv)[0]+".png";
     id++;
     if (!shot.saveToFile(file))
-      c.output("screenshot: Unable to save screenshot");
+      c.output(COLOR_ERROR, "screenshot: Unable to save screenshot");
     else
       c.output("screenshot: Successfully saved \""+file+"\"");
   }
@@ -172,7 +177,7 @@ namespace Commands {
   {
     if (argv == NULL || argv->size() < 1)
       {
-	c.output("con_maxline: No value given");
+	c.output(COLOR_ERROR, "con_maxline: No value given");
 	return;
       }
     c.setLineCount(atoi((*argv)[0].c_str()));
@@ -183,7 +188,7 @@ namespace Commands {
   {
     if (argv == NULL || argv->size() < 1)
       {
-	c.output("fps_max: No value given");
+	c.output(COLOR_ERROR, "fps_max: No value given");
 	return;
       }
     e.videoParamSet("FPS", atoi((*argv)[0].c_str()));
@@ -194,10 +199,10 @@ namespace Commands {
   {
     if (argv == NULL || argv->size() < 1)
       {
-	c.output("vsync: No value given");
+	c.output(COLOR_ERROR, "vsync: No value given");
 	return;
       }
-    e.videoParamSet("VSYNC", convertBool((*argv)[0]));
+    e.videoParamSet("VSYNC", convertBool(c, (*argv)[0]));
     delete (argv);
   }
 
@@ -205,7 +210,7 @@ namespace Commands {
   {
     if (argv == NULL || argv->size() < 2)
       {
-	c.output("videomode: Incorrect or no mode given");
+	c.output(COLOR_ERROR, "videomode: Mode incorrect or no mode given");
 	return;
       }
     e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));
