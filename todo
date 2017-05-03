@@ -7,9 +7,8 @@ bug:
 feature:
 
 -Add keybinding layer.
+-implement MWheel in Control Abstraction
 -add a support for copy paste
-
--add a command "con_color" to set console color
 
 -add a command "mouse_sensivity" to set mouse sensivity => NOT SUPPORTED BY SFML
 -add a command "sound_stop" to stop all sounds
@@ -18,5 +17,6 @@ feature:
 
 -add a command "debuginfo" to draw fps, debug nodes and info
 
+-add a HUD layer
 -add a command "hud_show" to enable or not hud
 -add a command "hud_color" to set HUD color

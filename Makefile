@@ -31,7 +31,9 @@ endif
 SRCS =				$(SRCDIR)/main.cpp		\
 				$(SRCDIR)/Engine.cpp		\
 				$(SRCDIR)/Console.cpp		\
-				$(SRCDIR)/Commands.cpp
+				$(SRCDIR)/Commands.cpp		\
+				$(SRCDIR)/Keybinds.cpp		\
+				$(SRCDIR)/Control.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
