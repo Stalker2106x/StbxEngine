@@ -1,16 +1,13 @@
 bug:
 
 -maxlines does not rescale GUI and move input
--change color of console text and bg.
 -cursor lateral movement is not based on exact font width
--when input is 1 char, cannot enter command
 -screenshot no arg segfault+unable to write
 
 feature:
 
 -Add keybinding layer.
 -add a support for copy paste
-
 
 -add a command "con_color" to set console color
 

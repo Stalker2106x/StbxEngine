@@ -4,23 +4,25 @@ RM = rm -f
 
 INCDIR = include
 
+EXTINC = extlibs/include
+
 SRCDIR = src
 
 BINDIR = bin
 
 ifeq ($(OS),Windows_NT)
-	CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -IW:/Software/mingw32/include
+	CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC) -IC:/mingw64/include
 	LIBS = -lsfml-system -lsfml-window -lsfml-graphics
 	NAME = $(BINDIR)/sengine-win32.exe
 else
 	UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
-	CXXFLAGS = -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I/usr/include
+	CXXFLAGS = -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC) -I/usr/include
 	LIBS = -lsfml-system -lsfml-window -lsfml-graphics
 	NAME = $(BINDIR)/sengine-linux
   endif
   ifeq ($(UNAME_S),Darwin)
-	CXXFLAGS = -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I/usr/local/include
+	CXXFLAGS = -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC) -I/usr/local/include
 	LIBS = -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
 	NAME = $(BINDIR)/sengine-macos
   endif

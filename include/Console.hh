@@ -14,13 +14,6 @@
 #define COLOR_ESC	("\\\\#")
 #define COLOR_ERROR	("\\\\#240077077")
 
-typedef struct s_color
-{
-  int r;
-  int g;
-  int b;
-} t_color;
-
 class Console
 {
 public:
@@ -36,7 +29,7 @@ public:
   void setLineCount(const unsigned int &count);
   void setColor(sf::Color bg, sf::Color input);
 
-  sf::Color convertColorCode(std::string code);
+  static sf::Color convertColorCode(std::string code);
   
   void output(std::string msg);
   void output(std::string color, std::string msg);
@@ -45,6 +38,7 @@ public:
 
   void updateInput(const sf::Event &event);
   void updateOutput();
+  void updateKeyboard(const sf::Event &event);
   void update(const sf::Event &event);
   void draw(sf::RenderWindow *win);
 

@@ -73,15 +73,13 @@ void Console::setColor(sf::Color bg, sf::Color input)
 
 sf::Color Console::convertColorCode(std::string code)
 {
-  t_color color;
+  sf::Color color;
 
-  code = code.substr(strlen(COLOR_ESC), 9);
-  if ((color.r = atoi(code.substr(0, 3).c_str())) > 255)
-    color.r = 255;
-  if ((color.g = atoi(code.substr(3, 3).c_str())) > 255)
-    color.g = 255;
-  if ((color.b = atoi(code.substr(6, 3).c_str())) > 255)
-    color.b = 255;
+  if (code.find(COLOR_ESC) == 0)
+    code = code.substr(strlen(COLOR_ESC), 9);
+  color.r = atoi(code.substr(0, 3).c_str());
+  color.g = atoi(code.substr(3, 3).c_str());
+  color.b = atoi(code.substr(6, 3).c_str());
   return (sf::Color(color.r, color.g, color.b, 255));
 }
 
@@ -121,7 +119,7 @@ void Console::insertLastOutput(const std::string &msg)
 
 void Console::input()
 {
-  if (_input[_currentIndex].size() <= 1)
+  if (_input[_currentIndex].size() < 1)
     return;
   output(PROMPT+_input[_currentIndex]);
   Commands::parseCmd(*this, _engine, _input[_currentIndex]);
@@ -175,16 +173,9 @@ void Console::updateOutput()
     }
 }
 
-void Console::update(const sf::Event &event)
+void Console::updateKeyboard(const sf::Event &event)
 {
-  updateInput(event);
-  if (event.type != sf::Event::KeyPressed)
-    return;
-  if (event.key.code == sf::Keyboard::F1)
-    toggle();
-  else if (!_active)
-    return;
-  else if (event.key.code == sf::Keyboard::Return)
+  if (event.key.code == sf::Keyboard::Return)
     input();
   else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 0)
     {
@@ -217,6 +208,17 @@ void Console::update(const sf::Event &event)
       _outputIndex++;
       updateOutput();
     }
+}
+
+void Console::update(const sf::Event &event)
+{
+  updateInput(event);
+  if (event.key.code == sf::Keyboard::F1)
+    toggle();
+  else if (!_active || event.type != sf::Event::KeyPressed)
+    return;
+  else
+    updateKeyboard(event);
 }
 
 void Console::draw(sf::RenderWindow *win)
