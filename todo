@@ -1,7 +1,6 @@
 bug:
 
--maxlines does not rescale GUI and move input
--cursor lateral movement is not based on exact font width
+-cursor lateral movement is not based on exact font width => LOOKS FIXED
 -screenshot no arg segfault+unable to write
 
 feature:

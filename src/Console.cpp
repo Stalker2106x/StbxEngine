@@ -31,13 +31,9 @@ Console::~Console()
 
 void Console::initGraphics(const sf::Vector2i &winsize)
 {
-  sf::Texture bg, inputArea;
-
-  bg.create(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4));
-  _bg.setTexture(bg);
+  _bg.setSize(sf::Vector2f(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)));
   _bg.setPosition(0,0);
-  inputArea.create(winsize.x - 10, _fontSize + 2);
-  _inputArea.setTexture(inputArea);
+  _inputArea.setSize(sf::Vector2f(winsize.x - 10, _fontSize + 2));
   _inputArea.setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
   _inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea.getLocalBounds().height + 4)));
   _cursor.setPosition(5 + (_fontSize * _cursorIndex), _inputValue.getPosition().y);
@@ -67,8 +63,8 @@ void Console::setLineCount(const unsigned int &count)
 
 void Console::setColor(sf::Color bg, sf::Color input)
 {
-  _bg.setColor(bg);
-  _inputArea.setColor(input);
+  _bg.setFillColor(bg);
+  _inputArea.setFillColor(input);
   _inputValue.setOutlineColor(sf::Color::White);
   _inputValue.setFillColor(sf::Color::Cyan);
   _cursor.setFillColor(sf::Color::White);

@@ -50,7 +50,7 @@ private:
   Engine &_engine;
 
   bool _active, _logEnabled;
-  sf::Sprite _bg, _inputArea;
+  sf::RectangleShape _bg, _inputArea;
   sf::Font _font;
   sf::Text _inputValue, _cursor;
   std::string _logFile;
