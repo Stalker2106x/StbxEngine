@@ -14,9 +14,6 @@ feature:
 -add a command "mouse_sensivity" to set mouse sensivity => NOT SUPPORTED BY SFML
 -add a command "sound_stop" to stop all sounds
 
--add a command "log_enable" to log output in a file
--add a command "log_file" to set a log path
--add a command "log_write" to write to log
 -add a command "log_timestamp" to enable time in log
 
 -add a command "debuginfo" to draw fps, debug nodes and info

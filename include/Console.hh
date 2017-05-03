@@ -5,6 +5,7 @@
 #include <deque>
 #include <stdexcept>
 #include <iostream>
+#include <fstream>
 #include <cstring>
 #include <SFML/Graphics.hpp>
 #include "Commands.hh"
@@ -28,8 +29,10 @@ public:
   bool isActive() const;
   void setLineCount(const unsigned int &count);
   void setColor(sf::Color bg, sf::Color input);
-  void writeToLog();
-
+  void setLogEnabled(bool state);
+  void writeToLog(std::string &msg);
+  void setLogFile(const std::string &file);
+  
   static sf::Color convertColorCode(std::string code);
   
   void output(std::string msg);
@@ -46,11 +49,12 @@ public:
 private:
   Engine &_engine;
 
-  bool _active;
+  bool _active, _logEnabled;
   sf::Sprite _bg, _inputArea;
   sf::Font _font;
   sf::Text _inputValue, _cursor;
   std::string _logFile;
+  std::ofstream _log;
 
   std::list<sf::Text *> _output;
   std::deque<std::string> _input;

@@ -14,7 +14,10 @@ namespace Commands {
     {"exit", &quit},
     {"find", &findCmd},
     {"fps_max", &setMaxFPS},
-    {"screenshot", &screenshot},
+    {"log_enable", &toggleConLog},
+    {"log_write", &writeToLog},
+    {"log_file", &setConLog},
+    {"Screenshot", &screenshot},
     {"toggleconsole", &consoleToggle},
     {"videomode", &windowSize},
     {"vsync", &setVSync}
@@ -143,6 +146,36 @@ namespace Commands {
     delete (argv);
   }
 
+  void toggleConLog(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output(COLOR_ERROR, "log_enable: No param given");
+	return;
+      }
+    c.setLogEnabled(convertBool(c, (*argv)[0]));
+  }
+  
+  void writeToLog(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output(COLOR_ERROR, "log_write: Nothing to write");
+	return;
+      }
+    c.writeToLog((*argv)[0]);
+  }
+  
+  void setConLog(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output(COLOR_ERROR, "log_file: No path given");
+	return;
+      }
+    c.setLogFile((*argv)[0]);
+  }
+  
   void printCWD(Console &c, Engine &, std::vector<std::string> *)
   {
     char *cwd = getcwd(NULL, 0);

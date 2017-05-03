@@ -13,6 +13,7 @@ Console::Console(Engine &e) : _engine(e)
   _outputIndex = 0;
   _cursorIndex = 0;
   _input.push_back("");
+  _logFile = "Data/log.txt";
   //FONT SET
   _inputValue.setFont(_font);
   _cursor.setFont(_font);
@@ -24,7 +25,8 @@ Console::Console(Engine &e) : _engine(e)
 
 Console::~Console()
 {
-
+  if (_log.is_open())
+    _log.close();
 }
 
 void Console::initGraphics(const sf::Vector2i &winsize)
@@ -71,9 +73,43 @@ void Console::setColor(sf::Color bg, sf::Color input)
   _cursor.setFillColor(sf::Color::White);
 }
 
-void Console::writeToLog()
+void Console::setLogEnabled(bool state)
 {
-  
+  _logEnabled = state;
+  if (!_logEnabled)
+    {
+      if (!_log.is_open())
+	_log.open(_logFile);
+    }
+  else
+    {
+      if (_log.is_open())
+	_log.close();
+    }
+}
+
+void Console::writeToLog(std::string &msg)
+{
+  if (!_log.is_open())
+    {
+      _log.open(_logFile);
+      _log << msg << "\n";
+      _log.close();
+    }
+  else
+    _log << msg << "\n";
+}
+
+void Console::setLogFile(const std::string &file)
+{
+  if (_log.is_open())
+    {
+      _log.close();
+      _logFile = file;
+      _log.open(_logFile);
+    }
+  else
+    _logFile = file;
 }
 
 sf::Color Console::convertColorCode(std::string code)
@@ -109,6 +145,8 @@ void Console::output(std::string msg)
   else
     _output.back()->setFillColor(sf::Color::White);
   _output.back()->setString(msg);
+  if (_logEnabled)
+    writeToLog(msg);
   updateOutput();
 }
 
