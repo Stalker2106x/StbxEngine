@@ -28,6 +28,7 @@ public:
   bool isActive() const;
   void setLineCount(const unsigned int &count);
   void setColor(sf::Color bg, sf::Color input);
+  void writeToLog();
 
   static sf::Color convertColorCode(std::string code);
   
@@ -49,6 +50,7 @@ private:
   sf::Sprite _bg, _inputArea;
   sf::Font _font;
   sf::Text _inputValue, _cursor;
+  std::string _logFile;
 
   std::list<sf::Text *> _output;
   std::deque<std::string> _input;

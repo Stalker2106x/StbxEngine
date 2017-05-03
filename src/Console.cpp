@@ -71,6 +71,11 @@ void Console::setColor(sf::Color bg, sf::Color input)
   _cursor.setFillColor(sf::Color::White);
 }
 
+void Console::writeToLog()
+{
+  
+}
+
 sf::Color Console::convertColorCode(std::string code)
 {
   sf::Color color;
