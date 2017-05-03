@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Console.hh"
+#include "Keybinds.hh"
 
 enum CharType {
   alphanumeric,
@@ -32,6 +33,8 @@ public:
   static std::string getTimestamp();
   
   void quit();
+
+  Keybinds *keybinds;
 
 private:
   bool _quit;

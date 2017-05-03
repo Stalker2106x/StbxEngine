@@ -8,6 +8,7 @@ feature:
 
 -Add keybinding layer.
 -implement MWheel in Control Abstraction
+-Add a static method in Control to convert stringkey to Control
 -add a support for copy paste
 
 -add a command "mouse_sensivity" to set mouse sensivity => NOT SUPPORTED BY SFML
