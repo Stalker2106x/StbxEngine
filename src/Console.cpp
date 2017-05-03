@@ -33,8 +33,9 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 {
   sf::Texture bg, inputArea;
 
-  bg.create(winsize.x, (_lineCount * _fontSize) + (_fontSize + 2));
+  bg.create(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4));
   _bg.setTexture(bg);
+  _bg.setPosition(0,0);
   inputArea.create(winsize.x - 10, _fontSize + 2);
   _inputArea.setTexture(inputArea);
   _inputArea.setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
