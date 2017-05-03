@@ -79,7 +79,7 @@ void Console::setLogEnabled(bool state)
   if (!_logEnabled)
     {
       if (!_log.is_open())
-	_log.open(_logFile);
+	_log.open(_logFile, std::ofstream::out | std::ofstream::app);
     }
   else
     {
@@ -92,7 +92,7 @@ void Console::writeToLog(std::string &msg)
 {
   if (!_log.is_open())
     {
-      _log.open(_logFile);
+      _log.open(_logFile, std::ofstream::out | std::ofstream::app);
       _log << msg << "\n";
       _log.close();
     }
@@ -103,13 +103,8 @@ void Console::writeToLog(std::string &msg)
 void Console::setLogFile(const std::string &file)
 {
   if (_log.is_open())
-    {
-      _log.close();
-      _logFile = file;
-      _log.open(_logFile);
-    }
-  else
-    _logFile = file;
+    _log.close();
+  _logFile = file;
 }
 
 sf::Color Console::convertColorCode(std::string code)
