@@ -10,19 +10,20 @@ SRCDIR = src
 
 BINDIR = bin
 
+CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC)
+
 ifeq ($(OS),Windows_NT)
-	CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC) -IW:/Software/mingw32/include
+	CXXFLAGS += -IW:/Software/mingw32/include
 	LIBS = -lsfml-system -lsfml-window -lsfml-graphics
 	NAME = $(BINDIR)/sengine-win32.exe
 else
 	UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
-	CXXFLAGS = -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC) -I/usr/include
-	LIBS = -lsfml-system -lsfml-window -lsfml-graphics
+	LIBS = -lsfml-graphics -lsfml-window -lsfml-system
 	NAME = $(BINDIR)/sengine-linux
   endif
   ifeq ($(UNAME_S),Darwin)
-	CXXFLAGS = -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC) -I/usr/local/include
+	CXXFLAGS = -I/usr/local/include
 	LIBS = -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
 	NAME = $(BINDIR)/sengine-macos
   endif
@@ -41,7 +42,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME) $(CXXFLAGS) $(LIBS)
+	$(CC) -o $(NAME) $(OBJS) $(LIBS)
 
 clean:
 	$(RM) $(OBJS)
