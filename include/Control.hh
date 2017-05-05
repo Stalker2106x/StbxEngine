@@ -15,10 +15,14 @@ public:
   Control(const sf::Keyboard::Key key);
   Control(const sf::Mouse::Button btn);
   Control(const sf::Mouse::Wheel whl);
+  Control(const Control &c);
   ~Control();
 
   bool isTriggered(const sf::Event &e);
   bool isReleased(const sf::Event &e);
+
+
+  static std::map<std::string, Control> keys;
   
 private:
   ControlType _type;
