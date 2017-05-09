@@ -1,1 +1,7 @@
 ez la mif
+>test
+test: Unknown command
+>bind 'l' toggleconsole
+bind: Unknown command
+>test
+test: Unknown command

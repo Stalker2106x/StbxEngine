@@ -10,9 +10,10 @@ Keybinds::~Keybinds()
 
 }
 
-bool Keybinds::bind(std::string &action, Control &ctrl)
+bool Keybinds::bind(std::string &action, std::string &control)
 {
-  return (_binds.emplace(action, ctrl).second);
+  _binds.emplace(action, (*Control::keys.find(control)).second);
+  return (true);
 }
 
 Control *Keybinds::getKey(const std::string &action)

@@ -1,7 +1,7 @@
 #include "Control.hh"
 
 //public map
-std::map<std::string, Control> keys = {
+std::map<std::string, Control> Control::keys = {
   {"a", Control(sf::Keyboard::Key::A)},
   {"b", Control(sf::Keyboard::Key::B)},
   {"c", Control(sf::Keyboard::Key::C)},
@@ -105,36 +105,44 @@ std::map<std::string, Control> keys = {
   {"pause", Control(sf::Keyboard::Key::Pause)}
 };
 
-Control::Control(const sf::Keyboard::Key key)
+Control::Control()
 {
-  _key = new sf::Keyboard::Key(key);
+  _key = NULL;
   _mbutton = NULL;
   _mwheel = NULL;
+}
+
+Control::Control(const sf::Keyboard::Key key)
+{
+  Control();
+  _key = new sf::Keyboard::Key(key);
   _type = Key;
 }
 
 Control::Control(const sf::Mouse::Button btn)
 {
-  _key = NULL;
+  Control();
   _mbutton = new sf::Mouse::Button(btn);
-  _mwheel = NULL;
   _type = MButton;
 }
 
 Control::Control(const sf::Mouse::Wheel whl)
 {
-  _key = NULL;
-  _mbutton = NULL;
+  Control();
   _mwheel = new sf::Mouse::Wheel(whl);
   _type = MWheel;
 }
 
 Control::Control(const Control &c)
 {
+  Control();
   _type = c._type;
-  _key = new sf::Keyboard::Key(*c._key);
-  _mbutton = new sf::Mouse::Button(*c._mbutton);
-  _mwheel = new sf::Mouse::Wheel(*c._mwheel);
+  if (c._key != NULL)
+    _key = new sf::Keyboard::Key(*c._key);
+  else if (c._mbutton != NULL)
+    _mbutton = new sf::Mouse::Button(*c._mbutton);
+  else if (c._mwheel != NULL)
+    _mwheel = new sf::Mouse::Wheel(*c._mwheel);
 }
 
 Control::~Control()

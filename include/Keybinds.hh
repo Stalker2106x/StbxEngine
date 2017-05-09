@@ -11,7 +11,7 @@ public:
   Keybinds();
   ~Keybinds();
 
-  bool bind(std::string &action, Control &ctrl);
+  bool bind(std::string &action, std::string &control);
   Control *getKey(const std::string &action);
   
 private:

@@ -12,6 +12,7 @@ enum ControlType {
 class Control
 {
 public:
+  Control();
   Control(const sf::Keyboard::Key key);
   Control(const sf::Mouse::Button btn);
   Control(const sf::Mouse::Wheel whl);
