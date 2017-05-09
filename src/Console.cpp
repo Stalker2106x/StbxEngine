@@ -21,6 +21,7 @@ Console::Console(Engine &e) : _engine(e)
   _inputValue.setCharacterSize(_fontSize);
   _cursor.setCharacterSize(_fontSize);
   _cursor.setString(CURSOR);
+  Engine::keybinds->bind("toggleconsole", "f1");
 }
 
 Console::~Console()
@@ -247,13 +248,12 @@ void Console::updateKeyboard(const sf::Event &event)
 
 void Console::update(const sf::Event &event)
 {
-  updateInput(event);
-  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F1)
+  if (event.type == sf::Event::KeyPressed && BINDREF("toggleconsole") && BINDTRIGGERED("toggleconsole", event))
     toggle();
-  else if (!_active || event.type != sf::Event::KeyPressed)
+  if (!_active || (event.type != sf::Event::KeyPressed && event.type != sf::Event::TextEntered))
     return;
-  else
-    updateKeyboard(event);
+  updateInput(event);
+  updateKeyboard(event);
 }
 
 void Console::draw(sf::RenderWindow *win)

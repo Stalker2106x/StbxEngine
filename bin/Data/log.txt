@@ -5,3 +5,25 @@ test: Unknown command
 bind: Unknown command
 >test
 test: Unknown command
+>bind 'o' toggleconsole
+>bind "t" "toggleconsole"
+>bind o toggleconsole
+>bin o toggleconsole
+bin: Unknown command
+>bind o toggleconsole
+>bind o toggleconsole
+>bind o toggleconsole
+bind: Cannot bind key
+>bind o toggleconsole
+bind: Cannot bind key
+>bind o toggleconsole
+bind: Cannot bind key
+>bind o toggleconsole
+bind: Cannot bind key
+>bind o toggleconsole
+>test
+test: Unknown command
+>bind o toggleconsole
+>bind o toggleconsole
+>bind "f4" toggleconsole
+>bind u "videomode 400x400"

@@ -5,13 +5,16 @@
 #include <map>
 #include "Control.hh"
 
+#define BINDREF(x) (Engine::keybinds->getKey(x))
+#define BINDTRIGGERED(x, evn) (Engine::keybinds->getKey(x)->isTriggered(evn))
+
 class Keybinds
 {
 public:
   Keybinds();
   ~Keybinds();
 
-  bool bind(std::string &action, std::string &control);
+  bool bind(std::string action, std::string control);
   Control *getKey(const std::string &action);
   
 private:

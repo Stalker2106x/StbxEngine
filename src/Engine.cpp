@@ -1,11 +1,12 @@
 #include "Engine.hh"
 
+Keybinds *Engine::keybinds = new Keybinds();
+
 Engine::Engine(int width, int height)
 {
   _quit = false;
   _win = NULL;
   _console = new Console(*this);
-  keybinds = new Keybinds();
   openWindow(width, height);
 }
 

@@ -34,7 +34,7 @@ public:
   
   void quit();
 
-  Keybinds *keybinds;
+  static Keybinds *keybinds;
 
 private:
   bool _quit;

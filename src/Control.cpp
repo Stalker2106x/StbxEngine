@@ -138,11 +138,11 @@ Control::Control(const Control &c)
   Control();
   _type = c._type;
   if (c._key != NULL)
-    _key = new sf::Keyboard::Key(*c._key);
+    _key = new sf::Keyboard::Key((*c._key));
   else if (c._mbutton != NULL)
-    _mbutton = new sf::Mouse::Button(*c._mbutton);
+    _mbutton = new sf::Mouse::Button((*c._mbutton));
   else if (c._mwheel != NULL)
-    _mwheel = new sf::Mouse::Wheel(*c._mwheel);
+    _mwheel = new sf::Mouse::Wheel((*c._mwheel));
 }
 
 Control::~Control()

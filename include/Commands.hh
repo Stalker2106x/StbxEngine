@@ -16,6 +16,7 @@ namespace Commands {
   std::vector<std::string> *getArgs(std::string &command);
   bool parseCmd(Console &c, Engine &e, std::string);
 
+  void bindCommand(Console &c, Engine &e, std::vector<std::string> *);
   void consoleClear(Console &c, Engine &e, std::vector<std::string> *);
   void consoleToggle(Console &c, Engine &e, std::vector<std::string> *);
   void echo(Console &c, Engine &e, std::vector<std::string> *);

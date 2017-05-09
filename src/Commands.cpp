@@ -5,6 +5,7 @@
 namespace Commands {
 
   cmdMap cmdlist = {
+    {"bind", &bindCommand},
     {"clear", &consoleClear},
     {"con_maxline", &setLineCount},
     {"con_color", &setConColor},
@@ -54,10 +55,10 @@ namespace Commands {
 	while (buffer[pos] == ' ')
 	  pos++;
 	buffer = buffer.substr(pos, buffer.length() - pos);
-	if (buffer[0] == '"')
+	if (buffer[0] == '"' || buffer[0] == '\'')
 	  {
 	    buffer.erase(0, 1);
-	    delimiter = '"';
+	    delimiter = buffer[0];
 	  }
 	if ((pos = buffer.find(delimiter)) != std::string::npos)
 	  argv->push_back(buffer.substr(0, pos));
@@ -84,6 +85,17 @@ namespace Commands {
     return (true);
   }
 
+  void bindCommand(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 2)
+      {
+	c.output(COLOR_ERROR, "bind: Missing argument");
+	return;
+      }
+    if (!Engine::keybinds->bind((*argv)[1], (*argv)[0]))
+      c.output(COLOR_ERROR, "bind: Cannot bind key");
+  }
+  
   void consoleClear(Console &c, Engine &, std::vector<std::string> *)
   {
     c.clear();

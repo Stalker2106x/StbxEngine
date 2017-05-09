@@ -10,9 +10,17 @@ Keybinds::~Keybinds()
 
 }
 
-bool Keybinds::bind(std::string &action, std::string &control)
+bool Keybinds::bind(std::string action, std::string control)
 {
-  _binds.emplace(action, (*Control::keys.find(control)).second);
+  try {
+    if (_binds.find(action) != _binds.end())
+      _binds.erase(action);
+    _binds.emplace(action, Control::keys.at(control));
+  }
+  catch (...)
+    {
+      return (false);
+    }
   return (true);
 }
 
