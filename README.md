@@ -1,40 +1,30 @@
-## STABAX ENGINE ##
+# STABAX ENGINE #
 
-#Contributors
+## Contributors ##
 Stabax Corp.
 Maxime 'stalker2106' Martens
 
-#License
+## License ##
 This engine is not public yet. For testing purposes only.
 
-#Conception
+## Conception ##
 The engine uses a Modular yet Inter-dependent Code pattern. You can Hopefully use any module separately by reproducing the Engine class which interconnects the whole project.
 
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### How to use it ###
 
-### What is this repository for? ###
+To get it, clone latest revision: 
+```
+#!bash
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+git clone http://bitbucket.org/stalker2106/stbxengine.git
+```
 
-### How do I get set up? ###
+The Stbx Engine relies on SFML, therefore make sure to install sfml on your system by either
+* Installing it via your package manager with 
+```
+#!bash
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+sudo apt-get install libsfml-dev
+```
+* Downloading latest build on https://www.sfml-dev.org/index-fr.php and copying it to your /usr/local/ folder
