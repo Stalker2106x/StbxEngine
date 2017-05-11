@@ -1,26 +1,20 @@
-bug:
-
+BUG:
 -cursor lateral movement is not based on exact font width
 -screenshot no arg segfault+unable to write
 -when console is toggled, first char should not count if key is ascii.
 
-feature:
+FEATURE:
+1-add command fullscreen
+2-add optional param color bpp to videomode
+3-add command bindlist to see all binds
+4-add a command "log_timestamp" to enable time in log
+5-implement MWheel in Control Abstraction
+6-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
 
--add command bindlist to see all binds
--add command fullscreen
--add optional param color bpp to videomode
-
--implement MWheel in Control Abstraction
--add a support for copy paste
-
--add a command "mouse_sensivity" to set mouse sensivity => NOT SUPPORTED BY SFML
+EXTENDABLE:
 -add a command "sound_stop" to stop all sounds
-
--add a command "log_timestamp" to enable time in log
--add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
-
-
-
+-add a support for copy paste
 -add a HUD layer
 -add a command "hud_show" to enable or not hud
 -add a command "hud_color" to set HUD color
+
