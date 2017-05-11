@@ -10,14 +10,9 @@ bug:
 
 feature:
 
--add blinking for cursor in console
--add con_cursor to set cursor char
--add command unbindall to unbind all
--add a command unbind x to unbind a key or action
 -add command bindlist to see all binds
 -add command fullscreen
 -add optional param color bpp to videomode
--add bin parameter parsing for "-autoexec x" arg on startup
 
 -implement MWheel in Control Abstraction
 -Add a static method in Control to convert stringkey to Control

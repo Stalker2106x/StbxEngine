@@ -14,6 +14,7 @@
 #define CURSOR		("_")
 #define COLOR_ESC	("\\\\#")
 #define COLOR_ERROR	("\\\\#240077077")
+#define CURSOR_DELAY	(500)
 
 class Console
 {
@@ -29,6 +30,7 @@ public:
   bool isActive() const;
   void setLineCount(const unsigned int &count);
   void setColor(sf::Color bg, sf::Color input);
+  void setCursor(char &c);
   void setLogEnabled(bool state);
   void writeToLog(std::string &msg);
   void setLogFile(const std::string &file);

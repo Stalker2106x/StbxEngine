@@ -14,6 +14,8 @@ public:
   Keybinds();
   ~Keybinds();
 
+  void unbindall();
+  bool unbind(std::string element);
   bool bind(std::string action, std::string control);
   Control *getKey(const std::string &action);
   

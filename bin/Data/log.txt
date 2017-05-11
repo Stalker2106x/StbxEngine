@@ -27,3 +27,26 @@ test: Unknown command
 >bind o toggleconsole
 >bind "f4" toggleconsole
 >bind u "videomode 400x400"
+>test
+test: Unknown command
+>bind 'm' test
+bind: Cannot bind key
+>test
+test: Unknown command
+>test
+test: Unknown command
+>test
+test: Unknown command
+>test
+test: Unknown command
+>test
+test: Unknown command
+>m!*
+m!*: Unknown command
+>mm
+mm: Unknown command
+>mm
+mm: Unknown command
+>bind 'f4' toggleconsole
+bind: Cannot bind key
+>bind f4 toggleconsole

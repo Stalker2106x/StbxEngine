@@ -9,6 +9,7 @@ namespace Commands {
     {"clear", &consoleClear},
     {"con_maxline", &setLineCount},
     {"con_color", &setConColor},
+    {"con_cursor", &setConCursor},
     {"cwd", &printCWD},
     {"echo", &echo},
     {"exec", &execute},
@@ -20,6 +21,8 @@ namespace Commands {
     {"log_file", &setConLog},
     {"Screenshot", &screenshot},
     {"toggleconsole", &consoleToggle},
+    {"unbind", &unbind},
+    {"unbindall", &unbindall},
     {"videomode", &windowSize},
     {"vsync", &setVSync}
   };
@@ -244,6 +247,16 @@ namespace Commands {
     delete (argv);
   }
 
+  void setConCursor(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output(COLOR_ERROR, "con_cursor: No char given");
+	return;
+      }
+    c.setCursor((*argv)[0][0]);
+  }
+  
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -266,6 +279,22 @@ namespace Commands {
     delete (argv);
   }
 
+  void unbind(Console &c, Engine &e, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output(COLOR_ERROR, "unbind: No key or action given");
+	return;
+      }
+    if (!e.keybinds->unbind((*argv)[0]))
+      c.output(COLOR_ERROR, "unbind: Unable to unbind key or action");
+  }
+
+  void unbindall(Console &, Engine &e, std::vector<std::string> *)
+  {
+    e.keybinds->unbindall();
+  }
+  
   void windowSize(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 2)

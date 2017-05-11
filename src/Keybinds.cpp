@@ -10,6 +10,34 @@ Keybinds::~Keybinds()
 
 }
 
+void Keybinds::unbindall()
+{
+  _binds.clear();
+}
+
+bool Keybinds::unbind(std::string element)
+{
+  std::map<std::string, Control>::iterator it;
+  
+  if ((it = _binds.find(element)) != _binds.end())
+    {
+      _binds.erase(it);
+      return (true);
+    }
+  else if (Control::keys.find(element) != Control::keys.end())
+    {
+      for (it = _binds.begin(); it != _binds.end(); it++)
+	{
+	  if ((*it).second == Control::keys.at(element))
+	    {
+	      _binds.erase(it);
+	      return (true);
+	    }
+	}
+    }
+  return (false);
+}
+
 bool Keybinds::bind(std::string action, std::string control)
 {
   try {

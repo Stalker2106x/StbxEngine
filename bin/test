@@ -1,1 +1,3 @@
-souillette
+echo "SUPER CONFIG HARDCOR"
+bind f5 toggleconsole
+

@@ -14,6 +14,7 @@ Console::Console(Engine &e) : _engine(e)
   _cursorIndex = 0;
   _input.push_back("");
   _logFile = "Data/log.txt";
+  _logEnabled = false;
   //FONT SET
   _inputValue.setFont(_font);
   _cursor.setFont(_font);
@@ -69,6 +70,11 @@ void Console::setColor(sf::Color bg, sf::Color input)
   _inputValue.setOutlineColor(sf::Color::White);
   _inputValue.setFillColor(sf::Color::Cyan);
   _cursor.setFillColor(sf::Color::White);
+}
+
+void Console::setCursor(char &c)
+{
+  _cursor.setString(c);
 }
 
 void Console::setLogEnabled(bool state)
@@ -258,12 +264,20 @@ void Console::update(const sf::Event &event)
 
 void Console::draw(sf::RenderWindow *win)
 {
+  static sf::Clock cursorDelay;
+  static bool drawCursor = false;
   std::list<sf::Text *>::iterator begIter;
 
   win->draw(_bg);
   win->draw(_inputArea);
   win->draw(_inputValue);
-  win->draw(_cursor);
+  if (drawCursor)
+    win->draw(_cursor);
+  if (cursorDelay.getElapsedTime().asMilliseconds() >= CURSOR_DELAY)
+    {
+      drawCursor = (drawCursor ? false : true);
+      cursorDelay.restart();
+    }
   begIter = _output.begin();
   std::advance(begIter, _outputIndex);
   for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)

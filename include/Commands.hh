@@ -30,8 +30,11 @@ namespace Commands {
   void screenshot(Console &c, Engine &e, std::vector<std::string> *argv);
   void setLineCount(Console &c, Engine &e, std::vector<std::string> *);
   void setConColor(Console &c, Engine &e, std::vector<std::string> *);
+  void setConCursor(Console &c, Engine &e, std::vector<std::string> *);
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *);
   void setVSync(Console &c, Engine &e, std::vector<std::string> *);
+  void unbind(Console &c, Engine &e, std::vector<std::string> *);
+  void unbindall(Console &c, Engine &e, std::vector<std::string> *);
   void windowSize(Console &c, Engine &e, std::vector<std::string> *);
 
 }

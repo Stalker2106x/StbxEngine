@@ -21,6 +21,7 @@ public:
   bool openWindow(int , int);
 
   sf::Vector2i getWindowSize() const;
+  void handleArgs(int argc, char **argv);
   void videoParamSet(const std::string &, const int &);
   sf::Image capture();
 

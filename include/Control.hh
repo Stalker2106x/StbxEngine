@@ -11,6 +11,7 @@ enum ControlType {
 
 class Control
 {
+  friend bool operator==(const Control &a, const Control &b);
 public:
   Control();
   Control(const sf::Keyboard::Key key);
