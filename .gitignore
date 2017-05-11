@@ -15,9 +15,11 @@
 *.tar
 *.zip
 
-# Logs #
-########
+# Logs and temp #
+#################
 *.log
+*~
+*#
 
 # OS generated files #
 ######################
