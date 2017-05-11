@@ -197,8 +197,13 @@ void Console::updateInput(const sf::Event &event)
       _input.back().insert(it, c);
       _cursorIndex++;
     }
+  updateInputValue();
+}
+
+void Console::updateInputValue()
+{
   _inputValue.setString(_input[_currentIndex]);
-  _cursor.setPosition(5 + ((_fontSize * 0.62f) * _cursorIndex), _inputValue.getPosition().y);
+  _cursor.setPosition(5 + ((_fontSize * 0.615f) * _cursorIndex), _inputValue.getPosition().y);
 }
 
 void Console::updateOutput()
@@ -220,46 +225,35 @@ void Console::updateKeyboard(const sf::Event &event)
   if (event.key.code == sf::Keyboard::Return)
     input();
   else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 0)
-    {
-      _input[_currentIndex].erase(_cursorIndex - 1, 1);
-      _cursorIndex--;
-    }
+    _input[_currentIndex].erase((_cursorIndex--) - 1, 1);
   else if (event.key.code == sf::Keyboard::Delete && _cursorIndex - _input[_currentIndex].size() > 0)
     _input[_currentIndex].erase(_cursorIndex, 1);
   else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
-    {
-      _currentIndex--;
-      _cursorIndex = _input[_currentIndex].size();
-    }
+    _cursorIndex = _input[--_currentIndex].size();
   else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size())
-    {
-      _currentIndex++;
-      _cursorIndex = _input[_currentIndex].size();
-    }
+    _cursorIndex = _input[++_currentIndex].size();
   else if (event.key.code == sf::Keyboard::Left && _cursorIndex > 0)
     _cursorIndex--;
   else if (event.key.code == sf::Keyboard::Right && _cursorIndex < _input[_currentIndex].size())
     _cursorIndex++;
   else if (event.key.code == sf::Keyboard::PageUp && _outputIndex > 0)
-    {
-      _outputIndex--;
-      updateOutput();
-    }
+    _outputIndex--;
   else if (event.key.code == sf::Keyboard::PageDown && _outputIndex + _lineCount <= _output.size())
-    {
-      _outputIndex++;
-      updateOutput();
-    }
+    _outputIndex++;
+  updateOutput();
+  updateInputValue();
 }
 
 void Console::update(const sf::Event &event)
 {
   if (event.type == sf::Event::KeyPressed && BINDREF("toggleconsole") && BINDTRIGGERED("toggleconsole", event))
     toggle();
-  if (!_active || (event.type != sf::Event::KeyPressed && event.type != sf::Event::TextEntered))
+  if (!_active)
     return;
-  updateInput(event);
-  updateKeyboard(event);
+  if (event.type == sf::Event::KeyPressed)
+    updateKeyboard(event);
+  else if (event.type == sf::Event::TextEntered)
+    updateInput(event);
 }
 
 void Console::draw(sf::RenderWindow *win)

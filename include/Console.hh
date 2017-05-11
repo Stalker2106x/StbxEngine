@@ -43,6 +43,7 @@ public:
   void input();
 
   void updateInput(const sf::Event &event);
+  void updateInputValue();
   void updateOutput();
   void updateKeyboard(const sf::Event &event);
   void update(const sf::Event &event);

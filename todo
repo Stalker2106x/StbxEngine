@@ -1,11 +1,7 @@
 bug:
 
--cursor lateral movement is not based on exact font width => LOOKS FIXED
+-cursor lateral movement is not based on exact font width
 -screenshot no arg segfault+unable to write
--when moving cursor: always doing lastInput instead of current
--browsing history up and down cause: terminate called after throwing an instance of 'std::length_error'
-  what():  basic_string::_M_create
-  -> probably because of cursor error;
 -when console is toggled, first char should not count if key is ascii.
 
 feature:
@@ -15,15 +11,15 @@ feature:
 -add optional param color bpp to videomode
 
 -implement MWheel in Control Abstraction
--Add a static method in Control to convert stringkey to Control
 -add a support for copy paste
 
 -add a command "mouse_sensivity" to set mouse sensivity => NOT SUPPORTED BY SFML
 -add a command "sound_stop" to stop all sounds
 
 -add a command "log_timestamp" to enable time in log
+-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
 
--add a command "debuginfo" to draw fps, debug nodes and info
+
 
 -add a HUD layer
 -add a command "hud_show" to enable or not hud
