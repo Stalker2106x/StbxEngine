@@ -64,7 +64,12 @@ void Engine::videoParamSet(const std::string &ent, const int &value)
 
 sf::Image Engine::capture()
 {
-    return (_win->capture());
+  sf::Texture scpy;
+  sf::Image screen;
+
+  scpy.update(*_win);
+  screen = scpy.copyToImage();
+  return (screen);
 }
 
 void Engine::graphicsLoop()

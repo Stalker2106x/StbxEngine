@@ -1,6 +1,5 @@
 BUG:
--cursor lateral movement is not based on exact font width
--screenshot no arg segfault+unable to write
+-screenshot command is unable to write
 -when console is toggled, first char should not count if key is ascii.
 
 FEATURE:

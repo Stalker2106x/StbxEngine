@@ -19,7 +19,7 @@ namespace Commands {
     {"log_enable", &toggleConLog},
     {"log_write", &writeToLog},
     {"log_file", &setConLog},
-    {"Screenshot", &screenshot},
+    {"screenshot", &screenshot},
     {"toggleconsole", &consoleToggle},
     {"unbind", &unbind},
     {"unbindall", &unbindall},
@@ -218,8 +218,6 @@ namespace Commands {
     id++;
     if (!shot.saveToFile(file))
       c.output(COLOR_ERROR, "screenshot: Unable to save screenshot");
-    else
-      c.output("screenshot: Successfully saved \""+file+"\"");
   }
 
   void setLineCount(Console &c, Engine &e, std::vector<std::string> *argv)

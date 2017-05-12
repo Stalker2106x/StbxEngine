@@ -203,7 +203,7 @@ void Console::updateInput(const sf::Event &event)
 void Console::updateInputValue()
 {
   _inputValue.setString(_input[_currentIndex]);
-  _cursor.setPosition(5 + ((_fontSize * 0.615f) * _cursorIndex), _inputValue.getPosition().y);
+  _cursor.setPosition(5 + ((_cursor.getLocalBounds().width) * _cursorIndex), _inputValue.getPosition().y);
 }
 
 void Console::updateOutput()
