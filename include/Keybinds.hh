@@ -20,6 +20,7 @@ public:
   bool bind(std::string action, std::string control);
   void listAllBinds(Console &c);
   Control *getKey(const std::string &action);
+  void update(sf::Event &e);
   
 private:
   std::map<std::string, Control> _binds;

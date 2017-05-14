@@ -125,9 +125,9 @@ Control::Control(std::string bind, const sf::Mouse::Button btn) : Control(bind)
   _type = MButton;
 }
 
-Control::Control(std::string bind, const sf::Mouse::Wheel whl) : Control(bind)
+Control::Control(std::string bind, const int whl) : Control(bind)
 {
-  _mwheel = new sf::Mouse::Wheel(whl);
+  _mwheel = new int(whl);
   _type = MWheel;
 }
 
@@ -140,7 +140,7 @@ Control::Control(const Control &c) : Control("default")
   else if (c._mbutton != NULL)
     _mbutton = new sf::Mouse::Button((*c._mbutton));
   else if (c._mwheel != NULL)
-    _mwheel = new sf::Mouse::Wheel((*c._mwheel));
+    _mwheel = new int((*c._mwheel));
 }
 
 Control::~Control()
@@ -152,6 +152,9 @@ Control::~Control()
       break;
     case MButton:
       delete (_mbutton);
+      break;
+    case MWheel:
+      delete (_mwheel);
       break;
     }  
 }
@@ -177,6 +180,12 @@ bool Control::isTriggered(const sf::Event &e)
       else
 	return (false);
       break;
+    case MWheel:
+      if (e.type == sf::Event::MouseWheelMoved && e.mouseWheel.delta >= 0)
+	return ((*_mwheel) == Up ? true : false);
+      else
+	return ((*_mwheel) == Up ? false : true);
+      break;
     }
   return (false);
 }
@@ -197,10 +206,17 @@ bool Control::isReleased(const sf::Event &e)
       else
 	return (false);
       break;
+    case MWheel:
+      if (e.type != sf::Event::MouseWheelMoved)
+	return (true);
+      else
+	return (false);
+      break;
     }
   return (false);
 }
 
+//Can be optimized with types use.
 bool operator==(const Control &a, const Control &b)
 {
   if (((a._key != NULL && b._key != NULL) && (*a._key) == (*b._key))

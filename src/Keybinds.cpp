@@ -74,3 +74,21 @@ Control *Keybinds::getKey(const std::string &action)
     }
   return (ctrl);
 }
+
+void Keybinds::update(sf::Event &e)
+{
+  switch (e.type)
+    {
+    case sf::Event::KeyPressed:
+    case sf::Event::KeyReleased:
+      break;
+    case sf::Event::MouseButtonPressed:
+    case sf::Event::MouseButtonReleased:
+      break;
+    case sf::Event::MouseWheelMoved:
+      break;
+    default:
+      return;
+      break;
+    }
+}

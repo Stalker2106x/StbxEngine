@@ -100,10 +100,10 @@ namespace Commands {
 	return;
       }
     if (!Engine::keybinds->bind((*argv)[1], (*argv)[0]))
-      c.output(COLOR_ERROR, "bind: Cannot bind key");
+      c.output(COLOR_ERROR, "bind: Cannot bind key; key or action invalid?");
   }
 
-  void bindList(Console &c, Engine &e, std::vector<std::string> *argv)
+  void bindList(Console &c, Engine &, std::vector<std::string> *)
   {
     Engine::keybinds->listAllBinds(c);
   }

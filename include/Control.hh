@@ -9,6 +9,11 @@ enum ControlType {
   MWheel
 };
 
+enum WheelMove {
+  Up = -1,
+  Down = 1
+};
+
 class Control
 {
   friend bool operator==(const Control &a, const Control &b);
@@ -16,7 +21,7 @@ public:
   Control(std::string);
   Control(std::string, const sf::Keyboard::Key key);
   Control(std::string, const sf::Mouse::Button btn);
-  Control(std::string, const sf::Mouse::Wheel whl);
+  Control(std::string, const int whl);
   Control(const Control &c);
   ~Control();
 
@@ -32,7 +37,7 @@ private:
   ControlType _type;
   sf::Keyboard::Key *_key;
   sf::Mouse::Button *_mbutton;
-  sf::Mouse::Wheel *_mwheel;
+  int *_mwheel;
 };
 
 #endif /* !CONTROL_HH_ */

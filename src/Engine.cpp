@@ -97,6 +97,7 @@ bool Engine::updateLoop()
 	  return (false);
 	}
       _console->update(event);
+      keybinds->update(event);
     }
   return (true);
 }
