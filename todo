@@ -4,11 +4,8 @@ BUG:
 -cursor width gives error on when choosing small char
 
 FEATURE:
-1-add command fullscreen
-2-add optional param color bpp to videomode
-3-add command bindlist to see all binds
+1-implement MWheel in Control Abstraction
 4-add a command "log_timestamp" to enable time in log
-5-implement MWheel in Control Abstraction
 6-add a tooltip to show predicates on input
 7-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
 

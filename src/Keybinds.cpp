@@ -52,6 +52,15 @@ bool Keybinds::bind(std::string action, std::string control)
   return (true);
 }
 
+void Keybinds::listAllBinds(Console &c)
+{
+  c.output("");
+  for (std::map<std::string, Control>::iterator it = _binds.begin(); it != _binds.end(); it++)
+    {
+      c.insertLastOutput(it->first+" = "+it->second.getBindStr());
+    }
+}
+
 Control *Keybinds::getKey(const std::string &action)
 {
   Control *ctrl;

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <map>
+#include "Console.hh"
 #include "Control.hh"
 
 #define BINDREF(x) (Engine::keybinds->getKey(x))
@@ -17,6 +18,7 @@ public:
   void unbindall();
   bool unbind(std::string element);
   bool bind(std::string action, std::string control);
+  void listAllBinds(Console &c);
   Control *getKey(const std::string &action);
   
 private:

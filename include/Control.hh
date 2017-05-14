@@ -13,13 +13,14 @@ class Control
 {
   friend bool operator==(const Control &a, const Control &b);
 public:
-  Control();
-  Control(const sf::Keyboard::Key key);
-  Control(const sf::Mouse::Button btn);
-  Control(const sf::Mouse::Wheel whl);
+  Control(std::string);
+  Control(std::string, const sf::Keyboard::Key key);
+  Control(std::string, const sf::Mouse::Button btn);
+  Control(std::string, const sf::Mouse::Wheel whl);
   Control(const Control &c);
   ~Control();
 
+  const std::string &getBindStr();
   bool isTriggered(const sf::Event &e);
   bool isReleased(const sf::Event &e);
 
@@ -27,6 +28,7 @@ public:
   static std::map<std::string, Control> keys;
   
 private:
+  std::string _bindstr;
   ControlType _type;
   sf::Keyboard::Key *_key;
   sf::Mouse::Button *_mbutton;

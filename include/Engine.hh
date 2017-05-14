@@ -24,7 +24,7 @@ public:
   void handleArgs(int argc, char **argv);
   void videoParamSet(const std::string &, const int &);
   sf::Image capture();
-
+  
   void graphicsLoop();
   bool updateLoop();
   int mainLoop();
@@ -38,7 +38,7 @@ public:
   static Keybinds *keybinds;
 
 private:
-  bool _quit;
+  bool _quit, _fullscreen;
   sf::Vector2i _winsize;
   sf::RenderWindow *_win;
   Console *_console;

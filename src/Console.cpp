@@ -156,7 +156,16 @@ void Console::output(std::string color, std::string msg)
 
 void Console::insertLastOutput(const std::string &msg)
 {
-  _output.back()->setString(_output.back()->getString()+msg);
+  sf::Text *text = new sf::Text(msg, _font, _fontSize);
+
+  if ((_output.back()->getLocalBounds().width+text->getLocalBounds().width) > _engine.getWindowSize().y)
+    _output.push_back(text);
+  else
+    {
+      delete (text);
+      _output.back()->setString(_output.back()->getString()+msg);
+    }
+  
 }
 
 void Console::input()

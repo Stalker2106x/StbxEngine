@@ -6,6 +6,7 @@ Engine::Engine(int width, int height)
 {
   _quit = false;
   _win = NULL;
+  _fullscreen = false;
   _console = new Console(*this);
   openWindow(width, height);
 }
@@ -22,7 +23,8 @@ bool Engine::openWindow(int width, int height)
     delete (_win);
   _win = new sf::RenderWindow();
   _win->setKeyRepeatEnabled(false);
-  _win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA");
+  _win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
+	       (_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
   _console->initGraphics(_winsize);
   return (true);
 }
@@ -58,6 +60,11 @@ void Engine::videoParamSet(const std::string &ent, const int &value)
 {
   if (ent == "FPS")
     _win->setFramerateLimit(value);
+  else if (ent == "FULLSCREEN" && static_cast<bool>(value) != _fullscreen)
+    {
+      _fullscreen = static_cast<bool>(value);
+      openWindow(_winsize.x, _winsize.y);
+    }
   else if (ent == "VSYNC")
     _win->setVerticalSyncEnabled(static_cast<bool>(value));
 }

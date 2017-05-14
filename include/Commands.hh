@@ -17,6 +17,7 @@ namespace Commands {
   bool parseCmd(Console &c, Engine &e, std::string);
 
   void bindCommand(Console &c, Engine &e, std::vector<std::string> *);
+  void bindList(Console &c, Engine &e, std::vector<std::string> *);
   void consoleClear(Console &c, Engine &e, std::vector<std::string> *);
   void consoleToggle(Console &c, Engine &e, std::vector<std::string> *);
   void echo(Console &c, Engine &e, std::vector<std::string> *);
@@ -32,6 +33,8 @@ namespace Commands {
   void setConColor(Console &c, Engine &e, std::vector<std::string> *);
   void setConCursor(Console &c, Engine &e, std::vector<std::string> *);
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *);
+  void setFullscreen(Console &c, Engine &e, std::vector<std::string> *);
+  void help(Console &c, Engine &e, std::vector<std::string> *);
   void setVSync(Console &c, Engine &e, std::vector<std::string> *);
   void unbind(Console &c, Engine &e, std::vector<std::string> *);
   void unbindall(Console &c, Engine &e, std::vector<std::string> *);

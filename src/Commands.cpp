@@ -6,6 +6,7 @@ namespace Commands {
 
   cmdMap cmdlist = {
     {"bind", &bindCommand},
+    {"bindlist", &bindList},
     {"clear", &consoleClear},
     {"con_maxline", &setLineCount},
     {"con_color", &setConColor},
@@ -16,6 +17,8 @@ namespace Commands {
     {"exit", &quit},
     {"find", &findCmd},
     {"fps_max", &setMaxFPS},
+    {"fullscreen", &setFullscreen},
+    {"help", &help},
     {"log_enable", &toggleConLog},
     {"log_write", &writeToLog},
     {"log_file", &setConLog},
@@ -37,8 +40,9 @@ namespace Commands {
     else
       {
 	c.output(COLOR_ERROR, "Syntax: Invalid argument, expected boolean");
-	return (false);
+	throw std::invalid_argument("bool");
       }
+    return (false);
   }
   
   std::vector<std::string> *getArgs(std::string &command)
@@ -98,7 +102,12 @@ namespace Commands {
     if (!Engine::keybinds->bind((*argv)[1], (*argv)[0]))
       c.output(COLOR_ERROR, "bind: Cannot bind key");
   }
-  
+
+  void bindList(Console &c, Engine &e, std::vector<std::string> *argv)
+  {
+    Engine::keybinds->listAllBinds(c);
+  }
+
   void consoleClear(Console &c, Engine &, std::vector<std::string> *)
   {
     c.clear();
@@ -168,7 +177,11 @@ namespace Commands {
 	c.output(COLOR_ERROR, "log_enable: No param given");
 	return;
       }
-    c.setLogEnabled(convertBool(c, (*argv)[0]));
+    bool v;
+
+    try { v = convertBool(c, (*argv)[0]); }
+    catch (...) { return; }
+    c.setLogEnabled(v);
   }
   
   void writeToLog(Console &c, Engine &, std::vector<std::string> *argv)
@@ -266,6 +279,33 @@ namespace Commands {
     delete (argv);
   }
 
+  void setFullscreen(Console &c, Engine &e, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.output(COLOR_ERROR, "fullscreen: No value given");
+	return;
+      }    
+    bool v;
+
+    try { v = convertBool(c, (*argv)[0]); }
+    catch (...) { return; }
+    e.videoParamSet("FULLSCREEN", static_cast<int>(v));
+    delete (argv);
+  }
+
+  void help(Console &c, Engine &, std::vector<std::string> *)
+  {
+    c.output(COLOR_INFO, "Available commands: ");
+    c.output("");
+    for (cmdMap::iterator it = cmdlist.begin(); it != cmdlist.end(); it++)
+      {
+	c.insertLastOutput(it->first);
+	if (std::next(it, 1) != cmdlist.end())
+	  c.insertLastOutput(", ");
+      }
+  }
+  
   void setVSync(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -273,7 +313,11 @@ namespace Commands {
 	c.output(COLOR_ERROR, "vsync: No value given");
 	return;
       }
-    e.videoParamSet("VSYNC", convertBool(c, (*argv)[0]));
+    bool v;
+
+    try { v = convertBool(c, (*argv)[0]); }
+    catch (...) { return; }
+    e.videoParamSet("VSYNC", v);
     delete (argv);
   }
 
