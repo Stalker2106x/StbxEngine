@@ -1,6 +1,7 @@
 BUG:
 -screenshot command is unable to write
 -when console is toggled, first char should not count if key is ascii.
+-cursor width gives error on when choosing small char
 
 FEATURE:
 1-add command fullscreen
@@ -8,7 +9,8 @@ FEATURE:
 3-add command bindlist to see all binds
 4-add a command "log_timestamp" to enable time in log
 5-implement MWheel in Control Abstraction
-6-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
+6-add a tooltip to show predicates on input
+7-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
 
 EXTENDABLE:
 -add a command "sound_stop" to stop all sounds

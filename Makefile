@@ -10,7 +10,7 @@ SRCDIR = src
 
 BINDIR = bin
 
-CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O2 -g3 -I$(INCDIR) -I$(EXTINC)
+CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTINC)
 
 ifeq ($(OS),Windows_NT)
 	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include

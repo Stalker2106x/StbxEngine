@@ -230,7 +230,7 @@ void Console::updateKeyboard(const sf::Event &event)
     _input[_currentIndex].erase(_cursorIndex, 1);
   else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
     _cursorIndex = _input[--_currentIndex].size();
-  else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size())
+  else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size() - 1)
     _cursorIndex = _input[++_currentIndex].size();
   else if (event.key.code == sf::Keyboard::Left && _cursorIndex > 0)
     _cursorIndex--;
