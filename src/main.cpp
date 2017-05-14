@@ -1,10 +1,24 @@
 #include "Engine.hh"
 
+class sEngine : public Engine
+{
+  bool update(sf::Event &e);
+  void draw();
+};
 
+bool sEngine::update(sf::Event &e)
+{
+  return (true);
+}
+
+void sEngine::draw()
+{
+
+}
 
 int main(int argc, char **argv)
 {
-  Engine engine(1280, 1024);
+  sEngine engine;
 
   if (argc > 0)
     engine.handleArgs(argc, argv);

@@ -158,7 +158,7 @@ void Console::insertLastOutput(const std::string &msg)
 {
   sf::Text *text = new sf::Text(msg, _font, _fontSize);
 
-  if ((_output.back()->getLocalBounds().width+text->getLocalBounds().width) > _engine.getWindowSize().y)
+  if ((_output.back()->getLocalBounds().width+text->getLocalBounds().width) > _engine.getWindowSize().x)
     _output.push_back(text);
   else
     {

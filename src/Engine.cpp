@@ -98,6 +98,11 @@ bool Engine::updateLoop()
 	}
       _console->update(event);
       keybinds->update(event);
+      if (update(event) == false)
+	{
+	  _win->close();
+	  return (false);
+	}
     }
   return (true);
 }
@@ -108,6 +113,7 @@ int Engine::mainLoop()
     {
       _win->clear(sf::Color::Black);
       graphicsLoop();
+      draw();
       _win->display();
     }
   return (0);

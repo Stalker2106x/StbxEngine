@@ -2,7 +2,6 @@
 #define ENGINE_HH_
 
 #include <SFML/Graphics.hpp>
-
 #include "Console.hh"
 #include "Keybinds.hh"
 
@@ -26,7 +25,9 @@ public:
   sf::Image capture();
   
   void graphicsLoop();
+  virtual void draw() = 0;
   bool updateLoop();
+  virtual bool update(sf::Event &) = 0;
   int mainLoop();
 
   static char getChar(sf::Event event, CharType type);
