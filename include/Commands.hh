@@ -27,6 +27,7 @@ namespace Commands {
   void toggleConLog(Console &c, Engine &, std::vector<std::string> *);
   void writeToLog(Console &c, Engine &, std::vector<std::string> *argv);
   void setConLog(Console &c, Engine &, std::vector<std::string> *argv);
+  void timestampLog(Console &c, Engine &, std::vector<std::string> *argv);
   void printCWD(Console &c, Engine &e, std::vector<std::string> *);
   void quit(Console &c, Engine &e, std::vector<std::string> *);
   void screenshot(Console &c, Engine &e, std::vector<std::string> *argv);

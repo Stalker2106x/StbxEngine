@@ -80,7 +80,7 @@ void Console::setCursor(char &c)
 void Console::setLogEnabled(bool state)
 {
   _logEnabled = state;
-  if (!_logEnabled)
+  if (_logEnabled)
     {
       if (!_log.is_open())
 	_log.open(_logFile, std::ofstream::out | std::ofstream::app);
@@ -95,13 +95,13 @@ void Console::setLogEnabled(bool state)
 void Console::writeToLog(std::string &msg)
 {
   if (!_log.is_open())
-    {
-      _log.open(_logFile, std::ofstream::out | std::ofstream::app);
-      _log << msg << "\n";
-      _log.close();
-    }
+    _log.open(_logFile, std::ofstream::out | std::ofstream::app);
+  if (_logTimestamp)
+    _log << _engine.getTimestamp() << msg << "\n";
   else
     _log << msg << "\n";
+  if (!_log.is_open())
+    _log.close();
 }
 
 void Console::setLogFile(const std::string &file)
@@ -109,6 +109,14 @@ void Console::setLogFile(const std::string &file)
   if (_log.is_open())
     _log.close();
   _logFile = file;
+}
+
+void Console::setLogTimestamp(int toggle)
+{
+  if (toggle != -1)
+    _logTimestamp = static_cast<bool>(toggle);
+  else
+    _logTimestamp = (_logTimestamp ? false : true);
 }
 
 sf::Color Console::convertColorCode(std::string code)

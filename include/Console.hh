@@ -36,6 +36,7 @@ public:
   void setLogEnabled(bool state);
   void writeToLog(std::string &msg);
   void setLogFile(const std::string &file);
+  void setLogTimestamp(int);
   
   static sf::Color convertColorCode(std::string code);
   
@@ -54,7 +55,7 @@ public:
 private:
   Engine &_engine;
 
-  bool _active, _logEnabled;
+  bool _active, _logEnabled, _logTimestamp;
   sf::RectangleShape _bg, _inputArea;
   sf::Font _font;
   sf::Text _inputValue, _cursor;

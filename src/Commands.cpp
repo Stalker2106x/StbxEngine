@@ -22,6 +22,7 @@ namespace Commands {
     {"log_enable", &toggleConLog},
     {"log_write", &writeToLog},
     {"log_file", &setConLog},
+    {"log_timestamp", &timestampLog},
     {"screenshot", &screenshot},
     {"toggleconsole", &consoleToggle},
     {"unbind", &unbind},
@@ -212,6 +213,20 @@ namespace Commands {
 	return;
       }
     c.setLogFile((*argv)[0]);
+  }
+
+  void timestampLog(Console &c, Engine &, std::vector<std::string> *argv)
+  {
+    if (argv == NULL || argv->size() < 1)
+      {
+	c.setLogTimestamp(-1);
+	return;
+      }
+    bool v;
+
+    try { v = convertBool(c, (*argv)[0]); }
+    catch (...) { return; }
+    c.setLogTimestamp(static_cast<int>(v));
   }
   
   void printCWD(Console &c, Engine &, std::vector<std::string> *)
