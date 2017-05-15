@@ -1,10 +1,10 @@
 BUG:
 -screenshot command is unable to write
 -when console is toggled, first char should not count if key is ascii.
--cursor width gives error on when choosing small char
 -show usage on errors
 
 FEATURE:
+1-when fullscreen has no arg, it should toggle
 4-add a command "log_timestamp" to enable time in log
 6-add a tooltip to show predicates on input
 7-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
