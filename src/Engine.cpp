@@ -7,6 +7,7 @@ Engine::Engine(int width, int height)
   _quit = false;
   _win = NULL;
   _fullscreen = false;
+  _vsync = false;
   _console = new Console(*this);
   openWindow(width, height);
   keybinds->bindEnv(_console, this);
@@ -61,13 +62,26 @@ void Engine::videoParamSet(const std::string &ent, const int &value)
 {
   if (ent == "FPS")
     _win->setFramerateLimit(value);
-  else if (ent == "FULLSCREEN" && static_cast<bool>(value) != _fullscreen)
+  else if (ent == "TFULLSCREEN")
+    {
+      _fullscreen = (_fullscreen ? false : true);
+      openWindow(_winsize.x, _winsize.y);
+    }
+  else if (ent == "FULLSCREEN" && static_cast<bool>(value) != _fullscreen) 
     {
       _fullscreen = static_cast<bool>(value);
       openWindow(_winsize.x, _winsize.y);
     }
+  else if (ent == "TVSYNC")
+    {
+      _vsync = (_vsync ? false : true);
+      _win->setVerticalSyncEnabled(_vsync);
+    }
   else if (ent == "VSYNC")
-    _win->setVerticalSyncEnabled(static_cast<bool>(value));
+    {
+      _vsync = static_cast<bool>(value);
+      _win->setVerticalSyncEnabled(_vsync);
+    }
 }
 
 sf::Image Engine::capture()

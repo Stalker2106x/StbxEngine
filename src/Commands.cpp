@@ -293,7 +293,7 @@ namespace Commands {
   {
     if (argv == NULL || argv->size() < 1)
       {
-	c.output(COLOR_ERROR, "fullscreen: No value given");
+	e.videoParamSet("TFULLSCREEN", false);
 	return;
       }    
     bool v;
@@ -320,7 +320,7 @@ namespace Commands {
   {
     if (argv == NULL || argv->size() < 1)
       {
-	c.output(COLOR_ERROR, "vsync: No value given");
+	e.videoParamSet("TVSYNC", false);
 	return;
       }
     bool v;

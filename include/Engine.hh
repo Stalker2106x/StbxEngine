@@ -39,7 +39,7 @@ public:
   static Keybinds *keybinds;
 
 private:
-  bool _quit, _fullscreen;
+  bool _quit, _fullscreen, _vsync;
   sf::Vector2i _winsize;
   sf::RenderWindow *_win;
   Console *_console;
