@@ -61,11 +61,16 @@ namespace Commands {
 	delimiter = ' ';
 	while (buffer[pos] == ' ')
 	  pos++;
+	if (pos >= buffer.length())
+	  {
+	    delete (argv);
+	    return (NULL);
+	  }
 	buffer = buffer.substr(pos, buffer.length() - pos);
 	if (buffer[0] == '"' || buffer[0] == '\'')
 	  {
-	    buffer.erase(0, 1);
 	    delimiter = buffer[0];
+	    buffer.erase(0, 1);
 	  }
 	if ((pos = buffer.find(delimiter)) != std::string::npos)
 	  argv->push_back(buffer.substr(0, pos));
@@ -99,7 +104,12 @@ namespace Commands {
 	c.output(COLOR_ERROR, "bind: Missing argument");
 	return;
       }
-    if (!Engine::keybinds->bind((*argv)[1], (*argv)[0]))
+    std::string bind = (*argv)[0];
+    std::string action = (*argv)[1];
+    
+    std::transform(bind.begin(), bind.end(), bind.begin(), ::tolower);
+    std::transform(action.begin(), action.end(), action.begin(), ::tolower);
+    if (!Engine::keybinds->bind(bind, action))
       c.output(COLOR_ERROR, "bind: Cannot bind key; key or action invalid?");
   }
 

@@ -3,9 +3,6 @@ BUG:
 -when console is toggled, first char should not count if key is ascii.
 -cursor width gives error on when choosing small char
 -show usage on errors
--when giving single space after command command error segfalut
--when typing key in bind commands, no lowercase error
-
 
 FEATURE:
 4-add a command "log_timestamp" to enable time in log

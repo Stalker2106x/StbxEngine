@@ -108,6 +108,7 @@ std::map<std::string, Control> Control::keys = {
 Control::Control(std::string bindstr)
 {
   _bindstr = bindstr;
+  _type = Null;
   _key = NULL;
   _mbutton = NULL;
   _mwheel = NULL;
@@ -156,10 +157,12 @@ Control::~Control()
     case MWheel:
       delete (_mwheel);
       break;
+    default:
+      break;
     }  
 }
 
-const std::string &Control::getBindStr()
+std::string Control::getBindStr() const
 {
   return (_bindstr);
 }
@@ -186,6 +189,8 @@ bool Control::isTriggered(const sf::Event &e)
       else
 	return ((*_mwheel) == Up ? false : true);
       break;
+    default:
+      return (false);
     }
   return (false);
 }
@@ -212,6 +217,8 @@ bool Control::isReleased(const sf::Event &e)
       else
 	return (false);
       break;
+    default:
+      return (false);
     }
   return (false);
 }
@@ -224,4 +231,13 @@ bool operator==(const Control &a, const Control &b)
       || ((a._mwheel != NULL && b._mwheel != NULL)  && (*a._mwheel) == (*b._mwheel)))
     return (true);
   return (false);
+}
+
+bool operator<(const Control &a, const Control &b)
+{
+  if (((a._key != NULL && b._key != NULL) && (*a._key) < (*b._key))
+      || ((a._mbutton != NULL && b._mbutton != NULL)  && (*a._mbutton) < (*b._mbutton))
+      || ((a._mwheel != NULL && b._mwheel != NULL)  && (*a._mwheel) < (*b._mwheel)))
+    return (true);
+  return (false);  
 }

@@ -9,6 +9,7 @@ Engine::Engine(int width, int height)
   _fullscreen = false;
   _console = new Console(*this);
   openWindow(width, height);
+  keybinds->bindEnv(_console, this);
 }
 
 Engine::~Engine()

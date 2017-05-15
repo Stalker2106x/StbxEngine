@@ -10,6 +10,12 @@ Keybinds::~Keybinds()
 
 }
 
+void Keybinds::bindEnv(Console *c, Engine *e)
+{
+  _c = c;
+  _e = e;
+}
+
 void Keybinds::unbindall()
 {
   _binds.clear();
@@ -17,78 +23,86 @@ void Keybinds::unbindall()
 
 bool Keybinds::unbind(std::string element)
 {
-  std::map<std::string, Control>::iterator it;
-  
-  if ((it = _binds.find(element)) != _binds.end())
+  std::map<Control, std::string>::iterator it;
+
+  try {
+  if ((it = _binds.find(Control::keys.at(element))) != _binds.end())
     {
       _binds.erase(it);
       return (true);
     }
-  else if (Control::keys.find(element) != Control::keys.end())
+  else if (Commands::cmdlist.find(element) != Commands::cmdlist.end())
     {
       for (it = _binds.begin(); it != _binds.end(); it++)
 	{
-	  if ((*it).second == Control::keys.at(element))
+	  if ((*it).second == element)
 	    {
 	      _binds.erase(it);
 	      return (true);
 	    }
 	}
     }
+  }
+  catch (...) { return (false); }
   return (false);
 }
 
-bool Keybinds::bind(std::string action, std::string control)
-{
+bool Keybinds::bind(std::string control, std::string action)
+{ 
+  Control *b;
   try {
-    if (_binds.find(action) != _binds.end())
-      _binds.erase(action);
-    _binds.emplace(action, Control::keys.at(control));
+    b = &Control::keys.at(control);
+    if (_binds.find(*b) != _binds.end())
+      _binds.erase(*b);
+    _binds.emplace(*b, action);
   }
-  catch (...)
-    {
-      return (false);
-    }
+  catch (...) { return (false); }
   return (true);
 }
 
 void Keybinds::listAllBinds(Console &c)
 {
   c.output("");
-  for (std::map<std::string, Control>::iterator it = _binds.begin(); it != _binds.end(); it++)
+  for (std::map<Control, std::string>::iterator it = _binds.begin(); it != _binds.end(); it++)
     {
-      c.insertLastOutput(it->first+" = "+it->second.getBindStr());
+      c.insertLastOutput(it->second+" = "+it->first.getBindStr());
     }
 }
 
 Control *Keybinds::getKey(const std::string &action)
 {
-  Control *ctrl;
-  
   try {
-    ctrl = &_binds.at(action);
-      }
-  catch (...)
-    {
-      return (NULL);
-    }
-  return (ctrl);
+    if (Commands::cmdlist.find(action) != Commands::cmdlist.end())
+      {
+	for (std::map<Control, std::string>::iterator it = _binds.begin(); it != _binds.end(); it++)
+	  {
+	    if ((*it).second == action)
+	      {
+		return (new Control(it->first.getBindStr()));
+	      }
+	  }
+      }    
+  }
+  catch (...) { return (NULL); }
+  return (NULL);
 }
 
 void Keybinds::update(sf::Event &e)
 {
-  switch (e.type)
-    {
-    case sf::Event::KeyPressed:
-    case sf::Event::KeyReleased:
-      break;
-    case sf::Event::MouseButtonPressed:
-    case sf::Event::MouseButtonReleased:
-      break;
-    case sf::Event::MouseWheelMoved:
-      break;
-    default:
-      return;
-      break;
-    }
+  try {
+    switch (e.type)
+      {
+      case sf::Event::KeyPressed:
+	Commands::parseCmd(*_c, *_e, _binds.at(Control("", e.key.code)));
+	break;
+      case sf::Event::MouseButtonPressed:
+	break;
+      case sf::Event::MouseWheelMoved:
+	break;
+      default:
+	return;
+	break;
+      }
+  }
+  catch(...) { return; }
 }

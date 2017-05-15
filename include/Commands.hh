@@ -11,6 +11,7 @@ class Console;
 namespace Commands {
 
   typedef std::map<std::string, void (*)(Console &, Engine &, std::vector<std::string> *)> cmdMap;
+  extern cmdMap cmdlist;
 
   bool convertBool(Console &c, std::string &arg);
   std::vector<std::string> *getArgs(std::string &command);

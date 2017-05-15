@@ -15,15 +15,18 @@ public:
   Keybinds();
   ~Keybinds();
 
+  void bindEnv(Console *, Engine *);
   void unbindall();
   bool unbind(std::string element);
-  bool bind(std::string action, std::string control);
+  bool bind(std::string ctrl, std::string action);
   void listAllBinds(Console &c);
   Control *getKey(const std::string &action);
   void update(sf::Event &e);
   
 private:
-  std::map<std::string, Control> _binds;
+  Console *_c;
+  Engine *_e;
+  std::map<Control, std::string> _binds;
 };
 
 #endif /* !KEYBINDS_HH_ */

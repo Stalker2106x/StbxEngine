@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 enum ControlType {
+  Null,
   Key,
   MButton,
   MWheel
@@ -17,7 +18,9 @@ enum WheelMove {
 class Control
 {
   friend bool operator==(const Control &a, const Control &b);
+  friend bool operator<(const Control &a, const Control &b);
 public:
+  
   Control(std::string);
   Control(std::string, const sf::Keyboard::Key key);
   Control(std::string, const sf::Mouse::Button btn);
@@ -25,7 +28,7 @@ public:
   Control(const Control &c);
   ~Control();
 
-  const std::string &getBindStr();
+  std::string getBindStr() const;
   bool isTriggered(const sf::Event &e);
   bool isReleased(const sf::Event &e);
 
