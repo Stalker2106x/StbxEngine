@@ -34,7 +34,8 @@ SRCS =				$(SRCDIR)/main.cpp		\
 				$(SRCDIR)/Console.cpp		\
 				$(SRCDIR)/Commands.cpp		\
 				$(SRCDIR)/Keybinds.cpp		\
-				$(SRCDIR)/Control.cpp
+				$(SRCDIR)/Control.cpp		\
+				$(SRCDIR)/Menu.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
