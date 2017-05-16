@@ -4,13 +4,11 @@ BUG:
 -show usage on errors
 
 FEATURE:
-1-add a tooltip to show predicates on input
+1-Add a Module MENU!!!
 2-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
 
 EXTENDABLE:
--add a command "sound_stop" to stop all sounds
--add a support for copy paste
--add a HUD layer
--add a command "hud_show" to enable or not hud
--add a command "hud_color" to set HUD color
+-add a command "sound_stop" to stop all sounds, "sound_volume" etc...
+-add a support for copy paste { needs cross platform abstraction }
+-add a HUD layer { commmand "hud_show" to enable, command "hud_color" to set color }
 

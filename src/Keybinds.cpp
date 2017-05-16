@@ -16,6 +16,11 @@ void Keybinds::bindEnv(Console *c, Engine *e)
   _e = e;
 }
 
+bool Keybinds::isBound(Control &c)
+{
+  return (_binds.find(c) != _binds.end());
+}
+
 void Keybinds::unbindall()
 {
   _binds.clear();

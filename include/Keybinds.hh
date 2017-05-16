@@ -16,6 +16,8 @@ public:
   ~Keybinds();
 
   void bindEnv(Console *, Engine *);
+  bool isBound(Control &c);
+  
   void unbindall();
   bool unbind(std::string element);
   bool bind(std::string ctrl, std::string action);
