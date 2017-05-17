@@ -7,11 +7,14 @@ Menu::Menu()
 
 Menu::~Menu()
 {
-  
+
 }
 
 bool Menu::loadFromFile(std::string &file)
 {
+  tinyxml2::XMLDocument xml;
+
+  xml.LoadFile(file.c_str());
   return (true);
 }
 

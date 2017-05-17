@@ -45,7 +45,7 @@ namespace Commands {
       }
     return (false);
   }
-  
+
   std::vector<std::string> *getArgs(std::string &command)
   {
     std::vector<std::string> *argv;
@@ -95,6 +95,8 @@ namespace Commands {
       }
     argv = getArgs(cmd);
     cmdlist[command](c, e, argv);
+    if (argv != NULL)
+      delete (argv);
     return (true);
   }
 
@@ -107,7 +109,7 @@ namespace Commands {
       }
     std::string bind = (*argv)[0];
     std::string action = (*argv)[1];
-    
+
     std::transform(bind.begin(), bind.end(), bind.begin(), ::tolower);
     std::transform(action.begin(), action.end(), action.begin(), ::tolower);
     if (!Engine::keybinds->bind(bind, action))
@@ -131,7 +133,10 @@ namespace Commands {
 
   void echo(Console &c, Engine &, std::vector<std::string> *argv)
   {
-    c.output((*argv)[0]);
+    if (argv == NULL || argv->size() < 1)
+	    c.output("");
+    else
+      c.output((*argv)[0]);
   }
 
   void execute(Console &c, Engine &e, std::vector<std::string> *argv)
@@ -152,7 +157,6 @@ namespace Commands {
       }
     while (std::getline(ifs, cmd))
       parseCmd(c, e, cmd);
-    delete (argv);
   }
 
   void findCmd(Console &c, Engine &, std::vector<std::string> *argv)
@@ -178,7 +182,6 @@ namespace Commands {
       }
     if (available.empty())
       c.output("find: No commands found");
-    delete (argv);
   }
 
   void toggleConLog(Console &c, Engine &, std::vector<std::string> *argv)
@@ -194,7 +197,7 @@ namespace Commands {
     catch (...) { return; }
     c.setLogEnabled(v);
   }
-  
+
   void writeToLog(Console &c, Engine &, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -204,7 +207,7 @@ namespace Commands {
       }
     c.writeToLog((*argv)[0]);
   }
-  
+
   void setConLog(Console &c, Engine &, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -228,7 +231,7 @@ namespace Commands {
     catch (...) { return; }
     c.setLogTimestamp(static_cast<int>(v));
   }
-  
+
   void printCWD(Console &c, Engine &, std::vector<std::string> *)
   {
     char *cwd = getcwd(NULL, 0);
@@ -267,20 +270,18 @@ namespace Commands {
       }
     c.setLineCount(atoi((*argv)[0].c_str()));
     c.initGraphics(e.getWindowSize());
-    delete (argv);
   }
 
   void setConColor(Console &c, Engine &, std::vector<std::string> *argv)
   {
     sf::Color cbg, cinput;
-    
+
     if (argv == NULL || argv->size() < 2
 	|| (*argv)[0].length() < 9 || (*argv)[1].length() < 9)
       c.output(COLOR_ERROR, "con_color: Invalid colors or no colors given");
     cbg = Console::convertColorCode((*argv)[0]);
     cinput = Console::convertColorCode((*argv)[1]);
     c.setColor(cbg, cinput);
-    delete (argv);
   }
 
   void setConCursor(Console &c, Engine &, std::vector<std::string> *argv)
@@ -292,7 +293,7 @@ namespace Commands {
       }
     c.setCursor((*argv)[0][0]);
   }
-  
+
   void setMaxFPS(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -301,7 +302,6 @@ namespace Commands {
 	return;
       }
     e.videoParamSet("FPS", atoi((*argv)[0].c_str()));
-    delete (argv);
   }
 
   void setFullscreen(Console &c, Engine &e, std::vector<std::string> *argv)
@@ -310,13 +310,12 @@ namespace Commands {
       {
 	e.videoParamSet("TFULLSCREEN", false);
 	return;
-      }    
+      }
     bool v;
 
     try { v = convertBool(c, (*argv)[0]); }
     catch (...) { return; }
     e.videoParamSet("FULLSCREEN", static_cast<int>(v));
-    delete (argv);
   }
 
   void help(Console &c, Engine &, std::vector<std::string> *)
@@ -330,7 +329,7 @@ namespace Commands {
 	  c.insertLastOutput(", ");
       }
   }
-  
+
   void setVSync(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -343,7 +342,6 @@ namespace Commands {
     try { v = convertBool(c, (*argv)[0]); }
     catch (...) { return; }
     e.videoParamSet("VSYNC", v);
-    delete (argv);
   }
 
   void unbind(Console &c, Engine &e, std::vector<std::string> *argv)
@@ -361,7 +359,7 @@ namespace Commands {
   {
     e.keybinds->unbindall();
   }
-  
+
   void windowSize(Console &c, Engine &e, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 2)
@@ -371,7 +369,6 @@ namespace Commands {
       }
     e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));
     c.initGraphics(e.getWindowSize());
-    delete (argv);
   }
 
 }

@@ -71,6 +71,8 @@ void Keybinds::listAllBinds(Console &c)
   for (std::map<Control, std::string>::iterator it = _binds.begin(); it != _binds.end(); it++)
     {
       c.insertLastOutput(it->second+" = "+it->first.getBindStr());
+      if (std::next(it, 1) != _binds.end())
+	c.insertLastOutput(", ");
     }
 }
 
