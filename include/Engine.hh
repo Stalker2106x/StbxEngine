@@ -23,17 +23,17 @@ public:
   void handleArgs(int argc, char **argv);
   void videoParamSet(const std::string &, const int &);
   sf::Image capture();
-  
+
   void graphicsLoop();
   virtual void draw() = 0;
   bool updateLoop();
   virtual bool update(sf::Event &) = 0;
   int mainLoop();
 
-  static char getChar(sf::Event event, CharType type);
+  static char getChar(sf::Event event, CharType type, bool useBinds = true);
   static struct tm *getTime();
   static std::string getTimestamp();
-  
+
   void quit();
 
   static Keybinds *keybinds;

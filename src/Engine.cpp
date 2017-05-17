@@ -34,7 +34,7 @@ bool Engine::openWindow(int width, int height)
 void Engine::handleArgs(int argc, char **argv)
 {
   std::string cmd;
-  
+
   for (short i = 0; i < argc; i++)
     {
       if (argv[i][0] == '-')
@@ -67,7 +67,7 @@ void Engine::videoParamSet(const std::string &ent, const int &value)
       _fullscreen = (_fullscreen ? false : true);
       openWindow(_winsize.x, _winsize.y);
     }
-  else if (ent == "FULLSCREEN" && static_cast<bool>(value) != _fullscreen) 
+  else if (ent == "FULLSCREEN" && static_cast<bool>(value) != _fullscreen)
     {
       _fullscreen = static_cast<bool>(value);
       openWindow(_winsize.x, _winsize.y);
@@ -134,10 +134,10 @@ int Engine::mainLoop()
   return (0);
 }
 
-char Engine::getChar(sf::Event event, CharType type)
+char Engine::getChar(sf::Event event, CharType type, bool useBinds)
 {
-
-  if (event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
+  if ((event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
+    || (!useBinds && keybinds->isBound(Control("", event.key.code))))
     return ('\0');
   if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
       return (event.text.unicode);
@@ -150,7 +150,7 @@ struct tm *Engine::getTime()
 {
   time_t t = time(0);
   struct tm *stamp = localtime(&t);
-  
+
   return (stamp);
 }
 

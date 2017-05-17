@@ -16,7 +16,7 @@ void Keybinds::bindEnv(Console *c, Engine *e)
   _e = e;
 }
 
-bool Keybinds::isBound(Control &c)
+bool Keybinds::isBound(const Control &c)
 {
   return (_binds.find(c) != _binds.end());
 }
@@ -53,7 +53,7 @@ bool Keybinds::unbind(std::string element)
 }
 
 bool Keybinds::bind(std::string control, std::string action)
-{ 
+{
   Control *b;
   try {
     b = &Control::keys.at(control);
@@ -86,7 +86,7 @@ Control *Keybinds::getKey(const std::string &action)
 		return (new Control(it->first.getBindStr()));
 	      }
 	  }
-      }    
+      }
   }
   catch (...) { return (NULL); }
   return (NULL);

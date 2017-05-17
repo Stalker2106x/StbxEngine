@@ -6,6 +6,11 @@ Maxime 'stalker2106' Martens
 
 ## License ##
 This engine is not public yet. For testing purposes only.
+It will probably be released in MIT licensing
+
+## Dependencies ##
+PugiXML for XML Parsing
+
 
 ## Conception ##
 The engine uses a Modular yet Inter-dependent Code pattern. You can Hopefully use any module separately by reproducing the Engine class which interconnects the whole project.
