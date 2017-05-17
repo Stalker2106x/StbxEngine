@@ -132,7 +132,7 @@ sf::Color Console::convertColorCode(std::string code)
 }
 
 void Console::output(std::string msg)
-{ 
+{
   if (_output.size() >= _lineCount)
     _outputIndex++;
   _output.push_back(new sf::Text());
@@ -173,7 +173,7 @@ void Console::insertLastOutput(const std::string &msg)
       delete (text);
       _output.back()->setString(_output.back()->getString()+msg);
     }
-  
+
 }
 
 void Console::input()
@@ -200,7 +200,7 @@ void Console::updateInput(const sf::Event &event)
   std::string::iterator it;
   char c;
 
-  c = Engine::getChar(event, alphanumeric);
+  c = Engine::getChar(event, alphanumeric, false);
   if (c != '\0')
     {
       if (_currentIndex != _input.size() - 1)
