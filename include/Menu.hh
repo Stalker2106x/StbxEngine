@@ -2,7 +2,6 @@
 #define MENU_HH_
 
 #include <SFML/Graphics.hpp>
-#include "extlib/tinyxml2/tinyxml2.h"
 
 typedef void (*action)(int);
 typedef std::vector<action> actionTab;

@@ -4,15 +4,15 @@ RM = rm -f
 
 INCDIR = include
 
-EXTINC = extlibs/include
+EXTLIB = extlib
 
 SRCDIR = src
 
 BINDIR = bin
 
-CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTINC)
+CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR)
 
-LIBS = -Lextlib/tinyxml2/ -ltinyxml2
+LIBS = -L$(EXTLIB)
 
 ifeq ($(OS),Windows_NT)
 	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include

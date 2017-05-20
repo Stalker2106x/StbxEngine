@@ -12,16 +12,15 @@ Menu::~Menu()
 
 bool Menu::loadFromFile(std::string &file)
 {
-  tinyxml2::XMLDocument xml;
-
-  xml.LoadFile(file.c_str());
+  //Parse xml
   return (true);
 }
 
 void Menu::bindActions(actionTab actions)
 {
-  for (size_t i = 0; i < actions.size(); i++)
-    _items[i].second = actions[i];
+  for (size_t i = 0; i < _items.size(); i++)
+    if (actions[i] != NULL)
+      _items[i].second = actions[i];
 }
 
 bool Menu::update(sf::Event &e)
