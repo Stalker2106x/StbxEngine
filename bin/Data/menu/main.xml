@@ -7,7 +7,7 @@
       <setting>50Hz</setting>
       <setting>60Hz</setting>
     </item>
-  <item type="dynamicsetting">Resolution</item>
+  <item type="dynamicsetting" action="getResolution">Resolution</item>
   <item type="edit">Pseudo</item>
   <item type="slidersetting">Volume</item>
   <item type="link">Quit</item>
