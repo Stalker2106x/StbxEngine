@@ -10,7 +10,7 @@ SRCDIR = src
 
 BINDIR = bin
 
-CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR)
+CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB)
 
 LIBS = -L$(EXTLIB)
 
@@ -31,12 +31,13 @@ else
   endif
 endif
 
-SRCS =				$(SRCDIR)/main.cpp		\
-				$(SRCDIR)/Engine.cpp		\
-				$(SRCDIR)/Console.cpp		\
-				$(SRCDIR)/Commands.cpp		\
-				$(SRCDIR)/Keybinds.cpp		\
-				$(SRCDIR)/Control.cpp		\
+SRCS =				$(EXTLIB)/pugixml/src/pugixml.cpp	\
+				$(SRCDIR)/main.cpp			\
+				$(SRCDIR)/Engine.cpp			\
+				$(SRCDIR)/Console.cpp			\
+				$(SRCDIR)/Commands.cpp			\
+				$(SRCDIR)/Keybinds.cpp			\
+				$(SRCDIR)/Control.cpp			\
 				$(SRCDIR)/Menu.cpp
 
 OBJS = $(SRCS:.cpp=.o)

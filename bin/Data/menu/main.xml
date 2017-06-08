@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <title>Test Menu</title>
+  <item type="link">Play</item>
+  <item type="staticsetting">
+      <name>Refresh Rate</name>
+      <setting>50Hz</setting>
+      <setting>60Hz</setting>
+    </item>
+  <item type="dynamicsetting">Resolution</item>
+  <item type="edit">Pseudo</item>
+  <item type="slidersetting">Volume</item>
+  <item type="link">Quit</item>
+</menu>

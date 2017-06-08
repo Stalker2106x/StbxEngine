@@ -12,6 +12,11 @@ Menu::~Menu()
 
 bool Menu::loadFromFile(std::string &file)
 {
+  pugi::xml_document doc;
+  std::ifstream ifs(file);
+  pugi::xml_parse_result xml;
+
+  xml = doc.load(ifs);
   //Parse xml
   return (true);
 }
