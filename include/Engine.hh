@@ -37,12 +37,12 @@ public:
   void quit();
 
   static Keybinds *keybinds;
-
+  static Console *console;
+  
 private:
   bool _quit, _fullscreen, _vsync;
   sf::Vector2i _winsize;
   sf::RenderWindow *_win;
-  Console *_console;
 };
 
 #endif /* !ENGINE_HH_ */

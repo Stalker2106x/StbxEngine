@@ -1,6 +1,7 @@
 #include "Engine.hh"
 
 Keybinds *Engine::keybinds = new Keybinds();
+Console *Engine::console = NULL;
 
 Engine::Engine(int width, int height)
 {
@@ -8,9 +9,9 @@ Engine::Engine(int width, int height)
   _win = NULL;
   _fullscreen = false;
   _vsync = false;
-  _console = new Console(*this);
+  Engine::console = new Console(*this);
   openWindow(width, height);
-  keybinds->bindEnv(_console, this);
+  keybinds->bindEnv(this);
 }
 
 Engine::~Engine()
@@ -27,7 +28,7 @@ bool Engine::openWindow(int width, int height)
   _win->setKeyRepeatEnabled(false);
   _win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
 	       (_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
-  _console->initGraphics(_winsize);
+  Engine::console->initGraphics(_winsize);
   return (true);
 }
 
@@ -47,8 +48,8 @@ void Engine::handleArgs(int argc, char **argv)
 	    }
 	  if ((i + 1) == argc)
 	    cmd += " "+std::string(argv[i]);
-	  _console->output(cmd);
-	  Commands::parseCmd(*_console, *this, cmd);
+	  Engine::console->output(cmd);
+	  Commands::parseCmd(*this, cmd);
 	}
     }
 }
@@ -96,8 +97,8 @@ sf::Image Engine::capture()
 
 void Engine::graphicsLoop()
 {
-  if (_console->isActive())
-    _console->draw(_win);
+  if (Engine::console->isActive())
+    Engine::console->draw(_win);
 }
 
 bool Engine::updateLoop()
@@ -111,7 +112,7 @@ bool Engine::updateLoop()
 	  _win->close();
 	  return (false);
 	}
-      _console->update(event);
+      Engine::console->update(event);
       keybinds->update(event);
       if (update(event) == false)
 	{

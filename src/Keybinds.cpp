@@ -1,4 +1,5 @@
 #include "Keybinds.hh"
+#include "Engine.hh"
 
 Keybinds::Keybinds()
 {
@@ -10,9 +11,8 @@ Keybinds::~Keybinds()
 
 }
 
-void Keybinds::bindEnv(Console *c, Engine *e)
+void Keybinds::bindEnv(Engine *e)
 {
-  _c = c;
   _e = e;
 }
 
@@ -65,14 +65,14 @@ bool Keybinds::bind(std::string control, std::string action)
   return (true);
 }
 
-void Keybinds::listAllBinds(Console &c)
+void Keybinds::listAllBinds()
 {
-  c.output("");
+  Engine::console->output("");
   for (std::map<Control, std::string>::iterator it = _binds.begin(); it != _binds.end(); it++)
     {
-      c.insertLastOutput(it->second+" = "+it->first.getBindStr());
+      Engine::console->insertLastOutput(it->second+" = "+it->first.getBindStr());
       if (std::next(it, 1) != _binds.end())
-	c.insertLastOutput(", ");
+	Engine::console->insertLastOutput(", ");
     }
 }
 
@@ -100,7 +100,7 @@ void Keybinds::update(sf::Event &e)
     switch (e.type)
       {
       case sf::Event::KeyPressed:
-	Commands::parseCmd(*_c, *_e, _binds.at(Control("", e.key.code)));
+	Commands::parseCmd(*_e, _binds.at(Control("", e.key.code)));
 	break;
       case sf::Event::MouseButtonPressed:
 	break;

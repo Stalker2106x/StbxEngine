@@ -1,6 +1,7 @@
 #ifndef MENU_HH_
 #define MENU_HH_
 
+#include <iostream>
 #include <fstream>
 #include <SFML/Graphics.hpp>
 #include <pugixml/src/pugixml.hpp>

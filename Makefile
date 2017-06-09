@@ -16,17 +16,17 @@ LIBS = -L$(EXTLIB)
 
 ifeq ($(OS),Windows_NT)
 	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include
-	LIBS += -lsfml-system -lsfml-window -lsfml-graphics
+	LIBFLAGS = -lsfml-system -lsfml-window -lsfml-graphics
 	NAME = $(BINDIR)/sengine-win32.exe
 else
 	UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
-	LIBS += -lsfml-graphics -lsfml-window -lsfml-system
+	LIBFLAGS = -L/usr/local/lib -lsfml-graphics -lsfml-window -lsfml-system
 	NAME = $(BINDIR)/sengine-linux
   endif
   ifeq ($(UNAME_S),Darwin)
-	CXXFLAGS = -I/usr/local/include
-	LIBS += -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
+	CXXFLAGS += -I/usr/local/include
+	LIBFLAGS = -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
 	NAME = $(BINDIR)/sengine-macos
   endif
 endif
@@ -46,7 +46,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LIBS)
+	$(CC) -o $(NAME) $(OBJS) $(LIBFLAGS)
 
 clean:
 	$(RM) $(OBJS)

@@ -6,6 +6,7 @@ BUG:
 FEATURE:
 1-Add a Module MENU!!!
 2-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
+3-add a command "alias" to set shorter commands aliases
 
 EXTENDABLE:
 -add a command "sound_stop" to stop all sounds, "sound_volume" etc...

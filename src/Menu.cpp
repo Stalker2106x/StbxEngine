@@ -16,8 +16,14 @@ bool Menu::loadFromFile(std::string &file)
   std::ifstream ifs(file);
   pugi::xml_parse_result xml;
 
-  xml = doc.load(ifs);
+  if (!(xml = doc.load(ifs)))
+    {
+      //ERROR ON FILE SYNTAX
+    }
+  _title = doc.child("menu").child("title").child_value();
+  pugi::xml_node items = doc.child("item");
   //Parse xml
+  std::cout << _title;
   return (true);
 }
 
