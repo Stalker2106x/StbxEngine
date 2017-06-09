@@ -1,4 +1,5 @@
 #include "Menu.hh"
+#include "Engine.hh"
 
 Menu::Menu()
 {
@@ -17,13 +18,12 @@ bool Menu::loadFromFile(std::string &file)
   pugi::xml_parse_result xml;
 
   if (!(xml = doc.load(ifs)))
-    {
-      //ERROR ON FILE SYNTAX
-    }
+    Engine::console->output(COLOR_ERROR, "Error: Menu: Invalid XML resource");
   _title = doc.child("menu").child("title").child_value();
-  pugi::xml_node items = doc.child("item");
-  //Parse xml
-  std::cout << _title;
+  for (pugi::xml_node item = doc.child("item"); item != NULL; item = item.next_sibling("item"))
+    {
+      //Parse xml
+    }
   return (true);
 }
 
