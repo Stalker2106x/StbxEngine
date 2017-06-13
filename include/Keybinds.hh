@@ -1,3 +1,13 @@
+/*!
+ * @file      Keybinds.hh
+ * @class     Keybinds
+ * @brief     Dictionnary of current bound keys at runtime
+ *
+ *            This class is designed to manipulate all the Control associations in your program with actions.
+ *            It contains all the keys bound since the program was ran, and does NOT save state to files.
+ *            For key memorizing, you must store binds in your config file, and execute it at startup
+ */
+
 #ifndef KEYBINDS_HH_
 #define KEYBINDS_HH_
 

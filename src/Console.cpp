@@ -1,5 +1,5 @@
 #include "Console.hh"
-#include "Engine.hh"
+#include "Engine.hpp"
 
 Console::Console(Engine &e) : _engine(e)
 {

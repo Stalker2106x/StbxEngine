@@ -1,0 +1,48 @@
+\hypertarget{classKeybinds}{}\section{Keybinds Class Reference}
+\label{classKeybinds}\index{Keybinds@{Keybinds}}
+
+
+Dictionnary of current bound keys at runtime.  
+
+
+
+
+{\ttfamily \#include $<$Keybinds.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries bind\+Env} (\hyperlink{classEngine}{Engine} $\ast$)\hypertarget{classKeybinds_a5c4adba1761c402fbaeb420581d8129a}{}\label{classKeybinds_a5c4adba1761c402fbaeb420581d8129a}
+
+\item 
+bool {\bfseries is\+Bound} (const \hyperlink{classControl}{Control} \&c)\hypertarget{classKeybinds_aea000ffe6db05fc86ae7b633789995d4}{}\label{classKeybinds_aea000ffe6db05fc86ae7b633789995d4}
+
+\item 
+void {\bfseries unbindall} ()\hypertarget{classKeybinds_a73e7a43eb5a9fafdc2401339d629f0cb}{}\label{classKeybinds_a73e7a43eb5a9fafdc2401339d629f0cb}
+
+\item 
+bool {\bfseries unbind} (std\+::string element)\hypertarget{classKeybinds_aabba4a7f59b9f28d1cbba27f4d0a0267}{}\label{classKeybinds_aabba4a7f59b9f28d1cbba27f4d0a0267}
+
+\item 
+bool {\bfseries bind} (std\+::string ctrl, std\+::string action)\hypertarget{classKeybinds_acc0ec1789a2c78c5955f6e907bc8cf22}{}\label{classKeybinds_acc0ec1789a2c78c5955f6e907bc8cf22}
+
+\item 
+void {\bfseries list\+All\+Binds} ()\hypertarget{classKeybinds_a52dc6c8bb44a91f4ca283201f3dd25bf}{}\label{classKeybinds_a52dc6c8bb44a91f4ca283201f3dd25bf}
+
+\item 
+\hyperlink{classControl}{Control} $\ast$ {\bfseries get\+Key} (const std\+::string \&action)\hypertarget{classKeybinds_a5c23b7711b852f0e516d07e628b78d46}{}\label{classKeybinds_a5c23b7711b852f0e516d07e628b78d46}
+
+\item 
+void {\bfseries update} (sf\+::\+Event \&e)\hypertarget{classKeybinds_a4b34b24b912157cb087a3ed2a35e2982}{}\label{classKeybinds_a4b34b24b912157cb087a3ed2a35e2982}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Dictionnary of current bound keys at runtime. 
+
+This class is designed to manipulate all the \hyperlink{classControl}{Control} associations in your program with actions. It contains all the keys bound since the program was ran, and does N\+OT save state to files. For key memorizing, you must store binds in your config file, and execute it at startup 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Keybinds_8hh}{Keybinds.\+hh}\end{DoxyCompactItemize}

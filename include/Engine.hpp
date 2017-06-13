@@ -1,5 +1,16 @@
-#ifndef ENGINE_HH_
-#define ENGINE_HH_
+/*!
+ * @file      Engine.hpp
+ * @class     Engine
+ * @brief     Main class for graphic conception
+ *
+ *            This the base class of the project.
+ *            You must inherit from this class to start using the graphic engine. Start by implementing the update and draw routine,
+ *            related to the behaviour you expect in your game.
+ *            In your main function, simply instantiate your child Engine, then call the mainLoop method to start the program.
+ */
+
+#ifndef ENGINE_HPP_
+#define ENGINE_HPP_
 
 #include <SFML/Graphics.hpp>
 #include "Console.hh"
@@ -11,6 +22,9 @@ enum CharType {
   numeric
 };
 
+/*!
+
+ */
 class Engine
 {
 public:
@@ -38,11 +52,11 @@ public:
 
   static Keybinds *keybinds;
   static Console *console;
-  
+
 private:
   bool _quit, _fullscreen, _vsync;
   sf::Vector2i _winsize;
   sf::RenderWindow *_win;
 };
 
-#endif /* !ENGINE_HH_ */
+#endif /* !ENGINE_HPP_ */

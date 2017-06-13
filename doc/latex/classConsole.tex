@@ -1,0 +1,96 @@
+\hypertarget{classConsole}{}\section{Console Class Reference}
+\label{classConsole}\index{Console@{Console}}
+
+
+Integrated toggleable developer console.  
+
+
+
+
+{\ttfamily \#include $<$Console.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Console} (\hyperlink{classEngine}{Engine} \&e)\hypertarget{classConsole_ae948623138ea20074160fc8004cda111}{}\label{classConsole_ae948623138ea20074160fc8004cda111}
+
+\item 
+void {\bfseries init\+Graphics} (const sf\+::\+Vector2i \&winsize)\hypertarget{classConsole_af62ee9b064c2a7b5e2d3458cdfd98bbe}{}\label{classConsole_af62ee9b064c2a7b5e2d3458cdfd98bbe}
+
+\item 
+void {\bfseries toggle} ()\hypertarget{classConsole_ad0fb3ae7fe0f21999c71a138421bd0be}{}\label{classConsole_ad0fb3ae7fe0f21999c71a138421bd0be}
+
+\item 
+void {\bfseries clear} ()\hypertarget{classConsole_a8b4ffaeabbea48e1f3aa1e535ee88ab8}{}\label{classConsole_a8b4ffaeabbea48e1f3aa1e535ee88ab8}
+
+\item 
+bool {\bfseries is\+Active} () const \hypertarget{classConsole_a3b9de7e1192338c516570c1753dcba6a}{}\label{classConsole_a3b9de7e1192338c516570c1753dcba6a}
+
+\item 
+void {\bfseries set\+Line\+Count} (const unsigned int \&count)\hypertarget{classConsole_a7b2e6d42de564cea813229c6bd8f07ae}{}\label{classConsole_a7b2e6d42de564cea813229c6bd8f07ae}
+
+\item 
+void {\bfseries set\+Color} (sf\+::\+Color bg, sf\+::\+Color input)\hypertarget{classConsole_a3630b0f354654ef69551c91cbfe07b8f}{}\label{classConsole_a3630b0f354654ef69551c91cbfe07b8f}
+
+\item 
+void {\bfseries set\+Cursor} (char \&c)\hypertarget{classConsole_a7a7db54bbcf057da981adfc06c352e64}{}\label{classConsole_a7a7db54bbcf057da981adfc06c352e64}
+
+\item 
+void {\bfseries set\+Log\+Enabled} (bool state)\hypertarget{classConsole_ab73eef5e22ab9ef218dc63433fc418fa}{}\label{classConsole_ab73eef5e22ab9ef218dc63433fc418fa}
+
+\item 
+void {\bfseries write\+To\+Log} (std\+::string \&msg)\hypertarget{classConsole_a555537aaa8a953d0459efb2392eb74ac}{}\label{classConsole_a555537aaa8a953d0459efb2392eb74ac}
+
+\item 
+void {\bfseries set\+Log\+File} (const std\+::string \&file)\hypertarget{classConsole_ae135a01de6429f545532b933baf3c677}{}\label{classConsole_ae135a01de6429f545532b933baf3c677}
+
+\item 
+void {\bfseries set\+Log\+Timestamp} (int)\hypertarget{classConsole_a2063152a09b8fc481402fa2b91acf435}{}\label{classConsole_a2063152a09b8fc481402fa2b91acf435}
+
+\item 
+void {\bfseries output} (std\+::string msg)\hypertarget{classConsole_ae77795030b9a6f37f9745973d82176ef}{}\label{classConsole_ae77795030b9a6f37f9745973d82176ef}
+
+\item 
+void {\bfseries output} (std\+::string color, std\+::string msg)\hypertarget{classConsole_aacfc9448be616fd4459699db7a635551}{}\label{classConsole_aacfc9448be616fd4459699db7a635551}
+
+\item 
+void {\bfseries insert\+Last\+Output} (const std\+::string \&msg)\hypertarget{classConsole_ac8da15dab46dad5dc3c27fb8687a5fa9}{}\label{classConsole_ac8da15dab46dad5dc3c27fb8687a5fa9}
+
+\item 
+void {\bfseries input} ()\hypertarget{classConsole_a50056cdeafd8ccf150f3f7e00d077ff5}{}\label{classConsole_a50056cdeafd8ccf150f3f7e00d077ff5}
+
+\item 
+void {\bfseries update\+Input} (const sf\+::\+Event \&event)\hypertarget{classConsole_ae58f6f060dd09567347cfc6b00b923fa}{}\label{classConsole_ae58f6f060dd09567347cfc6b00b923fa}
+
+\item 
+void {\bfseries update\+Input\+Value} ()\hypertarget{classConsole_a78097e40392c525d82c77506ba501e7b}{}\label{classConsole_a78097e40392c525d82c77506ba501e7b}
+
+\item 
+void {\bfseries update\+Output} ()\hypertarget{classConsole_a4f513601e3fed552f8999ef8ec99ff02}{}\label{classConsole_a4f513601e3fed552f8999ef8ec99ff02}
+
+\item 
+void {\bfseries update\+Keyboard} (const sf\+::\+Event \&event)\hypertarget{classConsole_a5d3acb9de22bb5de6475431cb7dfa4e9}{}\label{classConsole_a5d3acb9de22bb5de6475431cb7dfa4e9}
+
+\item 
+void {\bfseries update} (const sf\+::\+Event \&event)\hypertarget{classConsole_aa5303865edd868a23c7cf77795bc9d4e}{}\label{classConsole_aa5303865edd868a23c7cf77795bc9d4e}
+
+\item 
+void {\bfseries draw} (sf\+::\+Render\+Window $\ast$win)\hypertarget{classConsole_a3521a7d331b2224e2034b079caeed4c2}{}\label{classConsole_a3521a7d331b2224e2034b079caeed4c2}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static sf\+::\+Color {\bfseries convert\+Color\+Code} (std\+::string code)\hypertarget{classConsole_a59e327394fba9e47ce1d83b46a86bb89}{}\label{classConsole_a59e327394fba9e47ce1d83b46a86bb89}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Integrated toggleable developer console. 
+
+This console is designed to provide to developer and advanced users a way to easily configure the engine the way they want, by allowing anything that the \hyperlink{classEngine}{Engine} support to be altered by a command including keybinds, and graphical properties. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{Console_8hh}{Console.\+hh}\end{DoxyCompactItemize}

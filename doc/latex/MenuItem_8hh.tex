@@ -1,0 +1,34 @@
+\hypertarget{MenuItem_8hh}{}\section{include/\+Menu\+Item.hh File Reference}
+\label{MenuItem_8hh}\index{include/\+Menu\+Item.\+hh@{include/\+Menu\+Item.\+hh}}
+
+
+\hyperlink{classMenu}{Menu} items (links, settings, sliders, text inputs, ...)  
+
+
+{\ttfamily \#include $<$S\+F\+M\+L/\+Graphics.\+hpp$>$}\\*
+Include dependency graph for Menu\+Item.\+hh\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{MenuItem_8hh__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classMenuItem}{Menu\+Item}
+\begin{DoxyCompactList}\small\item\em Abstract \hyperlink{classMenu}{Menu} item. \end{DoxyCompactList}\item 
+class \hyperlink{classMenuLink}{Menu\+Link}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMenu}{Menu} link to another menu or action. \end{DoxyCompactList}\item 
+class \hyperlink{classMenuSetting}{Menu\+Setting}
+\begin{DoxyCompactList}\small\item\em Static Setting item, showing a list of values defined in X\+ML. \end{DoxyCompactList}\item 
+class \hyperlink{classMenuDynamicSetting}{Menu\+Dynamic\+Setting}
+\begin{DoxyCompactList}\small\item\em Dynamic Setting item, showing a list of values known only at runtime. \end{DoxyCompactList}\item 
+class \hyperlink{classMenuEdit}{Menu\+Edit}
+\begin{DoxyCompactList}\small\item\em Input box, either used for key binding, or text input from user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classMenu}{Menu} items (links, settings, sliders, text inputs, ...) 
+
+This classes set provide usables objects for all kinds of items in a menu. It defines Links, Settings, and Edit types,which are specialized in child objects like Sliders, Static and Dynamic enums for Settings, and Key or String for Edit. 

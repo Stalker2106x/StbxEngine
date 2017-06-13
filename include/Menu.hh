@@ -1,3 +1,11 @@
+/*!
+ * @file      Menu.hh
+ * @class     Menu
+ * @brief     Simple class for generating menus.
+ *
+ *            This class is used to build menus from XML, and handle user behaviour inside.
+ */
+
 #ifndef MENU_HH_
 #define MENU_HH_
 

@@ -1,0 +1,4 @@
+<map id="MenuDynamicSetting" name="MenuDynamicSetting">
+<area shape="rect" id="node2" href="$classMenuSetting.html" title="Static Setting item, showing a list of values defined in XML. " alt="" coords="31,80,126,107"/>
+<area shape="rect" id="node3" href="$classMenuItem.html" title="Abstract Menu item. " alt="" coords="39,5,119,32"/>
+</map>

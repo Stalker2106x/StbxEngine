@@ -1,3 +1,10 @@
+/*!
+ * @file      Commands.hh
+ * @brief     Contains definition of basic console commands
+ *
+ *            This file implements all the system console commands operations
+ */
+
 #ifndef COMMANDS_HH_
 #define COMMANDS_HH_
 

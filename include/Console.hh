@@ -1,3 +1,13 @@
+/*!
+ * @file      Console.hh
+ * @class     Console
+ * @brief     Integrated toggleable developer console
+ *
+ *            This console is designed to provide to developer and advanced users a way to easily configure
+ *            the engine the way they want, by allowing anything that the Engine support to be altered by a command
+ *            including keybinds, and graphical properties.
+ */
+
 #ifndef CONSOLE_HH_
 #define CONSOLE_HH_
 
@@ -37,9 +47,9 @@ public:
   void writeToLog(std::string &msg);
   void setLogFile(const std::string &file);
   void setLogTimestamp(int);
-  
+
   static sf::Color convertColorCode(std::string code);
-  
+
   void output(std::string msg);
   void output(std::string color, std::string msg);
   void insertLastOutput(const std::string &msg);
