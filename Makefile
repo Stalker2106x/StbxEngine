@@ -2,9 +2,13 @@ CC = g++
 
 RM = rm -f
 
+TEST = $(BINDIR)/test
+
 INCDIR = include
 
 EXTLIB = extlib
+
+TESTDIR = test
 
 SRCDIR = src
 
@@ -33,6 +37,10 @@ else
   endif
 endif
 
+TESTSRCS =			$(TESTDIR)/test.cpp
+
+TESTOBJS = $(TESTSRCS:.cpp=.o)
+
 SRCS =				$(EXTLIB)/pugixml/src/pugixml.cpp	\
 				$(SRCDIR)/Engine.cpp			\
 				$(SRCDIR)/Console.cpp			\
@@ -50,8 +58,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LIBFLAGS)
 
-test:
-	$(CC) test/test.cpp -o $(BINDIR)/test -L$(BINDIR) -lsengine
+test: $(TESTOBJS)
+	$(CC) -o $(BINDIR)/test $(TESTOBJS) -L$(BINDIR) -lsengine
 
 clean:
 	$(RM) $(OBJS)
