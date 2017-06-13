@@ -9,11 +9,7 @@
 #ifndef MENU_HH_
 #define MENU_HH_
 
-#include <iostream>
-#include <fstream>
 #include <SFML/Graphics.hpp>
-#include <pugixml/src/pugixml.hpp>
-#include "Console.hh"
 
 typedef void (*action)(int);
 typedef std::vector<action> actionTab;

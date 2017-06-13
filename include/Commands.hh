@@ -9,8 +9,7 @@
 #define COMMANDS_HH_
 
 #include <map>
-#include <list>
-#include <fstream>
+#include <vector>
 
 class Engine;
 class Console;

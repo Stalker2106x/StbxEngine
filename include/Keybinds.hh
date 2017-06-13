@@ -13,7 +13,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <map>
-#include "Console.hh"
 #include "Control.hh"
 
 #define BINDREF(x) (Engine::keybinds->getKey(x))
@@ -36,7 +35,6 @@ public:
   void update(sf::Event &e);
 
 private:
-  Console *_c;
   Engine *_e;
   std::map<Control, std::string> _binds;
 };

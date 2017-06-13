@@ -1,5 +1,7 @@
-#include "Console.hh"
+#include <cstring>
+#include <stdexcept>
 #include "Engine.hpp"
+#include "Console.hh"
 
 Console::Console(Engine &e) : _engine(e)
 {

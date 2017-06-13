@@ -22,9 +22,6 @@ enum CharType {
   numeric
 };
 
-/*!
-
- */
 class Engine
 {
 public:

@@ -13,10 +13,7 @@
 
 #include <list>
 #include <deque>
-#include <stdexcept>
-#include <iostream>
 #include <fstream>
-#include <cstring>
 #include <SFML/Graphics.hpp>
 #include "Commands.hh"
 
