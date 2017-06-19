@@ -5,7 +5,6 @@
 
 Menu::Menu()
 {
-  _hover = 0;
 }
 
 Menu::~Menu()
@@ -24,25 +23,39 @@ bool Menu::loadFromFile(std::string &file)
   _title = doc.child("menu").child("title").child_value();
   for (pugi::xml_node item = doc.child("item"); item != NULL; item = item.next_sibling("item"))
     {
-      //Parse xml
+      MenuItemType type = MenuItem::typeMap[item.attribute("type").value()];
+      _items.push_back(MenuItem::factory(type));
+      _items.back()->setLabel(item.child("title").value());
+      if (type == Setting)
+	{
+	  std::vector<std::string> values;
+	  
+	  for (pugi::xml_node setting = item.child("setting");
+	       setting != NULL; setting = setting.next_sibling("item"))
+	    {
+	      values.push_back(setting.value());
+	    }
+	}
     }
   return (true);
 }
 
-void Menu::bindActions(actionTab actions)
+/*void Menu::bindActions(std::vector<action> &actions)
 {
   for (size_t i = 0; i < _items.size(); i++)
     if (actions[i] != NULL)
       _items[i].second = actions[i];
-}
+      }*/
 
 bool Menu::update(sf::Event &e)
 {
+  for (size_t i = 0; i < _items.size(); i++)
+    _items[i]->update(e);
   return (true);
 }
 
 void Menu::draw(sf::RenderWindow *win)
 {
   for (size_t i = 0; i < _items.size(); i++)
-    win->draw(_items[i].first);
+    _items[i]->draw(win);
 }

@@ -10,10 +10,9 @@
 #define MENU_HH_
 
 #include <SFML/Graphics.hpp>
+#include "MenuItem.hh"
 
-typedef void (*action)(int);
-typedef std::vector<action> actionTab;
-typedef std::vector<std::pair<sf::Text, action>> itemTab;
+typedef std::vector<MenuItem *> itemTab;
 
 class Menu
 {
@@ -22,7 +21,7 @@ public:
   ~Menu();
 
   bool loadFromFile(std::string &file);
-  void bindActions(actionTab actions);
+  //void bindActions(std::vector<action> &actions);
 
   bool update(sf::Event &e);
   void draw(sf::RenderWindow *);
@@ -31,8 +30,6 @@ protected:
   int _id, _parentId;
   std::string _title;
   itemTab _items;
-
-  int _hover;
 };
 
 #endif /* MENU_HH_ */

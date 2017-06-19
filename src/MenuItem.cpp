@@ -1,8 +1,20 @@
 #include "MenuItem.hh"
 
-MenuItem::MenuItem(std::string &str)
+/*
+ * MenuItem Base class
+ */
+
+std::map<std::string, MenuItemType> typeMap = {
+  {"Link", Link},
+  {"Setting", Setting},
+  {"DynamicSetting", DynamicSetting},
+  {"Edit", Edit},
+  {"Slider", Slider}
+};
+
+MenuItem::MenuItem()
 {
-  _label.setString(str);
+  _hover = false;
 }
 
 MenuItem::~MenuItem()
@@ -10,7 +22,188 @@ MenuItem::~MenuItem()
 
 }
 
+MenuItem *MenuItem::factory(const MenuItemType &type)
+{
+  switch (type)
+    {
+    case Link:
+      return (new MenuLink());
+      break;
+    case Setting:
+      return (new MenuSetting());
+      break;
+    case DynamicSetting:
+      return (new MenuDynamicSetting());
+      break;
+    case Edit:
+      return (new MenuEdit());
+      break;
+    case Slider:
+      return (new MenuSlider());
+      break;
+    }
+  return (NULL);
+}
+
+bool MenuItem::isHovered() const
+{
+  return (_hover);
+}
+
+void MenuItem::setLabel(std::string label)
+{
+  _label.setString(label);
+}
+
+void MenuItem::setCustomAction(void (*fptr)(void))
+{
+  _customPtr = fptr;
+}
+
 void MenuItem::setPosition(sf::Vector2f &pos)
 {
   _label.setPosition(pos.x, pos.y);
+}
+
+bool MenuItem::update(sf::Event &e)
+{
+  if (e.type == sf::Event::MouseMoved)
+    {
+      if (_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+	_hover = true;
+      else
+	_hover = false;
+    }
+  else if (e.type == sf::Event::MouseButtonPressed)
+    {
+      onClick();
+    }
+  return (true);
+}
+
+void MenuItem::draw(sf::RenderWindow *win)
+{
+  win->draw(_label);
+}
+
+/*
+ * MenuLink
+ */
+
+MenuLink::MenuLink() : MenuItem()
+{
+
+}
+
+MenuLink::~MenuLink()
+{
+
+}
+
+void MenuLink::onClick()
+{
+
+}
+
+/*
+ * MenuSetting
+ */
+
+MenuSetting::MenuSetting() : MenuItem()
+{
+  _index = 0;
+}
+
+MenuSetting::~MenuSetting()
+{
+
+}
+
+void MenuSetting::setValues(std::vector<std::string> &values)
+{
+  _values = values;
+}
+
+void MenuSetting::onClick()
+{
+  ++_index;
+  if (_index >= _values.size())
+    _index = 0;
+}
+
+void MenuSetting::onRClick()
+{
+  --_index;
+  if (_index < 0)
+    _index = _values.size() - 1;
+}
+
+bool MenuSetting::update(sf::Event &e)
+{
+  MenuItem::update(e);
+  return (true);
+}
+
+/*
+ * MenuDynamicSetting
+ */
+
+MenuDynamicSetting::MenuDynamicSetting() : MenuSetting()
+{
+
+}
+
+MenuDynamicSetting::~MenuDynamicSetting()
+{
+
+}
+
+/*
+ * MenuEdit
+ */
+
+MenuEdit::MenuEdit() : MenuItem()
+{
+
+}
+
+MenuEdit::~MenuEdit()
+{
+
+}
+
+void MenuEdit::onClick()
+{
+
+}
+
+bool MenuEdit::update(sf::Event &e)
+{
+  MenuItem::update(e);
+  return (true);
+}
+
+/*
+ * MenuSlider
+ */
+
+MenuSlider::MenuSlider() : MenuItem()
+{
+
+}
+
+MenuSlider::~MenuSlider()
+{
+
+}
+
+void MenuSlider::onClick()
+{
+
+}
+
+bool MenuSlider::update(sf::Event &e)
+{
+  MenuItem::update(e);
+  return (true);
 }

@@ -12,6 +12,14 @@
 
 #include <SFML/Graphics.hpp>
 
+enum MenuItemType {
+  Link,
+  Setting,
+  DynamicSetting,
+  Edit,
+  Slider
+};
+
 /*!
  * @class MenuItem
  * @brief Abstract Menu item
@@ -21,15 +29,28 @@
 class MenuItem
 {
 public:
-  MenuItem(std::string &);
+  MenuItem();
   ~MenuItem();
 
+  static MenuItem *factory(const MenuItemType &type);
+  
+  bool isHovered() const;
+
+  void setLabel(std::string label);
+  void setCustomAction(void (*fptr)(void));
   void setPosition(sf::Vector2f &pos);
 
-  virtual void onClick(void *) = 0;
+  virtual void onClick() = 0;
 
+  virtual bool update(sf::Event &e);
+  virtual void draw(sf::RenderWindow *);
+
+  static std::map<std::string, MenuItemType> typeMap;
+  
 protected:
+  void (*_customPtr)(void);
   sf::Text _label;
+  bool _hover;
 };
 
 /*!
@@ -40,7 +61,11 @@ protected:
  */
 class MenuLink : public MenuItem
 {
+public:
+  MenuLink();
+  ~MenuLink();
 
+  void onClick();
 };
 
 /*!
@@ -51,7 +76,21 @@ class MenuLink : public MenuItem
  */
 class MenuSetting : public MenuItem
 {
+public:
+  MenuSetting();
+  ~MenuSetting();
 
+  void setValues(std::vector<std::string> &values);
+  
+  void onClick();
+  void onRClick();
+  
+  virtual bool update(sf::Event &e);
+  virtual void draw(sf::RenderWindow *);
+
+private:
+  std::vector<std::string> _values;
+  int _index;
 };
 
 /*!
@@ -62,7 +101,9 @@ class MenuSetting : public MenuItem
  */
 class MenuDynamicSetting : public MenuSetting
 {
-
+public:
+  MenuDynamicSetting();
+  ~MenuDynamicSetting();
 };
 
 /*!
@@ -73,9 +114,33 @@ class MenuDynamicSetting : public MenuSetting
  */
 class MenuEdit : public MenuItem
 {
+public:
+  MenuEdit();
+  ~MenuEdit();
 
+  void onClick();
+  
+  virtual bool update(sf::Event &e);
+  virtual void draw(sf::RenderWindow *);
 };
 
+/*!
+ * @class MenuSlider
+ * @brief Slider Setting item, accept any value within defined range
+ *
+ *        This item is a setting bar moving horizontally to get values from user.
+ */
+class MenuSlider : public MenuItem
+{
+public:
+  MenuSlider();
+  ~MenuSlider();
+
+  void onClick();
+  
+  virtual bool update(sf::Event &e);
+  virtual void draw(sf::RenderWindow *);
+};
 
 
 #endif
