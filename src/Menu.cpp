@@ -12,7 +12,7 @@ Menu::~Menu()
 
 }
 
-bool Menu::loadFromFile(std::string &file)
+bool Menu::loadFromFile(const std::string &file)
 {
   pugi::xml_document doc;
   std::ifstream ifs(file);
@@ -25,7 +25,7 @@ bool Menu::loadFromFile(std::string &file)
     {
       MenuItemType type = MenuItem::typeMap[item.attribute("type").value()];
       _items.push_back(MenuItem::factory(type));
-      _items.back()->setLabel(item.child("title").value());
+      _items.back()->setLabel(item.child("label").value());
       if (type == Setting)
 	{
 	  std::vector<std::string> values;

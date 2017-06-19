@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
   <title>Test Menu</title>
-  <item type="link">Play</item>
-  <item type="staticsetting">
-      <name>Refresh Rate</name>
+  <item type="Link">
+    <label>Link</label>
+  </item>
+  <item type="Setting">
+      <title>Refresh Rate</title>
       <setting>50Hz</setting>
       <setting>60Hz</setting>
-    </item>
-  <item type="dynamicsetting" action="getResolution">Resolution</item>
-  <item type="edit">Pseudo</item>
-  <item type="slidersetting">Volume</item>
-  <item type="link">Quit</item>
+  </item>
+  <item type="DynamicSetting" action="getResolution">
+    <label>Resolution</label>
+  </item>
+  <item type="Edit">
+    <label>Pseudo</label>
+  </item>
+  <item type="Slider">
+    <label>Volume</label>
+  </item>
+  <item type="Link">
+    <label>Quit</label>
+  </item>
 </menu>

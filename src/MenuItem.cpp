@@ -4,7 +4,7 @@
  * MenuItem Base class
  */
 
-std::map<std::string, MenuItemType> typeMap = {
+std::map<std::string, MenuItemType> MenuItem::typeMap = {
   {"Link", Link},
   {"Setting", Setting},
   {"DynamicSetting", DynamicSetting},
@@ -144,6 +144,12 @@ bool MenuSetting::update(sf::Event &e)
   return (true);
 }
 
+
+void MenuSetting::draw(sf::RenderWindow *win)
+{
+
+}
+
 /*
  * MenuDynamicSetting
  */
@@ -183,6 +189,10 @@ bool MenuEdit::update(sf::Event &e)
   return (true);
 }
 
+void MenuEdit::draw(sf::RenderWindow *win)
+{
+
+}
 /*
  * MenuSlider
  */
@@ -206,4 +216,9 @@ bool MenuSlider::update(sf::Event &e)
 {
   MenuItem::update(e);
   return (true);
+}
+
+void MenuSlider::draw(sf::RenderWindow *win)
+{
+
 }

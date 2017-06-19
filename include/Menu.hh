@@ -20,7 +20,7 @@ public:
   Menu();
   ~Menu();
 
-  bool loadFromFile(std::string &file);
+  bool loadFromFile(const std::string &file);
   //void bindActions(std::vector<action> &actions);
 
   bool update(sf::Event &e);
