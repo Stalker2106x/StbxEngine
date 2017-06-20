@@ -21,14 +21,14 @@ public:
   ~Menu();
 
   bool loadFromFile(const std::string &file);
-  //void bindActions(std::vector<action> &actions);
-
+  MenuItem *parseItem(pugi::xml_node &item);
+  
   bool update(sf::Event &e);
   void draw(sf::RenderWindow *);
 
 protected:
   int _id, _parentId;
-  std::string _title;
+  sf::Text _title;
   itemTab _items;
 };
 

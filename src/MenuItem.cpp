@@ -50,9 +50,14 @@ bool MenuItem::isHovered() const
   return (_hover);
 }
 
-void MenuItem::setLabel(std::string label)
+void MenuItem::setLabel(const std::string &label)
 {
   _label.setString(label);
+}
+
+void MenuItem::setColor(const sf::Color &color)
+{
+  _label.setFillColor(color);
 }
 
 void MenuItem::setCustomAction(void (*fptr)(void))
@@ -60,7 +65,7 @@ void MenuItem::setCustomAction(void (*fptr)(void))
   _customPtr = fptr;
 }
 
-void MenuItem::setPosition(sf::Vector2f &pos)
+void MenuItem::setPosition(const sf::Vector2f &pos)
 {
   _label.setPosition(pos.x, pos.y);
 }
@@ -119,11 +124,6 @@ MenuSetting::~MenuSetting()
 
 }
 
-void MenuSetting::setValues(std::vector<std::string> &values)
-{
-  _values = values;
-}
-
 void MenuSetting::onClick()
 {
   ++_index;
@@ -138,6 +138,13 @@ void MenuSetting::onRClick()
     _index = _values.size() - 1;
 }
 
+void MenuSetting::setValues(std::vector<std::string> &values, const int &defaultIndex)
+{
+  _values = values;
+  if (_values.size() > 0)
+    _value.setString(_values[defaultIndex]);
+}
+
 bool MenuSetting::update(sf::Event &e)
 {
   MenuItem::update(e);
@@ -147,7 +154,8 @@ bool MenuSetting::update(sf::Event &e)
 
 void MenuSetting::draw(sf::RenderWindow *win)
 {
-
+  MenuItem::draw(win);
+  win->draw(_value);
 }
 
 /*

@@ -3,22 +3,28 @@
   <title>Test Menu</title>
   <item type="Link">
     <label>Link</label>
+    <color>#255255255</color>
   </item>
   <item type="Setting">
-      <title>Refresh Rate</title>
-      <setting>50Hz</setting>
-      <setting>60Hz</setting>
+    <title>Refresh Rate</title>
+    <color>#255255255</color>
+    <setting>50Hz</setting>
+    <setting>60Hz</setting>
   </item>
   <item type="DynamicSetting" action="getResolution">
     <label>Resolution</label>
+    <color>#255255255</color>
   </item>
   <item type="Edit">
     <label>Pseudo</label>
+    <color>#255255255</color>
   </item>
   <item type="Slider">
     <label>Volume</label>
+    <color>#255255255</color>
   </item>
   <item type="Link">
     <label>Quit</label>
+    <color>#255255255</color>
   </item>
 </menu>

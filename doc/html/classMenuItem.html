@@ -84,6 +84,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMenuItem-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -103,27 +105,61 @@ Inheritance diagram for MenuItem:</div>
 <area shape="rect" id="node2" href="classMenuEdit.html" title="Input box, either used for key binding, or text input from user. " alt="" coords="5,80,83,107"/>
 <area shape="rect" id="node3" href="classMenuLink.html" title="Menu link to another menu or action. " alt="" coords="107,80,186,107"/>
 <area shape="rect" id="node4" href="classMenuSetting.html" title="Static Setting item, showing a list of values defined in XML. " alt="" coords="210,80,305,107"/>
+<area shape="rect" id="node6" href="classMenuSlider.html" title="Slider Setting item, accept any value within defined range. " alt="" coords="329,80,415,107"/>
 <area shape="rect" id="node5" href="classMenuDynamicSetting.html" title="Dynamic Setting item, showing a list of values known only at runtime. " alt="" coords="184,155,331,181"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a07f74e3fc83f6a4aaef6675aef486e1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07f74e3fc83f6a4aaef6675aef486e1d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MenuItem</b> (std::string &amp;)</td></tr>
-<tr class="separator:a07f74e3fc83f6a4aaef6675aef486e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58789909833868a64deb1b3a81f35ff4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58789909833868a64deb1b3a81f35ff4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (sf::Vector2f &amp;pos)</td></tr>
-<tr class="separator:a58789909833868a64deb1b3a81f35ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8be7ee76fe079bc6fee75d3d84a9db91"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8be7ee76fe079bc6fee75d3d84a9db91"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onClick</b> (void *)=0</td></tr>
-<tr class="separator:a8be7ee76fe079bc6fee75d3d84a9db91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c2eaee3d8b9cfca3f3fad643ae52db9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c2eaee3d8b9cfca3f3fad643ae52db9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isHovered</b> () const </td></tr>
+<tr class="separator:a4c2eaee3d8b9cfca3f3fad643ae52db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9c91802e884fb71f44c43044defb132"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c91802e884fb71f44c43044defb132"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setLabel</b> (const std::string &amp;label)</td></tr>
+<tr class="separator:ae9c91802e884fb71f44c43044defb132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7cf04bb5938e33e585a512a383d90ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7cf04bb5938e33e585a512a383d90ad"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setColor</b> (const sf::Color &amp;color)</td></tr>
+<tr class="separator:af7cf04bb5938e33e585a512a383d90ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7584bdd26de915b0b9effacd0a166828"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7584bdd26de915b0b9effacd0a166828"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCustomAction</b> (void(*fptr)(void))</td></tr>
+<tr class="separator:a7584bdd26de915b0b9effacd0a166828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476d10fb3b06e1e0fce9c7d9d7bd29f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a476d10fb3b06e1e0fce9c7d9d7bd29f7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const sf::Vector2f &amp;pos)</td></tr>
+<tr class="separator:a476d10fb3b06e1e0fce9c7d9d7bd29f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e0f2787b4d975a36a1b6165aece45e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46e0f2787b4d975a36a1b6165aece45e"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onClick</b> ()=0</td></tr>
+<tr class="separator:a46e0f2787b4d975a36a1b6165aece45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee796e7143ae248b78cd9f45eb1ff3a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee796e7143ae248b78cd9f45eb1ff3a8"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Event &amp;e)</td></tr>
+<tr class="separator:aee796e7143ae248b78cd9f45eb1ff3a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63bbb4f527225e407ff32969819bee7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63bbb4f527225e407ff32969819bee7b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow *)</td></tr>
+<tr class="separator:a63bbb4f527225e407ff32969819bee7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae0e6736cb819e5f95ae479117d6d10aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0e6736cb819e5f95ae479117d6d10aa"></a>
+static <a class="el" href="classMenuItem.html">MenuItem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>factory</b> (const MenuItemType &amp;type)</td></tr>
+<tr class="separator:ae0e6736cb819e5f95ae479117d6d10aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ad25a8c119e29e1bf12919306ff54ecfb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad25a8c119e29e1bf12919306ff54ecfb"></a>
+static std::map&lt; std::string, MenuItemType &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>typeMap</b></td></tr>
+<tr class="separator:ad25a8c119e29e1bf12919306ff54ecfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a227fb312df48a97c616645b6a228794a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a227fb312df48a97c616645b6a228794a"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><b>_customPtr</b> )(void)</td></tr>
+<tr class="separator:a227fb312df48a97c616645b6a228794a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0215e2c749d101cc1f3bda0801228c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0215e2c749d101cc1f3bda0801228c5"></a>
 sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>_label</b></td></tr>
 <tr class="separator:ab0215e2c749d101cc1f3bda0801228c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a817ea1eb3f4ff7a63378e0ea77df0965"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a817ea1eb3f4ff7a63378e0ea77df0965"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_hover</b></td></tr>
+<tr class="separator:a817ea1eb3f4ff7a63378e0ea77df0965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract <a class="el" href="classMenu.html" title="Simple class for generating menus. ">Menu</a> item. </p>

@@ -1,6 +1,4 @@
 <map id="include/Commands.hh" name="include/Commands.hh">
-<area shape="rect" id="node2" href="$Console_8hh.html" title="include/Console.hh" alt="" coords="58,80,191,107"/>
-<area shape="rect" id="node3" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="5,229,137,256"/>
-<area shape="rect" id="node4" href="$Keybinds_8hh.html" title="include/Keybinds.hh" alt="" coords="55,155,194,181"/>
-<area shape="rect" id="node5" href="$Menu_8hh.html" title="include/Menu.hh" alt="" coords="218,155,335,181"/>
+<area shape="rect" id="node2" href="$Console_8hh.html" title="include/Console.hh" alt="" coords="15,80,148,107"/>
+<area shape="rect" id="node3" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="15,155,147,181"/>
 </map>

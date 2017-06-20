@@ -36,9 +36,10 @@ public:
   
   bool isHovered() const;
 
-  void setLabel(std::string label);
+  void setLabel(const std::string &label);
+  virtual void setColor(const sf::Color &color);
   void setCustomAction(void (*fptr)(void));
-  void setPosition(sf::Vector2f &pos);
+  void setPosition(const sf::Vector2f &pos);
 
   virtual void onClick() = 0;
 
@@ -80,15 +81,16 @@ public:
   MenuSetting();
   ~MenuSetting();
 
-  void setValues(std::vector<std::string> &values);
-  
   void onClick();
   void onRClick();
+
+  void setValues(std::vector<std::string> &values, const int &defaultIndex = 0);
   
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
 
 private:
+  sf::Text _value;
   std::vector<std::string> _values;
   int _index;
 };

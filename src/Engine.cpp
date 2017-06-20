@@ -36,6 +36,8 @@ void Engine::handleArgs(int argc, char **argv)
 {
   std::string cmd;
 
+  if (argc <= 1)
+    return;
   for (short i = 0; i < argc; i++)
     {
       if (argv[i][0] == '-')

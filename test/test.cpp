@@ -6,7 +6,7 @@ class sEngine : public Engine
 public:
   sEngine()
   {
-    _mainMenu.loadFromFile("Data/menu/menu.xml");
+    _mainMenu.loadFromFile("./Data/menu/main.xml");
   };
   
   ~sEngine()
