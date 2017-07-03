@@ -4,6 +4,7 @@
 *.class
 *.exe
 *.o
+*.obj
 
 # Packages #
 ############
