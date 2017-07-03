@@ -1,6 +1,11 @@
 #include "Engine.hpp"
 #include "Commands.hh"
-#include <unistd.h>
+#ifndef _MSC_VER
+	#include <unistd.h>
+#else
+	#include <direct.h>
+	#include <io.h>
+#endif
 
 namespace Commands {
 
@@ -233,9 +238,14 @@ namespace Commands {
   }
 
   void printCWD(Engine &, std::vector<std::string> *)
-  {
-    char *cwd = getcwd(NULL, 0);
-
+  { 
+	char *cwd;
+	
+#ifndef _MSC_VER
+	cwd = getcwd(NULL, 0);
+#else
+	cwd = _getcwd(NULL, 0);
+#endif
     Engine::console->output(std::string(cwd));
     delete (cwd);
   }

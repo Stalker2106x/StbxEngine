@@ -1,3 +1,6 @@
 [submodule "extlib/pugixml"]
 	path = extlib/pugixml
 	url = https://github.com/zeux/pugixml.git
+[submodule "extlib/sfml"]
+	path = extlib/sfml
+	url = https://github.com/SFML/SFML.git
