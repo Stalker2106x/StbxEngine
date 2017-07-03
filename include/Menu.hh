@@ -9,15 +9,10 @@
 #ifndef MENU_HH_
 #define MENU_HH_
 
-#include <iostream>
-#include <fstream>
 #include <SFML/Graphics.hpp>
-#include <pugixml/src/pugixml.hpp>
-#include "Console.hh"
+#include "MenuItem.hh"
 
-typedef void (*action)(int);
-typedef std::vector<action> actionTab;
-typedef std::vector<std::pair<sf::Text, action>> itemTab;
+typedef std::vector<MenuItem *> itemTab;
 
 class Menu
 {
@@ -25,18 +20,16 @@ public:
   Menu();
   ~Menu();
 
-  bool loadFromFile(std::string &file);
-  void bindActions(actionTab actions);
-
+  bool loadFromFile(const std::string &file);
+  MenuItem *parseItem(pugi::xml_node &item);
+  
   bool update(sf::Event &e);
   void draw(sf::RenderWindow *);
 
 protected:
   int _id, _parentId;
-  std::string _title;
+  sf::Text _title;
   itemTab _items;
-
-  int _hover;
 };
 
 #endif /* MENU_HH_ */

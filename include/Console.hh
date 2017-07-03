@@ -13,10 +13,7 @@
 
 #include <list>
 #include <deque>
-#include <stdexcept>
-#include <iostream>
 #include <fstream>
-#include <cstring>
 #include <SFML/Graphics.hpp>
 #include "Commands.hh"
 
@@ -48,7 +45,7 @@ public:
   void setLogFile(const std::string &file);
   void setLogTimestamp(int);
 
-  static sf::Color convertColorCode(std::string code);
+  static sf::Color convertColorCode(std::string code, std::string esc = "\\\\#");
 
   void output(std::string msg);
   void output(std::string color, std::string msg);

@@ -13,6 +13,14 @@ Include dependency graph for Menu\+Item.\+hh\+:\nopagebreak
 \includegraphics[width=187pt]{MenuItem_8hh__incl}
 \end{center}
 \end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{MenuItem_8hh__dep__incl}
+\end{center}
+\end{figure}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,7 +33,22 @@ class \hyperlink{classMenuSetting}{Menu\+Setting}
 class \hyperlink{classMenuDynamicSetting}{Menu\+Dynamic\+Setting}
 \begin{DoxyCompactList}\small\item\em Dynamic Setting item, showing a list of values known only at runtime. \end{DoxyCompactList}\item 
 class \hyperlink{classMenuEdit}{Menu\+Edit}
-\begin{DoxyCompactList}\small\item\em Input box, either used for key binding, or text input from user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Input box, either used for key binding, or text input from user. \end{DoxyCompactList}\item 
+class \hyperlink{classMenuSlider}{Menu\+Slider}
+\begin{DoxyCompactList}\small\item\em Slider Setting item, accept any value within defined range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Menu\+Item\+Type} \{ \\*
+{\bfseries Link}, 
+{\bfseries Setting}, 
+{\bfseries Dynamic\+Setting}, 
+{\bfseries Edit}, 
+\\*
+{\bfseries Slider}
+ \}\hypertarget{MenuItem_8hh_a0014b68cdf9686458deff56691368317}{}\label{MenuItem_8hh_a0014b68cdf9686458deff56691368317}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}

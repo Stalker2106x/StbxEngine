@@ -1,5 +1,7 @@
-#include "Console.hh"
+#include <cstring>
+#include <stdexcept>
 #include "Engine.hpp"
+#include "Console.hh"
 
 Console::Console(Engine &e) : _engine(e)
 {
@@ -119,11 +121,11 @@ void Console::setLogTimestamp(int toggle)
     _logTimestamp = (_logTimestamp ? false : true);
 }
 
-sf::Color Console::convertColorCode(std::string code)
+sf::Color Console::convertColorCode(std::string code, std::string esc)
 {
   sf::Color color;
 
-  if (code.find(COLOR_ESC) == 0)
+  if (code.find(esc) == 0)
     code = code.substr(strlen(COLOR_ESC), 9);
   color.r = atoi(code.substr(0, 3).c_str());
   color.g = atoi(code.substr(3, 3).c_str());

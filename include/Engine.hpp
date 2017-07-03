@@ -22,9 +22,6 @@ enum CharType {
   numeric
 };
 
-/*!
-
- */
 class Engine
 {
 public:
@@ -53,7 +50,7 @@ public:
   static Keybinds *keybinds;
   static Console *console;
 
-private:
+protected:
   bool _quit, _fullscreen, _vsync;
   sf::Vector2i _winsize;
   sf::RenderWindow *_win;

@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
   <title>Test Menu</title>
-  <item type="link">Play</item>
-  <item type="staticsetting">
-      <name>Refresh Rate</name>
-      <setting>50Hz</setting>
-      <setting>60Hz</setting>
-    </item>
-  <item type="dynamicsetting" action="getResolution">Resolution</item>
-  <item type="edit">Pseudo</item>
-  <item type="slidersetting">Volume</item>
-  <item type="link">Quit</item>
+  <item type="Link">
+    <label>Link</label>
+    <color>#255255255</color>
+  </item>
+  <item type="Setting">
+    <title>Refresh Rate</title>
+    <color>#255255255</color>
+    <setting>50Hz</setting>
+    <setting>60Hz</setting>
+  </item>
+  <item type="DynamicSetting" action="getResolution">
+    <label>Resolution</label>
+    <color>#255255255</color>
+  </item>
+  <item type="Edit">
+    <label>Pseudo</label>
+    <color>#255255255</color>
+  </item>
+  <item type="Slider">
+    <label>Volume</label>
+    <color>#255255255</color>
+  </item>
+  <item type="Link">
+    <label>Quit</label>
+    <color>#255255255</color>
+  </item>
 </menu>

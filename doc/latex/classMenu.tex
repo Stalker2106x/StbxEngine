@@ -12,10 +12,10 @@ Simple class for generating menus.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool {\bfseries load\+From\+File} (std\+::string \&file)\hypertarget{classMenu_a61543e2fc03d1a1013d38ce4030e7b5c}{}\label{classMenu_a61543e2fc03d1a1013d38ce4030e7b5c}
+bool {\bfseries load\+From\+File} (const std\+::string \&file)\hypertarget{classMenu_a14487681377acc4bede19cc199b40bbf}{}\label{classMenu_a14487681377acc4bede19cc199b40bbf}
 
 \item 
-void {\bfseries bind\+Actions} (action\+Tab actions)\hypertarget{classMenu_a5034819f60a84d58b33302825f05bdd8}{}\label{classMenu_a5034819f60a84d58b33302825f05bdd8}
+\hyperlink{classMenuItem}{Menu\+Item} $\ast$ {\bfseries parse\+Item} (pugi\+::xml\+\_\+node \&item)\hypertarget{classMenu_af309eab23ca546c859678a8405f922c7}{}\label{classMenu_af309eab23ca546c859678a8405f922c7}
 
 \item 
 bool {\bfseries update} (sf\+::\+Event \&e)\hypertarget{classMenu_acd6b589302d8825fe6a036c5d04b388b}{}\label{classMenu_acd6b589302d8825fe6a036c5d04b388b}
@@ -33,13 +33,10 @@ int {\bfseries \+\_\+id}\hypertarget{classMenu_a4871f5c25e4feefc152174bb5f4848ed
 int {\bfseries \+\_\+parent\+Id}\hypertarget{classMenu_acc99927a31ff10e802ec6dca998e9590}{}\label{classMenu_acc99927a31ff10e802ec6dca998e9590}
 
 \item 
-std\+::string {\bfseries \+\_\+title}\hypertarget{classMenu_ad9ce4935c5ea4c32954195d692a873bd}{}\label{classMenu_ad9ce4935c5ea4c32954195d692a873bd}
+sf\+::\+Text {\bfseries \+\_\+title}\hypertarget{classMenu_ab478d86fdefea7267f3518ebcedda9af}{}\label{classMenu_ab478d86fdefea7267f3518ebcedda9af}
 
 \item 
 item\+Tab {\bfseries \+\_\+items}\hypertarget{classMenu_a0376395345d2c4384a13fb6d063ed46f}{}\label{classMenu_a0376395345d2c4384a13fb6d063ed46f}
-
-\item 
-int {\bfseries \+\_\+hover}\hypertarget{classMenu_a288802cb3a6c898322ba61bbcb6da966}{}\label{classMenu_a288802cb3a6c898322ba61bbcb6da966}
 
 \end{DoxyCompactItemize}
 

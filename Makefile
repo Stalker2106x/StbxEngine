@@ -4,15 +4,15 @@ RM = rm -f
 
 TEST = $(BINDIR)/test
 
-INCDIR = include
+INCDIR = ./include
 
-EXTLIB = extlib
+EXTLIB = ./extlib
 
-TESTDIR = test
+TESTDIR = ./test
 
-SRCDIR = src
+SRCDIR = ./src
 
-BINDIR = bin
+BINDIR = ./bin
 
 CXXFLAGS = -fPIC -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB)
 
@@ -23,17 +23,17 @@ LIBFLAGS = -shared
 ifeq ($(OS),Windows_NT)
 	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include
 	LIBFLAGS += -lsfml-system -lsfml-window -lsfml-graphics
-	NAME = $(BINDIR)/sengine.dll
+	NAME = $(BINDIR)/libsengine.dll
 else
 	UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
 	LIBFLAGS += -L/usr/local/lib -lsfml-graphics -lsfml-window -lsfml-system
-	NAME = $(BINDIR)/sengine.so
+	NAME = $(BINDIR)/libsengine.so
   endif
   ifeq ($(UNAME_S),Darwin)
 	CXXFLAGS += -I/usr/local/include
 	LIBFLAGS += -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
-	NAME = $(BINDIR)/sengine.Framework
+	NAME = $(BINDIR)/libsengine.Framework
   endif
 endif
 

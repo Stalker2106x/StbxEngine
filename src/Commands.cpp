@@ -1,3 +1,5 @@
+#include <fstream>
+#include <unistd.h>
 #include "Engine.hpp"
 #include "Commands.hh"
 #ifndef _MSC_VER
