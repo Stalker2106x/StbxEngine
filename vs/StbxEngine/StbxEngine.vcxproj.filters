@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\ThirdParty">
+      <UniqueIdentifier>{7ff54c3b-ce1a-4ff8-8e8b-dc5a7e769461}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Commands.hh">
@@ -58,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\MenuItem.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
+      <Filter>Source Files\ThirdParty</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
