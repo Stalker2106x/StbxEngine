@@ -10,6 +10,7 @@
 #define MENU_HH_
 
 #include <SFML/Graphics.hpp>
+#include <pugixml/src/pugixml.hpp>
 #include "MenuItem.hh"
 
 typedef std::vector<MenuItem *> itemTab;
