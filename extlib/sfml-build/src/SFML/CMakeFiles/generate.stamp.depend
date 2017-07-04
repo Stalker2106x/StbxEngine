@@ -1,0 +1,4 @@
+# CMake generation dependency list for this directory.
+D:/Work/stbxengine/extlib/sfml/src/SFML/CMakeLists.txt
+D:/Work/stbxengine/extlib/sfml/cmake/Macros.cmake
+C:/Program Files/CMake/share/cmake-3.9/Modules/CMakeParseArguments.cmake
