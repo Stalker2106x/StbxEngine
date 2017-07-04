@@ -4,3 +4,9 @@
 [submodule "extlib/sfml"]
 	path = extlib/sfml
 	url = https://github.com/SFML/SFML.git
+[submodule "extlib/sfml-dependencies/libjpeg"]
+	path = extlib/sfml-dependencies/libjpeg
+	url = https://github.com/LuaDist/libjpeg
+[submodule "extlib/sfml-dependencies/freetype"]
+	path = extlib/sfml-dependencies/freetype
+	url = http://git.sv.nongnu.org/r/freetype/freetype2.git
