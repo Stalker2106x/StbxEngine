@@ -25,11 +25,4 @@ To get it, clone latest revision:
 git clone http://bitbucket.org/stalker2106/stbxengine.git
 ```
 
-The Stbx Engine relies on SFML, therefore make sure to install sfml on your system by either
-* Installing it via your package manager with 
-```
-#!bash
-
-sudo apt-get install libsfml-dev
-```
-* Downloading latest build on https://www.sfml-dev.org/index-fr.php and copying it to your /usr/local/ folder
+Add library to your linker settings or just add parameter "-lsengine" in your command line compile
