@@ -2,14 +2,17 @@
 
 ## Contributors ##
 Stabax Corp.
+
 Maxime 'stalker2106' Martens
 
 ## License ##
 This engine is not public yet. For testing purposes only.
+
 It will probably be released in MIT licensing
 
 ## Dependencies ##
 PugiXML for XML Parsing
+
 SFML for Graphics
 
 ## Conception ##
