@@ -10,7 +10,7 @@ It will probably be released in MIT licensing
 
 ## Dependencies ##
 PugiXML for XML Parsing
-
+SFML for Graphics
 
 ## Conception ##
 The engine uses a Modular yet Inter-dependent Code pattern. You can Hopefully use any module separately by reproducing the Engine class which interconnects the whole project.
