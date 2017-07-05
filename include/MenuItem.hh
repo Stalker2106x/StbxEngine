@@ -41,6 +41,7 @@ public:
   void setCustomAction(void (*fptr)(void));
   void setPosition(const sf::Vector2f &pos);
 
+  virtual void onHover(bool triggered);
   virtual void onClick() = 0;
 
   virtual bool update(sf::Event &e);

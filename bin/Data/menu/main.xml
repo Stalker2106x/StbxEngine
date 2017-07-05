@@ -6,7 +6,7 @@
     <label>Link</label>
   </item>
   <item type="Setting">
-    <title>Refresh Rate</title>
+    <label>Refresh Rate</label>
     <setting>50Hz</setting>
     <setting>60Hz</setting>
   </item>
