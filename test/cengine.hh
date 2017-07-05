@@ -7,15 +7,9 @@
 class sEngine : public Engine
 {
 public:
-	sEngine()
-	{
-		_mainMenu.loadFromFile("./Data/menu/main.xml");
-	};
+	sEngine();
 
-	~sEngine()
-	{
-
-	};
+	~sEngine() {};
 
 	bool update(sf::Event &e);
 	void draw();

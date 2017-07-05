@@ -28,34 +28,42 @@ bool Menu::loadFromFile(const std::string &file)
       return (false);
     }
   _title.setString(doc.child("menu").child("title").child_value());
-  for (pugi::xml_node item = doc.child("item"); item != NULL; item = item.next_sibling("item"))
+  int index = 0;
+  for (pugi::xml_node item = doc.child("menu").child("item");
+	  item != NULL;
+	  item = item.next_sibling("item"), index++)
     {
       MenuItem *pItem;
       
-      if ((pItem = parseItem(item)) != NULL)
-	_items.push_back(pItem);
+      if ((pItem = parseItem(item, index)) != NULL)
+	  _items.push_back(pItem);
     }
   return (true);
 }
 
-MenuItem *Menu::parseItem(pugi::xml_node &item)
+MenuItem *Menu::parseItem(pugi::xml_node &item, int &index)
 {
   MenuItem *pItem;
   MenuItemType type;
 
   type = MenuItem::typeMap[item.attribute("type").value()];
   pItem = MenuItem::factory(type);
-  pItem->setLabel(item.child("label").value());
+  pItem->setLabel(item.child_value("label"));
   if (item.child("color"))
-    pItem->setColor(Console::convertColorCode(item.child("color").value(), "#"));
+	  pItem->setColor(Console::convertColorCode(item.child_value("color"), "#"));
+  else
+	  pItem->setColor(sf::Color::White);
   if (item.child("pos"))
-    pItem->setPosition(sf::Vector2f(10, 10));
+	  pItem->setPosition(sf::Vector2f(10, 50 + (index * 50))); //NEEDS REFACTOR
+  else
+    pItem->setPosition(sf::Vector2f(10, 50 + (index * 50)));
   if (type == Setting)
     {
       std::vector<std::string> values;
 	  
       for (pugi::xml_node setting = item.child("setting");
-	   setting != NULL; setting = setting.next_sibling("item"))
+	   setting != NULL;
+	   setting = setting.next_sibling("item"))
 	{
 	  values.push_back(setting.value());
 	}

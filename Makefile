@@ -37,7 +37,8 @@ else
   endif
 endif
 
-TESTSRCS =			$(TESTDIR)/test.cpp
+TESTSRCS =			$(TESTDIR)/test.cpp			\
+				$(TESTDIR)/cengine.cpp
 
 TESTOBJS = $(TESTSRCS:.cpp=.o)
 
@@ -48,7 +49,8 @@ SRCS =				$(EXTLIB)/pugixml/src/pugixml.cpp	\
 				$(SRCDIR)/Keybinds.cpp			\
 				$(SRCDIR)/Control.cpp			\
 				$(SRCDIR)/Menu.cpp			\
-				$(SRCDIR)/MenuItem.cpp
+				$(SRCDIR)/MenuItem.cpp			\
+				$(SRCDIR)/Resolver.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -59,13 +61,13 @@ $(NAME): $(OBJS)
 	$(CC) -o $(NAME) $(OBJS) $(LIBFLAGS)
 
 test: $(TESTOBJS)
-	$(CC) -o $(BINDIR)/test $(TESTOBJS) -L$(BINDIR) -lsengine
+	$(CC) -o $(TEST) $(TESTOBJS) -L$(BINDIR) -lsengine
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(TESTOBJS)
 
 fclean: clean
-	$(RM) $(NAME) $(BINDIR)/test
+	$(RM) $(NAME) $(TEST)
 
 re: fclean all
 

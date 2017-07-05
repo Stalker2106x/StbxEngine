@@ -7,7 +7,7 @@ Console::Console(Engine &e) : _engine(e)
 {
   _active = false;
 
-  if (!_font.loadFromFile("Data/font/console.ttf"))
+  if (!_font.loadFromFile("./Data/font/console.ttf"))
     throw std::runtime_error("Resource not found");
   _lineCount = 16;
   _fontSize = 18;
@@ -125,6 +125,8 @@ sf::Color Console::convertColorCode(std::string code, std::string esc)
 {
   sf::Color color;
 
+  if (code.length() < (9 + esc.length()))
+	  return (sf::Color::White);
   if (code.find(esc) == 0)
     code = code.substr(strlen(COLOR_ESC), 9);
   color.r = atoi(code.substr(0, 3).c_str());

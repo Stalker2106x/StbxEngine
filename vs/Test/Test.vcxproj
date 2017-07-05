@@ -163,6 +163,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)..\include\;$(SolutionDir)..\extlib\sfml\include\;$(SolutionDir)..\extlib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\extlib\sfml-build\lib\Debug\;$(SolutionDir)..\bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

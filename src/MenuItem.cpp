@@ -199,7 +199,7 @@ bool MenuEdit::update(sf::Event &e)
 
 void MenuEdit::draw(sf::RenderWindow *win)
 {
-
+	MenuItem::draw(win);
 }
 /*
  * MenuSlider
@@ -228,5 +228,5 @@ bool MenuSlider::update(sf::Event &e)
 
 void MenuSlider::draw(sf::RenderWindow *win)
 {
-
+	MenuItem::draw(win);
 }

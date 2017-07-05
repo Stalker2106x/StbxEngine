@@ -129,7 +129,7 @@ int Engine::mainLoop()
 {
   while (!_quit && _win->isOpen() && updateLoop())
     {
-      _win->clear(sf::Color::Black);
+      _win->clear(sf::Color::Blue);
       graphicsLoop();
       draw();
       _win->display();
