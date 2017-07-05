@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StbxEngine", "StbxEngine\StbxEngine.vcxproj", "{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{F6B1540F-5A67-4862-9E9E-98BB0E869804}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9} = {0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
