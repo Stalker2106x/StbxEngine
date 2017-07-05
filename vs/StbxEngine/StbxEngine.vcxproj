@@ -38,8 +38,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakeOutput>StbxEngine.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>D:\Work\stbxengine\extlib;D:\Work\stbxengine\include;D:\Work\stbxengine\extlib\sfml\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\extlib;$(SolutionDir)..\include;$(SolutionDir)..\extlib\sfml\include;$(IncludePath)</IncludePath>
     <TargetName>libsengine</TargetName>
+    <OutDir>$(SolutionDir)..\bin\</OutDir>
+    <IntDir />
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeOutput>StbxEngine.exe</NMakeOutput>
