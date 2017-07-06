@@ -22,7 +22,7 @@ public:
   ~Menu();
 
   bool loadFromFile(const std::string &file);
-  void parseMenu(pugi::xml_node &menu);
+  void parseMenu(pugi::xml_node menu);
   MenuItem *parseItem(pugi::xml_node &item, int &index);
   
   bool update(sf::Event &e);

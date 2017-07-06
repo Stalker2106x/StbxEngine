@@ -46,7 +46,7 @@ bool Menu::loadFromFile(const std::string &file)
   return (true);
 }
 
-void Menu::parseMenu(pugi::xml_node &menu)
+void Menu::parseMenu(pugi::xml_node menu)
 {
 	if (menu.child("title"))
 		_title.setString(menu.child_value("title"));
