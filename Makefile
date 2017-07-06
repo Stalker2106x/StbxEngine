@@ -16,7 +16,7 @@ BINDIR = ./bin
 
 CXXFLAGS = -fPIC -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB) -I$(EXTLIB)/sfml/include/
 
-LIBS = -L$(EXTLIB)
+LIBS = -L$(EXTLIB) -L$(EXTLIB)/sfml/lib/
 
 LIBFLAGS = -shared
 
