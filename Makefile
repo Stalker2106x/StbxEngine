@@ -27,7 +27,7 @@ ifeq ($(OS),Windows_NT)
 else
 	UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
-	LIBFLAGS += -L/usr/local/lib -lsfml-graphics -lsfml-window -lsfml-system
+	LIBFLAGS += -lsfml-system -lsfml-window -lsfml-graphics
 	NAME = $(BINDIR)/libsengine.so
   endif
   ifeq ($(UNAME_S),Darwin)
@@ -57,7 +57,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LIBFLAGS)
+	$(CC) -o $(NAME) $(OBJS) $(LIBS) $(LIBFLAGS)
 
 test: $(TESTOBJS)
 	$(CC) -o $(TEST) $(TESTOBJS) -L$(BINDIR) -lsengine
