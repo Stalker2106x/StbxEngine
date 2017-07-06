@@ -11,6 +11,7 @@
 #define MENUITEM_HH_
 
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 
 enum MenuItemType {
   Link,
@@ -38,16 +39,19 @@ public:
 
   void setLabel(const std::string &label);
   virtual void setColor(const sf::Color &color);
+  virtual void setFontsize(const int &size);
+  virtual void setXOffset(const int &x);
+  virtual void setYOffset(const int &y);
+  virtual void setOffset(const int &x, const int &y);
   void setCustomAction(void (*fptr)(void));
-  void setPosition(const sf::Vector2f &pos);
 
-  virtual void onHover(bool triggered);
+  virtual bool onHover(const bool &triggered);
   virtual void onClick() = 0;
 
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
 
-  static std::map<std::string, MenuItemType> typeMap;
+  static std::unordered_map<std::string, MenuItemType> typeMap; //move String to int ID
   
 protected:
   void (*_customPtr)(void);
@@ -67,7 +71,8 @@ public:
   MenuLink();
   ~MenuLink();
 
-  void onClick();
+  virtual void onClick();
+  virtual bool onHover(const bool &triggered);
 };
 
 /*!
@@ -85,6 +90,10 @@ public:
   void onClick();
   void onRClick();
 
+  virtual void setFontsize(const int &size);
+  virtual void setXOffset(const int &x);
+  virtual void setYOffset(const int &y);
+  void setPadding(const int &padding);
   void setValues(std::vector<std::string> &values, const int &defaultIndex = 0);
   
   virtual bool update(sf::Event &e);
@@ -93,7 +102,7 @@ public:
 private:
   sf::Text _value;
   std::vector<std::string> _values;
-  int _index;
+  int _index, _padding;
 };
 
 /*!

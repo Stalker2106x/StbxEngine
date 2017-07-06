@@ -22,6 +22,7 @@ public:
   ~Menu();
 
   bool loadFromFile(const std::string &file);
+  void parseMenu(pugi::xml_node &menu);
   MenuItem *parseItem(pugi::xml_node &item, int &index);
   
   bool update(sf::Event &e);
@@ -29,6 +30,7 @@ public:
 
 protected:
   int _id, _parentId;
+  int _spacing, _fontsize;
   sf::Text _title;
   itemTab _items;
 };

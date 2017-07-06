@@ -5,7 +5,7 @@
  * MenuItem Base class
  */
 
-std::map<std::string, MenuItemType> MenuItem::typeMap = {
+std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
   {"Link", Link},
   {"Setting", Setting},
   {"DynamicSetting", DynamicSetting},
@@ -16,7 +16,7 @@ std::map<std::string, MenuItemType> MenuItem::typeMap = {
 MenuItem::MenuItem()
 {
   _hover = false;
-  _label.setFont(*Resolver::resolve<sf::Font>("console"));
+  _label.setFont(*Resolver::resolve<sf::Font>("menu"));
 }
 
 MenuItem::~MenuItem()
@@ -62,38 +62,41 @@ void MenuItem::setColor(const sf::Color &color)
   _label.setFillColor(color);
 }
 
+void MenuItem::setFontsize(const int &fontsize)
+{
+	_label.setCharacterSize(fontsize);
+}
+
+void MenuItem::setXOffset(const int &x)
+{
+	_label.setPosition(x, _label.getPosition().y);
+}
+
+void MenuItem::setYOffset(const int &y)
+{
+	_label.setPosition(_label.getPosition().x, y);
+}
+
 void MenuItem::setCustomAction(void (*fptr)(void))
 {
   _customPtr = fptr;
 }
 
-void MenuItem::setPosition(const sf::Vector2f &pos)
+void MenuItem::setOffset(const int &x, const int &y)
 {
-  _label.setPosition(pos.x, pos.y);
+  _label.setPosition(x, y);
 }
 
-void MenuItem::onHover(bool triggered)
+bool MenuItem::onHover(const bool &triggered)
 {
 	if ((triggered && _hover)
 		|| (!triggered && !_hover))
-		return;
-	sf::Color color = _label.getColor();
-
-	color.r = ~color.r;
-	color.g = ~color.g;
-	color.b = ~color.b;
+		return (false);
 	if (triggered)
-	{
-		if (!_hover)
-			_label.setColor(color);
 		_hover = true;
-	}
 	else
-	{
-		if (_hover)
-			_label.setColor(color);
 		_hover = false;
-	}
+	return (true);
 }
 
 bool MenuItem::update(sf::Event &e)
@@ -136,6 +139,22 @@ void MenuLink::onClick()
 
 }
 
+bool MenuLink::onHover(const bool &triggered)
+{
+	if (!MenuItem::onHover(triggered))
+		return (false);
+	sf::Color color = _label.getColor();
+
+	color.r = ~color.r;
+	color.g = ~color.g;
+	color.b = ~color.b;
+	if (triggered)
+		_label.setColor(color);
+	else
+		_label.setColor(color);
+	return (true);
+}
+
 /*
  * MenuSetting
  */
@@ -143,11 +162,43 @@ void MenuLink::onClick()
 MenuSetting::MenuSetting() : MenuItem()
 {
   _index = 0;
+  _padding = 0;
+  _value.setFont(*Resolver::resolve<sf::Font>("menu"));
 }
 
 MenuSetting::~MenuSetting()
 {
 
+}
+
+void MenuSetting::setFontsize(const int &fontsize)
+{
+	MenuItem::setFontsize(fontsize);
+	_value.setCharacterSize(fontsize);
+}
+
+void MenuSetting::setXOffset(const int &x)
+{
+	MenuItem::setXOffset(x);
+	_value.setPosition(x + _label.getLocalBounds().width + _padding, _label.getPosition().y);
+}
+
+void MenuSetting::setYOffset(const int &y)
+{
+	MenuItem::setYOffset(y);
+	_value.setPosition(_label.getPosition().x, y);
+}
+
+void MenuSetting::setValues(std::vector<std::string> &values, const int &defaultIndex)
+{
+	_values = values;
+	if (_values.size() > 0)
+		_value.setString(_values[defaultIndex]);
+}
+
+void MenuSetting::setPadding(const int &padding)
+{
+	_padding = padding;
 }
 
 void MenuSetting::onClick()
@@ -162,13 +213,6 @@ void MenuSetting::onRClick()
   --_index;
   if (_index < 0)
     _index = _values.size() - 1;
-}
-
-void MenuSetting::setValues(std::vector<std::string> &values, const int &defaultIndex)
-{
-  _values = values;
-  if (_values.size() > 0)
-    _value.setString(_values[defaultIndex]);
 }
 
 bool MenuSetting::update(sf::Event &e)

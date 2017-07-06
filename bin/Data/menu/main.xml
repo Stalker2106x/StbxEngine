@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
   <title>Test Menu</title>
-  <spacing>10</spacing>
+  <spacing>30</spacing>
+  <fontsize>16</fontsize>
   <item type="Link">
     <label>Link</label>
   </item>
   <item type="Setting">
     <label>Refresh Rate</label>
+    <padding>200</padding>
     <setting>50Hz</setting>
     <setting>60Hz</setting>
   </item>
