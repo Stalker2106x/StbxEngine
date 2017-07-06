@@ -8,7 +8,7 @@
   </item>
   <item type="Setting">
     <label>Refresh Rate</label>
-    <padding>200</padding>
+    <padding>150</padding>
     <setting>50Hz</setting>
     <setting>60Hz</setting>
   </item>

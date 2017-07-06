@@ -180,13 +180,13 @@ void MenuSetting::setFontsize(const int &fontsize)
 void MenuSetting::setXOffset(const int &x)
 {
 	MenuItem::setXOffset(x);
-	_value.setPosition(x + _label.getLocalBounds().width + _padding, _label.getPosition().y);
+	_value.setPosition(x + _label.getLocalBounds().width + _padding, _value.getPosition().y);
 }
 
 void MenuSetting::setYOffset(const int &y)
 {
 	MenuItem::setYOffset(y);
-	_value.setPosition(_label.getPosition().x, y);
+	_value.setPosition(_value.getPosition().x, y);
 }
 
 void MenuSetting::setValues(std::vector<std::string> &values, const int &defaultIndex)
