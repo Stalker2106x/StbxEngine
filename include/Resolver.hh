@@ -10,14 +10,17 @@
 #ifndef RESOLVER_HH_
 #define RESOLVER_HH_
 
+#include <unordered_map>
 #include <SFML/Graphics.hpp>
 
+template <class T>
 class Resolver
 {
 public:
-	template <class T>
 	static T *resolve(const std::string &name)
 	{
+		if (_resources[name] != NULL)
+			return (_resources[name]);
 		std::string path = "./Data/";
 		T *obj = new T();
 
@@ -25,10 +28,12 @@ public:
 			obj->loadFromFile(path+"font/"+name+".ttf");
 		else
 			return (NULL);
+		_resources.emplace(name, obj);
 		return (obj);
 	}
 
 private:
+	static std::unordered_map<std::string, T *> _resources;
 };
 
 #endif /* !RESOLVER_HH_ */

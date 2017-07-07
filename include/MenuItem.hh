@@ -148,10 +148,14 @@ public:
   MenuSlider();
   ~MenuSlider();
 
+  void setRange(const int &min, const int &max);
+
   void onClick();
   
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
+private:
+	int _range[2];
 };
 
 

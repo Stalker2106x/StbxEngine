@@ -42,6 +42,9 @@
     <ClInclude Include="..\..\include\Resolver.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\HUD.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Commands.cpp">
@@ -67,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
       <Filter>Source Files\ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\HUD.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

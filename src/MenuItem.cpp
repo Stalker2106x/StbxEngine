@@ -16,7 +16,7 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
 MenuItem::MenuItem()
 {
   _hover = false;
-  _label.setFont(*Resolver::resolve<sf::Font>("menu"));
+  _label.setFont(*Resolver<sf::Font>::resolve("menu"));
 }
 
 MenuItem::~MenuItem()
@@ -163,7 +163,7 @@ MenuSetting::MenuSetting() : MenuItem()
 {
   _index = 0;
   _padding = 0;
-  _value.setFont(*Resolver::resolve<sf::Font>("menu"));
+  _value.setFont(*Resolver<sf::Font>::resolve("menu"));
 }
 
 MenuSetting::~MenuSetting()
@@ -277,7 +277,13 @@ void MenuEdit::draw(sf::RenderWindow *win)
 
 MenuSlider::MenuSlider() : MenuItem()
 {
+	setRange(0, 100);
+}
 
+void MenuSlider::setRange(const int &min, const int &max)
+{
+	_range[0] = min;
+	_range[1] = max;
 }
 
 MenuSlider::~MenuSlider()
