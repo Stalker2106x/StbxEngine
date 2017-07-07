@@ -13,14 +13,14 @@
 #include <unordered_map>
 #include <SFML/Graphics.hpp>
 
-template <class T>
+template <typename T>
 class Resolver
 {
 public:
 	static T *resolve(const std::string &name)
 	{
-		if (_resources[name] != NULL)
-			return (_resources[name]);
+		if (resources[name] != NULL)
+			return (resources[name]);
 		std::string path = "./Data/";
 		T *obj = new T();
 
@@ -28,12 +28,11 @@ public:
 			obj->loadFromFile(path+"font/"+name+".ttf");
 		else
 			return (NULL);
-		_resources.emplace(name, obj);
+		resources.emplace(name, obj);
 		return (obj);
 	}
 
-private:
-	static std::unordered_map<std::string, T *> _resources;
+	static std::unordered_map<std::string, T *> resources;
 };
 
 #endif /* !RESOLVER_HH_ */
