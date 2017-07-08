@@ -19,7 +19,7 @@ class Resolver
 public:
 	static T *resolve(const std::string &name)
 	{
-		if (resources[name] != NULL)
+		if (resources.find(name) != resources.end())
 			return (resources[name]);
 		std::string path = "./Data/";
 		T *obj = new T();

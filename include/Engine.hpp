@@ -15,6 +15,7 @@
 #include <SFML/Graphics.hpp>
 #include "Console.hh"
 #include "Keybinds.hh"
+#include "HUD.hh"
 
 enum CharType {
   alphanumeric,
@@ -49,6 +50,7 @@ public:
 
   static Keybinds *keybinds;
   static Console *console;
+  static HUD *hud;
 
 protected:
   bool _quit, _fullscreen, _vsync;
