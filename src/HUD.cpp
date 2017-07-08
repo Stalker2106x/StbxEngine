@@ -6,12 +6,14 @@
 
 HUDPanel::HUDPanel(const int &x, const int &y, const int &width, const int &height)
 {
-
+	_frame.setPosition(x, y);
+	_frame.setSize(sf::Vector2f(width, height));
 }
 
-HUDPanel::HUDPanel(const sf::Vector2i &pos, const sf::Vector2i &size)
+HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size)
 {
-
+	_frame.setPosition(pos);
+	_frame.setSize(size);
 }
 
 HUDPanel::~HUDPanel()

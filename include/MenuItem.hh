@@ -38,6 +38,7 @@ public:
   bool isHovered() const;
 
   void setLabel(const std::string &label);
+  void setPadding(const int &padding);
   virtual void setColor(const sf::Color &color);
   virtual void setFontsize(const int &size);
   virtual void setXOffset(const int &x);
@@ -55,6 +56,7 @@ public:
   
 protected:
   void (*_customPtr)(void);
+  int _padding;
   sf::Text _label;
   bool _hover;
 };
@@ -93,7 +95,6 @@ public:
   virtual void setFontsize(const int &size);
   virtual void setXOffset(const int &x);
   virtual void setYOffset(const int &y);
-  void setPadding(const int &padding);
   void setValues(std::vector<std::string> &values, const int &defaultIndex = 0);
   
   virtual bool update(sf::Event &e);
@@ -102,7 +103,7 @@ public:
 private:
   sf::Text _value;
   std::vector<std::string> _values;
-  int _index, _padding;
+  int _index;
 };
 
 /*!
@@ -149,6 +150,9 @@ public:
   ~MenuSlider();
 
   void setRange(const int &min, const int &max);
+  void setXOffset(const int &x);
+  void setYOffset(const int &y);
+  void setFontsize(const int &fontsize);
 
   void onClick();
   
@@ -156,6 +160,7 @@ public:
   virtual void draw(sf::RenderWindow *);
 private:
 	int _range[2];
+	sf::RectangleShape _bar, _fill;
 };
 
 

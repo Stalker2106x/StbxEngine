@@ -57,6 +57,11 @@ void MenuItem::setLabel(const std::string &label)
   _label.setString(label);
 }
 
+void MenuItem::setPadding(const int &padding)
+{
+	_padding = padding;
+}
+
 void MenuItem::setColor(const sf::Color &color)
 {
   _label.setFillColor(color);
@@ -196,11 +201,6 @@ void MenuSetting::setValues(std::vector<std::string> &values, const int &default
 		_value.setString(_values[defaultIndex]);
 }
 
-void MenuSetting::setPadding(const int &padding)
-{
-	_padding = padding;
-}
-
 void MenuSetting::onClick()
 {
   ++_index;
@@ -278,6 +278,17 @@ void MenuEdit::draw(sf::RenderWindow *win)
 MenuSlider::MenuSlider() : MenuItem()
 {
 	setRange(0, 100);
+	_bar.setSize(sf::Vector2f(10, 100));
+	_fill.setSize(sf::Vector2f(10, 100));
+	_bar.setFillColor(sf::Color(100, 250, 50));
+	_bar.setFillColor(sf::Color(100, 0, 250));
+}
+
+void MenuSlider::setFontsize(const int &fontsize)
+{
+	MenuItem::setFontsize(fontsize);
+	_bar.setSize(sf::Vector2f(_bar.getSize().x, _label.getGlobalBounds().height));
+	_fill.setSize(sf::Vector2f(_fill.getSize().x, _label.getGlobalBounds().height));
 }
 
 void MenuSlider::setRange(const int &min, const int &max)
@@ -289,6 +300,20 @@ void MenuSlider::setRange(const int &min, const int &max)
 MenuSlider::~MenuSlider()
 {
 
+}
+
+void MenuSlider::setXOffset(const int &x)
+{
+	MenuItem::setXOffset(x);
+	_bar.setPosition(x + _label.getLocalBounds().width + _padding, _bar.getPosition().y);
+	_fill.setPosition(x + _label.getLocalBounds().width + _padding, _bar.getPosition().y);
+}
+
+void MenuSlider::setYOffset(const int &y)
+{
+	MenuItem::setYOffset(y);
+	_bar.setPosition(_bar.getPosition().x, y);
+	_fill.setPosition(_bar.getPosition().x, y);
 }
 
 void MenuSlider::onClick()
@@ -305,4 +330,6 @@ bool MenuSlider::update(sf::Event &e)
 void MenuSlider::draw(sf::RenderWindow *win)
 {
 	MenuItem::draw(win);
+	win->draw(_bar);
+	win->draw(_fill);
 }

@@ -68,8 +68,6 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, int &index)
     {
       std::vector<std::string> values;
 	  
-	  if (item.child("padding"))
-		  static_cast<MenuSetting *>(pItem)->setPadding(atoi(item.child_value("padding")));
       for (pugi::xml_node setting = item.child("setting");
 	   setting != NULL;
 	   setting = setting.next_sibling("item"))
@@ -82,6 +80,8 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, int &index)
 	  pItem->setColor(Console::convertColorCode(item.child_value("color"), "#"));
   else
 	  pItem->setColor(sf::Color::White);
+  if (item.child("padding"))
+	  pItem->setPadding(atoi(item.child_value("padding")));
   if (item.child("x"))
 	  pItem->setXOffset(atoi(item.child_value("x")));
   else

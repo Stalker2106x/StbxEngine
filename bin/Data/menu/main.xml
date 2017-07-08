@@ -20,6 +20,9 @@
   </item>
   <item type="Slider">
     <label>Volume</label>
+    <padding>100</padding>
+    <min>0</min>
+    <max>100</max>
   </item>
   <item type="Link">
     <label>Quit</label>

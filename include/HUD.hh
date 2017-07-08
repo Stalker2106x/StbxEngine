@@ -59,11 +59,12 @@ class HUDPanel
 {
 public:
 	HUDPanel(const int &x, const int &y, const int &width, const int &height);
-	HUDPanel(const sf::Vector2i &pos, const sf::Vector2i &size);
+	HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size);
+
 	~HUDPanel();
 
 private:
-	sf::Sprite _background;
+	sf::RectangleShape _frame;
 };
 
 /*!
