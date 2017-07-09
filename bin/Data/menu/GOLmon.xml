@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu>
+  <title>GOLmon</title>
+  <spacing>30</spacing>
+  <fontsize>24</fontsize>
+  <item type="Link">
+    <label>Play</label>
+  </item>
+  <item type="Link" action="Settings">
+    <label>Settings</label>
+  </item>
+  <item type="Link">
+    <label>Profiles</label>
+  </item>
+  <item type="Link">
+    <label>Changelogs</label>
+  </item>
+  <item type="Link">
+    <label>Quit</label>
+    <y>180</y>
+  </item>
+</menu>

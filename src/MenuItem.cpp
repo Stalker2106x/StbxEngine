@@ -82,11 +82,6 @@ void MenuItem::setYOffset(const int &y)
 	_label.setPosition(_label.getPosition().x, y);
 }
 
-void MenuItem::setCustomAction(void (*fptr)(void))
-{
-  _customPtr = fptr;
-}
-
 void MenuItem::setOffset(const int &x, const int &y)
 {
   _label.setPosition(x, y);
@@ -131,7 +126,8 @@ void MenuItem::draw(sf::RenderWindow *win)
 
 MenuLink::MenuLink() : MenuItem()
 {
-
+	_customPtr = 0;
+	_customParam = 0;
 }
 
 MenuLink::~MenuLink()
@@ -139,9 +135,19 @@ MenuLink::~MenuLink()
 
 }
 
+void MenuLink::setCustomAction(void(*fptr)(void *), void *cparam)
+{
+	_customPtr = fptr;
+	_customParam = cparam;
+}
+
+
 void MenuLink::onClick()
 {
-
+	if (_customPtr != NULL)
+		_customPtr(_customParam);
+	else
+		Engine::console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
 }
 
 bool MenuLink::onHover(const bool &triggered)
@@ -314,6 +320,14 @@ void MenuSlider::setYOffset(const int &y)
 	MenuItem::setYOffset(y);
 	_bar.setPosition(_bar.getPosition().x, y);
 	_fill.setPosition(_fill.getPosition().x, y + 1);
+}
+
+void MenuSlider::setColor(const sf::Color *barColor, const sf::Color *fillColor)
+{
+	if (barColor != NULL)
+		_bar.setFillColor(*barColor);
+	if (fillColor != NULL)
+		_fill.setFillColor(*fillColor);
 }
 
 void MenuSlider::onClick()

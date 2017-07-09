@@ -45,7 +45,6 @@ public:
   virtual void setXOffset(const int &x);
   virtual void setYOffset(const int &y);
   virtual void setOffset(const int &x, const int &y);
-  void setCustomAction(void (*fptr)(void));
 
   virtual bool onHover(const bool &triggered);
   virtual void onClick() = 0;
@@ -57,7 +56,6 @@ public:
   
 protected:
   Engine *_e;
-  void (*_customPtr)(void);
   int _padding;
   sf::Text _label;
   bool _hover;
@@ -75,8 +73,14 @@ public:
   MenuLink();
   ~MenuLink();
 
+  void setCustomAction(void(*fptr)(void *), void *cparam);
+
   virtual void onClick();
   virtual bool onHover(const bool &triggered);
+
+private:
+  void (*_customPtr)(void *);
+  void *_customParam;
 };
 
 /*!
@@ -154,6 +158,7 @@ public:
   void setRange(const int &min, const int &max);
   void setXOffset(const int &x);
   void setYOffset(const int &y);
+  void setColor(const sf::Color *barColor, const sf::Color *fillColor);
   void setFontsize(const int &fontsize);
 
   void onClick();

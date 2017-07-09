@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu>
+  <title>Settings</title>
+  <spacing>30</spacing>
+  <fontsize>24</fontsize>
+  <item type="Link">
+    <label>Controls</label>
+  </item>
+  <item type="Link">
+    <label>Video</label>
+  </item>
+  <item type="Link">
+    <label>Sound</label>
+  </item>
+  <item type="Link">
+    <label>Back</label>
+    <y>150</y>
+  </item>
+</menu>

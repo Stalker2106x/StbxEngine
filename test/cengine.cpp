@@ -1,8 +1,15 @@
 #include "cengine.hh"
 
+void f(void *menu)
+{
+	menu = new Menu();
+	static_cast<Menu *>(menu)->loadFromFile("./Data/menu/settings.xml");
+}
+
 sEngine::sEngine()
 {
-	_mainMenu.loadFromFile("./Data/menu/main.xml");
+	Menu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu));
+	_mainMenu.loadFromFile("./Data/menu/GOLmon.xml");
 }
 
 bool sEngine::update(sf::Event &e)

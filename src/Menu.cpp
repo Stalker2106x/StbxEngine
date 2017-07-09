@@ -2,6 +2,8 @@
 #include "Menu.hh"
 #include "Engine.hpp"
 
+std::unordered_map<std::string, std::pair<menuFptr, void *>> Menu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
+
 Menu::Menu()
 {
 	_spacing = 10;
@@ -56,26 +58,21 @@ void Menu::parseMenu(pugi::xml_node menu)
 		_fontsize = atoi(menu.child_value("fontsize"));
 }
 
-MenuItem *Menu::parseItem(pugi::xml_node &item, int &index)
+MenuItem *Menu::parseItem(pugi::xml_node &item, const int &index)
 {
   MenuItem *pItem;
   MenuItemType type;
 
-  type = MenuItem::typeMap[item.attribute("type").value()];
+  try { type = MenuItem::typeMap.at(item.attribute("type").value()); }
+  catch (...) { return (NULL); }
   pItem = MenuItem::factory(type);
   pItem->setLabel(item.child_value("label"));
-  if (type == Setting)
-    {
-      std::vector<std::string> values;
-	  
-      for (pugi::xml_node setting = item.child("setting");
-	   setting != NULL;
-	   setting = setting.next_sibling("item"))
-		{
-			values.push_back(setting.text().as_string());
-		}
-      (static_cast<MenuSetting *>(pItem))->setValues(values);
-    }
+  if (type == Link)
+	  parseLink(item, pItem, index);
+  else if (type == Setting)
+	  parseSetting(item, pItem, index);
+  else if (type == Slider)
+	  parseSlider(item, pItem, index);
   if (item.child("color"))
 	  pItem->setColor(Console::convertColorCode(item.child_value("color"), "#"));
   else
@@ -91,6 +88,44 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, int &index)
   else
 	  pItem->setYOffset(_spacing + (index * _spacing));
   return (pItem);
+}
+
+void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const int &index)
+{
+	MenuLink *sItem = dynamic_cast<MenuLink *>(pItem);
+
+	if (item.attribute("action"))
+	{
+		std::string action = item.attribute("action").value();
+		sItem->setCustomAction(Menu::customAction[action].first, Menu::customAction[action].second);
+	}
+}
+
+void Menu::parseSetting(pugi::xml_node &item, MenuItem *pItem, const int &index)
+{
+	MenuSetting *sItem = dynamic_cast<MenuSetting *>(pItem);
+	std::vector<std::string> values;
+
+	for (pugi::xml_node setting = item.child("setting");
+		setting != NULL;
+		setting = setting.next_sibling("item"))
+	{
+		values.push_back(setting.text().as_string());
+	}
+	sItem->setValues(values);
+}
+
+void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const int &index)
+{
+	MenuSlider *sItem = dynamic_cast<MenuSlider *>(pItem);
+	sf::Color *barColor = NULL;
+	sf::Color *fillColor = NULL;
+
+	if (item.child("bcolor"))
+		barColor = &Console::convertColorCode(item.child_value("bcolor"), "#");
+	if (item.child("fcolor"))
+		fillColor = &Console::convertColorCode(item.child_value("fcolor"), "#");
+	sItem->setColor(barColor, fillColor);
 }
 
 bool Menu::update(sf::Event &e)

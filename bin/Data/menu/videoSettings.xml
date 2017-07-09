@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone = true ?>
+<menu>
+  <title>VideoSettings</title>
+  <spacing>20</spacing>
+  <fontsize>18</fontsize>
+  <item type="Setting">
+    <label>Enable VSync</label>
+    <padding>100</padding>
+    <setting>true</setting>
+    <setting>false</setting>
+  </item>
+  <item type="Slider">
+    <label>Max framerate</label>
+    <padding>100</padding>
+    <min>20</min>
+    <max>1000</max>
+  </item>
+  <item type="Slider">
+    <label>Brightness</label>
+    <padding>100</padding>
+    <min>0</min>
+    <max>100</max>
+  </item>
+  <item type="DynamicSetting" action="getResolution">
+    <label>Resolution</label>
+    <padding>100</padding>
+  </item>
+  </item>
+  <item type="Link">
+    <label>Default settings</label>
+    <y>150</y>
+  </item>
+  <item type="Link">
+    <label>Back</label>
+    <y>180</y>
+  </item>
+</menu>
