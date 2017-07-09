@@ -31,6 +31,7 @@ public:
 
   bool openWindow(int , int);
 
+  sf::RenderWindow *getWindowHandle();
   sf::Vector2i getWindowSize() const;
   void handleArgs(int argc, char **argv);
   void videoParamSet(const std::string &, const int &);
@@ -51,6 +52,8 @@ public:
   static Keybinds *keybinds;
   static Console *console;
   static HUD *hud;
+
+  static Engine *instance;
 
 protected:
   bool _quit, _fullscreen, _vsync;

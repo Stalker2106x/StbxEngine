@@ -5,7 +5,7 @@
 Menu::Menu()
 {
 	_spacing = 10;
-	_fontsize = 14;
+	_fontsize = 20;
 }
 
 Menu::~Menu()

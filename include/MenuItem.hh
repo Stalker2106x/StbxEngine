@@ -12,6 +12,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
+#include "Engine.hpp"
 
 enum MenuItemType {
   Link,
@@ -55,6 +56,7 @@ public:
   static std::unordered_map<std::string, MenuItemType> typeMap; //move String to int ID
   
 protected:
+  Engine *_e;
   void (*_customPtr)(void);
   int _padding;
   sf::Text _label;
@@ -159,6 +161,7 @@ public:
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
 private:
+	int _value;
 	int _range[2];
 	sf::RectangleShape _bar, _fill;
 };

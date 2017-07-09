@@ -2,6 +2,7 @@
 
 Keybinds *Engine::keybinds = new Keybinds();
 Console *Engine::console = NULL;
+Engine *Engine::instance = NULL;
 
 Engine::Engine(int width, int height)
 {
@@ -10,6 +11,7 @@ Engine::Engine(int width, int height)
   _fullscreen = false;
   _vsync = false;
   Engine::console = new Console(*this);
+  Engine::instance = this;
   openWindow(width, height);
   keybinds->bindEnv(this);
 }
@@ -54,6 +56,11 @@ void Engine::handleArgs(int argc, char **argv)
 	  Commands::parseCmd(*this, cmd);
 	}
     }
+}
+
+sf::RenderWindow *Engine::getWindowHandle()
+{
+	return (_win);
 }
 
 sf::Vector2i Engine::getWindowSize() const
@@ -110,17 +117,17 @@ bool Engine::updateLoop()
   while (_win->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
-	{
-	  _win->close();
-	  return (false);
-	}
-      Engine::console->update(event);
-      keybinds->update(event);
-      if (update(event) == false)
-	{
-	  _win->close();
-	  return (false);
-	}
+		{
+		  _win->close();
+		  return (false);
+		}
+		  Engine::console->update(event);
+		  keybinds->update(event);
+		  if (update(event) == false)
+		{
+		  _win->close();
+		  return (false);
+		}
     }
   return (true);
 }
