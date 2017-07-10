@@ -1,4 +1,5 @@
 <map id="Engine" name="Engine">
-<area shape="rect" id="node2" href="$classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,81,32"/>
-<area shape="rect" id="node3" href="$classConsole.html" title="Integrated toggleable developer console. " alt="" coords="105,5,176,32"/>
+<area shape="rect" id="node2" href="$classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,84,32"/>
+<area shape="rect" id="node3" href="$classHUD.html" title="Main HUD Component. " alt="" coords="111,5,163,32"/>
+<area shape="rect" id="node4" href="$classConsole.html" title="Integrated toggleable developer console. " alt="" coords="187,5,260,32"/>
 </map>
