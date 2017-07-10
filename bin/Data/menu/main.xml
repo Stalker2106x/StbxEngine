@@ -3,7 +3,7 @@
   <title>Test Menu</title>
   <spacing>30</spacing>
   <fontsize>16</fontsize>
-  <item type="Link">
+  <item type="Link" action="goto">
     <label>Link</label>
   </item>
   <item type="Setting">
@@ -12,7 +12,7 @@
     <setting>50Hz</setting>
     <setting>60Hz</setting>
   </item>
-  <item type="DynamicSetting" action="getResolution">
+  <item type="DynamicSetting" filler="Resolutions">
     <label>Resolution</label>
   </item>
   <item type="Edit">

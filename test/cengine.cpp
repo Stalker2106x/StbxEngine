@@ -3,13 +3,18 @@
 void f(void *menu)
 {
 	menu = new Menu();
-	static_cast<Menu *>(menu)->loadFromFile("./Data/menu/settings.xml");
+	static_cast<Menu *>(menu)->loadFromFile("./Data/menu/GOLmon.xml");
 }
 
 sEngine::sEngine()
 {
+	std::vector<std::string> resolutions;
+
+	resolutions.push_back("800x600");
+	resolutions.push_back("1920x1080");
 	Menu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu));
-	_mainMenu.loadFromFile("./Data/menu/GOLmon.xml");
+	Menu::dynamicValue.emplace("Resolutions", resolutions);
+	_mainMenu.loadFromFile("./Data/menu/main.xml");
 }
 
 bool sEngine::update(sf::Event &e)

@@ -97,19 +97,24 @@ public:
 
   void onClick();
   void onRClick();
+  bool onValueHover(const bool &triggered);
 
+  bool isValueHovered();
   virtual void setFontsize(const int &size);
   virtual void setXOffset(const int &x);
   virtual void setYOffset(const int &y);
   void setValues(std::vector<std::string> &values, const int &defaultIndex = 0);
-  
+  int getCurrentIndex();
+
+  void updateValue();
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
 
 private:
+  bool _vhover;
   sf::Text _value;
   std::vector<std::string> _values;
-  int _index;
+  size_t _index;
 };
 
 /*!
@@ -158,14 +163,18 @@ public:
   void setRange(const int &min, const int &max);
   void setXOffset(const int &x);
   void setYOffset(const int &y);
-  void setColor(const sf::Color *barColor, const sf::Color *fillColor);
+  void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
   void setFontsize(const int &fontsize);
 
-  void onClick();
-  
+  int getValue();
+
+  void onClick() {};
+
+  void updateSlider(sf::Event &e);
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
 private:
+	bool _sliding;
 	int _value;
 	int _range[2];
 	sf::RectangleShape _bar, _fill;

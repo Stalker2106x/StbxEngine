@@ -108,7 +108,7 @@ bool MenuItem::update(sf::Event &e)
 		else
 			onHover(false);
     }
-  else if (e.type == sf::Event::MouseButtonPressed && isHovered())
+  else if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left && isHovered())
     {
       onClick();
     }
@@ -154,15 +154,12 @@ bool MenuLink::onHover(const bool &triggered)
 {
 	if (!MenuItem::onHover(triggered))
 		return (false);
-	sf::Color color = _label.getColor();
+	sf::Color color = _label.getFillColor();
 
 	color.r = ~color.r;
 	color.g = ~color.g;
 	color.b = ~color.b;
-	if (triggered)
-		_label.setColor(color);
-	else
-		_label.setColor(color);
+	_label.setFillColor(color);
 	return (true);
 }
 
@@ -180,6 +177,11 @@ MenuSetting::MenuSetting() : MenuItem()
 MenuSetting::~MenuSetting()
 {
 
+}
+
+bool MenuSetting::isValueHovered()
+{
+	return (_vhover);
 }
 
 void MenuSetting::setFontsize(const int &fontsize)
@@ -207,23 +209,62 @@ void MenuSetting::setValues(std::vector<std::string> &values, const int &default
 		_value.setString(_values[defaultIndex]);
 }
 
+int MenuSetting::getCurrentIndex()
+{
+	return (_index);
+}
+
 void MenuSetting::onClick()
 {
   ++_index;
   if (_index >= _values.size())
-    _index = 0;
+	  _index = 0;
+  updateValue();
 }
 
 void MenuSetting::onRClick()
 {
   --_index;
-  if (_index < 0)
-    _index = _values.size() - 1;
+  if (_index >= _values.size())
+	  _index = _values.size() - 1;
+  updateValue();
+}
+
+bool MenuSetting::onValueHover(const bool &triggered)
+{
+	if ((triggered && _vhover)
+		|| (!triggered && !_vhover))
+		return (false);
+	if (triggered)
+		_vhover = true;
+	else
+		_vhover = false;
+	return (true);
+}
+
+void MenuSetting::updateValue()
+{
+	if (_values.size() > 0)
+		_value.setString(_values[_index]);
 }
 
 bool MenuSetting::update(sf::Event &e)
 {
   MenuItem::update(e);
+  if (e.type == sf::Event::MouseMoved)
+  {
+	  if (_value.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+		  onValueHover(true);
+	  else
+		  onValueHover(false);
+  }
+  else if (e.type == sf::Event::MouseButtonPressed && isValueHovered())
+  {
+	  if (e.key.code == sf::Mouse::Left)
+		onClick();
+	  else if (e.key.code == sf::Mouse::Right)
+		onRClick();
+  }
   return (true);
 }
 
@@ -299,6 +340,7 @@ void MenuSlider::setFontsize(const int &fontsize)
 
 void MenuSlider::setRange(const int &min, const int &max)
 {
+	_sliding = false;
 	_range[0] = min;
 	_range[1] = max;
 }
@@ -322,7 +364,7 @@ void MenuSlider::setYOffset(const int &y)
 	_fill.setPosition(_fill.getPosition().x, y + 1);
 }
 
-void MenuSlider::setColor(const sf::Color *barColor, const sf::Color *fillColor)
+void MenuSlider::setBarColor(const sf::Color *barColor, const sf::Color *fillColor)
 {
 	if (barColor != NULL)
 		_bar.setFillColor(*barColor);
@@ -330,19 +372,36 @@ void MenuSlider::setColor(const sf::Color *barColor, const sf::Color *fillColor)
 		_fill.setFillColor(*fillColor);
 }
 
-void MenuSlider::onClick()
+int MenuSlider::getValue()
 {
-	_value = sf::Mouse::getPosition(*Engine::instance->getWindowHandle()).x - _bar.getPosition().x;
-	_fill.setSize(sf::Vector2f((_bar.getSize().x / _range[1]) * _value, _fill.getSize().y));
+	return (_value);
+}
+
+void MenuSlider::updateSlider(sf::Event &e)
+{
+	if (_sliding && e.type == sf::Event::MouseMoved)
+	{
+		_value = sf::Mouse::getPosition(*Engine::instance->getWindowHandle()).x - _bar.getPosition().x;
+		if (_value < _range[0])
+			_value = _range[0];
+		else if (_value > _range[1])
+			_value = _range[1];
+		_fill.setSize(sf::Vector2f((_bar.getSize().x / _range[1]) * _value, _fill.getSize().y));
+	}
 }
 
 bool MenuSlider::update(sf::Event &e)
 {
   MenuItem::update(e);
-  if (e.type == sf::Event::MouseButtonPressed)
+  updateSlider(e);
+  if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
   {
 	  if (_bar.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
-		  onClick();
+		  _sliding = true;
+  }
+  else if (e.type == sf::Event::MouseButtonReleased && e.key.code == sf::Mouse::Left)
+  {
+		  _sliding = false;
   }
   return (true);
 }

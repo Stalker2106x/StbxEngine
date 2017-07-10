@@ -3,6 +3,7 @@
 #include "Engine.hpp"
 
 std::unordered_map<std::string, std::pair<menuFptr, void *>> Menu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
+std::unordered_map<std::string, std::vector<std::string>> Menu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
 
 Menu::Menu()
 {
@@ -32,7 +33,7 @@ bool Menu::loadFromFile(const std::string &file)
       return (false);
     }
   parseMenu(doc.child("menu"));
-  int index = 0;
+  size_t index = 0;
   for (pugi::xml_node item = doc.child("menu").child("item");
 	  item != NULL;
 	  item = item.next_sibling("item"), index++)
@@ -58,7 +59,7 @@ void Menu::parseMenu(pugi::xml_node menu)
 		_fontsize = atoi(menu.child_value("fontsize"));
 }
 
-MenuItem *Menu::parseItem(pugi::xml_node &item, const int &index)
+MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
 {
   MenuItem *pItem;
   MenuItemType type;
@@ -71,6 +72,8 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const int &index)
 	  parseLink(item, pItem, index);
   else if (type == Setting)
 	  parseSetting(item, pItem, index);
+  else if (type == DynamicSetting)
+	  parseDynamicSetting(item, pItem, index);
   else if (type == Slider)
 	  parseSlider(item, pItem, index);
   if (item.child("color"))
@@ -90,7 +93,7 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const int &index)
   return (pItem);
 }
 
-void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const int &index)
+void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
 {
 	MenuLink *sItem = dynamic_cast<MenuLink *>(pItem);
 
@@ -101,31 +104,39 @@ void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const int &index)
 	}
 }
 
-void Menu::parseSetting(pugi::xml_node &item, MenuItem *pItem, const int &index)
+void Menu::parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
 {
 	MenuSetting *sItem = dynamic_cast<MenuSetting *>(pItem);
 	std::vector<std::string> values;
 
 	for (pugi::xml_node setting = item.child("setting");
 		setting != NULL;
-		setting = setting.next_sibling("item"))
+		setting = setting.next_sibling("setting"))
 	{
 		values.push_back(setting.text().as_string());
 	}
 	sItem->setValues(values);
 }
 
-void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const int &index)
+void Menu::parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+{
+	MenuDynamicSetting *sItem = dynamic_cast<MenuDynamicSetting *>(pItem);
+
+	if (item.attribute("filler"))
+		sItem->setValues(dynamicValue[item.attribute("filler").value()]);
+}
+
+void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
 {
 	MenuSlider *sItem = dynamic_cast<MenuSlider *>(pItem);
 	sf::Color *barColor = NULL;
 	sf::Color *fillColor = NULL;
 
 	if (item.child("bcolor"))
-		barColor = &Console::convertColorCode(item.child_value("bcolor"), "#");
+		*barColor = Console::convertColorCode(item.child_value("bcolor"), "#");
 	if (item.child("fcolor"))
-		fillColor = &Console::convertColorCode(item.child_value("fcolor"), "#");
-	sItem->setColor(barColor, fillColor);
+		*fillColor = Console::convertColorCode(item.child_value("fcolor"), "#");
+	sItem->setBarColor(barColor, fillColor);
 }
 
 bool Menu::update(sf::Event &e)
