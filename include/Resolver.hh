@@ -17,18 +17,21 @@ template <typename T>
 class Resolver
 {
 public:
-	static T *resolve(const std::string &name)
+	static T *resolve(const std::string &name, const bool &unique = false)
 	{
-		if (resources.find(name) != resources.end())
+		if (!unique && resources.find(name) != resources.end())
 			return (resources[name]);
 		std::string path = "./Data/";
 		T *obj = new T();
 
 		if (std::is_same<T, sf::Font>::value)
 			obj->loadFromFile(path+"font/"+name+".ttf");
+		else if (std::is_same<T, sf::Texture>::value)
+			obj->loadFromFile(path + "texture/" + name + ".png");
 		else
 			return (NULL);
-		resources.emplace(name, obj);
+		if (!unique)
+			resources.emplace(name, obj);
 		return (obj);
 	}
 

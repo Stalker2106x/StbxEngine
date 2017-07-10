@@ -31,6 +31,8 @@ public:
   void parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
   void parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 
+  void setBackground(const std::string &resource);
+
   bool update(sf::Event &e);
   void draw(sf::RenderWindow *);
 
@@ -39,6 +41,7 @@ public:
 protected:	
   int _id, _parentId;
   int _spacing, _fontsize;
+  sf::Sprite _background;
   sf::Text _title;
   itemTab _items;
 };

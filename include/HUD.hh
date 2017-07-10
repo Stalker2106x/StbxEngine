@@ -58,13 +58,12 @@ private:
 class HUDPanel
 {
 public:
-	HUDPanel(const int &x, const int &y, const int &width, const int &height);
 	HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size);
 
 	~HUDPanel();
 
 private:
-	sf::RectangleShape _frame;
+	sf::Sprite _frame;
 };
 
 /*!
@@ -97,6 +96,9 @@ public:
 	void toggle();
 	void addPanel();
 	void addIndicator();
+
+	bool update(sf::Event &e);
+	void draw(sf::RenderWindow *win);
 
 private:
 	bool _active;

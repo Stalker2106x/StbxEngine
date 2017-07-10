@@ -4,16 +4,9 @@
 // HUDPanel
 //
 
-HUDPanel::HUDPanel(const int &x, const int &y, const int &width, const int &height)
-{
-	_frame.setPosition(x, y);
-	_frame.setSize(sf::Vector2f(width, height));
-}
-
 HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size)
 {
 	_frame.setPosition(pos);
-	_frame.setSize(size);
 }
 
 HUDPanel::~HUDPanel()
@@ -46,6 +39,16 @@ void HUD::addPanel()
 }
 
 void HUD::addIndicator()
+{
+
+}
+
+bool HUD::update(sf::Event &e)
+{
+	return (true);
+}
+
+void HUD::draw(sf::RenderWindow *win)
 {
 
 }
