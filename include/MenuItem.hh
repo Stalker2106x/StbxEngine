@@ -14,6 +14,8 @@
 #include <unordered_map>
 #include "Engine.hpp"
 
+class Menu; //Forward declaration for Menu Handles
+
 enum MenuItemType {
   Link,
   Setting,
@@ -37,6 +39,7 @@ public:
   static MenuItem *factory(const MenuItemType &type);
   
   bool isHovered() const;
+  bool isValueHovered() const;
 
   void setLabel(const std::string &label);
   void setPadding(const int &padding);
@@ -46,6 +49,7 @@ public:
   virtual void setYOffset(const int &y);
   virtual void setOffset(const int &x, const int &y);
 
+  virtual bool onValueHover(const bool &triggered);
   virtual bool onHover(const bool &triggered);
   virtual void onClick() = 0;
 
@@ -58,7 +62,7 @@ protected:
   Engine *_e;
   int _padding;
   sf::Text _label;
-  bool _hover;
+  bool _hover, _vhover;
 };
 
 /*!
@@ -73,14 +77,18 @@ public:
   MenuLink();
   ~MenuLink();
 
+  void setMenuHandle(Menu *menu);
+  void setTarget(const std::string &target);
   void setCustomAction(void(*fptr)(void *), void *cparam);
 
   virtual void onClick();
   virtual bool onHover(const bool &triggered);
 
 private:
-  void (*_customPtr)(void *);
-  void *_customParam;
+	std::string _target;
+	Menu *_menuHandle;
+	void (*_customPtr)(void *);
+	void *_customParam;
 };
 
 /*!
@@ -99,7 +107,6 @@ public:
   void onRClick();
   bool onValueHover(const bool &triggered);
 
-  bool isValueHovered();
   virtual void setFontsize(const int &size);
   virtual void setXOffset(const int &x);
   virtual void setYOffset(const int &y);
@@ -111,7 +118,6 @@ public:
   virtual void draw(sf::RenderWindow *);
 
 private:
-  bool _vhover;
   sf::Text _value;
   std::vector<std::string> _values;
   size_t _index;
@@ -145,6 +151,7 @@ public:
   virtual void setFontsize(const int &fontsize);
   virtual void setXOffset(const int &x);
   virtual void setYOffset(const int &y);
+  void setColor(sf::Color *inputColor, sf::Color *valueColor);
   void setInputLength(const int &length);
 
   void onClick();

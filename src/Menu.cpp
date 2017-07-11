@@ -17,6 +17,11 @@ Menu::~Menu()
 
 }
 
+void Menu::reset()
+{
+	_items.clear();
+}
+
 bool Menu::loadFromFile(const std::string &file)
 {
   pugi::xml_document doc;
@@ -102,6 +107,9 @@ void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 {
 	MenuLink *sItem = dynamic_cast<MenuLink *>(pItem);
 
+	sItem->setMenuHandle(this); //Adding Handle for moving
+	if (item.attribute("target"))
+		sItem->setTarget(item.attribute("target").value());
 	if (item.attribute("action"))
 	{
 		std::string action = item.attribute("action").value();
@@ -134,9 +142,14 @@ void Menu::parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size
 void Menu::parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
 {
 	MenuEdit *sItem = dynamic_cast<MenuEdit *>(pItem);
+	sf::Color *inputColor = NULL;
+	sf::Color *valueColor = NULL;
 
 	if (item.child("inputlength"))
 		sItem->setInputLength(atoi(item.child_value("inputlength")));
+	if (item.child("inputcolor"))
+		inputColor = &Console::convertColorCode(item.child_value("inputcolor"), "#");
+	sItem->setColor(inputColor, valueColor);
 }
 
 void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
@@ -146,9 +159,9 @@ void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* i
 	sf::Color *fillColor = NULL;
 
 	if (item.child("bcolor"))
-		*barColor = Console::convertColorCode(item.child_value("bcolor"), "#");
+		barColor = &Console::convertColorCode(item.child_value("bcolor"), "#");
 	if (item.child("fcolor"))
-		*fillColor = Console::convertColorCode(item.child_value("fcolor"), "#");
+		fillColor = &Console::convertColorCode(item.child_value("fcolor"), "#");
 	sItem->setBarColor(barColor, fillColor);
 }
 

@@ -4,7 +4,7 @@
   <background>background</background>
   <spacing>30</spacing>
   <fontsize>16</fontsize>
-  <item type="Link" action="goto">
+  <item type="Link" target="opt">
     <label>Link</label>
   </item>
   <item type="Setting">
@@ -19,7 +19,8 @@
   <item type="Edit">
     <label>Pseudo</label>
     <padding>125</padding>
-    <inputlength>25</inputlength>
+    <inputlength>200</inputlength>
+    <inputcolor>#050050255</inputcolor>
   </item>
   <item type="Slider">
     <label>Volume</label>

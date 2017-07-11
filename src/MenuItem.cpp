@@ -1,5 +1,6 @@
 #include "MenuItem.hh"
 #include "Resolver.hh"
+#include "Menu.hh"
 
 /*
  * MenuItem Base class
@@ -16,6 +17,7 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
 MenuItem::MenuItem()
 {
   _hover = false;
+  _vhover = false;
   _padding = 0;
   _label.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
@@ -53,6 +55,11 @@ bool MenuItem::isHovered() const
   return (_hover);
 }
 
+bool MenuItem::isValueHovered() const
+{
+	return (_vhover);
+}
+
 void MenuItem::setLabel(const std::string &label)
 {
   _label.setString(label);
@@ -86,6 +93,17 @@ void MenuItem::setYOffset(const int &y)
 void MenuItem::setOffset(const int &x, const int &y)
 {
   _label.setPosition(x, y);
+}
+
+bool MenuItem::onValueHover(const bool &triggered)
+{
+	if ((triggered && _vhover)
+		|| (!triggered && !_vhover))
+		return (false);
+	if (triggered)
+		_vhover = true;
+	else
+		_vhover = false;
 }
 
 bool MenuItem::onHover(const bool &triggered)
@@ -136,6 +154,16 @@ MenuLink::~MenuLink()
 
 }
 
+void MenuLink::setMenuHandle(Menu *menu)
+{
+	_menuHandle = menu;
+}
+
+void MenuLink::setTarget(const std::string &target)
+{
+	_target = target;
+}
+
 void MenuLink::setCustomAction(void(*fptr)(void *), void *cparam)
 {
 	_customPtr = fptr;
@@ -147,6 +175,11 @@ void MenuLink::onClick()
 {
 	if (_customPtr != NULL)
 		_customPtr(_customParam);
+	if (!_target.empty() && _menuHandle != NULL)
+	{
+		_menuHandle->reset();
+		_menuHandle->loadFromFile("./Data/menu/" + _target + ".xml");
+	}
 	else
 		Engine::console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
 }
@@ -172,17 +205,13 @@ MenuSetting::MenuSetting() : MenuItem()
 {
   _index = 0;
   _padding = 0;
+  _hover = false;
   _value.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
 MenuSetting::~MenuSetting()
 {
 
-}
-
-bool MenuSetting::isValueHovered()
-{
-	return (_vhover);
 }
 
 void MenuSetting::setFontsize(const int &fontsize)
@@ -233,13 +262,8 @@ void MenuSetting::onRClick()
 
 bool MenuSetting::onValueHover(const bool &triggered)
 {
-	if ((triggered && _vhover)
-		|| (!triggered && !_vhover))
+	if (!MenuItem::onValueHover(triggered))
 		return (false);
-	if (triggered)
-		_vhover = true;
-	else
-		_vhover = false;
 	sf::Color color = _value.getFillColor();
 
 	color.r = ~color.r;
@@ -302,6 +326,7 @@ MenuDynamicSetting::~MenuDynamicSetting()
 
 MenuEdit::MenuEdit() : MenuItem()
 {
+	_focus = false;
 	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
@@ -313,19 +338,31 @@ MenuEdit::~MenuEdit()
 void MenuEdit::setFontsize(const int &fontsize)
 {
 	MenuItem::setFontsize(fontsize);
+	_value.setCharacterSize(fontsize);
 	_container.setSize(sf::Vector2f(_container.getSize().x, _label.getGlobalBounds().height));
 }
 
 void MenuEdit::setXOffset(const int &x)
 {
 	MenuItem::setXOffset(x);
+
+	_value.setPosition(x + _label.getLocalBounds().width + _padding + 1, _container.getPosition().y);
 	_container.setPosition(x + _label.getLocalBounds().width + _padding, _container.getPosition().y);
 }
 
 void MenuEdit::setYOffset(const int &y)
 {
 	MenuItem::setYOffset(y);
+	_value.setPosition(_container.getPosition().x, y + 1);
 	_container.setPosition(_container.getPosition().x, y);
+}
+
+void MenuEdit::setColor(sf::Color *inputColor, sf::Color *valueColor)
+{
+	if (inputColor)
+		_container.setFillColor(*inputColor);
+	if (valueColor)
+		_value.setFillColor(*valueColor);
 }
 
 void MenuEdit::setInputLength(const int &length)
@@ -343,21 +380,29 @@ bool MenuEdit::update(sf::Event &e)
   MenuItem::update(e);
   if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
   {
-	  if (_container.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
+	  if (!_focus && _container.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
 	  {
 		  _focus = true;
-		  _input += "_";
+		  _input.push_back('.');
 	  }
-	  else
+	  else if (_focus)
 	  {
 		  _focus = false;
-		  _input.erase(_input.back());
+		  _input.pop_back();
 	  }
 	  _value.setString(_input);
   }
   if (_focus)
   {
-	  --(_input.back()).insert(Engine::getChar();
+	  char c;
+
+	  if ((c = Engine::getChar(e, alphanumeric)) != '\0')
+	  {
+		  _input.insert(_input.end() - 1, c);
+		  _value.setString(_input);
+	  }
+	  else if (c == '\b')
+		  _input.erase(_input.end() - 1);
   }
   return (true);
 }

@@ -23,6 +23,7 @@ public:
   Menu();
   ~Menu();
 
+  void reset();
   bool loadFromFile(const std::string &file);
   void parseMenu(pugi::xml_node menu);
   MenuItem *parseItem(pugi::xml_node &item, const size_t &index);
