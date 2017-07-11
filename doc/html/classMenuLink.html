@@ -110,6 +110,12 @@ Collaboration diagram for MenuLink:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a8b818c37252748dd5c248408a085a48e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b818c37252748dd5c248408a085a48e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setMenuHandle</b> (<a class="el" href="classMenu.html">Menu</a> *menu)</td></tr>
+<tr class="separator:a8b818c37252748dd5c248408a085a48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187a0d40341bf1a094af054c47a804aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a187a0d40341bf1a094af054c47a804aa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (const std::string &amp;target)</td></tr>
+<tr class="separator:a187a0d40341bf1a094af054c47a804aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aead63aac98e3b371551415ac15161449"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aead63aac98e3b371551415ac15161449"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCustomAction</b> (void(*fptr)(void *), void *cparam)</td></tr>
 <tr class="separator:aead63aac98e3b371551415ac15161449"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,6 +129,9 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onHover</b> (
 <tr class="memitem:a4c2eaee3d8b9cfca3f3fad643ae52db9 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c2eaee3d8b9cfca3f3fad643ae52db9"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isHovered</b> () const </td></tr>
 <tr class="separator:a4c2eaee3d8b9cfca3f3fad643ae52db9 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70192f788891a62ee93dc2bb9bab7782 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70192f788891a62ee93dc2bb9bab7782"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValueHovered</b> () const </td></tr>
+<tr class="separator:a70192f788891a62ee93dc2bb9bab7782 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9c91802e884fb71f44c43044defb132 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c91802e884fb71f44c43044defb132"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setLabel</b> (const std::string &amp;label)</td></tr>
 <tr class="separator:ae9c91802e884fb71f44c43044defb132 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,6 +153,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setYOffset</b
 <tr class="memitem:a4a8c4edcb5d83ef32d54a897816d06aa inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a8c4edcb5d83ef32d54a897816d06aa"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setOffset</b> (const int &amp;x, const int &amp;y)</td></tr>
 <tr class="separator:a4a8c4edcb5d83ef32d54a897816d06aa inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f23be00dc774bf15f90494635dc856b inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f23be00dc774bf15f90494635dc856b"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onValueHover</b> (const bool &amp;triggered)</td></tr>
+<tr class="separator:a1f23be00dc774bf15f90494635dc856b inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee796e7143ae248b78cd9f45eb1ff3a8 inherit pub_methods_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee796e7143ae248b78cd9f45eb1ff3a8"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Event &amp;e)</td></tr>
 <tr class="separator:aee796e7143ae248b78cd9f45eb1ff3a8 inherit pub_methods_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,6 +187,9 @@ sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>_label</b></td></
 <tr class="memitem:a817ea1eb3f4ff7a63378e0ea77df0965 inherit pro_attribs_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a817ea1eb3f4ff7a63378e0ea77df0965"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_hover</b></td></tr>
 <tr class="separator:a817ea1eb3f4ff7a63378e0ea77df0965 inherit pro_attribs_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf3e9e7a69c52622272bfff131404b9 inherit pro_attribs_classMenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bf3e9e7a69c52622272bfff131404b9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_vhover</b></td></tr>
+<tr class="separator:a8bf3e9e7a69c52622272bfff131404b9 inherit pro_attribs_classMenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classMenu.html" title="Simple class for generating menus. ">Menu</a> link to another menu or action. </p>
