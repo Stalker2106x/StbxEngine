@@ -29,6 +29,7 @@ public:
   void parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
   void parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
   void parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+  void parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
   void parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 
   bool update(sf::Event &e);

@@ -74,6 +74,8 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
 	  parseSetting(item, pItem, index);
   else if (type == DynamicSetting)
 	  parseDynamicSetting(item, pItem, index);
+  else if (type == Edit)
+	  parseEdit(item, pItem, index);
   else if (type == Slider)
 	  parseSlider(item, pItem, index);
   if (item.child("color"))
@@ -124,6 +126,14 @@ void Menu::parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size
 
 	if (item.attribute("filler"))
 		sItem->setValues(dynamicValue[item.attribute("filler").value()]);
+}
+
+void Menu::parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+{
+	MenuEdit *sItem = dynamic_cast<MenuEdit *>(pItem);
+
+	if (item.child("inputlength"))
+		sItem->setInputLength(atoi(item.child_value("inputlength")));
 }
 
 void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)

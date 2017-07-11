@@ -17,6 +17,8 @@
   </item>
   <item type="Edit">
     <label>Pseudo</label>
+    <padding>125</padding>
+    <inputlength>25</inputlength>
   </item>
   <item type="Slider">
     <label>Volume</label>

@@ -142,10 +142,21 @@ public:
   MenuEdit();
   ~MenuEdit();
 
+  virtual void setFontsize(const int &fontsize);
+  virtual void setXOffset(const int &x);
+  virtual void setYOffset(const int &y);
+  void setInputLength(const int &length);
+
   void onClick();
   
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
+private:
+	bool _focus;
+	unsigned int _maxLength;
+	std::string _input;
+	sf::Text _value;
+	sf::RectangleShape _container;
 };
 
 /*!

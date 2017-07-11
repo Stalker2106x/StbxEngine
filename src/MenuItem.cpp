@@ -16,6 +16,7 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
 MenuItem::MenuItem()
 {
   _hover = false;
+  _padding = 0;
   _label.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
@@ -295,12 +296,35 @@ MenuDynamicSetting::~MenuDynamicSetting()
 
 MenuEdit::MenuEdit() : MenuItem()
 {
-
+	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
 MenuEdit::~MenuEdit()
 {
 
+}
+
+void MenuEdit::setFontsize(const int &fontsize)
+{
+	MenuItem::setFontsize(fontsize);
+	_container.setSize(sf::Vector2f(_container.getSize().x, _label.getGlobalBounds().height));
+}
+
+void MenuEdit::setXOffset(const int &x)
+{
+	MenuItem::setXOffset(x);
+	_container.setPosition(x + _label.getLocalBounds().width + _padding, _container.getPosition().y);
+}
+
+void MenuEdit::setYOffset(const int &y)
+{
+	MenuItem::setYOffset(y);
+	_container.setPosition(_container.getPosition().x, y);
+}
+
+void MenuEdit::setInputLength(const int &length)
+{
+	_container.setSize(sf::Vector2f(length, _container.getSize().y));
 }
 
 void MenuEdit::onClick()
@@ -311,12 +335,32 @@ void MenuEdit::onClick()
 bool MenuEdit::update(sf::Event &e)
 {
   MenuItem::update(e);
+  if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
+  {
+	  if (_container.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
+	  {
+		  _focus = true;
+		  _input += "_";
+	  }
+	  else
+	  {
+		  _focus = false;
+		  _input.erase(_input.back());
+	  }
+	  _value.setString(_input);
+  }
+  if (_focus)
+  {
+	  --(_input.back()).insert(Engine::getChar();
+  }
   return (true);
 }
 
 void MenuEdit::draw(sf::RenderWindow *win)
 {
 	MenuItem::draw(win);
+	win->draw(_container);
+	win->draw(_value);
 }
 /*
  * MenuSlider
