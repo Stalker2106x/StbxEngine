@@ -1,5 +1,6 @@
 /*!
 * @file      Resolver.hh
+* @class     Resolver
 * @brief     Resource resolving utility: get resource of given type by its name
 *
 *            This static class provide a resource resolver.
