@@ -1,5 +1,6 @@
 #include <fstream>
 #include "Menu.hh"
+#include "Resolver.hh"
 #include "Engine.hpp"
 
 std::unordered_map<std::string, std::pair<menuFptr, void *>> Menu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
@@ -53,6 +54,8 @@ void Menu::parseMenu(pugi::xml_node menu)
 {
 	if (menu.child("title"))
 		_title.setString(menu.child_value("title"));
+	if (menu.child("background"))
+		setBackground(menu.child_value("background"));
 	if (menu.child("spacing"))
 		_spacing = atoi(menu.child_value("spacing"));
 	if (menu.child("fontsize"))
@@ -149,6 +152,11 @@ void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* i
 	sItem->setBarColor(barColor, fillColor);
 }
 
+void Menu::setBackground(const std::string &resource)
+{
+	_background.setTexture(*Resolver<sf::Texture>::resolve("background"));
+}
+
 bool Menu::update(sf::Event &e)
 {
   for (size_t i = 0; i < _items.size(); i++)
@@ -158,6 +166,7 @@ bool Menu::update(sf::Event &e)
 
 void Menu::draw(sf::RenderWindow *win)
 {
+  win->draw(_background);
   win->draw(_title);
   for (size_t i = 0; i < _items.size(); i++)
     _items[i]->draw(win);

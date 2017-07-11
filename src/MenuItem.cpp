@@ -240,6 +240,12 @@ bool MenuSetting::onValueHover(const bool &triggered)
 		_vhover = true;
 	else
 		_vhover = false;
+	sf::Color color = _value.getFillColor();
+
+	color.r = ~color.r;
+	color.g = ~color.g;
+	color.b = ~color.b;
+	_value.setFillColor(color);
 	return (true);
 }
 
