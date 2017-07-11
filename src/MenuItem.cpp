@@ -122,7 +122,8 @@ bool MenuItem::update(sf::Event &e)
 {
   if (e.type == sf::Event::MouseMoved)
     {
-		if (_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+		if (Engine::
+			_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
 			onHover(true);
 		else
 			onHover(false);

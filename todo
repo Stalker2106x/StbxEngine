@@ -2,9 +2,13 @@ BUG:
 -screenshot command is unable to write
 -when console is toggled, first char should not count if key is ascii.
 -show usage on errors
+-link hover state does not update on creation
+-cannot delete char in menuedit
+-fill bar of menuslider goes out of range on x max
+
 
 FEATURE:
-1-Add a Module MENU!!!
+1-add param xml "command" to bind command to link
 2-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
 3-add a command "alias" to set shorter commands aliases
 
@@ -12,4 +16,3 @@ EXTENDABLE:
 -add a command "sound_stop" to stop all sounds, "sound_volume" etc...
 -add a support for copy paste { needs cross platform abstraction }
 -add a HUD layer { commmand "hud_show" to enable, command "hud_color" to set color }
-
