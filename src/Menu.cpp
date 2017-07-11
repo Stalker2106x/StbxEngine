@@ -87,7 +87,7 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
   else if (type == Slider)
 	  parseSlider(item, pItem, index);
   if (item.child("color"))
-	  pItem->setColor(Console::convertColorCode(item.child_value("color"), "#"));
+	  pItem->setColor(*Console::convertColorCode(item.child_value("color"), "#"));
   else
 	  pItem->setColor(sf::Color::White);
   if (item.child("padding"))
@@ -148,7 +148,7 @@ void Menu::parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 	if (item.child("inputlength"))
 		sItem->setInputLength(atoi(item.child_value("inputlength")));
 	if (item.child("inputcolor"))
-		inputColor = &Console::convertColorCode(item.child_value("inputcolor"), "#");
+		inputColor = Console::convertColorCode(item.child_value("inputcolor"), "#");
 	sItem->setColor(inputColor, valueColor);
 }
 
@@ -159,9 +159,9 @@ void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* i
 	sf::Color *fillColor = NULL;
 
 	if (item.child("bcolor"))
-		barColor = &Console::convertColorCode(item.child_value("bcolor"), "#");
+		barColor = Console::convertColorCode(item.child_value("bcolor"), "#");
 	if (item.child("fcolor"))
-		fillColor = &Console::convertColorCode(item.child_value("fcolor"), "#");
+		fillColor = Console::convertColorCode(item.child_value("fcolor"), "#");
 	sItem->setBarColor(barColor, fillColor);
 }
 

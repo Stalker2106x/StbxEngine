@@ -290,8 +290,8 @@ namespace Commands {
     if (argv == NULL || argv->size() < 2
 	|| (*argv)[0].length() < 9 || (*argv)[1].length() < 9)
       Engine::console->output(COLOR_ERROR, "con_color: Invalid colors or no colors given");
-    cbg = Console::convertColorCode((*argv)[0]);
-    cinput = Console::convertColorCode((*argv)[1]);
+    cbg = *Console::convertColorCode((*argv)[0]);
+    cinput = *Console::convertColorCode((*argv)[1]);
     Engine::console->setColor(cbg, cinput);
   }
 
