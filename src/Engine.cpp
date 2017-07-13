@@ -2,6 +2,7 @@
 
 Keybinds *Engine::keybinds = new Keybinds();
 Console *Engine::console = NULL;
+HUD *Engine::hud = new HUD();
 Engine *Engine::instance = NULL;
 
 Engine::Engine(int width, int height)
@@ -18,7 +19,7 @@ Engine::Engine(int width, int height)
 
 Engine::~Engine()
 {
-
+	delete (_win);
 }
 
 bool Engine::openWindow(int width, int height)
@@ -104,12 +105,6 @@ sf::Image Engine::capture()
   return (screen);
 }
 
-void Engine::graphicsLoop()
-{
-  if (Engine::console->isActive())
-    Engine::console->draw(_win);
-}
-
 bool Engine::updateLoop()
 {
   sf::Event event;
@@ -121,9 +116,12 @@ bool Engine::updateLoop()
 		  _win->close();
 		  return (false);
 		}
-		  Engine::console->update(event);
-		  keybinds->update(event);
-		  if (update(event) == false)
+		if (Engine::console->isActive())
+			Engine::console->update(event);
+		if (Engine::hud->isActive())
+			Engine::hud->update(event);
+		keybinds->update(event);
+		if (update(event) == false)
 		{
 		  _win->close();
 		  return (false);
@@ -137,23 +135,29 @@ int Engine::mainLoop()
   while (!_quit && _win->isOpen() && updateLoop())
     {
       _win->clear(sf::Color::Black);
-      graphicsLoop();
-      draw();
+	  draw();
+	  if (Engine::hud->isActive())
+		  Engine::hud->draw(_win);
+	  if (Engine::console->isActive())
+		  Engine::console->draw(_win);
       _win->display();
     }
   return (0);
 }
 
-char Engine::getChar(sf::Event event, CharType type, bool useBinds)
+char Engine::getChar(sf::Event event, CharType type)
 {
-  if ((event.key.code == sf::Keyboard::Return || event.type != sf::Event::TextEntered)
-    || (!useBinds && keybinds->isBound(Control("", event.key.code))))
-    return ('\0');
-  if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
-      return (event.text.unicode);
-  if ((event.text.unicode >= ' ' && event.text.unicode <= '~') && (type == alphanumeric || type == alphabetic))
-      return (event.text.unicode);
-  return ('\0');
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+		return ('\n');
+	else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::BackSpace)
+		return ('\b');
+	if (event.type != sf::Event::TextEntered)
+		return ('\0');
+	if ((event.text.unicode >= '0' && event.text.unicode <= '9') && (type == numeric || type == alphanumeric))
+		return (event.text.unicode);
+	if ((event.text.unicode >= ' ' && event.text.unicode <= '~') && (type == alphanumeric || type == alphabetic))
+		return (event.text.unicode);
+	return ('\0');
 }
 
 struct tm *Engine::getTime()

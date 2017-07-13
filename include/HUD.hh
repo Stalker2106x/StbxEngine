@@ -20,8 +20,19 @@
 class HUDSIndicator
 {
 public:
-	HUDSIndicator() {};
-	virtual ~HUDSIndicator() {};
+	HUDSIndicator(std::string *label);
+	~HUDSIndicator();
+
+	void toggle();
+	void setFontsize(const int &fontSize);
+	void setPosition(const sf::Vector2f &pos);
+	bool update(const sf::Event &e);
+	void draw(sf::RenderWindow *win);
+
+protected:
+	bool _active;
+	sf::Text *_label;
+	sf::Text _value;
 };
 
 /*!
@@ -35,17 +46,16 @@ class HUDIndicator : public HUDSIndicator
 {
 
 public:
-	HUDIndicator(const std::string *label, const T &var)
+	HUDIndicator(const std::string *label, const T &var) : HUDSIndicator(label)
 	{
-		_label = label;
 		_hook = var;
 	}
 
-	~HUDIndicator();
+	~HUDIndicator()
+	{
+	}
 
 private:
-	sf::Text *_label;
-	sf::Text _value;
 	T &_hook;
 };
 
@@ -58,27 +68,39 @@ private:
 class HUDPanel
 {
 public:
-	HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size);
-
+	HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &color);
+	HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &name);
 	~HUDPanel();
 
-private:
+	void toggle();
+
+	virtual bool update(const sf::Event &e);
+	virtual void draw(sf::RenderWindow *win);
+
+protected:
+	bool _active;
 	sf::Sprite _frame;
 };
 
 /*!
-* @class HUDDynamicPanel
+* @class HUDDraggablePanel
 * @brief Draggable implementation of panel
 *
 *        This class is a Panel, that can be moved around in interface.
 */
-class HUDDynamicPanel : public HUDPanel
+class HUDDraggablePanel : public HUDPanel
 {
 public:
-	HUDDynamicPanel();
-	~HUDDynamicPanel();
+	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &headerColor, const sf::Color &frameColor);
+	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &headerResource, const std::string &frameResource);
+	~HUDDraggablePanel();
+
+	virtual bool update(const sf::Event &e);
+	virtual void draw(sf::RenderWindow *win);
 
 private:
+	bool _dragging;
+	sf::Sprite _header;
 };
 
 /*!
@@ -93,9 +115,25 @@ public:
 	HUD();
 	~HUD();
 
+	bool isActive();
+
 	void toggle();
-	void addPanel();
-	void addIndicator();
+
+	void addPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &color);
+	void addPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &resource);
+	void addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &headerColor, const sf::Color &frameColor);
+	void addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &headerResource, const std::string &frameResource);
+	template <typename T>
+	void addIndicator(const sf::Vector2f &pos, const int &fontSize, std::string *label, T &var)
+	{
+		_indicators.push_back(new HUDIndicator<T>(label, var));
+		_indicators.back()->setPosition(pos);
+		_indicators.back()->setFontsize(fontSize);
+
+	}
+
+	void toggleHidePanel(const int &id);
+	void toggleHideIndicator(const int &id);
 
 	bool update(sf::Event &e);
 	void draw(sf::RenderWindow *win);

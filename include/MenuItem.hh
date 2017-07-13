@@ -188,7 +188,7 @@ public:
 
   void onClick() {};
 
-  void updateSlider(sf::Event &e);
+  void updateSlider(sf::Event &e, bool forceupdate = false);
   virtual bool update(sf::Event &e);
   virtual void draw(sf::RenderWindow *);
 private:

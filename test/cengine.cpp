@@ -15,6 +15,7 @@ sEngine::sEngine()
 	Menu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu));
 	Menu::dynamicValue.emplace("Resolutions", resolutions);
 	_mainMenu.loadFromFile("./Data/menu/main.xml");
+	hud->addDraggablePanel(sf::Vector2f(0, 0), sf::Vector2f(400, 200), sf::Color::Cyan, sf::Color::Blue);
 }
 
 bool sEngine::update(sf::Event &e)

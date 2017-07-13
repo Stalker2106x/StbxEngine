@@ -205,23 +205,31 @@ void Console::input()
 
 void Console::updateInput(const sf::Event &event)
 {
-  std::string::iterator it;
-  char c;
+	char c;
 
-  c = Engine::getChar(event, alphanumeric, false);
-  if (c != '\0')
-    {
-      if (_currentIndex != _input.size() - 1)
+	c = Engine::getChar(event, alphanumeric);
+	if (c == '\b')
 	{
-	  _input.back() = _input[_currentIndex];
-	  _currentIndex = _input.size() - 1;
-	  _cursorIndex = _input.back().size();
+		if (_input[_currentIndex].length() > 0)
+			_input[_currentIndex].erase((_cursorIndex--) - 1, 1);
 	}
-      it = _input.back().begin();
-      std::advance(it, _cursorIndex);
-      _input.back().insert(it, c);
-      _cursorIndex++;
-    }
+	else if (c == '\n')
+		return;
+	else if (c != '\0')
+	{
+		std::string::iterator it;
+
+		if (_currentIndex != _input.size() - 1)
+		{
+			_input.back() = _input[_currentIndex];
+			_currentIndex = _input.size() - 1;
+			_cursorIndex = _input.back().size();
+		}
+		it = _input.back().begin();
+		std::advance(it, _cursorIndex);
+		_input.back().insert(it, c);
+		_cursorIndex++;
+	}
   updateInputValue();
 }
 
@@ -248,9 +256,7 @@ void Console::updateOutput()
 void Console::updateKeyboard(const sf::Event &event)
 {
   if (event.key.code == sf::Keyboard::Return)
-    input();
-  else if (event.key.code == sf::Keyboard::BackSpace && _input[_currentIndex].length() > 0)
-    _input[_currentIndex].erase((_cursorIndex--) - 1, 1);
+    input();  
   else if (event.key.code == sf::Keyboard::Delete && _cursorIndex - _input[_currentIndex].size() > 0)
     _input[_currentIndex].erase(_cursorIndex, 1);
   else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
@@ -275,8 +281,7 @@ void Console::update(const sf::Event &event)
     return;
   if (event.type == sf::Event::KeyPressed)
     updateKeyboard(event);
-  else if (event.type == sf::Event::TextEntered)
-    updateInput(event);
+   updateInput(event);
 }
 
 void Console::draw(sf::RenderWindow *win)

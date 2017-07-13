@@ -122,8 +122,7 @@ bool MenuItem::update(sf::Event &e)
 {
   if (e.type == sf::Event::MouseMoved)
     {
-		if (Engine::
-			_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+		if (_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
 			onHover(true);
 		else
 			onHover(false);
@@ -396,14 +395,23 @@ bool MenuEdit::update(sf::Event &e)
   if (_focus)
   {
 	  char c;
-
-	  if ((c = Engine::getChar(e, alphanumeric)) != '\0')
+	  
+	  c = Engine::getChar(e, alphanumeric);
+	  if (c == '\b')
+	  {
+		  if (_input.length() > 1)
+			_input.erase(_input.end() - 2);
+	  }
+	  else if (c == '\n')
+	  {
+		  _input.pop_back();
+		  _focus = false;
+	  }
+	  else if (c != '\0')
 	  {
 		  _input.insert(_input.end() - 1, c);
-		  _value.setString(_input);
 	  }
-	  else if (c == '\b')
-		  _input.erase(_input.end() - 1);
+	  _value.setString(_input);
   }
   return (true);
 }
@@ -421,7 +429,7 @@ void MenuEdit::draw(sf::RenderWindow *win)
 MenuSlider::MenuSlider() : MenuItem()
 {
 	setRange(0, 100);
-	_bar.setSize(sf::Vector2f(100, 10));
+	_bar.setSize(sf::Vector2f(102, 10));
 	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
 	_bar.setFillColor(sf::Color(100, 250, 50));
 	_fill.setFillColor(sf::Color(100, 0, 250));
@@ -473,9 +481,9 @@ int MenuSlider::getValue()
 	return (_value);
 }
 
-void MenuSlider::updateSlider(sf::Event &e)
+void MenuSlider::updateSlider(sf::Event &e, bool forceupdate)
 {
-	if (_sliding && e.type == sf::Event::MouseMoved)
+	if (_sliding && (e.type == sf::Event::MouseMoved || forceupdate))
 	{
 		_value = sf::Mouse::getPosition(*Engine::instance->getWindowHandle()).x - _bar.getPosition().x;
 		if (_value < _range[0])
@@ -493,7 +501,10 @@ bool MenuSlider::update(sf::Event &e)
   if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
   {
 	  if (_bar.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
+	  {
 		  _sliding = true;
+		  updateSlider(e, true);
+	  }
   }
   else if (e.type == sf::Event::MouseButtonReleased && e.key.code == sf::Mouse::Left)
   {
