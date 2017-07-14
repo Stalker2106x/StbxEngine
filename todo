@@ -3,9 +3,8 @@ BUG:
 -when console is toggled, first char should not count if key is ascii.
 -show usage on errors
 -link hover state does not update on creation
--cannot delete char in menuedit
 -fill bar of menuslider goes out of range on x max
-
+-add a method in engine to get mouse position relative to window
 
 FEATURE:
 1-add param xml "command" to bind command to link

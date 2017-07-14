@@ -25,8 +25,7 @@ namespace Commands {
     {"fps_max", &setMaxFPS},
     {"fullscreen", &setFullscreen},
     {"help", &help},
-	{"hud_togglepanel", &toggleHUDPanel},
-	{"hud_toggleindicator", &toggleHUDIndicator},
+	{"hud_toggleelement", &toggleHUDElement},
 	{ "log_enable", &toggleConLog },
     {"log_write", &writeToLog},
     {"log_file", &setConLog},
@@ -226,24 +225,14 @@ namespace Commands {
     Engine::console->setLogFile((*argv)[0]);
   }
 
-  void toggleHUDPanel(Engine &, std::vector<std::string> *argv)
+  void toggleHUDElement(Engine &, std::vector<std::string> *argv)
   {
 	  if (argv == NULL || argv->size() < 1)
 	  {
-		  Engine::console->output(COLOR_ERROR, "hud_togglepanel: No id given");
+		  Engine::console->output(COLOR_ERROR, "hud_toggleelement: No id given");
 		  return;
 	  }
-	  Engine::hud->toggleHidePanel(atoi((*argv)[0].c_str()));
-  }
-
-  void toggleHUDIndicator(Engine &, std::vector<std::string> *argv)
-  {
-	  if (argv == NULL || argv->size() < 1)
-	  {
-		  Engine::console->output(COLOR_ERROR, "hud_togglepanel: No id given");
-		  return;
-	  }
-	  Engine::hud->toggleHideIndicator(atoi((*argv)[0].c_str()));
+	  Engine::hud->toggleHideElement(atoi((*argv)[0].c_str()));
   }
 
   void timestampLog(Engine &, std::vector<std::string> *argv)

@@ -155,11 +155,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
+    <ClCompile Include="..\..\include\HUDElement.hh" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
     <ClCompile Include="..\..\src\Control.cpp" />
     <ClCompile Include="..\..\src\HUD.cpp" />
     <ClCompile Include="..\..\src\Engine.cpp" />
+    <ClCompile Include="..\..\src\HUDElement.cpp" />
     <ClCompile Include="..\..\src\Keybinds.cpp" />
     <ClCompile Include="..\..\src\Menu.cpp" />
     <ClCompile Include="..\..\src\MenuItem.cpp" />
