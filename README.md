@@ -9,6 +9,14 @@ StbxEngine is a basic implementation of Game Engine; with a modular pattern. It 
 
 This projects aims to give developers a way to program video games with basic C++ Knowledge
 
+## Build Status ##
+
+You can check build status for latest version [at this address](http://vault.maximemartens.fr/stbxengine/)
+
+## Documentation ##
+
+This library is documented online [at this address](http://vault.maximemartens.fr/stbxengine/doc/)
+
 ## License ##
 
 This library is released under MIT License
@@ -23,7 +31,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## Dependencies ##
 + PugiXML for XML Parsing
 + SFML for Graphics and Window
-++ Optionally OpenGL for rendering 3D context
+  * Optionally OpenGL for rendering 3D context
 
 ### Getting started ###
 
