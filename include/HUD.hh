@@ -100,6 +100,7 @@ public:
 
 private:
 	bool _dragging;
+	sf::Vector2f _dragOffset;
 	sf::Sprite _header;
 };
 

@@ -103,14 +103,24 @@ void HUDPanel::draw(sf::RenderWindow *win)
 // HUDDynamicPanel
 //
 
-HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor) : HUDPanel(pos, size, frameColor)
+HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
+	: HUDPanel(pos + sf::Vector2f(0, 15), size, frameColor)
 {
+	sf::Texture ctexture;
+
 	_dragging = false;
+	_header.setPosition(pos);
+	ctexture.create(size.x, 15);
+	_header.setTexture(ctexture);
+	_header.setColor(headerColor);
 }
 
-HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource) : HUDPanel(pos, size, frameResource)
+HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
+	: HUDPanel(pos + sf::Vector2f(0, 15), size, frameResource)
 {
 	_dragging = false;
+	_header.setPosition(pos);
+	_header.setTexture(*Resolver<sf::Texture>::resolve(headerResource));
 }
 
 
@@ -124,8 +134,12 @@ bool HUDDraggablePanel::update(const sf::Event &e)
 	HUDPanel::update(e);
 	if (e.type == sf::Event::MouseButtonPressed)
 	{
-		if (!_dragging && e.key.code == sf::Mouse::Left && _header.getLocalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
+		if (!_dragging && e.key.code == sf::Mouse::Left && _header.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
+		{
 			_dragging = true;
+			_dragOffset = sf::Vector2f(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()).x - _header.getGlobalBounds().left, 
+				sf::Mouse::getPosition(*Engine::instance->getWindowHandle()).y - _header.getGlobalBounds().top);
+		}
 	}
 	else if (e.type == sf::Event::MouseButtonReleased)
 	{
@@ -134,16 +148,17 @@ bool HUDDraggablePanel::update(const sf::Event &e)
 	}
 	if (_dragging && e.type == sf::Event::MouseMoved)
 	{
-		_header.move(e.mouseMove.x, e.mouseMove.y);
-		_frame.move(e.mouseMove.x, e.mouseMove.y);
+		_header.setPosition(e.mouseMove.x - _dragOffset.x, e.mouseMove.y - _dragOffset.y);
+		_frame.setPosition(e.mouseMove.x - _dragOffset.x, e.mouseMove.y - _dragOffset.y + _header.getLocalBounds().height);
 	}
 	return (true);
 }
 
 void HUDDraggablePanel::draw(sf::RenderWindow *win)
 {
+	if (_active)
+		win->draw(_header);
 	HUDPanel::draw(win);
-	win->draw(_header);
 }
 
 //
@@ -207,6 +222,10 @@ void HUD::toggleHideIndicator(const int &id)
 
 bool HUD::update(sf::Event &e)
 {
+	for (size_t i = 0; i < _panels.size(); i++)
+		_panels[i]->update(e);
+	for (size_t i = 0; i < _indicators.size(); i++)
+		_indicators[i]->update(e);
 	return (true);
 }
 
