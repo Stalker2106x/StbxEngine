@@ -45,9 +45,9 @@ public:
   void setPadding(const int &padding);
   virtual void setColor(const sf::Color &color);
   virtual void setFontsize(const int &size);
-  virtual void setXOffset(const int &x);
-  virtual void setYOffset(const int &y);
-  virtual void setOffset(const int &x, const int &y);
+  virtual void setXOffset(const float &x);
+  virtual void setYOffset(const float &y);
+  virtual void setOffset(const float &x, const float &y);
 
   virtual bool onValueHover(const bool &triggered);
   virtual bool onHover(const bool &triggered);
@@ -108,8 +108,8 @@ public:
   bool onValueHover(const bool &triggered);
 
   virtual void setFontsize(const int &size);
-  virtual void setXOffset(const int &x);
-  virtual void setYOffset(const int &y);
+  virtual void setXOffset(const float &x);
+  virtual void setYOffset(const float &y);
   void setValues(std::vector<std::string> &values, const int &defaultIndex = 0);
   int getCurrentIndex();
 
@@ -149,10 +149,10 @@ public:
   ~MenuEdit();
 
   virtual void setFontsize(const int &fontsize);
-  virtual void setXOffset(const int &x);
-  virtual void setYOffset(const int &y);
+  virtual void setXOffset(const float &x);
+  virtual void setYOffset(const float &y);
   void setColor(sf::Color *inputColor, sf::Color *valueColor);
-  void setInputLength(const int &length);
+  void setInputLength(const float &length);
 
   void onClick();
   
@@ -179,8 +179,8 @@ public:
   ~MenuSlider();
 
   void setRange(const int &min, const int &max);
-  void setXOffset(const int &x);
-  void setYOffset(const int &y);
+  void setXOffset(const float &x);
+  void setYOffset(const float &y);
   void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
   void setFontsize(const int &fontsize);
 

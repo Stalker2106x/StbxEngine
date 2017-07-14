@@ -93,11 +93,11 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
   if (item.child("padding"))
 	  pItem->setPadding(atoi(item.child_value("padding")));
   if (item.child("x"))
-	  pItem->setXOffset(atoi(item.child_value("x")));
+	  pItem->setXOffset(atof(item.child_value("x")));
   else
 	  pItem->setXOffset(50);
   if (item.child("y"))
-	  pItem->setXOffset(atoi(item.child_value("y")));
+	  pItem->setXOffset(atof(item.child_value("y")));
   else
 	  pItem->setYOffset(_spacing + (index * _spacing));
   return (pItem);
@@ -146,7 +146,7 @@ void Menu::parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 	sf::Color *valueColor = NULL;
 
 	if (item.child("inputlength"))
-		sItem->setInputLength(atoi(item.child_value("inputlength")));
+		sItem->setInputLength(atof(item.child_value("inputlength")));
 	if (item.child("inputcolor"))
 		inputColor = Console::convertColorCode(item.child_value("inputcolor"), "#");
 	sItem->setColor(inputColor, valueColor);

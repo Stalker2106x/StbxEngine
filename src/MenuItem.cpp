@@ -80,17 +80,17 @@ void MenuItem::setFontsize(const int &fontsize)
 	_label.setCharacterSize(fontsize);
 }
 
-void MenuItem::setXOffset(const int &x)
+void MenuItem::setXOffset(const float &x)
 {
 	_label.setPosition(x, _label.getPosition().y);
 }
 
-void MenuItem::setYOffset(const int &y)
+void MenuItem::setYOffset(const float &y)
 {
 	_label.setPosition(_label.getPosition().x, y);
 }
 
-void MenuItem::setOffset(const int &x, const int &y)
+void MenuItem::setOffset(const float &x, const float &y)
 {
   _label.setPosition(x, y);
 }
@@ -104,6 +104,7 @@ bool MenuItem::onValueHover(const bool &triggered)
 		_vhover = true;
 	else
 		_vhover = false;
+	return (true);
 }
 
 bool MenuItem::onHover(const bool &triggered)
@@ -220,13 +221,13 @@ void MenuSetting::setFontsize(const int &fontsize)
 	_value.setCharacterSize(fontsize);
 }
 
-void MenuSetting::setXOffset(const int &x)
+void MenuSetting::setXOffset(const float &x)
 {
 	MenuItem::setXOffset(x);
 	_value.setPosition(x + _label.getLocalBounds().width + _padding, _value.getPosition().y);
 }
 
-void MenuSetting::setYOffset(const int &y)
+void MenuSetting::setYOffset(const float &y)
 {
 	MenuItem::setYOffset(y);
 	_value.setPosition(_value.getPosition().x, y);
@@ -342,7 +343,7 @@ void MenuEdit::setFontsize(const int &fontsize)
 	_container.setSize(sf::Vector2f(_container.getSize().x, _label.getGlobalBounds().height));
 }
 
-void MenuEdit::setXOffset(const int &x)
+void MenuEdit::setXOffset(const float &x)
 {
 	MenuItem::setXOffset(x);
 
@@ -350,7 +351,7 @@ void MenuEdit::setXOffset(const int &x)
 	_container.setPosition(x + _label.getLocalBounds().width + _padding, _container.getPosition().y);
 }
 
-void MenuEdit::setYOffset(const int &y)
+void MenuEdit::setYOffset(const float &y)
 {
 	MenuItem::setYOffset(y);
 	_value.setPosition(_container.getPosition().x, y + 1);
@@ -365,7 +366,7 @@ void MenuEdit::setColor(sf::Color *inputColor, sf::Color *valueColor)
 		_value.setFillColor(*valueColor);
 }
 
-void MenuEdit::setInputLength(const int &length)
+void MenuEdit::setInputLength(const float &length)
 {
 	_container.setSize(sf::Vector2f(length, _container.getSize().y));
 }
@@ -454,14 +455,14 @@ MenuSlider::~MenuSlider()
 
 }
 
-void MenuSlider::setXOffset(const int &x)
+void MenuSlider::setXOffset(const float &x)
 {
 	MenuItem::setXOffset(x);
 	_bar.setPosition(x + _label.getLocalBounds().width + _padding, _bar.getPosition().y);
 	_fill.setPosition(x + _label.getLocalBounds().width + _padding + 1, _fill.getPosition().y);
 }
 
-void MenuSlider::setYOffset(const int &y)
+void MenuSlider::setYOffset(const float &y)
 {
 	MenuItem::setYOffset(y);
 	_bar.setPosition(_bar.getPosition().x, y);

@@ -58,7 +58,7 @@ void HUDSIndicator::draw(sf::RenderWindow *win)
 // HUDPanel
 //
 
-HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &color)
+HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color)
 {
 	sf::Texture ctexture;
 
@@ -70,7 +70,7 @@ HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::
 }
 
 
-HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &name)
+HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &name)
 {
 	_active = true;
 	_frame.setPosition(pos);
@@ -103,12 +103,12 @@ void HUDPanel::draw(sf::RenderWindow *win)
 // HUDDynamicPanel
 //
 
-HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &headerColor, const sf::Color &frameColor) : HUDPanel(pos, size, frameColor)
+HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor) : HUDPanel(pos, size, frameColor)
 {
 	_dragging = false;
 }
 
-HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &headerResource, const std::string &frameResource) : HUDPanel(pos, size, frameResource)
+HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource) : HUDPanel(pos, size, frameResource)
 {
 	_dragging = false;
 }
@@ -170,22 +170,22 @@ void HUD::toggle()
 	_active = (_active ? false : true);
 }
 
-void HUD::addPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &color)
+void HUD::addPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color)
 {
 	_panels.push_back(new HUDPanel(pos, size, color));
 }
 
-void HUD::addPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &resource)
+void HUD::addPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &resource)
 {
 	_panels.push_back(new HUDPanel(pos, size, resource));
 }
 
-void HUD::addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &headerColor, const sf::Color &frameColor)
+void HUD::addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
 {
 	_panels.push_back(new HUDDraggablePanel(pos, size, headerColor, frameColor));
 }
 
-void HUD::addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &headerResource, const std::string &frameResource)
+void HUD::addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
 {
 	_panels.push_back(new HUDDraggablePanel(pos, size, headerResource, frameResource));
 }

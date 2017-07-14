@@ -68,8 +68,8 @@ private:
 class HUDPanel
 {
 public:
-	HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &color);
-	HUDPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &name);
+	HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color);
+	HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &name);
 	~HUDPanel();
 
 	void toggle();
@@ -91,8 +91,8 @@ protected:
 class HUDDraggablePanel : public HUDPanel
 {
 public:
-	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &headerColor, const sf::Color &frameColor);
-	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &headerResource, const std::string &frameResource);
+	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
+	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 	~HUDDraggablePanel();
 
 	virtual bool update(const sf::Event &e);
@@ -119,10 +119,10 @@ public:
 
 	void toggle();
 
-	void addPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &color);
-	void addPanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &resource);
-	void addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const sf::Color &headerColor, const sf::Color &frameColor);
-	void addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2f &size, const std::string &headerResource, const std::string &frameResource);
+	void addPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color);
+	void addPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &resource);
+	void addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
+	void addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 	template <typename T>
 	void addIndicator(const sf::Vector2f &pos, const int &fontSize, std::string *label, T &var)
 	{
