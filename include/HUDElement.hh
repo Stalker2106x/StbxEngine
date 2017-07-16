@@ -9,6 +9,7 @@
 #define HUDELEMENT_HH_
 
 #include <SFML/Graphics.hpp>
+#include "Resolver.hh"
 
 
 /*!
@@ -20,14 +21,18 @@
 class HUDElement
 {
 public:
-	HUDElement();
+	HUDElement(const std::string &id);
 	~HUDElement() {};
 
-	void toggle();
+	virtual void toggle();
+	const std::string &getId();
+
+	virtual void setPosition(const sf::Vector2f &pos) = 0;
 
 	virtual bool update(const sf::Event &e) = 0;
 	virtual void draw(sf::RenderWindow *win) = 0;
 protected:
+	std::string _id;
 	bool _active;
 };
 
@@ -40,7 +45,7 @@ protected:
 class HUDSIndicator : public HUDElement
 {
 public:
-	HUDSIndicator(std::string *label);
+	HUDSIndicator(const std::string &label);
 	~HUDSIndicator();
 
 	void setFontsize(const int &fontSize);
@@ -49,8 +54,7 @@ public:
 	void draw(sf::RenderWindow *win);
 
 protected:
-	sf::Text *_label;
-	sf::Text _value;
+	sf::Text *_label, _value;
 };
 
 /*!
@@ -64,13 +68,21 @@ class HUDIndicator : public HUDSIndicator
 {
 
 public:
-	HUDIndicator(const std::string *label, const T &var) : HUDSIndicator(label)
+	HUDIndicator(T &var) : HUDSIndicator(""), _hook(var)
 	{
-		_hook = var;
+		_label = NULL;
+	}
+
+	HUDIndicator(const std::string &label, T &var) : HUDSIndicator(label), _hook(var)
+	{
+		_label = new sf::Text();
+		_label->setString(label);
+		_label->setFont(*Resolver<sf::Font>::resolve("glitch"));
 	}
 
 	~HUDIndicator()
 	{
+		delete (_label);
 	}
 
 private:
@@ -87,16 +99,19 @@ class HUDPanel : public HUDElement
 {
 public:
 	HUDPanel();
-	HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color);
-	HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &name);
+	HUDPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color);
+	HUDPanel(const std::string &id, const sf::Vector2i &size, const std::string &name);
 	~HUDPanel();
 	
-	void addElement(); //construct properly
+	virtual void setPosition(const sf::Vector2f &pos);
+
+	void addElement(HUDElement *element);
 
 	virtual bool update(const sf::Event &e);
 	virtual void draw(sf::RenderWindow *win);
 
 protected:
+	std::string _id;
 	sf::Sprite _frame;
 	std::vector<HUDElement *> _elements;
 };
@@ -119,13 +134,15 @@ enum PanelButton {
 class HUDDraggablePanel : public HUDPanel
 {
 public:
-	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
-	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
+	HUDDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
+	HUDDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 	~HUDDraggablePanel();
-	void initialUpdate(const sf::Vector2f &pos);
+	void initialUpdate();
 
 	void toggleLock();
+	virtual void toggle();
 
+	void setPosition(const sf::Vector2f &pos);
 	void setStyle(const char &style);
 	void movePanel(const sf::Vector2f &newpos);
 

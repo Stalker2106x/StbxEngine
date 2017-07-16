@@ -1,13 +1,7 @@
 BUG:
 -screenshot command is unable to write
--when console is toggled, first char should not count if key is ascii.
--show usage on errors
--link hover state does not update on creation
--fill bar of menuslider goes out of range on x max
--add a method in engine to get mouse position relative to window
 
 FEATURE:
-1-add param xml "command" to bind command to link
 2-add a command "debuginfo" to draw DEBUGINFO PANEL (extendable via c++)
 3-add a command "alias" to set shorter commands aliases
 

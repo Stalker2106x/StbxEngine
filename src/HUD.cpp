@@ -21,37 +21,52 @@ bool HUD::isActive()
 	return (_active);
 }
 
+HUDElement *HUD::getElement(const std::string &id)
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		if (_elements[i]->getId() == id)
+			return (_elements[i]);
+	}
+	return (NULL);
+}
+
 void HUD::toggle()
 {
 	_active = (_active ? false : true);
 }
 
-void HUD::addPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color)
+void HUD::addPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color)
 {
-	_elements.push_back(new HUDPanel(pos, size, color));
+	_elements.push_back(new HUDPanel(id, size, color));
 }
 
-void HUD::addPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &resource)
+void HUD::addPanel(const std::string &id, const sf::Vector2i &size, const std::string &resource)
 {
-	_elements.push_back(new HUDPanel(pos, size, resource));
+	_elements.push_back(new HUDPanel(id, size, resource));
 }
 
-void HUD::addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
+void HUD::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
 {
-	_elements.push_back(new HUDDraggablePanel(pos, size, headerColor, frameColor));
+	_elements.push_back(new HUDDraggablePanel(id, size, headerColor, frameColor));
 }
 
-void HUD::addDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
+void HUD::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
 {
-	_elements.push_back(new HUDDraggablePanel(pos, size, headerResource, frameResource));
+	_elements.push_back(new HUDDraggablePanel(id, size, headerResource, frameResource));
 }
 
-void HUD::toggleHideElement(const int &id)
+void HUD::toggleHideElement(const std::string &id)
 {
-	if (_elements.size() > id)
-		_elements[id]->toggle();
-	else
-		Engine::console->output(COLOR_ERROR, "Error: No HUD element with id: "+id);
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		if (_elements[i]->getId() == id)
+		{
+			_elements[i]->toggle();
+			return;
+		}
+	}
+	Engine::console->output(COLOR_ERROR, "Error: No HUD element with id: "+id);
 }
 
 bool HUD::update(sf::Event &e)

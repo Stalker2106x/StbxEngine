@@ -1,13 +1,13 @@
 #include "HUDElement.hh"
 #include "Engine.hpp"
-#include "Resolver.hh"
 
 //
 // HUDElement
 //
 
-HUDElement::HUDElement()
+HUDElement::HUDElement(const std::string &id)
 {
+	_id = id;
 	_active = true;
 }
 
@@ -16,19 +16,17 @@ void HUDElement::toggle()
 	_active = (_active ? false : true);
 }
 
+const std::string &HUDElement::getId()
+{
+	return (_id);
+}
+
 //
 // HUDSIndicator
 //
-HUDSIndicator::HUDSIndicator(std::string *label)
+HUDSIndicator::HUDSIndicator(const std::string &label) : HUDElement(label)
 {
-	_label = NULL;
-	_active = true;
-	if (label != NULL)
-	{
-		_label = new sf::Text();
-		_label->setString(*label);
-		delete (label);
-	}
+	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
 HUDSIndicator::~HUDSIndicator()
@@ -46,8 +44,9 @@ void HUDSIndicator::setFontsize(const int &fontSize)
 
 void HUDSIndicator::setPosition(const sf::Vector2f &pos)
 {
-	_label->setPosition(pos);
-	_value.setPosition(_label->getPosition() + sf::Vector2f(_label->getLocalBounds().width + 5, 0));
+	if (_label != NULL)
+		_label->setPosition(pos);
+	_value.setPosition(_label->getPosition() + sf::Vector2f(_label->getLocalBounds().width + 5, _label->getPosition().y));
 }
 
 bool HUDSIndicator::update(const sf::Event &e)
@@ -59,7 +58,8 @@ void HUDSIndicator::draw(sf::RenderWindow *win)
 {
 	if (!_active)
 		return;
-	win->draw(*_label);
+	if (_label != NULL)
+		win->draw(*_label);
 	win->draw(_value);
 }
 
@@ -67,25 +67,18 @@ void HUDSIndicator::draw(sf::RenderWindow *win)
 // HUDPanel
 //
 
-HUDPanel::HUDPanel()
-{
-
-}
-
-HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color) : HUDPanel()
+HUDPanel::HUDPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color) : HUDElement(id)
 {
 	sf::Texture ctexture;
 
-	_frame.setPosition(pos);
 	ctexture.create(size.x, size.y);
 	_frame.setTexture(ctexture);
 	_frame.setColor(color);
 }
 
 
-HUDPanel::HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &name) : HUDPanel()
+HUDPanel::HUDPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : HUDElement(id)
 {
-	_frame.setPosition(pos);
 	_frame.setTexture(*Resolver<sf::Texture>::resolve(name));
 }
 
@@ -94,8 +87,22 @@ HUDPanel::~HUDPanel()
 
 }
 
+void HUDPanel::setPosition(const sf::Vector2f &pos)
+{
+	_frame.setPosition(pos);
+}
+
+void HUDPanel::addElement(HUDElement *element)
+{
+	_elements.push_back(element);
+}
+
 bool HUDPanel::update(const sf::Event &e)
 {
+	if (!_active)
+		return (false);
+	for (size_t i = 0; i < _elements.size(); i++)
+		_elements[i]->update(e);
 	return (true);
 }
 
@@ -104,30 +111,30 @@ void HUDPanel::draw(sf::RenderWindow *win)
 	if (!_active)
 		return;
 	win->draw(_frame);
+	for (size_t i = 0; i < _elements.size(); i++)
+		_elements[i]->draw(win);
 }
 
 //
 // HUDDynamicPanel
 //
 
-HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
-	: HUDPanel(pos + sf::Vector2f(0, 15), size, frameColor)
+HUDDraggablePanel::HUDDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
+	: HUDPanel(id, size, frameColor)
 {
 	sf::Texture ctexture;
 
-	_header.setPosition(pos);
 	ctexture.create(size.x, 15);
 	_header.setTexture(ctexture);
 	_header.setColor(headerColor);
-	initialUpdate(pos);
+	initialUpdate();
 }
 
-HUDDraggablePanel::HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
-	: HUDPanel(pos + sf::Vector2f(0, 15), size, frameResource)
+HUDDraggablePanel::HUDDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
+	: HUDPanel(id, size, frameResource)
 {
-	_header.setPosition(pos);
 	_header.setTexture(*Resolver<sf::Texture>::resolve(headerResource));
-	initialUpdate(pos);
+	initialUpdate();
 }
 
 
@@ -136,7 +143,7 @@ HUDDraggablePanel::~HUDDraggablePanel()
 
 }
 
-void HUDDraggablePanel::initialUpdate(const sf::Vector2f &pos)
+void HUDDraggablePanel::initialUpdate()
 {
 	_lock = false;
 	_dragging = false;
@@ -145,13 +152,16 @@ void HUDDraggablePanel::initialUpdate(const sf::Vector2f &pos)
 	_bhover[Lock] = false;
 	_buttonBar[Close].setTexture(*Resolver<sf::Texture>::resolve("buttons"));
 	_buttonBar[Close].setTextureRect(sf::IntRect(0, 0, 16, 16));
-	_buttonBar[Close].setPosition(pos + sf::Vector2f(_header.getLocalBounds().width - _buttonBar[Close].getLocalBounds().width, 0));
 	_buttonBar[Lock].setTexture(*Resolver<sf::Texture>::resolve("buttons"));
 	_buttonBar[Lock].setTextureRect(sf::IntRect(32, 0, 16, 16));
-	_buttonBar[Lock].setPosition(pos + sf::Vector2f(_header.getLocalBounds().width -
-		(_buttonBar[Close].getLocalBounds().width + _buttonBar[Lock].getLocalBounds().width), 0));
 }
 
+void HUDDraggablePanel::toggle()
+{
+	HUDElement::toggle();
+	_dragging = false;
+	_lock = false;
+}
 
 void HUDDraggablePanel::toggleLock()
 {
@@ -162,6 +172,15 @@ void HUDDraggablePanel::toggleLock()
 		_buttonBar[Lock].setTextureRect(sf::IntRect(32, 0, 16, 16));
 }
 
+void HUDDraggablePanel::setPosition(const sf::Vector2f &pos)
+{
+	HUDPanel::setPosition(pos + sf::Vector2f(0, 15));
+	_header.setPosition(pos);
+	_buttonBar[Close].setPosition(pos + sf::Vector2f(_header.getLocalBounds().width - _buttonBar[Close].getLocalBounds().width, 0));
+	_buttonBar[Lock].setPosition(pos + sf::Vector2f(_header.getLocalBounds().width -
+		(_buttonBar[Close].getLocalBounds().width + _buttonBar[Lock].getLocalBounds().width), 0));
+	movePanel(pos);
+}
 void HUDDraggablePanel::setStyle(const char &style)
 {
 	_style = style;
@@ -174,6 +193,10 @@ void HUDDraggablePanel::movePanel(const sf::Vector2f &newpos)
 	_buttonBar[Lock].setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width -
 		(_buttonBar[Close].getGlobalBounds().width + _buttonBar[Lock].getGlobalBounds().width), 0));
 	_frame.setPosition(newpos + sf::Vector2f(0, _header.getGlobalBounds().height));
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		_elements[i]->setPosition(newpos + sf::Vector2f(5, i * 35));
+	}
 }
 
 bool HUDDraggablePanel::onButtonHover(const PanelButton &id, const bool &triggered)
@@ -212,7 +235,8 @@ bool HUDDraggablePanel::onButtonHover(const PanelButton &id, const bool &trigger
 
 bool HUDDraggablePanel::update(const sf::Event &e)
 {
-	HUDPanel::update(e);
+	if (!HUDPanel::update(e))
+		return (false);
 	if (e.type == sf::Event::MouseButtonPressed)
 	{
 		if (!_lock && !_dragging && e.key.code == sf::Mouse::Left && _header.getGlobalBounds().contains(Engine::getMousePosition()))

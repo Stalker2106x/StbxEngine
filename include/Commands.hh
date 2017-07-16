@@ -29,6 +29,7 @@ namespace Commands {
   void consoleToggle(Engine &e, std::vector<std::string> *);
   void echo(Engine &e, std::vector<std::string> *);
   void execute(Engine &e, std::vector<std::string> *);
+  void debugInfo(Engine &e, std::vector<std::string> *);
   void findCmd(Engine &e, std::vector<std::string> *);
   void toggleConLog(Engine &, std::vector<std::string> *);
   void writeToLog(Engine &, std::vector<std::string> *argv);

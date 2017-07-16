@@ -18,6 +18,7 @@ namespace Commands {
     {"con_color", &setConColor},
     {"con_cursor", &setConCursor},
     {"cwd", &printCWD},
+	{"debuginfo", &debugInfo},
     {"echo", &echo},
     {"exec", &execute},
     {"exit", &quit},
@@ -138,6 +139,22 @@ namespace Commands {
     Engine::console->toggle();
   }
 
+  void debugInfo(Engine &, std::vector<std::string> *)
+  {
+	  HUDPanel *debugpanel;
+
+	  if ((debugpanel = static_cast<HUDPanel *>(Engine::hud->getElement("__debuginfo"))) != NULL)
+		  debugpanel->toggle();
+	  else
+	  {
+		  Engine::hud->addPanel("__debuginfo", sf::Vector2i(300, 400), sf::Color(100, 100, 50));
+		  debugpanel = static_cast<HUDPanel *>(Engine::hud->getElement("__debuginfo"));
+		  int fps = 999;
+
+		  debugpanel->addElement(new HUDIndicator<int>("FPS: ", fps));
+	  }
+  }
+
   void echo(Engine &, std::vector<std::string> *argv)
   {
     if (argv == NULL || argv->size() < 1)
@@ -232,7 +249,7 @@ namespace Commands {
 		  Engine::console->output(COLOR_ERROR, "hud_toggleelement: No id given");
 		  return;
 	  }
-	  Engine::hud->toggleHideElement(atoi((*argv)[0].c_str()));
+	  Engine::hud->toggleHideElement((*argv)[0].c_str());
   }
 
   void timestampLog(Engine &, std::vector<std::string> *argv)
