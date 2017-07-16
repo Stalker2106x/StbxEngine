@@ -110,27 +110,33 @@ protected:
 
 #define PN_CLOSE		      1  //Adds close button to header
 #define PN_LOCK		          2  //Adds poslock to header
-#define PN_RESIZE	          4  //Allows panel to be resized;
+
+enum PanelButton {
+	Close,
+	Lock,
+};
 
 class HUDDraggablePanel : public HUDPanel
 {
 public:
-	HUDDraggablePanel();
 	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
 	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 	~HUDDraggablePanel();
+	void initialUpdate(const sf::Vector2f &pos);
+
+	void toggleLock();
 
 	void setStyle(const char &style);
 	void movePanel(const sf::Vector2f &newpos);
 
-	bool onButtonHover(const int &id, const bool &triggered);
+	bool onButtonHover(const PanelButton &id, const bool &triggered);
 
 	virtual bool update(const sf::Event &e);
 	virtual void draw(sf::RenderWindow *win);
 
 private:
 	char _style;
-	bool _dragging;
+	bool _dragging, _lock;
 	sf::Vector2f _dragOffset;
 	sf::Sprite _header;
 	bool _bhover[2];
