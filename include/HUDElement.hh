@@ -86,6 +86,7 @@ private:
 class HUDPanel : public HUDElement
 {
 public:
+	HUDPanel();
 	HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &color);
 	HUDPanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &name);
 	~HUDPanel();
@@ -106,22 +107,34 @@ protected:
 *
 *        This class is a Panel, that can be moved around in interface.
 */
+
+#define PN_CLOSE		      1  //Adds close button to header
+#define PN_LOCK		          2  //Adds poslock to header
+#define PN_RESIZE	          4  //Allows panel to be resized;
+
 class HUDDraggablePanel : public HUDPanel
 {
 public:
+	HUDDraggablePanel();
 	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
 	HUDDraggablePanel(const sf::Vector2f &pos, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 	~HUDDraggablePanel();
 
+	void setStyle(const char &style);
 	void movePanel(const sf::Vector2f &newpos);
+
+	bool onButtonHover(const int &id, const bool &triggered);
 
 	virtual bool update(const sf::Event &e);
 	virtual void draw(sf::RenderWindow *win);
 
 private:
+	char _style;
 	bool _dragging;
 	sf::Vector2f _dragOffset;
 	sf::Sprite _header;
+	bool _bhover[2];
+	sf::Sprite _buttonBar[2];
 };
 
 #endif /* HUDELEMENT_HH_ */

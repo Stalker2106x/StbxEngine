@@ -145,6 +145,11 @@ int Engine::mainLoop()
   return (0);
 }
 
+sf::Vector2f Engine::getMousePosition()
+{
+	return (static_cast<sf::Vector2f>(sf::Mouse::getPosition(*instance->getWindowHandle())));
+}
+
 char Engine::getChar(sf::Event event, CharType type)
 {
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)

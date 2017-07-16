@@ -381,7 +381,7 @@ bool MenuEdit::update(sf::Event &e)
   MenuItem::update(e);
   if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
   {
-	  if (!_focus && _container.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
+	  if (!_focus && _container.getGlobalBounds().contains(Engine::getMousePosition()))
 	  {
 		  _focus = true;
 		  _input.push_back('.');
@@ -486,7 +486,7 @@ void MenuSlider::updateSlider(sf::Event &e, bool forceupdate)
 {
 	if (_sliding && (e.type == sf::Event::MouseMoved || forceupdate))
 	{
-		_value = sf::Mouse::getPosition(*Engine::instance->getWindowHandle()).x - _bar.getPosition().x;
+		_value = Engine::getMousePosition().x - _bar.getPosition().x;
 		if (_value < _range[0])
 			_value = _range[0];
 		else if (_value > _range[1])
@@ -501,7 +501,7 @@ bool MenuSlider::update(sf::Event &e)
   updateSlider(e);
   if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
   {
-	  if (_bar.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Engine::instance->getWindowHandle()))))
+	  if (_bar.getGlobalBounds().contains(Engine::getMousePosition()))
 	  {
 		  _sliding = true;
 		  updateSlider(e, true);

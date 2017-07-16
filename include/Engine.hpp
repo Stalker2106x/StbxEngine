@@ -45,6 +45,7 @@ public:
   static char getChar(sf::Event event, CharType type);
   static struct tm *getTime();
   static std::string getTimestamp();
+  static sf::Vector2f getMousePosition();
 
   void quit();
 
