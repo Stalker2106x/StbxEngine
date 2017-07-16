@@ -25,10 +25,11 @@
   <item type="Slider">
     <label>Volume</label>
     <padding>100</padding>
+    <barwidth>250</barwidth>
     <min>0</min>
     <max>100</max>
   </item>
-  <item type="Link">
+  <item type="Link" command="exit">
     <label>Quit</label>
     <color>#255255255</color>
   </item>

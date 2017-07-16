@@ -49,6 +49,7 @@ public:
   virtual void setYOffset(const float &y);
   virtual void setOffset(const float &x, const float &y);
 
+  virtual void initialUpdate();
   virtual bool onValueHover(const bool &triggered);
   virtual bool onHover(const bool &triggered);
   virtual void onClick() = 0;
@@ -80,6 +81,7 @@ public:
   void setMenuHandle(Menu *menu);
   void setTarget(const std::string &target);
   void setCustomAction(void(*fptr)(void *), void *cparam);
+  void setCommand(const std::string &command);
 
   virtual void onClick();
   virtual bool onHover(const bool &triggered);
@@ -89,6 +91,7 @@ private:
 	Menu *_menuHandle;
 	void (*_customPtr)(void *);
 	void *_customParam;
+	std::string *_customCommand;
 };
 
 /*!
@@ -181,6 +184,7 @@ public:
   void setRange(const int &min, const int &max);
   void setXOffset(const float &x);
   void setYOffset(const float &y);
+  void setBarWidth(const int &width);
   void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
   void setFontsize(const int &fontsize);
 

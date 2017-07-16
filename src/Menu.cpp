@@ -49,6 +49,7 @@ bool Menu::loadFromFile(const std::string &file)
 	  if ((pItem = parseItem(item, index)) != NULL)
 	  {
 		  pItem->setFontsize(_fontsize);
+		  pItem->initialUpdate();
 		  _items.push_back(pItem);
 	  }
     }
@@ -115,6 +116,10 @@ void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 		std::string action = item.attribute("action").value();
 		sItem->setCustomAction(Menu::customAction[action].first, Menu::customAction[action].second);
 	}
+	if (item.attribute("command"))
+	{
+		sItem->setCommand(item.attribute("command").value());
+	}
 }
 
 void Menu::parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
@@ -163,6 +168,8 @@ void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* i
 	if (item.child("fcolor"))
 		fillColor = Console::convertColorCode(item.child_value("fcolor"), "#");
 	sItem->setBarColor(barColor, fillColor);
+	if (item.child("barwidth"))
+		sItem->setBarWidth(atoi(item.child_value("barwidth")));
 }
 
 void Menu::setBackground(const std::string &resource)

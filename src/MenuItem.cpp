@@ -16,7 +16,6 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
 
 MenuItem::MenuItem()
 {
-  _hover = false;
   _vhover = false;
   _padding = 0;
   _label.setFont(*Resolver<sf::Font>::resolve("glitch"));
@@ -95,6 +94,14 @@ void MenuItem::setOffset(const float &x, const float &y)
   _label.setPosition(x, y);
 }
 
+void MenuItem::initialUpdate()
+{
+	if (_label.getGlobalBounds().contains(Engine::getMousePosition()))
+		onHover(true);
+	else
+		onHover(false);
+}
+
 bool MenuItem::onValueHover(const bool &triggered)
 {
 	if ((triggered && _vhover)
@@ -146,13 +153,15 @@ void MenuItem::draw(sf::RenderWindow *win)
 
 MenuLink::MenuLink() : MenuItem()
 {
-	_customPtr = 0;
-	_customParam = 0;
+	_customPtr = NULL;
+	_customParam = NULL;
+	_customCommand = NULL;
 }
 
 MenuLink::~MenuLink()
 {
-
+	if (_customCommand)
+		delete (_customCommand);
 }
 
 void MenuLink::setMenuHandle(Menu *menu)
@@ -171,11 +180,18 @@ void MenuLink::setCustomAction(void(*fptr)(void *), void *cparam)
 	_customParam = cparam;
 }
 
+void MenuLink::setCommand(const std::string &command)
+{
+	_customCommand = new std::string(command);
+}
+
 
 void MenuLink::onClick()
 {
 	if (_customPtr != NULL)
 		_customPtr(_customParam);
+	if (_customCommand != NULL)
+		Commands::parseCmd(*Engine::instance, *_customCommand);
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();
@@ -469,6 +485,12 @@ void MenuSlider::setYOffset(const float &y)
 	_fill.setPosition(_fill.getPosition().x, y + 1);
 }
 
+void MenuSlider::setBarWidth(const int &width)
+{
+	_bar.setSize(sf::Vector2f(width, _bar.getSize().y));
+	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
+}
+
 void MenuSlider::setBarColor(const sf::Color *barColor, const sf::Color *fillColor)
 {
 	if (barColor != NULL)
@@ -486,12 +508,17 @@ void MenuSlider::updateSlider(sf::Event &e, bool forceupdate)
 {
 	if (_sliding && (e.type == sf::Event::MouseMoved || forceupdate))
 	{
-		_value = Engine::getMousePosition().x - _bar.getPosition().x;
+		_value = (Engine::getMousePosition().x - _bar.getPosition().x) * (_bar.getGlobalBounds().width / _range[1]);
 		if (_value < _range[0])
 			_value = _range[0];
 		else if (_value > _range[1])
 			_value = _range[1];
-		_fill.setSize(sf::Vector2f((_bar.getSize().x / _range[1]) * _value, _fill.getSize().y));
+		if (Engine::getMousePosition().x - (_bar.getPosition().x + 1) >= _bar.getGlobalBounds().width - 1)
+			_fill.setSize(sf::Vector2f(_bar.getGlobalBounds().width - 2, _fill.getSize().y));
+		else if (Engine::getMousePosition().x - (_bar.getPosition().x + 1) < 0)
+			_fill.setSize(sf::Vector2f(0, _fill.getSize().y));
+		else
+			_fill.setSize(sf::Vector2f(Engine::getMousePosition().x - (_bar.getPosition().x + 1), _fill.getSize().y));
 	}
 }
 
