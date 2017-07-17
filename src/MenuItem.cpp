@@ -17,6 +17,7 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
 MenuItem::MenuItem()
 {
   _vhover = false;
+  _active = false;
   _padding = 0;
   _label.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
@@ -98,8 +99,7 @@ void MenuItem::initialUpdate()
 {
 	if (_label.getGlobalBounds().contains(Engine::getMousePosition()))
 		onHover(true);
-	else
-		onHover(false);
+	_active = true;
 }
 
 bool MenuItem::onValueHover(const bool &triggered)
@@ -126,8 +126,10 @@ bool MenuItem::onHover(const bool &triggered)
 	return (true);
 }
 
-bool MenuItem::update(sf::Event &e)
+bool MenuItem::update(const sf::Event &e)
 {
+  if (!_active)
+		return (false);
   if (e.type == sf::Event::MouseMoved)
     {
 		if (_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
@@ -214,6 +216,12 @@ bool MenuLink::onHover(const bool &triggered)
 	return (true);
 }
 
+bool MenuLink::update(const sf::Event &e)
+{
+	if (!MenuItem::update(e))
+		return (false);
+}
+
 /*
  * MenuSetting
  */
@@ -298,7 +306,8 @@ void MenuSetting::updateValue()
 
 bool MenuSetting::update(sf::Event &e)
 {
-  MenuItem::update(e);
+	if (!MenuItem::update(e))
+		return (false);
   if (e.type == sf::Event::MouseMoved)
   {
 	  if (_value.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
@@ -394,7 +403,8 @@ void MenuEdit::onClick()
 
 bool MenuEdit::update(sf::Event &e)
 {
-  MenuItem::update(e);
+	if (!MenuItem::update(e))
+		return (false);
   if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
   {
 	  if (!_focus && _container.getGlobalBounds().contains(Engine::getMousePosition()))
@@ -524,7 +534,8 @@ void MenuSlider::updateSlider(sf::Event &e, bool forceupdate)
 
 bool MenuSlider::update(sf::Event &e)
 {
-  MenuItem::update(e);
+	if (!MenuItem::update(e))
+		return (false);
   updateSlider(e);
   if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
   {
