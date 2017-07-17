@@ -38,24 +38,25 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #Get library
 
 To begin writing your game, clone latest revision of engine: 
-```
-#!bash
+	#!bash
+	
+	git clone http://bitbucket.org/stalker2106/stbxengine.git
 
-git clone http://bitbucket.org/stalker2106/stbxengine.git
-```
+## Build it! ##
 
-#Build it!
+# Command Line (GCC/Clang)
 
 build the library binary depending on your needs with command line:
-```
-#!bash
-
-make static
+	#!bash
+	
+	make static
 OR
-make dynamic
-```
-or navigate to .../vs/ folder to build it using Visual Studio.
+	make dynamic
 
-#Compile with engine
+# Visual Studio
+
+Navigate to @REPO/vs/ folder, open StbxEngine.sln solution to build it using Visual Studio.
+
+# Compile with engine
 
 Add library binary previously built to your linker settings or add "-lsengine" to your linker command line

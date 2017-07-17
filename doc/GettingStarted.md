@@ -1,6 +1,6 @@
 ## Getting Started ##
 
-#Start developing YOUR environment
+# Start developing YOUR environment
 
 The StbxEngine provides the Engine class, which is the starting point of the whole library.\n 
 To create your own Engine, you must inherit from this base class and add all your game routine to your own code.\n 
