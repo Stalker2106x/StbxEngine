@@ -35,7 +35,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ### Getting started ###
 
-#Get library
+Check out our [latest guide here](http://vault.maximemartens.fr/stbxengine/doc/md_doc_GettingStarted.html)
+
+### Get library
 
 To begin writing your game, clone latest revision of engine: 
 	#!bash
@@ -44,7 +46,7 @@ To begin writing your game, clone latest revision of engine:
 
 ## Build it! ##
 
-# Command Line (GCC/Clang)
+### Command Line (GCC/Clang)
 
 build the library binary depending on your needs with command line:
 	#!bash
@@ -53,10 +55,10 @@ build the library binary depending on your needs with command line:
 OR
 	make dynamic
 
-# Visual Studio
+### Visual Studio (2013)
 
 Navigate to @REPO/vs/ folder, open StbxEngine.sln solution to build it using Visual Studio.
 
-# Compile with engine
+## Compile with engine ##
 
 Add library binary previously built to your linker settings or add "-lsengine" to your linker command line
