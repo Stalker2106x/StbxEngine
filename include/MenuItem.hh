@@ -206,4 +206,4 @@ namespace stb {
 
 }
 
-#endif
+#endif /* !MENUITEM_HH_ */

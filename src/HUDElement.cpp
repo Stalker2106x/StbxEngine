@@ -156,6 +156,7 @@ void HUDDraggablePanel::initialUpdate()
 	_buttonBar[Close].setTextureRect(sf::IntRect(0, 0, 16, 16));
 	_buttonBar[Lock].setTexture(*Resolver<sf::Texture>::resolve("buttons"));
 	_buttonBar[Lock].setTextureRect(sf::IntRect(32, 0, 16, 16));
+	movePanel(sf::Vector2f(0,0));
 }
 
 void HUDDraggablePanel::toggle()

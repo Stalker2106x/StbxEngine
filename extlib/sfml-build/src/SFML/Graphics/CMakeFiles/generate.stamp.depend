@@ -1,9 +1,0 @@
-# CMake generation dependency list for this directory.
-D:/Work/stbxengine/extlib/sfml/src/SFML/Graphics/CMakeLists.txt
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindOpenGL.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindJPEG.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
-D:/Work/stbxengine/extlib/sfml/cmake/Modules/FindFreetype.cmake
