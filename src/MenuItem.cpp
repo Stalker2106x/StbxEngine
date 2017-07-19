@@ -2,6 +2,8 @@
 #include "Resolver.hh"
 #include "Menu.hh"
 
+using namespace stb;
+
 /*
  * MenuItem Base class
  */
@@ -191,7 +193,7 @@ void MenuLink::onClick()
 	if (_customPtr != NULL)
 		_customPtr(_customParam);
 	if (_customCommand != NULL)
-		Commands::parseCmd(*Engine::instance, *_customCommand);
+		Commands::parseCmd(*stb::Engine::instance, *_customCommand);
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();

@@ -11,45 +11,47 @@
 #include <map>
 #include <vector>
 
-class Engine;
-class Console;
+namespace stb {
 
-namespace Commands {
+	class Engine;
+	class Console;
 
-  typedef std::map<std::string, void (*)(Engine &, std::vector<std::string> *)> cmdMap;
-  extern cmdMap cmdlist;
+	namespace Commands {
 
-  bool convertBool(std::string &arg);
-  std::vector<std::string> *getArgs(std::string &command);
-  bool parseCmd(Engine &e, std::string);
+		typedef std::map<std::string, void(*)(Engine &, std::vector<std::string> *)> cmdMap;
+		extern cmdMap cmdlist;
 
-  void bindCommand(Engine &e, std::vector<std::string> *);
-  void bindList(Engine &e, std::vector<std::string> *);
-  void consoleClear(Engine &e, std::vector<std::string> *);
-  void consoleToggle(Engine &e, std::vector<std::string> *);
-  void echo(Engine &e, std::vector<std::string> *);
-  void execute(Engine &e, std::vector<std::string> *);
-  void debugInfo(Engine &e, std::vector<std::string> *);
-  void findCmd(Engine &e, std::vector<std::string> *);
-  void toggleConLog(Engine &, std::vector<std::string> *);
-  void writeToLog(Engine &, std::vector<std::string> *argv);
-  void setConLog(Engine &, std::vector<std::string> *argv);
-  void toggleHUDElement(Engine &, std::vector<std::string> *argv);
-  void timestampLog(Engine &, std::vector<std::string> *argv);
-  void printCWD(Engine &e, std::vector<std::string> *);
-  void quit(Engine &e, std::vector<std::string> *);
-  void screenshot(Engine &e, std::vector<std::string> *argv);
-  void setLineCount(Engine &e, std::vector<std::string> *);
-  void setConColor(Engine &e, std::vector<std::string> *);
-  void setConCursor(Engine &e, std::vector<std::string> *);
-  void setMaxFPS(Engine &e, std::vector<std::string> *);
-  void setFullscreen(Engine &e, std::vector<std::string> *);
-  void help(Engine &e, std::vector<std::string> *);
-  void setVSync(Engine &e, std::vector<std::string> *);
-  void unbind(Engine &e, std::vector<std::string> *);
-  void unbindall(Engine &e, std::vector<std::string> *);
-  void windowSize(Engine &e, std::vector<std::string> *);
+		bool convertBool(std::string &arg);
+		std::vector<std::string> *getArgs(std::string &command);
+		bool parseCmd(Engine &e, std::string);
 
+		void bindCommand(Engine &e, std::vector<std::string> *);
+		void bindList(Engine &e, std::vector<std::string> *);
+		void consoleClear(Engine &e, std::vector<std::string> *);
+		void consoleToggle(Engine &e, std::vector<std::string> *);
+		void echo(Engine &e, std::vector<std::string> *);
+		void execute(Engine &e, std::vector<std::string> *);
+		void debugInfo(Engine &e, std::vector<std::string> *);
+		void findCmd(Engine &e, std::vector<std::string> *);
+		void toggleConLog(Engine &, std::vector<std::string> *);
+		void writeToLog(Engine &, std::vector<std::string> *argv);
+		void setConLog(Engine &, std::vector<std::string> *argv);
+		void toggleHUDElement(Engine &, std::vector<std::string> *argv);
+		void timestampLog(Engine &, std::vector<std::string> *argv);
+		void printCWD(Engine &e, std::vector<std::string> *);
+		void quit(Engine &e, std::vector<std::string> *);
+		void screenshot(Engine &e, std::vector<std::string> *argv);
+		void setLineCount(Engine &e, std::vector<std::string> *);
+		void setConColor(Engine &e, std::vector<std::string> *);
+		void setConCursor(Engine &e, std::vector<std::string> *);
+		void setMaxFPS(Engine &e, std::vector<std::string> *);
+		void setFullscreen(Engine &e, std::vector<std::string> *);
+		void help(Engine &e, std::vector<std::string> *);
+		void setVSync(Engine &e, std::vector<std::string> *);
+		void unbind(Engine &e, std::vector<std::string> *);
+		void unbindall(Engine &e, std::vector<std::string> *);
+		void windowSize(Engine &e, std::vector<std::string> *);
+
+	}
 }
-
 #endif

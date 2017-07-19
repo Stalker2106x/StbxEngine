@@ -1,6 +1,8 @@
 #include "Engine.hpp"
 #include "Keybinds.hh"
 
+using namespace stb;
+
 Keybinds::Keybinds()
 {
 

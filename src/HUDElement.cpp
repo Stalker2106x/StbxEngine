@@ -1,6 +1,8 @@
 #include "HUDElement.hh"
 #include "Engine.hpp"
 
+using namespace stb;
+
 //
 // HUDElement
 //
@@ -46,7 +48,7 @@ void HUDSIndicator::setPosition(const sf::Vector2f &pos)
 {
 	if (_label != NULL)
 		_label->setPosition(pos);
-	_value.setPosition(_label->getPosition() + sf::Vector2f(_label->getLocalBounds().width + 5, _label->getPosition().y));
+	_value.setPosition(_label->getPosition() + sf::Vector2f(_label->getLocalBounds().width + 5, 0));
 }
 
 bool HUDSIndicator::update(const sf::Event &e)
@@ -195,7 +197,7 @@ void HUDDraggablePanel::movePanel(const sf::Vector2f &newpos)
 	_frame.setPosition(newpos + sf::Vector2f(0, _header.getGlobalBounds().height));
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
-		_elements[i]->setPosition(newpos + sf::Vector2f(5, i * 35));
+		_elements[i]->setPosition(newpos + sf::Vector2f(5, 15 + (i * 35)));
 	}
 }
 

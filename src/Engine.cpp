@@ -1,20 +1,23 @@
 #include "Engine.hpp"
 
-Keybinds *Engine::keybinds = new Keybinds();
-Console *Engine::console = NULL;
-HUD *Engine::hud = new HUD();
-Engine *Engine::instance = NULL;
+using namespace stb;
+
+Keybinds *stb::Engine::keybinds = new Keybinds();
+stb::Console *stb::Engine::console = NULL;
+HUD *stb::Engine::hud = new HUD();
+stb::Engine *stb::Engine::instance = NULL;
 
 Engine::Engine(int width, int height)
 {
-  _quit = false;
-  _win = NULL;
-  _fullscreen = false;
-  _vsync = false;
-  Engine::console = new Console(*this);
-  Engine::instance = this;
-  openWindow(width, height);
-  keybinds->bindEnv(this);
+	_gametime.restart();
+	_quit = false;
+	_win = NULL;
+	_fullscreen = false;
+	_vsync = false;
+	Engine::console = new Console(*this);
+	Engine::instance = this;
+	openWindow(width, height);
+	keybinds->bindEnv(this);
 }
 
 Engine::~Engine()
@@ -24,15 +27,15 @@ Engine::~Engine()
 
 bool Engine::openWindow(int width, int height)
 {
-  _winsize = sf::Vector2i(width, height);
-  if (_win != NULL)
-    delete (_win);
-  _win = new sf::RenderWindow();
-  _win->setKeyRepeatEnabled(false);
-  _win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
-	       (_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
-  Engine::console->initGraphics(_winsize);
-  return (true);
+	_winsize = sf::Vector2i(width, height);
+	if (_win != NULL)
+	delete (_win);
+	_win = new sf::RenderWindow();
+	_win->setKeyRepeatEnabled(false);
+	_win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
+			(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
+	Engine::console->initGraphics(_winsize);
+	return (true);
 }
 
 void Engine::handleArgs(int argc, char **argv)

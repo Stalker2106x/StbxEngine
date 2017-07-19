@@ -2,8 +2,8 @@
 
 void f(void *menu)
 {
-	menu = new Menu();
-	static_cast<Menu *>(menu)->loadFromFile("./Data/menu/GOLmon.xml");
+	menu = new stb::Menu();
+	static_cast<stb::Menu *>(menu)->loadFromFile("./Data/menu/GOLmon.xml");
 }
 
 sEngine::sEngine()
@@ -12,10 +12,11 @@ sEngine::sEngine()
 
 	resolutions.push_back("800x600");
 	resolutions.push_back("1920x1080");
-	Menu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu));
-	Menu::dynamicValue.emplace("Resolutions", resolutions);
+	stb::Menu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu));
+	stb::Menu::dynamicValue.emplace("Resolutions", resolutions);
 	_mainMenu.loadFromFile("./Data/menu/main.xml");
-	hud->addDraggablePanel("windowz", sf::Vector2i(400, 200), sf::Color::Magenta, sf::Color::Blue);
+	stb::HUDPanel *panel = hud->addDraggablePanel("windowz", sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
+	panel->addElement(new stb::HUDIndicator<bool>("Indicator :", _fullscreen));
 }
 
 bool sEngine::update(sf::Event &e)

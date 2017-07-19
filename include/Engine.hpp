@@ -17,48 +17,53 @@
 #include "Keybinds.hh"
 #include "HUD.hh"
 
-enum CharType {
-  alphanumeric,
-  alphabetic,
-  numeric
-};
+namespace stb {
 
-class Engine
-{
-public:
-  Engine(int width = 800, int height = 600);
-  ~Engine();
+	enum CharType {
+		alphanumeric,
+		alphabetic,
+		numeric
+	};
 
-  bool openWindow(int , int);
+	class Engine
+	{
+	public:
+		Engine(int width = 800, int height = 600);
+		~Engine();
 
-  sf::RenderWindow *getWindowHandle();
-  sf::Vector2i getWindowSize() const;
-  void handleArgs(int argc, char **argv);
-  void videoParamSet(const std::string &, const int &);
-  sf::Image capture();
+		bool openWindow(int, int);
 
-  virtual void draw() = 0;
-  bool updateLoop();
-  virtual bool update(sf::Event &) = 0;
-  int mainLoop();
+		sf::RenderWindow *getWindowHandle();
+		sf::Vector2i getWindowSize() const;
+		void handleArgs(int argc, char **argv);
+		void videoParamSet(const std::string &, const int &);
+		sf::Image capture();
 
-  static char getChar(sf::Event event, CharType type);
-  static struct tm *getTime();
-  static std::string getTimestamp();
-  static sf::Vector2f getMousePosition();
+		virtual void draw() = 0;
+		bool updateLoop();
+		virtual bool update(sf::Event &) = 0;
+		int mainLoop();
 
-  void quit();
+		static char getChar(sf::Event event, CharType type);
+		static struct tm *getTime();
+		static std::string getTimestamp();
+		static sf::Vector2f getMousePosition();
 
-  static Keybinds *keybinds;
-  static Console *console;
-  static HUD *hud;
+		void quit();
 
-  static Engine *instance;
+		static Keybinds *keybinds;
+		static Console *console;
+		static HUD *hud;
 
-protected:
-  bool _quit, _fullscreen, _vsync;
-  sf::Vector2i _winsize;
-  sf::RenderWindow *_win;
-};
+		static Engine *instance;
+
+	protected:
+		bool _quit, _fullscreen, _vsync;
+		sf::Clock _gametime;
+		sf::Vector2i _winsize;
+		sf::RenderWindow *_win;
+	};
+
+}
 
 #endif /* !ENGINE_HPP_ */

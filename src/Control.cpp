@@ -1,5 +1,7 @@
 #include "Control.hh"
 
+using namespace stb;
+
 //public map
 std::map<std::string, Control> Control::keys = {
   {"a", Control("a", sf::Keyboard::Key::A)},
@@ -223,21 +225,23 @@ bool Control::isReleased(const sf::Event &e)
   return (false);
 }
 
-//Can be optimized with types use.
-bool operator==(const Control &a, const Control &b)
-{
-  if (((a._key != NULL && b._key != NULL) && (*a._key) == (*b._key))
-      || ((a._mbutton != NULL && b._mbutton != NULL)  && (*a._mbutton) == (*b._mbutton))
-      || ((a._mwheel != NULL && b._mwheel != NULL)  && (*a._mwheel) == (*b._mwheel)))
-    return (true);
-  return (false);
-}
+namespace stb {
+	//Can be optimized with types use.
+	bool operator==(const Control &a, const Control &b)
+	{
+		if (((a._key != NULL && b._key != NULL) && (*a._key) == (*b._key))
+			|| ((a._mbutton != NULL && b._mbutton != NULL) && (*a._mbutton) == (*b._mbutton))
+			|| ((a._mwheel != NULL && b._mwheel != NULL) && (*a._mwheel) == (*b._mwheel)))
+			return (true);
+		return (false);
+	}
 
-bool operator<(const Control &a, const Control &b)
-{
-  if (((a._key != NULL && b._key != NULL) && (*a._key) < (*b._key))
-      || ((a._mbutton != NULL && b._mbutton != NULL)  && (*a._mbutton) < (*b._mbutton))
-      || ((a._mwheel != NULL && b._mwheel != NULL)  && (*a._mwheel) < (*b._mwheel)))
-    return (true);
-  return (false);  
+	bool operator<(const Control &a, const Control &b)
+	{
+		if (((a._key != NULL && b._key != NULL) && (*a._key) < (*b._key))
+			|| ((a._mbutton != NULL && b._mbutton != NULL) && (*a._mbutton) < (*b._mbutton))
+			|| ((a._mwheel != NULL && b._mwheel != NULL) && (*a._mwheel) < (*b._mwheel)))
+			return (true);
+		return (false);
+	}
 }

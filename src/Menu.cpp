@@ -3,8 +3,10 @@
 #include "Resolver.hh"
 #include "Engine.hpp"
 
-std::unordered_map<std::string, std::pair<menuFptr, void *>> Menu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
-std::unordered_map<std::string, std::vector<std::string>> Menu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
+using namespace stb;
+
+std::unordered_map<std::string, std::pair<menuFptr, void *>> stb::Menu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
+std::unordered_map<std::string, std::vector<std::string>> stb::Menu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
 
 Menu::Menu()
 {

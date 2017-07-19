@@ -4,7 +4,7 @@
 #include "../include/Engine.hpp"
 #include "../include/Menu.hh"
 
-class sEngine : public Engine
+class sEngine : public stb::Engine
 {
 public:
 	sEngine();
@@ -15,7 +15,7 @@ public:
 	void draw();
 
 private:
-	Menu _mainMenu;
+	stb::Menu _mainMenu;
 };
 
 #endif /* !CENGINE_HH_ */

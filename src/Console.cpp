@@ -3,6 +3,8 @@
 #include "Engine.hpp"
 #include "Console.hh"
 
+using namespace stb;
+
 Console::Console(Engine &e) : _engine(e)
 {
   _active = false;

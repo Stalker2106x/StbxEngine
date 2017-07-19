@@ -2,6 +2,8 @@
 #include "Resolver.hh"
 #include "Engine.hpp"
 
+using namespace stb;
+
 //
 // HUD
 //
@@ -36,24 +38,36 @@ void HUD::toggle()
 	_active = (_active ? false : true);
 }
 
-void HUD::addPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color)
+HUDPanel *HUD::addPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color)
 {
-	_elements.push_back(new HUDPanel(id, size, color));
+	HUDPanel *panel = new HUDPanel(id, size, color);
+
+	_elements.push_back(panel);
+	return (panel);
 }
 
-void HUD::addPanel(const std::string &id, const sf::Vector2i &size, const std::string &resource)
+HUDPanel *HUD::addPanel(const std::string &id, const sf::Vector2i &size, const std::string &resource)
 {
-	_elements.push_back(new HUDPanel(id, size, resource));
+	HUDPanel *panel = new HUDPanel(id, size, resource);
+
+	_elements.push_back(panel);
+	return (panel);
 }
 
-void HUD::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
+HUDDraggablePanel *HUD::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
 {
-	_elements.push_back(new HUDDraggablePanel(id, size, headerColor, frameColor));
+	HUDDraggablePanel *panel = new HUDDraggablePanel(id, size, headerColor, frameColor);
+
+	_elements.push_back(panel);
+	return (panel);
 }
 
-void HUD::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
+HUDDraggablePanel *HUD::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
 {
-	_elements.push_back(new HUDDraggablePanel(id, size, headerResource, frameResource));
+	HUDDraggablePanel *panel = new HUDDraggablePanel(id, size, headerResource, frameResource);
+
+	_elements.push_back(panel);
+	return (panel);
 }
 
 void HUD::toggleHideElement(const std::string &id)

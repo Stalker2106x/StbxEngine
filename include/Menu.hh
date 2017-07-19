@@ -14,38 +14,42 @@
 #include <pugixml/src/pugixml.hpp>
 #include "MenuItem.hh"
 
-typedef void(*menuFptr)(void *);
-typedef std::vector<MenuItem *> itemTab;
+namespace stb {
 
-class Menu
-{
-public:
-  Menu();
-  ~Menu();
+	typedef void(*menuFptr)(void *);
+	typedef std::vector<MenuItem *> itemTab;
 
-  void reset();
-  bool loadFromFile(const std::string &file);
-  void parseMenu(pugi::xml_node menu);
-  MenuItem *parseItem(pugi::xml_node &item, const size_t &index);
-  void parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
-  void parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
-  void parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
-  void parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
-  void parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+	class Menu
+	{
+	public:
+		Menu();
+		~Menu();
 
-  void setBackground(const std::string &resource);
+		void reset();
+		bool loadFromFile(const std::string &file);
+		void parseMenu(pugi::xml_node menu);
+		MenuItem *parseItem(pugi::xml_node &item, const size_t &index);
+		void parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+		void parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+		void parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+		void parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+		void parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 
-  bool update(sf::Event &e);
-  void draw(sf::RenderWindow *);
+		void setBackground(const std::string &resource);
 
-  static std::unordered_map<std::string, std::pair<menuFptr, void *>> customAction;
-  static std::unordered_map<std::string, std::vector<std::string>> dynamicValue;
-protected:	
-  int _id, _parentId;
-  int _spacing, _fontsize;
-  sf::Sprite _background;
-  sf::Text _title;
-  itemTab _items;
-};
+		bool update(sf::Event &e);
+		void draw(sf::RenderWindow *);
+
+		static std::unordered_map<std::string, std::pair<menuFptr, void *>> customAction;
+		static std::unordered_map<std::string, std::vector<std::string>> dynamicValue;
+	protected:
+		int _id, _parentId;
+		int _spacing, _fontsize;
+		sf::Sprite _background;
+		sf::Text _title;
+		itemTab _items;
+	};
+
+}
 
 #endif /* MENU_HH_ */
