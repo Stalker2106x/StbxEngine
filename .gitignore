@@ -13,6 +13,7 @@
 
 # Visual Studio #
 #################
+*.opensdf
 *.suo
 *.sdf
 

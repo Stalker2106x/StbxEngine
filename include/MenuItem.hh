@@ -56,7 +56,7 @@ namespace stb {
 		virtual bool onHover(const bool &triggered);
 		virtual void onClick() = 0;
 
-		virtual bool update(sf::Event &e);
+		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 
 		static std::unordered_map<std::string, MenuItemType> typeMap; //move String to int ID
@@ -65,7 +65,7 @@ namespace stb {
 		Engine *_e;
 		int _padding;
 		sf::Text _label;
-		bool _hover, _vhover;
+		bool _active, _hover, _vhover;
 	};
 
 	/*!
@@ -87,6 +87,8 @@ namespace stb {
 
 		virtual void onClick();
 		virtual bool onHover(const bool &triggered);
+
+		bool update(const sf::Event &e);
 
 	private:
 		std::string _target;
