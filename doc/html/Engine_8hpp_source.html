@@ -140,14 +140,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">bool</span> _quit, _fullscreen, _vsync;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        sf::Clock _gametime;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        sf::Vector2i _winsize;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        sf::RenderWindow *_win;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    };</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">int</span> _framerate, _frames;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        sf::Clock _gametime;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        sf::Time _lastTick, _stackTick;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        sf::Vector2i _winsize;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        sf::RenderWindow *_win;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    };</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ENGINE_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !ENGINE_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="classstb_1_1Keybinds_html"><div class="ttname"><a href="classstb_1_1Keybinds.html">stb::Keybinds</a></div><div class="ttdef"><b>Definition:</b> Keybinds.hh:23</div></div>
 <div class="ttc" id="HUD_8hh_html"><div class="ttname"><a href="HUD_8hh.html">HUD.hh</a></div></div>
 <div class="ttc" id="classstb_1_1Engine_html"><div class="ttname"><a href="classstb_1_1Engine.html">stb::Engine</a></div><div class="ttdef"><b>Definition:</b> Engine.hpp:28</div></div>
