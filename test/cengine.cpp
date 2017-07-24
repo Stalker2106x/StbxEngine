@@ -16,7 +16,7 @@ sEngine::sEngine()
 	stb::Menu::dynamicValue.emplace("Resolutions", resolutions);
 	_mainMenu.loadFromFile("./Data/menu/main.xml");
 	stb::HUDPanel *panel = hud->addDraggablePanel("windowz", sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
-	panel->addElement(new stb::HUDIndicator<bool>("Indicator :", _fullscreen));
+	panel->addElement(new stb::HUDIndicator<int>("Indicator :", _framerate));
 }
 
 bool sEngine::update(sf::Event &e)

@@ -59,7 +59,9 @@ namespace stb {
 
 	protected:
 		bool _quit, _fullscreen, _vsync;
+		int _framerate, _frames;
 		sf::Clock _gametime;
+		sf::Time _lastTick, _stackTick;
 		sf::Vector2i _winsize;
 		sf::RenderWindow *_win;
 	};

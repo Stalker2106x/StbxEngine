@@ -10,6 +10,8 @@ stb::Engine *stb::Engine::instance = NULL;
 Engine::Engine(int width, int height)
 {
 	_gametime.restart();
+	_framerate = 0;
+	_stackTick = sf::Time::Zero;
 	_quit = false;
 	_win = NULL;
 	_fullscreen = false;
@@ -112,6 +114,15 @@ bool Engine::updateLoop()
 {
   sf::Event event;
 
+  _frames++;
+  _stackTick += _gametime.getElapsedTime() - _lastTick;
+  if (_stackTick >= sf::seconds(1))
+  {
+	  _stackTick = sf::Time::Zero;
+	  _framerate = _frames;
+	  _frames = 0;
+  }
+  _lastTick = _gametime.getElapsedTime();
   while (_win->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
