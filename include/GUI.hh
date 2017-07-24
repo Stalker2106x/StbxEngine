@@ -40,7 +40,8 @@ namespace stb {
 
 		void toggleHideElement(const std::string &id);
 
-		bool update(sf::Event &e);
+		bool updateRT();
+		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *win);
 
 	private:

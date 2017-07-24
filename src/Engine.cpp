@@ -122,6 +122,8 @@ bool Engine::updateLoop()
 	  _frames = 0;
   }
   _lastTick = _gametime.getElapsedTime();
+  if (gui->isActive())
+	  gui->updateRT();
   while (_win->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)

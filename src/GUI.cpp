@@ -83,7 +83,16 @@ void GUI::toggleHideElement(const std::string &id)
 	Engine::instance->console->output(COLOR_ERROR, "Error: No GUI element with id: "+id);
 }
 
-bool GUI::update(sf::Event &e)
+bool GUI::updateRT()
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		_elements[i]->updateRT();
+	}
+	return (true);
+}
+
+bool GUI::update(const sf::Event &e)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 		_elements[i]->update(e);

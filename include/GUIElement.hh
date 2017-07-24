@@ -29,7 +29,8 @@ namespace stb {
 		const std::string &getId();
 
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
-
+		
+		virtual bool updateRT(); //Real time update, called more than one time between frames
 		virtual bool update(const sf::Event &e) = 0;
 		virtual void draw(sf::RenderWindow *win) = 0;
 	protected:
@@ -71,6 +72,8 @@ namespace stb {
 	public:
 		GUIIndicator(T &var) : GUISIndicator(""), _hook(var)
 		{
+			_hookValue = _hook;
+			_value.setString(std::to_string(_hookValue));
 			_label = NULL;
 		}
 
@@ -86,14 +89,24 @@ namespace stb {
 			delete (_label);
 		}
 
-		bool update(const sf::Event &e)
+		virtual bool updateRT()
+		{
+			if (_hookValue != _hook)
+			{
+				_hookValue = _hook;
+				_value.setString(std::to_string(_hookValue));
+			}
+			return (true);
+		}
+
+		virtual bool update(const sf::Event &e)
 		{
 			GUISIndicator::update(e);
-			_value.setString(std::to_string(_hook));
 			return (true);
 		}
 
 	private:
+		T _hookValue;
 		T &_hook;
 	};
 
