@@ -32,12 +32,12 @@ bool Menu::loadFromFile(const std::string &file)
 
   if (!ifs)
     {
-      Engine::console->output(COLOR_ERROR, "Error: Menu: XML resource not found");
+      Engine::instance->console->output(COLOR_ERROR, "Error: Menu: XML resource not found");
       return (false);
     }
   if (!(xml = doc.load(ifs)) || !doc.child("menu"))
     {
-      Engine::console->output(COLOR_ERROR, "Error: Menu: Invalid XML resource");
+	  Engine::instance->console->output(COLOR_ERROR, "Error: Menu: Invalid XML resource");
       return (false);
     }
   parseMenu(doc.child("menu"));
@@ -51,10 +51,10 @@ bool Menu::loadFromFile(const std::string &file)
 	  if ((pItem = parseItem(item, index)) != NULL)
 	  {
 		  pItem->setFontsize(_fontsize);
-		  pItem->initialUpdate();
 		  _items.push_back(pItem);
 	  }
     }
+  initializeItems();
   return (true);
 }
 
@@ -172,6 +172,16 @@ void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* i
 	sItem->setBarColor(barColor, fillColor);
 	if (item.child("barwidth"))
 		sItem->setBarWidth(atoi(item.child_value("barwidth")));
+}
+
+void Menu::initializeItems()
+{
+	std::vector<MenuItem *>::iterator it = _items.begin();
+	while (it != _items.end())
+	{
+		(*it)->initialUpdate();
+		it++;
+	}
 }
 
 void Menu::setBackground(const std::string &resource)

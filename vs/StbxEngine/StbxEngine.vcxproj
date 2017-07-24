@@ -99,7 +99,7 @@
     <ClInclude Include="..\..\include\Commands.hh" />
     <ClInclude Include="..\..\include\Console.hh" />
     <ClInclude Include="..\..\include\Control.hh" />
-    <ClInclude Include="..\..\include\HUD.hh" />
+    <ClInclude Include="..\..\include\GUI.hh" />
     <ClInclude Include="..\..\include\Engine.hpp" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
     <ClInclude Include="..\..\include\Menu.hh" />
@@ -108,13 +108,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
-    <ClCompile Include="..\..\include\HUDElement.hh" />
+    <ClCompile Include="..\..\include\GUIElement.hh" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
     <ClCompile Include="..\..\src\Control.cpp" />
-    <ClCompile Include="..\..\src\HUD.cpp" />
+    <ClCompile Include="..\..\src\GUI.cpp" />
     <ClCompile Include="..\..\src\Engine.cpp" />
-    <ClCompile Include="..\..\src\HUDElement.cpp" />
+    <ClCompile Include="..\..\src\GUIElement.cpp" />
     <ClCompile Include="..\..\src\Keybinds.cpp" />
     <ClCompile Include="..\..\src\Menu.cpp" />
     <ClCompile Include="..\..\src\MenuItem.cpp" />

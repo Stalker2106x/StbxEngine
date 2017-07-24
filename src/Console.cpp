@@ -26,7 +26,7 @@ Console::Console(Engine &e) : _engine(e)
   _inputValue.setCharacterSize(_fontSize);
   _cursor.setCharacterSize(_fontSize);
   _cursor.setString(CURSOR);
-  Engine::keybinds->bind("f1", "toggleconsole");
+  e.keybinds->bind("f1", "toggleconsole");
 }
 
 Console::~Console()

@@ -69,12 +69,12 @@ bool Keybinds::bind(std::string control, std::string action)
 
 void Keybinds::listAllBinds()
 {
-  Engine::console->output("");
+	_e->console->output("");
   for (std::map<Control, std::string>::iterator it = _binds.begin(); it != _binds.end(); it++)
     {
-      Engine::console->insertLastOutput(it->second+" = "+it->first.getBindStr());
+      _e->console->insertLastOutput(it->second+" = "+it->first.getBindStr());
       if (std::next(it, 1) != _binds.end())
-	Engine::console->insertLastOutput(", ");
+	  _e->console->insertLastOutput(", ");
     }
 }
 

@@ -27,7 +27,7 @@ namespace stb {
 			{ "fps_max", &setMaxFPS },
 			{ "fullscreen", &setFullscreen },
 			{ "help", &help },
-			{ "hud_toggleelement", &toggleHUDElement },
+			{ "hud_toggleelement", &toggleGUIElement },
 			{ "log_enable", &toggleConLog },
 			{ "log_write", &writeToLog },
 			{ "log_file", &setConLog },
@@ -49,7 +49,7 @@ namespace stb {
 				return (false);
 			else
 			{
-				Engine::console->output(COLOR_ERROR, "Syntax: Invalid argument, expected boolean");
+				Engine::instance->console->output(COLOR_ERROR, "Syntax: Invalid argument, expected boolean");
 				throw std::invalid_argument("bool");
 			}
 			return (false);
@@ -99,7 +99,7 @@ namespace stb {
 			std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 			if (cmdlist.find(command) == cmdlist.end())
 			{
-				Engine::console->output(COLOR_ERROR + command + ": Unknown command");
+				e.console->output(COLOR_ERROR + command + ": Unknown command");
 				return (false);
 			}
 			argv = getArgs(cmd);
@@ -109,11 +109,11 @@ namespace stb {
 			return (true);
 		}
 
-		void bindCommand(Engine &, std::vector<std::string> *argv)
+		void bindCommand(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 2)
 			{
-				Engine::console->output(COLOR_ERROR, "bind: Missing argument");
+				e.console->output(COLOR_ERROR, "bind: Missing argument");
 				return;
 			}
 			std::string bind = (*argv)[0];
@@ -121,46 +121,46 @@ namespace stb {
 
 			std::transform(bind.begin(), bind.end(), bind.begin(), ::tolower);
 			std::transform(action.begin(), action.end(), action.begin(), ::tolower);
-			if (!Engine::keybinds->bind(bind, action))
-				Engine::console->output(COLOR_ERROR, "bind: Cannot bind key; key or action invalid?");
+			if (!e.keybinds->bind(bind, action))
+				e.console->output(COLOR_ERROR, "bind: Cannot bind key; key or action invalid?");
 		}
 
-		void bindList(Engine &, std::vector<std::string> *)
+		void bindList(Engine &e, std::vector<std::string> *)
 		{
-			Engine::keybinds->listAllBinds();
+			e.keybinds->listAllBinds();
 		}
 
-		void consoleClear(Engine &, std::vector<std::string> *)
+		void consoleClear(Engine &e, std::vector<std::string> *)
 		{
-			Engine::console->clear();
+			e.console->clear();
 		}
 
-		void consoleToggle(Engine &, std::vector<std::string> *)
+		void consoleToggle(Engine &e, std::vector<std::string> *)
 		{
-			Engine::console->toggle();
+			e.console->toggle();
 		}
 
-		void debugInfo(Engine &, std::vector<std::string> *)
+		void debugInfo(Engine &e, std::vector<std::string> *)
 		{
-			HUDPanel *debugpanel;
+			GUIPanel *debugpanel;
 
-			if ((debugpanel = static_cast<HUDPanel *>(Engine::hud->getElement("__debuginfo"))) != NULL)
+			if ((debugpanel = static_cast<GUIPanel *>(e.gui->getElement("__debuginfo"))) != NULL)
 				debugpanel->toggle();
 			else
 			{
-				debugpanel = Engine::hud->addPanel("__debuginfo", sf::Vector2i(300, 400), sf::Color(100, 100, 50));
+				debugpanel = e.gui->addPanel("__debuginfo", sf::Vector2i(300, 400), sf::Color(100, 100, 50));
 				int fps = 999;
 
-				debugpanel->addElement(new HUDIndicator<int>("FPS: ", fps));
+				debugpanel->addElement(new GUIIndicator<int>("FPS: ", fps));
 			}
 		}
 
-		void echo(Engine &, std::vector<std::string> *argv)
+		void echo(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
-				Engine::console->output("");
+				e.console->output("");
 			else
-				Engine::console->output((*argv)[0]);
+				e.console->output((*argv)[0]);
 		}
 
 		void execute(Engine &e, std::vector<std::string> *argv)
@@ -170,27 +170,27 @@ namespace stb {
 
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "exec: Nothing to execute");
+				e.console->output(COLOR_ERROR, "exec: Nothing to execute");
 				return;
 			}
 			ifs.open((*argv)[0]);
 			if (!ifs.is_open())
 			{
-				Engine::console->output(COLOR_ERROR, "exec: Cannot open \"" + (*argv)[0] + "\"");
+				e.console->output(COLOR_ERROR, "exec: Cannot open \"" + (*argv)[0] + "\"");
 				return;
 			}
 			while (std::getline(ifs, cmd))
 				parseCmd(e, cmd);
 		}
 
-		void findCmd(Engine &, std::vector<std::string> *argv)
+		void findCmd(Engine &e, std::vector<std::string> *argv)
 		{
 			cmdMap::iterator iter;
 			std::vector<std::string> available;
 
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "find: Nothing to search for");
+				e.console->output(COLOR_ERROR, "find: Nothing to search for");
 				return;
 			}
 			for (iter = cmdlist.begin(); iter != cmdlist.end(); iter++)
@@ -200,73 +200,73 @@ namespace stb {
 			}
 			for (size_t i = 0; i < available.size(); i++)
 			{
-				Engine::console->output(available[i]);
+				e.console->output(available[i]);
 				if (i < available.size() - 1)
-					Engine::console->insertLastOutput(", ");
+					e.console->insertLastOutput(", ");
 			}
 			if (available.empty())
-				Engine::console->output("find: No commands found");
+				e.console->output("find: No commands found");
 		}
 
-		void toggleConLog(Engine &, std::vector<std::string> *argv)
+		void toggleConLog(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "log_enable: No param given");
+				e.console->output(COLOR_ERROR, "log_enable: No param given");
 				return;
 			}
 			bool v;
 
 			try { v = convertBool((*argv)[0]); }
 			catch (...) { return; }
-			Engine::console->setLogEnabled(v);
+			e.console->setLogEnabled(v);
 		}
 
-		void writeToLog(Engine &, std::vector<std::string> *argv)
+		void writeToLog(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "log_write: Nothing to write");
+				e.console->output(COLOR_ERROR, "log_write: Nothing to write");
 				return;
 			}
-			Engine::console->writeToLog((*argv)[0]);
+			e.console->writeToLog((*argv)[0]);
 		}
 
-		void setConLog(Engine &, std::vector<std::string> *argv)
+		void setConLog(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "log_file: No path given");
+				e.console->output(COLOR_ERROR, "log_file: No path given");
 				return;
 			}
-			Engine::console->setLogFile((*argv)[0]);
+			e.console->setLogFile((*argv)[0]);
 		}
 
-		void toggleHUDElement(Engine &, std::vector<std::string> *argv)
+		void toggleGUIElement(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "hud_toggleelement: No id given");
+				e.console->output(COLOR_ERROR, "hud_toggleelement: No id given");
 				return;
 			}
-			Engine::hud->toggleHideElement((*argv)[0].c_str());
+			e.gui->toggleHideElement((*argv)[0].c_str());
 		}
 
-		void timestampLog(Engine &, std::vector<std::string> *argv)
+		void timestampLog(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->setLogTimestamp(-1);
+				e.console->setLogTimestamp(-1);
 				return;
 			}
 			bool v;
 
 			try { v = convertBool((*argv)[0]); }
 			catch (...) { return; }
-			Engine::console->setLogTimestamp(static_cast<int>(v));
+			e.console->setLogTimestamp(static_cast<int>(v));
 		}
 
-		void printCWD(Engine &, std::vector<std::string> *)
+		void printCWD(Engine &e, std::vector<std::string> *)
 		{
 			char *cwd;
 
@@ -275,7 +275,7 @@ namespace stb {
 #else
 			cwd = _getcwd(NULL, 0);
 #endif
-			Engine::console->output(std::string(cwd));
+			e.console->output(std::string(cwd));
 			delete (cwd);
 		}
 
@@ -297,47 +297,47 @@ namespace stb {
 				file += (*argv)[0] + ".png";
 			id++;
 			if (!shot.saveToFile(file))
-				Engine::console->output(COLOR_ERROR, "screenshot: Unable to save screenshot");
+				e.console->output(COLOR_ERROR, "screenshot: Unable to save screenshot");
 		}
 
 		void setLineCount(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "con_maxline: No value given");
+				e.console->output(COLOR_ERROR, "con_maxline: No value given");
 				return;
 			}
-			Engine::console->setLineCount(atoi((*argv)[0].c_str()));
-			Engine::console->initGraphics(e.getWindowSize());
+			e.console->setLineCount(atoi((*argv)[0].c_str()));
+			e.console->initGraphics(e.getWindowSize());
 		}
 
-		void setConColor(Engine &, std::vector<std::string> *argv)
+		void setConColor(Engine &e, std::vector<std::string> *argv)
 		{
 			sf::Color cbg, cinput;
 
 			if (argv == NULL || argv->size() < 2
 				|| (*argv)[0].length() < 9 || (*argv)[1].length() < 9)
-				Engine::console->output(COLOR_ERROR, "con_color: Invalid colors or no colors given");
+				e.console->output(COLOR_ERROR, "con_color: Invalid colors or no colors given");
 			cbg = *Console::convertColorCode((*argv)[0]);
 			cinput = *Console::convertColorCode((*argv)[1]);
-			Engine::console->setColor(cbg, cinput);
+			e.console->setColor(cbg, cinput);
 		}
 
-		void setConCursor(Engine &, std::vector<std::string> *argv)
+		void setConCursor(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "con_cursor: No char given");
+				e.console->output(COLOR_ERROR, "con_cursor: No char given");
 				return;
 			}
-			Engine::console->setCursor((*argv)[0][0]);
+			e.console->setCursor((*argv)[0][0]);
 		}
 
 		void setMaxFPS(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "fps_max: No value given");
+				e.console->output(COLOR_ERROR, "fps_max: No value given");
 				return;
 			}
 			e.videoParamSet("FPS", atoi((*argv)[0].c_str()));
@@ -357,15 +357,15 @@ namespace stb {
 			e.videoParamSet("FULLSCREEN", static_cast<int>(v));
 		}
 
-		void help(Engine &, std::vector<std::string> *)
+		void help(Engine &e, std::vector<std::string> *)
 		{
-			Engine::console->output(COLOR_INFO, "Available commands: ");
-			Engine::console->output("");
+			e.console->output(COLOR_INFO, "Available commands: ");
+			e.console->output("");
 			for (cmdMap::iterator it = cmdlist.begin(); it != cmdlist.end(); it++)
 			{
-				Engine::console->insertLastOutput(it->first);
+				e.console->insertLastOutput(it->first);
 				if (std::next(it, 1) != cmdlist.end())
-					Engine::console->insertLastOutput(", ");
+					e.console->insertLastOutput(", ");
 			}
 		}
 
@@ -387,11 +387,11 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				Engine::console->output(COLOR_ERROR, "unbind: No key or action given");
+				e.console->output(COLOR_ERROR, "unbind: No key or action given");
 				return;
 			}
 			if (!e.keybinds->unbind((*argv)[0]))
-				Engine::console->output(COLOR_ERROR, "unbind: Unable to unbind key or action");
+				e.console->output(COLOR_ERROR, "unbind: Unable to unbind key or action");
 		}
 
 		void unbindall(Engine &e, std::vector<std::string> *)
@@ -403,11 +403,11 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 2)
 			{
-				Engine::console->output(COLOR_ERROR, "videomode: Mode incorrect or no mode given");
+				e.console->output(COLOR_ERROR, "videomode: Mode incorrect or no mode given");
 				return;
 			}
 			e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));
-			Engine::console->initGraphics(e.getWindowSize());
+			e.console->initGraphics(e.getWindowSize());
 		}
 
 	}

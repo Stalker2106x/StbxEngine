@@ -88,7 +88,7 @@ namespace stb {
 		virtual void onClick();
 		virtual bool onHover(const bool &triggered);
 
-		bool update(const sf::Event &e);
+		virtual bool update(const sf::Event &e);
 
 	private:
 		std::string _target;
@@ -121,7 +121,7 @@ namespace stb {
 		int getCurrentIndex();
 
 		void updateValue();
-		virtual bool update(sf::Event &e);
+		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 
 	private:
@@ -163,7 +163,7 @@ namespace stb {
 
 		void onClick();
 
-		virtual bool update(sf::Event &e);
+		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 	private:
 		bool _focus;
@@ -196,8 +196,8 @@ namespace stb {
 
 		void onClick() {};
 
-		void updateSlider(sf::Event &e, bool forceupdate = false);
-		virtual bool update(sf::Event &e);
+		void updateSlider(const sf::Event &e, bool forceupdate = false);
+		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 	private:
 		bool _sliding;

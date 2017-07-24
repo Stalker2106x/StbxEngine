@@ -2,20 +2,19 @@
 
 using namespace stb;
 
-Keybinds *stb::Engine::keybinds = new Keybinds();
-stb::Console *stb::Engine::console = NULL;
-HUD *stb::Engine::hud = new HUD();
 stb::Engine *stb::Engine::instance = NULL;
 
 Engine::Engine(int width, int height)
 {
+	instance = this;
 	_gametime.restart();
 	_quit = false;
 	_win = NULL;
 	_fullscreen = false;
 	_vsync = false;
-	Engine::console = new Console(*this);
-	Engine::instance = this;
+	keybinds = new Keybinds();
+	console = new Console(*this);
+	gui = new GUI();
 	openWindow(width, height);
 	keybinds->bindEnv(this);
 }
@@ -119,10 +118,10 @@ bool Engine::updateLoop()
 		  _win->close();
 		  return (false);
 		}
-		if (Engine::console->isActive())
-			Engine::console->update(event);
-		if (Engine::hud->isActive())
-			Engine::hud->update(event);
+		if (console->isActive())
+			console->update(event);
+		if (gui->isActive())
+			gui->update(event);
 		keybinds->update(event);
 		if (update(event) == false)
 		{
@@ -139,10 +138,10 @@ int Engine::mainLoop()
     {
       _win->clear(sf::Color::Black);
 	  draw();
-	  if (Engine::hud->isActive())
-		  Engine::hud->draw(_win);
-	  if (Engine::console->isActive())
-		  Engine::console->draw(_win);
+	  if (gui->isActive())
+		  gui->draw(_win);
+	  if (console->isActive())
+		  console->draw(_win);
       _win->display();
     }
   return (0);

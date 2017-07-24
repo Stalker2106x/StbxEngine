@@ -36,7 +36,7 @@ namespace stb {
 		void toggleConLog(Engine &, std::vector<std::string> *);
 		void writeToLog(Engine &, std::vector<std::string> *argv);
 		void setConLog(Engine &, std::vector<std::string> *argv);
-		void toggleHUDElement(Engine &, std::vector<std::string> *argv);
+		void toggleGUIElement(Engine &, std::vector<std::string> *argv);
 		void timestampLog(Engine &, std::vector<std::string> *argv);
 		void printCWD(Engine &e, std::vector<std::string> *);
 		void quit(Engine &e, std::vector<std::string> *);

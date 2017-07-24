@@ -34,6 +34,7 @@ namespace stb {
 		void parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 		void parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 		void parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+		void initializeItems();
 
 		void setBackground(const std::string &resource);
 

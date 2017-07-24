@@ -15,7 +15,7 @@
 #include <SFML/Graphics.hpp>
 #include "Console.hh"
 #include "Keybinds.hh"
-#include "HUD.hh"
+#include "GUI.hh"
 
 namespace stb {
 
@@ -51,11 +51,11 @@ namespace stb {
 
 		void quit();
 
-		static Keybinds *keybinds;
-		static Console *console;
-		static HUD *hud;
+		Keybinds *keybinds;
+		Console *console;
+		GUI *gui;
 
-		static Engine *instance;
+		static Engine *instance; //Public hook on engine instance
 
 	protected:
 		bool _quit, _fullscreen, _vsync;

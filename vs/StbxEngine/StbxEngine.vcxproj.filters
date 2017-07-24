@@ -42,7 +42,7 @@
     <ClInclude Include="..\..\include\Resolver.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\HUD.hh">
+    <ClInclude Include="..\..\include\GUI.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,17 +71,17 @@
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
       <Filter>Source Files\ThirdParty</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\HUD.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Resolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\HUDElement.cpp">
+    <ClCompile Include="..\..\src\GUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\include\HUDElement.hh">
+    <ClCompile Include="..\..\include\GUIElement.hh">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GUIElement.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

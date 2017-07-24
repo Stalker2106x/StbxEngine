@@ -139,7 +139,7 @@ bool MenuItem::update(const sf::Event &e)
 		else
 			onHover(false);
     }
-  else if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left && isHovered())
+  else if (e.type == sf::Event::MouseButtonReleased && e.key.code == sf::Mouse::Left && isHovered())
     {
       onClick();
     }
@@ -202,7 +202,7 @@ void MenuLink::onClick()
 		_menuHandle->loadFromFile("./Data/menu/" + _target + ".xml");
 	}
 	else
-		Engine::console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
+		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
 }
 
 bool MenuLink::onHover(const bool &triggered)
@@ -306,7 +306,7 @@ void MenuSetting::updateValue()
 		_value.setString(_values[_index]);
 }
 
-bool MenuSetting::update(sf::Event &e)
+bool MenuSetting::update(const sf::Event &e)
 {
 	if (!MenuItem::update(e))
 		return (false);
@@ -403,7 +403,7 @@ void MenuEdit::onClick()
 
 }
 
-bool MenuEdit::update(sf::Event &e)
+bool MenuEdit::update(const sf::Event &e)
 {
 	if (!MenuItem::update(e))
 		return (false);
@@ -516,7 +516,7 @@ int MenuSlider::getValue()
 	return (_value);
 }
 
-void MenuSlider::updateSlider(sf::Event &e, bool forceupdate)
+void MenuSlider::updateSlider(const sf::Event &e, bool forceupdate)
 {
 	if (_sliding && (e.type == sf::Event::MouseMoved || forceupdate))
 	{
@@ -534,7 +534,7 @@ void MenuSlider::updateSlider(sf::Event &e, bool forceupdate)
 	}
 }
 
-bool MenuSlider::update(sf::Event &e)
+bool MenuSlider::update(const sf::Event &e)
 {
 	if (!MenuItem::update(e))
 		return (false);

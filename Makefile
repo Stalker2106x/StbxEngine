@@ -50,8 +50,8 @@ SRCS =				$(EXTLIB)/pugixml/src/pugixml.cpp	\
 				$(SRCDIR)/Control.cpp			\
 				$(SRCDIR)/Menu.cpp			\
 				$(SRCDIR)/MenuItem.cpp			\
-				$(SRCDIR)/HUD.cpp			\
-				$(SRCDIR)/HUDElement.cpp			\
+				$(SRCDIR)/GUI.cpp			\
+				$(SRCDIR)/GUIElement.cpp			\
 				$(SRCDIR)/Resolver.cpp
 
 OBJS = $(SRCS:.cpp=.o)
