@@ -1,0 +1,4 @@
+<map id="stb::HUDSIndicator" name="stb::HUDSIndicator">
+<area shape="rect" id="node3" href="$classstb_1_1HUDIndicator.html" title="Templated class to track a variable value on screen. " alt="" coords="5,155,177,181"/>
+<area shape="rect" id="node2" href="$classstb_1_1HUDElement.html" title="Abstract HUD Element superclass. " alt="" coords="25,5,158,32"/>
+</map>

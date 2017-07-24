@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classstb_1_1HUDElement.html" title="Abstract HUD Element superclass. " alt="" coords="5,31,139,57"/>
+<area shape="rect" id="node2" href="$classstb_1_1HUDPanel.html" title="Panel for HUD. " alt="" coords="201,5,316,32"/>
+<area shape="rect" id="node4" href="$classstb_1_1HUDSIndicator.html" title="Abstract HUD Indicator Superclass. " alt="" coords="187,56,331,83"/>
+<area shape="rect" id="node3" href="$classstb_1_1HUDDraggablePanel.html" title="Draggable implementation of panel. " alt="" coords="379,5,559,32"/>
+<area shape="rect" id="node5" href="$classstb_1_1HUDIndicator.html" title="Templated class to track a variable value on screen. " alt="" coords="383,56,555,83"/>
+</map>

@@ -83,14 +83,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="classEngine-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Engine Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Engine Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -98,101 +92,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classEngine.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Engine_8hpp_source.html">Engine.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for Engine:</div>
-<div class="dyncontent">
-<div class="center"><img src="classEngine__coll__graph.png" border="0" usemap="#Engine_coll__map" alt="Collaboration graph"/></div>
-<map name="Engine_coll__map" id="Engine_coll__map">
-<area shape="rect" id="node2" href="classKeybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="5,5,84,32"/><area shape="rect" id="node3" href="classHUD.html" title="Heads up display module. " alt="" coords="111,5,163,32"/><area shape="rect" id="node4" href="classConsole.html" title="Integrated toggleable developer console. " alt="" coords="187,5,260,32"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a584a47606683775104df9f2482658c22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a584a47606683775104df9f2482658c22"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Engine</b> (int width=800, int height=600)</td></tr>
-<tr class="separator:a584a47606683775104df9f2482658c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac871cb91c5e3e89a393f8f949019cd2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac871cb91c5e3e89a393f8f949019cd2c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>openWindow</b> (int, int)</td></tr>
-<tr class="separator:ac871cb91c5e3e89a393f8f949019cd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6d244863ecf18d39aeb32a265115ead"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6d244863ecf18d39aeb32a265115ead"></a>
-sf::RenderWindow *&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowHandle</b> ()</td></tr>
-<tr class="separator:ab6d244863ecf18d39aeb32a265115ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d1278fde66c010cba3b844a54867af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9d1278fde66c010cba3b844a54867af"></a>
-sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowSize</b> () const </td></tr>
-<tr class="separator:ab9d1278fde66c010cba3b844a54867af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b43df5b91bc06fa908d6a55d5f40b7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b43df5b91bc06fa908d6a55d5f40b7d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleArgs</b> (int argc, char **argv)</td></tr>
-<tr class="separator:a3b43df5b91bc06fa908d6a55d5f40b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3f36faf089353dc0d020354d762788e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3f36faf089353dc0d020354d762788e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>videoParamSet</b> (const std::string &amp;, const int &amp;)</td></tr>
-<tr class="separator:ab3f36faf089353dc0d020354d762788e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abffb4aa8da34832c14c7b041b1c864b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abffb4aa8da34832c14c7b041b1c864b8"></a>
-sf::Image&#160;</td><td class="memItemRight" valign="bottom"><b>capture</b> ()</td></tr>
-<tr class="separator:abffb4aa8da34832c14c7b041b1c864b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04f3ee9b4ddc0d67406536a2fe525f31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04f3ee9b4ddc0d67406536a2fe525f31"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()=0</td></tr>
-<tr class="separator:a04f3ee9b4ddc0d67406536a2fe525f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a34f4802fa7e66008518bc4e89e54d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a34f4802fa7e66008518bc4e89e54d9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateLoop</b> ()</td></tr>
-<tr class="separator:a6a34f4802fa7e66008518bc4e89e54d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d52da4c5d8620de700f4f19caf7b160"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d52da4c5d8620de700f4f19caf7b160"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Event &amp;)=0</td></tr>
-<tr class="separator:a4d52da4c5d8620de700f4f19caf7b160"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100911d0f2947bf8a9a9273002da25e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a100911d0f2947bf8a9a9273002da25e6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>mainLoop</b> ()</td></tr>
-<tr class="separator:a100911d0f2947bf8a9a9273002da25e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd6e5ae9f755e283f4cc6b69ab24c582"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd6e5ae9f755e283f4cc6b69ab24c582"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>quit</b> ()</td></tr>
-<tr class="separator:abd6e5ae9f755e283f4cc6b69ab24c582"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7fd36135a1090fc05947f4969bedacb6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fd36135a1090fc05947f4969bedacb6"></a>
-static char&#160;</td><td class="memItemRight" valign="bottom"><b>getChar</b> (sf::Event event, CharType type)</td></tr>
-<tr class="separator:a7fd36135a1090fc05947f4969bedacb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb9db1b96d86458ae665b2614fd0bd9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb9db1b96d86458ae665b2614fd0bd9b"></a>
-static struct tm *&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
-<tr class="separator:afb9db1b96d86458ae665b2614fd0bd9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad89df061e48c5dfb14632b67fc77fe0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad89df061e48c5dfb14632b67fc77fe0c"></a>
-static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTimestamp</b> ()</td></tr>
-<tr class="separator:ad89df061e48c5dfb14632b67fc77fe0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b5758881641937de544325f5eebaabb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b5758881641937de544325f5eebaabb"></a>
-static sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getMousePosition</b> ()</td></tr>
-<tr class="separator:a4b5758881641937de544325f5eebaabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a8a8da9ed9351a24a655f86b5bec194d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a8da9ed9351a24a655f86b5bec194d3"></a>
-static <a class="el" href="classKeybinds.html">Keybinds</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>keybinds</b></td></tr>
-<tr class="separator:a8a8da9ed9351a24a655f86b5bec194d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53c45cdb8fb792675360bcd126a11c55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53c45cdb8fb792675360bcd126a11c55"></a>
-static <a class="el" href="classConsole.html">Console</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>console</b></td></tr>
-<tr class="separator:a53c45cdb8fb792675360bcd126a11c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa57db193ee074fff1119eccaf0316f09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa57db193ee074fff1119eccaf0316f09"></a>
-static <a class="el" href="classHUD.html">HUD</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>hud</b></td></tr>
-<tr class="separator:aa57db193ee074fff1119eccaf0316f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bf3ee6e29130918aac1c3cb2ef021e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0bf3ee6e29130918aac1c3cb2ef021e9"></a>
-static <a class="el" href="classEngine.html">Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b></td></tr>
-<tr class="separator:a0bf3ee6e29130918aac1c3cb2ef021e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a898920050b07866ea40f064d70cea2d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a898920050b07866ea40f064d70cea2d3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_quit</b></td></tr>
-<tr class="separator:a898920050b07866ea40f064d70cea2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbf1a2a867c7d984635649f4b31445be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbf1a2a867c7d984635649f4b31445be"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_fullscreen</b></td></tr>
-<tr class="separator:abbf1a2a867c7d984635649f4b31445be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4335fc7280d9f08bb1782ff1468a0a7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4335fc7280d9f08bb1782ff1468a0a7e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_vsync</b></td></tr>
-<tr class="separator:a4335fc7280d9f08bb1782ff1468a0a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08d9946ba478761a9daedef99e7515ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08d9946ba478761a9daedef99e7515ff"></a>
-sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>_winsize</b></td></tr>
-<tr class="separator:a08d9946ba478761a9daedef99e7515ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b0032aa2e805db98a6c73fd399b639e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b0032aa2e805db98a6c73fd399b639e"></a>
-sf::RenderWindow *&#160;</td><td class="memItemRight" valign="bottom"><b>_win</b></td></tr>
-<tr class="separator:a8b0032aa2e805db98a6c73fd399b639e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main class for graphic conception. </p>
 <p>This the base class of the project. You must inherit from this class to start using the graphic engine. Start by implementing the update and draw routine, related to the behaviour you expect in your game. In your main function, simply instantiate your child <a class="el" href="classEngine.html" title="Main class for graphic conception. ">Engine</a>, then call the mainLoop method to start the program. </p>
