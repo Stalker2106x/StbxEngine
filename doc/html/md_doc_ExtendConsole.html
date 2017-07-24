@@ -85,14 +85,14 @@ It comes with default actions and commands included<br />
 To add commands to console, you must emplace your command and its function pointer to Commands::cmdMap<br />
  The following example shows how to add a simple "echoerror" command to console<br />
 </p><pre class="fragment">//In your engine constructor for example:
-Commands::cmdlist.emplace("echored", &amp;echored);
+stb::Commands::cmdlist.emplace("echored", &amp;echored);
 
-void echored(Engine &amp;e, std::vector&lt;std::string&gt; *argv)
+void echored(Engine &amp;e, std::vector&lt;std::string&gt; *argv) //Every console command should have this signature
 {
 if (argv &amp;&amp; argv-&gt;size() &lt; 1)
-   Engine::console-&gt;output(COLOR_ERROR, "Nothing to echo");
+   e.console-&gt;output(COLOR_ERROR, "Nothing to echo");
 else
-   Engine::console-&gt;output(COLOR_ERROR, (*argv)[0]);
+   e.console-&gt;output(COLOR_ERROR, (*argv)[0]);
 } </pre> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

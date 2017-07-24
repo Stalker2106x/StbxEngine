@@ -1,0 +1,4 @@
+<map id="stb::HUDDraggablePanel" name="stb::HUDDraggablePanel">
+<area shape="rect" id="node2" href="$classstb_1_1HUDPanel.html" title="Panel for HUD. " alt="" coords="38,80,153,107"/>
+<area shape="rect" id="node3" href="$classstb_1_1HUDElement.html" title="Abstract HUD Element superclass. " alt="" coords="29,5,162,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="stb::HUDElement" name="stb::HUDElement">
+<area shape="rect" id="node2" href="$classstb_1_1HUDPanel.html" title="Panel for HUD. " alt="" coords="50,80,165,107"/>
+<area shape="rect" id="node4" href="$classstb_1_1HUDSIndicator.html" title="Abstract HUD Indicator Superclass. " alt="" coords="211,80,355,107"/>
+<area shape="rect" id="node3" href="$classstb_1_1HUDDraggablePanel.html" title="Draggable implementation of panel. " alt="" coords="5,155,185,181"/>
+<area shape="rect" id="node5" href="$classstb_1_1HUDIndicator.html" title="Templated class to track a variable value on screen. " alt="" coords="209,155,381,181"/>
+</map>
