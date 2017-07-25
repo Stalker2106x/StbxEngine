@@ -3,6 +3,8 @@
 *.com
 *.class
 *.exe
+*.lib
+*.so
 *.o
 *.obj
 
@@ -16,6 +18,7 @@
 *.opensdf
 *.suo
 *.sdf
+*.idb
 
 # Packages #
 ############

@@ -2,6 +2,7 @@ BUG:
 -screenshot command is unable to write
 -link color is inverted
 -"debuginfo" is broken
+-updateRT is not called on indicators
 
 FEATURE:
 1-add a command "addpanel" to add panel
