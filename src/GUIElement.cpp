@@ -107,6 +107,15 @@ void GUIPanel::setStyle(const char &style)
 void GUIPanel::addElement(GUIElement *element)
 {
 	_elements.push_back(element);
+	_elements.back()->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + ((_elements.size() - 1) * 35)));
+}
+
+void GUIPanel::updateElementsPosition()
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		_elements[i]->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + (i * 35)));
+	}
 }
 
 bool GUIPanel::onButtonHover(const PanelButton &id, const bool &triggered)
@@ -234,10 +243,7 @@ void GUIDraggablePanel::movePanel(const sf::Vector2f &newpos)
 	_buttonBar[Lock].setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width -
 		(_buttonBar[Close].getGlobalBounds().width + _buttonBar[Lock].getGlobalBounds().width), 0));
 	_frame.setPosition(newpos + sf::Vector2f(0, _header.getGlobalBounds().height));
-	for (size_t i = 0; i < _elements.size(); i++)
-	{
-		_elements[i]->setPosition(newpos + sf::Vector2f(5, 15 + (i * 35)));
-	}
+	updateElementsPosition();
 }
 
 bool GUIDraggablePanel::onButtonHover(const PanelButton &id, const bool &triggered)

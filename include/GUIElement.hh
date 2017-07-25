@@ -137,6 +137,7 @@ namespace stb {
 		void setStyle(const char &style);
 
 		void addElement(GUIElement *element);
+		void updateElementsPosition();
 
 		bool onButtonHover(const PanelButton &id, const bool &triggered);
 

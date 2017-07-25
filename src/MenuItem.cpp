@@ -18,6 +18,7 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
 
 MenuItem::MenuItem()
 {
+  _hover = false;
   _vhover = false;
   _active = false;
   _padding = 0;
