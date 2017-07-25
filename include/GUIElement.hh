@@ -89,7 +89,7 @@ namespace stb {
 			delete (_label);
 		}
 
-		virtual bool updateRT()
+		virtual bool updateRT() override
 		{
 			if (_hookValue != _hook)
 			{

@@ -41,7 +41,8 @@ namespace stb {
 
 		virtual void draw() = 0;
 		bool updateLoop();
-		virtual bool update(sf::Event &) = 0;
+		virtual bool update(const sf::Event &) = 0;
+		void updateFramerate();
 		int mainLoop();
 
 		static char getChar(sf::Event event, CharType type);
@@ -61,7 +62,7 @@ namespace stb {
 		bool _quit, _fullscreen, _vsync;
 		int _framerate, _frames;
 		sf::Clock _gametime;
-		sf::Time _lastTick, _stackTick;
+		sf::Time _lastSecondTick;
 		sf::Vector2i _winsize;
 		sf::RenderWindow *_win;
 	};

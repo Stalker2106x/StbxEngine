@@ -11,7 +11,7 @@ public:
 
 	~sEngine() {};
 
-	bool update(sf::Event &e);
+	bool update(const sf::Event &e);
 	void draw();
 
 private:

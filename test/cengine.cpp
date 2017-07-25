@@ -18,10 +18,10 @@ sEngine::sEngine()
 	stb::Menu::dynamicValue.emplace("Resolutions", resolutions);
 	_mainMenu.loadFromFile("./Data/menu/main.xml");
 	stb::GUIPanel *panel = gui->addDraggablePanel("windowz", sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
-	panel->addElement(new stb::GUIIndicator<bool>("Indicator :", _fullscreen));
+	panel->addElement(new stb::GUIIndicator<int>("Indicator :", _framerate));
 }
 
-bool sEngine::update(sf::Event &e)
+bool sEngine::update(const sf::Event &e)
 {
 	_mainMenu.update(e);
 	return (true);

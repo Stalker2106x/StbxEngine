@@ -9,7 +9,7 @@ Engine::Engine(int width, int height)
 	instance = this;
 	_gametime.restart();
 	_framerate = 0;
-	_stackTick = sf::Time::Zero;
+	_lastSecondTick = sf::Time::Zero;
 	_quit = false;
 	_win = NULL;
 	_fullscreen = false;
@@ -113,15 +113,6 @@ bool Engine::updateLoop()
 {
   sf::Event event;
 
-  _frames++;
-  _stackTick += _gametime.getElapsedTime() - _lastTick;
-  if (_stackTick >= sf::seconds(1))
-  {
-	  _stackTick = sf::Time::Zero;
-	  _framerate = _frames;
-	  _frames = 0;
-  }
-  _lastTick = _gametime.getElapsedTime();
   if (gui->isActive())
 	  gui->updateRT();
   while (_win->pollEvent(event))
@@ -145,6 +136,18 @@ bool Engine::updateLoop()
   return (true);
 }
 
+void Engine::updateFramerate()
+{
+	_frames++;
+	if (_gametime.getElapsedTime().asSeconds() - _lastSecondTick.asSeconds() >= 1)
+	{
+
+		_lastSecondTick = _gametime.getElapsedTime();
+		_framerate = _frames;
+		_frames = 0;
+	}
+}
+
 int Engine::mainLoop()
 {
   while (!_quit && _win->isOpen() && updateLoop())
@@ -156,6 +159,7 @@ int Engine::mainLoop()
 	  if (console->isActive())
 		  console->draw(_win);
       _win->display();
+	  updateFramerate();
     }
   return (0);
 }

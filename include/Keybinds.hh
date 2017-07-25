@@ -34,7 +34,7 @@ namespace stb {
 		bool bind(std::string ctrl, std::string action);
 		void listAllBinds();
 		Control *getKey(const std::string &action);
-		void update(sf::Event &e);
+		void update(const sf::Event &e);
 
 	private:
 		Engine *_e;

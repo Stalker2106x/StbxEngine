@@ -96,7 +96,7 @@ Control *Keybinds::getKey(const std::string &action)
   return (NULL);
 }
 
-void Keybinds::update(sf::Event &e)
+void Keybinds::update(const sf::Event &e)
 {
   try {
     switch (e.type)

@@ -189,7 +189,7 @@ void Menu::setBackground(const std::string &resource)
 	_background.setTexture(*Resolver<sf::Texture>::resolve("background"));
 }
 
-bool Menu::update(sf::Event &e)
+bool Menu::update(const sf::Event &e)
 {
   for (size_t i = 0; i < _items.size(); i++)
     _items[i]->update(e);

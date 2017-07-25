@@ -38,7 +38,7 @@ namespace stb {
 
 		void setBackground(const std::string &resource);
 
-		bool update(sf::Event &e);
+		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *);
 
 		static std::unordered_map<std::string, std::pair<menuFptr, void *>> customAction;
