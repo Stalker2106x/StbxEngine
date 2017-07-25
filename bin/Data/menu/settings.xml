@@ -6,13 +6,13 @@
   <item type="Link">
     <label>Controls</label>
   </item>
-  <item type="Link">
+  <item type="Link" target="videoSettings">
     <label>Video</label>
   </item>
   <item type="Link">
     <label>Sound</label>
   </item>
-  <item type="Link">
+  <item type="Link" target="GOLmon">
     <label>Back</label>
     <y>150</y>
   </item>

@@ -6,7 +6,7 @@
   <item type="Link">
     <label>Play</label>
   </item>
-  <item type="Link" action="Settings">
+  <item type="Link" target="settings">
     <label>Settings</label>
   </item>
   <item type="Link">

@@ -8,10 +8,12 @@ void f(void *menu)
 
 sEngine::sEngine()
 {
-	std::vector<std::string> resolutions;
-
-	resolutions.push_back("800x600");
-	resolutions.push_back("1920x1080");
+	std::vector<std::string> resolutions = {
+		"800x600",
+		"1024x768",
+		"1920x1080"
+	};
+	
 	stb::Menu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu));
 	stb::Menu::dynamicValue.emplace("Resolutions", resolutions);
 	_mainMenu.loadFromFile("./Data/menu/main.xml");

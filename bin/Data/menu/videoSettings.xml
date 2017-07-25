@@ -21,16 +21,15 @@
     <min>0</min>
     <max>100</max>
   </item>
-  <item type="DynamicSetting" action="getResolution">
+  <item type="DynamicSetting" filler="Resolutions">
     <label>Resolution</label>
     <padding>100</padding>
-  </item>
   </item>
   <item type="Link">
     <label>Default settings</label>
     <y>150</y>
   </item>
-  <item type="Link">
+  <item type="Link" target="settings">
     <label>Back</label>
     <y>180</y>
   </item>
