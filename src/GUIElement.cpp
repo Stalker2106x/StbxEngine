@@ -39,12 +39,23 @@ bool GUIElement::update(const sf::Event &e)
 // GUIButton
 //
 
-GUIButton::GUIButton(const std::string &id) : GUIElement(id)
+GUIButton::GUIButton(const std::string &id, const sf::Event::EventType &triggerType) : GUIElement(id)
 {
+	_triggerType = triggerType;
 }
 
 GUIButton::~GUIButton()
 {
+}
+
+bool GUIButton::isHovered() const
+{
+	return (_hover);
+}
+
+void GUIButton::setClickCallback(const onClickCallback &fptr)
+{
+	_clickCallback = fptr;
 }
 
 bool GUIButton::onHover(const bool &triggered)
@@ -63,6 +74,10 @@ bool GUIButton::update(const sf::Event &e)
 {
 	if (!GUIElement::update(e))
 		return (false);
+	if (e.type == _triggerType && e.key.code == sf::Mouse::Left && _hover)
+	{
+		_clickCallback();
+	}
 	return (true);
 }
 
@@ -75,7 +90,7 @@ void GUIButton::draw(sf::RenderWindow *win)
 // GUITextButton
 //
 
-GUITextButton::GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos) : GUIButton(id)
+GUITextButton::GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
 {
 	_label.setString(label);
 }
@@ -109,7 +124,7 @@ void GUITextButton::draw(sf::RenderWindow *win)
 // GUISpriteButton
 //
 
-GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos) : GUIButton(id)
+GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
 {
 }
 
@@ -133,7 +148,9 @@ bool GUISpriteButton::update(const sf::Event &e)
 
 void GUISpriteButton::draw(sf::RenderWindow *win)
 {
-
+	if (!_active)
+		return;
+	win->draw(_sprite);
 }
 
 //

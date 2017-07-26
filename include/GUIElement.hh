@@ -44,11 +44,16 @@ namespace stb {
 	*
 	*        This class should not be instanciated. It is used as an abstract layer to control behaviour of all button types
 	*/
+	typedef void(*onClickCallback)(void);
+
 	class GUIButton : public GUIElement
 	{
 	public:
-		GUIButton(const std::string &id);
+		GUIButton(const std::string &id, const sf::Event::EventType &triggerType);
 		~GUIButton();
+
+		bool isHovered() const;
+		void setClickCallback(const onClickCallback &fptr);
 
 		virtual bool onHover(const bool &triggered);
 
@@ -56,6 +61,8 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *win);
 	private:
 		bool _hover;
+		sf::Event::EventType _triggerType;
+		onClickCallback _clickCallback;
 	};
 
 	/*!
@@ -67,7 +74,7 @@ namespace stb {
 	class GUITextButton : public GUIButton
 	{
 	public:
-		GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos);
+		GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		~GUITextButton();
 
 		virtual bool update(const sf::Event &e);
@@ -85,7 +92,7 @@ namespace stb {
 	class GUISpriteButton : public GUIButton
 	{
 	public:
-		GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos);
+		GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		~GUISpriteButton();
 
 		virtual bool update(const sf::Event &e);
