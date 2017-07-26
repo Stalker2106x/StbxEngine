@@ -39,6 +39,62 @@ namespace stb {
 	};
 
 	/*!
+	* @class GUIButton
+	* @brief Abstract button superclass
+	*
+	*        This class should not be instanciated. It is used as an abstract layer to control behaviour of all button types
+	*/
+	class GUIButton : public GUIElement
+	{
+	public:
+		GUIButton(const std::string &id);
+		~GUIButton();
+
+		virtual bool onHover(const bool &triggered);
+
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *win);
+	private:
+		bool _hover;
+	};
+
+	/*!
+	* @class GUITextButton
+	* @brief Clickable and hovereable simple text button
+	*
+	*        This represents a clickable text button entity on screen.
+	*/
+	class GUITextButton : public GUIButton
+	{
+	public:
+		GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos);
+		~GUITextButton();
+
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *win);
+	private:
+		sf::Text _label;
+	};
+
+	/*!
+	* @class GUISpriteButton
+	* @brief Clickable and hovereable textured button
+	*
+	*        This represents a clickable image button entity on screen.
+	*/
+	class GUISpriteButton : public GUIButton
+	{
+	public:
+		GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos);
+		~GUISpriteButton();
+
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *win);
+	private:
+		sf::Sprite _sprite;
+	};
+
+	/*!
 	* @class GUISIndicator
 	* @brief Abstract GUI Indicator Superclass
 	*
@@ -101,7 +157,8 @@ namespace stb {
 
 		virtual bool update(const sf::Event &e)
 		{
-			GUISIndicator::update(e);
+			if (!GUISIndicator::update(e))
+				return (false);
 			return (true);
 		}
 

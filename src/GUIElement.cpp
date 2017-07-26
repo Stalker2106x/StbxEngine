@@ -28,9 +28,118 @@ bool GUIElement::updateRT()
 	return (true);
 }
 
+bool GUIElement::update(const sf::Event &e)
+{
+	if (!_active)
+		return (false);
+	return (true);
+}
+
+//
+// GUIButton
+//
+
+GUIButton::GUIButton(const std::string &id) : GUIElement(id)
+{
+}
+
+GUIButton::~GUIButton()
+{
+}
+
+bool GUIButton::onHover(const bool &triggered)
+{
+	if ((triggered && _hover)
+		|| (!triggered && !_hover))
+		return (false);
+	if (triggered)
+		_hover = true;
+	else
+		_hover = false;
+	return (true);
+}
+
+bool GUIButton::update(const sf::Event &e)
+{
+	if (!GUIElement::update(e))
+		return (false);
+	return (true);
+}
+
+void GUIButton::draw(sf::RenderWindow *win)
+{
+
+}
+
+//
+// GUITextButton
+//
+
+GUITextButton::GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos) : GUIButton(id)
+{
+	_label.setString(label);
+}
+
+GUITextButton::~GUITextButton()
+{
+}
+
+bool GUITextButton::update(const sf::Event &e)
+{
+	if (!GUIButton::update(e))
+		return (false);
+	if (e.type == sf::Event::MouseMoved)
+	{
+		if (_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+			onHover(true);
+		else
+			onHover(false);
+	}
+	return (true);
+}
+
+void GUITextButton::draw(sf::RenderWindow *win)
+{
+	if (!_active)
+		return;
+	win->draw(_label);
+}
+
+//
+// GUISpriteButton
+//
+
+GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos) : GUIButton(id)
+{
+}
+
+GUISpriteButton::~GUISpriteButton()
+{
+}
+
+bool GUISpriteButton::update(const sf::Event &e)
+{
+	if (!GUIButton::update(e))
+		return (false);
+	if (e.type == sf::Event::MouseMoved)
+	{
+		if (_sprite.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+			onHover(true);
+		else
+			onHover(false);
+	}
+	return (true);
+}
+
+void GUISpriteButton::draw(sf::RenderWindow *win)
+{
+
+}
+
 //
 // GUISIndicator
 //
+
 GUISIndicator::GUISIndicator(const std::string &label) : GUIElement(label)
 {
 	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
@@ -58,6 +167,8 @@ void GUISIndicator::setPosition(const sf::Vector2f &pos)
 
 bool GUISIndicator::update(const sf::Event &e)
 {
+	if (!GUIElement::update(e))
+		return (false);
 	return (true);
 }
 
@@ -140,7 +251,7 @@ bool GUIPanel::onButtonHover(const PanelButton &id, const bool &triggered)
 
 bool GUIPanel::update(const sf::Event &e)
 {
-	if (!_active)
+	if (!GUIElement::update(e))
 		return (false);
 	for (size_t i = 0; i < _elements.size(); i++)
 		_elements[i]->update(e);
@@ -307,13 +418,12 @@ bool GUIDraggablePanel::update(const sf::Event &e)
 
 void GUIDraggablePanel::draw(sf::RenderWindow *win)
 {
-	if (_active)
-	{
+	if (!_active)
+		return;
 		win->draw(_header);
 		if ((_style & PN_CLOSE) == PN_CLOSE)
 			win->draw(_buttonBar[Close]);
 		if ((_style & PN_LOCK) == PN_LOCK)
 			win->draw(_buttonBar[Lock]);
-	}
 	GUIPanel::draw(win);
 }
