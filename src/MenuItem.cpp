@@ -18,11 +18,9 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
 
 MenuItem::MenuItem()
 {
-  _hover = false;
-  _vhover = false;
   _active = false;
   _padding = 0;
-  _label = new GUITextButton(); //not yet!
+  _label = new GUITextButton();
   _label->setClickCallback(std::bind(&MenuItem::onClick, this));
   _mode = Text;
   if (_mode == Text)
@@ -55,16 +53,6 @@ MenuItem *MenuItem::factory(const MenuItemType &type)
       break;
     }
   return (NULL);
-}
-
-bool MenuItem::isHovered() const
-{
-  return (_hover);
-}
-
-bool MenuItem::isValueHovered() const
-{
-	return (_vhover);
 }
 
 void MenuItem::setLabel(const std::string &label)
@@ -111,30 +99,6 @@ void MenuItem::setOffset(const float &x, const float &y)
 void MenuItem::initialUpdate()
 {
 	_active = true;
-}
-
-bool MenuItem::onValueHover(const bool &triggered)
-{
-	if ((triggered && _vhover)
-		|| (!triggered && !_vhover))
-		return (false);
-	if (triggered)
-		_vhover = true;
-	else
-		_vhover = false;
-	return (true);
-}
-
-bool MenuItem::onHover(const bool &triggered)
-{
-	if ((triggered && _hover)
-		|| (!triggered && !_hover))
-		return (false);
-	if (triggered)
-		_hover = true;
-	else
-		_hover = false;
-	return (true);
 }
 
 bool MenuItem::update(const sf::Event &e)
@@ -205,19 +169,6 @@ void MenuLink::onClick()
 		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
 }
 
-bool MenuLink::onHover(const bool &triggered)
-{
-	if (!MenuItem::onHover(triggered))
-		return (false);
-	/*sf::Color color = _label.getFillColor();
-
-	color.r = ~color.r;
-	color.g = ~color.g;
-	color.b = ~color.b;
-	_label.setFillColor(color);*/
-	return (true);
-}
-
 bool MenuLink::update(const sf::Event &e)
 {
 	if (!MenuItem::update(e))
@@ -232,7 +183,6 @@ MenuSetting::MenuSetting() : MenuItem()
 {
   _index = 0;
   _padding = 0;
-  _hover = false;
   _value = new GUITextButton();
   _value->setFont(*Resolver<sf::Font>::resolve("glitch"));
   _value->setClickCallback(std::bind(&MenuSetting::onClick, this));
@@ -288,19 +238,6 @@ void MenuSetting::onRClick()
   if (_index >= _values.size())
 	  _index = _values.size() - 1;
   updateValue();
-}
-
-bool MenuSetting::onValueHover(const bool &triggered)
-{
-	if (!MenuItem::onValueHover(triggered))
-		return (false);
-	/*sf::Color color = _value.getFillColor();
-
-	color.r = ~color.r;
-	color.g = ~color.g;
-	color.b = ~color.b;
-	_value.setFillColor(color);*/
-	return (true);
 }
 
 void MenuSetting::updateValue()

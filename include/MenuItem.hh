@@ -44,10 +44,7 @@ namespace stb {
 		~MenuItem();
 
 		static MenuItem *factory(const MenuItemType &type);
-
-		bool isHovered() const;
-		bool isValueHovered() const;
-
+		
 		void setLabel(const std::string &label);
 		void setPadding(const int &padding);
 		virtual void setColor(const sf::Color &color);
@@ -57,8 +54,6 @@ namespace stb {
 		virtual void setOffset(const float &x, const float &y);
 
 		virtual void initialUpdate();
-		virtual bool onValueHover(const bool &triggered);
-		virtual bool onHover(const bool &triggered);
 		virtual void onClick() = 0;
 
 		virtual bool update(const sf::Event &e);
@@ -71,7 +66,7 @@ namespace stb {
 		ItemMode _mode;
 		int _padding;
 		GUIButton *_label;
-		bool _active, _hover, _vhover;
+		bool _active;
 	};
 
 	/*!
@@ -92,7 +87,6 @@ namespace stb {
 		void setCommand(const std::string &command);
 
 		virtual void onClick();
-		virtual bool onHover(const bool &triggered);
 
 		virtual bool update(const sf::Event &e);
 
