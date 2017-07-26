@@ -13,6 +13,7 @@
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include "Engine.hpp"
+#include "GUIButton.hh"
 
 namespace stb {
 

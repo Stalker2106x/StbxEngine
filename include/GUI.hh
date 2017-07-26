@@ -12,6 +12,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "GUIElement.hh"
+#include "GUIButton.hh"
+#include "GUIObject.hh"
 
 namespace stb {
 

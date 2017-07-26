@@ -8,7 +8,6 @@ FEATURE:
 1-add a command "addpanel" to add panel
 2-resize static panel
 3-allow to add buttons to buttonbar of panel
-4 migrer tout les boutons vers une classe bouton
 3-add a grid element to HUDElement
 4-add a jukebox
 3-add a command "alias" to set shorter commands aliases

@@ -101,6 +101,8 @@
     <ClInclude Include="..\..\include\Control.hh" />
     <ClInclude Include="..\..\include\GUI.hh" />
     <ClInclude Include="..\..\include\Engine.hpp" />
+    <ClInclude Include="..\..\include\GUIButton.hh" />
+    <ClInclude Include="..\..\include\GUIObject.hh" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
     <ClInclude Include="..\..\include\Menu.hh" />
     <ClInclude Include="..\..\include\MenuItem.hh" />
@@ -114,7 +116,9 @@
     <ClCompile Include="..\..\src\Control.cpp" />
     <ClCompile Include="..\..\src\GUI.cpp" />
     <ClCompile Include="..\..\src\Engine.cpp" />
+    <ClCompile Include="..\..\src\GUIButton.cpp" />
     <ClCompile Include="..\..\src\GUIElement.cpp" />
+    <ClCompile Include="..\..\src\GUIObject.cpp" />
     <ClCompile Include="..\..\src\Keybinds.cpp" />
     <ClCompile Include="..\..\src\Menu.cpp" />
     <ClCompile Include="..\..\src\MenuItem.cpp" />
