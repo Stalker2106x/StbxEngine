@@ -26,6 +26,11 @@ namespace stb {
 		Slider
 	};
 
+	enum ItemMode {
+		Text,
+		Sprite
+	};
+
 	/*!
 	 * @class MenuItem
 	 * @brief Abstract Menu item
@@ -63,8 +68,9 @@ namespace stb {
 
 	protected:
 		Engine *_e;
+		ItemMode _mode;
 		int _padding;
-		sf::Text _label;
+		GUIButton *_label;
 		bool _active, _hover, _vhover;
 	};
 
@@ -125,7 +131,7 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *);
 
 	private:
-		sf::Text _value;
+		GUITextButton *_value;
 		std::vector<std::string> _values;
 		size_t _index;
 	};

@@ -22,7 +22,11 @@ MenuItem::MenuItem()
   _vhover = false;
   _active = false;
   _padding = 0;
-  _label.setFont(*Resolver<sf::Font>::resolve("glitch"));
+  _label = new GUITextButton(); //not yet!
+  _label->setClickCallback(std::bind(&MenuItem::onClick, this));
+  _mode = Text;
+  if (_mode == Text)
+	static_cast<GUITextButton *>(_label)->setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
 MenuItem::~MenuItem()
@@ -65,7 +69,8 @@ bool MenuItem::isValueHovered() const
 
 void MenuItem::setLabel(const std::string &label)
 {
-  _label.setString(label);
+	if (_mode == Text)
+		static_cast<GUITextButton *>(_label)->setLabel(label);
 }
 
 void MenuItem::setPadding(const int &padding)
@@ -75,33 +80,36 @@ void MenuItem::setPadding(const int &padding)
 
 void MenuItem::setColor(const sf::Color &color)
 {
-  _label.setFillColor(color);
+	if (_mode == Text)
+		static_cast<GUITextButton *>(_label)->setColor(color);
 }
 
 void MenuItem::setFontsize(const int &fontsize)
 {
-	_label.setCharacterSize(fontsize);
+	if (_mode == Text)
+		static_cast<GUITextButton *>(_label)->setFontsize(fontsize);
 }
 
 void MenuItem::setXOffset(const float &x)
 {
-	_label.setPosition(x, _label.getPosition().y);
+	if (_mode == Text)
+		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, _label->getPosition().y));
 }
 
 void MenuItem::setYOffset(const float &y)
 {
-	_label.setPosition(_label.getPosition().x, y);
+	if (_mode == Text)
+		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(_label->getPosition().x, y));
 }
 
 void MenuItem::setOffset(const float &x, const float &y)
 {
-  _label.setPosition(x, y);
+	if (_mode == Text)
+		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, y));
 }
 
 void MenuItem::initialUpdate()
 {
-	if (_label.getGlobalBounds().contains(Engine::getMousePosition()))
-		onHover(true);
 	_active = true;
 }
 
@@ -133,23 +141,14 @@ bool MenuItem::update(const sf::Event &e)
 {
   if (!_active)
 		return (false);
-  if (e.type == sf::Event::MouseMoved)
-    {
-		if (_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
-			onHover(true);
-		else
-			onHover(false);
-    }
-  else if (e.type == sf::Event::MouseButtonReleased && e.key.code == sf::Mouse::Left && isHovered())
-    {
-      onClick();
-    }
+  _label->update(e);
   return (true);
 }
 
 void MenuItem::draw(sf::RenderWindow *win)
 {
-  win->draw(_label);
+	if (_mode == Text)
+		static_cast<GUITextButton *>(_label)->draw(win);
 }
 
 /*
@@ -210,12 +209,12 @@ bool MenuLink::onHover(const bool &triggered)
 {
 	if (!MenuItem::onHover(triggered))
 		return (false);
-	sf::Color color = _label.getFillColor();
+	/*sf::Color color = _label.getFillColor();
 
 	color.r = ~color.r;
 	color.g = ~color.g;
 	color.b = ~color.b;
-	_label.setFillColor(color);
+	_label.setFillColor(color);*/
 	return (true);
 }
 
@@ -234,7 +233,10 @@ MenuSetting::MenuSetting() : MenuItem()
   _index = 0;
   _padding = 0;
   _hover = false;
-  _value.setFont(*Resolver<sf::Font>::resolve("glitch"));
+  _value = new GUITextButton();
+  _value->setFont(*Resolver<sf::Font>::resolve("glitch"));
+  _value->setClickCallback(std::bind(&MenuSetting::onClick, this));
+  _value->setRClickCallback(std::bind(&MenuSetting::onRClick, this));
 }
 
 MenuSetting::~MenuSetting()
@@ -245,26 +247,26 @@ MenuSetting::~MenuSetting()
 void MenuSetting::setFontsize(const int &fontsize)
 {
 	MenuItem::setFontsize(fontsize);
-	_value.setCharacterSize(fontsize);
+	_value->setFontsize(fontsize);
 }
 
 void MenuSetting::setXOffset(const float &x)
 {
 	MenuItem::setXOffset(x);
-	_value.setPosition(x + _label.getLocalBounds().width + _padding, _value.getPosition().y);
+	_value->setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _value->getPosition().y));
 }
 
 void MenuSetting::setYOffset(const float &y)
 {
 	MenuItem::setYOffset(y);
-	_value.setPosition(_value.getPosition().x, y);
+	_value->setPosition(sf::Vector2f(_value->getPosition().x, y));
 }
 
 void MenuSetting::setValues(std::vector<std::string> &values, const int &defaultIndex)
 {
 	_values = values;
 	if (_values.size() > 0)
-		_value.setString(_values[defaultIndex]);
+		_value->setLabel(_values[defaultIndex]);
 }
 
 int MenuSetting::getCurrentIndex()
@@ -292,39 +294,26 @@ bool MenuSetting::onValueHover(const bool &triggered)
 {
 	if (!MenuItem::onValueHover(triggered))
 		return (false);
-	sf::Color color = _value.getFillColor();
+	/*sf::Color color = _value.getFillColor();
 
 	color.r = ~color.r;
 	color.g = ~color.g;
 	color.b = ~color.b;
-	_value.setFillColor(color);
+	_value.setFillColor(color);*/
 	return (true);
 }
 
 void MenuSetting::updateValue()
 {
 	if (_values.size() > 0)
-		_value.setString(_values[_index]);
+		_value->setLabel(_values[_index]);
 }
 
 bool MenuSetting::update(const sf::Event &e)
 {
 	if (!MenuItem::update(e))
 		return (false);
-  if (e.type == sf::Event::MouseMoved)
-  {
-	  if (_value.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
-		  onValueHover(true);
-	  else
-		  onValueHover(false);
-  }
-  else if (e.type == sf::Event::MouseButtonPressed && isValueHovered())
-  {
-	  if (e.key.code == sf::Mouse::Left)
-		onClick();
-	  else if (e.key.code == sf::Mouse::Right)
-		onRClick();
-  }
+	_value->update(e);
   return (true);
 }
 
@@ -332,7 +321,7 @@ bool MenuSetting::update(const sf::Event &e)
 void MenuSetting::draw(sf::RenderWindow *win)
 {
   MenuItem::draw(win);
-  win->draw(_value);
+  _value->draw(win);
 }
 
 /*
@@ -368,15 +357,15 @@ void MenuEdit::setFontsize(const int &fontsize)
 {
 	MenuItem::setFontsize(fontsize);
 	_value.setCharacterSize(fontsize);
-	_container.setSize(sf::Vector2f(_container.getSize().x, _label.getGlobalBounds().height));
+	_container.setSize(sf::Vector2f(_container.getSize().x, _label->getGlobalBounds().height));
 }
 
 void MenuEdit::setXOffset(const float &x)
 {
 	MenuItem::setXOffset(x);
 
-	_value.setPosition(x + _label.getLocalBounds().width + _padding + 1, _container.getPosition().y);
-	_container.setPosition(x + _label.getLocalBounds().width + _padding, _container.getPosition().y);
+	_value.setPosition(x + _label->getLocalBounds().width + _padding + 1, _container.getPosition().y);
+	_container.setPosition(x + _label->getLocalBounds().width + _padding, _container.getPosition().y);
 }
 
 void MenuEdit::setYOffset(const float &y)
@@ -468,8 +457,8 @@ MenuSlider::MenuSlider() : MenuItem()
 void MenuSlider::setFontsize(const int &fontsize)
 {
 	MenuItem::setFontsize(fontsize);
-	_bar.setSize(sf::Vector2f(_bar.getSize().x, _label.getGlobalBounds().height));
-	_fill.setSize(sf::Vector2f(_bar.getSize().x - 2, _label.getGlobalBounds().height - 2));
+	_bar.setSize(sf::Vector2f(_bar.getSize().x, _label->getGlobalBounds().height));
+	_fill.setSize(sf::Vector2f(_bar.getSize().x - 2, _label->getGlobalBounds().height - 2));
 }
 
 void MenuSlider::setRange(const int &min, const int &max)
@@ -487,8 +476,8 @@ MenuSlider::~MenuSlider()
 void MenuSlider::setXOffset(const float &x)
 {
 	MenuItem::setXOffset(x);
-	_bar.setPosition(x + _label.getLocalBounds().width + _padding, _bar.getPosition().y);
-	_fill.setPosition(x + _label.getLocalBounds().width + _padding + 1, _fill.getPosition().y);
+	_bar.setPosition(x + _label->getLocalBounds().width + _padding, _bar.getPosition().y);
+	_fill.setPosition(x + _label->getLocalBounds().width + _padding + 1, _fill.getPosition().y);
 }
 
 void MenuSlider::setYOffset(const float &y)

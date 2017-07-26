@@ -9,6 +9,7 @@
 #define GUIELEMENT_HH_
 
 #include <SFML/Graphics.hpp>
+#include <functional>
 #include "Resolver.hh"
 
 namespace stb {
@@ -22,6 +23,7 @@ namespace stb {
 	class GUIElement
 	{
 	public:
+		GUIElement();
 		GUIElement(const std::string &id);
 		~GUIElement() {};
 
@@ -44,16 +46,20 @@ namespace stb {
 	*
 	*        This class should not be instanciated. It is used as an abstract layer to control behaviour of all button types
 	*/
-	typedef void(*onClickCallback)(void);
-
 	class GUIButton : public GUIElement
 	{
 	public:
+		GUIButton();
 		GUIButton(const std::string &id, const sf::Event::EventType &triggerType);
 		~GUIButton();
 
 		bool isHovered() const;
-		void setClickCallback(const onClickCallback &fptr);
+		void setClickCallback(const std::function<void(void)> &fptr);
+		void setRClickCallback(const std::function<void(void)> &fptr);
+		virtual void setPosition(const sf::Vector2f &pos) = 0;
+		virtual const sf::Vector2f &getPosition() = 0;
+		virtual const sf::FloatRect &getLocalBounds() = 0;
+		virtual const sf::FloatRect &getGlobalBounds() = 0;
 
 		virtual bool onHover(const bool &triggered);
 
@@ -62,7 +68,8 @@ namespace stb {
 	private:
 		bool _hover;
 		sf::Event::EventType _triggerType;
-		onClickCallback _clickCallback;
+		std::function<void(void)> _onClickCallback;
+		std::function<void(void)> _onRClickCallback;
 	};
 
 	/*!
@@ -74,8 +81,18 @@ namespace stb {
 	class GUITextButton : public GUIButton
 	{
 	public:
+		GUITextButton();
 		GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		~GUITextButton();
+
+		void setLabel(const std::string &label);
+		void setFont(const sf::Font &font);
+		virtual void setPosition(const sf::Vector2f &pos);
+		void setFontsize(const int &size);
+		void setColor(const sf::Color &color);
+		virtual const sf::Vector2f &GUITextButton::getPosition();
+		virtual const sf::FloatRect &getLocalBounds();
+		virtual const sf::FloatRect &getGlobalBounds();
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -89,16 +106,26 @@ namespace stb {
 	*
 	*        This represents a clickable image button entity on screen.
 	*/
+	enum HoverType {
+		Rectangle,
+		AltTexture
+	};
+
 	class GUISpriteButton : public GUIButton
 	{
 	public:
-		GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUISpriteButton();
+		GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos, HoverType htype, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		~GUISpriteButton();
+
+		void setTexture(const std::string &resource);
+		void setPosition(const sf::Vector2f &pos);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 	private:
 		sf::Sprite _sprite;
+		HoverType _hoverType;
 	};
 
 	/*!

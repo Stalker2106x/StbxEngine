@@ -7,10 +7,14 @@ using namespace stb;
 // GUIElement
 //
 
-GUIElement::GUIElement(const std::string &id)
+GUIElement::GUIElement()
+{
+	_active = true;
+}
+
+GUIElement::GUIElement(const std::string &id) : GUIElement()
 {
 	_id = id;
-	_active = true;
 }
 
 void GUIElement::toggle()
@@ -39,6 +43,12 @@ bool GUIElement::update(const sf::Event &e)
 // GUIButton
 //
 
+GUIButton::GUIButton() : GUIElement()
+{
+	_hover = false;
+	_triggerType = sf::Event::MouseButtonPressed;
+}
+
 GUIButton::GUIButton(const std::string &id, const sf::Event::EventType &triggerType) : GUIElement(id)
 {
 	_triggerType = triggerType;
@@ -53,9 +63,14 @@ bool GUIButton::isHovered() const
 	return (_hover);
 }
 
-void GUIButton::setClickCallback(const onClickCallback &fptr)
+void GUIButton::setClickCallback(const std::function<void(void)> &fptr)
 {
-	_clickCallback = fptr;
+	_onClickCallback = fptr;
+}
+
+void GUIButton::setRClickCallback(const std::function<void(void)> &fptr)
+{
+	_onRClickCallback = fptr;
 }
 
 bool GUIButton::onHover(const bool &triggered)
@@ -74,9 +89,12 @@ bool GUIButton::update(const sf::Event &e)
 {
 	if (!GUIElement::update(e))
 		return (false);
-	if (e.type == _triggerType && e.key.code == sf::Mouse::Left && _hover)
+	if (e.type == _triggerType && _hover)
 	{
-		_clickCallback();
+		if (e.key.code == sf::Mouse::Left && !_onClickCallback._Empty())
+			_onClickCallback();
+		else if (e.key.code == sf::Mouse::Right && !_onRClickCallback._Empty())
+			_onRClickCallback();
 	}
 	return (true);
 }
@@ -90,6 +108,10 @@ void GUIButton::draw(sf::RenderWindow *win)
 // GUITextButton
 //
 
+GUITextButton::GUITextButton() : GUIButton()
+{
+}
+
 GUITextButton::GUITextButton(const std::string &id, const std::string &label, const sf::Vector2f &pos, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
 {
 	_label.setString(label);
@@ -97,6 +119,46 @@ GUITextButton::GUITextButton(const std::string &id, const std::string &label, co
 
 GUITextButton::~GUITextButton()
 {
+}
+
+void GUITextButton::setLabel(const std::string &label)
+{
+	_label.setString(label);
+}
+
+void GUITextButton::setFont(const sf::Font &font)
+{
+	_label.setFont(font);
+}
+
+void GUITextButton::setPosition(const sf::Vector2f &pos)
+{
+	_label.setPosition(pos);
+}
+
+void GUITextButton::setFontsize(const int &size)
+{
+	_label.setCharacterSize(size);
+}
+
+void GUITextButton::setColor(const sf::Color &color)
+{
+	_label.setFillColor(color);
+}
+
+const sf::Vector2f &GUITextButton::getPosition()
+{
+	return (_label.getPosition());
+}
+
+const sf::FloatRect &GUITextButton::getLocalBounds()
+{
+	return (_label.getLocalBounds());
+}
+
+const sf::FloatRect &GUITextButton::getGlobalBounds()
+{
+	return (_label.getGlobalBounds());
 }
 
 bool GUITextButton::update(const sf::Event &e)
@@ -124,12 +186,27 @@ void GUITextButton::draw(sf::RenderWindow *win)
 // GUISpriteButton
 //
 
-GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
+GUISpriteButton::GUISpriteButton() : GUIButton()
 {
+}
+
+GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const sf::Vector2f &pos, HoverType htype, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
+{
+	_hoverType = htype;
 }
 
 GUISpriteButton::~GUISpriteButton()
 {
+}
+
+void GUISpriteButton::setTexture(const std::string &resource)
+{
+	_sprite.setTexture(*Resolver<sf::Texture>::resolve(resource));
+}
+
+void GUISpriteButton::setPosition(const sf::Vector2f &pos)
+{
+	_sprite.setPosition(pos);
 }
 
 bool GUISpriteButton::update(const sf::Event &e)
