@@ -161,6 +161,12 @@ const sf::FloatRect &GUITextButton::getGlobalBounds()
 	return (_label.getGlobalBounds());
 }
 
+void GUITextButton::initialUpdate()
+{
+	if (_label.getGlobalBounds().contains(Engine::instance->getMousePosition()))
+		onHover(true);
+}
+
 bool GUITextButton::update(const sf::Event &e)
 {
 	if (!GUIButton::update(e))
@@ -207,6 +213,12 @@ void GUISpriteButton::setTexture(const std::string &resource)
 void GUISpriteButton::setPosition(const sf::Vector2f &pos)
 {
 	_sprite.setPosition(pos);
+}
+
+void GUISpriteButton::initialUpdate()
+{
+	if (_sprite.getGlobalBounds().contains(Engine::instance->getMousePosition()))
+		onHover(true);
 }
 
 bool GUISpriteButton::update(const sf::Event &e)

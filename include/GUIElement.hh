@@ -63,6 +63,8 @@ namespace stb {
 
 		virtual bool onHover(const bool &triggered);
 
+		virtual void initialUpdate() = 0;
+
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 	private:
@@ -94,6 +96,8 @@ namespace stb {
 		virtual const sf::FloatRect &getLocalBounds();
 		virtual const sf::FloatRect &getGlobalBounds();
 
+		void initialUpdate();
+
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 	private:
@@ -120,6 +124,8 @@ namespace stb {
 
 		void setTexture(const std::string &resource);
 		void setPosition(const sf::Vector2f &pos);
+
+		void initialUpdate();
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

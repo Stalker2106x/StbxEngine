@@ -99,6 +99,7 @@ void MenuItem::setOffset(const float &x, const float &y)
 void MenuItem::initialUpdate()
 {
 	_active = true;
+	_label->initialUpdate();
 }
 
 bool MenuItem::update(const sf::Event &e)
