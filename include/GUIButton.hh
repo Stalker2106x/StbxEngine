@@ -12,7 +12,6 @@
 #include <functional>
 #include <vector>
 #include "GUIElement.hh"
-#include "GUIObject.hh"
 
 namespace stb {
 	
@@ -127,11 +126,11 @@ namespace stb {
 		GUIButton *getButton(const std::string &id);
 		void setPosition(const sf::Vector2f &pos);
 
-		GUITextButton *addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, sf::Color skins[2]);
-		GUISpriteButton *addSpriteButton(const std::string &id, const std::string &resource, sf::IntRect skins[]);
+		GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const sf::Color &normalSkin, const sf::Color &hoverSkin);
+		GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std::string &resource, const sf::IntRect &normalSkin, const sf::IntRect &hoverSkin);
 
-		virtual bool GUIButtonBar::update(const sf::Event &e);
-		virtual void GUIButtonBar::draw(sf::RenderWindow *win);
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *win);
 
 	private:
 		std::vector<GUIButton *> _buttons;

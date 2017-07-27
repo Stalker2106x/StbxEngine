@@ -149,16 +149,10 @@ void GUIDraggablePanel::initialUpdate()
 	_lock = false;
 	_dragging = false;
 	_style |= PN_CLOSE | PN_LOCK;
-	btn = _buttonBar.addSpriteButton("__close", "buttons", (sf::IntRect[2]){
-		{ 0, 0, 16, 16 },
-		{ 0, 16, 16, 16 }
-	});
+	btn = _buttonBar.addSpriteButton("__close", "buttons", sf::IntRect(0, 0, 16, 16), sf::IntRect( 0, 16, 16, 16 ));
 	if ((_style & PN_CLOSE) != PN_CLOSE)
 		btn->toggle();
-	btn = _buttonBar.addSpriteButton("__lock", "buttons", (sf::IntRect[2]){
-		{ 16, 0, 16, 16 },
-		{ 16, 16, 16, 16 }
-	});
+	btn = _buttonBar.addSpriteButton("__lock", "buttons", sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16));
 	if ((_style & PN_LOCK) != PN_LOCK)
 		btn->toggle();
 	movePanel(sf::Vector2f(0, 0));

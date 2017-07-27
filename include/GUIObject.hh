@@ -9,7 +9,6 @@
 #define GUIOBJECT_HH_
 
 #include <SFML/Graphics.hpp>
-#include "GUIElement.hh"
 #include "GUIButton.hh"
 #include "Resolver.hh"
 
@@ -124,9 +123,9 @@ namespace stb {
 
 	protected:
 		char _style;
-		GUIButtonBar _buttonBar;
 		std::string _id;
 		sf::Sprite _frame;
+		GUIButtonBar _buttonBar;
 		std::vector<GUIElement *> _elements;
 	};
 

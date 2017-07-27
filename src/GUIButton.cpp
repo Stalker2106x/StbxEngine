@@ -267,16 +267,18 @@ void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 	//TODO
 }
 
-GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, sf::Color skins[2])
+GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const sf::Color &normalSkin, const sf::Color &hoverSkin)
 {
+	sf::Color skins[] = { normalSkin, hoverSkin };
 	GUITextButton *button = new GUITextButton(id, label, fontResource, skins);
 
 	_buttons.push_back(button);
 	return (button);
 }
 
-GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std::string &resource, sf::IntRect skins[2])
+GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std::string &resource, const sf::IntRect &normalSkin, const sf::IntRect &hoverSkin)
 {
+	sf::IntRect skins[] = { normalSkin, hoverSkin };
 	GUISpriteButton *button = new GUISpriteButton(id, resource, skins);
 
 	_buttons.push_back(button);
