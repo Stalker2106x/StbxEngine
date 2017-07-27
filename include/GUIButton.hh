@@ -37,12 +37,14 @@ namespace stb {
 		virtual const sf::FloatRect &getGlobalBounds() = 0;
 
 		virtual bool onHover(const bool &triggered);
+		virtual void onClick();
+		virtual void onRClick();
 
 		virtual void initialUpdate() = 0;
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
-	private:
+	protected:
 		bool _hover;
 		sf::Event::EventType _triggerType;
 		std::function<void(void)> _onClickCallback;
@@ -55,11 +57,24 @@ namespace stb {
 	*
 	*        This represents a clickable text button entity on screen.
 	*/
+	struct TextSkin
+	{
+		sf::Color normal;
+		sf::Color hover;
+
+		TextSkin() {}
+		TextSkin(sf::Color n, sf::Color h)
+		{
+			normal = n;
+			hover = h;
+		}
+	};
+
 	class GUITextButton : public GUIButton
 	{
 	public:
 		GUITextButton();
-		GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, sf::Color skins[2], const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		~GUITextButton();
 
 		void setLabel(const std::string &label);
@@ -77,7 +92,7 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *win);
 	private:
 		sf::Text _label;
-		sf::Color _skins[];
+		TextSkin _skin;
 	};
 
 	/*!
@@ -86,11 +101,24 @@ namespace stb {
 	*
 	*        This represents a clickable image button entity on screen.
 	*/
+	struct SpriteSkin
+	{
+		sf::IntRect normal;
+		sf::IntRect hover;
+
+		SpriteSkin() {}
+		SpriteSkin(sf::IntRect n, sf::IntRect h)
+		{
+			normal = n;
+			hover = h;
+		}
+	};
+
 	class GUISpriteButton : public GUIButton
 	{
 	public:
 		GUISpriteButton();
-		GUISpriteButton(const std::string &id, const std::string &resource, sf::IntRect skins[], const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUISpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		~GUISpriteButton();
 
 		void setTexture(const std::string &resource);
@@ -105,10 +133,31 @@ namespace stb {
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
-	private:
+	protected:
+		bool _state;
 		sf::Sprite _sprite;
-		char _activeSkin;
-		sf::IntRect _skins[];
+		SpriteSkin _skin;
+	};
+
+	/*!
+	* @class GUIToggleSpriteButton
+	* @brief Clickable and hovereable textured toggleable button
+	*
+	*        This represents a clickable image button entity on screen. Image changes wether its on or off
+	*/
+	class GUIToggleSpriteButton : public GUISpriteButton
+	{
+	public:
+		GUIToggleSpriteButton();
+		GUIToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		~GUIToggleSpriteButton();
+
+		bool onHover(const bool &triggered) override;
+		virtual void onClick() override;
+
+		virtual bool update(const sf::Event &e);
+	private:
+		SpriteSkin _altSkin;
 	};
 
 	/*!
@@ -126,8 +175,9 @@ namespace stb {
 		GUIButton *getButton(const std::string &id);
 		void setPosition(const sf::Vector2f &pos);
 
-		GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const sf::Color &normalSkin, const sf::Color &hoverSkin);
-		GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std::string &resource, const sf::IntRect &normalSkin, const sf::IntRect &hoverSkin);
+		GUITextButton *addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin);
+		GUISpriteButton *addSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin);
+		GUIToggleSpriteButton *addToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

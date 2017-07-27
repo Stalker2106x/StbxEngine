@@ -50,6 +50,16 @@ bool GUIButton::onHover(const bool &triggered)
 	return (true);
 }
 
+void GUIButton::onClick()
+{
+	_onClickCallback();
+}
+
+void GUIButton::onRClick()
+{
+	_onRClickCallback();
+}
+
 bool GUIButton::update(const sf::Event &e)
 {
 	if (!GUIElement::update(e))
@@ -57,9 +67,9 @@ bool GUIButton::update(const sf::Event &e)
 	if (e.type == _triggerType && _hover)
 	{
 		if (e.key.code == sf::Mouse::Left && !_onClickCallback._Empty())
-			_onClickCallback();
+			onClick();
 		else if (e.key.code == sf::Mouse::Right && !_onRClickCallback._Empty())
-			_onRClickCallback();
+			onRClick();
 	}
 	return (true);
 }
@@ -77,12 +87,11 @@ GUITextButton::GUITextButton() : GUIButton()
 {
 }
 
-GUITextButton::GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, sf::Color skins[2], const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
+GUITextButton::GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
 {
 	_label.setString(label);
 	_label.setFont(*Resolver<sf::Font>::resolve(fontResource));
-	_skins[0] = skins[0];
-	_skins[1] = skins[1];
+	_skin = skin;
 }
 
 GUITextButton::~GUITextButton()
@@ -162,15 +171,12 @@ void GUITextButton::draw(sf::RenderWindow *win)
 
 GUISpriteButton::GUISpriteButton() : GUIButton()
 {
-	_activeSkin = 0;
 }
 
-GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, sf::IntRect skins[2], const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
+GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
 {
 	_sprite.setTexture(*Resolver<sf::Texture>::resolve(resource));
-	_skins[0] = skins[0];
-	_skins[1] = skins[1];
-	_activeSkin = 0;
+	_skin = skin;
 }
 
 GUISpriteButton::~GUISpriteButton()
@@ -211,7 +217,14 @@ void GUISpriteButton::initialUpdate()
 bool GUISpriteButton::onHover(const bool &triggered)
 {
 	GUIButton::onHover(triggered);
-	_activeSkin = (_activeSkin == 0 ? 1 : 0);
+	if (triggered)
+	{
+		_sprite.setTextureRect(_skin.hover);
+	}
+	else
+	{
+		_sprite.setTextureRect(_skin.normal);
+	}
 	return (true);
 }
 
@@ -237,6 +250,58 @@ void GUISpriteButton::draw(sf::RenderWindow *win)
 }
 
 //
+// GUIToggleSpriteButton
+//
+
+GUIToggleSpriteButton::GUIToggleSpriteButton() : GUISpriteButton()
+{
+	_state = false;
+}
+
+GUIToggleSpriteButton::GUIToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin, const sf::Event::EventType &triggerType) : GUISpriteButton(id, resource, skin, triggerType)
+{
+	_state = false;
+	_altSkin = altSkin;
+}
+
+GUIToggleSpriteButton::~GUIToggleSpriteButton()
+{
+}
+
+bool GUIToggleSpriteButton::onHover(const bool &triggered)
+{
+	GUIButton::onHover(triggered);
+	if (triggered)
+	{
+		if (_state)
+			_sprite.setTextureRect(_altSkin.hover);
+		else
+			_sprite.setTextureRect(_skin.hover);
+	}
+	else
+	{
+		if (_state)
+			_sprite.setTextureRect(_altSkin.normal);
+		else
+			_sprite.setTextureRect(_skin.normal);
+	}
+	return (true);
+}
+
+void GUIToggleSpriteButton::onClick()
+{
+	_state = (_state ? false : true);
+	_onClickCallback();
+}
+
+bool GUIToggleSpriteButton::update(const sf::Event &e)
+{
+	if (!GUISpriteButton::update(e))
+		return (false);
+	return (true);
+}
+
+//
 // GUIButtonBar
 //
 
@@ -258,6 +323,7 @@ GUIButton *GUIButtonBar::getButton(const std::string &id)
 	{
 		if ((*it)->getId() == id)
 			return (*it);
+		it++;
 	}
 	return (NULL);
 }
@@ -267,19 +333,25 @@ void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 	//TODO
 }
 
-GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const sf::Color &normalSkin, const sf::Color &hoverSkin)
+GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin)
 {
-	sf::Color skins[] = { normalSkin, hoverSkin };
-	GUITextButton *button = new GUITextButton(id, label, fontResource, skins);
+	GUITextButton *button = new GUITextButton(id, label, fontResource, skin);
 
 	_buttons.push_back(button);
 	return (button);
 }
 
-GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std::string &resource, const sf::IntRect &normalSkin, const sf::IntRect &hoverSkin)
+GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin)
 {
-	sf::IntRect skins[] = { normalSkin, hoverSkin };
-	GUISpriteButton *button = new GUISpriteButton(id, resource, skins);
+	GUISpriteButton *button = new GUISpriteButton(id, resource, skin);
+
+	_buttons.push_back(button);
+	return (button);
+}
+
+GUIToggleSpriteButton *GUIButtonBar::addToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin)
+{
+	GUIToggleSpriteButton *button = new GUIToggleSpriteButton(id, resource, skin, altSkin);
 
 	_buttons.push_back(button);
 	return (button);
@@ -292,6 +364,7 @@ bool GUIButtonBar::update(const sf::Event &e)
 	while (it != _buttons.end())
 	{
 		(*it)->update(e);
+		it++;
 	}
 	return (true);
 }
@@ -303,5 +376,6 @@ void GUIButtonBar::draw(sf::RenderWindow *win)
 	while (it != _buttons.end())
 	{
 		(*it)->draw(win);
+		it++;
 	}
 }

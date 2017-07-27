@@ -144,18 +144,21 @@ GUIDraggablePanel::~GUIDraggablePanel()
 
 void GUIDraggablePanel::initialUpdate()
 {
-	GUIElement *btn;
-
 	_lock = false;
 	_dragging = false;
 	_style |= PN_CLOSE | PN_LOCK;
-	btn = _buttonBar.addSpriteButton("__close", "buttons", sf::IntRect(0, 0, 16, 16), sf::IntRect( 0, 16, 16, 16 ));
-	if ((_style & PN_CLOSE) != PN_CLOSE)
-		btn->toggle();
-	btn = _buttonBar.addSpriteButton("__lock", "buttons", sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16));
-	if ((_style & PN_LOCK) != PN_LOCK)
-		btn->toggle();
+	if ((_style & PN_CLOSE) == PN_CLOSE)
+	{
+		GUISpriteButton *btn = _buttonBar.addSpriteButton("__close", "buttons", SpriteSkin(sf::IntRect(0, 0, 16, 16), sf::IntRect(0, 16, 16, 16)));
+		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggle, this));
+	}
+	if ((_style & PN_LOCK) == PN_LOCK)
+	{
+		GUIToggleSpriteButton *btn = _buttonBar.addToggleSpriteButton("__lock", "buttons", SpriteSkin(sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16)), SpriteSkin(sf::IntRect(48, 0, 16, 16), sf::IntRect(48, 16, 16, 16)));
+		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggleLock, this));
+	}
 	movePanel(sf::Vector2f(0, 0));
+	_active = true;
 }
 
 void GUIDraggablePanel::toggle()
@@ -175,18 +178,22 @@ void GUIDraggablePanel::setPosition(const sf::Vector2f &pos)
 {
 	GUIPanel::setPosition(pos + sf::Vector2f(0, 15));
 	_header.setPosition(pos);
-	_buttonBar.getButton("__close")->setPosition(sf::Vector2f(pos + sf::Vector2f(_header.getLocalBounds().width - _buttonBar.getButton("__close")->getLocalBounds().width, 0)));
-	_buttonBar.getButton("__lock")->setPosition(pos + sf::Vector2f(_header.getLocalBounds().width -
-		(_buttonBar.getButton("__lock")->getLocalBounds().width + _buttonBar.getButton("__lock")->getLocalBounds().width), 0));
+	if ((_style & PN_CLOSE) == PN_CLOSE)
+		_buttonBar.getButton("__close")->setPosition(sf::Vector2f(pos + sf::Vector2f(_header.getLocalBounds().width - _buttonBar.getButton("__close")->getLocalBounds().width, 0)));
+	if ((_style & PN_LOCK) == PN_LOCK)
+		_buttonBar.getButton("__lock")->setPosition(pos + sf::Vector2f(_header.getLocalBounds().width -
+			(_buttonBar.getButton("__lock")->getLocalBounds().width + _buttonBar.getButton("__lock")->getLocalBounds().width), 0));
 	movePanel(pos);
 }
 
 void GUIDraggablePanel::movePanel(const sf::Vector2f &newpos)
 {
 	_header.setPosition(newpos);
-	_buttonBar.getButton("__close")->setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width - _buttonBar.getButton("__close")->getGlobalBounds().width, 0));
-	_buttonBar.getButton("__lock")->setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width -
-		(_buttonBar.getButton("__close")->getGlobalBounds().width + _buttonBar.getButton("__lock")->getGlobalBounds().width), 0));
+	if ((_style & PN_CLOSE) == PN_CLOSE)
+		_buttonBar.getButton("__close")->setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width - _buttonBar.getButton("__close")->getGlobalBounds().width, 0));
+	if ((_style & PN_LOCK) == PN_LOCK)
+		_buttonBar.getButton("__lock")->setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width -
+			(_buttonBar.getButton("__close")->getGlobalBounds().width + _buttonBar.getButton("__lock")->getGlobalBounds().width), 0));
 	_frame.setPosition(newpos + sf::Vector2f(0, _header.getGlobalBounds().height));
 	updateElementsPosition();
 }
@@ -209,6 +216,11 @@ bool GUIDraggablePanel::update(const sf::Event &e)
 	{
 		if (!_lock && _dragging && e.key.code == sf::Mouse::Left)
 			_dragging = false;
+	}
+	else if (e.type == sf::Event::MouseMoved)
+	{
+		if (!_lock && _dragging)
+			movePanel(sf::Vector2f(e.mouseMove.x - _dragOffset.x, e.mouseMove.y - _dragOffset.y));
 	}
 	return (true);
 }
