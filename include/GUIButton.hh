@@ -86,7 +86,7 @@ namespace stb {
 		virtual const sf::FloatRect &getLocalBounds();
 		virtual const sf::FloatRect &getGlobalBounds();
 
-		void initialUpdate();
+		virtual void initialUpdate();
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -127,7 +127,7 @@ namespace stb {
 		virtual const sf::FloatRect &getLocalBounds();
 		virtual const sf::FloatRect &getGlobalBounds();
 
-		void initialUpdate();
+		virtual void initialUpdate();
 
 		bool onHover(const bool &triggered);
 
@@ -151,7 +151,7 @@ namespace stb {
 		GUIToggleSpriteButton();
 		GUIToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		~GUIToggleSpriteButton();
-
+		
 		bool onHover(const bool &triggered) override;
 		virtual void onClick() override;
 
@@ -179,8 +179,7 @@ namespace stb {
 		void invert();
 		GUIButton *getButton(const std::string &id);
 		void setSpacing(const int &spacing);
-		const sf::Vector2f &calcButtonPosition(const std::vector<GUIButton *>::iterator &it, const sf::Vector2f &pos);
-		const sf::Vector2f &calcButtonPosition(const std::vector<GUIButton *>::reverse_iterator &it, const sf::Vector2f &pos);
+		const sf::Vector2f &calcButtonPosition(const size_t &index, const sf::Vector2f &pos);
 		void setPosition(const sf::Vector2f &pos);
 
 		GUITextButton *addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin);

@@ -75,6 +75,7 @@ GUIPanel::~GUIPanel()
 void GUIPanel::setPosition(const sf::Vector2f &pos)
 {
 	_frame.setPosition(pos);
+	updateElementsPosition();
 }
 
 void GUIPanel::setStyle(const char &style)
@@ -158,7 +159,7 @@ void GUIDraggablePanel::initialUpdate()
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggleLock, this));
 	}
 	_buttonBar.invert();
-	movePanel(sf::Vector2f(0, 0));
+	setPosition(sf::Vector2f(0, 0));
 	_active = true;
 }
 
@@ -177,16 +178,9 @@ void GUIDraggablePanel::toggleLock()
 
 void GUIDraggablePanel::setPosition(const sf::Vector2f &pos)
 {
-	GUIPanel::setPosition(pos + sf::Vector2f(0, 15));
-	movePanel(pos);
-}
-
-void GUIDraggablePanel::movePanel(const sf::Vector2f &newpos)
-{
-	_header.setPosition(newpos);
-	_buttonBar.setPosition(sf::Vector2f(newpos + sf::Vector2f(_header.getLocalBounds().width - 32, 0)));
-	_frame.setPosition(newpos + sf::Vector2f(0, _header.getGlobalBounds().height));
-	updateElementsPosition();
+	_header.setPosition(pos);
+	GUIPanel::setPosition(pos + sf::Vector2f(0, _header.getGlobalBounds().height));
+	_buttonBar.setPosition(sf::Vector2f(pos + sf::Vector2f(_header.getLocalBounds().width - 32, 0)));
 }
 
 bool GUIDraggablePanel::update(const sf::Event &e)
@@ -211,7 +205,7 @@ bool GUIDraggablePanel::update(const sf::Event &e)
 	else if (e.type == sf::Event::MouseMoved)
 	{
 		if (!_lock && _dragging)
-			movePanel(sf::Vector2f(e.mouseMove.x - _dragOffset.x, e.mouseMove.y - _dragOffset.y));
+			setPosition(sf::Vector2f(e.mouseMove.x - _dragOffset.x, e.mouseMove.y - _dragOffset.y));
 	}
 	return (true);
 }

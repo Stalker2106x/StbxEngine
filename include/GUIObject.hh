@@ -148,7 +148,6 @@ namespace stb {
 		virtual void toggle();
 
 		void setPosition(const sf::Vector2f &pos);
-		void movePanel(const sf::Vector2f &newpos);
 
 		bool onButtonHover(const PanelButton &id, const bool &triggered);
 

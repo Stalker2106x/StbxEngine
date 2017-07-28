@@ -92,6 +92,7 @@ GUITextButton::GUITextButton(const std::string &id, const std::string &label, co
 	_label.setString(label);
 	_label.setFont(*Resolver<sf::Font>::resolve(fontResource));
 	_skin = skin;
+	initialUpdate();
 }
 
 GUITextButton::~GUITextButton()
@@ -177,6 +178,7 @@ GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resou
 {
 	_sprite.setTexture(*Resolver<sf::Texture>::resolve(resource));
 	_skin = skin;
+	initialUpdate();
 }
 
 GUISpriteButton::~GUISpriteButton()
@@ -210,8 +212,7 @@ const sf::FloatRect &GUISpriteButton::getGlobalBounds()
 
 void GUISpriteButton::initialUpdate()
 {
-	if (_sprite.getGlobalBounds().contains(Engine::instance->getMousePosition()))
-		onHover(true);
+	_sprite.setTextureRect(_skin.normal);
 }
 
 bool GUISpriteButton::onHover(const bool &triggered)
@@ -262,6 +263,7 @@ GUIToggleSpriteButton::GUIToggleSpriteButton(const std::string &id, const std::s
 {
 	_state = false;
 	_altSkin = altSkin;
+	initialUpdate();
 }
 
 GUIToggleSpriteButton::~GUIToggleSpriteButton()
@@ -340,76 +342,33 @@ void GUIButtonBar::setSpacing(const int &spacing)
 	_spacing = spacing;
 }
 
-const sf::Vector2f &GUIButtonBar::calcButtonPosition(const std::vector<GUIButton *>::iterator &it, const sf::Vector2f &pos)
+const sf::Vector2f &GUIButtonBar::calcButtonPosition(const size_t &index, const sf::Vector2f &pos)
 {
-	std::vector<GUIButton *>::iterator rIt = it;
 	int size = 0;
 
-	if (_type == Horizontal)
+	for (int i = index + (_inverted ? 1 : -1 ); (_inverted ? i < _buttons.size() : i >= 0); (_inverted ? i++ : i--))
 	{
-		while (rIt != _buttons.begin())
+		if (_type == Horizontal)
 		{
-			size += (*rIt)->getLocalBounds().width;
-			rIt--;
-		} 
-	}
-	else if (_type == Vertical)
-	{
-		while (rIt != _buttons.begin())
+			size += _buttons[i]->getLocalBounds().width;
+		}
+		else if (_type == Vertical)
 		{
-			size += (*rIt)->getLocalBounds().height;
-				rIt--;
+			size += _buttons[i]->getLocalBounds().height;
 		}
 	}
-	return (pos + sf::Vector2f(0, size + _spacing));
-}
-
-const sf::Vector2f &GUIButtonBar::calcButtonPosition(const std::vector<GUIButton *>::reverse_iterator &it, const sf::Vector2f &pos)
-{
-	std::vector<GUIButton *>::reverse_iterator rIt = it;
-	int size = 0;
-
 	if (_type == Horizontal)
-	{
-		while (rIt != _buttons.rbegin())
-		{
-			size += (*rIt)->getLocalBounds().width;
-			rIt--;
-		}
-	}
+		return (pos + sf::Vector2f(size + _spacing, 0));
 	else if (_type == Vertical)
-	{
-		while (rIt != _buttons.rbegin())
-		{
-			size += (*rIt)->getLocalBounds().height;
-			rIt--;
-		} 
-	}
-	return (pos + sf::Vector2f(0, size + _spacing));
+		return (pos + sf::Vector2f(0, size + _spacing));
+
 }
 
 void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 {
-	if (!_inverted)
-	{
-		std::vector<GUIButton *>::iterator it = _buttons.begin();
 
-		while (it != _buttons.end())
-		{
-			(*it)->setPosition(calcButtonPosition(it, pos));
-			it++;
-		}
-	}
-	else
-	{
-		std::vector<GUIButton *>::reverse_iterator it = _buttons.rbegin();
-
-		while (it != _buttons.rend())
-		{
-			(*it)->setPosition(calcButtonPosition(it, pos));
-			it++;
-		}
-	}
+	for (int i = (_inverted ? _buttons.size() - 1 : 0); (_inverted ? i >= 0 : i < _buttons.size()); (_inverted ? i-- : i++))
+		_buttons[i]->setPosition(calcButtonPosition(i, pos));
 }
 
 GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin)
