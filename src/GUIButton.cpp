@@ -305,14 +305,21 @@ bool GUIToggleSpriteButton::update(const sf::Event &e)
 // GUIButtonBar
 //
 
-GUIButtonBar::GUIButtonBar()
+GUIButtonBar::GUIButtonBar(BarType type)
 {
-
+	_spacing = 0;
+	_type = type;
+	_inverted = false;
 }
 
 GUIButtonBar::~GUIButtonBar()
 {
 
+}
+
+void GUIButtonBar::invert()
+{
+	_inverted = (_inverted ? false : true);
 }
 
 GUIButton *GUIButtonBar::getButton(const std::string &id)
@@ -328,9 +335,81 @@ GUIButton *GUIButtonBar::getButton(const std::string &id)
 	return (NULL);
 }
 
+void GUIButtonBar::setSpacing(const int &spacing)
+{
+	_spacing = spacing;
+}
+
+const sf::Vector2f &GUIButtonBar::calcButtonPosition(const std::vector<GUIButton *>::iterator &it, const sf::Vector2f &pos)
+{
+	std::vector<GUIButton *>::iterator rIt = it;
+	int size = 0;
+
+	if (_type == Horizontal)
+	{
+		while (rIt != _buttons.begin())
+		{
+			size += (*rIt)->getLocalBounds().width;
+			rIt--;
+		} 
+	}
+	else if (_type == Vertical)
+	{
+		while (rIt != _buttons.begin())
+		{
+			size += (*rIt)->getLocalBounds().height;
+				rIt--;
+		}
+	}
+	return (pos + sf::Vector2f(0, size + _spacing));
+}
+
+const sf::Vector2f &GUIButtonBar::calcButtonPosition(const std::vector<GUIButton *>::reverse_iterator &it, const sf::Vector2f &pos)
+{
+	std::vector<GUIButton *>::reverse_iterator rIt = it;
+	int size = 0;
+
+	if (_type == Horizontal)
+	{
+		while (rIt != _buttons.rbegin())
+		{
+			size += (*rIt)->getLocalBounds().width;
+			rIt--;
+		}
+	}
+	else if (_type == Vertical)
+	{
+		while (rIt != _buttons.rbegin())
+		{
+			size += (*rIt)->getLocalBounds().height;
+			rIt--;
+		} 
+	}
+	return (pos + sf::Vector2f(0, size + _spacing));
+}
+
 void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 {
-	//TODO
+	if (!_inverted)
+	{
+		std::vector<GUIButton *>::iterator it = _buttons.begin();
+
+		while (it != _buttons.end())
+		{
+			(*it)->setPosition(calcButtonPosition(it, pos));
+			it++;
+		}
+	}
+	else
+	{
+		std::vector<GUIButton *>::reverse_iterator it = _buttons.rbegin();
+
+		while (it != _buttons.rend())
+		{
+			(*it)->setPosition(calcButtonPosition(it, pos));
+			it++;
+		}
+	}
 }
 
 GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin)

@@ -166,13 +166,21 @@ namespace stb {
 	*
 	*        This class provides a stackable container for gui buttons
 	*/
+	enum BarType {
+		Horizontal,
+		Vertical
+	};
 	class GUIButtonBar : public GUIElement
 	{
 	public:
-		GUIButtonBar();
+		GUIButtonBar(BarType type);
 		~GUIButtonBar();
 
+		void invert();
 		GUIButton *getButton(const std::string &id);
+		void setSpacing(const int &spacing);
+		const sf::Vector2f &calcButtonPosition(const std::vector<GUIButton *>::iterator &it, const sf::Vector2f &pos);
+		const sf::Vector2f &calcButtonPosition(const std::vector<GUIButton *>::reverse_iterator &it, const sf::Vector2f &pos);
 		void setPosition(const sf::Vector2f &pos);
 
 		GUITextButton *addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin);
@@ -184,6 +192,9 @@ namespace stb {
 
 	private:
 		std::vector<GUIButton *> _buttons;
+		int _spacing;
+		bool _inverted;
+		BarType _type;
 	};
 
 }

@@ -52,7 +52,7 @@ void GUISIndicator::draw(sf::RenderWindow *win)
 // GUIPanel
 //
 
-GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color) : GUIElement(id)
+GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color) : GUIElement(id), _buttonBar(Horizontal)
 {
 	sf::Texture ctexture;
 
@@ -62,7 +62,7 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Co
 }
 
 
-GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id)
+GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id), _buttonBar(Horizontal)
 {
 	_frame.setTexture(*Resolver<sf::Texture>::resolve(name));
 }
@@ -157,6 +157,7 @@ void GUIDraggablePanel::initialUpdate()
 		GUIToggleSpriteButton *btn = _buttonBar.addToggleSpriteButton("__lock", "buttons", SpriteSkin(sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16)), SpriteSkin(sf::IntRect(48, 0, 16, 16), sf::IntRect(48, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggleLock, this));
 	}
+	_buttonBar.invert();
 	movePanel(sf::Vector2f(0, 0));
 	_active = true;
 }
@@ -177,23 +178,13 @@ void GUIDraggablePanel::toggleLock()
 void GUIDraggablePanel::setPosition(const sf::Vector2f &pos)
 {
 	GUIPanel::setPosition(pos + sf::Vector2f(0, 15));
-	_header.setPosition(pos);
-	if ((_style & PN_CLOSE) == PN_CLOSE)
-		_buttonBar.getButton("__close")->setPosition(sf::Vector2f(pos + sf::Vector2f(_header.getLocalBounds().width - _buttonBar.getButton("__close")->getLocalBounds().width, 0)));
-	if ((_style & PN_LOCK) == PN_LOCK)
-		_buttonBar.getButton("__lock")->setPosition(pos + sf::Vector2f(_header.getLocalBounds().width -
-			(_buttonBar.getButton("__lock")->getLocalBounds().width + _buttonBar.getButton("__lock")->getLocalBounds().width), 0));
 	movePanel(pos);
 }
 
 void GUIDraggablePanel::movePanel(const sf::Vector2f &newpos)
 {
 	_header.setPosition(newpos);
-	if ((_style & PN_CLOSE) == PN_CLOSE)
-		_buttonBar.getButton("__close")->setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width - _buttonBar.getButton("__close")->getGlobalBounds().width, 0));
-	if ((_style & PN_LOCK) == PN_LOCK)
-		_buttonBar.getButton("__lock")->setPosition(newpos + sf::Vector2f(_header.getGlobalBounds().width -
-			(_buttonBar.getButton("__close")->getGlobalBounds().width + _buttonBar.getButton("__lock")->getGlobalBounds().width), 0));
+	_buttonBar.setPosition(sf::Vector2f(newpos + sf::Vector2f(_header.getLocalBounds().width - 32, 0)));
 	_frame.setPosition(newpos + sf::Vector2f(0, _header.getGlobalBounds().height));
 	updateElementsPosition();
 }
