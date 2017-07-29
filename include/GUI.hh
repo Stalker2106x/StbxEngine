@@ -12,7 +12,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "GUIButton.hh"
-#include "GUIObject.hh"
+#include "GUIEntity.hh"
+#include "GUIPanel.hh"
 
 namespace stb {
 

@@ -48,7 +48,10 @@
     <ClInclude Include="..\..\include\GUIButton.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\GUIObject.hh">
+    <ClInclude Include="..\..\include\GUIPanel.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GUIEntity.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,7 +95,10 @@
     <ClCompile Include="..\..\src\GUIButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GUIObject.cpp">
+    <ClCompile Include="..\..\src\GUIPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GUIEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

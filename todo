@@ -1,10 +1,10 @@
 BUG:
 -screenshot command is unable to write
--link color is inverted
 -"debuginfo" is broken
--updateRT is not called on indicators
+-console is not an HUDPanel
 
 FEATURE:
+-add checkbox GUIelement
 1-add a command "addpanel" to add panel
 2-resize static panel
 3-allow to add buttons to buttonbar of panel
@@ -16,4 +16,3 @@ FEATURE:
 EXTENDABLE:
 -add a command "sound_stop" to stop all sounds, "sound_volume" etc...
 -add a support for copy paste { needs cross platform abstraction }
--add a HUD layer { commmand "hud_show" to enable, command "hud_color" to set color }

@@ -82,11 +82,14 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setFontsize(const int &size);
 		void setColor(const sf::Color &color);
+		void setSkin(const TextSkin &skin);
 		virtual const sf::Vector2f &getPosition();
 		virtual const sf::FloatRect &getLocalBounds();
 		virtual const sf::FloatRect &getGlobalBounds();
 
 		virtual void initialUpdate();
+
+		virtual bool onHover(const bool &triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -122,6 +125,7 @@ namespace stb {
 		~GUISpriteButton();
 
 		void setTexture(const std::string &resource);
+		void setSkin(const SpriteSkin &skin);
 		void setPosition(const sf::Vector2f &pos);
 		virtual const sf::Vector2f &getPosition();
 		virtual const sf::FloatRect &getLocalBounds();

@@ -85,6 +85,7 @@ void GUIButton::draw(sf::RenderWindow *win)
 
 GUITextButton::GUITextButton() : GUIButton()
 {
+	initialUpdate();
 }
 
 GUITextButton::GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
@@ -124,6 +125,11 @@ void GUITextButton::setColor(const sf::Color &color)
 	_label.setFillColor(color);
 }
 
+void GUITextButton::setSkin(const TextSkin &skin)
+{
+	_skin = skin;
+}
+
 const sf::Vector2f &GUITextButton::getPosition()
 {
 	return (_label.getPosition());
@@ -141,8 +147,25 @@ const sf::FloatRect &GUITextButton::getGlobalBounds()
 
 void GUITextButton::initialUpdate()
 {
+	_skin = TextSkin(sf::Color::White, sf::Color::Cyan);
 	if (_label.getGlobalBounds().contains(Engine::instance->getMousePosition()))
 		onHover(true);
+	else
+		onHover(false);
+}
+
+bool GUITextButton::onHover(const bool &triggered)
+{
+	GUIButton::onHover(triggered);
+	if (triggered)
+	{
+		_label.setFillColor(_skin.hover);
+	}
+	else
+	{
+		_label.setFillColor(_skin.normal);
+	}
+	return (true);
 }
 
 bool GUITextButton::update(const sf::Event &e)
@@ -188,6 +211,11 @@ GUISpriteButton::~GUISpriteButton()
 void GUISpriteButton::setTexture(const std::string &resource)
 {
 	_sprite.setTexture(*Resolver<sf::Texture>::resolve(resource));
+}
+
+void GUISpriteButton::setSkin(const SpriteSkin &skin)
+{
+	_skin = skin;
 }
 
 void GUISpriteButton::setPosition(const sf::Vector2f &pos)
