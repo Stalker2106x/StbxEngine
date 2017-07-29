@@ -26,11 +26,6 @@ const std::string &GUIElement::getId()
 	return (_id);
 }
 
-bool GUIElement::updateRT()
-{
-	return (true);
-}
-
 bool GUIElement::update(const sf::Event &e)
 {
 	if (!_active)

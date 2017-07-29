@@ -118,6 +118,7 @@ namespace stb {
 
 		bool onButtonHover(const PanelButton &id, const bool &triggered);
 
+		virtual bool updateRT();
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 

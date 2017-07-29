@@ -97,6 +97,13 @@ void GUIPanel::updateElementsPosition()
 	}
 }
 
+bool GUIPanel::updateRT()
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+		_elements[i]->updateRT();
+	return (true);
+}
+
 bool GUIPanel::update(const sf::Event &e)
 {
 	if (!GUIElement::update(e))
