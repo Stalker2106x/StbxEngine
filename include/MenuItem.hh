@@ -167,11 +167,7 @@ namespace stb {
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 	private:
-		bool _focus;
-		unsigned int _maxLength;
-		std::string _input;
-		sf::Text _value;
-		sf::RectangleShape _container;
+		GUIEdit _edit;
 	};
 
 	/*!

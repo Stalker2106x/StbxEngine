@@ -282,8 +282,7 @@ MenuDynamicSetting::~MenuDynamicSetting()
 
 MenuEdit::MenuEdit() : MenuItem()
 {
-	_focus = false;
-	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
+	_edit.setFont("glitch");
 }
 
 MenuEdit::~MenuEdit()
@@ -294,36 +293,29 @@ MenuEdit::~MenuEdit()
 void MenuEdit::setFontsize(const int &fontsize)
 {
 	MenuItem::setFontsize(fontsize);
-	_value.setCharacterSize(fontsize);
-	_container.setSize(sf::Vector2f(_container.getSize().x, _label->getGlobalBounds().height));
+	_edit.setFontsize(fontsize);
 }
 
 void MenuEdit::setXOffset(const float &x)
 {
 	MenuItem::setXOffset(x);
-
-	_value.setPosition(x + _label->getLocalBounds().width + _padding + 1, _container.getPosition().y);
-	_container.setPosition(x + _label->getLocalBounds().width + _padding, _container.getPosition().y);
+	_edit.setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _edit.getPosition().y));
 }
 
 void MenuEdit::setYOffset(const float &y)
 {
 	MenuItem::setYOffset(y);
-	_value.setPosition(_container.getPosition().x, y + 1);
-	_container.setPosition(_container.getPosition().x, y);
+	_edit.setPosition(sf::Vector2f(_edit.getPosition().x, y));
 }
 
 void MenuEdit::setColor(sf::Color *inputColor, sf::Color *valueColor)
 {
-	if (inputColor)
-		_container.setFillColor(*inputColor);
-	if (valueColor)
-		_value.setFillColor(*valueColor);
+	_edit.setColor(inputColor, valueColor);
 }
 
 void MenuEdit::setInputLength(const float &length)
 {
-	_container.setSize(sf::Vector2f(length, _container.getSize().y));
+	_edit.setWidth(length);
 }
 
 void MenuEdit::onClick()
@@ -335,49 +327,14 @@ bool MenuEdit::update(const sf::Event &e)
 {
 	if (!MenuItem::update(e))
 		return (false);
-  if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
-  {
-	  if (!_focus && _container.getGlobalBounds().contains(Engine::getMousePosition()))
-	  {
-		  _focus = true;
-		  _input.push_back('.');
-	  }
-	  else if (_focus)
-	  {
-		  _focus = false;
-		  _input.pop_back();
-	  }
-	  _value.setString(_input);
-  }
-  if (_focus)
-  {
-	  char c;
-	  
-	  c = Engine::getChar(e, alphanumeric);
-	  if (c == '\b')
-	  {
-		  if (_input.length() > 1)
-			_input.erase(_input.end() - 2);
-	  }
-	  else if (c == '\n')
-	  {
-		  _input.pop_back();
-		  _focus = false;
-	  }
-	  else if (c != '\0')
-	  {
-		  _input.insert(_input.end() - 1, c);
-	  }
-	  _value.setString(_input);
-  }
+	_edit.update(e);
   return (true);
 }
 
 void MenuEdit::draw(sf::RenderWindow *win)
 {
 	MenuItem::draw(win);
-	win->draw(_container);
-	win->draw(_value);
+	_edit.draw(win);
 }
 /*
  * MenuSlider

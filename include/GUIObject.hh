@@ -160,6 +160,40 @@ namespace stb {
 		sf::Sprite _header;
 	};
 
+	/*!
+	* @class GUIEdit
+	* @brief Draggable implementation of panel
+	*
+	*        This class is a Panel, that can be moved around in interface.
+	*/
+
+	class GUIEdit : public GUIElement
+	{
+	public:
+		GUIEdit();
+		GUIEdit(const std::string &id);
+		~GUIEdit();
+		void initialUpdate();
+
+		void setFont(const std::string &fontResource);
+		void setPosition(const sf::Vector2f &pos);
+		void setColor(sf::Color *inputColor, sf::Color *valueColor);
+		void setFontsize(const int &fontsize);
+		void setWidth(const int &length);
+		const sf::Vector2f &getSize();
+		const sf::Vector2f &getPosition();
+
+		bool onHover(const bool &triggered);
+
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *win);
+
+	private:
+		bool _focus;
+		std::string _input;
+		sf::Text _value;
+		sf::RectangleShape _container;
+	};
 }
 
 #endif /* GUIELEMENT_HH_ */
