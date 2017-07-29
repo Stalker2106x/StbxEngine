@@ -199,7 +199,6 @@ std::string Engine::getTimestamp()
 
   stamp = std::to_string(time->tm_hour)+":"+std::to_string(time->tm_min)+":"+std::to_string(time->tm_sec)+" ";
   stamp += std::to_string(time->tm_mday)+"-"+std::to_string(time->tm_mon)+"-"+std::to_string(time->tm_year);
-  delete (time);
   return (stamp);
 }
 

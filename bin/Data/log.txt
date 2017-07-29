@@ -50,3 +50,4 @@ mm: Unknown command
 >bind 'f4' toggleconsole
 bind: Cannot bind key
 >bind f4 toggleconsole
+20:7:18 28-6-117>log_file mlm

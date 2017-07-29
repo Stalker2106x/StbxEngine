@@ -53,6 +53,7 @@ void Console::toggle()
 
 void Console::clear()
 {
+	_outputIndex = 0;
   _output.clear();
 }
 
