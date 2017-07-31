@@ -186,16 +186,16 @@ GUICheckbox::~GUICheckbox()
 void GUICheckbox::initialUpdate()
 {
 	_checked = false;
-	_container.setSize(sf::Vector2f(22, 22));
+	_container.setSize(sf::Vector2f(20, 20));
 	_container.setFillColor(sf::Color::White);
-	_fill.setSize(sf::Vector2f(20, 20));
+	_fill.setSize(sf::Vector2f(14, 14));
 	_container.setFillColor(sf::Color::Black);
 }
 
 void GUICheckbox::setPosition(const sf::Vector2f &pos)
 {
 	_container.setPosition(pos);
-	_fill.setPosition(pos + sf::Vector2f(1, 1));
+	_fill.setPosition(pos + sf::Vector2f(3, 3));
 }
 
 void GUICheckbox::setColor(const sf::Color *containerColor, const sf::Color *fillColor)

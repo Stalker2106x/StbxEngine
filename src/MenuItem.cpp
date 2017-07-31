@@ -13,7 +13,8 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
   {"Setting", Setting},
   {"DynamicSetting", DynamicSetting},
   {"Edit", Edit},
-  {"Slider", Slider}
+  {"Slider", Slider},
+  {"Checkbox", Checkbox}
 };
 
 MenuItem::MenuItem()
@@ -37,20 +38,23 @@ MenuItem *MenuItem::factory(const MenuItemType &type)
   switch (type)
     {
     case Link:
-      return (new MenuLink());
-      break;
+		return (new MenuLink());
+		break;
     case Setting:
-      return (new MenuSetting());
-      break;
+		return (new MenuSetting());
+		break;
     case DynamicSetting:
-      return (new MenuDynamicSetting());
-      break;
+		return (new MenuDynamicSetting());
+		break;
     case Edit:
-      return (new MenuEdit());
-      break;
+		return (new MenuEdit());
+		break;
     case Slider:
-      return (new MenuSlider());
-      break;
+		return (new MenuSlider());
+		break;
+	case Checkbox:
+		return (new MenuCheckbox());
+		break;
     }
   return (NULL);
 }
@@ -453,11 +457,6 @@ void MenuSlider::draw(sf::RenderWindow *win)
 
 MenuCheckbox::MenuCheckbox() : MenuItem()
 {
-	setRange(0, 100);
-	_bar.setSize(sf::Vector2f(102, 10));
-	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
-	_bar.setFillColor(sf::Color(100, 250, 50));
-	_fill.setFillColor(sf::Color(100, 0, 250));
 }
 
 MenuCheckbox::~MenuCheckbox()

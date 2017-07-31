@@ -89,6 +89,8 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
 	  parseEdit(item, pItem, index);
   else if (type == Slider)
 	  parseSlider(item, pItem, index);
+  else if (type == Checkbox)
+	  parseCheckbox(item, pItem, index);
   if (item.child("color"))
 	  pItem->setColor(*Console::convertColorCode(item.child_value("color"), "#"));
   else
@@ -172,6 +174,19 @@ void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* i
 	sItem->setBarColor(barColor, fillColor);
 	if (item.child("barwidth"))
 		sItem->setBarWidth(atoi(item.child_value("barwidth")));
+}
+
+void Menu::parseCheckbox(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+{
+	MenuCheckbox *sItem = dynamic_cast<MenuCheckbox *>(pItem);
+	sf::Color *containerColor = NULL;
+	sf::Color *fillColor = NULL;
+
+	if (item.child("bcolor"))
+		containerColor = Console::convertColorCode(item.child_value("bcolor"), "#");
+	if (item.child("fcolor"))
+		fillColor = Console::convertColorCode(item.child_value("fcolor"), "#");
+	sItem->setCheckboxColor(containerColor, fillColor);
 }
 
 void Menu::initializeItems()

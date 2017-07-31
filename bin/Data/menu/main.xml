@@ -29,6 +29,9 @@
     <min>0</min>
     <max>100</max>
   </item>
+  <item type="Checkbox">
+    <label>Checkbox</label>
+  </item>
   <item type="Link" command="exit">
     <label>Quit</label>
     <color>#255255255</color>

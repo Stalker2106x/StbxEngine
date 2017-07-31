@@ -24,7 +24,8 @@ namespace stb {
 		Setting,
 		DynamicSetting,
 		Edit,
-		Slider
+		Slider,
+		Checkbox
 	};
 
 	enum ItemMode {
@@ -221,7 +222,6 @@ namespace stb {
 
 		void onClick() {};
 
-		void updateSlider(const sf::Event &e, bool forceupdate = false);
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 	private:
