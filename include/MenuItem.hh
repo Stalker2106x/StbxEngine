@@ -203,6 +203,30 @@ namespace stb {
 		sf::RectangleShape _bar, _fill;
 	};
 
+	/*!
+	* @class MenuCheckbox
+	* @brief Checkbox Setting item
+	*
+	*        This item is a box that allows to be checked (true) or unchecked (false)
+	*/
+	class MenuCheckbox : public MenuItem
+	{
+	public:
+		MenuCheckbox();
+		~MenuCheckbox();
+
+		void setXOffset(const float &x);
+		void setYOffset(const float &y);
+		void setCheckboxColor(const sf::Color *containerColor, const sf::Color *fillColor);
+
+		void onClick() {};
+
+		void updateSlider(const sf::Event &e, bool forceupdate = false);
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *);
+	private:
+		GUICheckbox _checkBox;
+	};
 }
 
 #endif /* !MENUITEM_HH_ */

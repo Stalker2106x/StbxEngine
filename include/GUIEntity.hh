@@ -89,9 +89,9 @@ namespace stb {
 
 	/*!
 	* @class GUIEdit
-	* @brief Draggable implementation of panel
+	* @brief Input box element to insert characters
 	*
-	*        This class is a Panel, that can be moved around in interface.
+	*        This class is an input box where user can type
 	*/
 
 	class GUIEdit : public GUIElement
@@ -121,6 +121,37 @@ namespace stb {
 		std::string _input;
 		sf::Text _value;
 		sf::RectangleShape _container;
+	};
+
+	/*!
+	* @class GUICheckbox
+	* @brief Draggable implementation of panel
+	*
+	*        This class is a Panel, that can be moved around in interface.
+	*/
+
+	class GUICheckbox : public GUIElement
+	{
+	public:
+		GUICheckbox();
+		GUICheckbox(const std::string &id);
+		~GUICheckbox();
+		void initialUpdate();
+
+		void setPosition(const sf::Vector2f &pos);
+		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);
+		void setSize(const int &length);
+		const sf::Vector2f &getSize();
+		const sf::Vector2f &getPosition();
+
+		bool onHover(const bool &triggered);
+
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *win);
+
+	private:
+		bool _checked;
+		sf::RectangleShape _container, _fill;
 	};
 }
 

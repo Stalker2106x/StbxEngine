@@ -336,9 +336,10 @@ void MenuEdit::draw(sf::RenderWindow *win)
 	MenuItem::draw(win);
 	_edit.draw(win);
 }
-/*
- * MenuSlider
- */
+
+//
+// MenuSlider
+//
 
 MenuSlider::MenuSlider() : MenuItem()
 {
@@ -444,4 +445,53 @@ void MenuSlider::draw(sf::RenderWindow *win)
 	MenuItem::draw(win);
 	win->draw(_bar);
 	win->draw(_fill);
+}
+
+//
+// MenuCheckbox
+//
+
+MenuCheckbox::MenuCheckbox() : MenuItem()
+{
+	setRange(0, 100);
+	_bar.setSize(sf::Vector2f(102, 10));
+	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
+	_bar.setFillColor(sf::Color(100, 250, 50));
+	_fill.setFillColor(sf::Color(100, 0, 250));
+}
+
+MenuCheckbox::~MenuCheckbox()
+{
+
+}
+
+void MenuCheckbox::setXOffset(const float &x)
+{
+	MenuItem::setXOffset(x);
+	_checkBox.setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _checkBox.getPosition().y));
+}
+
+void MenuCheckbox::setYOffset(const float &y)
+{
+	MenuItem::setYOffset(y);
+	_checkBox.setPosition(sf::Vector2f(_checkBox.getPosition().x, y));
+}
+
+void MenuCheckbox::setCheckboxColor(const sf::Color *containerColor, const sf::Color *fillColor)
+{
+	_checkBox.setColor(containerColor, fillColor);
+}
+
+bool MenuCheckbox::update(const sf::Event &e)
+{
+	if (!MenuItem::update(e))
+		return (false);
+	_checkBox.update(e);
+	return (true);
+}
+
+void MenuCheckbox::draw(sf::RenderWindow *win)
+{
+	MenuItem::draw(win);
+	_checkBox.draw(win);
 }

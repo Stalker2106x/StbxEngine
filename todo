@@ -4,7 +4,6 @@ BUG:
 -console is not an HUDPanel
 
 FEATURE:
--add checkbox GUIelement
 1-add a command "addpanel" to add panel
 2-resize static panel
 3-allow to add buttons to buttonbar of panel

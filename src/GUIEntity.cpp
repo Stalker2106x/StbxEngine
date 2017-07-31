@@ -51,6 +51,7 @@ void GUISIndicator::draw(sf::RenderWindow *win)
 //
 // GUIEdit
 //
+
 GUIEdit::GUIEdit() : GUIElement()
 {
 	initialUpdate();
@@ -161,4 +162,75 @@ void GUIEdit::draw(sf::RenderWindow *win)
 {
 	win->draw(_container);
 	win->draw(_value);
+}
+
+//
+// GUICheckbox
+//
+
+GUICheckbox::GUICheckbox() : GUIElement()
+{
+	initialUpdate();
+}
+
+GUICheckbox::GUICheckbox(const std::string &id) : GUIElement(id)
+{
+	initialUpdate();
+}
+
+GUICheckbox::~GUICheckbox()
+{
+
+}
+
+void GUICheckbox::initialUpdate()
+{
+	_checked = false;
+	_container.setSize(sf::Vector2f(22, 22));
+	_container.setFillColor(sf::Color::White);
+	_fill.setSize(sf::Vector2f(20, 20));
+	_container.setFillColor(sf::Color::Black);
+}
+
+void GUICheckbox::setPosition(const sf::Vector2f &pos)
+{
+	_container.setPosition(pos);
+	_fill.setPosition(pos + sf::Vector2f(1, 1));
+}
+
+void GUICheckbox::setColor(const sf::Color *containerColor, const sf::Color *fillColor)
+{
+	if (containerColor)
+		_container.setFillColor(*containerColor);
+	if (fillColor)
+		_fill.setFillColor(*fillColor);
+}
+
+const sf::Vector2f &GUICheckbox::getSize()
+{
+	return (_container.getSize());
+}
+
+const sf::Vector2f &GUICheckbox::getPosition()
+{
+	return (_container.getPosition());
+}
+
+bool GUICheckbox::update(const sf::Event &e)
+{
+	if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
+	{
+		if (_container.getGlobalBounds().contains(Engine::getMousePosition()))
+		{
+			_checked = (_checked ? false : true);
+		}
+	}
+	return (true);
+}
+
+void GUICheckbox::draw(sf::RenderWindow *win)
+{
+	win->draw(_container);
+	if (_checked)
+		win->draw(_fill);
 }
