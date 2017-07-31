@@ -33,6 +33,19 @@ GUIElement *GUI::getElement(const std::string &id)
 	return (NULL);
 }
 
+GUIElement *GUI::deleteElement(const std::string &id)
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		if (_elements[i]->getId() == id)
+		{
+			delete (_elements[i]);
+			_elements.erase(_elements.begin() + i);
+		}
+	}
+	return (NULL);
+}
+
 void GUI::toggle()
 {
 	_active = (_active ? false : true);

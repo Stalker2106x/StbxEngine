@@ -145,7 +145,7 @@ namespace stb {
 			GUIPanel *debugpanel;
 
 			if ((debugpanel = static_cast<GUIPanel *>(e.gui->getElement("__debuginfo"))) != NULL)
-				debugpanel->toggle();
+				e.gui->deleteElement("__debuginfo");
 			else
 			{
 				debugpanel = e.gui->addPanel("__debuginfo", sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));

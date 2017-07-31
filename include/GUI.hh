@@ -25,6 +25,7 @@ namespace stb {
 
 		bool isActive();
 		GUIElement *getElement(const std::string &id);
+		GUIElement *deleteElement(const std::string &id);
 
 		void toggle();
 
