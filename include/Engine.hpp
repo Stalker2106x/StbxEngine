@@ -34,7 +34,11 @@ namespace stb {
 		bool openWindow(int, int);
 
 		sf::RenderWindow *getWindowHandle();
-		sf::Vector2i getWindowSize() const;
+		sf::Vector2i &getWindowSize();
+		int &getFramerate();
+		sf::Vector2f &getMouse();
+		sf::Clock &getGameTime();
+		float &Engine::getElapsedSeconds();
 		void handleArgs(int argc, char **argv);
 		void videoParamSet(const std::string &, const int &);
 		sf::Image capture();
@@ -62,8 +66,10 @@ namespace stb {
 		bool _quit, _fullscreen, _vsync;
 		int _framerate, _frames;
 		sf::Clock _gametime;
+		float _elapsedSeconds;
 		sf::Time _lastSecondTick;
 		sf::Vector2i _winsize;
+		sf::Vector2f _mouse;
 		sf::RenderWindow *_win;
 	};
 

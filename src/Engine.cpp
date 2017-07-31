@@ -67,10 +67,29 @@ sf::RenderWindow *Engine::getWindowHandle()
 {
 	return (_win);
 }
-
-sf::Vector2i Engine::getWindowSize() const
+sf::Vector2i &Engine::getWindowSize()
 {
   return (_winsize);
+}
+
+int &Engine::getFramerate()
+{
+	return (_framerate);
+}
+
+sf::Vector2f &Engine::getMouse()
+{
+	return (_mouse);
+}
+
+sf::Clock &Engine::getGameTime()
+{
+	return (_gametime);
+}
+
+float &Engine::getElapsedSeconds()
+{
+	return (_elapsedSeconds);
 }
 
 void Engine::videoParamSet(const std::string &ent, const int &value)
@@ -115,6 +134,8 @@ bool Engine::updateLoop()
 
   if (gui->isActive())
 	  gui->updateRT();
+  _mouse = getMousePosition();
+  _elapsedSeconds = _gametime.getElapsedTime().asSeconds();
   while (_win->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)

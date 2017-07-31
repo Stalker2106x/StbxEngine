@@ -148,10 +148,13 @@ namespace stb {
 				debugpanel->toggle();
 			else
 			{
-				debugpanel = e.gui->addPanel("__debuginfo", sf::Vector2i(300, 400), sf::Color(100, 100, 50));
-				int fps = 999;
-
-				debugpanel->addElement(new GUIIndicator<int>("FPS: ", fps));
+				debugpanel = e.gui->addPanel("__debuginfo", sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
+				debugpanel->addElement(new GUIIndicator<int>("Screen Width: ", e.getWindowSize().x));
+				debugpanel->addElement(new GUIIndicator<int>("Screen Height: ", e.getWindowSize().y));
+				debugpanel->addElement(new GUIIndicator<int>("FPS: ", e.getFramerate()));
+				debugpanel->addElement(new GUIIndicator<float>("Mouse X: ", e.getMouse().x));
+				debugpanel->addElement(new GUIIndicator<float>("Mouse Y: ", e.getMouse().y));
+				debugpanel->addElement(new GUIIndicator<float>("Game Time: ", e.getElapsedSeconds()));
 			}
 		}
 
