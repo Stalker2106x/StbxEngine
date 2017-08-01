@@ -16,18 +16,18 @@ BINDIR = ./bin
 
 CXXFLAGS = -fPIC -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB) -I$(EXTLIB)/sfml/include/ -I$(EXTLIB)/stblib/include/
 
-LIBS = -L$(EXTLIB) -L$(EXTLIB)/sfml/lib/ -L$(EXTLIB)/stblib/bin/
+LIBS = -L$(EXTLIB) -L$(EXTLIB)/libsfml-bin/mingw_win32/ -L$(EXTLIB)/stblib/bin/
 
 LIBFLAGS = -shared -lstblib
 
 ifeq ($(OS),Windows_NT)
 	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include
-	LIBFLAGS += -lsfml-system -lsfml-window -lsfml-graphics
+	LIBFLAGS += -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 	NAME = $(BINDIR)/libsengine.dll
 else
 	UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
-	LIBFLAGS += -lsfml-system -lsfml-window -lsfml-graphics
+	LIBFLAGS += -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 	NAME = $(BINDIR)/libsengine.so
   endif
   ifeq ($(UNAME_S),Darwin)
