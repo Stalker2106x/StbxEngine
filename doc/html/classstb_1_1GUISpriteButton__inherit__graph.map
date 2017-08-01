@@ -1,0 +1,5 @@
+<map id="stb::GUISpriteButton" name="stb::GUISpriteButton">
+<area shape="rect" id="node4" href="$classstb_1_1GUIToggleSpriteButton.html" title="Clickable and hovereable textured toggleable button. " alt="" coords="5,229,200,256"/>
+<area shape="rect" id="node2" href="$classstb_1_1GUIButton.html" title="Abstract button superclass. " alt="" coords="45,80,161,107"/>
+<area shape="rect" id="node3" href="$classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="39,5,166,32"/>
+</map>

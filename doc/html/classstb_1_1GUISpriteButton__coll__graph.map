@@ -1,0 +1,5 @@
+<map id="stb::GUISpriteButton" name="stb::GUISpriteButton">
+<area shape="rect" id="node2" href="$classstb_1_1GUIButton.html" title="Abstract button superclass. " alt="" coords="11,81,127,108"/>
+<area shape="rect" id="node3" href="$classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node4" href="$structstb_1_1SpriteSkin.html" title="stb::SpriteSkin" alt="" coords="151,81,266,108"/>
+</map>

@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classstb_1_1Engine-members.html">List of all members</a>  </div>
@@ -102,7 +103,7 @@ Collaboration diagram for stb::Engine:</div>
 <div class="dyncontent">
 <div class="center"><img src="classstb_1_1Engine__coll__graph.png" border="0" usemap="#stb_1_1Engine_coll__map" alt="Collaboration graph"/></div>
 <map name="stb_1_1Engine_coll__map" id="stb_1_1Engine_coll__map">
-<area shape="rect" id="node2" href="classstb_1_1Console.html" title="stb::Console" alt="" coords="5,5,107,32"/><area shape="rect" id="node3" href="classstb_1_1Keybinds.html" title="stb::Keybinds" alt="" coords="131,5,237,32"/><area shape="rect" id="node4" href="classstb_1_1HUD.html" title="stb::HUD" alt="" coords="261,5,341,32"/></map>
+<area shape="rect" id="node2" href="classstb_1_1Console.html" title="stb::Console" alt="" coords="5,5,107,32"/><area shape="rect" id="node3" href="classstb_1_1GUI.html" title="stb::GUI" alt="" coords="131,5,205,32"/><area shape="rect" id="node4" href="classstb_1_1Keybinds.html" title="stb::Keybinds" alt="" coords="229,5,336,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -116,9 +117,21 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>openWindow</b> (int, 
 <tr class="memitem:ab575ea5cdde775346a511c7ab634d3d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab575ea5cdde775346a511c7ab634d3d7"></a>
 sf::RenderWindow *&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowHandle</b> ()</td></tr>
 <tr class="separator:ab575ea5cdde775346a511c7ab634d3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3402b6b28b400072847642c40e26114"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3402b6b28b400072847642c40e26114"></a>
-sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowSize</b> () const </td></tr>
-<tr class="separator:ab3402b6b28b400072847642c40e26114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af926f6a1da03c3095af406ca548b72f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af926f6a1da03c3095af406ca548b72f1"></a>
+sf::Vector2i &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowSize</b> ()</td></tr>
+<tr class="separator:af926f6a1da03c3095af406ca548b72f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a6a6a0804435ab5cd0f445c7f2b3472"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a6a6a0804435ab5cd0f445c7f2b3472"></a>
+int &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFramerate</b> ()</td></tr>
+<tr class="separator:a9a6a6a0804435ab5cd0f445c7f2b3472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aca1e7fa8c342eeea4ebf62547b5697"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8aca1e7fa8c342eeea4ebf62547b5697"></a>
+sf::Vector2f &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMouse</b> ()</td></tr>
+<tr class="separator:a8aca1e7fa8c342eeea4ebf62547b5697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cb0c6b61ec9c78259aa31cc150fe1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e9cb0c6b61ec9c78259aa31cc150fe1"></a>
+sf::Clock &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getGameTime</b> ()</td></tr>
+<tr class="separator:a8e9cb0c6b61ec9c78259aa31cc150fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f271442ca12caf917ce71cf0e538e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87f271442ca12caf917ce71cf0e538e9"></a>
+float &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getElapsedSeconds</b> ()</td></tr>
+<tr class="separator:a87f271442ca12caf917ce71cf0e538e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e7f5f2a1019decb658138b71da46cde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e7f5f2a1019decb658138b71da46cde"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleArgs</b> (int argc, char **argv)</td></tr>
 <tr class="separator:a6e7f5f2a1019decb658138b71da46cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,9 +147,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()=0
 <tr class="memitem:a8281e8d614e170ed090a8d01ff24adcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8281e8d614e170ed090a8d01ff24adcd"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateLoop</b> ()</td></tr>
 <tr class="separator:a8281e8d614e170ed090a8d01ff24adcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa891236048b0644215c56c9d00d84ffa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa891236048b0644215c56c9d00d84ffa"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (sf::Event &amp;)=0</td></tr>
-<tr class="separator:aa891236048b0644215c56c9d00d84ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8974e65395654f5a5111fe448e046335"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8974e65395654f5a5111fe448e046335"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf::Event &amp;)=0</td></tr>
+<tr class="separator:a8974e65395654f5a5111fe448e046335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acffb53b7ad3223d06bbb1818ee11cfb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acffb53b7ad3223d06bbb1818ee11cfb7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateFramerate</b> ()</td></tr>
+<tr class="separator:acffb53b7ad3223d06bbb1818ee11cfb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c58b131374f2909b47170e6bee9ad29"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c58b131374f2909b47170e6bee9ad29"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>mainLoop</b> ()</td></tr>
 <tr class="separator:a3c58b131374f2909b47170e6bee9ad29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,17 +175,20 @@ static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTime
 static sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getMousePosition</b> ()</td></tr>
 <tr class="separator:af279734594aac3bfe1f1ad8c50af17df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
 <tr class="memitem:a9722ae6cd03773078e6d7d1ab0e3cf41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9722ae6cd03773078e6d7d1ab0e3cf41"></a>
-static <a class="el" href="classstb_1_1Keybinds.html">Keybinds</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>keybinds</b></td></tr>
+<a class="el" href="classstb_1_1Keybinds.html">Keybinds</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>keybinds</b></td></tr>
 <tr class="separator:a9722ae6cd03773078e6d7d1ab0e3cf41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2b7729a6647458ec6ed9ee028cb6890"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2b7729a6647458ec6ed9ee028cb6890"></a>
-static <a class="el" href="classstb_1_1Console.html">Console</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>console</b></td></tr>
+<a class="el" href="classstb_1_1Console.html">Console</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>console</b></td></tr>
 <tr class="separator:af2b7729a6647458ec6ed9ee028cb6890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b797cd4f2a4c455b8e3061b6d638e28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b797cd4f2a4c455b8e3061b6d638e28"></a>
-static <a class="el" href="classstb_1_1HUD.html">HUD</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>hud</b></td></tr>
-<tr class="separator:a1b797cd4f2a4c455b8e3061b6d638e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af63208ee6954e422fc5d23c1471dd621"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af63208ee6954e422fc5d23c1471dd621"></a>
+<a class="el" href="classstb_1_1GUI.html">GUI</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>gui</b></td></tr>
+<tr class="separator:af63208ee6954e422fc5d23c1471dd621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
 <tr class="memitem:a8f30f0f5b28b2879fcb1d5aa73424d6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f30f0f5b28b2879fcb1d5aa73424d6c"></a>
 static <a class="el" href="classstb_1_1Engine.html">Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b></td></tr>
 <tr class="separator:a8f30f0f5b28b2879fcb1d5aa73424d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,15 +213,18 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>_frames</b></td></tr>
 <tr class="memitem:a49bb16cd2365a4704de1636604af7535"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49bb16cd2365a4704de1636604af7535"></a>
 sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><b>_gametime</b></td></tr>
 <tr class="separator:a49bb16cd2365a4704de1636604af7535"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00264935058c8cba3005ba978306bb19"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00264935058c8cba3005ba978306bb19"></a>
-sf::Time&#160;</td><td class="memItemRight" valign="bottom"><b>_lastTick</b></td></tr>
-<tr class="separator:a00264935058c8cba3005ba978306bb19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02ca75c65907a40cdb9c467f0a3cb88a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02ca75c65907a40cdb9c467f0a3cb88a"></a>
-sf::Time&#160;</td><td class="memItemRight" valign="bottom"><b>_stackTick</b></td></tr>
-<tr class="separator:a02ca75c65907a40cdb9c467f0a3cb88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae231eda277e2b82f755b4737602f4a17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae231eda277e2b82f755b4737602f4a17"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_elapsedSeconds</b></td></tr>
+<tr class="separator:ae231eda277e2b82f755b4737602f4a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3a0c7fbce4b2ccde24264d3fc213f2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3a0c7fbce4b2ccde24264d3fc213f2f"></a>
+sf::Time&#160;</td><td class="memItemRight" valign="bottom"><b>_lastSecondTick</b></td></tr>
+<tr class="separator:af3a0c7fbce4b2ccde24264d3fc213f2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a877f6a4fc80c8e74508255ddcb1d6dc6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a877f6a4fc80c8e74508255ddcb1d6dc6"></a>
 sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>_winsize</b></td></tr>
 <tr class="separator:a877f6a4fc80c8e74508255ddcb1d6dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53711c4398ac24002d1a9c3cdb0cc6ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53711c4398ac24002d1a9c3cdb0cc6ec"></a>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>_mouse</b></td></tr>
+<tr class="separator:a53711c4398ac24002d1a9c3cdb0cc6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c86215c942a46a23adfb042feac74ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c86215c942a46a23adfb042feac74ca"></a>
 sf::RenderWindow *&#160;</td><td class="memItemRight" valign="bottom"><b>_win</b></td></tr>
 <tr class="separator:a0c86215c942a46a23adfb042feac74ca"><td class="memSeparator" colspan="2">&#160;</td></tr>

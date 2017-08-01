@@ -111,7 +111,7 @@ Collaboration diagram for stb::MenuLink:</div>
 <div class="dyncontent">
 <div class="center"><img src="classstb_1_1MenuLink__coll__graph.png" border="0" usemap="#stb_1_1MenuLink_coll__map" alt="Collaboration graph"/></div>
 <map name="stb_1_1MenuLink_coll__map" id="stb_1_1MenuLink_coll__map">
-<area shape="rect" id="node2" href="classstb_1_1MenuItem.html" title="Abstract Menu item. " alt="" coords="127,184,241,211"/><area shape="rect" id="node3" href="classstb_1_1Engine.html" title="stb::Engine" alt="" coords="137,95,231,121"/><area shape="rect" id="node4" href="classstb_1_1Console.html" title="stb::Console" alt="" coords="5,5,107,32"/><area shape="rect" id="node5" href="classstb_1_1Keybinds.html" title="stb::Keybinds" alt="" coords="131,5,237,32"/><area shape="rect" id="node6" href="classstb_1_1HUD.html" title="stb::HUD" alt="" coords="261,5,341,32"/></map>
+<area shape="rect" id="node2" href="classstb_1_1MenuItem.html" title="Abstract Menu item. " alt="" coords="151,184,266,211"/><area shape="rect" id="node3" href="classstb_1_1GUIButton.html" title="Abstract button superclass. " alt="" coords="41,95,157,121"/><area shape="rect" id="node4" href="classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="5,5,132,32"/><area shape="rect" id="node5" href="classstb_1_1Engine.html" title="stb::Engine" alt="" coords="242,95,335,121"/><area shape="rect" id="node6" href="classstb_1_1Console.html" title="stb::Console" alt="" coords="157,5,258,32"/><area shape="rect" id="node7" href="classstb_1_1GUI.html" title="stb::GUI" alt="" coords="283,5,356,32"/><area shape="rect" id="node8" href="classstb_1_1Keybinds.html" title="stb::Keybinds" alt="" coords="381,5,487,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -131,19 +131,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setCommand</b> (const
 <tr class="memitem:aa89ce388854e6da7b8d5748cf16b14a9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa89ce388854e6da7b8d5748cf16b14a9"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onClick</b> ()</td></tr>
 <tr class="separator:aa89ce388854e6da7b8d5748cf16b14a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe391c3f90840da159c854232ee97331"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe391c3f90840da159c854232ee97331"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onHover</b> (const bool &amp;triggered)</td></tr>
-<tr class="separator:afe391c3f90840da159c854232ee97331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39cce4435c090e2c3e9041b78faa940a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39cce4435c090e2c3e9041b78faa940a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf::Event &amp;e)</td></tr>
-<tr class="separator:a39cce4435c090e2c3e9041b78faa940a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a7afd993dc8cd878aadd7a7cb2a658e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a7afd993dc8cd878aadd7a7cb2a658e"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf::Event &amp;e)</td></tr>
+<tr class="separator:a7a7afd993dc8cd878aadd7a7cb2a658e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classstb_1_1MenuItem"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classstb_1_1MenuItem')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classstb_1_1MenuItem.html">stb::MenuItem</a></td></tr>
-<tr class="memitem:a3757350609279296023d95e4b6908f14 inherit pub_methods_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3757350609279296023d95e4b6908f14"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isHovered</b> () const </td></tr>
-<tr class="separator:a3757350609279296023d95e4b6908f14 inherit pub_methods_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace0307f971a00410d485b2e3ed8fcda2 inherit pub_methods_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace0307f971a00410d485b2e3ed8fcda2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValueHovered</b> () const </td></tr>
-<tr class="separator:ace0307f971a00410d485b2e3ed8fcda2 inherit pub_methods_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87d9ecf7669128a749b2435df3a593d5 inherit pub_methods_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87d9ecf7669128a749b2435df3a593d5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setLabel</b> (const std::string &amp;label)</td></tr>
 <tr class="separator:a87d9ecf7669128a749b2435df3a593d5 inherit pub_methods_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,9 +159,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setOffset</b>
 <tr class="memitem:a1d60b3038c3a57679143eec96c9c9355 inherit pub_methods_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d60b3038c3a57679143eec96c9c9355"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialUpdate</b> ()</td></tr>
 <tr class="separator:a1d60b3038c3a57679143eec96c9c9355 inherit pub_methods_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ec3ae79e1b3699ffcef6a87634d7620 inherit pub_methods_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ec3ae79e1b3699ffcef6a87634d7620"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>onValueHover</b> (const bool &amp;triggered)</td></tr>
-<tr class="separator:a9ec3ae79e1b3699ffcef6a87634d7620 inherit pub_methods_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a206a69f17a35e86195b41e0594232f0a inherit pub_methods_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a206a69f17a35e86195b41e0594232f0a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow *)</td></tr>
 <tr class="separator:a206a69f17a35e86195b41e0594232f0a inherit pub_methods_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,21 +178,18 @@ static std::unordered_map<br class="typebreak" />
 <tr class="memitem:a582f22d19791a28378aa7d241872679f inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a582f22d19791a28378aa7d241872679f"></a>
 <a class="el" href="classstb_1_1Engine.html">Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_e</b></td></tr>
 <tr class="separator:a582f22d19791a28378aa7d241872679f inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb1685cd551c4e300a5b7b090520056 inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cb1685cd551c4e300a5b7b090520056"></a>
+ItemMode&#160;</td><td class="memItemRight" valign="bottom"><b>_mode</b></td></tr>
+<tr class="separator:a5cb1685cd551c4e300a5b7b090520056 inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef62463c6a6cbe7043d84e67b510624c inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef62463c6a6cbe7043d84e67b510624c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>_padding</b></td></tr>
 <tr class="separator:aef62463c6a6cbe7043d84e67b510624c inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e5f4d296deea8a441900355b68d602b inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e5f4d296deea8a441900355b68d602b"></a>
-sf::Text&#160;</td><td class="memItemRight" valign="bottom"><b>_label</b></td></tr>
-<tr class="separator:a4e5f4d296deea8a441900355b68d602b inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8aad974ba7d40faf3dff8a81f6f0035 inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8aad974ba7d40faf3dff8a81f6f0035"></a>
+<a class="el" href="classstb_1_1GUIButton.html">GUIButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_label</b></td></tr>
+<tr class="separator:aa8aad974ba7d40faf3dff8a81f6f0035 inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace50892856e4a2e2cbf4e18621efaa1b inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace50892856e4a2e2cbf4e18621efaa1b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_active</b></td></tr>
 <tr class="separator:ace50892856e4a2e2cbf4e18621efaa1b inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a894f3569b76c42d767632882a600331b inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a894f3569b76c42d767632882a600331b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_hover</b></td></tr>
-<tr class="separator:a894f3569b76c42d767632882a600331b inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d7aa9f3b6d60cfc3ad9eedf71cf52c8 inherit pro_attribs_classstb_1_1MenuItem"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d7aa9f3b6d60cfc3ad9eedf71cf52c8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_vhover</b></td></tr>
-<tr class="separator:a1d7aa9f3b6d60cfc3ad9eedf71cf52c8 inherit pro_attribs_classstb_1_1MenuItem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classstb_1_1Menu.html">Menu</a> link to another menu or action. </p>

@@ -1,0 +1,5 @@
+<map id="stb::GUIDraggablePanel" name="stb::GUIDraggablePanel">
+<area shape="rect" id="node2" href="$classstb_1_1GUIPanel.html" title="Panel for GUI. " alt="" coords="39,171,145,197"/>
+<area shape="rect" id="node3" href="$classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="42,5,169,32"/>
+<area shape="rect" id="node4" href="$classstb_1_1GUIButtonBar.html" title="Button Bar implementation. " alt="" coords="108,81,247,108"/>
+</map>

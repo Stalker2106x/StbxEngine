@@ -1,6 +1,8 @@
 <map id="stb::MenuItem" name="stb::MenuItem">
-<area shape="rect" id="node2" href="$classstb_1_1Engine.html" title="stb::Engine" alt="" coords="137,95,231,121"/>
-<area shape="rect" id="node3" href="$classstb_1_1Console.html" title="stb::Console" alt="" coords="5,5,107,32"/>
-<area shape="rect" id="node4" href="$classstb_1_1Keybinds.html" title="stb::Keybinds" alt="" coords="131,5,237,32"/>
-<area shape="rect" id="node5" href="$classstb_1_1HUD.html" title="stb::HUD" alt="" coords="261,5,341,32"/>
+<area shape="rect" id="node2" href="$classstb_1_1GUIButton.html" title="Abstract button superclass. " alt="" coords="41,95,157,121"/>
+<area shape="rect" id="node3" href="$classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node4" href="$classstb_1_1Engine.html" title="stb::Engine" alt="" coords="242,95,335,121"/>
+<area shape="rect" id="node5" href="$classstb_1_1Console.html" title="stb::Console" alt="" coords="157,5,258,32"/>
+<area shape="rect" id="node6" href="$classstb_1_1GUI.html" title="stb::GUI" alt="" coords="283,5,356,32"/>
+<area shape="rect" id="node7" href="$classstb_1_1Keybinds.html" title="stb::Keybinds" alt="" coords="381,5,487,32"/>
 </map>
