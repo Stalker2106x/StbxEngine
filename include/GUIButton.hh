@@ -47,8 +47,8 @@ namespace stb {
 	protected:
 		bool _hover;
 		sf::Event::EventType _triggerType;
-		std::function<void(void)> _onClickCallback;
-		std::function<void(void)> _onRClickCallback;
+		std::function<void(void)> *_onClickCallback;
+		std::function<void(void)> *_onRClickCallback;
 	};
 
 	/*!

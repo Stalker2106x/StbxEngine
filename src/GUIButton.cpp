@@ -30,12 +30,12 @@ bool GUIButton::isHovered() const
 
 void GUIButton::setClickCallback(const std::function<void(void)> &fptr)
 {
-	_onClickCallback = fptr;
+	_onClickCallback = new std::function<void(void)>(fptr);
 }
 
 void GUIButton::setRClickCallback(const std::function<void(void)> &fptr)
 {
-	_onRClickCallback = fptr;
+	_onRClickCallback = new std::function<void(void)>(fptr);
 }
 
 bool GUIButton::onHover(const bool &triggered)
@@ -52,12 +52,12 @@ bool GUIButton::onHover(const bool &triggered)
 
 void GUIButton::onClick()
 {
-	_onClickCallback();
+	(*_onClickCallback)();
 }
 
 void GUIButton::onRClick()
 {
-	_onRClickCallback();
+	(*_onRClickCallback)();
 }
 
 bool GUIButton::update(const sf::Event &e)
@@ -66,9 +66,9 @@ bool GUIButton::update(const sf::Event &e)
 		return (false);
 	if (e.type == _triggerType && _hover)
 	{
-		if (e.key.code == sf::Mouse::Left && !_onClickCallback._Empty())
+		if (e.key.code == sf::Mouse::Left && _onClickCallback != NULL)
 			onClick();
-		else if (e.key.code == sf::Mouse::Right && !_onRClickCallback._Empty())
+		else if (e.key.code == sf::Mouse::Right && _onRClickCallback != NULL)
 			onRClick();
 	}
 	return (true);
@@ -321,7 +321,7 @@ bool GUIToggleSpriteButton::onHover(const bool &triggered)
 void GUIToggleSpriteButton::onClick()
 {
 	_state = (_state ? false : true);
-	_onClickCallback();
+	(*_onClickCallback)();
 }
 
 bool GUIToggleSpriteButton::update(const sf::Event &e)

@@ -14,11 +14,11 @@ SRCDIR = ./src
 
 BINDIR = ./bin
 
-CXXFLAGS = -fPIC -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB) -I$(EXTLIB)/sfml/include/
+CXXFLAGS = -fPIC -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB) -I$(EXTLIB)/sfml/include/ -I$(EXTLIB)/stblib/include/
 
-LIBS = -L$(EXTLIB) -L$(EXTLIB)/sfml/lib/
+LIBS = -L$(EXTLIB) -L$(EXTLIB)/sfml/lib/ -L$(EXTLIB)/stblib/bin/
 
-LIBFLAGS = -shared
+LIBFLAGS = -shared -lstblib
 
 ifeq ($(OS),Windows_NT)
 	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include
