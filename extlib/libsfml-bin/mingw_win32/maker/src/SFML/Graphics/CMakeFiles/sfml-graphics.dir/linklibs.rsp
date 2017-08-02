@@ -1,0 +1,1 @@
+../../../lib/libsfml-window-d.a ../../../lib/libsfml-system-d.a -lopengl32 D:/Work/stbxengine/extlib/sfml/extlibs/libs-mingw/x64/libfreetype.a D:/Work/stbxengine/extlib/sfml/extlibs/libs-mingw/x64/libjpeg.a -lwinmm -lgdi32 -lopengl32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
