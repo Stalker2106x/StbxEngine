@@ -15,24 +15,23 @@ SRCDIR = ./src
 BINDIR = ./bin
 
 CXXFLAGS = -fPIC -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB) -I$(EXTLIB)/sfml/include/ -I$(EXTLIB)/stblib/include/
-
-LIBS = -L$(EXTLIB) -L$(EXTLIB)/libsfml-bin/mingw_win32/ -L$(EXTLIB)/stblib/bin/
-
-LIBFLAGS = -shared -lstblib
+LDFLAGS = -L$(EXTLIB) -L$(EXTLIB)/libsfml-bin/mingw_win32/ -L$(EXTLIB)/stblib/bin/ -shared -lstblib
+test: CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x -Os -O0 -g -I$(INCDIR) -I$(EXTLIB) -I$(EXTLIB)/sfml/include/ -I$(EXTLIB)/stblib/include/
+test: LDFLAGS = -L$(EXTLIB)/libsfml-bin/mingw_win32/ -L$(BINDIR) -lsengine -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 
 ifeq ($(OS),Windows_NT)
 	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include
-	LIBFLAGS += -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
+	LDFLAGS += -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 	NAME = $(BINDIR)/libsengine.dll
 else
-	UNAME_S := $(shell uname -s)
+  UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
-	LIBFLAGS += -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
+	LDFLAGS += -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 	NAME = $(BINDIR)/libsengine.so
   endif
   ifeq ($(UNAME_S),Darwin)
 	CXXFLAGS += -I/usr/local/include
-	LIBFLAGS += -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
+	LDFLAGS += -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
 	NAME = $(BINDIR)/libsengine.Framework
   endif
 endif
@@ -64,10 +63,10 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LIBS) $(LIBFLAGS)
+	$(CC) -o $(NAME) $(OBJS) $(LIBS) $(LDFLAGS)
 
 test: $(TESTOBJS)
-	$(CC) -o $(TEST) $(TESTOBJS) -L$(BINDIR) $(LIBS) $(LIBFLAGS) -lsengine
+	$(CC) -o $(TEST) $(TESTOBJS) -L$(BINDIR) $(LIBS) $(LDFLAGS) -lsengine
 
 clean:
 	$(RM) $(OBJS) $(TESTOBJS)
