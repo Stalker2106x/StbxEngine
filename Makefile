@@ -20,7 +20,6 @@ test: CXXFLAGS = -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c
 test: LDFLAGS = -L$(EXTLIB)/libsfml-bin/mingw_win32/ -L$(BINDIR) -lsengine -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 
 ifeq ($(OS),Windows_NT)
-	CXXFLAGS += -IW:/Software/mingw32/include -IC:/mingw64/include
 	LDFLAGS += -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 	NAME = $(BINDIR)/libsengine.dll
 else
@@ -30,7 +29,6 @@ else
 	NAME = $(BINDIR)/libsengine.so
   endif
   ifeq ($(UNAME_S),Darwin)
-	CXXFLAGS += -I/usr/local/include
 	LDFLAGS += -F/Library/Frameworks -framework freetype -framework sfml-window -framework sfml-graphics -framework sfml-system
 	NAME = $(BINDIR)/libsengine.Framework
   endif

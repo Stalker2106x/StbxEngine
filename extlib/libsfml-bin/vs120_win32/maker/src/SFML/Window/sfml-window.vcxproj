@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{D4773D74-721E-37F9-AB00-2A884F025C24}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>sfml-window</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sfml-window.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sfml-window-s-d</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sfml-window.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sfml-window-s</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">sfml-window.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">sfml-window-s</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">sfml-window.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">sfml-window-s</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\Debug\sfml-window-s-d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions)  /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+      <ProgramDataBaseFileName>W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\Release\sfml-window-s-d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions)  /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+      <ProgramDataBaseFileName>W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\MinSizeRel\sfml-window-s-d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions)  /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\lib\RelWithDebInfo\sfml-window-s-d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;SFML_STATIC;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\Projets\stbxengine\extlib\sfml\include;W:\Projets\stbxengine\extlib\sfml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions)  /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HW:/Projets/stbxengine/extlib/sfml -BW:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker --check-stamp-file W:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker/src/SFML/Window/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageMessage.cmake;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\src\SFML\Window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HW:/Projets/stbxengine/extlib/sfml -BW:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker --check-stamp-file W:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker/src/SFML/Window/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageMessage.cmake;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\src\SFML\Window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HW:/Projets/stbxengine/extlib/sfml -BW:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker --check-stamp-file W:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker/src/SFML/Window/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageMessage.cmake;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\src\SFML\Window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -HW:/Projets/stbxengine/extlib/sfml -BW:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker --check-stamp-file W:/Projets/stbxengine/extlib/libsfml-bin/vs120_win32/maker/src/SFML/Window/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">W:/Projets/stbxengine/extlib/sfml/src/SFML/Window/CMakeLists.txt;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;C:\Program Files\CMake\share\cmake-3.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.8\Modules\FindPackageMessage.cmake;W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\src\SFML\Window\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Clipboard.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\ClipboardImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Context.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Cursor.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\CursorImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Export.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\GlContext.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\GlResource.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\ContextSettings.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Event.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\InputImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Joystick.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\JoystickImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\JoystickManager.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Keyboard.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Mouse.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Touch.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Sensor.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\SensorImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\SensorManager.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\VideoMode.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\VideoModeImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\Window.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\WindowHandle.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\WindowImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\CursorImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\ClipboardImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\WglContext.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\WglExtensions.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\InputImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\JoystickImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\SensorImpl.hpp" />
+    <ClInclude Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\WindowImplWin32.hpp" />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Clipboard.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Context.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Cursor.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\GlContext.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\GlResource.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Joystick.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\JoystickManager.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Keyboard.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Mouse.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Touch.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Sensor.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\SensorManager.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\VideoMode.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Window.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\WindowImpl.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\CursorImpl.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\ClipboardImpl.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\WglContext.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\WglExtensions.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\InputImpl.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\JoystickImpl.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\SensorImpl.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\VideoModeImpl.cpp"  />
+    <ClCompile Include="W:\Projets\stbxengine\extlib\sfml\src\SFML\Window\Win32\WindowImplWin32.cpp"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\ZERO_CHECK.vcxproj">
+      <Project>{CDEA62A7-F1AB-3561-BA1A-E6B60F448D51}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32\maker\src\SFML\System\sfml-system.vcxproj">
+      <Project>{93AC509E-4BAE-3E75-B87D-A542693C82C5}</Project>
+      <Name>sfml-system</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
