@@ -130,17 +130,17 @@ void GUITextButton::setSkin(const TextSkin &skin)
 	_skin = skin;
 }
 
-const sf::Vector2f &GUITextButton::getPosition()
+const sf::Vector2f GUITextButton::getPosition()
 {
 	return (_label.getPosition());
 }
 
-const sf::FloatRect &GUITextButton::getLocalBounds()
+const sf::FloatRect GUITextButton::getLocalBounds()
 {
 	return (_label.getLocalBounds());
 }
 
-const sf::FloatRect &GUITextButton::getGlobalBounds()
+const sf::FloatRect GUITextButton::getGlobalBounds()
 {
 	return (_label.getGlobalBounds());
 }
@@ -223,17 +223,17 @@ void GUISpriteButton::setPosition(const sf::Vector2f &pos)
 	_sprite.setPosition(pos);
 }
 
-const sf::Vector2f &GUISpriteButton::getPosition()
+const sf::Vector2f GUISpriteButton::getPosition()
 {
 	return (_sprite.getPosition());
 }
 
-const sf::FloatRect &GUISpriteButton::getLocalBounds()
+const sf::FloatRect GUISpriteButton::getLocalBounds()
 {
 	return (_sprite.getLocalBounds());
 }
 
-const sf::FloatRect &GUISpriteButton::getGlobalBounds()
+const sf::FloatRect GUISpriteButton::getGlobalBounds()
 {
 	return (_sprite.getGlobalBounds());
 }
@@ -370,7 +370,7 @@ void GUIButtonBar::setSpacing(const int &spacing)
 	_spacing = spacing;
 }
 
-const sf::Vector2f &GUIButtonBar::calcButtonPosition(const size_t &index, const sf::Vector2f &pos)
+const sf::Vector2f GUIButtonBar::calcButtonPosition(const size_t &index, const sf::Vector2f &pos)
 {
 	int size = 0;
 
