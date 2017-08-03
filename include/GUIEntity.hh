@@ -24,7 +24,7 @@ namespace stb {
 	{
 	public:
 		GUISIndicator(const std::string &label);
-		~GUISIndicator();
+		virtual ~GUISIndicator();
 
 		void setFontsize(const int &fontSize);
 		void setPosition(const sf::Vector2f &pos);
@@ -65,7 +65,7 @@ namespace stb {
 			_value.setString(std::to_string(_hookValue));
 		}
 
-		~GUIIndicator()
+		virtual ~GUIIndicator()
 		{
 			delete (_label);
 		}
@@ -104,14 +104,14 @@ namespace stb {
 	public:
 		GUIEdit();
 		GUIEdit(const std::string &id);
-		~GUIEdit();
+		virtual ~GUIEdit();
 		void initialUpdate();
 
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(sf::Color *inputColor, sf::Color *valueColor);
 		void setFontsize(const int &fontsize);
-		void setWidth(const int &length);
+		void setWidth(const float &length);
 		const sf::Vector2f &getSize();
 		const sf::Vector2f &getPosition();
 		const std::string &getInput();
@@ -140,7 +140,7 @@ namespace stb {
 	public:
 		GUICheckbox();
 		GUICheckbox(const std::string &id);
-		~GUICheckbox();
+		virtual ~GUICheckbox();
 		void initialUpdate();
 
 		void setPosition(const sf::Vector2f &pos);

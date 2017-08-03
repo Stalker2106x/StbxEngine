@@ -15,7 +15,7 @@ namespace stb {
 	public:
 		GUIElement();
 		GUIElement(const std::string &id);
-		~GUIElement() {};
+		virtual ~GUIElement() {};
 
 		virtual void toggle();
 		const std::string &getId();

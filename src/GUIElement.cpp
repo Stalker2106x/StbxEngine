@@ -26,7 +26,7 @@ const std::string &GUIElement::getId()
 	return (_id);
 }
 
-bool GUIElement::update(const sf::Event &e)
+bool GUIElement::update(const sf::Event &)
 {
 	if (!_active)
 		return (false);

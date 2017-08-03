@@ -112,7 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
-    <ClCompile Include="..\..\include\GUIElement.hh" />
+    <ClInclude Include="..\..\include\GUIElement.hh" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
     <ClCompile Include="..\..\src\Control.cpp" />

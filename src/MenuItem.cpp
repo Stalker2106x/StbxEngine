@@ -178,6 +178,7 @@ bool MenuLink::update(const sf::Event &e)
 {
 	if (!MenuItem::update(e))
 		return (false);
+	return (true);
 }
 
 /*
@@ -312,7 +313,7 @@ void MenuEdit::setYOffset(const float &y)
 	_edit.setPosition(sf::Vector2f(_edit.getPosition().x, y));
 }
 
-void MenuEdit::setColor(sf::Color *inputColor, sf::Color *valueColor)
+void MenuEdit::setInputColor(sf::Color *inputColor, sf::Color *valueColor)
 {
 	_edit.setColor(inputColor, valueColor);
 }
@@ -389,7 +390,7 @@ void MenuSlider::setYOffset(const float &y)
 
 void MenuSlider::setBarWidth(const int &width)
 {
-	_bar.setSize(sf::Vector2f(width, _bar.getSize().y));
+	_bar.setSize(sf::Vector2f(static_cast<float>(width), _bar.getSize().y));
 	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
 }
 
@@ -410,7 +411,7 @@ void MenuSlider::updateSlider(const sf::Event &e, bool forceupdate)
 {
 	if (_sliding && (e.type == sf::Event::MouseMoved || forceupdate))
 	{
-		_value = (Engine::getMousePosition().x - _bar.getPosition().x) * (_bar.getGlobalBounds().width / _range[1]);
+		_value = static_cast<int>((Engine::getMousePosition().x - _bar.getPosition().x) * (_bar.getGlobalBounds().width / _range[1]));
 		if (_value < _range[0])
 			_value = _range[0];
 		else if (_value > _range[1])
@@ -429,7 +430,7 @@ bool MenuSlider::update(const sf::Event &e)
 	if (!MenuItem::update(e))
 		return (false);
   updateSlider(e);
-  if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
+  if (e.type == sf::Event::MouseButtonPressed && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
   {
 	  if (_bar.getGlobalBounds().contains(Engine::getMousePosition()))
 	  {
@@ -437,7 +438,7 @@ bool MenuSlider::update(const sf::Event &e)
 		  updateSlider(e, true);
 	  }
   }
-  else if (e.type == sf::Event::MouseButtonReleased && e.key.code == sf::Mouse::Left)
+  else if (e.type == sf::Event::MouseButtonReleased && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
   {
 		  _sliding = false;
   }

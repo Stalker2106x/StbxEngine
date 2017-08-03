@@ -33,7 +33,7 @@ namespace stb {
 		GUIPanel();
 		GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color);
 		GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name);
-		~GUIPanel();
+		virtual ~GUIPanel();
 
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setStyle(const char &style);
@@ -67,7 +67,7 @@ namespace stb {
 	public:
 		GUIDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
 		GUIDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
-		~GUIDraggablePanel();
+		virtual ~GUIDraggablePanel();
 		void initialUpdate();
 
 		void toggleLock();
