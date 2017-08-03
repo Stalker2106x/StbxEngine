@@ -74,7 +74,7 @@
     <Link>
       <AdditionalLibraryDirectories>W:\Projets\stbxengine\extlib\libsfml-bin\vs120_win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-main-d.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)../bin/$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(SolutionDir)..\bin\$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetFileName) $(SolutionDir)..\bin\</Command>
