@@ -1,0 +1,3 @@
+D:/Work/stbxengine/CMakeFiles/segine.dir
+D:/Work/stbxengine/CMakeFiles/ALL_BUILD.dir
+D:/Work/stbxengine/CMakeFiles/ZERO_CHECK.dir
