@@ -21,6 +21,7 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Co
 GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id), _buttonBar(Horizontal)
 {
 	_frame.setTexture(*Resolver<sf::Texture>::resolve(name));
+	_frame.setScale(1 / size.x, 1);
 }
 
 GUIPanel::~GUIPanel()
@@ -42,14 +43,14 @@ void GUIPanel::setStyle(const char &style)
 void GUIPanel::addElement(GUIElement *element)
 {
 	_elements.push_back(element);
-	_elements.back()->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + ((_elements.size() - 1) * 35)));
+	_elements.back()->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + ((static_cast<float>(_elements.size()) - 1) * 35)));
 }
 
 void GUIPanel::updateElementsPosition()
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
-		_elements[i]->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + (i * 35)));
+		_elements[i]->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + (static_cast<float>(i) * 35)));
 	}
 }
 
@@ -97,6 +98,7 @@ GUIDraggablePanel::GUIDraggablePanel(const std::string &id, const sf::Vector2i &
 	: GUIPanel(id, size, frameResource)
 {
 	_header.setTexture(*Resolver<sf::Texture>::resolve(headerResource));
+	_header.setScale(1 / size.x, 1);
 	initialUpdate();
 }
 
@@ -153,7 +155,7 @@ bool GUIDraggablePanel::update(const sf::Event &e)
 	_buttonBar.update(e);
 	if (e.type == sf::Event::MouseButtonPressed)
 	{
-		if (!_lock && !_dragging && e.key.code == sf::Mouse::Left && _header.getGlobalBounds().contains(Engine::getMousePosition()))
+		if (!_lock && !_dragging && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left) && _header.getGlobalBounds().contains(Engine::getMousePosition()))
 		{
 			_dragging = true;
 			_dragOffset = sf::Vector2f(Engine::getMousePosition().x - _header.getGlobalBounds().left,
@@ -162,7 +164,7 @@ bool GUIDraggablePanel::update(const sf::Event &e)
 	}
 	else if (e.type == sf::Event::MouseButtonReleased)
 	{
-		if (!_lock && _dragging && e.key.code == sf::Mouse::Left)
+		if (!_lock && _dragging && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
 			_dragging = false;
 	}
 	else if (e.type == sf::Event::MouseMoved)

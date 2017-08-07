@@ -104,7 +104,7 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
   if (item.child("y"))
 	  pItem->setXOffset(atof(item.child_value("y")));
   else
-	  pItem->setYOffset(_spacing + (index * _spacing));
+	  pItem->setYOffset(_spacing + (static_cast<float>(index) * _spacing));
   return (pItem);
 }
 
@@ -158,7 +158,7 @@ void Menu::parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 		sItem->setInputLength(atof(item.child_value("inputlength")));
 	if (item.child("inputcolor"))
 		inputColor = Console::convertColorCode(item.child_value("inputcolor"), "#");
-	sItem->setColor(inputColor, valueColor);
+	sItem->setInputColor(inputColor, valueColor);
 }
 
 void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
@@ -201,7 +201,7 @@ void Menu::initializeItems()
 
 void Menu::setBackground(const std::string &resource)
 {
-	_background.setTexture(*Resolver<sf::Texture>::resolve("background"));
+	_background.setTexture(*Resolver<sf::Texture>::resolve(resource));
 }
 
 bool Menu::update(const sf::Event &e)

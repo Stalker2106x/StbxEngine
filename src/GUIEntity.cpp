@@ -81,7 +81,7 @@ void GUIEdit::setFont(const std::string &fontResource)
 void GUIEdit::setFontsize(const int &fontsize)
 {
 	_value.setCharacterSize(fontsize);
-	_container.setSize(sf::Vector2f(_container.getSize().x, _value.getCharacterSize()));
+	_container.setSize(sf::Vector2f(static_cast<float>(_container.getSize().x), static_cast<float>(_value.getCharacterSize())));
 }
 
 void GUIEdit::setPosition(const sf::Vector2f &pos)
@@ -98,7 +98,7 @@ void GUIEdit::setColor(sf::Color *inputColor, sf::Color *valueColor)
 		_value.setFillColor(*valueColor);
 }
 
-void GUIEdit::setWidth(const int &length)
+void GUIEdit::setWidth(const float &length)
 {
 	_container.setSize(sf::Vector2f(length, _container.getSize().y));
 }
@@ -120,7 +120,7 @@ const std::string &GUIEdit::getInput()
 
 bool GUIEdit::update(const sf::Event &e)
 {
-	if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
+	if (e.type == sf::Event::MouseButtonPressed && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
 	{
  		if (!_focus && _container.getGlobalBounds().contains(Engine::getMousePosition()))
 		{
@@ -218,7 +218,7 @@ const sf::Vector2f &GUICheckbox::getPosition()
 
 bool GUICheckbox::update(const sf::Event &e)
 {
-	if (e.type == sf::Event::MouseButtonPressed && e.key.code == sf::Mouse::Left)
+	if (e.type == sf::Event::MouseButtonPressed && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
 	{
 		if (_container.getGlobalBounds().contains(Engine::getMousePosition()))
 		{

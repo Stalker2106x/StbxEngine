@@ -66,17 +66,12 @@ bool GUIButton::update(const sf::Event &e)
 		return (false);
 	if (e.type == _triggerType && _hover)
 	{
-		if (e.key.code == sf::Mouse::Left && _onClickCallback != NULL)
+		if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left) && _onClickCallback != NULL)
 			onClick();
-		else if (e.key.code == sf::Mouse::Right && _onRClickCallback != NULL)
+		else if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Right) && _onRClickCallback != NULL)
 			onRClick();
 	}
 	return (true);
-}
-
-void GUIButton::draw(sf::RenderWindow *win)
-{
-
 }
 
 //
@@ -130,17 +125,17 @@ void GUITextButton::setSkin(const TextSkin &skin)
 	_skin = skin;
 }
 
-const sf::Vector2f &GUITextButton::getPosition()
+const sf::Vector2f GUITextButton::getPosition()
 {
 	return (_label.getPosition());
 }
 
-const sf::FloatRect &GUITextButton::getLocalBounds()
+const sf::FloatRect GUITextButton::getLocalBounds()
 {
 	return (_label.getLocalBounds());
 }
 
-const sf::FloatRect &GUITextButton::getGlobalBounds()
+const sf::FloatRect GUITextButton::getGlobalBounds()
 {
 	return (_label.getGlobalBounds());
 }
@@ -174,7 +169,7 @@ bool GUITextButton::update(const sf::Event &e)
 		return (false);
 	if (e.type == sf::Event::MouseMoved)
 	{
-		if (_label.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+		if (_label.getGlobalBounds().contains(sf::Vector2f(static_cast<float>(e.mouseMove.x), static_cast<float>(e.mouseMove.y))))
 			onHover(true);
 		else
 			onHover(false);
@@ -223,17 +218,17 @@ void GUISpriteButton::setPosition(const sf::Vector2f &pos)
 	_sprite.setPosition(pos);
 }
 
-const sf::Vector2f &GUISpriteButton::getPosition()
+const sf::Vector2f GUISpriteButton::getPosition()
 {
 	return (_sprite.getPosition());
 }
 
-const sf::FloatRect &GUISpriteButton::getLocalBounds()
+const sf::FloatRect GUISpriteButton::getLocalBounds()
 {
 	return (_sprite.getLocalBounds());
 }
 
-const sf::FloatRect &GUISpriteButton::getGlobalBounds()
+const sf::FloatRect GUISpriteButton::getGlobalBounds()
 {
 	return (_sprite.getGlobalBounds());
 }
@@ -263,7 +258,7 @@ bool GUISpriteButton::update(const sf::Event &e)
 		return (false);
 	if (e.type == sf::Event::MouseMoved)
 	{
-		if (_sprite.getGlobalBounds().contains(sf::Vector2f(e.mouseMove.x, e.mouseMove.y)))
+		if (_sprite.getGlobalBounds().contains(sf::Vector2f(static_cast<float>(e.mouseMove.x), static_cast<float>(e.mouseMove.y))))
 			onHover(true);
 		else
 			onHover(false);
@@ -370,11 +365,11 @@ void GUIButtonBar::setSpacing(const int &spacing)
 	_spacing = spacing;
 }
 
-const sf::Vector2f &GUIButtonBar::calcButtonPosition(const size_t &index, const sf::Vector2f &pos)
+const sf::Vector2f GUIButtonBar::calcButtonPosition(const size_t &index, const sf::Vector2f &pos)
 {
-	int size = 0;
+	float size = 0;
 
-	for (int i = index + (_inverted ? 1 : -1 ); (_inverted ? i < _buttons.size() : i >= 0); (_inverted ? i++ : i--))
+	for (int i = index + (_inverted ? 1 : -1 ); (_inverted ? i < static_cast<int>(_buttons.size()) : i >= 0); (_inverted ? i++ : i--))
 	{
 		if (_type == Horizontal)
 		{
@@ -385,17 +380,15 @@ const sf::Vector2f &GUIButtonBar::calcButtonPosition(const size_t &index, const 
 			size += _buttons[i]->getLocalBounds().height;
 		}
 	}
-	if (_type == Horizontal)
-		return (pos + sf::Vector2f(size + _spacing, 0));
-	else if (_type == Vertical)
+	if (_type == Vertical)
 		return (pos + sf::Vector2f(0, size + _spacing));
-
+	return (pos + sf::Vector2f(size + _spacing, 0)); //Horizontal
 }
 
 void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 {
 
-	for (int i = (_inverted ? _buttons.size() - 1 : 0); (_inverted ? i >= 0 : i < _buttons.size()); (_inverted ? i-- : i++))
+	for (int i = (_inverted ? _buttons.size() - 1 : 0); (_inverted ? i >= 0 : i < static_cast<int>(_buttons.size())); (_inverted ? i-- : i++))
 		_buttons[i]->setPosition(calcButtonPosition(i, pos));
 }
 

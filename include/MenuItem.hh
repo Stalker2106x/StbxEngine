@@ -88,7 +88,7 @@ namespace stb {
 		void setCustomAction(void(*fptr)(void *), void *cparam);
 		void setCommand(const std::string &command);
 
-		virtual void onClick();
+		virtual void onClick() override;
 
 		virtual bool update(const sf::Event &e);
 
@@ -112,13 +112,13 @@ namespace stb {
 		MenuSetting();
 		~MenuSetting();
 
-		void onClick();
-		void onRClick();
+		virtual void onClick();
+		virtual void onRClick();
 		bool onValueHover(const bool &triggered);
 
-		virtual void setFontsize(const int &size);
-		virtual void setXOffset(const float &x);
-		virtual void setYOffset(const float &y);
+		virtual void setFontsize(const int &size) override;
+		virtual void setXOffset(const float &x) override;
+		virtual void setYOffset(const float &y) override;
 		void setValues(std::vector<std::string> &values, const int &defaultIndex = 0);
 		int getCurrentIndex();
 
@@ -157,13 +157,13 @@ namespace stb {
 		MenuEdit();
 		~MenuEdit();
 
-		virtual void setFontsize(const int &fontsize);
-		virtual void setXOffset(const float &x);
-		virtual void setYOffset(const float &y);
-		void setColor(sf::Color *inputColor, sf::Color *valueColor);
+		virtual void setFontsize(const int &fontsize) override;
+		virtual void setXOffset(const float &x) override;
+		virtual void setYOffset(const float &y) override;
+		void setInputColor(sf::Color *inputColor, sf::Color *valueColor);
 		void setInputLength(const float &length);
 
-		void onClick();
+		virtual void onClick() override;
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
@@ -184,15 +184,15 @@ namespace stb {
 		~MenuSlider();
 
 		void setRange(const int &min, const int &max);
-		void setXOffset(const float &x);
-		void setYOffset(const float &y);
+		virtual void setXOffset(const float &x) override;
+		virtual void setYOffset(const float &y) override;
 		void setBarWidth(const int &width);
 		void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
-		void setFontsize(const int &fontsize);
+		virtual void setFontsize(const int &fontsize) override;
 
 		int getValue();
 
-		void onClick() {};
+		virtual void onClick() override {};
 
 		void updateSlider(const sf::Event &e, bool forceupdate = false);
 		virtual bool update(const sf::Event &e);
@@ -216,11 +216,11 @@ namespace stb {
 		MenuCheckbox();
 		~MenuCheckbox();
 
-		void setXOffset(const float &x);
-		void setYOffset(const float &y);
+		virtual void setXOffset(const float &x) override;
+		virtual void setYOffset(const float &y) override;
 		void setCheckboxColor(const sf::Color *containerColor, const sf::Color *fillColor);
 
-		void onClick() {};
+		virtual void onClick() override {};
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);

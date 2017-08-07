@@ -37,12 +37,12 @@ Console::~Console()
 
 void Console::initGraphics(const sf::Vector2i &winsize)
 {
-  _bg.setSize(sf::Vector2f(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)));
+	_bg.setSize(sf::Vector2f(static_cast<float>(winsize.x), static_cast<float>((_lineCount * _fontSize) + (_fontSize + 4))));
   _bg.setPosition(0,0);
-  _inputArea.setSize(sf::Vector2f(winsize.x - 10, _fontSize + 2));
+  _inputArea.setSize(sf::Vector2f(static_cast<float>(winsize.x - 10), static_cast<float>(_fontSize + 2)));
   _inputArea.setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
   _inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea.getLocalBounds().height + 4)));
-  _cursor.setPosition(5 + (_fontSize * _cursorIndex), _inputValue.getPosition().y);
+  _cursor.setPosition(static_cast<float>(5 + (_fontSize * _cursorIndex)), static_cast<float>(_inputValue.getPosition().y));
   setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));
 }
 
@@ -245,7 +245,7 @@ void Console::updateInputValue()
 void Console::updateOutput()
 {
   std::list<sf::Text *>::iterator begIter = _output.begin();
-  unsigned int posy = 0;
+  float posy = 0;
 
   std::advance(begIter, _outputIndex);
   for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)
