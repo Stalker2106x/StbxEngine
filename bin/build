@@ -1,4 +1,0 @@
-#!/bin/sh
-cd ..
-mingw32-make $1
-cd -

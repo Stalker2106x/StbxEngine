@@ -115,6 +115,43 @@ sengine/fast:
 	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/build
 .PHONY : sengine/fast
 
+#=============================================================================
+# Target rules for targets named testbin
+
+# Build rule for target.
+testbin: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testbin
+.PHONY : testbin
+
+# fast build rule for target.
+testbin/fast:
+	$(MAKE) -f CMakeFiles/testbin.dir/build.make CMakeFiles/testbin.dir/build
+.PHONY : testbin/fast
+
+extlib/pugixml/src/pugixml.o: extlib/pugixml/src/pugixml.cpp.o
+.PHONY : extlib/pugixml/src/pugixml.o
+
+# target to build an object file
+extlib/pugixml/src/pugixml.cpp.o:
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/extlib/pugixml/src/pugixml.cpp.o
+.PHONY : extlib/pugixml/src/pugixml.cpp.o
+
+extlib/pugixml/src/pugixml.i: extlib/pugixml/src/pugixml.cpp.i
+.PHONY : extlib/pugixml/src/pugixml.i
+
+# target to preprocess a source file
+extlib/pugixml/src/pugixml.cpp.i:
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/extlib/pugixml/src/pugixml.cpp.i
+.PHONY : extlib/pugixml/src/pugixml.cpp.i
+
+extlib/pugixml/src/pugixml.s: extlib/pugixml/src/pugixml.cpp.s
+.PHONY : extlib/pugixml/src/pugixml.s
+
+# target to generate assembly for a file
+extlib/pugixml/src/pugixml.cpp.s:
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/extlib/pugixml/src/pugixml.cpp.s
+.PHONY : extlib/pugixml/src/pugixml.cpp.s
+
 src/Commands.o: src/Commands.cpp.o
 .PHONY : src/Commands.o
 
@@ -427,6 +464,54 @@ src/Resolver.cpp.s:
 	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Resolver.cpp.s
 .PHONY : src/Resolver.cpp.s
 
+test/cengine.o: test/cengine.cpp.o
+.PHONY : test/cengine.o
+
+# target to build an object file
+test/cengine.cpp.o:
+	$(MAKE) -f CMakeFiles/testbin.dir/build.make CMakeFiles/testbin.dir/test/cengine.cpp.o
+.PHONY : test/cengine.cpp.o
+
+test/cengine.i: test/cengine.cpp.i
+.PHONY : test/cengine.i
+
+# target to preprocess a source file
+test/cengine.cpp.i:
+	$(MAKE) -f CMakeFiles/testbin.dir/build.make CMakeFiles/testbin.dir/test/cengine.cpp.i
+.PHONY : test/cengine.cpp.i
+
+test/cengine.s: test/cengine.cpp.s
+.PHONY : test/cengine.s
+
+# target to generate assembly for a file
+test/cengine.cpp.s:
+	$(MAKE) -f CMakeFiles/testbin.dir/build.make CMakeFiles/testbin.dir/test/cengine.cpp.s
+.PHONY : test/cengine.cpp.s
+
+test/test.o: test/test.cpp.o
+.PHONY : test/test.o
+
+# target to build an object file
+test/test.cpp.o:
+	$(MAKE) -f CMakeFiles/testbin.dir/build.make CMakeFiles/testbin.dir/test/test.cpp.o
+.PHONY : test/test.cpp.o
+
+test/test.i: test/test.cpp.i
+.PHONY : test/test.i
+
+# target to preprocess a source file
+test/test.cpp.i:
+	$(MAKE) -f CMakeFiles/testbin.dir/build.make CMakeFiles/testbin.dir/test/test.cpp.i
+.PHONY : test/test.cpp.i
+
+test/test.s: test/test.cpp.s
+.PHONY : test/test.s
+
+# target to generate assembly for a file
+test/test.cpp.s:
+	$(MAKE) -f CMakeFiles/testbin.dir/build.make CMakeFiles/testbin.dir/test/test.cpp.s
+.PHONY : test/test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -436,6 +521,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sengine"
+	@echo "... testbin"
+	@echo "... extlib/pugixml/src/pugixml.o"
+	@echo "... extlib/pugixml/src/pugixml.i"
+	@echo "... extlib/pugixml/src/pugixml.s"
 	@echo "... src/Commands.o"
 	@echo "... src/Commands.i"
 	@echo "... src/Commands.s"
@@ -475,6 +564,12 @@ help:
 	@echo "... src/Resolver.o"
 	@echo "... src/Resolver.i"
 	@echo "... src/Resolver.s"
+	@echo "... test/cengine.o"
+	@echo "... test/cengine.i"
+	@echo "... test/cengine.s"
+	@echo "... test/test.o"
+	@echo "... test/test.i"
+	@echo "... test/test.s"
 .PHONY : help
 
 
