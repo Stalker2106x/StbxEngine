@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
 
+#SFML BUILD
+
+ADD_SUBDIRECTORY( extlib/sfml/ )
+
 ##########
 # SENGINE
 ##########
@@ -20,20 +24,48 @@ include_directories(extlib/stblib/include)
 include_directories(extlib/sfml/include)
 
 #Compile Flags
-set(CMAKE_CXX_FLAGS "-fPIC -W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x")
+if (UNIX)
+   set(CMAKE_CXX_FLAGS "-fPIC -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x")
+endif (UNIX)
+if (MSVC)
+   set(CMAKE_CXX_FLAGS "/W2")
+endif (MSVC)
+
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 #build sengine
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY lib)
 add_library(sengine SHARED ${SOURCES})
 
-#link dependencies
+##link dependencies
+#StbLib
+find_library(stblib
+	NAMES stblib libstblib
+	HINT "extlib/stblib/bin"
+	REQUIRED
+)
+#SFML
+find_library(sfml-window
+	NAMES sfml-window-d libsfml-window-d
+	HINT "extlib/sfml/lib"
+	REQUIRED
+)
+find_library(sfml-graphics
+	NAMES sfml-graphics-d libsfml-graphics-d
+	HINT "extlib/sfml/lib"
+	REQUIRED
+)
+find_library(sfml-system
+	NAMES sfml-system-d libsfml-system-d
+	HINT "extlib/sfml/lib"
+	REQUIRED
+)
 target_link_libraries(sengine
-   ${CMAKE_CURRENT_SOURCE_DIR}/extlib/stblib/bin/libstblib.so
-   ${CMAKE_CURRENT_SOURCE_DIR}/extlib/sfml/lib/libsfml-graphics-d.so
-   ${CMAKE_CURRENT_SOURCE_DIR}/extlib/sfml/lib/libsfml-window-d.so
-   ${CMAKE_CURRENT_SOURCE_DIR}/extlib/sfml/lib/libsfml-system-d.so
+	stblib
+	sfml-window
+	sfml-graphics
+	sfml-system
 )
 
 ##########
@@ -50,19 +82,43 @@ include_directories(test)
 include_directories(lib)
 
 #Compile Flags
-set(CMAKE_CXX_FLAGS "-W -Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 #build sengine
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
 add_executable(testbin ${TESTSOURCES})
 
 #link dependencies
-target_link_libraries(testbin
-   ${CMAKE_CURRENT_SOURCE_DIR}/lib/libsengine.so
-   ${CMAKE_CURRENT_SOURCE_DIR}/extlib/sfml/lib/libsfml-graphics-d.so
-   ${CMAKE_CURRENT_SOURCE_DIR}/extlib/sfml/lib/libsfml-window-d.so
-   ${CMAKE_CURRENT_SOURCE_DIR}/extlib/sfml/lib/libsfml-system-d.so
+find_library(sengine
+	NAMES sengine
+	HINT "bin"
+	REQUIRED
 )
+#SFML
+find_library(sfml-window
+	NAMES sfml-window-d
+	HINT "extlib/sfml/lib"
+	REQUIRED
+)
+find_library(sfml-graphics
+	NAMES sfml-graphics-d
+	HINT "extlib/sfml/lib"
+	REQUIRED
+)
+find_library(sfml-system
+	NAMES sfml-system-d
+	HINT "extlib/sfml/lib"
+	REQUIRED
+)
+
+#Build test binary
+target_link_libraries(testbin
+	sengine
+	sfml-window
+	sfml-graphics
+	sfml-system
+)
+
  
