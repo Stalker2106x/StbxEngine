@@ -11,7 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
-#include <pugixml/src/pugixml.hpp>
+#include <pugixml.hpp>
 #include "MenuItem.hh"
 
 namespace stb {

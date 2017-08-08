@@ -1,5 +1,0 @@
-/opt/stbxengine/CMakeFiles/lsfml-graphics.dir
-/opt/stbxengine/CMakeFiles/lsfml-system.dir
-/opt/stbxengine/CMakeFiles/lsfml-window.dir
-/opt/stbxengine/CMakeFiles/lstblib.dir
-/opt/stbxengine/CMakeFiles/segine.dir

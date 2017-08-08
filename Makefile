@@ -103,76 +103,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named lsfml-graphics
+# Target rules for targets named sengine
 
 # Build rule for target.
-lsfml-graphics: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lsfml-graphics
-.PHONY : lsfml-graphics
+sengine: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sengine
+.PHONY : sengine
 
 # fast build rule for target.
-lsfml-graphics/fast:
-	$(MAKE) -f CMakeFiles/lsfml-graphics.dir/build.make CMakeFiles/lsfml-graphics.dir/build
-.PHONY : lsfml-graphics/fast
-
-#=============================================================================
-# Target rules for targets named lsfml-system
-
-# Build rule for target.
-lsfml-system: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lsfml-system
-.PHONY : lsfml-system
-
-# fast build rule for target.
-lsfml-system/fast:
-	$(MAKE) -f CMakeFiles/lsfml-system.dir/build.make CMakeFiles/lsfml-system.dir/build
-.PHONY : lsfml-system/fast
-
-#=============================================================================
-# Target rules for targets named lsfml-window
-
-# Build rule for target.
-lsfml-window: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lsfml-window
-.PHONY : lsfml-window
-
-# fast build rule for target.
-lsfml-window/fast:
-	$(MAKE) -f CMakeFiles/lsfml-window.dir/build.make CMakeFiles/lsfml-window.dir/build
-.PHONY : lsfml-window/fast
-
-#=============================================================================
-# Target rules for targets named lstblib
-
-# Build rule for target.
-lstblib: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lstblib
-.PHONY : lstblib
-
-# fast build rule for target.
-lstblib/fast:
-	$(MAKE) -f CMakeFiles/lstblib.dir/build.make CMakeFiles/lstblib.dir/build
-.PHONY : lstblib/fast
-
-#=============================================================================
-# Target rules for targets named segine
-
-# Build rule for target.
-segine: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 segine
-.PHONY : segine
-
-# fast build rule for target.
-segine/fast:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/build
-.PHONY : segine/fast
+sengine/fast:
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/build
+.PHONY : sengine/fast
 
 src/Commands.o: src/Commands.cpp.o
 .PHONY : src/Commands.o
 
 # target to build an object file
 src/Commands.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Commands.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Commands.cpp.o
 .PHONY : src/Commands.cpp.o
 
 src/Commands.i: src/Commands.cpp.i
@@ -180,7 +128,7 @@ src/Commands.i: src/Commands.cpp.i
 
 # target to preprocess a source file
 src/Commands.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Commands.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Commands.cpp.i
 .PHONY : src/Commands.cpp.i
 
 src/Commands.s: src/Commands.cpp.s
@@ -188,7 +136,7 @@ src/Commands.s: src/Commands.cpp.s
 
 # target to generate assembly for a file
 src/Commands.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Commands.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Commands.cpp.s
 .PHONY : src/Commands.cpp.s
 
 src/Console.o: src/Console.cpp.o
@@ -196,7 +144,7 @@ src/Console.o: src/Console.cpp.o
 
 # target to build an object file
 src/Console.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Console.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Console.cpp.o
 .PHONY : src/Console.cpp.o
 
 src/Console.i: src/Console.cpp.i
@@ -204,7 +152,7 @@ src/Console.i: src/Console.cpp.i
 
 # target to preprocess a source file
 src/Console.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Console.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Console.cpp.i
 .PHONY : src/Console.cpp.i
 
 src/Console.s: src/Console.cpp.s
@@ -212,7 +160,7 @@ src/Console.s: src/Console.cpp.s
 
 # target to generate assembly for a file
 src/Console.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Console.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Console.cpp.s
 .PHONY : src/Console.cpp.s
 
 src/Control.o: src/Control.cpp.o
@@ -220,7 +168,7 @@ src/Control.o: src/Control.cpp.o
 
 # target to build an object file
 src/Control.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Control.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Control.cpp.o
 .PHONY : src/Control.cpp.o
 
 src/Control.i: src/Control.cpp.i
@@ -228,7 +176,7 @@ src/Control.i: src/Control.cpp.i
 
 # target to preprocess a source file
 src/Control.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Control.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Control.cpp.i
 .PHONY : src/Control.cpp.i
 
 src/Control.s: src/Control.cpp.s
@@ -236,7 +184,7 @@ src/Control.s: src/Control.cpp.s
 
 # target to generate assembly for a file
 src/Control.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Control.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Control.cpp.s
 .PHONY : src/Control.cpp.s
 
 src/Engine.o: src/Engine.cpp.o
@@ -244,7 +192,7 @@ src/Engine.o: src/Engine.cpp.o
 
 # target to build an object file
 src/Engine.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Engine.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Engine.cpp.o
 .PHONY : src/Engine.cpp.o
 
 src/Engine.i: src/Engine.cpp.i
@@ -252,7 +200,7 @@ src/Engine.i: src/Engine.cpp.i
 
 # target to preprocess a source file
 src/Engine.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Engine.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Engine.cpp.i
 .PHONY : src/Engine.cpp.i
 
 src/Engine.s: src/Engine.cpp.s
@@ -260,7 +208,7 @@ src/Engine.s: src/Engine.cpp.s
 
 # target to generate assembly for a file
 src/Engine.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Engine.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Engine.cpp.s
 .PHONY : src/Engine.cpp.s
 
 src/GUI.o: src/GUI.cpp.o
@@ -268,7 +216,7 @@ src/GUI.o: src/GUI.cpp.o
 
 # target to build an object file
 src/GUI.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUI.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUI.cpp.o
 .PHONY : src/GUI.cpp.o
 
 src/GUI.i: src/GUI.cpp.i
@@ -276,7 +224,7 @@ src/GUI.i: src/GUI.cpp.i
 
 # target to preprocess a source file
 src/GUI.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUI.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUI.cpp.i
 .PHONY : src/GUI.cpp.i
 
 src/GUI.s: src/GUI.cpp.s
@@ -284,7 +232,7 @@ src/GUI.s: src/GUI.cpp.s
 
 # target to generate assembly for a file
 src/GUI.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUI.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUI.cpp.s
 .PHONY : src/GUI.cpp.s
 
 src/GUIButton.o: src/GUIButton.cpp.o
@@ -292,7 +240,7 @@ src/GUIButton.o: src/GUIButton.cpp.o
 
 # target to build an object file
 src/GUIButton.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIButton.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIButton.cpp.o
 .PHONY : src/GUIButton.cpp.o
 
 src/GUIButton.i: src/GUIButton.cpp.i
@@ -300,7 +248,7 @@ src/GUIButton.i: src/GUIButton.cpp.i
 
 # target to preprocess a source file
 src/GUIButton.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIButton.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIButton.cpp.i
 .PHONY : src/GUIButton.cpp.i
 
 src/GUIButton.s: src/GUIButton.cpp.s
@@ -308,7 +256,7 @@ src/GUIButton.s: src/GUIButton.cpp.s
 
 # target to generate assembly for a file
 src/GUIButton.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIButton.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIButton.cpp.s
 .PHONY : src/GUIButton.cpp.s
 
 src/GUIElement.o: src/GUIElement.cpp.o
@@ -316,7 +264,7 @@ src/GUIElement.o: src/GUIElement.cpp.o
 
 # target to build an object file
 src/GUIElement.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIElement.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIElement.cpp.o
 .PHONY : src/GUIElement.cpp.o
 
 src/GUIElement.i: src/GUIElement.cpp.i
@@ -324,7 +272,7 @@ src/GUIElement.i: src/GUIElement.cpp.i
 
 # target to preprocess a source file
 src/GUIElement.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIElement.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIElement.cpp.i
 .PHONY : src/GUIElement.cpp.i
 
 src/GUIElement.s: src/GUIElement.cpp.s
@@ -332,7 +280,7 @@ src/GUIElement.s: src/GUIElement.cpp.s
 
 # target to generate assembly for a file
 src/GUIElement.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIElement.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIElement.cpp.s
 .PHONY : src/GUIElement.cpp.s
 
 src/GUIEntity.o: src/GUIEntity.cpp.o
@@ -340,7 +288,7 @@ src/GUIEntity.o: src/GUIEntity.cpp.o
 
 # target to build an object file
 src/GUIEntity.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIEntity.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIEntity.cpp.o
 .PHONY : src/GUIEntity.cpp.o
 
 src/GUIEntity.i: src/GUIEntity.cpp.i
@@ -348,7 +296,7 @@ src/GUIEntity.i: src/GUIEntity.cpp.i
 
 # target to preprocess a source file
 src/GUIEntity.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIEntity.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIEntity.cpp.i
 .PHONY : src/GUIEntity.cpp.i
 
 src/GUIEntity.s: src/GUIEntity.cpp.s
@@ -356,7 +304,7 @@ src/GUIEntity.s: src/GUIEntity.cpp.s
 
 # target to generate assembly for a file
 src/GUIEntity.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIEntity.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIEntity.cpp.s
 .PHONY : src/GUIEntity.cpp.s
 
 src/GUIPanel.o: src/GUIPanel.cpp.o
@@ -364,7 +312,7 @@ src/GUIPanel.o: src/GUIPanel.cpp.o
 
 # target to build an object file
 src/GUIPanel.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIPanel.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIPanel.cpp.o
 .PHONY : src/GUIPanel.cpp.o
 
 src/GUIPanel.i: src/GUIPanel.cpp.i
@@ -372,7 +320,7 @@ src/GUIPanel.i: src/GUIPanel.cpp.i
 
 # target to preprocess a source file
 src/GUIPanel.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIPanel.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIPanel.cpp.i
 .PHONY : src/GUIPanel.cpp.i
 
 src/GUIPanel.s: src/GUIPanel.cpp.s
@@ -380,7 +328,7 @@ src/GUIPanel.s: src/GUIPanel.cpp.s
 
 # target to generate assembly for a file
 src/GUIPanel.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/GUIPanel.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/GUIPanel.cpp.s
 .PHONY : src/GUIPanel.cpp.s
 
 src/Keybinds.o: src/Keybinds.cpp.o
@@ -388,7 +336,7 @@ src/Keybinds.o: src/Keybinds.cpp.o
 
 # target to build an object file
 src/Keybinds.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Keybinds.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Keybinds.cpp.o
 .PHONY : src/Keybinds.cpp.o
 
 src/Keybinds.i: src/Keybinds.cpp.i
@@ -396,7 +344,7 @@ src/Keybinds.i: src/Keybinds.cpp.i
 
 # target to preprocess a source file
 src/Keybinds.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Keybinds.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Keybinds.cpp.i
 .PHONY : src/Keybinds.cpp.i
 
 src/Keybinds.s: src/Keybinds.cpp.s
@@ -404,7 +352,7 @@ src/Keybinds.s: src/Keybinds.cpp.s
 
 # target to generate assembly for a file
 src/Keybinds.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Keybinds.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Keybinds.cpp.s
 .PHONY : src/Keybinds.cpp.s
 
 src/Menu.o: src/Menu.cpp.o
@@ -412,7 +360,7 @@ src/Menu.o: src/Menu.cpp.o
 
 # target to build an object file
 src/Menu.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Menu.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Menu.cpp.o
 .PHONY : src/Menu.cpp.o
 
 src/Menu.i: src/Menu.cpp.i
@@ -420,7 +368,7 @@ src/Menu.i: src/Menu.cpp.i
 
 # target to preprocess a source file
 src/Menu.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Menu.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Menu.cpp.i
 .PHONY : src/Menu.cpp.i
 
 src/Menu.s: src/Menu.cpp.s
@@ -428,7 +376,7 @@ src/Menu.s: src/Menu.cpp.s
 
 # target to generate assembly for a file
 src/Menu.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Menu.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Menu.cpp.s
 .PHONY : src/Menu.cpp.s
 
 src/MenuItem.o: src/MenuItem.cpp.o
@@ -436,7 +384,7 @@ src/MenuItem.o: src/MenuItem.cpp.o
 
 # target to build an object file
 src/MenuItem.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/MenuItem.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/MenuItem.cpp.o
 .PHONY : src/MenuItem.cpp.o
 
 src/MenuItem.i: src/MenuItem.cpp.i
@@ -444,7 +392,7 @@ src/MenuItem.i: src/MenuItem.cpp.i
 
 # target to preprocess a source file
 src/MenuItem.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/MenuItem.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/MenuItem.cpp.i
 .PHONY : src/MenuItem.cpp.i
 
 src/MenuItem.s: src/MenuItem.cpp.s
@@ -452,7 +400,7 @@ src/MenuItem.s: src/MenuItem.cpp.s
 
 # target to generate assembly for a file
 src/MenuItem.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/MenuItem.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/MenuItem.cpp.s
 .PHONY : src/MenuItem.cpp.s
 
 src/Resolver.o: src/Resolver.cpp.o
@@ -460,7 +408,7 @@ src/Resolver.o: src/Resolver.cpp.o
 
 # target to build an object file
 src/Resolver.cpp.o:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Resolver.cpp.o
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Resolver.cpp.o
 .PHONY : src/Resolver.cpp.o
 
 src/Resolver.i: src/Resolver.cpp.i
@@ -468,7 +416,7 @@ src/Resolver.i: src/Resolver.cpp.i
 
 # target to preprocess a source file
 src/Resolver.cpp.i:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Resolver.cpp.i
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Resolver.cpp.i
 .PHONY : src/Resolver.cpp.i
 
 src/Resolver.s: src/Resolver.cpp.s
@@ -476,7 +424,7 @@ src/Resolver.s: src/Resolver.cpp.s
 
 # target to generate assembly for a file
 src/Resolver.cpp.s:
-	$(MAKE) -f CMakeFiles/segine.dir/build.make CMakeFiles/segine.dir/src/Resolver.cpp.s
+	$(MAKE) -f CMakeFiles/sengine.dir/build.make CMakeFiles/sengine.dir/src/Resolver.cpp.s
 .PHONY : src/Resolver.cpp.s
 
 # Help Target
@@ -486,12 +434,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... lsfml-graphics"
-	@echo "... lsfml-system"
-	@echo "... lsfml-window"
-	@echo "... lstblib"
 	@echo "... rebuild_cache"
-	@echo "... segine"
+	@echo "... sengine"
 	@echo "... src/Commands.o"
 	@echo "... src/Commands.i"
 	@echo "... src/Commands.s"
