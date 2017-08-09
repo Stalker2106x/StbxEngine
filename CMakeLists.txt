@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 #SFML BUILD
-
-ADD_SUBDIRECTORY( extlib/sfml/ )
+add_subdirectory(extlib/sfml)
 
 ##########
 # SENGINE
@@ -19,7 +18,9 @@ file(GLOB
   src/*.cpp
 )
 include_directories(include)
-include_directories(extlib/pugixml/src/)
+
+#Extlib includes
+include_directories(extlib/pugixml/src)
 include_directories(extlib/stblib/include)
 include_directories(extlib/sfml/include)
 
@@ -40,32 +41,32 @@ add_library(sengine SHARED ${SOURCES})
 
 ##link dependencies
 #StbLib
-find_library(stblib
-	NAMES stblib libstblib
-	HINT "extlib/stblib/bin"
+find_library(STBLIB
+	NAMES stblib libstblib.so libstblib.dll
+	PATHS "extlib/stblib/bin"
 	REQUIRED
 )
 #SFML
-find_library(sfml-window
-	NAMES sfml-window-d libsfml-window-d
-	HINT "extlib/sfml/lib"
+find_library(SFML_WINDOW
+	NAMES sfml-window-d libsfml-window-d.so libsfml-window-d.dll
+	PATHS "extlib/sfml/lib"
 	REQUIRED
 )
-find_library(sfml-graphics
-	NAMES sfml-graphics-d libsfml-graphics-d
-	HINT "extlib/sfml/lib"
+find_library(SFML_GRAPHICS
+	NAMES sfml-graphics-d libsfml-graphics-d.so libsfml-graphics-d.dll
+	PATHS "extlib/sfml/lib"
 	REQUIRED
 )
-find_library(sfml-system
-	NAMES sfml-system-d libsfml-system-d
-	HINT "extlib/sfml/lib"
+find_library(SFML_SYSTEM
+	NAMES sfml-system-d libsfml-system-d.so libsfml-system-d.dll
+	PATHS "extlib/sfml/lib"
 	REQUIRED
 )
 target_link_libraries(sengine
-	stblib
-	sfml-window
-	sfml-graphics
-	sfml-system
+	${STBLIB}
+	${SFML_WINDOW}
+	${SFML_GRAPHICS}
+	${SFML_SYSTEM}
 )
 
 ##########
@@ -79,7 +80,6 @@ file(GLOB
   test/*
 )
 include_directories(test)
-include_directories(lib)
 
 #Compile Flags
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x")
@@ -90,35 +90,19 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
 add_executable(testbin ${TESTSOURCES})
 
-#link dependencies
-find_library(sengine
-	NAMES sengine
-	HINT "bin"
+#find dependencies
+find_library(SENGINE
+	NAMES sengine libsengine.so libsengine.dll
+	PATHS "lib"
 	REQUIRED
 )
-#SFML
-find_library(sfml-window
-	NAMES sfml-window-d
-	HINT "extlib/sfml/lib"
-	REQUIRED
-)
-find_library(sfml-graphics
-	NAMES sfml-graphics-d
-	HINT "extlib/sfml/lib"
-	REQUIRED
-)
-find_library(sfml-system
-	NAMES sfml-system-d
-	HINT "extlib/sfml/lib"
-	REQUIRED
-)
-
+      
 #Build test binary
 target_link_libraries(testbin
 	sengine
-	sfml-window
-	sfml-graphics
-	sfml-system
+	${SFML_WINDOW}
+	${SFML_GRAPHICS}
+	${SFML_SYSTEM}
 )
 
  
