@@ -13,7 +13,6 @@ project (sengine)
 #Library files
 file(GLOB
   SOURCES
-  include/*
   extlib/pugixml/src/*.cpp
   src/*.cpp
 )
@@ -36,30 +35,34 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 #build sengine
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY lib)
 add_library(sengine SHARED ${SOURCES})
 
 ##link dependencies
 #StbLib
 find_library(STBLIB
-	NAMES stblib libstblib.so libstblib.dll
+	NAMES stblib libstblib
 	PATHS "extlib/stblib/bin"
+	PATHS_SUFFIXES dll lib so
 	REQUIRED
 )
 #SFML
 find_library(SFML_WINDOW
-	NAMES sfml-window-d libsfml-window-d.so libsfml-window-d.dll
+	NAMES sfml-window-d libsfml-window-d
 	PATHS "extlib/sfml/lib"
+	PATHS_SUFFIXES dll lib so
 	REQUIRED
 )
 find_library(SFML_GRAPHICS
-	NAMES sfml-graphics-d libsfml-graphics-d.so libsfml-graphics-d.dll
+	NAMES sfml-graphics-d libsfml-graphics-d
 	PATHS "extlib/sfml/lib"
+	PATHS_SUFFIXES dll lib so
 	REQUIRED
 )
 find_library(SFML_SYSTEM
-	NAMES sfml-system-d libsfml-system-d.so libsfml-system-d.dll
+	NAMES sfml-system-d libsfml-system-d
 	PATHS "extlib/sfml/lib"
+	PATHS_SUFFIXES dll lib so
 	REQUIRED
 )
 target_link_libraries(sengine
@@ -68,41 +71,3 @@ target_link_libraries(sengine
 	${SFML_GRAPHICS}
 	${SFML_SYSTEM}
 )
-
-##########
-# TESTBIN
-##########
-
-project (testbin)
-
-file(GLOB
-  TESTSOURCES
-  test/*
-)
-include_directories(test)
-
-#Compile Flags
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wshadow -Woverloaded-virtual -std=c++0x")
-set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-
-#build sengine
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
-add_executable(testbin ${TESTSOURCES})
-
-#find dependencies
-find_library(SENGINE
-	NAMES sengine libsengine.so libsengine.dll
-	PATHS "lib"
-	REQUIRED
-)
-      
-#Build test binary
-target_link_libraries(testbin
-	sengine
-	${SFML_WINDOW}
-	${SFML_GRAPHICS}
-	${SFML_SYSTEM}
-)
-
- 
