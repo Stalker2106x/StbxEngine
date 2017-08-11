@@ -8,8 +8,6 @@ add_subdirectory(extlib/sfml)
 ##########
 project (sengine)
 
-#(CMAKE_BUILD_TYPE Release)
-
 #Library files
 file(GLOB
   SOURCES
@@ -41,33 +39,23 @@ add_library(sengine SHARED ${SOURCES})
 ##link dependencies
 #StbLib
 find_library(STBLIB
-	NAMES stblib libstblib
-	PATHS "extlib/stblib/bin"
-	PATHS_SUFFIXES dll lib so
+	NAMES stblib
+	PATHS "${CMAKE_CURRENT_SOURCE_DIR}/extlib/stblib/bin"
+	NO_DEFAULT_PATH
+  IMPORTED
 	REQUIRED
 )
-#SFML
-find_library(SFML_WINDOW
-	NAMES sfml-window-d libsfml-window-d
-	PATHS "extlib/sfml/lib"
-	PATHS_SUFFIXES dll lib so
-	REQUIRED
+add_library(STBLIB SHARED IMPORTED)
+#sfml
+find_package(SFML
+  NAMES ""
+  COMPONENTS window graphics network
+  PATHS "extlib/sfml/cmake"
+  REQUIRED
 )
-find_library(SFML_GRAPHICS
-	NAMES sfml-graphics-d libsfml-graphics-d
-	PATHS "extlib/sfml/lib"
-	PATHS_SUFFIXES dll lib so
-	REQUIRED
-)
-find_library(SFML_SYSTEM
-	NAMES sfml-system-d libsfml-system-d
-	PATHS "extlib/sfml/lib"
-	PATHS_SUFFIXES dll lib so
-	REQUIRED
-)
+
+#linker
 target_link_libraries(sengine
 	${STBLIB}
-	${SFML_WINDOW}
-	${SFML_GRAPHICS}
-	${SFML_SYSTEM}
+	${SFML}
 )
