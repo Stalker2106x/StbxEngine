@@ -36,7 +36,7 @@ namespace stb {
 		virtual const sf::FloatRect getLocalBounds() = 0;
 		virtual const sf::FloatRect getGlobalBounds() = 0;
 
-		virtual bool onHover(const bool &triggered);
+		virtual bool onHover(bool triggered);
 		virtual void onClick();
 		virtual void onRClick();
 
@@ -80,7 +80,7 @@ namespace stb {
 		void setLabel(const std::string &label);
 		void setFont(const sf::Font &font);
 		virtual void setPosition(const sf::Vector2f &pos);
-		void setFontsize(const int &size);
+		void setFontsize(int size);
 		void setColor(const sf::Color &color);
 		void setSkin(const TextSkin &skin);
 		virtual const sf::Vector2f getPosition();
@@ -89,7 +89,7 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		virtual bool onHover(const bool &triggered);
+		virtual bool onHover(bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -133,7 +133,7 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		bool onHover(const bool &triggered);
+		bool onHover(bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -156,7 +156,7 @@ namespace stb {
 		GUIToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUIToggleSpriteButton();
 		
-		bool onHover(const bool &triggered) override;
+		bool onHover(bool triggered) override;
 		virtual void onClick() override;
 
 		virtual bool update(const sf::Event &e);
@@ -182,7 +182,7 @@ namespace stb {
 
 		void invert();
 		GUIButton *getButton(const std::string &id);
-		void setSpacing(const int &spacing);
+		void setSpacing(int spacing);
 		const sf::Vector2f calcButtonPosition(const size_t &index, const sf::Vector2f &pos);
 		void setPosition(const sf::Vector2f &pos);
 

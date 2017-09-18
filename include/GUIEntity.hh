@@ -26,7 +26,7 @@ namespace stb {
 		GUISIndicator(const std::string &label);
 		virtual ~GUISIndicator();
 
-		void setFontsize(const int &fontSize);
+		void setFontsize(int fontSize);
 		void setPosition(const sf::Vector2f &pos);
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *win);
@@ -110,13 +110,13 @@ namespace stb {
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(sf::Color *inputColor, sf::Color *valueColor);
-		void setFontsize(const int &fontsize);
+		void setFontsize(int fontsize);
 		void setWidth(const float &length);
 		const sf::Vector2f &getSize();
 		const sf::Vector2f &getPosition();
 		const std::string &getInput();
 
-		bool onHover(const bool &triggered);
+		bool onHover(bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -145,11 +145,11 @@ namespace stb {
 
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);
-		void setSize(const int &length);
+		void setSize(int length);
 		const sf::Vector2f &getSize();
 		const sf::Vector2f &getPosition();
 
-		bool onHover(const bool &triggered);
+		bool onHover(bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

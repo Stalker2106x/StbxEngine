@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj",
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Dynamic Debug|Win32 = Dynamic Debug|Win32
 		Dynamic Debug|x64 = Dynamic Debug|x64
 		Dynamic Release|Win32 = Dynamic Release|Win32
@@ -22,6 +24,9 @@ Global
 		Static Release|x64 = Static Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Debug|Win32.Build.0 = Debug|Win32
+		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Debug|x64.ActiveCfg = Debug|Win32
 		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Dynamic Debug|Win32.ActiveCfg = Static Debug|Win32
 		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Dynamic Debug|Win32.Build.0 = Static Debug|Win32
 		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Dynamic Debug|x64.ActiveCfg = Dynamic Debug|Win32
@@ -35,6 +40,9 @@ Global
 		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Static Release|Win32.ActiveCfg = Static Debug|Win32
 		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Static Release|Win32.Build.0 = Static Debug|Win32
 		{0FA24937-8413-47E2-9B5E-6BBCA14C7EB9}.Static Release|x64.ActiveCfg = Static Debug|Win32
+		{F6B1540F-5A67-4862-9E9E-98BB0E869804}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F6B1540F-5A67-4862-9E9E-98BB0E869804}.Debug|Win32.Build.0 = Debug|Win32
+		{F6B1540F-5A67-4862-9E9E-98BB0E869804}.Debug|x64.ActiveCfg = Debug|Win32
 		{F6B1540F-5A67-4862-9E9E-98BB0E869804}.Dynamic Debug|Win32.ActiveCfg = Static Debug|Win32
 		{F6B1540F-5A67-4862-9E9E-98BB0E869804}.Dynamic Debug|Win32.Build.0 = Static Debug|Win32
 		{F6B1540F-5A67-4862-9E9E-98BB0E869804}.Dynamic Debug|x64.ActiveCfg = Debug|Win32

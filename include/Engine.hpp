@@ -40,7 +40,7 @@ namespace stb {
 		sf::Clock &getGameTime();
 		float &getElapsedSeconds();
 		void handleArgs(int argc, char **argv);
-		void videoParamSet(const std::string &, const int &);
+		void videoParamSet(const std::string &, int);
 		sf::Image capture();
 
 		virtual void draw() = 0;

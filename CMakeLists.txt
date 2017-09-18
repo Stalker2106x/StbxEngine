@@ -49,7 +49,7 @@ add_library(STBLIB SHARED IMPORTED)
 #sfml
 find_package(SFML
   NAMES ""
-  COMPONENTS window graphics network
+  COMPONENTS window-d graphics-d network-d
   PATHS "extlib/sfml/cmake"
   REQUIRED
 )
@@ -57,5 +57,7 @@ find_package(SFML
 #linker
 target_link_libraries(sengine
 	${STBLIB}
-	${SFML}
+	sfml-window-d
+  sfml-graphics-d
+  sfml-system-d
 )

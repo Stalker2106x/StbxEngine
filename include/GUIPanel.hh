@@ -36,12 +36,12 @@ namespace stb {
 		virtual ~GUIPanel();
 
 		virtual void setPosition(const sf::Vector2f &pos);
-		void setStyle(const char &style);
+		void setStyle(char style);
 
 		void addElement(GUIElement *element);
 		void updateElementsPosition();
 
-		bool onButtonHover(const PanelButton &id, const bool &triggered);
+		bool onButtonHover(const PanelButton &id, bool triggered);
 
 		virtual bool updateRT();
 		virtual bool update(const sf::Event &e);
@@ -75,7 +75,7 @@ namespace stb {
 
 		void setPosition(const sf::Vector2f &pos);
 
-		bool onButtonHover(const PanelButton &id, const bool &triggered);
+		bool onButtonHover(const PanelButton &id, bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

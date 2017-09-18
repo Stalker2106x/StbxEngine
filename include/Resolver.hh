@@ -20,7 +20,7 @@ namespace stb {
 	class Resolver
 	{
 	public:
-		static T *resolve(const std::string &name, const bool &unique = false)
+		static T *resolve(const std::string &name, bool unique = false)
 		{
 			if (!unique && resources.find(name) != resources.end())
 				return (resources[name]);

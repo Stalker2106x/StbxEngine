@@ -38,7 +38,7 @@ void GUIButton::setRClickCallback(const std::function<void(void)> &fptr)
 	_onRClickCallback = new std::function<void(void)>(fptr);
 }
 
-bool GUIButton::onHover(const bool &triggered)
+bool GUIButton::onHover(bool triggered)
 {
 	if ((triggered && _hover)
 		|| (!triggered && !_hover))
@@ -110,7 +110,7 @@ void GUITextButton::setPosition(const sf::Vector2f &pos)
 	_label.setPosition(pos);
 }
 
-void GUITextButton::setFontsize(const int &size)
+void GUITextButton::setFontsize(int size)
 {
 	_label.setCharacterSize(size);
 }
@@ -149,7 +149,7 @@ void GUITextButton::initialUpdate()
 		onHover(false);
 }
 
-bool GUITextButton::onHover(const bool &triggered)
+bool GUITextButton::onHover(bool triggered)
 {
 	GUIButton::onHover(triggered);
 	if (triggered)
@@ -238,7 +238,7 @@ void GUISpriteButton::initialUpdate()
 	_sprite.setTextureRect(_skin.normal);
 }
 
-bool GUISpriteButton::onHover(const bool &triggered)
+bool GUISpriteButton::onHover(bool triggered)
 {
 	GUIButton::onHover(triggered);
 	if (triggered)
@@ -293,7 +293,7 @@ GUIToggleSpriteButton::~GUIToggleSpriteButton()
 {
 }
 
-bool GUIToggleSpriteButton::onHover(const bool &triggered)
+bool GUIToggleSpriteButton::onHover(bool triggered)
 {
 	GUIButton::onHover(triggered);
 	if (triggered)
@@ -360,7 +360,7 @@ GUIButton *GUIButtonBar::getButton(const std::string &id)
 	return (NULL);
 }
 
-void GUIButtonBar::setSpacing(const int &spacing)
+void GUIButtonBar::setSpacing(int spacing)
 {
 	_spacing = spacing;
 }

@@ -65,7 +65,7 @@ void MenuItem::setLabel(const std::string &label)
 		static_cast<GUITextButton *>(_label)->setLabel(label);
 }
 
-void MenuItem::setPadding(const int &padding)
+void MenuItem::setPadding(intpadding)
 {
 	_padding = padding;
 }
@@ -76,7 +76,7 @@ void MenuItem::setColor(const sf::Color &color)
 		static_cast<GUITextButton *>(_label)->setColor(color);
 }
 
-void MenuItem::setFontsize(const int &fontsize)
+void MenuItem::setFontsize(intfontsize)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->setFontsize(fontsize);
@@ -200,7 +200,7 @@ MenuSetting::~MenuSetting()
 
 }
 
-void MenuSetting::setFontsize(const int &fontsize)
+void MenuSetting::setFontsize(intfontsize)
 {
 	MenuItem::setFontsize(fontsize);
 	_value->setFontsize(fontsize);
@@ -218,7 +218,7 @@ void MenuSetting::setYOffset(const float &y)
 	_value->setPosition(sf::Vector2f(_value->getPosition().x, y));
 }
 
-void MenuSetting::setValues(std::vector<std::string> &values, const int &defaultIndex)
+void MenuSetting::setValues(std::vector<std::string> &values, intdefaultIndex)
 {
 	_values = values;
 	if (_values.size() > 0)
@@ -295,7 +295,7 @@ MenuEdit::~MenuEdit()
 
 }
 
-void MenuEdit::setFontsize(const int &fontsize)
+void MenuEdit::setFontsize(intfontsize)
 {
 	MenuItem::setFontsize(fontsize);
 	_edit.setFontsize(fontsize);
@@ -355,14 +355,14 @@ MenuSlider::MenuSlider() : MenuItem()
 	_fill.setFillColor(sf::Color(100, 0, 250));
 }
 
-void MenuSlider::setFontsize(const int &fontsize)
+void MenuSlider::setFontsize(intfontsize)
 {
 	MenuItem::setFontsize(fontsize);
 	_bar.setSize(sf::Vector2f(_bar.getSize().x, _label->getGlobalBounds().height));
 	_fill.setSize(sf::Vector2f(_bar.getSize().x - 2, _label->getGlobalBounds().height - 2));
 }
 
-void MenuSlider::setRange(const int &min, const int &max)
+void MenuSlider::setRange(intmin, intmax)
 {
 	_sliding = false;
 	_range[0] = min;
@@ -388,7 +388,7 @@ void MenuSlider::setYOffset(const float &y)
 	_fill.setPosition(_fill.getPosition().x, y + 1);
 }
 
-void MenuSlider::setBarWidth(const int &width)
+void MenuSlider::setBarWidth(intwidth)
 {
 	_bar.setSize(sf::Vector2f(static_cast<float>(width), _bar.getSize().y));
 	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));

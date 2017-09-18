@@ -35,7 +35,7 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 	updateElementsPosition();
 }
 
-void GUIPanel::setStyle(const char &style)
+void GUIPanel::setStyle(char style)
 {
 	_style = style;
 }

@@ -92,7 +92,7 @@ float &Engine::getElapsedSeconds()
 	return (_elapsedSeconds);
 }
 
-void Engine::videoParamSet(const std::string &ent, const int &value)
+void Engine::videoParamSet(const std::string &ent, int value)
 {
   if (ent == "FPS")
     _win->setFramerateLimit(value);

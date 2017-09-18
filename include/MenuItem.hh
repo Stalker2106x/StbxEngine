@@ -48,9 +48,9 @@ namespace stb {
 		static MenuItem *factory(const MenuItemType &type);
 		
 		void setLabel(const std::string &label);
-		void setPadding(const int &padding);
+		void setPadding(int padding);
 		virtual void setColor(const sf::Color &color);
-		virtual void setFontsize(const int &size);
+		virtual void setFontsize(int size);
 		virtual void setXOffset(const float &x);
 		virtual void setYOffset(const float &y);
 		virtual void setOffset(const float &x, const float &y);
@@ -114,12 +114,12 @@ namespace stb {
 
 		virtual void onClick();
 		virtual void onRClick();
-		bool onValueHover(const bool &triggered);
+		bool onValueHover(bool triggered);
 
-		virtual void setFontsize(const int &size) override;
+		virtual void setFontsize(int size) override;
 		virtual void setXOffset(const float &x) override;
 		virtual void setYOffset(const float &y) override;
-		void setValues(std::vector<std::string> &values, const int &defaultIndex = 0);
+		void setValues(std::vector<std::string> &values, int defaultIndex = 0);
 		int getCurrentIndex();
 
 		void updateValue();
@@ -157,7 +157,7 @@ namespace stb {
 		MenuEdit();
 		~MenuEdit();
 
-		virtual void setFontsize(const int &fontsize) override;
+		virtual void setFontsize(int fontsize) override;
 		virtual void setXOffset(const float &x) override;
 		virtual void setYOffset(const float &y) override;
 		void setInputColor(sf::Color *inputColor, sf::Color *valueColor);
@@ -183,12 +183,12 @@ namespace stb {
 		MenuSlider();
 		~MenuSlider();
 
-		void setRange(const int &min, const int &max);
+		void setRange(int min, int max);
 		virtual void setXOffset(const float &x) override;
 		virtual void setYOffset(const float &y) override;
-		void setBarWidth(const int &width);
+		void setBarWidth(int width);
 		void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
-		virtual void setFontsize(const int &fontsize) override;
+		virtual void setFontsize(int fontsize) override;
 
 		int getValue();
 

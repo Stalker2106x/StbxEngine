@@ -34,7 +34,7 @@ namespace stb {
 		GUIDraggablePanel *addDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
 		GUIDraggablePanel *addDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 		template <typename T>
-		void addIndicator(const sf::Vector2f &pos, const int &fontSize, std::string *label, T &var)
+		void addIndicator(const sf::Vector2f &pos, int fontSize, std::string *label, T &var)
 		{
 			_elements.push_back(new GUIIndicator<T>(label, var));
 			static_cast<GUISIndicator *>(_elements.back())->setPosition(pos);

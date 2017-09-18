@@ -18,7 +18,7 @@ GUISIndicator::~GUISIndicator()
 		delete (_label);
 }
 
-void GUISIndicator::setFontsize(const int &fontSize)
+void GUISIndicator::setFontsize(int fontSize)
 {
 	if (_label != NULL)
 		_label->setCharacterSize(fontSize);
@@ -78,7 +78,7 @@ void GUIEdit::setFont(const std::string &fontResource)
 	_value.setFont(*Resolver<sf::Font>::resolve(fontResource));
 }
 
-void GUIEdit::setFontsize(const int &fontsize)
+void GUIEdit::setFontsize(int fontsize)
 {
 	_value.setCharacterSize(fontsize);
 	_container.setSize(sf::Vector2f(static_cast<float>(_container.getSize().x), static_cast<float>(_value.getCharacterSize())));
