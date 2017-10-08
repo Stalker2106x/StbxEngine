@@ -70,7 +70,7 @@ void Menu::parseMenu(pugi::xml_node menu)
 		_fontsize = atoi(menu.child_value("fontsize"));
 }
 
-MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
+MenuItem *Menu::parseItem(pugi::xml_node &item, size_t &index)
 {
   MenuItem *pItem;
   MenuItemType type;
@@ -78,7 +78,7 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
   try { type = MenuItem::typeMap.at(item.attribute("type").value()); }
   catch (...) { return (NULL); }
   pItem = MenuItem::factory(type);
-  pItem->setLabel(item.child_value("label"));
+  parseGeneric(item, pItem, index);
   if (type == Link)
 	  parseLink(item, pItem, index);
   else if (type == Setting)
@@ -91,21 +91,35 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, const size_t &index)
 	  parseSlider(item, pItem, index);
   else if (type == Checkbox)
 	  parseCheckbox(item, pItem, index);
-  if (item.child("color"))
-	  pItem->setColor(*Console::convertColorCode(item.child_value("color"), "#"));
-  else
-	  pItem->setColor(sf::Color::White);
-  if (item.child("padding"))
-	  pItem->setPadding(atoi(item.child_value("padding")));
-  if (item.child("x"))
-	  pItem->setXOffset(atof(item.child_value("x")));
-  else
-	  pItem->setXOffset(50);
-  if (item.child("y"))
-	  pItem->setXOffset(atof(item.child_value("y")));
-  else
-	  pItem->setYOffset(_spacing + (static_cast<float>(index) * _spacing));
   return (pItem);
+}
+
+void Menu::parseGeneric(pugi::xml_node &item, MenuItem *pItem, size_t &index)
+{
+	pItem->setLabel(item.child_value("label"));
+	if (item.child("color"))
+		pItem->setColor(*Console::convertColorCode(item.child_value("color"), "#"));
+	else
+		pItem->setColor(sf::Color::White); //set default white
+	if (item.child("padding"))
+		pItem->setPadding(atoi(item.child_value("padding")));
+	if (item.child("x"))
+	{
+		index--;
+		pItem->setXOffset(atof(item.child_value("x")));
+	}
+	else
+	{
+		pItem->setXOffset(50);
+		//pItem->setXOffset((Engine::instance->getWindowSize().x - pItem->getPadding()) - 100);
+	}
+	if (item.child("y"))
+	{
+		index--;
+		pItem->setXOffset(atof(item.child_value("y")));
+	}
+	else
+		pItem->setYOffset(_spacing + (static_cast<float>(index)* _spacing));
 }
 
 void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)

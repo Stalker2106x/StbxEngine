@@ -28,7 +28,8 @@ namespace stb {
 		void reset();
 		bool loadFromFile(const std::string &file);
 		void parseMenu(pugi::xml_node menu);
-		MenuItem *parseItem(pugi::xml_node &item, const size_t &index);
+		MenuItem *parseItem(pugi::xml_node &item, size_t &index);
+		void parseGeneric(pugi::xml_node &item, MenuItem *pItem, size_t & index);
 		void parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 		void parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 		void parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &index);

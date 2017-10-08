@@ -54,6 +54,7 @@ namespace stb {
 		virtual void setXOffset(const float &x);
 		virtual void setYOffset(const float &y);
 		virtual void setOffset(const float &x, const float &y);
+		int &getPadding();
 
 		virtual void initialUpdate();
 		virtual void onClick() = 0;

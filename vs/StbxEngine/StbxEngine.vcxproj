@@ -23,11 +23,13 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dynamic Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
@@ -36,6 +38,8 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PlatformToolset>v120</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -53,7 +57,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">
     <NMakeOutput>StbxEngine.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(SolutionDir)..\extlib;$(SolutionDir)..\include;$(SolutionDir)..\extlib\sfml\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\extlib\pugixml\src;$(SolutionDir)\..\extlib\sfml\include;$(SolutionDir)\..\include;$(IncludePath)</IncludePath>
     <TargetName>libsengine</TargetName>
     <OutDir>$(SolutionDir)..\bin\</OutDir>
     <IntDir />
@@ -62,7 +66,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dynamic Debug|Win32'">
     <NMakeOutput>StbxEngine.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(SolutionDir)..\extlib;$(SolutionDir)..\include;$(SolutionDir)..\extlib\sfml\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\extlib\pugixml\src;$(SolutionDir)\..\extlib\sfml\include;$(SolutionDir)\..\include;$(IncludePath)</IncludePath>
     <TargetName>libsengine</TargetName>
     <OutDir>$(SolutionDir)..\bin\</OutDir>
     <IntDir />
@@ -71,6 +75,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|x64'">
     <NMakeOutput>StbxEngine.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)\..\extlib\pugixml\src;$(SolutionDir)\..\extlib\sfml\include;$(SolutionDir)\..\include;$(IncludePath)</IncludePath>
+    <TargetName>libsengine</TargetName>
+    <OutDir>$(SolutionDir)\..\bin\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">
     <ClCompile>
@@ -102,6 +111,11 @@
     <PostBuildEvent>
       <Command>copy $(OutDir)$(TargetFileName) $(SolutionDir)..\bin\</Command>
     </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Commands.hh" />
