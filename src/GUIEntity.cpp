@@ -164,6 +164,77 @@ void GUIEdit::draw(sf::RenderWindow *win)
 	win->draw(_value);
 }
 
+
+//
+// GUITextArea
+//
+
+GUITextArea::GUITextArea() : GUIElement()
+{
+	initialUpdate();
+}
+
+GUITextArea::GUITextArea(const std::string &id) : GUIElement(id)
+{
+	initialUpdate();
+}
+
+GUITextArea::~GUITextArea()
+{
+
+}
+
+void GUITextArea::initialUpdate()
+{
+	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
+}
+
+void GUITextArea::setFont(const std::string &fontResource)
+{
+	_value.setFont(*Resolver<sf::Font>::resolve(fontResource));
+}
+
+void GUITextArea::setFontsize(int fontsize)
+{
+	_value.setCharacterSize(fontsize);
+	_container.setSize(sf::Vector2f(static_cast<float>(_container.getSize().x), static_cast<float>(_value.getCharacterSize())));
+}
+
+void GUITextArea::setPosition(const sf::Vector2f &pos)
+{
+	_container.setPosition(pos);
+	_value.setPosition(pos + sf::Vector2f(1, 0));
+}
+
+void GUITextArea::setColor(sf::Color *inputColor, sf::Color *valueColor)
+{
+	if (inputColor)
+		_container.setFillColor(*inputColor);
+	if (valueColor)
+		_value.setFillColor(*valueColor);
+}
+
+void GUITextArea::setWidth(const float &length)
+{
+	_container.setSize(sf::Vector2f(length, _container.getSize().y));
+}
+
+const sf::Vector2f &GUITextArea::getSize()
+{
+	return (_container.getSize());
+}
+
+const sf::Vector2f &GUITextArea::getPosition()
+{
+	return (_container.getPosition());
+}
+
+void GUITextArea::draw(sf::RenderWindow *win)
+{
+	win->draw(_container);
+	win->draw(_value);
+}
+
 //
 // GUICheckbox
 //

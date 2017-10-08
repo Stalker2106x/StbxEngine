@@ -78,7 +78,6 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, size_t &index)
   try { type = MenuItem::typeMap.at(item.attribute("type").value()); }
   catch (...) { return (NULL); }
   pItem = MenuItem::factory(type);
-  parseGeneric(item, pItem, index);
   if (type == Link)
 	  parseLink(item, pItem, index);
   else if (type == Setting)
@@ -91,6 +90,7 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, size_t &index)
 	  parseSlider(item, pItem, index);
   else if (type == Checkbox)
 	  parseCheckbox(item, pItem, index);
+  parseGeneric(item, pItem, index);
   return (pItem);
 }
 
@@ -103,20 +103,20 @@ void Menu::parseGeneric(pugi::xml_node &item, MenuItem *pItem, size_t &index)
 		pItem->setColor(sf::Color::White); //set default white
 	if (item.child("padding"))
 		pItem->setPadding(atoi(item.child_value("padding")));
-	if (item.child("x"))
+	if (item.attribute("x"))
 	{
 		index--;
-		pItem->setXOffset(atof(item.child_value("x")));
+		pItem->setXOffset(atof(item.attribute("x").value()));
 	}
 	else
 	{
 		pItem->setXOffset(50);
 		//pItem->setXOffset((Engine::instance->getWindowSize().x - pItem->getPadding()) - 100);
 	}
-	if (item.child("y"))
+	if (item.attribute("y"))
 	{
 		index--;
-		pItem->setXOffset(atof(item.child_value("y")));
+		pItem->setXOffset(atof(item.attribute("y").value()));
 	}
 	else
 		pItem->setYOffset(_spacing + (static_cast<float>(index)* _spacing));

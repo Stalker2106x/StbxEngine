@@ -13,7 +13,7 @@
     <setting>50Hz</setting>
     <setting>60Hz</setting>
   </item>
-  <item type="DynamicSetting" filler="Resolutions">
+  <item type="DynamicSetting" filler="Resolutions" y="400">
     <label>Resolution</label>
   </item>
   <item type="Edit">

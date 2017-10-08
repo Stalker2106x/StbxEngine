@@ -129,6 +129,38 @@ namespace stb {
 	};
 
 	/*!
+	* @class GUITextArea
+	* @brief Frame for drawing paragraphs of text
+	*
+	*        This class represents a container for text paragraphs
+	*/
+
+	class GUITextArea : public GUIElement
+	{
+	public:
+		GUITextArea();
+		GUITextArea(const std::string &id);
+		virtual ~GUITextArea();
+		void initialUpdate();
+
+		void setFont(const std::string &fontResource);
+		void setPosition(const sf::Vector2f &pos);
+		void setColor(sf::Color *inputColor, sf::Color *valueColor);
+		void setFontsize(int fontsize);
+		void setWidth(const float &length);
+		const sf::Vector2f &getSize();
+		const sf::Vector2f &getPosition();
+
+		bool onHover(bool triggered);
+
+		virtual void draw(sf::RenderWindow *win);
+
+	private:
+		sf::Text _value;
+		sf::RectangleShape _container;
+	};
+
+	/*!
 	* @class GUICheckbox
 	* @brief Draggable implementation of panel
 	*

@@ -11,8 +11,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
-#include <pugixml.hpp>
 #include "MenuItem.hh"
+
+#ifdef STBXENGINE_CORE
+#include <pugixml.hpp>
+#endif
 
 namespace stb {
 
@@ -27,6 +30,7 @@ namespace stb {
 
 		void reset();
 		bool loadFromFile(const std::string &file);
+#ifdef STBXENGINE_CORE
 		void parseMenu(pugi::xml_node menu);
 		MenuItem *parseItem(pugi::xml_node &item, size_t &index);
 		void parseGeneric(pugi::xml_node &item, MenuItem *pItem, size_t & index);
@@ -36,6 +40,7 @@ namespace stb {
 		void parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 		void parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
 		void parseCheckbox(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
+#endif
 		void initializeItems();
 
 		void setBackground(const std::string &resource);
