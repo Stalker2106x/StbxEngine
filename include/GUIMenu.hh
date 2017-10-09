@@ -1,17 +1,17 @@
 /*!
- * @file      Menu.hh
- * @class     Menu
- * @brief     Simple class for generating menus.
+ * @file      GUIMenu.hh
+ * @class     GUIMenu
+ * @brief     Simple class for generating GUI menus.
  *
  *            This class is used to build menus from XML, and handle user behaviour inside.
  */
 
-#ifndef MENU_HH_
-#define MENU_HH_
+#ifndef GUIMENU_HH_
+#define GUIMENU_HH_
 
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
-#include "MenuItem.hh"
+#include "GUIMenuItem.hh"
 
 #ifdef STBXENGINE_CORE
 #include <pugixml.hpp>
@@ -60,4 +60,4 @@ namespace stb {
 
 }
 
-#endif /* MENU_HH_ */
+#endif /* !GUIMENU_HH_ */

@@ -33,12 +33,6 @@
     <ClInclude Include="..\..\include\Keybinds.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Menu.hh">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\MenuItem.hh">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Resolver.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,6 +54,12 @@
     <ClInclude Include="..\..\include\GUIScreen.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GUIMenu.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GUIMenuItem.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Commands.cpp">
@@ -75,12 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Keybinds.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\MenuItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
@@ -105,6 +99,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GUIScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GUIMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GUIMenuItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

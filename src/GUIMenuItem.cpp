@@ -1,6 +1,6 @@
-#include "MenuItem.hh"
+#include "GUIMenuItem.hh"
+#include "GUIMenu.hh"
 #include "Resolver.hh"
-#include "Menu.hh"
 
 using namespace stb;
 

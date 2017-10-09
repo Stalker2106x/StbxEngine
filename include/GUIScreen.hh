@@ -10,7 +10,7 @@
 #ifndef GUISCREEN_HH_
 #define GUISCREEN_HH_
 
-#include "Menu.hh"
+#include "GUIMenu.hh"
 
 namespace stb {
 

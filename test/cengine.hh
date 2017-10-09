@@ -2,7 +2,7 @@
 #define CENGINE_HH_
 
 #include "../include/Engine.hpp"
-#include "../include/Menu.hh"
+#include "../include/GUIMenu.hh"
 
 class sEngine : public stb::Engine
 {

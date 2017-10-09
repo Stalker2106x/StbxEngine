@@ -1,5 +1,5 @@
 #include <fstream>
-#include "Menu.hh"
+#include "GUIMenu.hh"
 #include "Resolver.hh"
 #include "Engine.hpp"
 

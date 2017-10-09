@@ -128,8 +128,8 @@
     <ClInclude Include="..\..\include\GUIEntity.hh" />
     <ClInclude Include="..\..\include\GUIPanel.hh" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
-    <ClInclude Include="..\..\include\Menu.hh" />
-    <ClInclude Include="..\..\include\MenuItem.hh" />
+    <ClInclude Include="..\..\include\GUIMenu.hh" />
+    <ClInclude Include="..\..\include\GUIMenuItem.hh" />
     <ClInclude Include="..\..\include\Resolver.hh" />
     <ClInclude Include="..\..\include\GUIScreen.hh" />
   </ItemGroup>
@@ -147,8 +147,8 @@
     <ClCompile Include="..\..\src\GUIEntity.cpp" />
     <ClCompile Include="..\..\src\GUIPanel.cpp" />
     <ClCompile Include="..\..\src\Keybinds.cpp" />
-    <ClCompile Include="..\..\src\Menu.cpp" />
-    <ClCompile Include="..\..\src\MenuItem.cpp" />
+    <ClCompile Include="..\..\src\GUIMenu.cpp" />
+    <ClCompile Include="..\..\src\GUIMenuItem.cpp" />
     <ClCompile Include="..\..\src\Resolver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

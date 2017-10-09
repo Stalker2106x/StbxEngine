@@ -1,14 +1,14 @@
 /*!
- * @file      MenuItem.hh
- * @brief     Menu items (links, settings, sliders, text inputs, ...)
+ * @file      GUIMenuItem.hh
+ * @brief     GUI Menu items (links, settings, sliders, text inputs, ...)
  *
  *            This classes set provide usables objects for all kinds of items in a menu.
  *            It defines Links, Settings, and Edit types,which are specialized in child objects
  *            like Sliders, Static and Dynamic enums for Settings, and Key or String for Edit.
  */
 
-#ifndef MENUITEM_HH_
-#define MENUITEM_HH_
+#ifndef GUIMENUITEM_HH_
+#define GUIMENUITEM_HH_
 
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
