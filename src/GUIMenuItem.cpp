@@ -173,7 +173,7 @@ void MenuLink::onClick()
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();
-		_menuHandle->loadFromFile("./Data/menu/" + _target + ".xml");
+		_menuHandle->changeScreen("./Data/menu/" + _target + ".xml");
 	}
 	else
 		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");

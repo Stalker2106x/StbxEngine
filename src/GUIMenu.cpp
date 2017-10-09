@@ -2,14 +2,16 @@
 #include "GUIMenu.hh"
 #include "Resolver.hh"
 #include "Engine.hpp"
+#include "GUIScreen.hh"
 
 using namespace stb;
 
 std::unordered_map<std::string, std::pair<menuFptr, void *>> stb::Menu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
 std::unordered_map<std::string, std::vector<std::string>> stb::Menu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
 
-Menu::Menu()
+Menu::Menu(GUIScreen *screenHandle)
 {
+	_screenHandle = screenHandle;
 	_spacing = 10;
 	_fontsize = 20;
 }
@@ -24,41 +26,28 @@ void Menu::reset()
 	_items.clear();
 }
 
-bool Menu::loadFromFile(const std::string &file)
+Menu *Menu::parseXML(GUIScreen *screenHandle, pugi::xml_node &menu)
 {
-  pugi::xml_document doc;
-  std::ifstream ifs(file);
-  pugi::xml_parse_result xml;
-
-  if (!ifs)
-    {
-      Engine::instance->console->output(COLOR_ERROR, "Error: Menu: XML resource not found");
-      return (false);
-    }
-  if (!(xml = doc.load(ifs)) || !doc.child("menu"))
-    {
-	  Engine::instance->console->output(COLOR_ERROR, "Error: Menu: Invalid XML resource");
-      return (false);
-    }
-  parseMenu(doc.child("menu"));
-  size_t index = 0;
-  for (pugi::xml_node item = doc.child("menu").child("item");
-	  item != NULL;
-	  item = item.next_sibling("item"), index++)
-    {
-      MenuItem *pItem;
+	Menu *pMenu = new Menu(screenHandle);
+	pMenu->parseMenu(menu);
+	size_t index = 0;
+	for (pugi::xml_node item = menu.child("item");
+		item != NULL;
+		item = item.next_sibling("item"), index++)
+	{
+		MenuItem *pItem;
       
-	  if ((pItem = parseItem(item, index)) != NULL)
-	  {
-		  pItem->setFontsize(_fontsize);
-		  _items.push_back(pItem);
-	  }
-    }
-  initializeItems();
-  return (true);
+		if ((pItem = pMenu->parseItem(item, index)) != NULL)
+		{
+			pItem->setFontsize(pMenu->_fontsize);
+			pMenu->_items.push_back(pItem);
+		}
+	}
+	pMenu->initializeItems();
+	return (pMenu);
 }
 
-void Menu::parseMenu(pugi::xml_node menu)
+void Menu::parseMenu(const pugi::xml_node &menu)
 {
 	if (menu.child("title"))
 		_title.setString(menu.child_value("title"));
@@ -216,6 +205,20 @@ void Menu::initializeItems()
 void Menu::setBackground(const std::string &resource)
 {
 	_background.setTexture(*Resolver<sf::Texture>::resolve(resource));
+}
+
+void Menu::setPosition(const sf::Vector2f &pos)
+{
+	for (size_t i = 0; i < _items.size(); i++) //EXPERIMENTAL
+	{
+		_items[i]->setXOffset(pos.x);
+		_items[i]->setYOffset(pos.y);
+	}
+}
+
+void Menu::changeScreen(const std::string &file)
+{
+	_screenHandle->changeScreen(file);
 }
 
 bool Menu::update(const sf::Event &e)

@@ -2,7 +2,7 @@
 #define CENGINE_HH_
 
 #include "../include/Engine.hpp"
-#include "../include/GUIMenu.hh"
+#include "../include/GUIScreen.hh"
 
 class sEngine : public stb::Engine
 {
@@ -15,7 +15,7 @@ public:
 	void draw();
 
 private:
-	stb::Menu _mainMenu;
+	stb::GUIScreen _mainMenu;
 };
 
 #endif /* !CENGINE_HH_ */

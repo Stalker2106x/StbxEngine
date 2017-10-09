@@ -20,8 +20,17 @@ namespace stb {
 		GUIScreen();
 		~GUIScreen();
 
-	private:
+		void reset();
 
+		bool loadFromFile(const std::string &file);
+
+		void changeScreen(const std::string &location);
+
+		bool update(const sf::Event &e);
+		void draw(sf::RenderWindow *win);
+
+	private:
+		std::string _changeLocation;
 		GUIPanel _container;
 		Menu *_menu;
 	};

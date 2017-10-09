@@ -21,12 +21,21 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Co
 GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id), _buttonBar(Horizontal)
 {
 	_frame.setTexture(*Resolver<sf::Texture>::resolve(name));
-	_frame.setScale(1 / size.x, 1);
+	_frame.setScale(1 / size.x, 1 / size.y);
 }
 
 GUIPanel::~GUIPanel()
 {
 
+}
+
+void GUIPanel::clear()
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		delete (_elements[i]);
+	}
+	_elements.clear();
 }
 
 void GUIPanel::setPosition(const sf::Vector2f &pos)

@@ -19,19 +19,21 @@
 
 namespace stb {
 
+	class GUIScreen; //Forward
+
 	typedef void(*menuFptr)(void *);
 	typedef std::vector<MenuItem *> itemTab;
 
-	class Menu
+	class Menu : public GUIElement
 	{
 	public:
-		Menu();
+		Menu(GUIScreen *screenHandle);
 		~Menu();
 
 		void reset();
-		bool loadFromFile(const std::string &file);
 #ifdef STBXENGINE_CORE
-		void parseMenu(pugi::xml_node menu);
+		static Menu *parseXML(GUIScreen *screenHandle, pugi::xml_node &menu);
+		void parseMenu(const pugi::xml_node &menu);
 		MenuItem *parseItem(pugi::xml_node &item, size_t &index);
 		void parseGeneric(pugi::xml_node &item, MenuItem *pItem, size_t & index);
 		void parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &index);
@@ -43,7 +45,10 @@ namespace stb {
 #endif
 		void initializeItems();
 
+		virtual void setPosition(const sf::Vector2f &pos);
 		void setBackground(const std::string &resource);
+
+		void Menu::changeScreen(const std::string &file);
 
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *);
@@ -51,6 +56,7 @@ namespace stb {
 		static std::unordered_map<std::string, std::pair<menuFptr, void *>> customAction;
 		static std::unordered_map<std::string, std::vector<std::string>> dynamicValue;
 	protected:
+		GUIScreen *_screenHandle;
 		int _id, _parentId;
 		int _spacing, _fontsize;
 		sf::Sprite _background;
