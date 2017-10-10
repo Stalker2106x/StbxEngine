@@ -6,13 +6,9 @@ using namespace stb;
 // GUIElement
 //
 
-GUIElement::GUIElement()
+GUIElement::GUIElement(const std::string &id)
 {
 	_active = true;
-}
-
-GUIElement::GUIElement(const std::string &id) : GUIElement()
-{
 	_id = id;
 }
 

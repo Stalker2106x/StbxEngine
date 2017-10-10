@@ -106,8 +106,7 @@ namespace stb {
 	class GUIEdit : public GUIElement
 	{
 	public:
-		GUIEdit();
-		GUIEdit(const std::string &id);
+		GUIEdit(const std::string &id = "");
 		virtual ~GUIEdit();
 		void initialUpdate();
 
@@ -133,6 +132,38 @@ namespace stb {
 	};
 
 	/*!
+	* @class GUIText
+	* @brief One line text area
+	*
+	*        This class is used for labels, titles, or drawing single lines of text
+	*/
+
+	class GUIText : public GUIElement
+	{
+	public:
+		GUIText();
+		GUIText(const std::string &id = "");
+		virtual ~GUIText();
+		void initialUpdate();
+
+		void setFont(const std::string &fontResource);
+		void setPosition(const sf::Vector2f &pos);
+		void setColor(sf::Color *inputColor, sf::Color *valueColor);
+		void setFontsize(int fontsize);
+		void setWidth(const float &length);
+		const sf::Vector2f &getSize();
+		const sf::Vector2f &getPosition();
+
+		bool onHover(bool triggered);
+
+		virtual void draw(sf::RenderWindow *win);
+
+	private:
+		sf::Text _value;
+		sf::RectangleShape _container;
+	};
+
+	/*!
 	* @class GUITextArea
 	* @brief Frame for drawing paragraphs of text
 	*
@@ -142,8 +173,7 @@ namespace stb {
 	class GUITextArea : public GUIElement
 	{
 	public:
-		GUITextArea();
-		GUITextArea(const std::string &id);
+		GUITextArea(const std::string &id = "");
 		virtual ~GUITextArea();
 		void initialUpdate();
 
@@ -174,8 +204,7 @@ namespace stb {
 	class GUICheckbox : public GUIElement
 	{
 	public:
-		GUICheckbox();
-		GUICheckbox(const std::string &id);
+		GUICheckbox(const std::string &id = "");
 		virtual ~GUICheckbox();
 		void initialUpdate();
 

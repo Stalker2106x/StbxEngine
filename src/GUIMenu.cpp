@@ -9,7 +9,7 @@ using namespace stb;
 std::unordered_map<std::string, std::pair<menuFptr, void *>> stb::GUIMenu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
 std::unordered_map<std::string, std::vector<std::string>> stb::GUIMenu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
 
-GUIMenu::GUIMenu(GUIScreen *screenHandle)
+GUIMenu::GUIMenu(GUIScreen *screenHandle) : GUIElement("")
 {
 	_screenHandle = screenHandle;
 	_spacing = 10;

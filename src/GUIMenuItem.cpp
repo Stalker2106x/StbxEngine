@@ -17,7 +17,7 @@ std::unordered_map<std::string, GUIMenuItemType> GUIMenuItem::typeMap = {
   {"Checkbox", Checkbox}
 };
 
-GUIMenuItem::GUIMenuItem()
+GUIMenuItem::GUIMenuItem() : GUIElement("")
 {
   _active = false;
   _padding = 0;

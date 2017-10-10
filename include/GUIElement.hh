@@ -13,7 +13,6 @@ namespace stb {
 	class GUIElement
 	{
 	public:
-		GUIElement();
 		GUIElement(const std::string &id);
 		virtual ~GUIElement() {};
 

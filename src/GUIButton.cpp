@@ -8,7 +8,7 @@ using namespace stb;
 // GUIButton
 //
 
-GUIButton::GUIButton() : GUIElement()
+GUIButton::GUIButton() : GUIElement("")
 {
 	_hover = false;
 	_triggerType = sf::Event::MouseButtonPressed;
@@ -330,7 +330,7 @@ bool GUIToggleSpriteButton::update(const sf::Event &e)
 // GUIButtonBar
 //
 
-GUIButtonBar::GUIButtonBar(BarType type)
+GUIButtonBar::GUIButtonBar(BarType type) : GUIElement("")
 {
 	_spacing = 0;
 	_type = type;
