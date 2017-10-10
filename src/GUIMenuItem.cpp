@@ -82,6 +82,11 @@ void GUIMenuItem::setFontsize(int fontsize)
 		static_cast<GUITextButton *>(_label)->setFontsize(fontsize);
 }
 
+void GUIMenuItem::setPosition(const sf::Vector2f &pos)
+{
+	setOffset(pos.x, pos.y);
+}
+
 void GUIMenuItem::setXOffset(const float &x)
 {
 	if (_mode == Text)

@@ -39,7 +39,7 @@ namespace stb {
 	 *
 	 *        This class is not instanciable. It is used as an abstract layer to store Items generically in Menu class.
 	 */
-	class GUIMenuItem
+	class GUIMenuItem : public GUIElement
 	{
 	public:
 		GUIMenuItem();
@@ -51,6 +51,7 @@ namespace stb {
 		void setPadding(int padding);
 		virtual void setColor(const sf::Color &color);
 		virtual void setFontsize(int size);
+		virtual void setPosition(const sf::Vector2f &pos);
 		virtual void setXOffset(const float &x);
 		virtual void setYOffset(const float &y);
 		virtual void setOffset(const float &x, const float &y);

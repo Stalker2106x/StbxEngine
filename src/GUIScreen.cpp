@@ -35,7 +35,7 @@ bool GUIScreen::loadFromFile(const std::string &file)
 	}
 	for (pugi::xml_node element = doc.child("se").first_child(); element; element = element.next_sibling())
 	{
-		if (element.name() == "menu")
+		if (strcmp(element.name(),"menu") == 0)
 			_container.addElement(GUIMenu::parseXML(this, element));
 	} 
 	return (true);
