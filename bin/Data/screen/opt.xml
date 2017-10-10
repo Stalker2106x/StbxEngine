@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<se>
+  <menu>
+    <title>Test SubMenu</title>
+    <background>background</background>
+    <spacing>30</spacing>
+    <fontsize>16</fontsize>
+    <item type="Link" target="main">
+      <label>Back</label>
+    </item>
+  </menu>
+</se>

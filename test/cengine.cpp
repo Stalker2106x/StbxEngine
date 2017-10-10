@@ -3,7 +3,7 @@
 void f(void *menu)
 {
 	menu = new stb::GUIScreen();
-	static_cast<stb::GUIScreen *>(menu)->loadFromFile("./Data/menu/GOLmon.xml");
+	static_cast<stb::GUIScreen *>(menu)->loadFromFile("./Data/screen/GOLmon.xml");
 }
 
 sEngine::sEngine()

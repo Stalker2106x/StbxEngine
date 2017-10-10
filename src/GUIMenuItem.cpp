@@ -184,10 +184,10 @@ void GUIMenuLink::onClick()
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();
-		_menuHandle->changeScreen("./Data/GUIMenu/" + _target + ".xml");
+		_menuHandle->changeScreen("./Data/screen/" + _target + ".xml");
 	}
 	else
-		Engine::instance->console->output(COLOR_ERROR, "GUIMenu: Link broken. action undefined.");
+		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
 }
 
 bool GUIMenuLink::update(const sf::Event &e)
