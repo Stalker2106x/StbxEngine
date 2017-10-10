@@ -45,15 +45,19 @@ void GUIPanel::setStyle(char style)
 
 void GUIPanel::addElement(GUIElement *element)
 {
+	sf::Vector2f pos = element->getPosition() - _frame.getPosition();
+	if (pos.x < 0 || pos.y < 0)
+		element->setPosition(_frame.getPosition());
 	_elements.push_back(element);
 }
 
 void GUIPanel::setPosition(const sf::Vector2f &pos)
 {
+	sf::Vector2f oldpos = _frame.getPosition();
 	_frame.setPosition(pos);
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
-		_elements[i]->setPosition(sf::Vector2f(_elements[i]->getPosition().x - pos.x, _elements[i]->getPosition().y - pos.y));
+		_elements[i]->setPosition(sf::Vector2f(_elements[i]->getPosition().x + (pos.x - oldpos.x), _elements[i]->getPosition().y + (pos.y - oldpos.y)));
 	}
 }
 
