@@ -21,6 +21,7 @@ namespace stb {
 		const std::string &getId();
 
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
+		virtual const sf::Vector2f &getPosition() = 0;
 
 		virtual bool updateRT() { return (true); }; //Real time update, called more than one time between frames
 		virtual bool update(const sf::Event &e) = 0;

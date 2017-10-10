@@ -32,9 +32,9 @@ namespace stb {
 		void setClickCallback(const std::function<void(void)> &fptr);
 		void setRClickCallback(const std::function<void(void)> &fptr);
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
-		virtual const sf::Vector2f getPosition() = 0;
-		virtual const sf::FloatRect getLocalBounds() = 0;
-		virtual const sf::FloatRect getGlobalBounds() = 0;
+		virtual const sf::Vector2f &getPosition() = 0;
+		virtual const sf::FloatRect &getLocalBounds() = 0;
+		virtual const sf::FloatRect &getGlobalBounds() = 0;
 
 		virtual bool onHover(bool triggered);
 		virtual void onClick();
@@ -83,9 +83,9 @@ namespace stb {
 		void setFontsize(int size);
 		void setColor(const sf::Color &color);
 		void setSkin(const TextSkin &skin);
-		virtual const sf::Vector2f getPosition();
-		virtual const sf::FloatRect getLocalBounds();
-		virtual const sf::FloatRect getGlobalBounds();
+		virtual const sf::Vector2f &getPosition();
+		virtual const sf::FloatRect &getLocalBounds();
+		virtual const sf::FloatRect &getGlobalBounds();
 
 		virtual void initialUpdate();
 
@@ -127,9 +127,9 @@ namespace stb {
 		void setTexture(const std::string &resource);
 		void setSkin(const SpriteSkin &skin);
 		void setPosition(const sf::Vector2f &pos);
-		virtual const sf::Vector2f getPosition();
-		virtual const sf::FloatRect getLocalBounds();
-		virtual const sf::FloatRect getGlobalBounds();
+		virtual const sf::Vector2f &getPosition();
+		virtual const sf::FloatRect &getLocalBounds();
+		virtual const sf::FloatRect &getGlobalBounds();
 
 		virtual void initialUpdate();
 
@@ -185,6 +185,8 @@ namespace stb {
 		void setSpacing(int spacing);
 		const sf::Vector2f calcButtonPosition(const size_t &index, const sf::Vector2f &pos);
 		void setPosition(const sf::Vector2f &pos);
+
+		virtual const sf::Vector2f &getPosition();
 
 		GUITextButton *addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin);
 		GUISpriteButton *addSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin);

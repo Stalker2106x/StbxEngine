@@ -27,7 +27,11 @@ namespace stb {
 		virtual ~GUISIndicator();
 
 		void setFontsize(int fontSize);
-		void setPosition(const sf::Vector2f &pos);
+		virtual void setPosition(const sf::Vector2f &pos);
+		
+
+		virtual const sf::Vector2f &getPosition();
+		
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *win);
 

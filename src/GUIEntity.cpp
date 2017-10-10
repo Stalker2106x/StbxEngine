@@ -32,6 +32,12 @@ void GUISIndicator::setPosition(const sf::Vector2f &pos)
 	_value.setPosition(_label->getPosition() + sf::Vector2f(_label->getLocalBounds().width + 5, 0));
 }
 
+
+const sf::Vector2f &GUISIndicator::getPosition()
+{
+	return (_label->getPosition());
+}
+
 bool GUISIndicator::update(const sf::Event &e)
 {
 	if (!GUIElement::update(e))

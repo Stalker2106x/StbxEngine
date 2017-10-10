@@ -48,6 +48,8 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setBackground(const std::string &resource);
 
+		virtual const sf::Vector2f &getPosition();
+
 		void changeScreen(const std::string &file);
 
 		bool update(const sf::Event &e);

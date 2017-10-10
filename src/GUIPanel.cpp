@@ -38,12 +38,6 @@ void GUIPanel::clear()
 	_elements.clear();
 }
 
-void GUIPanel::setPosition(const sf::Vector2f &pos)
-{
-	_frame.setPosition(pos);
-	updateElementsPosition();
-}
-
 void GUIPanel::setStyle(char style)
 {
 	_style = style;
@@ -52,16 +46,22 @@ void GUIPanel::setStyle(char style)
 void GUIPanel::addElement(GUIElement *element)
 {
 	_elements.push_back(element);
-	_elements.back()->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + ((static_cast<float>(_elements.size()) - 1) * 35)));
 }
 
-void GUIPanel::updateElementsPosition()
+void GUIPanel::setPosition(const sf::Vector2f &pos)
 {
+	_frame.setPosition(pos);
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
-		_elements[i]->setPosition(_frame.getPosition() + sf::Vector2f(5, 5 + (static_cast<float>(i) * 35)));
+		_elements[i]->setPosition(sf::Vector2f(_elements[i]->getPosition().x - pos.x, _elements[i]->getPosition().y - pos.y));
 	}
 }
+
+const sf::Vector2f &GUIPanel::getPosition()
+{
+	return (_frame.getPosition());
+}
+
 
 bool GUIPanel::updateRT()
 {

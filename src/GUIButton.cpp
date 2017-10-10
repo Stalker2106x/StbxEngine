@@ -125,17 +125,17 @@ void GUITextButton::setSkin(const TextSkin &skin)
 	_skin = skin;
 }
 
-const sf::Vector2f GUITextButton::getPosition()
+const sf::Vector2f &GUITextButton::getPosition()
 {
 	return (_label.getPosition());
 }
 
-const sf::FloatRect GUITextButton::getLocalBounds()
+const sf::FloatRect &GUITextButton::getLocalBounds()
 {
 	return (_label.getLocalBounds());
 }
 
-const sf::FloatRect GUITextButton::getGlobalBounds()
+const sf::FloatRect &GUITextButton::getGlobalBounds()
 {
 	return (_label.getGlobalBounds());
 }
@@ -218,17 +218,17 @@ void GUISpriteButton::setPosition(const sf::Vector2f &pos)
 	_sprite.setPosition(pos);
 }
 
-const sf::Vector2f GUISpriteButton::getPosition()
+const sf::Vector2f &GUISpriteButton::getPosition()
 {
 	return (_sprite.getPosition());
 }
 
-const sf::FloatRect GUISpriteButton::getLocalBounds()
+const sf::FloatRect &GUISpriteButton::getLocalBounds()
 {
 	return (_sprite.getLocalBounds());
 }
 
-const sf::FloatRect GUISpriteButton::getGlobalBounds()
+const sf::FloatRect &GUISpriteButton::getGlobalBounds()
 {
 	return (_sprite.getGlobalBounds());
 }
@@ -390,6 +390,11 @@ void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 
 	for (int i = (_inverted ? _buttons.size() - 1 : 0); (_inverted ? i >= 0 : i < static_cast<int>(_buttons.size())); (_inverted ? i-- : i++))
 		_buttons[i]->setPosition(calcButtonPosition(i, pos));
+}
+
+const sf::Vector2f &GUIButtonBar::getPosition()
+{
+	return (_buttons.size() > 0 ? _buttons[0]->getPosition() : sf::Vector2f(0,0));
 }
 
 GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin)

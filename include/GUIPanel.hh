@@ -40,8 +40,9 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setStyle(char style);
 
+		virtual const sf::Vector2f &getPosition();
+
 		void addElement(GUIElement *element);
-		void updateElementsPosition();
 
 		bool onButtonHover(const PanelButton &id, bool triggered);
 

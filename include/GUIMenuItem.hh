@@ -55,6 +55,8 @@ namespace stb {
 		virtual void setXOffset(const float &x);
 		virtual void setYOffset(const float &y);
 		virtual void setOffset(const float &x, const float &y);
+
+		virtual const sf::Vector2f &getPosition();
 		int &getPadding();
 
 		virtual void initialUpdate();
