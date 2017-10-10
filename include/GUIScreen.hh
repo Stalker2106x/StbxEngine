@@ -14,7 +14,7 @@
 
 namespace stb {
 
-	class GUIScreen : GUIElement
+	class GUIScreen : public GUIElement
 	{
 	public:
 		GUIScreen();
