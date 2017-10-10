@@ -5,10 +5,10 @@
 using namespace stb;
 
 /*
- * MenuItem Base class
+ * GUIMenuItem Base class
  */
 
-std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
+std::unordered_map<std::string, GUIMenuItemType> GUIMenuItem::typeMap = {
   {"Link", Link},
   {"Setting", Setting},
   {"DynamicSetting", DynamicSetting},
@@ -17,101 +17,101 @@ std::unordered_map<std::string, MenuItemType> MenuItem::typeMap = {
   {"Checkbox", Checkbox}
 };
 
-MenuItem::MenuItem()
+GUIMenuItem::GUIMenuItem()
 {
   _active = false;
   _padding = 0;
   _label = new GUITextButton();
-  _label->setClickCallback(std::bind(&MenuItem::onClick, this));
+  _label->setClickCallback(std::bind(&GUIMenuItem::onClick, this));
   _mode = Text;
   if (_mode == Text)
 	static_cast<GUITextButton *>(_label)->setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
-MenuItem::~MenuItem()
+GUIMenuItem::~GUIMenuItem()
 {
 
 }
 
-MenuItem *MenuItem::factory(const MenuItemType &type)
+GUIMenuItem *GUIMenuItem::factory(const GUIMenuItemType &type)
 {
   switch (type)
     {
     case Link:
-		return (new MenuLink());
+		return (new GUIMenuLink());
 		break;
     case Setting:
-		return (new MenuSetting());
+		return (new GUIMenuSetting());
 		break;
     case DynamicSetting:
-		return (new MenuDynamicSetting());
+		return (new GUIMenuDynamicSetting());
 		break;
     case Edit:
-		return (new MenuEdit());
+		return (new GUIMenuEdit());
 		break;
     case Slider:
-		return (new MenuSlider());
+		return (new GUIMenuSlider());
 		break;
 	case Checkbox:
-		return (new MenuCheckbox());
+		return (new GUIMenuCheckbox());
 		break;
     }
   return (NULL);
 }
 
-void MenuItem::setLabel(const std::string &label)
+void GUIMenuItem::setLabel(const std::string &label)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->setLabel(label);
 }
 
-void MenuItem::setPadding(int padding)
+void GUIMenuItem::setPadding(int padding)
 {
 	_padding = padding;
 }
 
-void MenuItem::setColor(const sf::Color &color)
+void GUIMenuItem::setColor(const sf::Color &color)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->setColor(color);
 }
 
-void MenuItem::setFontsize(int fontsize)
+void GUIMenuItem::setFontsize(int fontsize)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->setFontsize(fontsize);
 }
 
-void MenuItem::setXOffset(const float &x)
+void GUIMenuItem::setXOffset(const float &x)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, _label->getPosition().y));
 }
 
-void MenuItem::setYOffset(const float &y)
+void GUIMenuItem::setYOffset(const float &y)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(_label->getPosition().x, y));
 }
 
-void MenuItem::setOffset(const float &x, const float &y)
+void GUIMenuItem::setOffset(const float &x, const float &y)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, y));
 }
 
-int &MenuItem::getPadding()
+int &GUIMenuItem::getPadding()
 {
 	return (_padding);
 }
 
-void MenuItem::initialUpdate()
+void GUIMenuItem::initialUpdate()
 {
 	_active = true;
 	_label->initialUpdate();
 }
 
-bool MenuItem::update(const sf::Event &e)
+bool GUIMenuItem::update(const sf::Event &e)
 {
   if (!_active)
 		return (false);
@@ -119,52 +119,52 @@ bool MenuItem::update(const sf::Event &e)
   return (true);
 }
 
-void MenuItem::draw(sf::RenderWindow *win)
+void GUIMenuItem::draw(sf::RenderWindow *win)
 {
 	if (_mode == Text)
 		static_cast<GUITextButton *>(_label)->draw(win);
 }
 
 /*
- * MenuLink
+ * GUIMenuLink
  */
 
-MenuLink::MenuLink() : MenuItem()
+GUIMenuLink::GUIMenuLink() : GUIMenuItem()
 {
 	_customPtr = NULL;
 	_customParam = NULL;
 	_customCommand = NULL;
 }
 
-MenuLink::~MenuLink()
+GUIMenuLink::~GUIMenuLink()
 {
 	if (_customCommand)
 		delete (_customCommand);
 }
 
-void MenuLink::setMenuHandle(Menu *menu)
+void GUIMenuLink::setMenuHandle(GUIMenu *GUIMenu)
 {
-	_menuHandle = menu;
+	_menuHandle = GUIMenu;
 }
 
-void MenuLink::setTarget(const std::string &target)
+void GUIMenuLink::setTarget(const std::string &target)
 {
 	_target = target;
 }
 
-void MenuLink::setCustomAction(void(*fptr)(void *), void *cparam)
+void GUIMenuLink::setCustomAction(void(*fptr)(void *), void *cparam)
 {
 	_customPtr = fptr;
 	_customParam = cparam;
 }
 
-void MenuLink::setCommand(const std::string &command)
+void GUIMenuLink::setCommand(const std::string &command)
 {
 	_customCommand = new std::string(command);
 }
 
 
-void MenuLink::onClick()
+void GUIMenuLink::onClick()
 {
 	if (_customPtr != NULL)
 		_customPtr(_customParam);
@@ -173,69 +173,69 @@ void MenuLink::onClick()
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();
-		_menuHandle->changeScreen("./Data/menu/" + _target + ".xml");
+		_menuHandle->changeScreen("./Data/GUIMenu/" + _target + ".xml");
 	}
 	else
-		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
+		Engine::instance->console->output(COLOR_ERROR, "GUIMenu: Link broken. action undefined.");
 }
 
-bool MenuLink::update(const sf::Event &e)
+bool GUIMenuLink::update(const sf::Event &e)
 {
-	if (!MenuItem::update(e))
+	if (!GUIMenuItem::update(e))
 		return (false);
 	return (true);
 }
 
 /*
- * MenuSetting
+ * GUIMenuSetting
  */
 
-MenuSetting::MenuSetting() : MenuItem()
+GUIMenuSetting::GUIMenuSetting() : GUIMenuItem()
 {
   _index = 0;
   _padding = 0;
   _value = new GUITextButton();
   _value->setFont(*Resolver<sf::Font>::resolve("glitch"));
-  _value->setClickCallback(std::bind(&MenuSetting::onClick, this));
-  _value->setRClickCallback(std::bind(&MenuSetting::onRClick, this));
+  _value->setClickCallback(std::bind(&GUIMenuSetting::onClick, this));
+  _value->setRClickCallback(std::bind(&GUIMenuSetting::onRClick, this));
 }
 
-MenuSetting::~MenuSetting()
+GUIMenuSetting::~GUIMenuSetting()
 {
 
 }
 
-void MenuSetting::setFontsize(int fontsize)
+void GUIMenuSetting::setFontsize(int fontsize)
 {
-	MenuItem::setFontsize(fontsize);
+	GUIMenuItem::setFontsize(fontsize);
 	_value->setFontsize(fontsize);
 }
 
-void MenuSetting::setXOffset(const float &x)
+void GUIMenuSetting::setXOffset(const float &x)
 {
-	MenuItem::setXOffset(x);
+	GUIMenuItem::setXOffset(x);
 	_value->setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _value->getPosition().y));
 }
 
-void MenuSetting::setYOffset(const float &y)
+void GUIMenuSetting::setYOffset(const float &y)
 {
-	MenuItem::setYOffset(y);
+	GUIMenuItem::setYOffset(y);
 	_value->setPosition(sf::Vector2f(_value->getPosition().x, y));
 }
 
-void MenuSetting::setValues(std::vector<std::string> &values, int defaultIndex)
+void GUIMenuSetting::setValues(std::vector<std::string> &values, int defaultIndex)
 {
 	_values = values;
 	if (_values.size() > 0)
 		_value->setLabel(_values[defaultIndex]);
 }
 
-int MenuSetting::getCurrentIndex()
+int GUIMenuSetting::getCurrentIndex()
 {
 	return (_index);
 }
 
-void MenuSetting::onClick()
+void GUIMenuSetting::onClick()
 {
   ++_index;
   if (_index >= _values.size())
@@ -243,7 +243,7 @@ void MenuSetting::onClick()
   updateValue();
 }
 
-void MenuSetting::onRClick()
+void GUIMenuSetting::onRClick()
 {
   --_index;
   if (_index >= _values.size())
@@ -251,107 +251,107 @@ void MenuSetting::onRClick()
   updateValue();
 }
 
-void MenuSetting::updateValue()
+void GUIMenuSetting::updateValue()
 {
 	if (_values.size() > 0)
 		_value->setLabel(_values[_index]);
 }
 
-bool MenuSetting::update(const sf::Event &e)
+bool GUIMenuSetting::update(const sf::Event &e)
 {
-	if (!MenuItem::update(e))
+	if (!GUIMenuItem::update(e))
 		return (false);
 	_value->update(e);
   return (true);
 }
 
 
-void MenuSetting::draw(sf::RenderWindow *win)
+void GUIMenuSetting::draw(sf::RenderWindow *win)
 {
-  MenuItem::draw(win);
+  GUIMenuItem::draw(win);
   _value->draw(win);
 }
 
 /*
- * MenuDynamicSetting
+ * GUIMenuDynamicSetting
  */
 
-MenuDynamicSetting::MenuDynamicSetting() : MenuSetting()
+GUIMenuDynamicSetting::GUIMenuDynamicSetting() : GUIMenuSetting()
 {
 
 }
 
-MenuDynamicSetting::~MenuDynamicSetting()
+GUIMenuDynamicSetting::~GUIMenuDynamicSetting()
 {
 
 }
 
 /*
- * MenuEdit
+ * GUIMenuEdit
  */
 
-MenuEdit::MenuEdit() : MenuItem()
+GUIMenuEdit::GUIMenuEdit() : GUIMenuItem()
 {
 	_edit.setFont("glitch");
 }
 
-MenuEdit::~MenuEdit()
+GUIMenuEdit::~GUIMenuEdit()
 {
 
 }
 
-void MenuEdit::setFontsize(int fontsize)
+void GUIMenuEdit::setFontsize(int fontsize)
 {
-	MenuItem::setFontsize(fontsize);
+	GUIMenuItem::setFontsize(fontsize);
 	_edit.setFontsize(fontsize);
 }
 
-void MenuEdit::setXOffset(const float &x)
+void GUIMenuEdit::setXOffset(const float &x)
 {
-	MenuItem::setXOffset(x);
+	GUIMenuItem::setXOffset(x);
 	_edit.setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _edit.getPosition().y));
 }
 
-void MenuEdit::setYOffset(const float &y)
+void GUIMenuEdit::setYOffset(const float &y)
 {
-	MenuItem::setYOffset(y);
+	GUIMenuItem::setYOffset(y);
 	_edit.setPosition(sf::Vector2f(_edit.getPosition().x, y));
 }
 
-void MenuEdit::setInputColor(sf::Color *inputColor, sf::Color *valueColor)
+void GUIMenuEdit::setInputColor(sf::Color *inputColor, sf::Color *valueColor)
 {
 	_edit.setColor(inputColor, valueColor);
 }
 
-void MenuEdit::setInputLength(const float &length)
+void GUIMenuEdit::setInputLength(const float &length)
 {
 	_edit.setWidth(length);
 }
 
-void MenuEdit::onClick()
+void GUIMenuEdit::onClick()
 {
 
 }
 
-bool MenuEdit::update(const sf::Event &e)
+bool GUIMenuEdit::update(const sf::Event &e)
 {
-	if (!MenuItem::update(e))
+	if (!GUIMenuItem::update(e))
 		return (false);
 	_edit.update(e);
   return (true);
 }
 
-void MenuEdit::draw(sf::RenderWindow *win)
+void GUIMenuEdit::draw(sf::RenderWindow *win)
 {
-	MenuItem::draw(win);
+	GUIMenuItem::draw(win);
 	_edit.draw(win);
 }
 
 //
-// MenuSlider
+// GUIMenuSlider
 //
 
-MenuSlider::MenuSlider() : MenuItem()
+GUIMenuSlider::GUIMenuSlider() : GUIMenuItem()
 {
 	setRange(0, 100);
 	_bar.setSize(sf::Vector2f(102, 10));
@@ -360,46 +360,46 @@ MenuSlider::MenuSlider() : MenuItem()
 	_fill.setFillColor(sf::Color(100, 0, 250));
 }
 
-void MenuSlider::setFontsize(int fontsize)
+void GUIMenuSlider::setFontsize(int fontsize)
 {
-	MenuItem::setFontsize(fontsize);
+	GUIMenuItem::setFontsize(fontsize);
 	_bar.setSize(sf::Vector2f(_bar.getSize().x, _label->getGlobalBounds().height));
 	_fill.setSize(sf::Vector2f(_bar.getSize().x - 2, _label->getGlobalBounds().height - 2));
 }
 
-void MenuSlider::setRange(int min, int max)
+void GUIMenuSlider::setRange(int min, int max)
 {
 	_sliding = false;
 	_range[0] = min;
 	_range[1] = max;
 }
 
-MenuSlider::~MenuSlider()
+GUIMenuSlider::~GUIMenuSlider()
 {
 
 }
 
-void MenuSlider::setXOffset(const float &x)
+void GUIMenuSlider::setXOffset(const float &x)
 {
-	MenuItem::setXOffset(x);
+	GUIMenuItem::setXOffset(x);
 	_bar.setPosition(x + _label->getLocalBounds().width + _padding, _bar.getPosition().y);
 	_fill.setPosition(x + _label->getLocalBounds().width + _padding + 1, _fill.getPosition().y);
 }
 
-void MenuSlider::setYOffset(const float &y)
+void GUIMenuSlider::setYOffset(const float &y)
 {
-	MenuItem::setYOffset(y);
+	GUIMenuItem::setYOffset(y);
 	_bar.setPosition(_bar.getPosition().x, y);
 	_fill.setPosition(_fill.getPosition().x, y + 1);
 }
 
-void MenuSlider::setBarWidth(int width)
+void GUIMenuSlider::setBarWidth(int width)
 {
 	_bar.setSize(sf::Vector2f(static_cast<float>(width), _bar.getSize().y));
 	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
 }
 
-void MenuSlider::setBarColor(const sf::Color *barColor, const sf::Color *fillColor)
+void GUIMenuSlider::setBarColor(const sf::Color *barColor, const sf::Color *fillColor)
 {
 	if (barColor != NULL)
 		_bar.setFillColor(*barColor);
@@ -407,12 +407,12 @@ void MenuSlider::setBarColor(const sf::Color *barColor, const sf::Color *fillCol
 		_fill.setFillColor(*fillColor);
 }
 
-int MenuSlider::getValue()
+int GUIMenuSlider::getValue()
 {
 	return (_value);
 }
 
-void MenuSlider::updateSlider(const sf::Event &e, bool forceupdate)
+void GUIMenuSlider::updateSlider(const sf::Event &e, bool forceupdate)
 {
 	if (_sliding && (e.type == sf::Event::MouseMoved || forceupdate))
 	{
@@ -430,9 +430,9 @@ void MenuSlider::updateSlider(const sf::Event &e, bool forceupdate)
 	}
 }
 
-bool MenuSlider::update(const sf::Event &e)
+bool GUIMenuSlider::update(const sf::Event &e)
 {
-	if (!MenuItem::update(e))
+	if (!GUIMenuItem::update(e))
 		return (false);
   updateSlider(e);
   if (e.type == sf::Event::MouseButtonPressed && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
@@ -450,53 +450,53 @@ bool MenuSlider::update(const sf::Event &e)
   return (true);
 }
 
-void MenuSlider::draw(sf::RenderWindow *win)
+void GUIMenuSlider::draw(sf::RenderWindow *win)
 {
-	MenuItem::draw(win);
+	GUIMenuItem::draw(win);
 	win->draw(_bar);
 	win->draw(_fill);
 }
 
 //
-// MenuCheckbox
+// GUIMenuCheckbox
 //
 
-MenuCheckbox::MenuCheckbox() : MenuItem()
+GUIMenuCheckbox::GUIMenuCheckbox() : GUIMenuItem()
 {
 }
 
-MenuCheckbox::~MenuCheckbox()
+GUIMenuCheckbox::~GUIMenuCheckbox()
 {
 
 }
 
-void MenuCheckbox::setXOffset(const float &x)
+void GUIMenuCheckbox::setXOffset(const float &x)
 {
-	MenuItem::setXOffset(x);
+	GUIMenuItem::setXOffset(x);
 	_checkBox.setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _checkBox.getPosition().y));
 }
 
-void MenuCheckbox::setYOffset(const float &y)
+void GUIMenuCheckbox::setYOffset(const float &y)
 {
-	MenuItem::setYOffset(y);
+	GUIMenuItem::setYOffset(y);
 	_checkBox.setPosition(sf::Vector2f(_checkBox.getPosition().x, y));
 }
 
-void MenuCheckbox::setCheckboxColor(const sf::Color *containerColor, const sf::Color *fillColor)
+void GUIMenuCheckbox::setCheckboxColor(const sf::Color *containerColor, const sf::Color *fillColor)
 {
 	_checkBox.setColor(containerColor, fillColor);
 }
 
-bool MenuCheckbox::update(const sf::Event &e)
+bool GUIMenuCheckbox::update(const sf::Event &e)
 {
-	if (!MenuItem::update(e))
+	if (!GUIMenuItem::update(e))
 		return (false);
 	_checkBox.update(e);
 	return (true);
 }
 
-void MenuCheckbox::draw(sf::RenderWindow *win)
+void GUIMenuCheckbox::draw(sf::RenderWindow *win)
 {
-	MenuItem::draw(win);
+	GUIMenuItem::draw(win);
 	_checkBox.draw(win);
 }

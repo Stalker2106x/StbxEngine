@@ -17,9 +17,9 @@
 
 namespace stb {
 
-	class Menu; //Forward declaration for Menu Handles
+	class GUIMenu; //Forward declaration for Menu Handles
 
-	enum MenuItemType {
+	enum GUIMenuItemType {
 		Link,
 		Setting,
 		DynamicSetting,
@@ -28,24 +28,24 @@ namespace stb {
 		Checkbox
 	};
 
-	enum ItemMode {
+	enum GUIMenuItemMode {
 		Text,
 		Sprite
 	};
 
 	/*!
-	 * @class MenuItem
+	 * @class GUIMenuItem
 	 * @brief Abstract Menu item
 	 *
 	 *        This class is not instanciable. It is used as an abstract layer to store Items generically in Menu class.
 	 */
-	class MenuItem
+	class GUIMenuItem
 	{
 	public:
-		MenuItem();
-		~MenuItem();
+		GUIMenuItem();
+		~GUIMenuItem();
 
-		static MenuItem *factory(const MenuItemType &type);
+		static GUIMenuItem *factory(const GUIMenuItemType &type);
 		
 		void setLabel(const std::string &label);
 		void setPadding(int padding);
@@ -62,29 +62,29 @@ namespace stb {
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 
-		static std::unordered_map<std::string, MenuItemType> typeMap; //move String to int ID
+		static std::unordered_map<std::string, GUIMenuItemType> typeMap; //move String to int ID
 
 	protected:
 		Engine *_e;
-		ItemMode _mode;
+		GUIMenuItemMode _mode;
 		int _padding;
 		GUIButton *_label;
 		bool _active;
 	};
 
 	/*!
-	 * @class MenuLink
+	 * @class GUIMenuLink
 	 * @brief Menu link to another menu or action
 	 *
 	 *        Link defines a MenuItem that is clickable and points towards another menu or do a specific action (quit, apply settings, ...)
 	 */
-	class MenuLink : public MenuItem
+	class GUIMenuLink : public GUIMenuItem
 	{
 	public:
-		MenuLink();
-		~MenuLink();
+		GUIMenuLink();
+		~GUIMenuLink();
 
-		void setMenuHandle(Menu *menu);
+		void setMenuHandle(GUIMenu *menu);
 		void setTarget(const std::string &target);
 		void setCustomAction(void(*fptr)(void *), void *cparam);
 		void setCommand(const std::string &command);
@@ -95,23 +95,23 @@ namespace stb {
 
 	private:
 		std::string _target;
-		Menu *_menuHandle;
+		GUIMenu *_menuHandle;
 		void(*_customPtr)(void *);
 		void *_customParam;
 		std::string *_customCommand;
 	};
 
 	/*!
-	 * @class MenuSetting
+	 * @class GUIMenuSetting
 	 * @brief Static Setting item, showing a list of values defined in XML.
 	 *
 	 *        This class holds a static enum defined in XML, for dynamic values, use child MenuDynamicSetting
 	 */
-	class MenuSetting : public MenuItem
+	class GUIMenuSetting : public GUIMenuItem
 	{
 	public:
-		MenuSetting();
-		~MenuSetting();
+		GUIMenuSetting();
+		~GUIMenuSetting();
 
 		virtual void onClick();
 		virtual void onRClick();
@@ -134,29 +134,29 @@ namespace stb {
 	};
 
 	/*!
-	 * @class MenuDynamicSetting
+	 * @class GUIMenuDynamicSetting
 	 * @brief Dynamic Setting item, showing a list of values known only at runtime.
 	 *
 	 *        This class holds a dynamic enum filled at runtime, for static values, use parent MenuSetting
 	 */
-	class MenuDynamicSetting : public MenuSetting
+	class GUIMenuDynamicSetting : public GUIMenuSetting
 	{
 	public:
-		MenuDynamicSetting();
-		~MenuDynamicSetting();
+		GUIMenuDynamicSetting();
+		~GUIMenuDynamicSetting();
 	};
 
 	/*!
-	 * @class MenuEdit
+	 * @class GUIMenuEdit
 	 * @brief Input box, either used for key binding, or text input from user
 	 *
 	 *        This item is an input box to get a string from the user inside a Menu.
 	 */
-	class MenuEdit : public MenuItem
+	class GUIMenuEdit : public GUIMenuItem
 	{
 	public:
-		MenuEdit();
-		~MenuEdit();
+		GUIMenuEdit();
+		~GUIMenuEdit();
 
 		virtual void setFontsize(int fontsize) override;
 		virtual void setXOffset(const float &x) override;
@@ -173,16 +173,16 @@ namespace stb {
 	};
 
 	/*!
-	 * @class MenuSlider
+	 * @class GUIMenuSlider
 	 * @brief Slider Setting item, accept any value within defined range
 	 *
 	 *        This item is a setting bar moving horizontally to get values from user.
 	 */
-	class MenuSlider : public MenuItem
+	class GUIMenuSlider : public GUIMenuItem
 	{
 	public:
-		MenuSlider();
-		~MenuSlider();
+		GUIMenuSlider();
+		~GUIMenuSlider();
 
 		void setRange(int min, int max);
 		virtual void setXOffset(const float &x) override;
@@ -206,16 +206,16 @@ namespace stb {
 	};
 
 	/*!
-	* @class MenuCheckbox
+	* @class GUIMenuCheckbox
 	* @brief Checkbox Setting item
 	*
 	*        This item is a box that allows to be checked (true) or unchecked (false)
 	*/
-	class MenuCheckbox : public MenuItem
+	class GUIMenuCheckbox : public GUIMenuItem
 	{
 	public:
-		MenuCheckbox();
-		~MenuCheckbox();
+		GUIMenuCheckbox();
+		~GUIMenuCheckbox();
 
 		virtual void setXOffset(const float &x) override;
 		virtual void setYOffset(const float &y) override;

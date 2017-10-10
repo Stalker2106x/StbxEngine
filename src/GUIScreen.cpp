@@ -33,10 +33,10 @@ bool GUIScreen::loadFromFile(const std::string &file)
 		Engine::instance->console->output(COLOR_ERROR, "Error: Menu: Invalid XML resource");
 		return (false);
 	}
-	for (pugi::xml_node element = doc.first_child(); element; element = element.next_sibling())
+	for (pugi::xml_node element = doc.child("se").first_child(); element; element = element.next_sibling())
 	{
-		if (element.name() == "Menu")
-			_container.addElement(Menu::parseXML(this, element));
+		if (element.name() == "menu")
+			_container.addElement(GUIMenu::parseXML(this, element));
 	} 
 	return (true);
 }

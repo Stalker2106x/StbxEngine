@@ -6,36 +6,36 @@
 
 using namespace stb;
 
-std::unordered_map<std::string, std::pair<menuFptr, void *>> stb::Menu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
-std::unordered_map<std::string, std::vector<std::string>> stb::Menu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
+std::unordered_map<std::string, std::pair<menuFptr, void *>> stb::GUIMenu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
+std::unordered_map<std::string, std::vector<std::string>> stb::GUIMenu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
 
-Menu::Menu(GUIScreen *screenHandle)
+GUIMenu::GUIMenu(GUIScreen *screenHandle)
 {
 	_screenHandle = screenHandle;
 	_spacing = 10;
 	_fontsize = 20;
 }
 
-Menu::~Menu()
+GUIMenu::~GUIMenu()
 {
 
 }
 
-void Menu::reset()
+void GUIMenu::reset()
 {
 	_items.clear();
 }
 
-Menu *Menu::parseXML(GUIScreen *screenHandle, pugi::xml_node &menu)
+GUIMenu *GUIMenu::parseXML(GUIScreen *screenHandle, pugi::xml_node &menu)
 {
-	Menu *pMenu = new Menu(screenHandle);
+	GUIMenu *pMenu = new GUIMenu(screenHandle);
 	pMenu->parseMenu(menu);
 	size_t index = 0;
 	for (pugi::xml_node item = menu.child("item");
 		item != NULL;
 		item = item.next_sibling("item"), index++)
 	{
-		MenuItem *pItem;
+		GUIMenuItem *pItem;
       
 		if ((pItem = pMenu->parseItem(item, index)) != NULL)
 		{
@@ -47,7 +47,7 @@ Menu *Menu::parseXML(GUIScreen *screenHandle, pugi::xml_node &menu)
 	return (pMenu);
 }
 
-void Menu::parseMenu(const pugi::xml_node &menu)
+void GUIMenu::parseMenu(const pugi::xml_node &menu)
 {
 	if (menu.child("title"))
 		_title.setString(menu.child_value("title"));
@@ -59,14 +59,14 @@ void Menu::parseMenu(const pugi::xml_node &menu)
 		_fontsize = atoi(menu.child_value("fontsize"));
 }
 
-MenuItem *Menu::parseItem(pugi::xml_node &item, size_t &index)
+GUIMenuItem *GUIMenu::parseItem(pugi::xml_node &item, size_t &index)
 {
-  MenuItem *pItem;
-  MenuItemType type;
+  GUIMenuItem *pItem;
+  GUIMenuItemType type;
 
-  try { type = MenuItem::typeMap.at(item.attribute("type").value()); }
+  try { type = GUIMenuItem::typeMap.at(item.attribute("type").value()); }
   catch (...) { return (NULL); }
-  pItem = MenuItem::factory(type);
+  pItem = GUIMenuItem::factory(type);
   if (type == Link)
 	  parseLink(item, pItem, index);
   else if (type == Setting)
@@ -83,7 +83,7 @@ MenuItem *Menu::parseItem(pugi::xml_node &item, size_t &index)
   return (pItem);
 }
 
-void Menu::parseGeneric(pugi::xml_node &item, MenuItem *pItem, size_t &index)
+void GUIMenu::parseGeneric(pugi::xml_node &item, GUIMenuItem *pItem, size_t &index)
 {
 	pItem->setLabel(item.child_value("label"));
 	if (item.child("color"))
@@ -111,9 +111,9 @@ void Menu::parseGeneric(pugi::xml_node &item, MenuItem *pItem, size_t &index)
 		pItem->setYOffset(_spacing + (static_cast<float>(index)* _spacing));
 }
 
-void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+void GUIMenu::parseLink(pugi::xml_node &item, GUIMenuItem *pItem, const size_t &/* index */)
 {
-	MenuLink *sItem = dynamic_cast<MenuLink *>(pItem);
+	GUIMenuLink *sItem = dynamic_cast<GUIMenuLink *>(pItem);
 
 	sItem->setMenuHandle(this); //Adding Handle for moving
 	if (item.attribute("target"))
@@ -121,7 +121,7 @@ void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 	if (item.attribute("action"))
 	{
 		std::string action = item.attribute("action").value();
-		sItem->setCustomAction(Menu::customAction[action].first, Menu::customAction[action].second);
+		sItem->setCustomAction(GUIMenu::customAction[action].first, GUIMenu::customAction[action].second);
 	}
 	if (item.attribute("command"))
 	{
@@ -129,9 +129,9 @@ void Menu::parseLink(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 	}
 }
 
-void Menu::parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+void GUIMenu::parseSetting(pugi::xml_node &item, GUIMenuItem *pItem, const size_t &/* index */)
 {
-	MenuSetting *sItem = dynamic_cast<MenuSetting *>(pItem);
+	GUIMenuSetting *sItem = dynamic_cast<GUIMenuSetting *>(pItem);
 	std::vector<std::string> values;
 
 	for (pugi::xml_node setting = item.child("setting");
@@ -143,17 +143,17 @@ void Menu::parseSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &/* 
 	sItem->setValues(values);
 }
 
-void Menu::parseDynamicSetting(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+void GUIMenu::parseDynamicSetting(pugi::xml_node &item, GUIMenuItem *pItem, const size_t &/* index */)
 {
-	MenuDynamicSetting *sItem = dynamic_cast<MenuDynamicSetting *>(pItem);
+	GUIMenuDynamicSetting *sItem = dynamic_cast<GUIMenuDynamicSetting *>(pItem);
 
 	if (item.attribute("filler"))
 		sItem->setValues(dynamicValue[item.attribute("filler").value()]);
 }
 
-void Menu::parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+void GUIMenu::parseEdit(pugi::xml_node &item, GUIMenuItem *pItem, const size_t &/* index */)
 {
-	MenuEdit *sItem = dynamic_cast<MenuEdit *>(pItem);
+	GUIMenuEdit *sItem = dynamic_cast<GUIMenuEdit *>(pItem);
 	sf::Color *inputColor = NULL;
 	sf::Color *valueColor = NULL;
 
@@ -164,9 +164,9 @@ void Menu::parseEdit(pugi::xml_node &item, MenuItem *pItem, const size_t &/* ind
 	sItem->setInputColor(inputColor, valueColor);
 }
 
-void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+void GUIMenu::parseSlider(pugi::xml_node &item, GUIMenuItem *pItem, const size_t &/* index */)
 {
-	MenuSlider *sItem = dynamic_cast<MenuSlider *>(pItem);
+	GUIMenuSlider *sItem = dynamic_cast<GUIMenuSlider *>(pItem);
 	sf::Color *barColor = NULL;
 	sf::Color *fillColor = NULL;
 
@@ -179,9 +179,9 @@ void Menu::parseSlider(pugi::xml_node &item, MenuItem *pItem, const size_t &/* i
 		sItem->setBarWidth(atoi(item.child_value("barwidth")));
 }
 
-void Menu::parseCheckbox(pugi::xml_node &item, MenuItem *pItem, const size_t &/* index */)
+void GUIMenu::parseCheckbox(pugi::xml_node &item, GUIMenuItem *pItem, const size_t &/* index */)
 {
-	MenuCheckbox *sItem = dynamic_cast<MenuCheckbox *>(pItem);
+	GUIMenuCheckbox *sItem = dynamic_cast<GUIMenuCheckbox *>(pItem);
 	sf::Color *containerColor = NULL;
 	sf::Color *fillColor = NULL;
 
@@ -192,9 +192,9 @@ void Menu::parseCheckbox(pugi::xml_node &item, MenuItem *pItem, const size_t &/*
 	sItem->setCheckboxColor(containerColor, fillColor);
 }
 
-void Menu::initializeItems()
+void GUIMenu::initializeItems()
 {
-	std::vector<MenuItem *>::iterator it = _items.begin();
+	std::vector<GUIMenuItem *>::iterator it = _items.begin();
 	while (it != _items.end())
 	{
 		(*it)->initialUpdate();
@@ -202,12 +202,12 @@ void Menu::initializeItems()
 	}
 }
 
-void Menu::setBackground(const std::string &resource)
+void GUIMenu::setBackground(const std::string &resource)
 {
 	_background.setTexture(*Resolver<sf::Texture>::resolve(resource));
 }
 
-void Menu::setPosition(const sf::Vector2f &pos)
+void GUIMenu::setPosition(const sf::Vector2f &pos)
 {
 	for (size_t i = 0; i < _items.size(); i++) //EXPERIMENTAL
 	{
@@ -216,19 +216,19 @@ void Menu::setPosition(const sf::Vector2f &pos)
 	}
 }
 
-void Menu::changeScreen(const std::string &file)
+void GUIMenu::changeScreen(const std::string &file)
 {
 	_screenHandle->changeScreen(file);
 }
 
-bool Menu::update(const sf::Event &e)
+bool GUIMenu::update(const sf::Event &e)
 {
   for (size_t i = 0; i < _items.size(); i++)
     _items[i]->update(e);
   return (true);
 }
 
-void Menu::draw(sf::RenderWindow *win)
+void GUIMenu::draw(sf::RenderWindow *win)
 {
   win->draw(_background);
   win->draw(_title);

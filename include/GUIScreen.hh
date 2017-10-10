@@ -32,7 +32,7 @@ namespace stb {
 	private:
 		std::string _changeLocation;
 		GUIPanel _container;
-		Menu *_menu;
+		GUIMenu *_menu;
 	};
 
 }
