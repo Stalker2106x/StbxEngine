@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<se>
+<screen id="yebakg">
   <menu>
     <title>Test SubMenu</title>
     <background>background</background>
     <spacing>30</spacing>
     <fontsize>16</fontsize>
-    <item type="Link" target="main">
+    <item type="Link" target="main" location="./Data/screen/main.xml">
       <label>Back</label>
     </item>
   </menu>
-</se>
+</screen>

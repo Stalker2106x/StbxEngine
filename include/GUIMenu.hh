@@ -50,7 +50,7 @@ namespace stb {
 
 		virtual const sf::Vector2f &getPosition();
 
-		void changeScreen(const std::string &file);
+		void changeScreen(const std::string &id, const std::string &location = "");
 
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *);

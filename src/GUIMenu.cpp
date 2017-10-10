@@ -118,6 +118,8 @@ void GUIMenu::parseLink(pugi::xml_node &item, GUIMenuItem *pItem, const size_t &
 	sItem->setMenuHandle(this); //Adding Handle for moving
 	if (item.attribute("target"))
 		sItem->setTarget(item.attribute("target").value());
+	if (item.attribute("location"))
+		sItem->setTargetLocation(item.attribute("location").value());
 	if (item.attribute("action"))
 	{
 		std::string action = item.attribute("action").value();
@@ -222,9 +224,9 @@ const sf::Vector2f &GUIMenu::getPosition()
 	return (_items.size() > 0 ? _items[0]->getPosition() : sf::Vector2f(0,0));
 }
 
-void GUIMenu::changeScreen(const std::string &file)
+void GUIMenu::changeScreen(const std::string &id, const std::string &location)
 {
-	_screenHandle->changeScreen(file);
+	_screenHandle->changeScreen(id, location);
 }
 
 bool GUIMenu::update(const sf::Event &e)

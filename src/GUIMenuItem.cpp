@@ -163,6 +163,11 @@ void GUIMenuLink::setTarget(const std::string &target)
 	_target = target;
 }
 
+void GUIMenuLink::setTargetLocation(const std::string &targetLocation)
+{
+	_targetLocation = targetLocation;
+}
+
 void GUIMenuLink::setCustomAction(void(*fptr)(void *), void *cparam)
 {
 	_customPtr = fptr;
@@ -184,7 +189,10 @@ void GUIMenuLink::onClick()
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();
-		_menuHandle->changeScreen("./Data/screen/" + _target + ".xml");
+		if (!_targetLocation.empty())
+			_menuHandle->changeScreen(_target, _targetLocation);
+		else
+			_menuHandle->changeScreen(_target);
 	}
 	else
 		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");

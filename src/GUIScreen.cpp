@@ -5,6 +5,7 @@ using namespace stb;
 GUIScreen::GUIScreen()
  : _container("NULL", Engine::instance->getWindowSize(), sf::Color::Transparent)
 {
+	_changeId = "";
 }
 
 GUIScreen::~GUIScreen()
@@ -17,11 +18,12 @@ void GUIScreen::reset()
 	_container.clear();
 }
 
-bool GUIScreen::loadFromFile(const std::string &file)
+bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenId)
 {
 	pugi::xml_document doc;
 	std::ifstream ifs(file);
 	pugi::xml_parse_result xml;
+	pugi::xml_node screen;
 
 	if (!ifs)
 	{
@@ -33,7 +35,19 @@ bool GUIScreen::loadFromFile(const std::string &file)
 		Engine::instance->console->output(COLOR_ERROR, "Error: Menu: Invalid XML resource");
 		return (false);
 	}
-	for (pugi::xml_node element = doc.child("se").first_child(); element; element = element.next_sibling())
+	_lastLocation = file;
+	screen = doc.first_child();
+	if (!screenId.empty()) //Getting desired screen of id screenId
+	{
+		while (screen.attribute("id").value() != screenId)
+		{
+			if (screen == doc.last_child())
+				return (false);
+			screen = screen.next_sibling();
+		}
+
+	}
+	for (pugi::xml_node element = screen.first_child(); element; element = element.next_sibling())
 	{
 		if (strcmp(element.name(),"menu") == 0)
 			_container.addElement(GUIMenu::parseXML(this, element));
@@ -41,18 +55,25 @@ bool GUIScreen::loadFromFile(const std::string &file)
 	return (true);
 }
 
-void GUIScreen::changeScreen(const std::string &location)
+void GUIScreen::changeScreen(const std::string &id, const std::string &location)
 {
 	_changeLocation = location;
+	_changeId = id;
 }
 
 bool GUIScreen::update(const sf::Event &e)
 {
-	if (!_changeLocation.empty())
+	if (!_changeId.empty())
 	{
 		reset();
-		loadFromFile(_changeLocation);
-		_changeLocation.clear();
+		if (!_changeLocation.empty())
+		{
+			loadFromFile(_changeLocation, _changeId);
+			_changeLocation.clear();
+		}
+		else
+			loadFromFile(_lastLocation, _changeId);
+		_changeId.clear();
 	}
 	_container.update(e);
 	return (true);

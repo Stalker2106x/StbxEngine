@@ -22,15 +22,15 @@ namespace stb {
 
 		void reset();
 
-		bool loadFromFile(const std::string &file);
+		bool loadFromFile(const std::string &file, const std::string &screenId = "");
 
-		void changeScreen(const std::string &location);
+		void changeScreen(const std::string &id, const std::string &location);
 
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *win);
 
 	private:
-		std::string _changeLocation;
+		std::string _lastLocation, _changeLocation, _changeId;
 		GUIPanel _container;
 		GUIMenu *_menu;
 	};

@@ -89,6 +89,7 @@ namespace stb {
 
 		void setMenuHandle(GUIMenu *menu);
 		void setTarget(const std::string &target);
+		void setTargetLocation(const std::string &targetLocation);
 		void setCustomAction(void(*fptr)(void *), void *cparam);
 		void setCommand(const std::string &command);
 
@@ -97,7 +98,7 @@ namespace stb {
 		virtual bool update(const sf::Event &e);
 
 	private:
-		std::string _target;
+		std::string _target, _targetLocation;
 		GUIMenu *_menuHandle;
 		void(*_customPtr)(void *);
 		void *_customParam;

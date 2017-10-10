@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<se>
+<screen id="main">
   <menu>
     <title>Test Menu</title>
     <background>background</background>
     <spacing>30</spacing>
     <fontsize>16</fontsize>
-    <item type="Link" target="opt">
+    <item type="Link" target="yebakg" location="./Data/screen/opt.xml">
       <label>Link</label>
     </item>
     <item type="Setting">
@@ -38,4 +38,26 @@
       <color>#255255255</color>
     </item>
   </menu>
-</se>
+</screen>
+<screen id="yebak">
+  <menu>
+    <title>Test Menu</title>
+    <background>background</background>
+    <spacing>30</spacing>
+    <fontsize>16</fontsize>
+    <item type="Slider">
+      <label>Volume</label>
+      <padding>100</padding>
+      <barwidth>250</barwidth>
+      <min>0</min>
+      <max>100</max>
+    </item>
+    <item type="Checkbox">
+      <label>Checkbox</label>
+    </item>
+    <item type="Link" command="exit">
+      <label>Quit</label>
+      <color>#255255255</color>
+    </item>
+  </menu>
+</screen>
