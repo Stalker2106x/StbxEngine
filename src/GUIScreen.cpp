@@ -2,8 +2,8 @@
 
 using namespace stb;
 
-GUIScreen::GUIScreen()
- : _container("NULL", Engine::instance->getWindowSize(), sf::Color::Transparent)
+GUIScreen::GUIScreen() : GUIElement(""),
+	_container("NULL", Engine::instance->getWindowSize(), sf::Color::Transparent)
 {
 	_changeId = "";
 }
@@ -11,6 +11,16 @@ GUIScreen::GUIScreen()
 GUIScreen::~GUIScreen()
 {
 
+}
+
+void GUIScreen::setPosition(const sf::Vector2f &pos)
+{
+	_container.setPosition(pos);
+}
+
+const sf::Vector2f &GUIScreen::getPosition()
+{
+	return (_container.getPosition());
 }
 
 void GUIScreen::reset()
@@ -45,7 +55,10 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 				return (false);
 			screen = screen.next_sibling();
 		}
-
+	}
+	if (screen.attribute("id"))
+	{
+		_id = screen.attribute("id").value();
 	}
 	for (pugi::xml_node element = screen.first_child(); element; element = element.next_sibling())
 	{

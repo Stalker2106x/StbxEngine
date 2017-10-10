@@ -14,11 +14,14 @@
 
 namespace stb {
 
-	class GUIScreen
+	class GUIScreen : GUIElement
 	{
 	public:
 		GUIScreen();
 		~GUIScreen();
+
+		virtual void setPosition(const sf::Vector2f &pos);
+		virtual const sf::Vector2f &getPosition();
 
 		void reset();
 
