@@ -12,6 +12,60 @@ Each screen must be loaded from an XML resource file, described in the next sect
     <th>Style</th><th>Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value</th>
   </tr>
   <tr>
+    <td colspan="2" rowspan="6">All Elements</td>
+    <td>id</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr><td>label</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>color</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>x</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>y</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>padding</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr>
+    <td colspan="2" rowspan="3">Button</td>
+    <td>target</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr><td>action</td><td>Attribute</td><td></td><td></td><td></td></tr>
+  <tr><td>command</td><td>Attribute</td><td></td><td></td><td></td></tr>
+  <tr>
+    <td colspan="2" rowspan="1">ButtonBar</td>
+    <td>id</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="1">Checkbox</td>
+    <td>checked</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="1">Edit</td>
+    <td>maxLength</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr><td>width</td><td>Attribute</td><td></td><td></td><td></td>
+  <tr>
+    <td colspan="2" rowspan="1">Panel</td>
+    <td>geometry</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="1">Screen</td>
+    <td>geometry</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="1">Indicator</td>
+    <td>reference</td><td>Node</td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="1">Text</td>
+    <td>text</td><td>Node</td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="1">TextArea</td>
+    <td>N/A</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Style</th><th>Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value</th>
+  </tr>
+  <tr>
     <td colspan="2" rowspan="6">All Items</td>
     <td>id</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>

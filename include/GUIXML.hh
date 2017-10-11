@@ -40,7 +40,7 @@ namespace stb
 	typedef GUIElement *(*XMLParserFptr)(const pugi::xml_node &);
 
 	// This map binds XML Nodes names to corresponding C++ Parser
-	extern std::map<std::string, XMLParserFptr> GUIXMLElementType;
+	extern std::map<std::string, XMLParserFptr> GUIXMLElementParser;
 }
 
 #endif /* !GUIXML_HH_ */
