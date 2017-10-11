@@ -1,6 +1,6 @@
 /*!
  * @file      Control.hh
- * @class     Control
+ * @class     stb::Control
  * @brief     Key, or Mouse event
  *
  *            This class is a layer above SFML Controls, allowing usage of mouse and keyboard events generically,

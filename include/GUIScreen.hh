@@ -1,12 +1,11 @@
 /*!
 * @file      GUIScreen.hh
-* @class     GUIScreen
+* @class     stb::GUIScreen
 * @brief     Representation of out-of-game interfaces with various elements.
 *
 *            This class provides a container to arrange multiple GUIElements together with Menus
 *
 */
-
 #ifndef GUISCREEN_HH_
 #define GUISCREEN_HH_
 

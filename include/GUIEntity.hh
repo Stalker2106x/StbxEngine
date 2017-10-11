@@ -1,6 +1,6 @@
 /*!
-* @file      GUIElement.hh
-* @brief     Heads up display module
+* @file      GUIEntity.hh
+* @brief     Implements standard GUI Entities
 *
 *            This classes set provide GUI elements to draw info over the renderer frame.
 *            They should be managed through GUI module and its containers

@@ -1,6 +1,6 @@
 /*!
  * @file      Keybinds.hh
- * @class     Keybinds
+ * @class     stb::Keybinds
  * @brief     Dictionnary of current bound keys at runtime
  *
  *            This class is designed to manipulate all the Control associations in your program with actions.

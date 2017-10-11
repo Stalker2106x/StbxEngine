@@ -1,15 +1,17 @@
+/*!
+* @file  GUIElement.hh
+* @class stb::GUIElement
+* @brief Abstract GUI Element superclass.
+*
+*        This class should not be instanciated. It is used as an abstract layer (Superclass) to store Panels or Indicators generically in GUI class.
+*/
 #ifndef GUIELEMENT_HH_
 #define GUIELEMENT_HH_
 
 #include <SFML/Graphics.hpp>
 
 namespace stb {
-	/*!
-	* @class GUIElement
-	* @brief Abstract GUI Element superclass.
-	*
-	*        This class should not be instanciated. It is used as an abstract layer (Superclass) to store Panels or Indicators generically in GUI class.
-	*/
+
 	class GUIElement
 	{
 	public:
