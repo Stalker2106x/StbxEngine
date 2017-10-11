@@ -1,12 +1,23 @@
-## Designing Menus ##
+## Designing GUI Screens (Menus) ##
 
-The menu system is handled by the Menu class that acts as a container for MenuItem elements.\n
-Each Menu must be loaded from an XML resource file, described in the next section\n
+The GUIScreen class is the starting point of the engine interfaces. It handles layout on screen of menus, sprites, and various GUIElements together.
+The GUIMenu class is a GUIElement that can be added to GUIScreen, and represents a clickable menu that handle labels, controls/values and their various interactions.
+It acts as a container for GUIMenuItem elements.\n
+Each screen must be loaded from an XML resource file, described in the next section\n
 
 <table>
   <tr>
     <th>Style</th><th>Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value</th>
   </tr>
+  <tr>
+    <td colspan="2" rowspan="6">All Items</td>
+    <td>id</td><td>Attribute</td><td></td><td></td><td></td>
+  </tr>
+  <tr><td>label</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>color</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>x</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>y</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr><td>padding</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr>
     <td colspan="2" rowspan="4">Menu</td>
     <td>title</td><td>Element</td><td></td><td></td><td></td>
@@ -14,14 +25,6 @@ Each Menu must be loaded from an XML resource file, described in the next sectio
   <tr><td>background</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>spacing</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>fontsize</td><td>Element</td><td></td><td></td><td></td></tr>
-  <tr>
-    <td colspan="2" rowspan="5">All Items</td>
-    <td>label</td><td>Element</td><td></td><td></td><td></td>
-  </tr>
-  <tr><td>color</td><td>Element</td><td></td><td></td><td></td></tr>
-  <tr><td>x</td><td>Element</td><td></td><td></td><td></td></tr>
-  <tr><td>y</td><td>Element</td><td></td><td></td><td></td></tr>
-  <tr><td>padding</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr>
     <td rowspan="3"></td><td rowspan="3">Link</td>
     <td>target</td><td>Attribute</td><td></td><td></td><td></td>
@@ -46,6 +49,10 @@ Each Menu must be loaded from an XML resource file, described in the next sectio
     <td>min</td><td>Element</td><td></td><td></td><td></td>
   </tr>
   <tr><td>max</td><td>Element</td><td></td><td></td><td></td></tr>
+  <tr>
+    <td rowspan="2"></td><td rowspan="2">Checkbox</td><td colspan="5"></td>
+    <!--<td>min</td><td>Element</td><td></td><td></td><td></td>-->
+  </tr>
 </table>
 
 ### Create your XML menu

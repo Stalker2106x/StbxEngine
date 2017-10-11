@@ -141,7 +141,6 @@ namespace stb {
 	class GUIText : public GUIElement
 	{
 	public:
-		GUIText();
 		GUIText(const std::string &id = "");
 		virtual ~GUIText();
 		void initialUpdate();
