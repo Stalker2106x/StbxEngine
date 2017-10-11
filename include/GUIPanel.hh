@@ -38,6 +38,7 @@ namespace stb {
 		void clear();
 
 		virtual void setPosition(const sf::Vector2f &pos);
+		void setBackground(const std::string &resource);
 		void setStyle(char style);
 
 		virtual const sf::Vector2f &getPosition();

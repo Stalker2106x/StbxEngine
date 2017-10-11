@@ -32,7 +32,10 @@ namespace stb {
 			else if (std::is_same<T, sf::Texture>::value)
 				obj->loadFromFile(path + "texture/" + name + ".png");
 			else
+			{
+				//Engine::instance->console->output(COLOR_ERROR, "Error: Resolver: Resource of id \"" + name + "\" not found"); //Should be implemented, cannot because of cross-inc.
 				return (NULL);
+			}
 			if (!unique)
 				resources.emplace(name, obj);
 			return (obj);

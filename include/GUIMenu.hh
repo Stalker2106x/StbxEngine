@@ -63,7 +63,6 @@ namespace stb {
 		int _id, _parentId;
 		int _spacing, _fontsize;
 		sf::Sprite _background;
-		sf::Text _title;
 		itemTab _items;
 	};
 

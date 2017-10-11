@@ -56,16 +56,21 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 			screen = screen.next_sibling();
 		}
 	}
-	if (screen.attribute("id"))
-	{
-		_id = screen.attribute("id").value();
-	}
+	parseScreen(screen);
 	for (pugi::xml_node element = screen.first_child(); element; element = element.next_sibling())
 	{
 		if (strcmp(element.name(),"menu") == 0)
 			_container.addElement(GUIMenu::parseXML(this, element));
 	} 
 	return (true);
+}
+
+void GUIScreen::parseScreen(const pugi::xml_node &screen)
+{
+	if (screen.attribute("id"))
+		_id = screen.attribute("id").value();
+	if (screen.child("background"))
+		_container.setBackground(screen.child_value("background"));
 }
 
 void GUIScreen::changeScreen(const std::string &id, const std::string &location)

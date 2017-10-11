@@ -10,6 +10,11 @@
 #ifndef GUISCREEN_HH_
 #define GUISCREEN_HH_
 
+
+#ifdef STBXENGINE_CORE
+#include <pugixml.hpp>
+#endif
+
 #include "GUIMenu.hh"
 
 namespace stb {
@@ -26,6 +31,10 @@ namespace stb {
 		void reset();
 
 		bool loadFromFile(const std::string &file, const std::string &screenId = "");
+
+#ifdef STBXENGINE_CORE
+		void parseScreen(const pugi::xml_node &screen);
+#endif
 
 		void changeScreen(const std::string &id, const std::string &location);
 

@@ -1,9 +1,11 @@
 ## Designing GUI Screens (Menus) ##
 
-The GUIScreen class is the starting point of the engine interfaces. It handles layout on screen of menus, sprites, and various GUIElements together.
-The GUIMenu class is a GUIElement that can be added to GUIScreen, and represents a clickable menu that handle labels, controls/values and their various interactions.
+The GUIScreen class is the starting point of the engine interfaces. It handles layout on screen of menus, sprites, and various GUIElements together.\n
+The GUIMenu class is a GUIElement that can be added to GUIScreen, and represents a clickable menu that handle labels, controls/values and their various interactions.\n
 It acts as a container for GUIMenuItem elements.\n
 Each screen must be loaded from an XML resource file, described in the next section\n
+
+### StbxEngine XML Reference
 
 <table>
   <tr>
@@ -19,12 +21,11 @@ Each screen must be loaded from an XML resource file, described in the next sect
   <tr><td>y</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>padding</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr>
-    <td colspan="2" rowspan="4">Menu</td>
-    <td>title</td><td>Element</td><td></td><td></td><td></td>
+    <td colspan="2" rowspan="3">Menu</td>
+    <td>fontsize</td><td>Element</td><td></td><td></td><td></td>
   </tr>
   <tr><td>background</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>spacing</td><td>Element</td><td></td><td></td><td></td></tr>
-  <tr><td>fontsize</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr>
     <td rowspan="3"></td><td rowspan="3">Link</td>
     <td>target</td><td>Attribute</td><td></td><td></td><td></td>
@@ -50,52 +51,56 @@ Each screen must be loaded from an XML resource file, described in the next sect
   </tr>
   <tr><td>max</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr>
-    <td rowspan="2"></td><td rowspan="2">Checkbox</td><td colspan="5"></td>
+    <td rowspan="1"></td><td rowspan="1">Checkbox</td><td colspan="5"></td>
     <!--<td>min</td><td>Element</td><td></td><td></td><td></td>-->
   </tr>
 </table>
 
-### Create your XML menu
+### Create your XML screen
 
-To instanciate a menu in your project, you have to create a valid XML resource to build it from.\n
+To instanciate a GUIScreen in your project, you have to create a valid XML resource to load it from.\n
 
-Here is a valid example menu.xml
+Here is a valid example screen.xml
 
-      <?xml version="1.0" encoding="UTF-8"?>
-      <menu>
-           <title>Test Menu</title>
-           <background>background</background>
-	   <spacing>30</spacing>
-	   <fontsize>16</fontsize>
-	   <item type="Link" target="opt">
-	        <label>Link</label>
-	   </item>
-	   <item type="Setting">
-	        <label>Refresh Rate</label>
-	        <padding>150</padding>
-	        <setting>50Hz</setting>
-	        <setting>60Hz</setting>
-	   </item>
-	   <item type="DynamicSetting" filler="Resolutions">
-	        <label>Resolution</label>
-	   </item>
-	   <item type="Edit">
-	        <label>Pseudo</label>
-	        <padding>125</padding>
-	        <inputlength>200</inputlength>
-	        <inputcolor>#050050255</inputcolor>
-	   </item>
-     	   <item type="Slider">
-     	   	<label>Volume</label>
-      		<padding>100</padding>
-      		<min>0</min>
-      		<max>100</max>
-      	   </item>
-	   <item type="Link">
-	        <label>Quit</label>
-	        <color>#255255255</color>
-	   </item>
-      </menu>
+        <screen id="main">    <!-- We declare a screen with id "main" -->
+          <background>background</background>     <!-- We define the screen background -->
+          <menu>              <!-- We add a menu to the screen to hold all of our controls -->
+            <spacing>30</spacing>
+            <fontsize>16</fontsize>
+            <item type="Link" target="yebakg" location="./Data/screen/opt.xml">
+              <label>Link</label>
+            </item>
+            <item type="Setting">
+              <label>Refresh Rate</label>
+              <padding>150</padding>
+              <setting>50Hz</setting>
+              <setting>60Hz</setting>
+            </item>
+            <item type="DynamicSetting" filler="Resolutions" y="400">
+              <label>Resolution</label>
+            </item>
+            <item type="Edit">
+              <label>Pseudo</label>
+              <padding>125</padding>
+              <inputlength>200</inputlength>
+              <inputcolor>#050050255</inputcolor>
+            </item>
+            <item type="Slider">
+              <label>Volume</label>
+              <padding>100</padding>
+              <barwidth>250</barwidth>
+              <min>0</min>
+              <max>100</max>
+            </item>
+            <item type="Checkbox">
+              <label>Checkbox</label>
+            </item>
+            <item type="Link" command="exit">
+              <label>Quit</label>
+              <color>#255255255</color>
+            </item>
+          </menu>
+        </screen>
 
 ### Load your menu
 

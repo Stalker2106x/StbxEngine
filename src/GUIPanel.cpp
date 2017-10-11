@@ -61,6 +61,11 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 	}
 }
 
+void GUIPanel::setBackground(const std::string &resource)
+{
+	_frame.setTexture(*Resolver<sf::Texture>::resolve(resource));
+}
+
 const sf::Vector2f &GUIPanel::getPosition()
 {
 	return (_frame.getPosition());

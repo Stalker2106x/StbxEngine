@@ -49,10 +49,6 @@ GUIMenu *GUIMenu::parseXML(GUIScreen *screenHandle, pugi::xml_node &menu)
 
 void GUIMenu::parseMenu(const pugi::xml_node &menu)
 {
-	if (menu.child("title"))
-		_title.setString(menu.child_value("title"));
-	if (menu.child("background"))
-		setBackground(menu.child_value("background"));
 	if (menu.child("spacing"))
 		_spacing = atoi(menu.child_value("spacing"));
 	if (menu.child("fontsize"))
@@ -238,8 +234,6 @@ bool GUIMenu::update(const sf::Event &e)
 
 void GUIMenu::draw(sf::RenderWindow *win)
 {
-  win->draw(_background);
-  win->draw(_title);
   for (size_t i = 0; i < _items.size(); i++)
     _items[i]->draw(win);
 }
