@@ -35,10 +35,10 @@ Each screen must be loaded from an XML resource file, described in the next sect
     <td>checked</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td colspan="2" rowspan="1">Edit</td>
+    <td colspan="2" rowspan="2">Edit</td>
     <td>maxLength</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
-  <tr><td>width</td><td>Attribute</td><td></td><td></td><td></td>
+  <tr><td>geometry</td><td>Attribute</td><td></td><td></td><td></td></tr>
   <tr>
     <td colspan="2" rowspan="1">Panel</td>
     <td>geometry</td><td>Attribute</td><td></td><td></td><td></td>
