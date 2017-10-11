@@ -18,8 +18,16 @@ GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node)
 {
 	if (!node.name())
 		return (NULL);
-	return (GUIXMLElementParser[node.name()](node));
+	GUIElement *element = GUIXMLElementParser[node.name()](node);
+	GUIGenericFromXML(node, element);
+	return (element);
 }
+
+void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
+{
+	element->setId(node.attribute("id").as_string(DEFAULT_ID));
+}
+
 
 GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {
@@ -55,8 +63,10 @@ GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node)
 
 GUIElement *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node)
 {
-	GUIScreen *element = new GUIScreen();
-	return (element);
+	GUIScreen *screen = new GUIScreen();
+	if (node.child("background"))
+		screen->setBackground(node.child_value("background"));
+	return (screen);
 }
 
 GUIElement *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node)

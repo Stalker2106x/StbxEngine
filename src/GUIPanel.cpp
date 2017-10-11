@@ -81,7 +81,7 @@ bool GUIPanel::updateRT()
 
 bool GUIPanel::update(const sf::Event &e)
 {
-	if (!GUIElement::update(e))
+	if (!_active)
 		return (false);
 	for (size_t i = 0; i < _elements.size(); i++)
 		_elements[i]->update(e);

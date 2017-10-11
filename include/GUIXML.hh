@@ -11,9 +11,11 @@
 
 #include <pugixml.hpp>
 #include "GUIScreen.hh"
-#include "GUIElement.hh"
+#include "GUIElement.hpp"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
+
+#define DEFAULT_ID ""
 
 namespace stb
 {
@@ -21,6 +23,7 @@ namespace stb
 	{
 	public:
 		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node);
+		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
 
 		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node);

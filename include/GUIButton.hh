@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <functional>
 #include <vector>
-#include "GUIElement.hh"
+#include "GUIElement.hpp"
 
 namespace stb {
 	

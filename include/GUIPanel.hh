@@ -7,7 +7,7 @@
 #ifndef GUIPANEL_HH_
 #define GUIPANEL_HH_
 
-#include "GUIElement.hh"
+#include "GUIElement.hpp"
 #include "GUIButton.hh"
 
 namespace stb {

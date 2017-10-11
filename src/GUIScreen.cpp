@@ -18,6 +18,11 @@ void GUIScreen::setPosition(const sf::Vector2f &pos)
 	_container.setPosition(pos);
 }
 
+void GUIScreen::setBackground(const std::string &resource)
+{
+	_container.setBackground(resource);
+}
+
 const sf::Vector2f &GUIScreen::getPosition()
 {
 	return (_container.getPosition());
@@ -67,10 +72,6 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 
 void GUIScreen::parseScreen(const pugi::xml_node &screen)
 {
-	if (screen.attribute("id"))
-		_id = screen.attribute("id").value();
-	if (screen.child("background"))
-		_container.setBackground(screen.child_value("background"));
 }
 
 void GUIScreen::changeScreen(const std::string &id, const std::string &location)

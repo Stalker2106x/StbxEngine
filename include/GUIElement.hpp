@@ -5,8 +5,8 @@
 *
 *        This class should not be instanciated. It is used as an abstract layer (Superclass) to store Panels or Indicators generically in GUI class.
 */
-#ifndef GUIELEMENT_HH_
-#define GUIELEMENT_HH_
+#ifndef GUIELEMENT_HPP_
+#define GUIELEMENT_HPP_
 
 #include <SFML/Graphics.hpp>
 
@@ -15,14 +15,17 @@ namespace stb {
 	class GUIElement
 	{
 	public:
-		GUIElement(const std::string &id);
+		GUIElement(const std::string &id) : _id(id), _active(true) {}
 		virtual ~GUIElement() {};
 
-		virtual void toggle();
-		const std::string &getId();
+		virtual void toggle() { _active = (_active ? false : true); };
 
-		virtual void setPosition(const sf::Vector2f &pos) = 0;
+		const std::string &getId() { return (_id); }
 		virtual const sf::Vector2f &getPosition() = 0;
+
+
+		void setId(const std::string &id) {	_id = id; };
+		virtual void setPosition(const sf::Vector2f &pos) = 0;
 
 		virtual bool updateRT() { return (true); }; //Real time update, called more than one time between frames
 		virtual bool update(const sf::Event &e) = 0;
@@ -34,4 +37,4 @@ namespace stb {
 
 }
 
-#endif /* !GUIELEMENT_HH_ */
+#endif /* !GUIELEMENT_HPP_ */

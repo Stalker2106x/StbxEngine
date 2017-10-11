@@ -40,7 +40,7 @@ const sf::Vector2f &GUISIndicator::getPosition()
 
 bool GUISIndicator::update(const sf::Event &e)
 {
-	if (!GUIElement::update(e))
+	if (!_active)
 		return (false);
 	return (true);
 }

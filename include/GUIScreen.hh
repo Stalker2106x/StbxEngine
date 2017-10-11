@@ -25,6 +25,8 @@ namespace stb {
 		~GUIScreen();
 
 		virtual void setPosition(const sf::Vector2f &pos);
+		void setBackground(const std::string &resource);
+
 		virtual const sf::Vector2f &getPosition();
 
 		void reset();

@@ -137,14 +137,13 @@
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
     <ClCompile Include="..\..\src\GUIScreen.cpp" />
-    <ClInclude Include="..\..\include\GUIElement.hh" />
+    <ClInclude Include="..\..\include\GUIElement.hpp" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
     <ClCompile Include="..\..\src\Control.cpp" />
     <ClCompile Include="..\..\src\GUI.cpp" />
     <ClCompile Include="..\..\src\Engine.cpp" />
     <ClCompile Include="..\..\src\GUIButton.cpp" />
-    <ClCompile Include="..\..\src\GUIElement.cpp" />
     <ClCompile Include="..\..\src\GUIEntity.cpp" />
     <ClCompile Include="..\..\src\GUIPanel.cpp" />
     <ClCompile Include="..\..\src\GUIXML.cpp" />

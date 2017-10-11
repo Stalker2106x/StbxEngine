@@ -62,7 +62,7 @@ void GUIButton::onRClick()
 
 bool GUIButton::update(const sf::Event &e)
 {
-	if (!GUIElement::update(e))
+	if (!_active)
 		return (false);
 	if (e.type == _triggerType && _hover)
 	{
