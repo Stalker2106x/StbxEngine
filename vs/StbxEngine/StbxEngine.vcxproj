@@ -132,6 +132,7 @@
     <ClInclude Include="..\..\include\GUIMenuItem.hh" />
     <ClInclude Include="..\..\include\Resolver.hh" />
     <ClInclude Include="..\..\include\GUIScreen.hh" />
+    <ClInclude Include="..\..\include\GUIXML.hh" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="..\..\src\GUIElement.cpp" />
     <ClCompile Include="..\..\src\GUIEntity.cpp" />
     <ClCompile Include="..\..\src\GUIPanel.cpp" />
+    <ClCompile Include="..\..\src\GUIXML.cpp" />
     <ClCompile Include="..\..\src\Keybinds.cpp" />
     <ClCompile Include="..\..\src\GUIMenu.cpp" />
     <ClCompile Include="..\..\src\GUIMenuItem.cpp" />
