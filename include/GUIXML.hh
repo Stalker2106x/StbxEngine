@@ -1,5 +1,6 @@
 /*!
 * @file      GUIXML.hh
+* @class     GUIXML
 * @brief     GUI XML Parser
 *
 *            This classes set provide GUI elements loaders from XML Screens resources.

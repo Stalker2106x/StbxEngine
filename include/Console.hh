@@ -1,6 +1,6 @@
 /*!
  * @file      Console.hh
- * @class     Console
+ * @class     stb::Console
  * @brief     Integrated toggleable developer console
  *
  *            This console is designed to provide to developer and advanced users a way to easily configure

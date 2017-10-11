@@ -1,6 +1,6 @@
 /*!
 * @file      GUI.hh
-* @class     GUI
+* @class     stb::GUI
 * @brief     Heads up display module
 *
 *            This classes set provide usable GUI to draw info over the renderer frame.

@@ -1,6 +1,6 @@
 /*!
  * @file      GUIMenu.hh
- * @class     GUIMenu
+ * @class     stb::GUIMenu
  * @brief     Simple class for generating GUI menus.
  *
  *            This class is used to build menus from XML, and handle user behaviour inside.

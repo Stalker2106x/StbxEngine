@@ -1,6 +1,6 @@
 /*!
  * @file      Engine.hpp
- * @class     Engine
+ * @class     stb::Engine
  * @brief     Main class for graphic conception
  *
  *            This the base class of the project.
