@@ -6,6 +6,10 @@ BUG:
 -GUILink, make GUIMenuLink inherit from it, and GUILinkButton, a class that adds
 link button to gui. it should steal all of GUIMenuLink implementation, and clean
 off GUIMenuLink
+-GUIMenu should get rid of atoi, atof, convertBool.... And use pugixml
+implementation of as_int, as_bool, ..., furthermore, as they take a default
+value as parameter, we can stop all the tests we made, and go through all
+supported params one by one without checking if they exists.
 
 FEATURE:
 -show list of predicates under console input
