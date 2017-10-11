@@ -8,12 +8,38 @@
 #ifndef GUIXML_HH_
 #define GUIXML_HH_
 
-class GUIXML
+#include <pugixml.hpp>
+#include "GUIScreen.hh"
+#include "GUIElement.hh"
+#include "GUIEntity.hh"
+#include "GUIPanel.hh"
+
+namespace stb
 {
-public:
+	class GUIXML
+	{
+	public:
+		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node);
 
-private:
+		static GUIButton *getGUIButtonFromXML(const pugi::xml_node &node);
+		static GUIButtonBar *getGUIButtonBarFromXML(const pugi::xml_node &node);
+		static GUICheckbox *getGUICheckboxFromXML(const pugi::xml_node &node);
+		static GUIEdit *getGUIEditFromXML(const pugi::xml_node &node);
+		static GUIPanel *getGUIPanelFromXML(const pugi::xml_node &node);
+		static GUIScreen *getGUIScreenFromXML(const pugi::xml_node &node);
+		static GUISIndicator *getGUIIndicatorFromXML(const pugi::xml_node &node);
+		static GUIText *getGUITextFromXML(const pugi::xml_node &node);
+		static GUITextArea *getGUITextAreaFromXML(const pugi::xml_node &node);
 
-};
+	private:
+
+	};
+
+	//Pointer to GUIXML parsing function
+	typedef GUIElement *(*XMLParserFptr)(const pugi::xml_node &);
+
+	// This map binds XML Nodes names to corresponding C++ Parser
+	extern std::map<std::string, XMLParserFptr> GUIXMLElementType;
+}
 
 #endif /* !GUIXML_HH_ */

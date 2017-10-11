@@ -18,7 +18,8 @@ namespace stb {
 
 	namespace Commands {
 
-		typedef std::map<std::string, void(*)(Engine &, std::vector<std::string> *)> cmdMap;
+		typedef void(*cmdFptr)(Engine &, std::vector<std::string> *);
+		typedef std::map<std::string, cmdFptr> cmdMap;
 		extern cmdMap cmdlist;
 
 		bool convertBool(std::string &arg);
