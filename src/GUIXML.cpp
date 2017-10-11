@@ -21,12 +21,12 @@ GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node)
 	GUIXMLElementType[node.name()](node);
 }
 
-GUIButton *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node) {}
-GUIButtonBar *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node) {}
-GUICheckbox *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node) {}
-GUIEdit *GUIXML::getGUIEditFromXML(const pugi::xml_node &node) {}
-GUIPanel *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node) {}
-GUIScreen *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node) {}
-GUISIndicator *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node) {}
-GUIText *GUIXML::getGUITextFromXML(const pugi::xml_node &node) {}
-GUITextArea *GUIXML::getGUITextAreaFromXML(const pugi::xml_node &node) {}
+GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUITextFromXML(const pugi::xml_node &node) { return (NULL); }
+GUIElement *GUIXML::getGUITextAreaFromXML(const pugi::xml_node &node) { return (NULL); }

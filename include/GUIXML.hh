@@ -22,15 +22,15 @@ namespace stb
 	public:
 		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node);
 
-		static GUIButton *getGUIButtonFromXML(const pugi::xml_node &node);
-		static GUIButtonBar *getGUIButtonBarFromXML(const pugi::xml_node &node);
-		static GUICheckbox *getGUICheckboxFromXML(const pugi::xml_node &node);
-		static GUIEdit *getGUIEditFromXML(const pugi::xml_node &node);
-		static GUIPanel *getGUIPanelFromXML(const pugi::xml_node &node);
-		static GUIScreen *getGUIScreenFromXML(const pugi::xml_node &node);
-		static GUISIndicator *getGUIIndicatorFromXML(const pugi::xml_node &node);
-		static GUIText *getGUITextFromXML(const pugi::xml_node &node);
-		static GUITextArea *getGUITextAreaFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUICheckboxFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIEditFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIPanelFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIScreenFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIIndicatorFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUITextFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUITextAreaFromXML(const pugi::xml_node &node);
 
 	private:
 
