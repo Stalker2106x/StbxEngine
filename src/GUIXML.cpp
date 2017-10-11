@@ -23,45 +23,56 @@ GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node)
 
 GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {
+	//Detected later based on background
+	//	GUIButton *element = new GUIButton();
 	return (NULL);
 }
 
 GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node)
 {
+	//Detected later based on Horizontal or vertical
+	//GUIButtonBar *element = new GUIButtonBar();
 	return (NULL);
 }
 
 GUIElement *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node)
 {
-	return (NULL);
+	GUICheckbox *element = new GUICheckbox();
+	return (element);
 }
 
 GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node)
 {
-	return (NULL);
+	GUIEdit *element = new GUIEdit();
+	return (element);
 }
 
 GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node)
 {
-	return (NULL);
+	GUIPanel *element = new GUIPanel();
+	return (element);
 }
 
 GUIElement *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node)
 {
-	return (NULL);
+	GUIScreen *element = new GUIScreen();
+	return (element);
 }
 
 GUIElement *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node)
 {
-	return (NULL);
+	GUISIndicator *element = new GUISIndicator();
+	return (element);
 }
 
 GUIElement *GUIXML::getGUITextFromXML(const pugi::xml_node &node)
 {
-	return (NULL);
+	GUIText *element = new GUIText();
+	return (element);
 }
 
 GUIElement *GUIXML::getGUITextAreaFromXML(const pugi::xml_node &node)
 {
-	return (NULL);
+	GUITextArea *element = new GUITextArea();
+	return (element);
 }

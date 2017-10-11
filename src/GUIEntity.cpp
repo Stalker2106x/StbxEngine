@@ -225,6 +225,11 @@ const sf::Vector2f &GUITextArea::getPosition()
 	return (_container.getPosition());
 }
 
+bool GUITextArea::update(const sf::Event &e)
+{
+	return (true);
+}
+
 void GUITextArea::draw(sf::RenderWindow *win)
 {
 	win->draw(_container);
@@ -289,6 +294,11 @@ const sf::Vector2f &GUIText::getSize()
 const sf::Vector2f &GUIText::getPosition()
 {
 	return (_container.getPosition());
+}
+
+bool GUIText::update(const sf::Event &e)
+{
+	return (true);
 }
 
 void GUIText::draw(sf::RenderWindow *win)

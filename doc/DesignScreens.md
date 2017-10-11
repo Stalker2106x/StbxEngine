@@ -15,7 +15,6 @@ Each screen must be loaded from an XML resource file, described in the next sect
     <td colspan="2" rowspan="6">All Elements</td>
     <td>id</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
-  <tr><td>label</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>color</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>x</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>y</td><td>Element</td><td></td><td></td><td></td></tr>
@@ -28,7 +27,7 @@ Each screen must be loaded from an XML resource file, described in the next sect
   <tr><td>command</td><td>Attribute</td><td></td><td></td><td></td></tr>
   <tr>
     <td colspan="2" rowspan="1">ButtonBar</td>
-    <td>id</td><td>Attribute</td><td></td><td></td><td></td>
+    <td>N/A</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr>
     <td colspan="2" rowspan="1">Checkbox</td>

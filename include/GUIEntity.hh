@@ -23,7 +23,7 @@ namespace stb {
 	class GUISIndicator : public GUIElement
 	{
 	public:
-		GUISIndicator(const std::string &label);
+		GUISIndicator(const std::string &label = "");
 		virtual ~GUISIndicator();
 
 		void setFontsize(int fontSize);
@@ -155,6 +155,7 @@ namespace stb {
 
 		bool onHover(bool triggered);
 
+		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 
 	private:
@@ -186,6 +187,7 @@ namespace stb {
 
 		bool onHover(bool triggered);
 
+		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 
 	private:
