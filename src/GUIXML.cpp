@@ -4,15 +4,15 @@
 using namespace stb;
 
 std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
-	{ "Button", &GUIXML::getGUIButtonFromXML },
-	{ "ButtonBar", &GUIXML::getGUIButtonBarFromXML },
-	{ "Checkbox", &GUIXML::getGUICheckboxFromXML },
-	{ "Edit", &GUIXML::getGUIEditFromXML },
-	{ "Panel", &GUIXML::getGUIPanelFromXML },
-	{ "Screen", &GUIXML::getGUIScreenFromXML },
-	{ "Indicator", &GUIXML::getGUIIndicatorFromXML },
-	{ "Text", &GUIXML::getGUITextFromXML },
-	{ "TextArea", &GUIXML::getGUITextAreaFromXML }
+	{ "button", &GUIXML::getGUIButtonFromXML },
+	{ "buttonBar", &GUIXML::getGUIButtonBarFromXML },
+	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
+	{ "edit", &GUIXML::getGUIEditFromXML },
+	{ "panel", &GUIXML::getGUIPanelFromXML },
+	{ "screen", &GUIXML::getGUIScreenFromXML },
+	{ "indicator", &GUIXML::getGUIIndicatorFromXML },
+	{ "text", &GUIXML::getGUITextFromXML },
+	{ "textArea", &GUIXML::getGUITextAreaFromXML }
 };
 
 GUIElement *GUIXML::getGUIElementFromXML(GUIScreen *container, const pugi::xml_node &node)

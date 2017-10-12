@@ -12,7 +12,7 @@ Each screen must be loaded from an XML resource file, described in the next sect
     <th>Style</th><th>Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value</th>
   </tr>
   <tr>
-    <td colspan="2" rowspan="6">All Elements</td>
+    <td colspan="2" rowspan="4">All Elements</td>
     <td>id</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr><td>color</td><td>Element</td><td></td><td></td><td></td></tr>
@@ -20,42 +20,42 @@ Each screen must be loaded from an XML resource file, described in the next sect
   <tr><td>y</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr><td>padding</td><td>Element</td><td></td><td></td><td></td></tr>
   <tr>
-    <td colspan="2" rowspan="3">Button</td>
+    <td colspan="2" rowspan="2">Button</td>
     <td>target</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr><td>action</td><td>Attribute</td><td></td><td></td><td></td></tr>
   <tr><td>command</td><td>Attribute</td><td></td><td></td><td></td></tr>
   <tr>
-    <td colspan="2" rowspan="1">ButtonBar</td>
+    <td colspan="2" rowspan="0">ButtonBar</td>
     <td>N/A</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td colspan="2" rowspan="1">Checkbox</td>
+    <td colspan="2" rowspan="0">Checkbox</td>
     <td>checked</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td colspan="2" rowspan="2">Edit</td>
+    <td colspan="2" rowspan="1">Edit</td>
     <td>maxLength</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr><td>geometry</td><td>Attribute</td><td></td><td></td><td></td></tr>
   <tr>
-    <td colspan="2" rowspan="1">Panel</td>
+    <td colspan="2" rowspan="0">Panel</td>
     <td>geometry</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td colspan="2" rowspan="1">Screen</td>
+    <td colspan="2" rowspan="0">Screen</td>
     <td>geometry</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td colspan="2" rowspan="1">Indicator</td>
+    <td colspan="2" rowspan="0">Indicator</td>
     <td>reference</td><td>Node</td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td colspan="2" rowspan="1">Text</td>
+    <td colspan="2" rowspan="0">Text</td>
     <td>text</td><td>Node</td><td></td><td></td><td></td>
   </tr>
   <tr>
-    <td colspan="2" rowspan="1">TextArea</td>
+    <td colspan="2" rowspan="0">TextArea</td>
     <td>N/A</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>
 </table>
