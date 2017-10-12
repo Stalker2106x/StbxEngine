@@ -30,7 +30,7 @@ namespace stb {
 	class GUIPanel : public GUIElement
 	{
 	public:
-		GUIPanel();
+		GUIPanel() : GUIElement(""), _buttonBar(Horizontal) {};
 		GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color);
 		GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name);
 		virtual ~GUIPanel();

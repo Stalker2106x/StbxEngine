@@ -1,8 +1,9 @@
 #include "GUIXML.hh"
+#include "GUIScreen.hh"
 
 using namespace stb;
 
-std::map<std::string, XMLParserFptr> GUIXMLElementParser = {
+std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "Button", &GUIXML::getGUIButtonFromXML },
 	{ "ButtonBar", &GUIXML::getGUIButtonBarFromXML },
 	{ "Checkbox", &GUIXML::getGUICheckboxFromXML },
@@ -14,18 +15,25 @@ std::map<std::string, XMLParserFptr> GUIXMLElementParser = {
 	{ "TextArea", &GUIXML::getGUITextAreaFromXML }
 };
 
-GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node)
+GUIElement *GUIXML::getGUIElementFromXML(GUIScreen *container, const pugi::xml_node &node)
 {
 	if (!node.name())
 		return (NULL);
 	GUIElement *element = GUIXMLElementParser[node.name()](node);
-	GUIGenericFromXML(node, element);
+	GUIGenericFromXML(container, node, element);
 	return (element);
 }
 
-void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
+void GUIXML::GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node, GUIElement *element)
 {
 	element->setId(node.attribute("id").as_string(DEFAULT_ID));
+	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
+	{
+		if (GUIXMLElementParser.count(it.name()))
+		{
+			container->addElement(getGUIElementFromXML(container, it));
+		}
+	}
 }
 
 

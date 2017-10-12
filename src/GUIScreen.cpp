@@ -28,6 +28,11 @@ const sf::Vector2f &GUIScreen::getPosition()
 	return (_container.getPosition());
 }
 
+void GUIScreen::addElement(GUIElement *element)
+{
+	_container.addElement(element);
+}
+
 void GUIScreen::reset()
 {
 	_container.clear();
@@ -42,12 +47,12 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 
 	if (!ifs)
 	{
-		Engine::instance->console->output(COLOR_ERROR, "Error: Menu: XML resource not found");
+		Engine::instance->console->output(COLOR_ERROR, "Error: Menu: \"" + file + "\" XML resource not found");
 		return (false);
 	}
 	if (!(xml = doc.load(ifs)))
 	{
-		Engine::instance->console->output(COLOR_ERROR, "Error: Menu: Invalid XML resource");
+		Engine::instance->console->output(COLOR_ERROR, "Error: Menu: \"" + file + "\" resource XML parsing failed");
 		return (false);
 	}
 	_lastLocation = file;
@@ -64,8 +69,9 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 	parseScreen(screen);
 	for (pugi::xml_node element = screen.first_child(); element; element = element.next_sibling())
 	{
-		if (strcmp(element.name(),"menu") == 0)
-			_container.addElement(GUIMenu::parseXML(this, element));
+		_container.addElement(GUIXML::getGUIElementFromXML(this, element));
+		//if (strcmp(element.name(),"menu") == 0)
+		//	_container.addElement(GUIMenu::parseXML(this, element));
 	} 
 	return (true);
 }

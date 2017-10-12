@@ -116,7 +116,7 @@ GUIDraggablePanel::GUIDraggablePanel(const std::string &id, const sf::Vector2i &
 	: GUIPanel(id, size, frameResource)
 {
 	_header.setTexture(*Resolver<sf::Texture>::resolve(headerResource));
-	_header.setScale(1 / size.x, 1);
+	_header.setScale(1 / size.x, 1 / 15);
 	initialUpdate();
 }
 

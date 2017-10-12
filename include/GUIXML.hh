@@ -9,21 +9,25 @@
 #ifndef GUIXML_HH_
 #define GUIXML_HH_
 
+#ifdef STBXENGINE_CORE
 #include <pugixml.hpp>
-#include "GUIScreen.hh"
+#endif
 #include "GUIElement.hpp"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
 
-#define DEFAULT_ID ""
+#define DEFAULT_ID	""
 
 namespace stb
 {
+#ifdef STBXENGINE_CORE
+	class GUIScreen; //Forward
+	
 	class GUIXML
 	{
 	public:
-		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node);
-		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
+		static GUIElement *getGUIElementFromXML(GUIScreen *container, const pugi::xml_node &node);
+		static void GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node, GUIElement *element);
 
 		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node);
@@ -44,6 +48,7 @@ namespace stb
 
 	// This map binds XML Nodes names to corresponding C++ Parser
 	extern std::map<std::string, XMLParserFptr> GUIXMLElementParser;
+#endif
 }
 
 #endif /* !GUIXML_HH_ */

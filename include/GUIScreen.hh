@@ -14,6 +14,7 @@
 #include <pugixml.hpp>
 #endif
 
+#include "GUIXML.hh"
 #include "GUIMenu.hh"
 
 namespace stb {
@@ -29,6 +30,7 @@ namespace stb {
 
 		virtual const sf::Vector2f &getPosition();
 
+		void addElement(GUIElement *element);
 		void reset();
 
 		bool loadFromFile(const std::string &file, const std::string &screenId = "");
