@@ -33,6 +33,7 @@ namespace stb {
 
 		bool openWindow(int, int);
 
+		void changeScreen(const std::string &resource, const std::string &location);
 		sf::RenderWindow *getWindowHandle();
 		sf::Vector2i &getWindowSize();
 		int &getFramerate();

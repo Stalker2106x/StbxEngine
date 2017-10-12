@@ -27,12 +27,12 @@ namespace stb {
 	class GUIMenu : public GUIElement
 	{
 	public:
-		GUIMenu(GUIScreen *screenHandle);
+		GUIMenu();
 		~GUIMenu();
 
 		void reset();
 #ifdef STBXENGINE_CORE
-		static GUIMenu *parseXML(GUIScreen *screenHandle, pugi::xml_node &menu);
+		static GUIMenu *parseXML(const pugi::xml_node &menu);
 		void parseMenu(const pugi::xml_node &menu);
 		GUIMenuItem *parseItem(pugi::xml_node &item, size_t &index);
 		void parseGeneric(pugi::xml_node &item, GUIMenuItem *pItem, size_t & index);
@@ -46,12 +46,9 @@ namespace stb {
 		void initializeItems();
 
 		virtual void setPosition(const sf::Vector2f &pos);
-		void setBackground(const std::string &resource);
 
 		virtual const sf::Vector2f &getPosition();
-
-		void changeScreen(const std::string &id, const std::string &location = "");
-
+		
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *);
 
@@ -59,10 +56,8 @@ namespace stb {
 		static std::unordered_map<std::string, std::vector<std::string>> dynamicValue;
 
 	protected:
-		GUIScreen *_screenHandle;
 		int _id, _parentId;
 		int _spacing, _fontsize;
-		sf::Sprite _background;
 		itemTab _items;
 	};
 

@@ -9,9 +9,8 @@ using namespace stb;
 std::unordered_map<std::string, std::pair<menuFptr, void *>> stb::GUIMenu::customAction = std::unordered_map<std::string, std::pair<menuFptr, void *>>();
 std::unordered_map<std::string, std::vector<std::string>> stb::GUIMenu::dynamicValue = std::unordered_map<std::string, std::vector<std::string>>();
 
-GUIMenu::GUIMenu(GUIScreen *screenHandle) : GUIElement("")
+GUIMenu::GUIMenu() : GUIElement("", Menu)
 {
-	_screenHandle = screenHandle;
 	_spacing = 10;
 	_fontsize = 20;
 }
@@ -26,9 +25,9 @@ void GUIMenu::reset()
 	_items.clear();
 }
 
-GUIMenu *GUIMenu::parseXML(GUIScreen *screenHandle, pugi::xml_node &menu)
+GUIMenu *GUIMenu::parseXML(const pugi::xml_node &menu)
 {
-	GUIMenu *pMenu = new GUIMenu(screenHandle);
+	GUIMenu *pMenu = new GUIMenu();
 	pMenu->parseMenu(menu);
 	size_t index = 0;
 	for (pugi::xml_node item = menu.child("item");
@@ -58,7 +57,7 @@ void GUIMenu::parseMenu(const pugi::xml_node &menu)
 GUIMenuItem *GUIMenu::parseItem(pugi::xml_node &item, size_t &index)
 {
   GUIMenuItem *pItem;
-  GUIMenuItemType type;
+  GUIElementType type;
 
   try { type = GUIMenuItem::typeMap.at(item.attribute("type").value()); }
   catch (...) { return (NULL); }
@@ -200,11 +199,6 @@ void GUIMenu::initializeItems()
 	}
 }
 
-void GUIMenu::setBackground(const std::string &resource)
-{
-	_background.setTexture(*Resolver<sf::Texture>::resolve(resource));
-}
-
 void GUIMenu::setPosition(const sf::Vector2f &pos)
 {
 	for (size_t i = 0; i < _items.size(); i++) //EXPERIMENTAL
@@ -218,11 +212,6 @@ void GUIMenu::setPosition(const sf::Vector2f &pos)
 const sf::Vector2f &GUIMenu::getPosition()
 {
 	return (_items.size() > 0 ? _items[0]->getPosition() : sf::Vector2f(0,0));
-}
-
-void GUIMenu::changeScreen(const std::string &id, const std::string &location)
-{
-	_screenHandle->changeScreen(id, location);
 }
 
 bool GUIMenu::update(const sf::Event &e)

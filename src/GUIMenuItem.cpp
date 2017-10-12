@@ -8,7 +8,7 @@ using namespace stb;
  * GUIMenuItem Base class
  */
 
-std::unordered_map<std::string, GUIMenuItemType> GUIMenuItem::typeMap = {
+std::unordered_map<std::string, GUIElementType> GUIMenuItem::typeMap = {
   {"Link", Link},
   {"Setting", Setting},
   {"DynamicSetting", DynamicSetting},
@@ -17,14 +17,14 @@ std::unordered_map<std::string, GUIMenuItemType> GUIMenuItem::typeMap = {
   {"Checkbox", Checkbox}
 };
 
-GUIMenuItem::GUIMenuItem() : GUIElement("")
+GUIMenuItem::GUIMenuItem() : GUIElement("", MenuItem)
 {
   _active = false;
   _padding = 0;
   _label = new GUITextButton();
   _label->setClickCallback(std::bind(&GUIMenuItem::onClick, this));
-  _mode = Text;
-  if (_mode == Text)
+  _mode = TextMode;
+  if (_mode == TextMode)
 	static_cast<GUITextButton *>(_label)->setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
 
@@ -33,7 +33,7 @@ GUIMenuItem::~GUIMenuItem()
 
 }
 
-GUIMenuItem *GUIMenuItem::factory(const GUIMenuItemType &type)
+GUIMenuItem *GUIMenuItem::factory(const GUIElementType &type)
 {
   switch (type)
     {
@@ -61,7 +61,7 @@ GUIMenuItem *GUIMenuItem::factory(const GUIMenuItemType &type)
 
 void GUIMenuItem::setLabel(const std::string &label)
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		static_cast<GUITextButton *>(_label)->setLabel(label);
 }
 
@@ -72,13 +72,13 @@ void GUIMenuItem::setPadding(int padding)
 
 void GUIMenuItem::setColor(const sf::Color &color)
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		static_cast<GUITextButton *>(_label)->setColor(color);
 }
 
 void GUIMenuItem::setFontsize(int fontsize)
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		static_cast<GUITextButton *>(_label)->setFontsize(fontsize);
 }
 
@@ -89,19 +89,19 @@ void GUIMenuItem::setPosition(const sf::Vector2f &pos)
 
 void GUIMenuItem::setXOffset(const float &x)
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, _label->getPosition().y));
 }
 
 void GUIMenuItem::setYOffset(const float &y)
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(_label->getPosition().x, y));
 }
 
 void GUIMenuItem::setOffset(const float &x, const float &y)
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, y));
 }
 
@@ -112,7 +112,7 @@ int &GUIMenuItem::getPadding()
 
 const sf::Vector2f &GUIMenuItem::getPosition()
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		return (static_cast<GUITextButton *>(_label)->getPosition());
 }
 
@@ -132,7 +132,7 @@ bool GUIMenuItem::update(const sf::Event &e)
 
 void GUIMenuItem::draw(sf::RenderWindow *win)
 {
-	if (_mode == Text)
+	if (_mode == TextMode)
 		static_cast<GUITextButton *>(_label)->draw(win);
 }
 
@@ -189,10 +189,7 @@ void GUIMenuLink::onClick()
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();
-		if (!_targetLocation.empty())
-			_menuHandle->changeScreen(_target, _targetLocation);
-		else
-			_menuHandle->changeScreen(_target);
+		Engine::instance->gui->changeScreen(_target);
 	}
 	else
 		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");

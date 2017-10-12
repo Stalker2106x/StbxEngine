@@ -1,6 +1,7 @@
 #include "GUI.hh"
 #include "Resolver.hh"
 #include "Engine.hpp"
+#include "GUIScreen.hh"
 
 using namespace stb;
 
@@ -33,17 +34,30 @@ GUIElement *GUI::getElement(const std::string &id)
 	return (NULL);
 }
 
-GUIElement *GUI::deleteElement(const std::string &id)
+GUIElement *GUI::removeElement(const std::string &id, bool del)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
 		if (_elements[i]->getId() == id)
 		{
-			delete (_elements[i]);
+			if (del);
+				delete (_elements[i]);
 			_elements.erase(_elements.begin() + i);
 		}
 	}
 	return (NULL);
+}
+
+void GUI::changeScreen(const std::string &resource, const std::string &location)
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		if (_elements[i]->getType() == Screen)
+		{
+			removeElement(_elements[i]->getId());
+		}
+	}
+	_elements.push_back(Resolver<GUIScreen>::resolve(resource, location));
 }
 
 void GUI::toggle()
@@ -108,12 +122,16 @@ bool GUI::updateRT()
 bool GUI::update(const sf::Event &e)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
+	{
 		_elements[i]->update(e);
+	}
 	return (true);
 }
 
 void GUI::draw(sf::RenderWindow *win)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
+	{
 		_elements[i]->draw(win);
+	}
 }

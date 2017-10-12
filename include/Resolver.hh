@@ -16,29 +16,42 @@
 
 namespace stb {
 
+	class GUIScreen; //Forward
+
 	template <typename T>
 	class Resolver
 	{
 	public:
-		static T *resolve(const std::string &name, bool unique = false)
+		static T *resolve(const std::string &name, const std::string &location = "", bool unique = false)
 		{
-			if (!unique && resources.find(name) != resources.end())
+			if (!unique && resources.count(name))
 				return (resources[name]);
 			std::string path = "./Data/";
 			T *obj = new T();
 
-			if (std::is_same<T, sf::Font>::value)
-				obj->loadFromFile(path + "font/" + name + ".ttf");
-			else if (std::is_same<T, sf::Texture>::value)
-				obj->loadFromFile(path + "texture/" + name + ".png");
+			if (!location.empty())
+			{
+				obj->loadFromFile(location + name);
+			}
 			else
 			{
-				//Engine::instance->console->output(COLOR_ERROR, "Error: Resolver: Resource of id \"" + name + "\" not found"); //Should be implemented, cannot because of cross-inc.
-				return (NULL);
+				if (std::is_same<T, sf::Font>::value)
+					obj->loadFromFile(path + "font/" + name + ".ttf");
+				else if (std::is_same<T, sf::Texture>::value)
+					obj->loadFromFile(path + "texture/" + name + ".png");
+				else if (std::is_same<T, GUIScreen>::value)
+					obj->loadFromFile(path + "screen/" + name + ".xml");
+				else
+					return (NULL); //Unhandled
 			}
 			if (!unique)
 				resources.emplace(name, obj);
 			return (obj);
+		}
+
+		static bool exists(const std::string &name)
+		{
+			return (resources.count(name));
 		}
 
 		static std::unordered_map<std::string, T *> resources;

@@ -48,20 +48,25 @@ void Engine::handleArgs(int argc, char **argv)
     return;
   for (short i = 0; i < argc; i++)
     {
-      if (argv[i][0] == '-')
-	{
-	  cmd = argv[i++] + 1;
-	  while ((i + 1) < argc && argv[i + 1][0] != '-')
-	    {
-	      cmd += " "+std::string(argv[i]);
-	      i++;
-	    }
-	  if ((i + 1) == argc)
-	    cmd += " "+std::string(argv[i]);
-	  Engine::console->output(cmd);
-	  Commands::parseCmd(*this, cmd);
-	}
+		if (argv[i][0] == '-')
+		{
+		  cmd = argv[i++] + 1;
+		  while ((i + 1) < argc && argv[i + 1][0] != '-')
+			{
+			  cmd += " "+std::string(argv[i]);
+			  i++;
+			}
+		  if ((i + 1) == argc)
+			cmd += " "+std::string(argv[i]);
+		  Engine::console->output(cmd);
+		  Commands::parseCmd(*this, cmd);
+		}
     }
+}
+
+void Engine::changeScreen(const std::string &resource, const std::string &location)
+{
+	gui->changeScreen(resource, location);
 }
 
 sf::RenderWindow *Engine::getWindowHandle()

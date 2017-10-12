@@ -8,13 +8,13 @@ using namespace stb;
 // GUIButton
 //
 
-GUIButton::GUIButton() : GUIElement("")
+GUIButton::GUIButton() : GUIElement("", Button)
 {
 	_hover = false;
 	_triggerType = sf::Event::MouseButtonPressed;
 }
 
-GUIButton::GUIButton(const std::string &id, const sf::Event::EventType &triggerType) : GUIElement(id)
+GUIButton::GUIButton(const std::string &id, const sf::Event::EventType &triggerType) : GUIElement(id, Button)
 {
 	_triggerType = triggerType;
 }
@@ -330,7 +330,7 @@ bool GUIToggleSpriteButton::update(const sf::Event &e)
 // GUIButtonBar
 //
 
-GUIButtonBar::GUIButtonBar(BarType type) : GUIElement("")
+GUIButtonBar::GUIButtonBar(BarType type) : GUIElement("", ButtonBar)
 {
 	_spacing = 0;
 	_type = type;

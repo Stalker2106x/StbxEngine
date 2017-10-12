@@ -9,6 +9,7 @@ std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
 	{ "edit", &GUIXML::getGUIEditFromXML },
 	{ "panel", &GUIXML::getGUIPanelFromXML },
+	{ "menu", &GUIXML::getGUIMenuFromXML },
 	{ "screen", &GUIXML::getGUIScreenFromXML },
 	{ "indicator", &GUIXML::getGUIIndicatorFromXML },
 	{ "text", &GUIXML::getGUITextFromXML },
@@ -17,9 +18,14 @@ std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 
 GUIElement *GUIXML::getGUIElementFromXML(GUIScreen *container, const pugi::xml_node &node)
 {
+	GUIElement *element;
+
 	if (!node.name())
 		return (NULL);
-	GUIElement *element = GUIXMLElementParser[node.name()](node);
+	if (strcmp(node.name(), "menu") == 0)
+		element = GUIMenu::parseXML(node);
+	else
+		element = GUIXMLElementParser[node.name()](node);
 	GUIGenericFromXML(container, node, element);
 	return (element);
 }
@@ -67,6 +73,13 @@ GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node)
 {
 	GUIPanel *element = new GUIPanel();
 	return (element);
+}
+
+GUIElement *GUIXML::getGUIMenuFromXML(const pugi::xml_node &node)
+{
+	GUIMenu *menu = new GUIMenu();
+	menu->parseMenu(node);
+	return (menu);
 }
 
 GUIElement *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node)

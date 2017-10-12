@@ -19,18 +19,9 @@ namespace stb {
 
 	class GUIMenu; //Forward declaration for Menu Handles
 
-	enum GUIMenuItemType {
-		Link,
-		Setting,
-		DynamicSetting,
-		Edit,
-		Slider,
-		Checkbox
-	};
-
 	enum GUIMenuItemMode {
-		Text,
-		Sprite
+		TextMode,
+		SpriteMode
 	};
 
 	/*!
@@ -45,7 +36,7 @@ namespace stb {
 		GUIMenuItem();
 		~GUIMenuItem();
 
-		static GUIMenuItem *factory(const GUIMenuItemType &type);
+		static GUIMenuItem *factory(const GUIElementType &type);
 		
 		void setLabel(const std::string &label);
 		void setPadding(int padding);
@@ -65,7 +56,7 @@ namespace stb {
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
 
-		static std::unordered_map<std::string, GUIMenuItemType> typeMap; //move String to int ID
+		static std::unordered_map<std::string, GUIElementType> typeMap; //move String to int ID
 
 	protected:
 		Engine *_e;

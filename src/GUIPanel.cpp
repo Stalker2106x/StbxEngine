@@ -8,7 +8,7 @@ using namespace stb;
 // GUIPanel
 //
 
-GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color) : GUIElement(id), _buttonBar(Horizontal)
+GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color) : GUIElement(id, ButtonBar), _buttonBar(Horizontal)
 {
 	sf::Texture ctexture;
 
@@ -18,7 +18,7 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Co
 }
 
 
-GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id), _buttonBar(Horizontal)
+GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id, ButtonBar), _buttonBar(Horizontal)
 {
 	_frame.setTexture(*Resolver<sf::Texture>::resolve(name));
 	_frame.setScale(1 / size.x, 1 / size.y);

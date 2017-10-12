@@ -12,15 +12,36 @@
 
 namespace stb {
 
+	enum GUIElementType {
+		Button,
+		ButtonBar,
+		Checkbox,
+		Edit,
+		Panel,
+		DraggablePanel,
+		Menu,
+		Screen,
+		SIndicator,
+		Text,
+		TextArea,
+		//tmp
+		MenuItem,
+		Link,
+		Setting,
+		DynamicSetting,
+		Slider
+	};
+
 	class GUIElement
 	{
 	public:
-		GUIElement(const std::string &id) : _id(id), _active(true) {}
+		GUIElement(const std::string &id, GUIElementType type) : _id(id), _type(type), _active(true) {}
 		virtual ~GUIElement() {};
 
 		virtual void toggle() { _active = (_active ? false : true); };
 
-		const std::string &getId() { return (_id); }
+		const std::string &getId() { return (_id); };
+		const GUIElementType &getType() { return (_type); };
 		virtual const sf::Vector2f &getPosition() = 0;
 
 
@@ -31,6 +52,7 @@ namespace stb {
 		virtual bool update(const sf::Event &e) = 0;
 		virtual void draw(sf::RenderWindow *win) = 0;
 	protected:
+		GUIElementType _type;
 		std::string _id;
 		bool _active;
 	};

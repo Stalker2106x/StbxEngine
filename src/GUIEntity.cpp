@@ -7,7 +7,7 @@ using namespace stb;
 // GUISIndicator
 //
 
-GUISIndicator::GUISIndicator(const std::string &label) : GUIElement(label)
+GUISIndicator::GUISIndicator(const std::string &label) : GUIElement(label, SIndicator)
 {
 	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
 }
@@ -58,7 +58,7 @@ void GUISIndicator::draw(sf::RenderWindow *win)
 // GUIEdit
 //
 
-GUIEdit::GUIEdit(const std::string &id) : GUIElement(id)
+GUIEdit::GUIEdit(const std::string &id) : GUIElement(id, Edit)
 {
 	initialUpdate();
 }
@@ -170,7 +170,7 @@ void GUIEdit::draw(sf::RenderWindow *win)
 // GUITextArea
 //
 
-GUITextArea::GUITextArea(const std::string &id) : GUIElement(id)
+GUITextArea::GUITextArea(const std::string &id) : GUIElement(id, TextArea)
 {
 	initialUpdate();
 }
@@ -241,7 +241,7 @@ void GUITextArea::draw(sf::RenderWindow *win)
 // GUIText
 //
 
-GUIText::GUIText(const std::string &id) : GUIElement(id)
+GUIText::GUIText(const std::string &id) : GUIElement(id, Text)
 {
 	initialUpdate();
 }
@@ -311,7 +311,7 @@ void GUIText::draw(sf::RenderWindow *win)
 // GUICheckbox
 //
 
-GUICheckbox::GUICheckbox(const std::string &id) : GUIElement(id)
+GUICheckbox::GUICheckbox(const std::string &id) : GUIElement(id, Checkbox)
 {
 	initialUpdate();
 }

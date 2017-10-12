@@ -2,7 +2,7 @@
 
 using namespace stb;
 
-GUIScreen::GUIScreen() : GUIElement(""),
+GUIScreen::GUIScreen() : GUIElement("", Screen),
 	_container("NULL", Engine::instance->getWindowSize(), sf::Color::Transparent)
 {
 	_changeId = "";
@@ -73,6 +73,7 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 		//if (strcmp(element.name(),"menu") == 0)
 		//	_container.addElement(GUIMenu::parseXML(this, element));
 	} 
+	Resolver<GUIScreen>::resources.emplace(_id, this);
 	return (true);
 }
 
