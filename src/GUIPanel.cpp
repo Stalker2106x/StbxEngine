@@ -38,6 +38,17 @@ void GUIPanel::clear()
 	_elements.clear();
 }
 
+void GUIPanel::drop()
+{
+	while (!_drop.empty())
+	{
+		if (_drop.front().second)
+			delete (_elements.at(_drop.front().first));
+		_elements.erase(_elements.begin() + _drop.front().first);
+		_drop.pop();
+	}
+}
+
 void GUIPanel::setStyle(char style)
 {
 	_style = style;
@@ -74,9 +85,9 @@ const sf::Vector2f &GUIPanel::getPosition()
 
 bool GUIPanel::updateRT()
 {
-	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
-		(*_it)->updateRT();
+		(*it)->updateRT();
 	}
 	return (true);
 }
@@ -85,11 +96,12 @@ bool GUIPanel::update(const sf::Event &e)
 {
 	if (!_active)
 		return (false);
-	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
-		if (!(*_it)->update(e))
+		if (!(*it)->update(e))
 			return (false);
 	}
+	drop();
 	return (true);
 }
 
@@ -98,9 +110,9 @@ void GUIPanel::draw(sf::RenderWindow *win)
 	if (!_active)
 		return;
 	win->draw(_frame);
-	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
-		(*_it)->draw(win);
+		(*it)->draw(win);
 	}
 }
 

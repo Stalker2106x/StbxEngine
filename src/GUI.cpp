@@ -40,12 +40,24 @@ GUIElement *GUI::removeElement(const std::string &id, bool del)
 	{
 		if (_elements[i]->getId() == id)
 		{
-			if (del);
-				delete (_elements[i]);
-			_it = _elements.erase(_elements.begin() + i);
+			_drop.push(std::make_pair(i, del));
 		}
 	}
 	return (NULL);
+}
+
+void GUI::drop()
+{
+	while (!_drop.empty())
+	{
+		std::deque<GUIElement *>::iterator it = _elements.begin();
+
+		if (_drop.front().second)
+			delete (_elements.at(_drop.front().first));
+		std::advance(it, _drop.front().first);
+			_elements.erase(it);
+		_drop.pop();
+	}
 }
 
 void GUI::changeScreen(const std::string &resource, const std::string &location)
@@ -124,20 +136,21 @@ void GUI::toggleHideElement(const std::string &id)
 
 bool GUI::updateRT()
 {
-	for (_it = _elements.begin(); _it != _elements.end(); _it++)
-		(*_it)->updateRT();
+	for (size_t i = 0; i < _elements.size(); i++)
+		_elements[i]->updateRT();
 	return (true);
 }
 
 bool GUI::update(const sf::Event &e)
 {
-	for (_it = _elements.begin(); _it != _elements.end(); _it++)
-		(*_it)->update(e);
+	for (size_t i = 0; i < _elements.size(); i++)
+		_elements[i]->update(e);
+	drop();
 	return (true);
 }
 
 void GUI::draw(sf::RenderWindow *win)
 {
-	for (_it = _elements.begin(); _it != _elements.end(); _it++)
-		(*_it)->draw(win);
+	for (size_t i = 0; i < _elements.size(); i++)
+		_elements[i]->draw(win);
 }
