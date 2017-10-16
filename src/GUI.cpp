@@ -57,7 +57,19 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 			removeElement(_elements[i]->getId());
 		}
 	}
-	_elements.push_back(Resolver<GUIScreen>::resolve(resource, location));
+	if (location.empty())
+		_elements.push_back(STBResolver<GUIScreen>::resolve(resource));
+	else
+	{
+		std::string resId, path;
+		int sep;
+
+		path = location;
+		sep = location.find_last_of("/") + 1;
+		resId = location.substr(sep, location.find_last_of(".") - sep);
+		path.erase(location.find(resId), location.length() - location.find(resId));
+		_elements.push_back(STBResolver<GUIScreen>::resolve(resId, path, resource));
+	}
 }
 
 void GUI::toggle()

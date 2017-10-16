@@ -20,7 +20,7 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Co
 
 GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id, ButtonBar), _buttonBar(Horizontal)
 {
-	_frame.setTexture(*Resolver<sf::Texture>::resolve(name));
+	_frame.setTexture(*SFResolver<sf::Texture>::resolve(name));
 	_frame.setScale(1 / size.x, 1 / size.y);
 }
 
@@ -63,7 +63,7 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 
 void GUIPanel::setBackground(const std::string &resource)
 {
-	_frame.setTexture(*Resolver<sf::Texture>::resolve(resource));
+	_frame.setTexture(*SFResolver<sf::Texture>::resolve(resource));
 }
 
 const sf::Vector2f &GUIPanel::getPosition()
@@ -115,7 +115,7 @@ GUIDraggablePanel::GUIDraggablePanel(const std::string &id, const sf::Vector2i &
 GUIDraggablePanel::GUIDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
 	: GUIPanel(id, size, frameResource)
 {
-	_header.setTexture(*Resolver<sf::Texture>::resolve(headerResource));
+	_header.setTexture(*SFResolver<sf::Texture>::resolve(headerResource));
 	_header.setScale(1 / size.x, 1 / 15);
 	initialUpdate();
 }

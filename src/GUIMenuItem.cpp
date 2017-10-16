@@ -25,7 +25,7 @@ GUIMenuItem::GUIMenuItem() : GUIElement("", MenuItem)
   _label->setClickCallback(std::bind(&GUIMenuItem::onClick, this));
   _mode = TextMode;
   if (_mode == TextMode)
-	static_cast<GUITextButton *>(_label)->setFont(*Resolver<sf::Font>::resolve("glitch"));
+	static_cast<GUITextButton *>(_label)->setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 GUIMenuItem::~GUIMenuItem()
@@ -145,6 +145,8 @@ GUIMenuLink::GUIMenuLink() : GUIMenuItem()
 	_customPtr = NULL;
 	_customParam = NULL;
 	_customCommand = NULL;
+	_target = "";
+	_targetLocation = "";
 }
 
 GUIMenuLink::~GUIMenuLink()
@@ -189,7 +191,7 @@ void GUIMenuLink::onClick()
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		_menuHandle->reset();
-		Engine::instance->gui->changeScreen(_target);
+		Engine::instance->gui->changeScreen(_target, _targetLocation);
 	}
 	else
 		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");
@@ -211,7 +213,7 @@ GUIMenuSetting::GUIMenuSetting() : GUIMenuItem()
   _index = 0;
   _padding = 0;
   _value = new GUITextButton();
-  _value->setFont(*Resolver<sf::Font>::resolve("glitch"));
+  _value->setFont(*SFResolver<sf::Font>::resolve("glitch"));
   _value->setClickCallback(std::bind(&GUIMenuSetting::onClick, this));
   _value->setRClickCallback(std::bind(&GUIMenuSetting::onRClick, this));
 }

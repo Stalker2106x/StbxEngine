@@ -9,7 +9,7 @@ using namespace stb;
 
 GUISIndicator::GUISIndicator(const std::string &label) : GUIElement(label, SIndicator)
 {
-	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
+	_value.setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 GUISIndicator::~GUISIndicator()
@@ -71,12 +71,12 @@ GUIEdit::~GUIEdit()
 void GUIEdit::initialUpdate()
 {
 	_focus = false;
-	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
+	_value.setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 void GUIEdit::setFont(const std::string &fontResource)
 {
-	_value.setFont(*Resolver<sf::Font>::resolve(fontResource));
+	_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 }
 
 void GUIEdit::setFontsize(int fontsize)
@@ -182,12 +182,12 @@ GUITextArea::~GUITextArea()
 
 void GUITextArea::initialUpdate()
 {
-	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
+	_value.setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 void GUITextArea::setFont(const std::string &fontResource)
 {
-	_value.setFont(*Resolver<sf::Font>::resolve(fontResource));
+	_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 }
 
 void GUITextArea::setFontsize(int fontsize)
@@ -253,12 +253,12 @@ GUIText::~GUIText()
 
 void GUIText::initialUpdate()
 {
-	_value.setFont(*Resolver<sf::Font>::resolve("glitch"));
+	_value.setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 void GUIText::setFont(const std::string &fontResource)
 {
-	_value.setFont(*Resolver<sf::Font>::resolve(fontResource));
+	_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 }
 
 void GUIText::setFontsize(int fontsize)

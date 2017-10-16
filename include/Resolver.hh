@@ -19,7 +19,7 @@ namespace stb {
 	class GUIScreen; //Forward
 
 	template <typename T>
-	class Resolver
+	class SFResolver
 	{
 	public:
 		static T *resolve(const std::string &name, const std::string &location = "", bool unique = false)
@@ -31,21 +31,64 @@ namespace stb {
 
 			if (!location.empty())
 			{
-				obj->loadFromFile(location + name);
+				path = location;
+			}
+			if (std::is_same<T, sf::Font>::value)
+			{
+				if (location.empty()) path += "font/";
+				obj->loadFromFile(path + name + ".ttf");
+			}
+			else if (std::is_same<T, sf::Texture>::value)
+			{
+				if (location.empty()) path += "texture/";
+				obj->loadFromFile(path + name + ".png");
 			}
 			else
-			{
-				if (std::is_same<T, sf::Font>::value)
-					obj->loadFromFile(path + "font/" + name + ".ttf");
-				else if (std::is_same<T, sf::Texture>::value)
-					obj->loadFromFile(path + "texture/" + name + ".png");
-				else if (std::is_same<T, GUIScreen>::value)
-					obj->loadFromFile(path + "screen/" + name + ".xml");
-				else
-					return (NULL); //Unhandled
-			}
+				return (NULL); //Unhandled
 			if (!unique)
+			{
 				resources.emplace(name, obj);
+			}
+			return (obj);
+		}
+
+		static bool exists(const std::string &name)
+		{
+			return (resources.count(name));
+		}
+
+		static std::unordered_map<std::string, T *> resources;
+	};
+
+	template <typename T>
+	class STBResolver
+	{
+	public:
+		static T *resolve(const std::string &name, const std::string &location = "", const std::string &elem = "", bool unique = false)
+		{
+			if (!unique && resources.count(name))
+				return (resources[name]);
+			std::string path = "./Data/";
+			T *obj = new T();
+
+			if (!location.empty())
+			{
+				path = location;
+			}
+			if (std::is_same<T, GUIScreen>::value)
+			{
+				if (location.empty()) path += "screen/";
+				obj->loadFromFile(path + name + ".xml", elem);
+			}
+			else
+				return (NULL); //Unhandled
+			if (!unique)
+			{
+				if (elem.empty())
+					resources.emplace(name, obj);
+				else
+					resources.emplace(elem, obj);
+			}
 			return (obj);
 		}
 

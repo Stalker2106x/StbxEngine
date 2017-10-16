@@ -63,7 +63,7 @@ namespace stb {
 			_hookValue = _hook;
 			_label = new sf::Text();
 			_label->setString(label);
-			_label->setFont(*Resolver<sf::Font>::resolve("glitch"));
+			_label->setFont(*SFResolver<sf::Font>::resolve("glitch"));
 			_label->setCharacterSize(12);
 			_value.setCharacterSize(12);
 			_value.setString(std::to_string(_hookValue));

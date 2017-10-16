@@ -73,7 +73,7 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 		//if (strcmp(element.name(),"menu") == 0)
 		//	_container.addElement(GUIMenu::parseXML(this, element));
 	} 
-	Resolver<GUIScreen>::resources.emplace(_id, this);
+	STBResolver<GUIScreen>::resources.emplace(_id, this);
 	return (true);
 }
 
@@ -81,26 +81,8 @@ void GUIScreen::parseScreen(const pugi::xml_node &screen)
 {
 }
 
-void GUIScreen::changeScreen(const std::string &id, const std::string &location)
-{
-	_changeLocation = location;
-	_changeId = id;
-}
-
 bool GUIScreen::update(const sf::Event &e)
 {
-	if (!_changeId.empty())
-	{
-		reset();
-		if (!_changeLocation.empty())
-		{
-			loadFromFile(_changeLocation, _changeId);
-			_changeLocation.clear();
-		}
-		else
-			loadFromFile(_lastLocation, _changeId);
-		_changeId.clear();
-	}
 	_container.update(e);
 	return (true);
 }

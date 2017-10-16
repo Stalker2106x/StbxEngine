@@ -86,7 +86,7 @@ GUITextButton::GUITextButton() : GUIButton()
 GUITextButton::GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
 {
 	_label.setString(label);
-	_label.setFont(*Resolver<sf::Font>::resolve(fontResource));
+	_label.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 	_skin = skin;
 	initialUpdate();
 }
@@ -194,7 +194,7 @@ GUISpriteButton::GUISpriteButton() : GUIButton()
 
 GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
 {
-	_sprite.setTexture(*Resolver<sf::Texture>::resolve(resource));
+	_sprite.setTexture(*SFResolver<sf::Texture>::resolve(resource));
 	_skin = skin;
 	initialUpdate();
 }
@@ -205,7 +205,7 @@ GUISpriteButton::~GUISpriteButton()
 
 void GUISpriteButton::setTexture(const std::string &resource)
 {
-	_sprite.setTexture(*Resolver<sf::Texture>::resolve(resource));
+	_sprite.setTexture(*SFResolver<sf::Texture>::resolve(resource));
 }
 
 void GUISpriteButton::setSkin(const SpriteSkin &skin)

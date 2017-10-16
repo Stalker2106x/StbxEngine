@@ -38,9 +38,7 @@ namespace stb {
 #ifdef STBXENGINE_CORE
 		void parseScreen(const pugi::xml_node &screen);
 #endif
-
-		void changeScreen(const std::string &id, const std::string &location);
-
+		
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *win);
 
