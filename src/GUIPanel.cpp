@@ -31,9 +31,9 @@ GUIPanel::~GUIPanel()
 
 void GUIPanel::clear()
 {
-	for (size_t i = 0; i < _elements.size(); i++)
+	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
-		delete (_elements[i]);
+		delete (*it);
 	}
 	_elements.clear();
 }
@@ -55,9 +55,9 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 {
 	sf::Vector2f oldpos = _frame.getPosition();
 	_frame.setPosition(pos);
-	for (size_t i = 0; i < _elements.size(); i++)
+	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
-		_elements[i]->setPosition(sf::Vector2f(_elements[i]->getPosition().x + (pos.x - oldpos.x), _elements[i]->getPosition().y + (pos.y - oldpos.y)));
+		(*it)->setPosition(sf::Vector2f((*it)->getPosition().x + (pos.x - oldpos.x), (*it)->getPosition().y + (pos.y - oldpos.y)));
 	}
 }
 
@@ -74,8 +74,10 @@ const sf::Vector2f &GUIPanel::getPosition()
 
 bool GUIPanel::updateRT()
 {
-	for (size_t i = 0; i < _elements.size(); i++)
-		_elements[i]->updateRT();
+	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+	{
+		(*_it)->updateRT();
+	}
 	return (true);
 }
 
@@ -83,8 +85,11 @@ bool GUIPanel::update(const sf::Event &e)
 {
 	if (!_active)
 		return (false);
-	for (size_t i = 0; i < _elements.size(); i++)
-		_elements[i]->update(e);
+	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+	{
+		if (!(*_it)->update(e))
+			return (false);
+	}
 	return (true);
 }
 
@@ -93,8 +98,10 @@ void GUIPanel::draw(sf::RenderWindow *win)
 	if (!_active)
 		return;
 	win->draw(_frame);
-	for (size_t i = 0; i < _elements.size(); i++)
-		_elements[i]->draw(win);
+	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+	{
+		(*_it)->draw(win);
+	}
 }
 
 //

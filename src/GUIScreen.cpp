@@ -83,8 +83,7 @@ void GUIScreen::parseScreen(const pugi::xml_node &screen)
 
 bool GUIScreen::update(const sf::Event &e)
 {
-	_container.update(e);
-	return (true);
+	return (_container.update(e));
 }
 
 void GUIScreen::draw(sf::RenderWindow *win)

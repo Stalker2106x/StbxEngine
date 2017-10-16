@@ -42,7 +42,7 @@ GUIElement *GUI::removeElement(const std::string &id, bool del)
 		{
 			if (del);
 				delete (_elements[i]);
-			_elements.erase(_elements.begin() + i);
+			_it = _elements.erase(_elements.begin() + i);
 		}
 	}
 	return (NULL);
@@ -124,26 +124,20 @@ void GUI::toggleHideElement(const std::string &id)
 
 bool GUI::updateRT()
 {
-	for (size_t i = 0; i < _elements.size(); i++)
-	{
-		_elements[i]->updateRT();
-	}
+	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+		(*_it)->updateRT();
 	return (true);
 }
 
 bool GUI::update(const sf::Event &e)
 {
-	for (size_t i = 0; i < _elements.size(); i++)
-	{
-		_elements[i]->update(e);
-	}
+	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+		(*_it)->update(e);
 	return (true);
 }
 
 void GUI::draw(sf::RenderWindow *win)
 {
-	for (size_t i = 0; i < _elements.size(); i++)
-	{
-		_elements[i]->draw(win);
-	}
+	for (_it = _elements.begin(); _it != _elements.end(); _it++)
+		(*_it)->draw(win);
 }

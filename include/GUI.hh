@@ -10,7 +10,7 @@
 #define GUI_HH_
 
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <deque>
 #include "GUIButton.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
@@ -49,8 +49,9 @@ namespace stb {
 		void draw(sf::RenderWindow *win);
 
 	private:
+		std::deque<GUIElement *>::iterator _it;
 		bool _active;
-		std::vector<GUIElement *> _elements;
+		std::deque<GUIElement *> _elements;
 	};
 
 }

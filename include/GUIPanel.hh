@@ -7,6 +7,7 @@
 #ifndef GUIPANEL_HH_
 #define GUIPANEL_HH_
 
+#include <deque>
 #include "GUIElement.hpp"
 #include "GUIButton.hh"
 
@@ -52,11 +53,12 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *win);
 
 	protected:
+		std::deque<GUIElement *>::iterator _it;
 		char _style;
 		std::string _id;
 		sf::Sprite _frame;
 		GUIButtonBar _buttonBar;
-		std::vector<GUIElement *> _elements;
+		std::deque<GUIElement *> _elements;
 	};
 
 	/*!
