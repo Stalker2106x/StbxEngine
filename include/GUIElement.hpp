@@ -44,6 +44,7 @@ namespace stb {
 		const GUIElementType &getType() { return (_type); };
 		virtual const sf::Vector2f &getPosition() = 0;
 
+		bool isActive() { return (_active); };
 
 		void setId(const std::string &id) {	_id = id; };
 		virtual void setPosition(const sf::Vector2f &pos) = 0;

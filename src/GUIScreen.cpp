@@ -79,6 +79,7 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 
 void GUIScreen::parseScreen(const pugi::xml_node &screen)
 {
+	_id = screen.attribute("id").as_string("");
 }
 
 bool GUIScreen::update(const sf::Event &e)

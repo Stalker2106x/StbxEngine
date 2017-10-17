@@ -34,8 +34,10 @@ GUIElement *GUI::getElement(const std::string &id)
 	return (NULL);
 }
 
-GUIElement *GUI::removeElement(const std::string &id, bool del)
+bool GUI::removeElement(const std::string &id, bool del)
 {
+	if (id.empty())
+		return (false);
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
 		if (_elements[i]->getId() == id)
@@ -43,19 +45,16 @@ GUIElement *GUI::removeElement(const std::string &id, bool del)
 			_drop.push(std::make_pair(i, del));
 		}
 	}
-	return (NULL);
+	return (true);
 }
 
 void GUI::drop()
 {
 	while (!_drop.empty())
 	{
-		std::deque<GUIElement *>::iterator it = _elements.begin();
-
-		if (_drop.front().second)
-			delete (_elements.at(_drop.front().first));
-		std::advance(it, _drop.front().first);
-			_elements.erase(it);
+		if (_drop.top().second)
+			delete (_elements.at(_drop.top().first));
+		_elements.erase(_elements.begin() + _drop.top().first);
 		_drop.pop();
 	}
 }
@@ -66,6 +65,7 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 	{
 		if (_elements[i]->getType() == Screen)
 		{
+			_elements[i]->toggle();
 			removeElement(_elements[i]->getId());
 		}
 	}
@@ -80,7 +80,11 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 		sep = location.find_last_of("/") + 1;
 		resId = location.substr(sep, location.find_last_of(".") - sep);
 		path.erase(location.find(resId), location.length() - location.find(resId));
-		_elements.push_back(STBResolver<GUIScreen>::resolve(resId, path, resource));
+		GUIScreen *newScreen = STBResolver<GUIScreen>::resolve(resId, path, resource);
+		if (!newScreen->isActive())
+			newScreen->toggle();
+		_elements.push_back(newScreen);
+
 	}
 }
 

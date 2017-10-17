@@ -116,6 +116,7 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>STBXENGINE_CORE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -141,7 +142,9 @@
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
     <ClCompile Include="..\..\src\Control.cpp" />
-    <ClCompile Include="..\..\src\GUI.cpp" />
+    <ClCompile Include="..\..\src\GUI.cpp">
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+    </ClCompile>
     <ClCompile Include="..\..\src\Engine.cpp" />
     <ClCompile Include="..\..\src\GUIButton.cpp" />
     <ClCompile Include="..\..\src\GUIEntity.cpp" />

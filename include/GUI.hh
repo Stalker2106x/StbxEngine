@@ -11,7 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <deque>
-#include <queue>
+#include <stack>
 #include "GUIButton.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
@@ -26,7 +26,7 @@ namespace stb {
 
 		bool isActive();
 		GUIElement *getElement(const std::string &id);
-		GUIElement *removeElement(const std::string &id, bool del = false);
+		bool removeElement(const std::string &id, bool del = false);
 		void drop();
 		void changeScreen(const std::string &resource, const std::string &location = "");
 
@@ -53,7 +53,7 @@ namespace stb {
 	private:
 		bool _active;
 		std::deque<GUIElement *> _elements;
-		std::queue<std::pair<size_t, bool>> _drop;
+		std::stack<std::pair<size_t, bool>> _drop;
 	};
 
 }
