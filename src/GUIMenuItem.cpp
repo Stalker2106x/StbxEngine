@@ -190,7 +190,6 @@ void GUIMenuLink::onClick()
 		Commands::parseCmd(*stb::Engine::instance, *_customCommand);
 	if (!_target.empty() && _menuHandle != NULL)
 	{
-		_menuHandle->reset();
 		Engine::instance->gui->changeScreen(_target, _targetLocation);
 	}
 	else

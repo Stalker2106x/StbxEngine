@@ -70,6 +70,7 @@ bool GUIButton::update(const sf::Event &e)
 			onClick();
 		else if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Right) && _onRClickCallback != NULL)
 			onRClick();
+		_hover = false;
 	}
 	return (true);
 }

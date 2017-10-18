@@ -65,7 +65,8 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 	{
 		if (_elements[i]->getType() == Screen)
 		{
-			_elements[i]->toggle();
+			if (_elements[i]->isActive())
+				_elements[i]->toggle();
 			removeElement(_elements[i]->getId());
 		}
 	}
@@ -84,7 +85,6 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 		if (!newScreen->isActive())
 			newScreen->toggle();
 		_elements.push_back(newScreen);
-
 	}
 }
 
