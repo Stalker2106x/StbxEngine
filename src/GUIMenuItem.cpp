@@ -191,6 +191,7 @@ void GUIMenuLink::onClick()
 	if (!_target.empty() && _menuHandle != NULL)
 	{
 		Engine::instance->gui->changeScreen(_target, _targetLocation);
+		_label->reset();
 	}
 	else
 		Engine::instance->console->output(COLOR_ERROR, "Menu: Link broken. action undefined.");

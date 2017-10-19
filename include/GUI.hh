@@ -27,6 +27,7 @@ namespace stb {
 		bool isActive();
 		GUIElement *getElement(const std::string &id);
 		bool removeElement(const std::string &id, bool del = false);
+		bool removeElement(int index, bool del = false);
 		void drop();
 		void changeScreen(const std::string &resource, const std::string &location = "");
 

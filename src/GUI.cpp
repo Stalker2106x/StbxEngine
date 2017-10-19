@@ -42,9 +42,21 @@ bool GUI::removeElement(const std::string &id, bool del)
 	{
 		if (_elements[i]->getId() == id)
 		{
+			if (_elements[i]->isActive())
+				_elements[i]->toggle();
 			_drop.push(std::make_pair(i, del));
 		}
 	}
+	return (true);
+}
+
+bool GUI::removeElement(int index, bool del)
+{
+	if (index < 0 || index > _elements.size())
+		return (false);
+	if (_elements[index]->isActive())
+		_elements[index]->toggle();
+	_drop.push(std::make_pair(index, del));
 	return (true);
 }
 
@@ -61,17 +73,18 @@ void GUI::drop()
 
 void GUI::changeScreen(const std::string &resource, const std::string &location)
 {
+	int oldScreenIndex = 0;
+
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
 		if (_elements[i]->getType() == Screen)
 		{
-			if (_elements[i]->isActive())
-				_elements[i]->toggle();
-			removeElement(_elements[i]->getId());
+			removeElement(i + 1); //New screen will be inserted at previous index so we need to erase the next one
+			oldScreenIndex = i;
 		}
 	}
 	if (location.empty())
-		_elements.push_back(STBResolver<GUIScreen>::resolve(resource));
+		_elements.insert(_elements.begin() + oldScreenIndex, STBResolver<GUIScreen>::resolve(resource));
 	else
 	{
 		std::string resId, path;
@@ -84,7 +97,7 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 		GUIScreen *newScreen = STBResolver<GUIScreen>::resolve(resId, path, resource);
 		if (!newScreen->isActive())
 			newScreen->toggle();
-		_elements.push_back(newScreen);
+		_elements.insert(_elements.begin() + oldScreenIndex, newScreen);
 	}
 }
 

@@ -28,6 +28,7 @@ namespace stb {
 		GUIButton(const std::string &id, const sf::Event::EventType &triggerType);
 		virtual ~GUIButton();
 
+		void reset();
 		bool isHovered() const;
 		void setClickCallback(const std::function<void(void)> &fptr);
 		void setRClickCallback(const std::function<void(void)> &fptr);
