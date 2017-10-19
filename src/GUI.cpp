@@ -84,7 +84,13 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 		}
 	}
 	if (location.empty())
-		_elements.insert(_elements.begin() + oldScreenIndex, STBResolver<GUIScreen>::resolve(resource));
+	{
+		GUIScreen *newScreen = STBResolver<GUIScreen>::resolve(resource);
+		newScreen->reset();
+		if (!newScreen->isActive())
+			newScreen->toggle();
+		_elements.insert(_elements.begin() + oldScreenIndex, newScreen);
+	}
 	else
 	{
 		std::string resId, path;
@@ -97,6 +103,7 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 		GUIScreen *newScreen = STBResolver<GUIScreen>::resolve(resId, path, resource);
 		if (!newScreen->isActive())
 			newScreen->toggle();
+		newScreen->reset();
 		_elements.insert(_elements.begin() + oldScreenIndex, newScreen);
 	}
 }

@@ -22,7 +22,10 @@ GUIMenu::~GUIMenu()
 
 void GUIMenu::reset()
 {
-	_items.clear();
+	for (size_t i = 0; i < _items.size(); i++)
+	{
+		_items[i]->initialUpdate();
+	}
 }
 
 GUIMenu *GUIMenu::parseXML(const pugi::xml_node &menu)

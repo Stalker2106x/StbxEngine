@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "GUIPanel.hh"
+#include "GUIMenu.hh"
 #include "Resolver.hh"
 
 using namespace stb;
@@ -27,6 +28,17 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::s
 GUIPanel::~GUIPanel()
 {
 
+}
+
+void GUIPanel::reset()
+{
+	for (size_t i = 0; i < _elements.size(); i++)
+	{
+		if (_elements[i]->getType() == Menu) //temp
+		{
+			static_cast<GUIMenu *>(_elements[i])->reset();
+		}
+	}
 }
 
 void GUIPanel::clear()
@@ -74,7 +86,10 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 
 void GUIPanel::setBackground(const std::string &resource)
 {
-	_frame.setTexture(*SFResolver<sf::Texture>::resolve(resource));
+	sf::Texture *texture = SFResolver<sf::Texture>::resolve(resource);
+	if (texture == NULL)
+		Engine::instance->console->output(COLOR_ERROR, "Panel: Error loading texture " + resource + " for panel " + _id);
+	_frame.setTexture(*texture);
 }
 
 const sf::Vector2f &GUIPanel::getPosition()

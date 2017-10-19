@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="main">
+  <background resource="background" />
   <menu>
-    <background>background</background>
     <spacing>30</spacing>
     <fontsize>16</fontsize>
     <item type="Link" target="yebakg" location="./Data/screen/opt.xml">

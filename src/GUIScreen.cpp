@@ -13,6 +13,11 @@ GUIScreen::~GUIScreen()
 
 }
 
+void GUIScreen::reset()
+{
+	_container.reset();
+}
+
 void GUIScreen::setPosition(const sf::Vector2f &pos)
 {
 	_container.setPosition(pos);
@@ -31,11 +36,6 @@ const sf::Vector2f &GUIScreen::getPosition()
 void GUIScreen::addElement(GUIElement *element)
 {
 	_container.addElement(element);
-}
-
-void GUIScreen::reset()
-{
-	_container.clear();
 }
 
 bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenId)
@@ -69,6 +69,8 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 	parseScreen(screen);
 	for (pugi::xml_node element = screen.first_child(); element; element = element.next_sibling())
 	{
+		if (isScreenParam(element))
+			continue;
 		_container.addElement(GUIXML::getGUIElementFromXML(this, element));
 		//if (strcmp(element.name(),"menu") == 0)
 		//	_container.addElement(GUIMenu::parseXML(this, element));
@@ -81,6 +83,18 @@ void GUIScreen::parseScreen(const pugi::xml_node &screen)
 {
 	_id = screen.attribute("id").as_string("");
 }
+
+bool GUIScreen::isScreenParam(const pugi::xml_node &param)
+{
+	if (strcmp(param.name(), "background") == 0)
+	{
+		_container.setBackground(param.attribute("resource").as_string(""));
+	}
+	else
+		return (false);
+	return (true);
+}
+
 
 bool GUIScreen::update(const sf::Event &e)
 {
