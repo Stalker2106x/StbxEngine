@@ -2,40 +2,15 @@
 
 using namespace stb;
 
-GUIScreen::GUIScreen() : GUIElement("", Screen),
-	_container("NULL", Engine::instance->getWindowSize(), sf::Color::Transparent)
+GUIScreen::GUIScreen()
+	: GUIPanel("NULL", Engine::instance->getWindowSize(), sf::Color::Transparent)
 {
-	_changeId = "";
+	_type = Screen;
 }
 
 GUIScreen::~GUIScreen()
 {
 
-}
-
-void GUIScreen::reset()
-{
-	_container.reset();
-}
-
-void GUIScreen::setPosition(const sf::Vector2f &pos)
-{
-	_container.setPosition(pos);
-}
-
-void GUIScreen::setBackground(const std::string &resource)
-{
-	_container.setBackground(resource);
-}
-
-const sf::Vector2f &GUIScreen::getPosition()
-{
-	return (_container.getPosition());
-}
-
-void GUIScreen::addElement(GUIElement *element)
-{
-	_container.addElement(element);
 }
 
 bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenId)
@@ -55,7 +30,6 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 		Engine::instance->console->output(COLOR_ERROR, "Error: Menu: \"" + file + "\" resource XML parsing failed");
 		return (false);
 	}
-	_lastLocation = file;
 	screen = doc.first_child();
 	if (!screenId.empty()) //Getting desired screen of id screenId
 	{
@@ -71,11 +45,11 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 	{
 		if (isScreenParam(element))
 			continue;
-		_container.addElement(GUIXML::getGUIElementFromXML(this, element));
+		addElement(GUIXML::getGUIElementFromXML(this, element));
 		//if (strcmp(element.name(),"menu") == 0)
 		//	_container.addElement(GUIMenu::parseXML(this, element));
 	} 
-	STBResolver<GUIScreen>::resources.emplace(_id, this);
+	STBResolver<GUIScreen>::insert(_id, this);
 	return (true);
 }
 
@@ -88,20 +62,9 @@ bool GUIScreen::isScreenParam(const pugi::xml_node &param)
 {
 	if (strcmp(param.name(), "background") == 0)
 	{
-		_container.setBackground(param.attribute("resource").as_string(""));
+		setBackground(param.attribute("resource").as_string(""));
 	}
 	else
 		return (false);
 	return (true);
-}
-
-
-bool GUIScreen::update(const sf::Event &e)
-{
-	return (_container.update(e));
-}
-
-void GUIScreen::draw(sf::RenderWindow *win)
-{
-	_container.draw(win);
 }

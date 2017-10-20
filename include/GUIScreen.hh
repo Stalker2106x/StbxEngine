@@ -19,19 +19,11 @@
 
 namespace stb {
 
-	class GUIScreen : public GUIElement
+	class GUIScreen : public GUIPanel
 	{
 	public:
 		GUIScreen();
 		~GUIScreen();
-
-		virtual void setPosition(const sf::Vector2f &pos);
-		void setBackground(const std::string &resource);
-
-		virtual const sf::Vector2f &getPosition();
-
-		void addElement(GUIElement *element);
-		void reset();
 
 		bool loadFromFile(const std::string &file, const std::string &screenId = "");
 
@@ -39,14 +31,6 @@ namespace stb {
 		void parseScreen(const pugi::xml_node &screen);
 		bool isScreenParam(const pugi::xml_node &param);
 #endif
-		
-		bool update(const sf::Event &e);
-		void draw(sf::RenderWindow *win);
-
-	private:
-		std::string _lastLocation, _changeLocation, _changeId;
-		GUIPanel _container;
-		GUIMenu *_menu;
 	};
 
 }

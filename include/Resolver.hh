@@ -19,7 +19,29 @@ namespace stb {
 	class GUIScreen; //Forward
 
 	template <typename T>
-	class SFResolver
+	class Resolver
+	{
+	public:
+		Resolver() {};
+		virtual ~Resolver();
+
+		static void insert(const std::string &name, T *resource)
+		{
+			resources.emplace(name, resource);
+		}
+
+		static bool exists(const std::string &name)
+		{
+			return (resources.count(name));
+		}
+
+	protected:
+		static std::vector<std::string> locations;
+		static std::unordered_map<std::string, T *> resources;
+	};
+
+	template <typename T>
+	class SFResolver : public Resolver<T>
 	{
 	public:
 		static T *resolve(const std::string &name, const std::string &location = "", bool unique = false)
@@ -52,16 +74,10 @@ namespace stb {
 			return (obj);
 		}
 
-		static bool exists(const std::string &name)
-		{
-			return (resources.count(name));
-		}
-
-		static std::unordered_map<std::string, T *> resources;
 	};
 
 	template <typename T>
-	class STBResolver
+	class STBResolver : public Resolver<T>
 	{
 	public:
 		static T *resolve(const std::string &name, const std::string &location = "", const std::string &elem = "", bool unique = false)
@@ -91,13 +107,6 @@ namespace stb {
 			}
 			return (obj);
 		}
-
-		static bool exists(const std::string &name)
-		{
-			return (resources.count(name));
-		}
-
-		static std::unordered_map<std::string, T *> resources;
 	};
 
 }
