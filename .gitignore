@@ -21,6 +21,7 @@
 *.suo
 *.sdf
 *.idb
+*.bsc
 
 # Packages #
 ############
