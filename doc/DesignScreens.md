@@ -44,7 +44,7 @@ Each screen must be loaded from an XML resource file, described in the next sect
   </tr>
   <tr>
     <td colspan="2" rowspan="1">Screen</td>
-    <td colspa="5">Screen implements every option of Panel</td>
+    <td colspan="5">Screen implements every option of Panel</td>
   </tr>
   <tr>
     <td colspan="2" rowspan="1">Indicator</td>
