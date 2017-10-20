@@ -73,23 +73,13 @@ void GUI::drop()
 
 void GUI::changeScreen(const std::string &resource, const std::string &location)
 {
-	int oldScreenIndex = 0;
+	GUIScreen *newScreen;
+	int index;
 
-	for (size_t i = 0; i < _elements.size(); i++)
-	{
-		if (_elements[i]->getType() == Screen)
-		{
-			removeElement(i + 1); //New screen will be inserted at previous index so we need to erase the next one
-			oldScreenIndex = i;
-		}
-	}
+	for (index = 0; index < _elements.size() && _elements[index]->getType() != Screen; index++);
 	if (location.empty())
 	{
-		GUIScreen *newScreen = STBResolver<GUIScreen>::resolve(resource);
-		newScreen->reset();
-		if (!newScreen->isActive())
-			newScreen->toggle();
-		_elements.insert(_elements.begin() + oldScreenIndex, newScreen);
+		newScreen = STBResolver<GUIScreen>::resolve(resource);
 	}
 	else
 	{
@@ -100,12 +90,15 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 		sep = location.find_last_of("/") + 1;
 		resId = location.substr(sep, location.find_last_of(".") - sep);
 		path.erase(location.find(resId), location.length() - location.find(resId));
-		GUIScreen *newScreen = STBResolver<GUIScreen>::resolve(resId, path, resource);
-		if (!newScreen->isActive())
-			newScreen->toggle();
-		newScreen->reset();
-		_elements.insert(_elements.begin() + oldScreenIndex, newScreen);
+		newScreen = STBResolver<GUIScreen>::resolve(resId, path, resource);
 	}
+	newScreen->reset();
+	if (!newScreen->isActive())
+		newScreen->toggle();
+	if (index >= _elements.size())
+		_elements.insert(_elements.begin(), newScreen);
+	else
+		_elements[index] = newScreen;
 }
 
 void GUI::toggle()
