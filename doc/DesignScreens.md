@@ -58,7 +58,7 @@ Each screen must be loaded from an XML resource file, described in the next sect
     <td colspan="2" rowspan="2">TextArea</td>
     <td>text</td><td>Element</td><td>Set text of element</td><td>""</td><td>String</td>
   </tr>
-  <td>lines</td><td>Element</td><td>Set height (in text "lines") of element</td><td>""</td><td>String</td>
+  <tr><td>lines</td><td>Element</td><td>Set height (in text "lines") of element</td><td>""</td><td>String</td></tr>
 </table>
 
 ### Create your XML screen
