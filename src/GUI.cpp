@@ -92,7 +92,7 @@ void GUI::changeScreen(const std::string &resource, const std::string &location)
 		path.erase(location.find(resId), location.length() - location.find(resId));
 		newScreen = STBResolver<GUIScreen>::resolve(resId, path, resource);
 	}
-	newScreen->reset();
+	newScreen->initialUpdate();
 	if (!newScreen->isActive())
 		newScreen->toggle();
 	if (index >= _elements.size())

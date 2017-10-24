@@ -10,16 +10,18 @@ off GUIMenuLink
 implementation of as_int, as_bool, ..., furthermore, as they take a default
 value as parameter, we can stop all the tests we made, and go through all
 supported params one by one without checking if they exists.
+-GUIScreen should stop having a "container", and therefore should inherit from
+GUIPanel.
 
 FEATURE:
 -show list of predicates under console input
 1-add a command "addpanel" to add panel
 2-resize static panel
-3-add a grid element to HUDElement
-4-add a jukebox
+3-add a grid element to HUDElement **
 5-add a command "alias" to set shorter commands aliases
 6-allow developer to extend debuginfo via c++)
 
 EXTENDABLE:
+-add sound module (jukebox)
 -add a command "sound_stop" to stop all sounds, "sound_volume" etc...
 -add a support for copy paste { needs cross platform abstraction }

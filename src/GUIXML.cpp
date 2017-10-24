@@ -23,7 +23,7 @@ GUIElement *GUIXML::getGUIElementFromXML(GUIScreen *container, const pugi::xml_n
 
 	if (!node.name())
 		return (NULL);
-	if (strcmp(node.name(), "menu") == 0)
+	if (strcmp(node.name(), "menu") == 0) //tmp
 		element = GUIMenu::parseXML(node);
 	else
 		element = GUIXMLElementParser[node.name()](node);

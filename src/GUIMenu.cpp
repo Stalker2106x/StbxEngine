@@ -20,7 +20,7 @@ GUIMenu::~GUIMenu()
 
 }
 
-void GUIMenu::reset()
+void GUIMenu::initialUpdate()
 {
 	for (size_t i = 0; i < _items.size(); i++)
 	{

@@ -30,7 +30,8 @@ namespace stb {
 		GUIMenu();
 		~GUIMenu();
 
-		void reset();
+		virtual void initialUpdate();
+
 #ifdef STBXENGINE_CORE
 		static GUIMenu *parseXML(const pugi::xml_node &menu);
 		void parseMenu(const pugi::xml_node &menu);

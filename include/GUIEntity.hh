@@ -26,6 +26,8 @@ namespace stb {
 		GUISIndicator(const std::string &label = "");
 		virtual ~GUISIndicator();
 
+		virtual void initialUpdate();
+
 		void setFontsize(int fontSize);
 		virtual void setPosition(const sf::Vector2f &pos);
 		
@@ -108,7 +110,8 @@ namespace stb {
 	public:
 		GUIEdit(const std::string &id = "");
 		virtual ~GUIEdit();
-		void initialUpdate();
+
+		virtual void initialUpdate();
 
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
@@ -143,7 +146,8 @@ namespace stb {
 	public:
 		GUIText(const std::string &id = "");
 		virtual ~GUIText();
-		void initialUpdate();
+
+		virtual void initialUpdate();
 
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
@@ -175,7 +179,8 @@ namespace stb {
 	public:
 		GUITextArea(const std::string &id = "");
 		virtual ~GUITextArea();
-		void initialUpdate();
+
+		virtual void initialUpdate();
 
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
@@ -207,7 +212,8 @@ namespace stb {
 	public:
 		GUICheckbox(const std::string &id = "");
 		virtual ~GUICheckbox();
-		void initialUpdate();
+
+		virtual void initialUpdate();
 
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);

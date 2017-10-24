@@ -181,6 +181,8 @@ namespace stb {
 		GUIButtonBar(BarType type);
 		virtual ~GUIButtonBar();
 
+		virtual void initialUpdate();
+
 		void invert();
 		GUIButton *getButton(const std::string &id);
 		void setSpacing(int spacing);

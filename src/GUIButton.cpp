@@ -347,6 +347,11 @@ GUIButtonBar::~GUIButtonBar()
 
 }
 
+void GUIButtonBar::initialUpdate()
+{
+
+}
+
 void GUIButtonBar::invert()
 {
 	_inverted = (_inverted ? false : true);

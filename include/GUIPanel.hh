@@ -37,7 +37,8 @@ namespace stb {
 		GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name);
 		virtual ~GUIPanel();
 
-		void reset();
+		virtual void initialUpdate();
+
 		void clear();
 		void drop();
 

@@ -17,12 +17,16 @@ namespace stb {
 	class GUIElementPair : public GUIElement
 	{
 	public:
+		GUIElementPair();
 		GUIElementPair(GUIElement *first, GUIElement *second);
 		~GUIElementPair();
 
 		virtual void initialUpdate();
 
 		virtual const sf::Vector2f &getPosition();
+
+		void setFirst(GUIElement *element);
+		void setSecond(GUIElement *element);
 		virtual void setPosition(const sf::Vector2f &pos);
 
 		virtual bool update(const sf::Event &e);

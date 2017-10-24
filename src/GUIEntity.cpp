@@ -18,6 +18,11 @@ GUISIndicator::~GUISIndicator()
 		delete (_label);
 }
 
+void GUISIndicator::initialUpdate()
+{
+
+}
+
 void GUISIndicator::setFontsize(int fontSize)
 {
 	if (_label != NULL)

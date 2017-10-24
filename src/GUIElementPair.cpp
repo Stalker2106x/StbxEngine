@@ -7,6 +7,10 @@ using namespace stb;
  * GUIElementPair Base class
  */
 
+GUIElementPair::GUIElementPair() : GUIElement("", Pair)
+{
+
+}
 
 GUIElementPair::GUIElementPair(GUIElement *first, GUIElement *second) : GUIElement("", Pair)
 {
@@ -26,6 +30,16 @@ void GUIElementPair::initialUpdate()
 const sf::Vector2f &GUIElementPair::getPosition()
 {
 	return (_first->getPosition());
+}
+
+void GUIElementPair::setFirst(GUIElement *element)
+{
+	_first = element;
+}
+
+void GUIElementPair::setSecond(GUIElement *element)
+{
+	_second = element;
 }
 
 void GUIElementPair::setPosition(const sf::Vector2f &pos)
