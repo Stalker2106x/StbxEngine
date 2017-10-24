@@ -4,6 +4,7 @@
 using namespace stb;
 
 std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
+	{ "pair", &GUIXML::getGUIElementPairFromXML },
 	{ "button", &GUIXML::getGUIButtonFromXML },
 	{ "buttonBar", &GUIXML::getGUIButtonBarFromXML },
 	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
@@ -42,6 +43,11 @@ void GUIXML::GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node,
 	}
 }
 
+GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
+{
+	GUIElementPair *element = new GUIElementPair();
+	return (NULL);
+}
 
 GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {

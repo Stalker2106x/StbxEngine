@@ -9,10 +9,12 @@
 #define GUIELEMENT_HPP_
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 namespace stb {
 
 	enum GUIElementType {
+		Pair,
 		Button,
 		ButtonBar,
 		Checkbox,

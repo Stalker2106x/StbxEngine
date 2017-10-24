@@ -13,6 +13,7 @@
 #include <pugixml.hpp>
 #endif
 #include "GUIElement.hpp"
+#include "GUIElementPair.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
 
@@ -29,6 +30,7 @@ namespace stb
 		static GUIElement *getGUIElementFromXML(GUIScreen *container, const pugi::xml_node &node);
 		static void GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node, GUIElement *element);
 
+		static GUIElement *getGUIElementPairFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUICheckboxFromXML(const pugi::xml_node &node);

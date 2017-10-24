@@ -63,6 +63,9 @@
     <ClInclude Include="..\..\include\GUIElement.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GUIElementPair.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Commands.cpp">
@@ -108,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\GUIXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GUIElementPair.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

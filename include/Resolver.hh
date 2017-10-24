@@ -11,8 +11,8 @@
 #ifndef RESOLVER_HH_
 #define RESOLVER_HH_
 
-#include <unordered_map>
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 
 namespace stb {
 
