@@ -1,4 +1,4 @@
 <map id="include/GUIPanel.hh" name="include/GUIPanel.hh">
-<area shape="rect" id="node2" href="$GUIElement_8hh.html" title="Heads up display module. " alt="" coords="5,155,124,181"/>
-<area shape="rect" id="node4" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="108,80,216,107"/>
+<area shape="rect" id="node4" href="$GUIElement_8hpp_source.html" title="GUIElement.hpp" alt="" coords="124,155,251,181"/>
+<area shape="rect" id="node7" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="235,80,343,107"/>
 </map>

@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Panel for <a class="el" href="classstb_1_1GUI.html">GUI</a>.  
+<p>Panel for <a class="el" href="classstb_1_1GUI.html" title="Heads up display module. ">GUI</a>.  
  <a href="classstb_1_1GUIPanel.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="GUIPanel_8hh_source.html">GUIPanel.hh</a>&gt;</code></p>
@@ -105,7 +105,7 @@ Inheritance diagram for stb::GUIPanel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classstb_1_1GUIPanel__inherit__graph.png" border="0" usemap="#stb_1_1GUIPanel_inherit__map" alt="Inheritance graph"/></div>
 <map name="stb_1_1GUIPanel_inherit__map" id="stb_1_1GUIPanel_inherit__map">
-<area shape="rect" id="node3" href="classstb_1_1GUIDraggablePanel.html" title="Draggable implementation of panel. " alt="" coords="5,155,179,181"/><area shape="rect" id="node2" href="classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="29,5,155,32"/></map>
+<area shape="rect" id="node3" href="classstb_1_1GUIDraggablePanel.html" title="Draggable implementation of panel. " alt="" coords="5,155,179,181"/><area shape="rect" id="node4" href="classstb_1_1GUIScreen.html" title="Representation of out&#45;of&#45;game interfaces with various elements. " alt="" coords="203,155,322,181"/><area shape="rect" id="node2" href="classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="114,5,241,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for stb::GUIPanel:</div>
@@ -123,21 +123,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d413095121b809dc4f496f506c00949"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d413095121b809dc4f496f506c00949"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GUIPanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;name)</td></tr>
 <tr class="separator:a5d413095121b809dc4f496f506c00949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16d73510e1af806dcfa67379bb29a2f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16d73510e1af806dcfa67379bb29a2f5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialUpdate</b> ()</td></tr>
+<tr class="separator:a16d73510e1af806dcfa67379bb29a2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a51a433c2c551ed1135f9ec4f9c2678"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a51a433c2c551ed1135f9ec4f9c2678"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="separator:a7a51a433c2c551ed1135f9ec4f9c2678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bc4532e6da59a1a431885ce797b72bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bc4532e6da59a1a431885ce797b72bf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>drop</b> ()</td></tr>
+<tr class="separator:a8bc4532e6da59a1a431885ce797b72bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a001d4ed06bf2da5ff3d7edf088df41ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a001d4ed06bf2da5ff3d7edf088df41ef"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const sf::Vector2f &amp;pos)</td></tr>
 <tr class="separator:a001d4ed06bf2da5ff3d7edf088df41ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae4b678b09fd3e9ba02988cc88a1f63a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae4b678b09fd3e9ba02988cc88a1f63a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setStyle</b> (const char &amp;style)</td></tr>
-<tr class="separator:aae4b678b09fd3e9ba02988cc88a1f63a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e4f651f2f46da4fe81b763deb69c8c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e4f651f2f46da4fe81b763deb69c8c9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setBackground</b> (const std::string &amp;resource)</td></tr>
+<tr class="separator:a6e4f651f2f46da4fe81b763deb69c8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d87c12cc1cfbd4a1d441db21ad8a60c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d87c12cc1cfbd4a1d441db21ad8a60c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setStyle</b> (char style)</td></tr>
+<tr class="separator:a1d87c12cc1cfbd4a1d441db21ad8a60c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4b08f06c83c34f09d56fad1b6806240"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4b08f06c83c34f09d56fad1b6806240"></a>
+virtual const sf::Vector2f &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> ()</td></tr>
+<tr class="separator:ae4b08f06c83c34f09d56fad1b6806240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac270ad13477328baa9274b10bad36b04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac270ad13477328baa9274b10bad36b04"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addElement</b> (<a class="el" href="classstb_1_1GUIElement.html">GUIElement</a> *element)</td></tr>
 <tr class="separator:ac270ad13477328baa9274b10bad36b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d42275b012a22b491c589f8fa90e9f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d42275b012a22b491c589f8fa90e9f1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateElementsPosition</b> ()</td></tr>
-<tr class="separator:a4d42275b012a22b491c589f8fa90e9f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c6ae1bfce3c27a24a4bb002596c015e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c6ae1bfce3c27a24a4bb002596c015e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>onButtonHover</b> (const PanelButton &amp;id, const bool &amp;triggered)</td></tr>
-<tr class="separator:a2c6ae1bfce3c27a24a4bb002596c015e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb45cb14cbf5f34bfccaeced1ef10fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbb45cb14cbf5f34bfccaeced1ef10fb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>onButtonHover</b> (const PanelButton &amp;id, bool triggered)</td></tr>
+<tr class="separator:afbb45cb14cbf5f34bfccaeced1ef10fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac04a26afd2b8c5925a50ad8d70bc31ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac04a26afd2b8c5925a50ad8d70bc31ac"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateRT</b> ()</td></tr>
 <tr class="separator:ac04a26afd2b8c5925a50ad8d70bc31ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,15 +160,30 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (c
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow *win)</td></tr>
 <tr class="separator:aa62895171cdb1dbd61329637ff5fa34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classstb_1_1GUIElement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classstb_1_1GUIElement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classstb_1_1GUIElement.html">stb::GUIElement</a></td></tr>
-<tr class="memitem:aa0d48eef3b0bc9cf224aa0ef9b873530 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0d48eef3b0bc9cf224aa0ef9b873530"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GUIElement</b> (const std::string &amp;id)</td></tr>
-<tr class="separator:aa0d48eef3b0bc9cf224aa0ef9b873530 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ef1aa47df3b23ebb2dbf0b381cd16c2 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ef1aa47df3b23ebb2dbf0b381cd16c2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>toggle</b> ()</td></tr>
-<tr class="separator:a2ef1aa47df3b23ebb2dbf0b381cd16c2 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeb7f31071b4ed67bafa1f951a98fc7b inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaeb7f31071b4ed67bafa1f951a98fc7b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GUIElement</b> (const std::string &amp;id, GUIElementType type)</td></tr>
+<tr class="separator:aaeb7f31071b4ed67bafa1f951a98fc7b inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f37524b72742e554244c1a06af84f99 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f37524b72742e554244c1a06af84f99"></a>
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> ()</td></tr>
 <tr class="separator:a9f37524b72742e554244c1a06af84f99 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b6c86b0611a10a85a590a2f2a01bbd9 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b6c86b0611a10a85a590a2f2a01bbd9"></a>
+const GUIElementType &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> ()</td></tr>
+<tr class="separator:a9b6c86b0611a10a85a590a2f2a01bbd9 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac269cbfaad695ea868cc3eab019de0d6 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac269cbfaad695ea868cc3eab019de0d6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
+<tr class="separator:ac269cbfaad695ea868cc3eab019de0d6 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21c06859d5103495d111cf8189ed8441 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a21c06859d5103495d111cf8189ed8441"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setId</b> (const std::string &amp;id)</td></tr>
+<tr class="separator:a21c06859d5103495d111cf8189ed8441 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ef55ec6572e1b40afaae1e618fb3a93 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ef55ec6572e1b40afaae1e618fb3a93"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setX</b> (float x)</td></tr>
+<tr class="separator:a3ef55ec6572e1b40afaae1e618fb3a93 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa742a353805498370cf5a6121a8dc0a8 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa742a353805498370cf5a6121a8dc0a8"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setY</b> (float y)</td></tr>
+<tr class="separator:aa742a353805498370cf5a6121a8dc0a8 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef1aa47df3b23ebb2dbf0b381cd16c2 inherit pub_methods_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ef1aa47df3b23ebb2dbf0b381cd16c2"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>toggle</b> ()</td></tr>
+<tr class="separator:a2ef1aa47df3b23ebb2dbf0b381cd16c2 inherit pub_methods_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -172,10 +199,17 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>_frame</b></td>
 <tr class="memitem:a0a6d5380c16cc8c9d306f6ba6d166acf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a6d5380c16cc8c9d306f6ba6d166acf"></a>
 <a class="el" href="classstb_1_1GUIButtonBar.html">GUIButtonBar</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_buttonBar</b></td></tr>
 <tr class="separator:a0a6d5380c16cc8c9d306f6ba6d166acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb9cd2956d3bf58045c1b78b26203b52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb9cd2956d3bf58045c1b78b26203b52"></a>
-std::vector&lt; <a class="el" href="classstb_1_1GUIElement.html">GUIElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_elements</b></td></tr>
-<tr class="separator:afb9cd2956d3bf58045c1b78b26203b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85b32589df41cdcdcf2d486bde7e396e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85b32589df41cdcdcf2d486bde7e396e"></a>
+std::deque&lt; <a class="el" href="classstb_1_1GUIElement.html">GUIElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_elements</b></td></tr>
+<tr class="separator:a85b32589df41cdcdcf2d486bde7e396e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a567ed4766356b7eb370a65d954ca77b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a567ed4766356b7eb370a65d954ca77b8"></a>
+std::queue&lt; std::pair&lt; size_t, <br class="typebreak" />
+bool &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_drop</b></td></tr>
+<tr class="separator:a567ed4766356b7eb370a65d954ca77b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classstb_1_1GUIElement"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classstb_1_1GUIElement')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classstb_1_1GUIElement.html">stb::GUIElement</a></td></tr>
+<tr class="memitem:a4676444f9f52869b5388e7ee528d5881 inherit pro_attribs_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4676444f9f52869b5388e7ee528d5881"></a>
+GUIElementType&#160;</td><td class="memItemRight" valign="bottom"><b>_type</b></td></tr>
+<tr class="separator:a4676444f9f52869b5388e7ee528d5881 inherit pro_attribs_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3edd8e85a60d48d0649e65b6381f0ecf inherit pro_attribs_classstb_1_1GUIElement"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3edd8e85a60d48d0649e65b6381f0ecf"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_id</b></td></tr>
 <tr class="separator:a3edd8e85a60d48d0649e65b6381f0ecf inherit pro_attribs_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,7 +218,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_active</b></td></tr>
 <tr class="separator:a2e338a745c52910f555f916ac9799c57 inherit pro_attribs_classstb_1_1GUIElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Panel for <a class="el" href="classstb_1_1GUI.html">GUI</a>. </p>
+<div class="textblock"><p>Panel for <a class="el" href="classstb_1_1GUI.html" title="Heads up display module. ">GUI</a>. </p>
 <p>This class is a panel to group indicators, or set custom actions bars, ... </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="GUIPanel_8hh_source.html">GUIPanel.hh</a></li>
