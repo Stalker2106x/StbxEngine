@@ -37,7 +37,7 @@ namespace stb {
 	class GUIElement
 	{
 	public:
-		GUIElement(const std::string &id, GUIElementType type) : _id(id), _type(type), _active(true) {}
+		GUIElement(const std::string &id, GUIElementType type) : _id(id), _type(type), _active(true) { }
 		virtual ~GUIElement() {};
 
 		virtual void initialUpdate() = 0;
@@ -49,6 +49,8 @@ namespace stb {
 		bool isActive() { return (_active); };
 
 		void setId(const std::string &id) {	_id = id; };
+		virtual void setX(float x) { setPosition(sf::Vector2f(x, getPosition().y)); };
+		virtual void setY(float y) { setPosition(sf::Vector2f(getPosition().x, y)); };
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
 
 		virtual void toggle() { _active = (_active ? false : true); };

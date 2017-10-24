@@ -8,14 +8,10 @@ using namespace stb;
 // GUIButton
 //
 
-GUIButton::GUIButton() : GUIElement("", Button)
+GUIButton::GUIButton(const sf::Event::EventType &triggerType) : GUIElement("", Button)
 {
-	_hover = false;
-	_triggerType = sf::Event::MouseButtonPressed;
-}
-
-GUIButton::GUIButton(const std::string &id, const sf::Event::EventType &triggerType) : GUIElement(id, Button)
-{
+	_onClickCallback = NULL;
+	_onRClickCallback = NULL;
 	_triggerType = triggerType;
 }
 
@@ -23,7 +19,7 @@ GUIButton::~GUIButton()
 {
 }
 
-void GUIButton::reset()
+void GUIButton::initialUpdate()
 {
 	_hover = false;
 }
@@ -57,12 +53,14 @@ bool GUIButton::onHover(bool triggered)
 
 void GUIButton::onClick()
 {
-	(*_onClickCallback)();
+	if (_onClickCallback != NULL)
+		(*_onClickCallback)();
 }
 
 void GUIButton::onRClick()
 {
-	(*_onRClickCallback)();
+	if (_onRClickCallback != NULL)
+		(*_onRClickCallback)();
 }
 
 bool GUIButton::update(const sf::Event &e)
@@ -71,9 +69,9 @@ bool GUIButton::update(const sf::Event &e)
 		return (false);
 	if (e.type == _triggerType && _hover)
 	{
-		if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left) && _onClickCallback != NULL)
+		if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
 			onClick();
-		else if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Right) && _onRClickCallback != NULL)
+		else if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Right))
 			onRClick();
 	}
 	return (true);
@@ -83,21 +81,25 @@ bool GUIButton::update(const sf::Event &e)
 // GUITextButton
 //
 
-GUITextButton::GUITextButton() : GUIButton()
-{
-	initialUpdate();
-}
 
-GUITextButton::GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
+GUITextButton::GUITextButton(const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType) : GUIButton(triggerType)
 {
 	_label.setString(label);
 	_label.setFont(*SFResolver<sf::Font>::resolve(fontResource));
-	_skin = skin;
-	initialUpdate();
 }
 
 GUITextButton::~GUITextButton()
 {
+}
+
+void GUITextButton::initialUpdate()
+{
+	GUIButton::initialUpdate();
+	_skin = TextSkin(sf::Color::White, sf::Color::Cyan);
+	if (_label.getGlobalBounds().contains(Engine::instance->getMousePosition()))
+		onHover(true);
+	else
+		onHover(false);
 }
 
 void GUITextButton::setLabel(const std::string &label)
@@ -145,15 +147,6 @@ const sf::FloatRect &GUITextButton::getGlobalBounds()
 	return (_label.getGlobalBounds());
 }
 
-void GUITextButton::initialUpdate()
-{
-	_skin = TextSkin(sf::Color::White, sf::Color::Cyan);
-	if (_label.getGlobalBounds().contains(Engine::instance->getMousePosition()))
-		onHover(true);
-	else
-		onHover(false);
-}
-
 bool GUITextButton::onHover(bool triggered)
 {
 	GUIButton::onHover(triggered);
@@ -193,19 +186,20 @@ void GUITextButton::draw(sf::RenderWindow *win)
 // GUISpriteButton
 //
 
-GUISpriteButton::GUISpriteButton() : GUIButton()
-{
-}
 
-GUISpriteButton::GUISpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const sf::Event::EventType &triggerType) : GUIButton(id, triggerType)
+GUISpriteButton::GUISpriteButton(const std::string &resource, const sf::Event::EventType &triggerType) : GUIButton(triggerType)
 {
 	_sprite.setTexture(*SFResolver<sf::Texture>::resolve(resource));
-	_skin = skin;
-	initialUpdate();
 }
 
 GUISpriteButton::~GUISpriteButton()
 {
+}
+
+void GUISpriteButton::initialUpdate()
+{
+	GUIButton::initialUpdate();
+	_sprite.setTextureRect(_skin.normal);
 }
 
 void GUISpriteButton::setTexture(const std::string &resource)
@@ -236,11 +230,6 @@ const sf::FloatRect &GUISpriteButton::getLocalBounds()
 const sf::FloatRect &GUISpriteButton::getGlobalBounds()
 {
 	return (_sprite.getGlobalBounds());
-}
-
-void GUISpriteButton::initialUpdate()
-{
-	_sprite.setTextureRect(_skin.normal);
 }
 
 bool GUISpriteButton::onHover(bool triggered)
@@ -282,20 +271,20 @@ void GUISpriteButton::draw(sf::RenderWindow *win)
 // GUIToggleSpriteButton
 //
 
-GUIToggleSpriteButton::GUIToggleSpriteButton() : GUISpriteButton()
-{
-	_state = false;
-}
 
-GUIToggleSpriteButton::GUIToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin, const sf::Event::EventType &triggerType) : GUISpriteButton(id, resource, skin, triggerType)
+GUIToggleSpriteButton::GUIToggleSpriteButton(const std::string &resource, const sf::Event::EventType &triggerType) : GUISpriteButton(resource, triggerType)
 {
 	_state = false;
-	_altSkin = altSkin;
-	initialUpdate();
 }
 
 GUIToggleSpriteButton::~GUIToggleSpriteButton()
 {
+}
+
+void GUIToggleSpriteButton::setSkin(const SpriteSkin &skin, const SpriteSkin &altSkin)
+{
+	GUISpriteButton::setSkin(skin);
+	_altSkin = altSkin;
 }
 
 bool GUIToggleSpriteButton::onHover(bool triggered)
@@ -397,7 +386,6 @@ const sf::Vector2f GUIButtonBar::calcButtonPosition(const size_t &index, const s
 
 void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 {
-
 	for (int i = (_inverted ? _buttons.size() - 1 : 0); (_inverted ? i >= 0 : i < static_cast<int>(_buttons.size())); (_inverted ? i-- : i++))
 		_buttons[i]->setPosition(calcButtonPosition(i, pos));
 }
@@ -413,25 +401,25 @@ GUIButton *GUIButtonBar::addButton(GUIButton *button)
 	return (button);
 }
 
-GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin)
+GUITextButton *GUIButtonBar::addTextButton(const std::string &label, const std::string &fontResource)
 {
-	GUITextButton *button = new GUITextButton(id, label, fontResource, skin);
+	GUITextButton *button = new GUITextButton(label, fontResource);
 
 	addButton(button);
 	return (button);
 }
 
-GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin)
+GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &resource)
 {
-	GUISpriteButton *button = new GUISpriteButton(id, resource, skin);
+	GUISpriteButton *button = new GUISpriteButton(resource);
 
 	addButton(button);
 	return (button);
 }
 
-GUIToggleSpriteButton *GUIButtonBar::addToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin)
+GUIToggleSpriteButton *GUIButtonBar::addToggleSpriteButton(const std::string &resource)
 {
-	GUIToggleSpriteButton *button = new GUIToggleSpriteButton(id, resource, skin, altSkin);
+	GUIToggleSpriteButton *button = new GUIToggleSpriteButton(resource);
 
 	addButton(button);
 	return (button);

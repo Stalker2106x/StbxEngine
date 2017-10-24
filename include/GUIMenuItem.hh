@@ -36,6 +36,8 @@ namespace stb {
 		GUIMenuItem();
 		~GUIMenuItem();
 
+		virtual void initialUpdate();
+
 		static GUIMenuItem *factory(const GUIElementType &type);
 		
 		void setLabel(const std::string &label);
@@ -50,7 +52,6 @@ namespace stb {
 		virtual const sf::Vector2f &getPosition();
 		int &getPadding();
 
-		virtual void initialUpdate();
 		virtual void onClick() = 0;
 
 		virtual bool update(const sf::Event &e);

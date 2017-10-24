@@ -28,7 +28,8 @@ namespace stb
 	{
 	public:
 		static GUIElement *getGUIElementFromXML(GUIScreen *container, const pugi::xml_node &node);
-		static void GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node, GUIElement *element);
+
+		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
 
 		static GUIElement *getGUIElementPairFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);

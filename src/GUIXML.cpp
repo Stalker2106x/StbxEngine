@@ -27,13 +27,7 @@ GUIElement *GUIXML::getGUIElementFromXML(GUIScreen *container, const pugi::xml_n
 		element = GUIMenu::parseXML(node);
 	else
 		element = GUIXMLElementParser[node.name()](node);
-	GUIGenericFromXML(container, node, element);
-	return (element);
-}
-
-void GUIXML::GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node, GUIElement *element)
-{
-	element->setId(node.attribute("id").as_string(DEFAULT_ID));
+	GUIGenericFromXML(node, element);
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))
@@ -41,6 +35,17 @@ void GUIXML::GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node,
 			container->addElement(getGUIElementFromXML(container, it));
 		}
 	}
+	element->initialUpdate();
+	return (element);
+}
+
+void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
+{
+	element->setId(node.attribute("id").as_string(DEFAULT_ID));
+	if (node.attribute("x"))
+		element->setX(node.attribute("x").as_float());
+	if (node.attribute("y"))
+		element->setX(node.attribute("y").as_float());
 }
 
 GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
@@ -56,19 +61,20 @@ GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
 
 GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {
-	GUIButton *element = NULL;
-
 	if (node.attribute("texture")) //GUISpriteButton
 	{
-		element = new GUISpriteButton();
+		GUISpriteButton *element = new GUISpriteButton(node.attribute("texture").as_string());
+		return (element);
 	}
-	else //GUITextButton
+	else if (node.attribute("text")) //GUITextButton
 	{
-		element = new GUITextButton();
+		GUITextButton *element = new GUITextButton(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		return (element);
 	}
-	if (element == NULL)
+	else
+	{
 		return (NULL);
-	return (element);
+	}
 }
 
 GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node)

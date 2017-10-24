@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen id="nestest">
+  <buttonBar x="200" y="400">
+    <button text="test" font="glitch" />
+    <button texture="nachinayuschiy" />
+  </buttonBar>
+</screen>

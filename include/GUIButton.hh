@@ -24,11 +24,11 @@ namespace stb {
 	class GUIButton : public GUIElement
 	{
 	public:
-		GUIButton();
-		GUIButton(const std::string &id, const sf::Event::EventType &triggerType);
+		GUIButton(const sf::Event::EventType &triggerType = sf::Event::EventType::MouseButtonPressed);
 		virtual ~GUIButton();
 
-		void reset();
+		virtual void initialUpdate();
+
 		bool isHovered() const;
 		void setClickCallback(const std::function<void(void)> &fptr);
 		void setRClickCallback(const std::function<void(void)> &fptr);
@@ -40,9 +40,7 @@ namespace stb {
 		virtual bool onHover(bool triggered);
 		virtual void onClick();
 		virtual void onRClick();
-
-		virtual void initialUpdate() = 0;
-
+		
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win) = 0;
 	protected:
@@ -74,8 +72,7 @@ namespace stb {
 	class GUITextButton : public GUIButton
 	{
 	public:
-		GUITextButton();
-		GUITextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUITextButton(const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUITextButton();
 
 		void setLabel(const std::string &label);
@@ -121,12 +118,11 @@ namespace stb {
 	class GUISpriteButton : public GUIButton
 	{
 	public:
-		GUISpriteButton();
-		GUISpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUISpriteButton(const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUISpriteButton();
 
 		void setTexture(const std::string &resource);
-		void setSkin(const SpriteSkin &skin);
+		virtual void setSkin(const SpriteSkin &skin);
 		void setPosition(const sf::Vector2f &pos);
 		virtual const sf::Vector2f &getPosition();
 		virtual const sf::FloatRect &getLocalBounds();
@@ -154,9 +150,11 @@ namespace stb {
 	{
 	public:
 		GUIToggleSpriteButton();
-		GUIToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUIToggleSpriteButton(const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUIToggleSpriteButton();
 		
+		virtual void setSkin(const SpriteSkin &skin, const SpriteSkin &altSkin);
+
 		bool onHover(bool triggered) override;
 		virtual void onClick() override;
 
@@ -187,14 +185,14 @@ namespace stb {
 		GUIButton *getButton(const std::string &id);
 		void setSpacing(int spacing);
 		const sf::Vector2f calcButtonPosition(const size_t &index, const sf::Vector2f &pos);
-		void setPosition(const sf::Vector2f &pos);
+		virtual void setPosition(const sf::Vector2f &pos);
 
 		virtual const sf::Vector2f &getPosition();
 
 		GUIButton *addButton(GUIButton *button);
-		GUITextButton *addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin);
-		GUISpriteButton *addSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin);
-		GUIToggleSpriteButton *addToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin);
+		GUITextButton *addTextButton(const std::string &label, const std::string &fontResource);
+		GUISpriteButton *addSpriteButton(const std::string &resource);
+		GUIToggleSpriteButton *addToggleSpriteButton(const std::string &resource);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
