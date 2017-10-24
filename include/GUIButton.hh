@@ -191,6 +191,7 @@ namespace stb {
 
 		virtual const sf::Vector2f &getPosition();
 
+		GUIButton *addButton(GUIButton *button);
 		GUITextButton *addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin);
 		GUISpriteButton *addSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin);
 		GUIToggleSpriteButton *addToggleSpriteButton(const std::string &id, const std::string &resource, const SpriteSkin &skin, const SpriteSkin &altSkin);

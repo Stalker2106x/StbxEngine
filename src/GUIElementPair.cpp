@@ -3,10 +3,6 @@
 
 using namespace stb;
 
-/*
- * GUIElementPair Base class
- */
-
 GUIElementPair::GUIElementPair() : GUIElement("", Pair)
 {
 

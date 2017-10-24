@@ -46,21 +46,51 @@ void GUIXML::GUIGenericFromXML(GUIScreen *container, const pugi::xml_node &node,
 GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
 {
 	GUIElementPair *element = new GUIElementPair();
-	return (NULL);
+	pugi::xml_node xmlElement = node.first_child();
+
+	element->setFirst(getGUIElementFromXML(NULL, xmlElement));
+	xmlElement = xmlElement.next_sibling();
+	element->setSecond(getGUIElementFromXML(NULL, xmlElement));
+	return (element);
 }
 
 GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {
-	//Detected later based on background
-	//	GUIButton *element = new GUIButton();
-	return (NULL);
+	GUIButton *element = NULL;
+
+	if (node.attribute("texture")) //GUISpriteButton
+	{
+		element = new GUISpriteButton();
+	}
+	else //GUITextButton
+	{
+		element = new GUITextButton();
+	}
+	if (element == NULL)
+		return (NULL);
+	return (element);
 }
 
 GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node)
 {
-	//Detected later based on Horizontal or vertical
-	//GUIButtonBar *element = new GUIButtonBar();
-	return (NULL);
+	GUIButtonBar *element = NULL;
+	std::string type = node.attribute("orientation").as_string("horizontal");
+
+	if (type == "vertical")
+	{
+		element = new GUIButtonBar(Vertical);
+	}
+	else if (type == "horizontal")
+	{
+		element = new GUIButtonBar(Horizontal);
+	}
+	if (element == NULL)
+		return (NULL);
+	for (pugi::xml_node xmlButton = node.first_child(); xmlButton; xmlButton = xmlButton.next_sibling())
+	{
+		element->addButton(dynamic_cast<GUIButton *>(getGUIElementFromXML(NULL, xmlButton)));
+	}
+	return (element);
 }
 
 GUIElement *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node)

@@ -407,11 +407,17 @@ const sf::Vector2f &GUIButtonBar::getPosition()
 	return (_buttons.size() > 0 ? _buttons[0]->getPosition() : sf::Vector2f(0,0));
 }
 
+GUIButton *GUIButtonBar::addButton(GUIButton *button)
+{
+	_buttons.push_back(button);
+	return (button);
+}
+
 GUITextButton *GUIButtonBar::addTextButton(const std::string &id, const std::string &label, const std::string &fontResource, const TextSkin &skin)
 {
 	GUITextButton *button = new GUITextButton(id, label, fontResource, skin);
 
-	_buttons.push_back(button);
+	addButton(button);
 	return (button);
 }
 
@@ -419,7 +425,7 @@ GUISpriteButton *GUIButtonBar::addSpriteButton(const std::string &id, const std:
 {
 	GUISpriteButton *button = new GUISpriteButton(id, resource, skin);
 
-	_buttons.push_back(button);
+	addButton(button);
 	return (button);
 }
 
@@ -427,7 +433,7 @@ GUIToggleSpriteButton *GUIButtonBar::addToggleSpriteButton(const std::string &id
 {
 	GUIToggleSpriteButton *button = new GUIToggleSpriteButton(id, resource, skin, altSkin);
 
-	_buttons.push_back(button);
+	addButton(button);
 	return (button);
 }
 
