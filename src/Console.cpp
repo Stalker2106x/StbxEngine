@@ -9,8 +9,7 @@ Console::Console(Engine &e) : _engine(e)
 {
   _active = false;
 
-  if (!_font.loadFromFile("./Data/font/console.ttf"))
-    throw std::runtime_error("Resource not found");
+  _font = *SFResolver<sf::Font>::resolve("console");
   _lineCount = 16;
   _fontSize = 18;
   _currentIndex = 0;

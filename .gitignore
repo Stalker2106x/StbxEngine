@@ -18,6 +18,7 @@
 # Visual Studio #
 #################
 *.opensdf
+*.opendb
 *.suo
 *.sdf
 *.idb
