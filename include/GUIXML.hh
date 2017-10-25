@@ -22,12 +22,11 @@
 namespace stb
 {
 #ifdef STBXENGINE_CORE
-	class GUIScreen; //Forward
 	
 	class GUIXML
 	{
 	public:
-		static GUIElement *getGUIElementFromXML(GUIScreen *container, const pugi::xml_node &node);
+		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node);
 
 		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
 

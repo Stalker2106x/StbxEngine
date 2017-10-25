@@ -1,8 +1,10 @@
 <map id="include/GUIButton.hh" name="include/GUIButton.hh">
-<area shape="rect" id="node2" href="$GUI_8hh.html" title="include/GUI.hh" alt="" coords="85,155,200,181"/>
-<area shape="rect" id="node4" href="$MenuItem_8hh.html" title="Menu items (links, settings, sliders, text inputs, ...) " alt="" coords="207,304,361,331"/>
-<area shape="rect" id="node6" href="$GUIEntity_8hh_source.html" title="include/GUIEntity.hh" alt="" coords="25,80,173,107"/>
-<area shape="rect" id="node7" href="$GUIPanel_8hh.html" title="GUI static or draggable panels. " alt="" coords="197,80,345,107"/>
-<area shape="rect" id="node3" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="115,229,258,256"/>
-<area shape="rect" id="node5" href="$Menu_8hh.html" title="include/Menu.hh" alt="" coords="221,379,347,405"/>
+<area shape="rect" id="node2" href="$GUI_8hh.html" title="include/GUI.hh" alt="" coords="56,155,171,181"/>
+<area shape="rect" id="node4" href="$GUIMenuItem_8hh.html" title="GUI Menu items (links, settings, sliders, text inputs, ...) " alt="" coords="24,304,203,331"/>
+<area shape="rect" id="node7" href="$GUIEntity_8hh.html" title="Implements standard GUI Entities. " alt="" coords="238,80,386,107"/>
+<area shape="rect" id="node9" href="$GUIPanel_8hh.html" title="GUI static or draggable panels. " alt="" coords="66,80,214,107"/>
+<area shape="rect" id="node3" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="42,229,185,256"/>
+<area shape="rect" id="node5" href="$GUIMenu_8hh.html" title="include/GUIMenu.hh" alt="" coords="52,379,201,405"/>
+<area shape="rect" id="node6" href="$GUIScreen_8hh.html" title="include/GUIScreen.hh" alt="" coords="110,453,269,480"/>
+<area shape="rect" id="node8" href="$GUIXML_8hh.html" title="include/GUIXML.hh" alt="" coords="195,155,335,181"/>
 </map>

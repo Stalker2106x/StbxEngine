@@ -10,8 +10,8 @@ off GUIMenuLink
 implementation of as_int, as_bool, ..., furthermore, as they take a default
 value as parameter, we can stop all the tests we made, and go through all
 supported params one by one without checking if they exists.
--GUIScreen should stop having a "container", and therefore should inherit from
-GUIPanel.
+-GUIMenu will be destroyed and replaced by GUIElementPair and GUIElementGrid.
+-GUIElement interface should implement GetSize(); method.
 
 FEATURE:
 -show list of predicates under console input

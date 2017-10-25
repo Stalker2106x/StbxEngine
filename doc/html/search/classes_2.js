@@ -1,17 +1,29 @@
 var searchData=
 [
   ['gui',['GUI',['../classstb_1_1GUI.html',1,'stb']]],
-  ['gui',['GUI',['../classGUI.html',1,'']]],
   ['guibutton',['GUIButton',['../classstb_1_1GUIButton.html',1,'stb']]],
   ['guibuttonbar',['GUIButtonBar',['../classstb_1_1GUIButtonBar.html',1,'stb']]],
   ['guicheckbox',['GUICheckbox',['../classstb_1_1GUICheckbox.html',1,'stb']]],
   ['guidraggablepanel',['GUIDraggablePanel',['../classstb_1_1GUIDraggablePanel.html',1,'stb']]],
   ['guiedit',['GUIEdit',['../classstb_1_1GUIEdit.html',1,'stb']]],
   ['guielement',['GUIElement',['../classstb_1_1GUIElement.html',1,'stb']]],
+  ['guielementpair',['GUIElementPair',['../classstb_1_1GUIElementPair.html',1,'stb']]],
   ['guiindicator',['GUIIndicator',['../classstb_1_1GUIIndicator.html',1,'stb']]],
+  ['guimenu',['GUIMenu',['../classstb_1_1GUIMenu.html',1,'stb']]],
+  ['guimenucheckbox',['GUIMenuCheckbox',['../classstb_1_1GUIMenuCheckbox.html',1,'stb']]],
+  ['guimenudynamicsetting',['GUIMenuDynamicSetting',['../classstb_1_1GUIMenuDynamicSetting.html',1,'stb']]],
+  ['guimenuedit',['GUIMenuEdit',['../classstb_1_1GUIMenuEdit.html',1,'stb']]],
+  ['guimenuitem',['GUIMenuItem',['../classstb_1_1GUIMenuItem.html',1,'stb']]],
+  ['guimenulink',['GUIMenuLink',['../classstb_1_1GUIMenuLink.html',1,'stb']]],
+  ['guimenusetting',['GUIMenuSetting',['../classstb_1_1GUIMenuSetting.html',1,'stb']]],
+  ['guimenuslider',['GUIMenuSlider',['../classstb_1_1GUIMenuSlider.html',1,'stb']]],
   ['guipanel',['GUIPanel',['../classstb_1_1GUIPanel.html',1,'stb']]],
+  ['guiscreen',['GUIScreen',['../classstb_1_1GUIScreen.html',1,'stb']]],
   ['guisindicator',['GUISIndicator',['../classstb_1_1GUISIndicator.html',1,'stb']]],
   ['guispritebutton',['GUISpriteButton',['../classstb_1_1GUISpriteButton.html',1,'stb']]],
+  ['guitext',['GUIText',['../classstb_1_1GUIText.html',1,'stb']]],
+  ['guitextarea',['GUITextArea',['../classstb_1_1GUITextArea.html',1,'stb']]],
   ['guitextbutton',['GUITextButton',['../classstb_1_1GUITextButton.html',1,'stb']]],
-  ['guitogglespritebutton',['GUIToggleSpriteButton',['../classstb_1_1GUIToggleSpriteButton.html',1,'stb']]]
+  ['guitogglespritebutton',['GUIToggleSpriteButton',['../classstb_1_1GUIToggleSpriteButton.html',1,'stb']]],
+  ['guixml',['GUIXML',['../classstb_1_1GUIXML.html',1,'stb']]]
 ];

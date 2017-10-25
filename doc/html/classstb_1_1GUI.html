@@ -94,6 +94,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">stb::GUI Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Heads up display module.  
+ <a href="classstb_1_1GUI.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="GUI_8hh_source.html">GUI.hh</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -103,9 +108,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td><
 <tr class="memitem:a07e22d554e196a15398201bb0df2ad34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07e22d554e196a15398201bb0df2ad34"></a>
 <a class="el" href="classstb_1_1GUIElement.html">GUIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getElement</b> (const std::string &amp;id)</td></tr>
 <tr class="separator:a07e22d554e196a15398201bb0df2ad34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7432acd5194872e7497e20c67c36ce2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7432acd5194872e7497e20c67c36ce2"></a>
-<a class="el" href="classstb_1_1GUIElement.html">GUIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>deleteElement</b> (const std::string &amp;id)</td></tr>
-<tr class="separator:aa7432acd5194872e7497e20c67c36ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3ef670554ccdaaead698d4cfb885ce3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3ef670554ccdaaead698d4cfb885ce3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeElement</b> (const std::string &amp;id, bool del=false)</td></tr>
+<tr class="separator:aa3ef670554ccdaaead698d4cfb885ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad730388fe8e8cba70a60275ef343f434"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad730388fe8e8cba70a60275ef343f434"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeElement</b> (int index, bool del=false)</td></tr>
+<tr class="separator:ad730388fe8e8cba70a60275ef343f434"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e21a9c3b0eada456be2710640bb8e0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e21a9c3b0eada456be2710640bb8e0b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>drop</b> ()</td></tr>
+<tr class="separator:a5e21a9c3b0eada456be2710640bb8e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaad94f6fcd1960c130810e9c4eb65e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acaad94f6fcd1960c130810e9c4eb65e2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>changeScreen</b> (const std::string &amp;resource, const std::string &amp;location=&quot;&quot;)</td></tr>
+<tr class="separator:acaad94f6fcd1960c130810e9c4eb65e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3ae9ab56efd4f71d37aa1f03a78e77a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3ae9ab56efd4f71d37aa1f03a78e77a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>toggle</b> ()</td></tr>
 <tr class="separator:ae3ae9ab56efd4f71d37aa1f03a78e77a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,10 +135,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>toggle</b> ()</td></t
 <tr class="memitem:ab9cb1619d4a924278049130b7f76c5ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9cb1619d4a924278049130b7f76c5ae"></a>
 <a class="el" href="classstb_1_1GUIDraggablePanel.html">GUIDraggablePanel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addDraggablePanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;headerResource, const std::string &amp;frameResource)</td></tr>
 <tr class="separator:ab9cb1619d4a924278049130b7f76c5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50fc62c5d29fb6f36ef02846fae809b5"><td class="memTemplParams" colspan="2"><a class="anchor" id="a50fc62c5d29fb6f36ef02846fae809b5"></a>
+<tr class="memitem:acdba98f8a246fea4a995fd83de72a57b"><td class="memTemplParams" colspan="2"><a class="anchor" id="acdba98f8a246fea4a995fd83de72a57b"></a>
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a50fc62c5d29fb6f36ef02846fae809b5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addIndicator</b> (const sf::Vector2f &amp;pos, const int &amp;fontSize, std::string *label, T &amp;var)</td></tr>
-<tr class="separator:a50fc62c5d29fb6f36ef02846fae809b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdba98f8a246fea4a995fd83de72a57b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addIndicator</b> (const sf::Vector2f &amp;pos, int fontSize, std::string *label, T &amp;var)</td></tr>
+<tr class="separator:acdba98f8a246fea4a995fd83de72a57b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4111c5a0f328eac37c71f9a964f1094"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4111c5a0f328eac37c71f9a964f1094"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleHideElement</b> (const std::string &amp;id)</td></tr>
 <tr class="separator:af4111c5a0f328eac37c71f9a964f1094"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,7 +152,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf:
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow *win)</td></tr>
 <tr class="separator:aaa179561cf9634755b27f968efb0833e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Heads up display module. </p>
+<p>This classes set provide usable <a class="el" href="classstb_1_1GUI.html" title="Heads up display module. ">GUI</a> to draw info over the renderer frame. It acts as a container for <a class="el" href="classstb_1_1GUI.html" title="Heads up display module. ">GUI</a> Elements like static or dynamic Panels and Indicators to be added anywhere on screen. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="GUI_8hh_source.html">GUI.hh</a></li>
 </ul>
 </div><!-- contents -->

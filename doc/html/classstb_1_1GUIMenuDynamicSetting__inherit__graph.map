@@ -1,0 +1,5 @@
+<map id="stb::GUIMenuDynamicSetting" name="stb::GUIMenuDynamicSetting">
+<area shape="rect" id="node2" href="$classstb_1_1GUIMenuSetting.html" title="Static Setting item, showing a list of values defined in XML. " alt="" coords="33,155,188,181"/>
+<area shape="rect" id="node3" href="$classstb_1_1GUIMenuItem.html" title="Abstract Menu item. " alt="" coords="42,80,179,107"/>
+<area shape="rect" id="node4" href="$classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="47,5,174,32"/>
+</map>

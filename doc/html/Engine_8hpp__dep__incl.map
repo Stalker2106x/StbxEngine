@@ -1,4 +1,5 @@
 <map id="include/Engine.hpp" name="include/Engine.hpp">
-<area shape="rect" id="node2" href="$MenuItem_8hh.html" title="Menu items (links, settings, sliders, text inputs, ...) " alt="" coords="5,80,160,107"/>
-<area shape="rect" id="node3" href="$Menu_8hh.html" title="include/Menu.hh" alt="" coords="19,155,146,181"/>
+<area shape="rect" id="node2" href="$GUIMenuItem_8hh.html" title="GUI Menu items (links, settings, sliders, text inputs, ...) " alt="" coords="5,80,184,107"/>
+<area shape="rect" id="node3" href="$GUIMenu_8hh.html" title="include/GUIMenu.hh" alt="" coords="20,155,169,181"/>
+<area shape="rect" id="node4" href="$GUIScreen_8hh.html" title="include/GUIScreen.hh" alt="" coords="15,229,174,256"/>
 </map>

@@ -45,7 +45,7 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 	{
 		if (isScreenParam(element))
 			continue;
-		addElement(GUIXML::getGUIElementFromXML(this, element));
+		addElement(GUIXML::getGUIElementFromXML(element));
 		//if (strcmp(element.name(),"menu") == 0)
 		//	_container.addElement(GUIMenu::parseXML(this, element));
 	} 

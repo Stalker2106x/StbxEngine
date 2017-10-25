@@ -17,8 +17,7 @@ namespace stb {
 	class GUIElementPair : public GUIElement
 	{
 	public:
-		GUIElementPair();
-		GUIElementPair(GUIElement *first, GUIElement *second);
+		GUIElementPair(GUIElement *first = NULL, GUIElement *second = NULL);
 		~GUIElementPair();
 
 		virtual void initialUpdate();
@@ -33,6 +32,7 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *);
 
 	protected:
+		int _spacing;
 		GUIElement *_first;
 		GUIElement *_second;
 	};

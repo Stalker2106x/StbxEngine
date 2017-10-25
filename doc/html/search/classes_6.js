@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spriteskin',['SpriteSkin',['../structstb_1_1SpriteSkin.html',1,'stb']]]
+  ['textskin',['TextSkin',['../structstb_1_1TextSkin.html',1,'stb']]]
 ];

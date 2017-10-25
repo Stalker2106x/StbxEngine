@@ -98,12 +98,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">stb::Engine Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main class for graphic conception.  
+ <a href="classstb_1_1Engine.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Engine_8hpp_source.html">Engine.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for stb::Engine:</div>
 <div class="dyncontent">
 <div class="center"><img src="classstb_1_1Engine__coll__graph.png" border="0" usemap="#stb_1_1Engine_coll__map" alt="Collaboration graph"/></div>
 <map name="stb_1_1Engine_coll__map" id="stb_1_1Engine_coll__map">
-<area shape="rect" id="node2" href="classstb_1_1Console.html" title="stb::Console" alt="" coords="5,5,107,32"/><area shape="rect" id="node3" href="classstb_1_1GUI.html" title="stb::GUI" alt="" coords="131,5,205,32"/><area shape="rect" id="node4" href="classstb_1_1Keybinds.html" title="stb::Keybinds" alt="" coords="229,5,336,32"/></map>
+<area shape="rect" id="node2" href="classstb_1_1Console.html" title="Integrated toggleable developer console. " alt="" coords="5,5,107,32"/><area shape="rect" id="node3" href="classstb_1_1GUI.html" title="Heads up display module. " alt="" coords="131,5,205,32"/><area shape="rect" id="node4" href="classstb_1_1Keybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="229,5,336,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -114,6 +119,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afea0831cc12f3fa07b955b5faa6f6a3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afea0831cc12f3fa07b955b5faa6f6a3d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>openWindow</b> (int, int)</td></tr>
 <tr class="separator:afea0831cc12f3fa07b955b5faa6f6a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d2dc93d98f215a8a2423e40cc9d7f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49d2dc93d98f215a8a2423e40cc9d7f1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>changeScreen</b> (const std::string &amp;resource, const std::string &amp;location)</td></tr>
+<tr class="separator:a49d2dc93d98f215a8a2423e40cc9d7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab575ea5cdde775346a511c7ab634d3d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab575ea5cdde775346a511c7ab634d3d7"></a>
 sf::RenderWindow *&#160;</td><td class="memItemRight" valign="bottom"><b>getWindowHandle</b> ()</td></tr>
 <tr class="separator:ab575ea5cdde775346a511c7ab634d3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,9 +143,9 @@ float &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getElapsedSeco
 <tr class="memitem:a6e7f5f2a1019decb658138b71da46cde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e7f5f2a1019decb658138b71da46cde"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleArgs</b> (int argc, char **argv)</td></tr>
 <tr class="separator:a6e7f5f2a1019decb658138b71da46cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a8d316e614bd8da6fe321e347040850"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a8d316e614bd8da6fe321e347040850"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>videoParamSet</b> (const std::string &amp;, const int &amp;)</td></tr>
-<tr class="separator:a5a8d316e614bd8da6fe321e347040850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9c026e0c7c38449a429c2d158ca360f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9c026e0c7c38449a429c2d158ca360f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>videoParamSet</b> (const std::string &amp;, int)</td></tr>
+<tr class="separator:ac9c026e0c7c38449a429c2d158ca360f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3285159890300145573a2edde697ad8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3285159890300145573a2edde697ad8"></a>
 sf::Image&#160;</td><td class="memItemRight" valign="bottom"><b>capture</b> ()</td></tr>
 <tr class="separator:ac3285159890300145573a2edde697ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,7 +237,10 @@ sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>_mouse</b></t
 sf::RenderWindow *&#160;</td><td class="memItemRight" valign="bottom"><b>_win</b></td></tr>
 <tr class="separator:a0c86215c942a46a23adfb042feac74ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main class for graphic conception. </p>
+<p>This the base class of the project. You must inherit from this class to start using the graphic engine. Start by implementing the update and draw routine, related to the behaviour you expect in your game. In your main function, simply instantiate your child <a class="el" href="classstb_1_1Engine.html" title="Main class for graphic conception. ">Engine</a>, then call the mainLoop method to start the program. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="Engine_8hpp_source.html">Engine.hpp</a></li>
 </ul>
 </div><!-- contents -->

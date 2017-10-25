@@ -1,6 +1,7 @@
 <map id="include/Commands.hh" name="include/Commands.hh">
-<area shape="rect" id="node2" href="$Console_8hh.html" title="include/Console.hh" alt="" coords="17,80,159,107"/>
-<area shape="rect" id="node3" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="17,155,159,181"/>
-<area shape="rect" id="node4" href="$MenuItem_8hh.html" title="Menu items (links, settings, sliders, text inputs, ...) " alt="" coords="11,229,165,256"/>
-<area shape="rect" id="node5" href="$Menu_8hh.html" title="include/Menu.hh" alt="" coords="25,304,151,331"/>
+<area shape="rect" id="node2" href="$Console_8hh.html" title="include/Console.hh" alt="" coords="23,80,166,107"/>
+<area shape="rect" id="node3" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="23,155,166,181"/>
+<area shape="rect" id="node4" href="$GUIMenuItem_8hh.html" title="GUI Menu items (links, settings, sliders, text inputs, ...) " alt="" coords="5,229,184,256"/>
+<area shape="rect" id="node5" href="$GUIMenu_8hh.html" title="include/GUIMenu.hh" alt="" coords="20,304,169,331"/>
+<area shape="rect" id="node6" href="$GUIScreen_8hh.html" title="include/GUIScreen.hh" alt="" coords="15,379,174,405"/>
 </map>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['resolver',['Resolver',['../classResolver.html',1,'']]],
-  ['resolver',['Resolver',['../classstb_1_1Resolver.html',1,'stb']]],
-  ['resolver_2ehh',['Resolver.hh',['../Resolver_8hh.html',1,'']]]
+  ['sfresolver',['SFResolver',['../classstb_1_1SFResolver.html',1,'stb']]],
+  ['spriteskin',['SpriteSkin',['../structstb_1_1SpriteSkin.html',1,'stb']]],
+  ['stbresolver',['STBResolver',['../classstb_1_1STBResolver.html',1,'stb']]]
 ];
