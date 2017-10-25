@@ -45,7 +45,7 @@ void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
 	if (node.attribute("x"))
 		element->setX(node.attribute("x").as_float());
 	if (node.attribute("y"))
-		element->setX(node.attribute("y").as_float());
+		element->setY(node.attribute("y").as_float());
 }
 
 GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
