@@ -147,7 +147,7 @@ GUIElement *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node)
 
 GUIElement *GUIXML::getGUITextFromXML(const pugi::xml_node &node)
 {
-	GUIText *element = new GUIText();
+	GUIText *element = new GUIText(node.attribute("text").as_string(""));
 	return (element);
 }
 

@@ -144,14 +144,14 @@ namespace stb {
 	class GUIText : public GUIElement
 	{
 	public:
-		GUIText(const std::string &id = "");
+		GUIText(const std::string &text = "");
 		virtual ~GUIText();
 
 		virtual void initialUpdate();
 
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
-		void setColor(sf::Color *inputColor, sf::Color *valueColor);
+		void setColor(sf::Color color);
 		void setFontsize(int fontsize);
 		void setWidth(const float &length);
 		const sf::Vector2f &getSize();
@@ -163,8 +163,7 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *win);
 
 	private:
-		sf::Text _value;
-		sf::RectangleShape _container;
+		sf::Text _text;
 	};
 
 	/*!
