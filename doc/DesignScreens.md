@@ -36,7 +36,7 @@ Each screen must be loaded from an XML resource file, described in the next sect
     <td colspan="2" rowspan="2">Edit</td>
     <td>maxLength</td><td>Attribute</td><td>Sets the maximum length of input string</td><td>-1</td><td>Integer (-1 for none)</td>
   </tr>
-  <tr><td>geometry</td><td>Attribute</td><td></td><td></td><td></td></tr>
+  <tr><td>geometry</td><td>Attribute</td><td>Sets x, y, width and height of edit</td><td>0,0,0,0</td><td>X,Y,WIDTH,HEIGHT (Integer)</td></tr>
   <tr>
     <td colspan="2" rowspan="2">Pair</td>
     <td>GUIElement</td><td>Element</td><td>Push element in pair (First in)</td><td></td><td>GUIElement (any)</td>
