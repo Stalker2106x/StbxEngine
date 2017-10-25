@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="nestest">
-  <pair>
-    <text text="OKLM" />
-    <buttonBar x="200" y="400">
+  <pair x="200" y="400">
+    <text text="OKLM" font="glitch" />
+    <buttonBar>
       <button text="test" font="glitch" />
       <button texture="nachinayuschiy" />
     </buttonBar>
