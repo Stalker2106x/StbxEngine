@@ -9,16 +9,15 @@ Each screen must be loaded from an XML resource file, described in the next sect
 
 <table>
   <tr>
-    <th>Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value</th>
+    <th colspan="2">Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value</th>
   </tr>
   <tr>
-    <td colspan="2" rowspan="5">All Elements</td>
+    <td colspan="2" rowspan="5">GUIElement (any)</td>
     <td>id</td><td>Attribute</td><td>Sets the entity ID</td><td>""</td><td>Any String</td>
   </tr>
   <tr><td>color</td><td>Element</td><td>Sets element color [DEPRECATED]</td><td>#255255255255</td><td>#RRRGGGBBBAAA</td></tr>
   <tr><td>x</td><td>Attribute</td><td>Sets screen horizontal coordinates of Element</td><td>Parent's x value</td><td>Integer</td></tr>
   <tr><td>y</td><td>Attribute</td><td>Sets screen vertical coordinates of Element</td><td>Ordered by parent</td><td>Integer</td></tr>
-  <tr><td>padding</td><td>Element</td><td>Sets left offset. [DEPRECATED]</td><td>0</td><td>Integer</td></tr>
   <tr>
     <td colspan="2" rowspan="3">Button</td>
     <td>target</td><td>Attribute</td><td>Set target screen to go to on click</td><td>None</td><td>String (Screen ID)</td>
@@ -39,9 +38,15 @@ Each screen must be loaded from an XML resource file, described in the next sect
   </tr>
   <tr><td>geometry</td><td>Attribute</td><td></td><td></td><td></td></tr>
   <tr>
-    <td colspan="2" rowspan="1">Panel</td>
+    <td colspan="2" rowspan="2">Pair</td>
+    <td>GUIElement</td><td>Element</td><td>Push element in pair (First in)</td><td></td><td>GUIElement (any)</td>
+  </tr>
+  <tr><td>spacing</td><td>Attribute</td><td>Sets horizontal spacing in pixels between elements of pair</td><td>0</td><td>Integer</td></tr>
+  <tr>
+    <td colspan="2" rowspan="2">Panel</td>
     <td>geometry</td><td>Attribute</td><td>Sets x, y, width and height of panel</td><td>0,0,0,0</td><td>X,Y,WIDTH,HEIGHT (Integer)</td>
   </tr>
+  <tr><td>GUIElement</td><td>Element</td><td>Push element in pair (First in)</td><td></td><td>GUIElement (any)</td></tr>
   <tr>
     <td colspan="2" rowspan="1">Screen</td>
     <td colspan="5">Screen implements every option of Panel</td>
