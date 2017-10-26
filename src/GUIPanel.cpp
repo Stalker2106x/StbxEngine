@@ -171,14 +171,15 @@ void GUIDraggablePanel::initialUpdate()
 	_style |= PN_CLOSE | PN_LOCK;
 	if ((_style & PN_CLOSE) == PN_CLOSE)
 	{
-		GUISpriteButton *btn = _buttonBar.addSpriteButton("buttons");
-		btn->setSkin(SpriteSkin(sf::IntRect(0, 0, 16, 16), sf::IntRect(0, 16, 16, 16)));
+		GUISpriteButton<GUIButton> *btn = _buttonBar.addSpriteButton("buttons");
+		btn->setSkin(new SpriteSkin(sf::IntRect(0, 0, 16, 16), sf::IntRect(0, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggle, this));
 	}
 	if ((_style & PN_LOCK) == PN_LOCK)
 	{
-		GUIToggleSpriteButton *btn = _buttonBar.addToggleSpriteButton("buttons");
-		btn->setSkin(SpriteSkin(sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16)), SpriteSkin(sf::IntRect(48, 0, 16, 16), sf::IntRect(48, 16, 16, 16)));
+		GUISpriteButton<GUIToggleButton> *btn = _buttonBar.addToggleSpriteButton("buttons");
+		btn->setSkin(new SpriteSkin(sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16)));
+		btn->setAltSkin(new SpriteSkin(sf::IntRect(48, 0, 16, 16), sf::IntRect(48, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggleLock, this));
 	}
 	_buttonBar.invert();

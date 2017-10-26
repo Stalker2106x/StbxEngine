@@ -56,12 +56,12 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {
 	if (node.attribute("texture")) //GUISpriteButton
 	{
-		GUISpriteButton *element = new GUISpriteButton(node.attribute("texture").as_string());
+		GUISpriteButton<GUIButton> *element = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
 		return (element);
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		GUITextButton *element = new GUITextButton(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		GUITextButton<GUIButton> *element = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 		return (element);
 	}
 	else

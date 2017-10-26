@@ -125,7 +125,7 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *);
 
 	private:
-		GUITextButton *_value;
+		GUITextButton<GUIButton> *_value;
 		std::vector<std::string> _values;
 		size_t _index;
 	};

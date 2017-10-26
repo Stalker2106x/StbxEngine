@@ -21,11 +21,11 @@ GUIMenuItem::GUIMenuItem() : GUIElement("", MenuItem)
 {
   _active = false;
   _padding = 0;
-  _label = new GUITextButton("", "");
+  _label = new GUITextButton<GUIButton>("", "");
   _label->setClickCallback(std::bind(&GUIMenuItem::onClick, this));
   _mode = TextMode;
   if (_mode == TextMode)
-	static_cast<GUITextButton *>(_label)->setFont(*SFResolver<sf::Font>::resolve("glitch"));
+	static_cast<GUITextButton<GUIButton> *>(_label)->setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 GUIMenuItem::~GUIMenuItem()
@@ -68,7 +68,7 @@ GUIMenuItem *GUIMenuItem::factory(const GUIElementType &type)
 void GUIMenuItem::setLabel(const std::string &label)
 {
 	if (_mode == TextMode)
-		static_cast<GUITextButton *>(_label)->setLabel(label);
+		static_cast<GUITextButton<GUIButton> *>(_label)->setLabel(label);
 }
 
 void GUIMenuItem::setPadding(int padding)
@@ -79,13 +79,13 @@ void GUIMenuItem::setPadding(int padding)
 void GUIMenuItem::setColor(const sf::Color &color)
 {
 	if (_mode == TextMode)
-		static_cast<GUITextButton *>(_label)->setColor(color);
+		static_cast<GUITextButton<GUIButton> *>(_label)->setColor(color);
 }
 
 void GUIMenuItem::setFontsize(int fontsize)
 {
 	if (_mode == TextMode)
-		static_cast<GUITextButton *>(_label)->setFontsize(fontsize);
+		static_cast<GUITextButton<GUIButton> *>(_label)->setFontsize(fontsize);
 }
 
 void GUIMenuItem::setPosition(const sf::Vector2f &pos)
@@ -96,19 +96,19 @@ void GUIMenuItem::setPosition(const sf::Vector2f &pos)
 void GUIMenuItem::setXOffset(const float &x)
 {
 	if (_mode == TextMode)
-		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, _label->getPosition().y));
+		static_cast<GUITextButton<GUIButton> *>(_label)->setPosition(sf::Vector2f(x, _label->getPosition().y));
 }
 
 void GUIMenuItem::setYOffset(const float &y)
 {
 	if (_mode == TextMode)
-		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(_label->getPosition().x, y));
+		static_cast<GUITextButton<GUIButton> *>(_label)->setPosition(sf::Vector2f(_label->getPosition().x, y));
 }
 
 void GUIMenuItem::setOffset(const float &x, const float &y)
 {
 	if (_mode == TextMode)
-		static_cast<GUITextButton *>(_label)->setPosition(sf::Vector2f(x, y));
+		static_cast<GUITextButton<GUIButton> *>(_label)->setPosition(sf::Vector2f(x, y));
 }
 
 int &GUIMenuItem::getPadding()
@@ -119,7 +119,7 @@ int &GUIMenuItem::getPadding()
 const sf::Vector2f &GUIMenuItem::getPosition()
 {
 	if (_mode == TextMode)
-		return (static_cast<GUITextButton *>(_label)->getPosition());
+		return (static_cast<GUITextButton<GUIButton> *>(_label)->getPosition());
 }
 
 bool GUIMenuItem::update(const sf::Event &e)
@@ -133,7 +133,7 @@ bool GUIMenuItem::update(const sf::Event &e)
 void GUIMenuItem::draw(sf::RenderWindow *win)
 {
 	if (_mode == TextMode)
-		static_cast<GUITextButton *>(_label)->draw(win);
+		static_cast<GUITextButton<GUIButton> *>(_label)->draw(win);
 }
 
 /*
@@ -212,7 +212,7 @@ GUIMenuSetting::GUIMenuSetting() : GUIMenuItem()
 {
   _index = 0;
   _padding = 0;
-  _value = new GUITextButton("", "");
+  _value = new GUITextButton<GUIButton>("", "");
   _value->setFont(*SFResolver<sf::Font>::resolve("glitch"));
   _value->setClickCallback(std::bind(&GUIMenuSetting::onClick, this));
   _value->setRClickCallback(std::bind(&GUIMenuSetting::onRClick, this));

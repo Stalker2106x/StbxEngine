@@ -15,6 +15,44 @@
 
 namespace stb {
 	
+	//Skins definition (A skin is a normal+Hover Version of a TextColor / SpriteTexture)
+	enum SkinType {
+		SkinText,
+		SkinSprite
+	};
+
+	struct Skin {
+		SkinType type;
+	};
+
+	struct TextSkin : public Skin
+	{
+		sf::Color normal;
+		sf::Color hover;
+
+		TextSkin() { type = SkinText; }
+		TextSkin(sf::Color n, sf::Color h)
+		{
+			type = SkinText;
+			normal = n;
+			hover = h;
+		}
+	};
+
+	struct SpriteSkin : public Skin
+	{
+		sf::IntRect normal;
+		sf::IntRect hover;
+
+		SpriteSkin() { type = SkinSprite; }
+		SpriteSkin(sf::IntRect n, sf::IntRect h)
+		{
+			type = SkinSprite;
+			normal = n;
+			hover = h;
+		}
+	};
+
 	/*!
 	* @class GUIButton
 	* @brief Abstract button superclass
@@ -33,6 +71,10 @@ namespace stb {
 		void setClickCallback(const std::function<void(void)> &fptr);
 		void setRClickCallback(const std::function<void(void)> &fptr);
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
+		void setSkin(Skin *skin);
+
+		virtual void setActiveSkin(const sf::Color color) {}; //Overloadable for inheritance
+		virtual void setActiveSkin(const sf::IntRect geometry) {}; //Overloadable for inheritance
 
 		virtual bool onHover(bool triggered);
 		virtual void onClick();
@@ -43,8 +85,32 @@ namespace stb {
 	protected:
 		bool _hover;
 		sf::Event::EventType _triggerType;
+		Skin *_skin;
 		std::function<void(void)> *_onClickCallback;
 		std::function<void(void)> *_onRClickCallback;
+	};
+
+	/*!
+	* @class GUIToggleButton
+	* @brief Clickable, hovereable and toggleable button
+	*
+	*        This represents a "On/Off" clickable button entity on screen. Appearance changes wether its on or off
+	*/
+	class GUIToggleButton : public GUIButton
+	{
+	public:
+		GUIToggleButton(const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		virtual ~GUIToggleButton();
+
+		void setAltSkin(Skin *skin);
+
+		bool onHover(bool triggered) override;
+		virtual void onClick() override;
+
+		virtual bool update(const sf::Event &e);
+	private:
+		bool _state;
+		Skin *_altSkin;
 	};
 
 	/*!
@@ -53,20 +119,8 @@ namespace stb {
 	*
 	*        This represents a clickable text button entity on screen.
 	*/
-	struct TextSkin
-	{
-		sf::Color normal;
-		sf::Color hover;
-
-		TextSkin() {}
-		TextSkin(sf::Color n, sf::Color h)
-		{
-			normal = n;
-			hover = h;
-		}
-	};
-
-	class GUITextButton : public GUIButton
+	template <typename T>
+	class GUITextButton : public T
 	{
 	public:
 		GUITextButton(const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
@@ -77,9 +131,10 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setFontsize(int size);
 		void setColor(const sf::Color &color);
-		void setSkin(const TextSkin &skin);
+		virtual void setActiveSkin(const sf::Color color);
 		virtual const sf::Vector2f &getPosition();
 		virtual const sf::Vector2f getSize();
+
 
 		virtual void initialUpdate();
 
@@ -89,7 +144,6 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *win);
 	private:
 		sf::Text _label;
-		TextSkin _skin;
 	};
 
 	/*!
@@ -98,27 +152,15 @@ namespace stb {
 	*
 	*        This represents a clickable image button entity on screen.
 	*/
-	struct SpriteSkin
-	{
-		sf::IntRect normal;
-		sf::IntRect hover;
-
-		SpriteSkin() {}
-		SpriteSkin(sf::IntRect n, sf::IntRect h)
-		{
-			normal = n;
-			hover = h;
-		}
-	};
-
-	class GUISpriteButton : public GUIButton
+	template <typename T>
+	class GUISpriteButton : public T
 	{
 	public:
 		GUISpriteButton(const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUISpriteButton();
 
 		void setTexture(const std::string &resource);
-		virtual void setSkin(const SpriteSkin &skin);
+		virtual void setActiveSkin(const sf::IntRect geometry);
 		void setPosition(const sf::Vector2f &pos);
 		virtual const sf::Vector2f &getPosition();
 		virtual const sf::Vector2f getSize();
@@ -130,32 +172,9 @@ namespace stb {
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 	protected:
-		bool _state;
 		sf::Sprite _sprite;
-		SpriteSkin _skin;
 	};
 
-	/*!
-	* @class GUIToggleSpriteButton
-	* @brief Clickable and hovereable textured toggleable button
-	*
-	*        This represents a clickable image button entity on screen. Image changes wether its on or off
-	*/
-	class GUIToggleSpriteButton : public GUISpriteButton
-	{
-	public:
-		GUIToggleSpriteButton(const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
-		virtual ~GUIToggleSpriteButton();
-		
-		virtual void setSkin(const SpriteSkin &skin, const SpriteSkin &altSkin);
-
-		bool onHover(bool triggered) override;
-		virtual void onClick() override;
-
-		virtual bool update(const sf::Event &e);
-	private:
-		SpriteSkin _altSkin;
-	};
 
 	/*!
 	* @class GUIButtonBar
@@ -185,9 +204,9 @@ namespace stb {
 		virtual const sf::Vector2f getSize();
 
 		GUIButton *addButton(GUIButton *button);
-		GUITextButton *addTextButton(const std::string &label, const std::string &fontResource);
-		GUISpriteButton *addSpriteButton(const std::string &resource);
-		GUIToggleSpriteButton *addToggleSpriteButton(const std::string &resource);
+		GUITextButton<GUIButton> *addTextButton(const std::string &label, const std::string &fontResource);
+		GUISpriteButton<GUIButton> *addSpriteButton(const std::string &resource);
+		GUISpriteButton<GUIToggleButton> *addToggleSpriteButton(const std::string &resource);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
