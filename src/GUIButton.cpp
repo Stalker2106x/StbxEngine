@@ -137,14 +137,9 @@ const sf::Vector2f &GUITextButton::getPosition()
 	return (_label.getPosition());
 }
 
-const sf::FloatRect &GUITextButton::getLocalBounds()
+const sf::Vector2f GUITextButton::getSize()
 {
-	return (_label.getLocalBounds());
-}
-
-const sf::FloatRect &GUITextButton::getGlobalBounds()
-{
-	return (_label.getGlobalBounds());
+	return (sf::Vector2f(_label.getLocalBounds().width, _label.getLocalBounds().height));
 }
 
 bool GUITextButton::onHover(bool triggered)
@@ -222,14 +217,9 @@ const sf::Vector2f &GUISpriteButton::getPosition()
 	return (_sprite.getPosition());
 }
 
-const sf::FloatRect &GUISpriteButton::getLocalBounds()
+const sf::Vector2f GUISpriteButton::getSize()
 {
-	return (_sprite.getLocalBounds());
-}
-
-const sf::FloatRect &GUISpriteButton::getGlobalBounds()
-{
-	return (_sprite.getGlobalBounds());
+	return (sf::Vector2f(_sprite.getLocalBounds().width, _sprite.getLocalBounds().height));
 }
 
 bool GUISpriteButton::onHover(bool triggered)
@@ -359,6 +349,30 @@ GUIButton *GUIButtonBar::getButton(const std::string &id)
 	return (NULL);
 }
 
+const sf::Vector2f GUIButtonBar::getSize()
+{
+	std::vector<GUIButton *>::iterator it = _buttons.begin();
+	sf::Vector2f size(0,0);
+
+	while (it != _buttons.end())
+	{
+		if (_type == Horizontal)
+		{
+			size.x += (*it)->getSize().x;
+			if (size.y < (*it)->getSize().y)
+				size.y = (*it)->getSize().y;
+		}
+		else if (_type == Vertical)
+		{
+			size.y += (*it)->getSize().y;
+			if (size.x < (*it)->getSize().x)
+				size.x = (*it)->getSize().x;
+		}
+		it++;
+	}
+	return (size);
+}
+
 void GUIButtonBar::setSpacing(int spacing)
 {
 	_spacing = spacing;
@@ -372,11 +386,11 @@ const sf::Vector2f GUIButtonBar::calcButtonPosition(const size_t &index, const s
 	{
 		if (_type == Horizontal)
 		{
-			size += _buttons[i]->getLocalBounds().width;
+			size += _buttons[i]->getSize().x;
 		}
 		else if (_type == Vertical)
 		{
-			size += _buttons[i]->getLocalBounds().height;
+			size += _buttons[i]->getSize().y;
 		}
 	}
 	if (_type == Vertical)

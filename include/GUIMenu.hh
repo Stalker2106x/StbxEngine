@@ -49,6 +49,7 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 
 		virtual const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getSize() { return (sf::Vector2f(0, 0)); };
 		
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *);

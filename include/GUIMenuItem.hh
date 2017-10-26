@@ -50,6 +50,7 @@ namespace stb {
 		virtual void setOffset(const float &x, const float &y);
 
 		virtual const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getSize() { return (sf::Vector2f(0, 0)); };
 		int &getPadding();
 
 		virtual void onClick() = 0;

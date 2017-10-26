@@ -97,6 +97,10 @@ const sf::Vector2f &GUIPanel::getPosition()
 	return (_frame.getPosition());
 }
 
+const sf::Vector2f GUIPanel::getSize()
+{
+	return (sf::Vector2f(_frame.getLocalBounds().width, _frame.getLocalBounds().height));
+}
 
 bool GUIPanel::updateRT()
 {

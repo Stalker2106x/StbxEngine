@@ -232,7 +232,7 @@ void GUIMenuSetting::setFontsize(int fontsize)
 void GUIMenuSetting::setXOffset(const float &x)
 {
 	GUIMenuItem::setXOffset(x);
-	_value->setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _value->getPosition().y));
+	_value->setPosition(sf::Vector2f(x + _label->getSize().x + _padding, _value->getSize().y));
 }
 
 void GUIMenuSetting::setYOffset(const float &y)
@@ -327,7 +327,7 @@ void GUIMenuEdit::setFontsize(int fontsize)
 void GUIMenuEdit::setXOffset(const float &x)
 {
 	GUIMenuItem::setXOffset(x);
-	_edit.setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _edit.getPosition().y));
+	_edit.setPosition(sf::Vector2f(x + _label->getSize().x + _padding, _edit.getPosition().y));
 }
 
 void GUIMenuEdit::setYOffset(const float &y)
@@ -381,8 +381,8 @@ GUIMenuSlider::GUIMenuSlider() : GUIMenuItem()
 void GUIMenuSlider::setFontsize(int fontsize)
 {
 	GUIMenuItem::setFontsize(fontsize);
-	_bar.setSize(sf::Vector2f(_bar.getSize().x, _label->getGlobalBounds().height));
-	_fill.setSize(sf::Vector2f(_bar.getSize().x - 2, _label->getGlobalBounds().height - 2));
+	_bar.setSize(sf::Vector2f(_bar.getSize().x, _label->getSize().y));
+	_fill.setSize(sf::Vector2f(_bar.getSize().x - 2, _label->getSize().y - 2));
 }
 
 void GUIMenuSlider::setRange(int min, int max)
@@ -400,8 +400,8 @@ GUIMenuSlider::~GUIMenuSlider()
 void GUIMenuSlider::setXOffset(const float &x)
 {
 	GUIMenuItem::setXOffset(x);
-	_bar.setPosition(x + _label->getLocalBounds().width + _padding, _bar.getPosition().y);
-	_fill.setPosition(x + _label->getLocalBounds().width + _padding + 1, _fill.getPosition().y);
+	_bar.setPosition(x + _label->getSize().x + _padding, _bar.getPosition().y);
+	_fill.setPosition(x + _label->getSize().x + _padding + 1, _fill.getPosition().y);
 }
 
 void GUIMenuSlider::setYOffset(const float &y)
@@ -491,7 +491,7 @@ GUIMenuCheckbox::~GUIMenuCheckbox()
 void GUIMenuCheckbox::setXOffset(const float &x)
 {
 	GUIMenuItem::setXOffset(x);
-	_checkBox.setPosition(sf::Vector2f(x + _label->getLocalBounds().width + _padding, _checkBox.getPosition().y));
+	_checkBox.setPosition(sf::Vector2f(x + _label->getSize().x + _padding, _checkBox.getPosition().y));
 }
 
 void GUIMenuCheckbox::setYOffset(const float &y)

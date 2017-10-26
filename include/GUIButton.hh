@@ -33,9 +33,6 @@ namespace stb {
 		void setClickCallback(const std::function<void(void)> &fptr);
 		void setRClickCallback(const std::function<void(void)> &fptr);
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
-		virtual const sf::Vector2f &getPosition() = 0;
-		virtual const sf::FloatRect &getLocalBounds() = 0;
-		virtual const sf::FloatRect &getGlobalBounds() = 0;
 
 		virtual bool onHover(bool triggered);
 		virtual void onClick();
@@ -82,8 +79,7 @@ namespace stb {
 		void setColor(const sf::Color &color);
 		void setSkin(const TextSkin &skin);
 		virtual const sf::Vector2f &getPosition();
-		virtual const sf::FloatRect &getLocalBounds();
-		virtual const sf::FloatRect &getGlobalBounds();
+		virtual const sf::Vector2f getSize();
 
 		virtual void initialUpdate();
 
@@ -125,8 +121,7 @@ namespace stb {
 		virtual void setSkin(const SpriteSkin &skin);
 		void setPosition(const sf::Vector2f &pos);
 		virtual const sf::Vector2f &getPosition();
-		virtual const sf::FloatRect &getLocalBounds();
-		virtual const sf::FloatRect &getGlobalBounds();
+		virtual const sf::Vector2f getSize();
 
 		virtual void initialUpdate();
 
@@ -149,7 +144,6 @@ namespace stb {
 	class GUIToggleSpriteButton : public GUISpriteButton
 	{
 	public:
-		GUIToggleSpriteButton();
 		GUIToggleSpriteButton(const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUIToggleSpriteButton();
 		
@@ -188,6 +182,7 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 
 		virtual const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getSize();
 
 		GUIButton *addButton(GUIButton *button);
 		GUITextButton *addTextButton(const std::string &label, const std::string &fontResource);

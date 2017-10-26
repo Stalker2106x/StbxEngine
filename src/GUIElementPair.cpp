@@ -23,6 +23,11 @@ const sf::Vector2f &GUIElementPair::getPosition()
 	return (_first->getPosition());
 }
 
+const sf::Vector2f GUIElementPair::getSize()
+{
+	return (_first->getSize() + sf::Vector2f(_spacing, 0) + _second->getSize());
+}
+
 void GUIElementPair::setFirst(GUIElement *element)
 {
 	_first = element;

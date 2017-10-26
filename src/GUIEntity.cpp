@@ -43,6 +43,11 @@ const sf::Vector2f &GUISIndicator::getPosition()
 	return (_label->getPosition());
 }
 
+const sf::Vector2f GUISIndicator::getSize()
+{
+	return (sf::Vector2f(_label->getLocalBounds().width, _label->getLocalBounds().height));
+}
+
 bool GUISIndicator::update(const sf::Event &e)
 {
 	if (!_active)
@@ -109,7 +114,7 @@ void GUIEdit::setWidth(const float &length)
 	_container.setSize(sf::Vector2f(length, _container.getSize().y));
 }
 
-const sf::Vector2f &GUIEdit::getSize()
+const sf::Vector2f GUIEdit::getSize()
 {
 	return (_container.getSize());
 }
@@ -220,7 +225,7 @@ void GUITextArea::setWidth(const float &length)
 	_container.setSize(sf::Vector2f(length, _container.getSize().y));
 }
 
-const sf::Vector2f &GUITextArea::getSize()
+const sf::Vector2f GUITextArea::getSize()
 {
 	return (_container.getSize());
 }
@@ -286,6 +291,11 @@ const sf::Vector2f &GUIText::getPosition()
 	return (_text.getPosition());
 }
 
+const sf::Vector2f GUIText::getSize()
+{
+	return (sf::Vector2f(_text.getLocalBounds().width, _text.getLocalBounds().height));
+}
+
 bool GUIText::update(const sf::Event &e)
 {
 	return (true);
@@ -333,7 +343,7 @@ void GUICheckbox::setColor(const sf::Color *containerColor, const sf::Color *fil
 		_fill.setFillColor(*fillColor);
 }
 
-const sf::Vector2f &GUICheckbox::getSize()
+const sf::Vector2f GUICheckbox::getSize()
 {
 	return (_container.getSize());
 }
