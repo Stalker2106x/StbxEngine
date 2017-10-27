@@ -115,6 +115,31 @@ namespace stb {
 	};
 
 	/*!
+	* @class GUISettingButton
+	* @brief Clickable, hoverable button with associated value list defined in XML.
+	*
+	*        This class holds a static enum defined in XML, for dynamic (runtime calculated) values, use child class GUIDynamicSettingButton
+	*/
+	class GUISettingButton : public GUIButton
+	{
+	public:
+		GUISettingButton(const sf::Event::EventType &triggerType);
+		~GUISettingButton();
+
+		void click();
+		void RClick();
+
+		void setValues(std::vector<std::string> &values, int defaultIndex = 0);
+		int getCurrentIndex();
+
+		void updateValue();
+
+	private:
+		std::vector<std::string> _values;
+		size_t _index;
+	};
+
+	/*!
 	* @class GUIButtonBar
 	* @brief Button Bar implementation
 	*

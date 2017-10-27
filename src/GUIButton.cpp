@@ -152,14 +152,53 @@ bool GUIToggleButton::update(const sf::Event &e)
 		return (false);
 	return (true);
 }
-//
-// GUITextButton
-//
 
-//
-// GUISpriteButton
-//
 
+GUISettingButton::GUISettingButton(const sf::Event::EventType &triggerType) : GUIButton(triggerType)
+{
+	_index = 0;
+	setClickCallback(std::bind(&GUISettingButton::onClick, this));
+	setRClickCallback(std::bind(&GUISettingButton::onRClick, this));
+}
+
+GUISettingButton::~GUISettingButton()
+{
+
+}
+
+void GUISettingButton::setValues(std::vector<std::string> &values, int defaultIndex)
+{
+	_values = values;
+	/*if (_values.size() > 0)
+		setLabel(_values[defaultIndex]);*/ //TMP
+}
+
+int GUISettingButton::getCurrentIndex()
+{
+	return (_index);
+}
+
+void GUISettingButton::click()
+{
+	++_index;
+	if (_index >= _values.size())
+		_index = 0;
+	updateValue();
+}
+
+void GUISettingButton::RClick()
+{
+	--_index;
+	if (_index >= _values.size())
+		_index = _values.size() - 1;
+	updateValue();
+}
+
+void GUISettingButton::updateValue()
+{
+	/*if (_values.size() > 0)
+		setLabel(_values[_index]); */ //TMP
+}
 
 //
 // GUIButtonBar
