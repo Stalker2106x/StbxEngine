@@ -6,6 +6,8 @@ using namespace stb;
 std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "pair", &GUIXML::getGUIElementPairFromXML },
 	{ "button", &GUIXML::getGUIButtonFromXML },
+	{ "toggleButton", &GUIXML::getGUIButtonFromXML },
+	{ "settingButton", &GUIXML::getGUIButtonFromXML },
 	{ "buttonBar", &GUIXML::getGUIButtonBarFromXML },
 	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
 	{ "edit", &GUIXML::getGUIEditFromXML },
@@ -56,13 +58,39 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {
 	if (node.attribute("texture")) //GUISpriteButton
 	{
-		GUISpriteButton<GUIButton> *element = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
-		return (element);
+		if (node.attribute("type").as_string() == "toggle")
+		{
+			GUISpriteButton<GUIToggleButton> *element = new GUISpriteButton<GUIToggleButton>(node.attribute("texture").as_string());
+			return (element);
+		}
+		else if (node.attribute("type").as_string() == "setting")
+		{
+			GUISpriteButton<GUISettingButton> *element = new GUISpriteButton<GUISettingButton>(node.attribute("texture").as_string());
+			return (element);
+		}
+		else
+		{
+			GUISpriteButton<GUIButton> *element = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
+			return (element);
+		}
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		GUITextButton<GUIButton> *element = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
-		return (element);
+		if (node.attribute("type").as_string() == "toggle")
+		{
+			GUITextButton<GUIToggleButton> *element = new GUITextButton<GUIToggleButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+			return (element);
+		}
+		else if (node.attribute("type").as_string() == "setting")
+		{
+			GUITextButton<GUISettingButton> *element = new GUITextButton<GUISettingButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+			return (element);
+		}
+		else
+		{
+			GUITextButton<GUIButton> *element = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+			return (element);
+		}
 	}
 	else
 	{
