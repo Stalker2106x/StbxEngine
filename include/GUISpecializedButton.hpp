@@ -137,6 +137,7 @@ namespace stb {
 		GUISpriteButton<T>::GUISpriteButton(const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed) : T(triggerType)
 		{
 			_sprite.setTexture(*SFResolver<sf::Texture>::resolve(resource));
+			_skin = NULL;
 		}
 
 		GUISpriteButton<T>::~GUISpriteButton()
@@ -146,7 +147,6 @@ namespace stb {
 		void GUISpriteButton<T>::initialUpdate()
 		{
 			GUIButton::initialUpdate();
-			_sprite.setTextureRect(static_cast<SpriteSkin *>(_skin)->normal);
 		}
 
 		void GUISpriteButton<T>::setTexture(const std::string &resource)
@@ -177,6 +177,8 @@ namespace stb {
 		bool GUISpriteButton<T>::onHover(bool triggered)
 		{
 			GUIButton::onHover(triggered);
+			if (_skin == NULL)
+				return (false);
 			if (triggered)
 			{
 				_sprite.setTextureRect(static_cast<SpriteSkin *>(_skin)->hover);
