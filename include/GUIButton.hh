@@ -103,9 +103,11 @@ namespace stb {
 		GUIToggleButton(const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUIToggleButton();
 
+		virtual void initialUpdate();
+
 		void setAltSkin(Skin *skin);
 
-		bool onHover(bool triggered) override;
+		virtual bool onHover(bool triggered) override;
 		virtual void onClick() override;
 
 		virtual bool update(const sf::Event &e);
@@ -125,6 +127,8 @@ namespace stb {
 	public:
 		GUISettingButton(const sf::Event::EventType &triggerType);
 		~GUISettingButton();
+
+		virtual void initialUpdate();
 
 		void click();
 		void RClick();

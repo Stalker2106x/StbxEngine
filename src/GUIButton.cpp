@@ -22,6 +22,10 @@ GUIButton::~GUIButton()
 void GUIButton::initialUpdate()
 {
 	_hover = false;
+	/*if (_skin->type == SkinSprite)
+		setActiveSkin(static_cast<SpriteSkin *>(_skin)->normal);
+	else if (_skin->type == SkinText)
+		setActiveSkin(static_cast<TextSkin *>(_skin)->normal);*/ //tmp
 }
 
 bool GUIButton::isHovered() const
@@ -93,6 +97,11 @@ GUIToggleButton::GUIToggleButton(const sf::Event::EventType &triggerType) : GUIB
 
 GUIToggleButton::~GUIToggleButton()
 {
+}
+
+void GUIToggleButton::initialUpdate()
+{
+	GUIButton::initialUpdate();
 }
 
 void GUIToggleButton::setAltSkin(Skin *altSkin)
@@ -167,6 +176,11 @@ GUISettingButton::GUISettingButton(const sf::Event::EventType &triggerType) : GU
 GUISettingButton::~GUISettingButton()
 {
 
+}
+
+void GUISettingButton::initialUpdate()
+{
+	GUIButton::initialUpdate();
 }
 
 void GUISettingButton::setValues(std::vector<std::string> &values, int defaultIndex)

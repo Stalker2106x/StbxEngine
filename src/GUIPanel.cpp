@@ -179,7 +179,7 @@ void GUIDraggablePanel::initialUpdate()
 	{
 		GUISpriteButton<GUIToggleButton> *btn = _buttonBar.addToggleSpriteButton("buttons");
 		btn->setSkin(new SpriteSkin(sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16)));
-		btn->setAltSkin(new SpriteSkin(sf::IntRect(48, 0, 16, 16), sf::IntRect(48, 16, 16, 16)));
+		btn->setAltSkin(new SpriteSkin(sf::IntRect(32, 0, 16, 16), sf::IntRect(32, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggleLock, this));
 	}
 	_buttonBar.invert();
