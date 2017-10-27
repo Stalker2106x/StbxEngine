@@ -153,6 +153,9 @@ bool GUIToggleButton::update(const sf::Event &e)
 	return (true);
 }
 
+//
+// GUISettingButton
+//
 
 GUISettingButton::GUISettingButton(const sf::Event::EventType &triggerType) : GUIButton(triggerType)
 {

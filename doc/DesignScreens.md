@@ -25,6 +25,14 @@ Each screen must be loaded from an XML resource file, described in the next sect
   <tr><td>action</td><td>Attribute</td><td>Set custom function identifier to call on click</td><td>None</td><td>String (Functor ID)</td></tr>
   <tr><td>command</td><td>Attribute</td><td>Set console command to run on click</td><td>None</td><td>String (Command)</td></tr>
   <tr>
+    <td colspan="2" rowspan="1">ToggleButton</td>
+    <td>N/A</td><td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="2" rowspan="1">SettingButton</td>
+    <td>value</td><td>Element</td><td>Push value in Button list (First in)</td><td>None</td><td>String (Value)</td>
+  </tr>
+  <tr>
     <td colspan="2" rowspan="1">ButtonBar</td>
     <td>N/A</td><td>Attribute</td><td></td><td></td><td></td>
   </tr>

@@ -118,7 +118,7 @@ namespace stb {
 	* @class GUISettingButton
 	* @brief Clickable, hoverable button with associated value list defined in XML.
 	*
-	*        This class holds a static enum defined in XML, for dynamic (runtime calculated) values, use child class GUIDynamicSettingButton
+	*        This class holds a static enum defined in XML or with a filler function.
 	*/
 	class GUISettingButton : public GUIButton
 	{
