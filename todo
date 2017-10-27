@@ -14,7 +14,7 @@ supported params one by one without checking if they exists.
 -Move MenuSetting & MenuDynamicSetting to GUI*""" so they rely on the new system
 -Console module should use the new GUI Mechanics system.
 -GUISpriteButton spawns with incorrect skins and position.
-
+-Refactoring needed on GUIXML parser to handle better buttons types.
 
 FEATURE:
 -show list of predicates under console input
