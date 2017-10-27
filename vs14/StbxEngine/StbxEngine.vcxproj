@@ -37,7 +37,7 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -136,6 +136,7 @@
     <ClInclude Include="..\..\include\GUIElementPair.hh" />
     <ClInclude Include="..\..\include\GUIEntity.hh" />
     <ClInclude Include="..\..\include\GUIPanel.hh" />
+    <ClInclude Include="..\..\include\GUISpecializedButton.hpp" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
     <ClInclude Include="..\..\include\GUIMenu.hh" />
     <ClInclude Include="..\..\include\GUIMenuItem.hh" />

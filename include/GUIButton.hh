@@ -12,6 +12,7 @@
 #include <functional>
 #include <vector>
 #include "GUIElement.hpp"
+#include "GUISpecializedButton.hpp"
 
 namespace stb {
 	
@@ -112,69 +113,6 @@ namespace stb {
 		bool _state;
 		Skin *_altSkin;
 	};
-
-	/*!
-	* @class GUITextButton
-	* @brief Clickable and hovereable simple text button
-	*
-	*        This represents a clickable text button entity on screen.
-	*/
-	template <typename T>
-	class GUITextButton : public T
-	{
-	public:
-		GUITextButton(const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
-		virtual ~GUITextButton();
-
-		void setLabel(const std::string &label);
-		void setFont(const sf::Font &font);
-		virtual void setPosition(const sf::Vector2f &pos);
-		void setFontsize(int size);
-		void setColor(const sf::Color &color);
-		virtual void setActiveSkin(const sf::Color color);
-		virtual const sf::Vector2f &getPosition();
-		virtual const sf::Vector2f getSize();
-
-
-		virtual void initialUpdate();
-
-		virtual bool onHover(bool triggered);
-
-		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
-	private:
-		sf::Text _label;
-	};
-
-	/*!
-	* @class GUISpriteButton
-	* @brief Clickable and hovereable textured button
-	*
-	*        This represents a clickable image button entity on screen.
-	*/
-	template <typename T>
-	class GUISpriteButton : public T
-	{
-	public:
-		GUISpriteButton(const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
-		virtual ~GUISpriteButton();
-
-		void setTexture(const std::string &resource);
-		virtual void setActiveSkin(const sf::IntRect geometry);
-		void setPosition(const sf::Vector2f &pos);
-		virtual const sf::Vector2f &getPosition();
-		virtual const sf::Vector2f getSize();
-
-		virtual void initialUpdate();
-
-		bool onHover(bool triggered);
-
-		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
-	protected:
-		sf::Sprite _sprite;
-	};
-
 
 	/*!
 	* @class GUIButtonBar

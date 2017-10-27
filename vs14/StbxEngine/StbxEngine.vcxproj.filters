@@ -66,6 +66,9 @@
     <ClInclude Include="..\..\include\GUIElementPair.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\GUISpecializedButton.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Commands.cpp">

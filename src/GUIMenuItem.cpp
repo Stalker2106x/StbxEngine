@@ -21,11 +21,9 @@ GUIMenuItem::GUIMenuItem() : GUIElement("", MenuItem)
 {
   _active = false;
   _padding = 0;
-  _label = new GUITextButton<GUIButton>("", "");
+  _label = new GUITextButton<GUIButton>("", "glitch");
   _label->setClickCallback(std::bind(&GUIMenuItem::onClick, this));
   _mode = TextMode;
-  if (_mode == TextMode)
-	static_cast<GUITextButton<GUIButton> *>(_label)->setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 GUIMenuItem::~GUIMenuItem()
