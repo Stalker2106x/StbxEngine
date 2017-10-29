@@ -48,7 +48,7 @@ void GUIButton::setSkin(Skin *skin)
 	_skin = skin;
 	if (_skin->type == SkinText)
 	{
-			setActiveSkin(static_cast<TextSkin *>(_skin)->normal);
+			setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_skin)->normal);
 	}
 	else if (_skin->type == SkinSprite)
 	{
@@ -125,9 +125,9 @@ bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type o
 		if (_altSkin->type == SkinText)
 		{
 			if (_state)
-				setActiveSkin(static_cast<TextSkin *>(_altSkin)->hover);
+				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_altSkin)->hover);
 			else
-				setActiveSkin(static_cast<TextSkin *>(_skin)->hover);
+				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_skin)->hover);
 		}
 		else if (_altSkin->type == SkinSprite)
 		{
@@ -142,9 +142,9 @@ bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type o
 		if (_altSkin->type == SkinText)
 		{
 			if (_state)
-				setActiveSkin(static_cast<TextSkin *>(_altSkin)->normal);
+				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_altSkin)->normal);
 			else
-				setActiveSkin(static_cast<TextSkin *>(_skin)->normal);
+				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_skin)->normal);
 		}
 		else if (_altSkin->type == SkinSprite)
 		{

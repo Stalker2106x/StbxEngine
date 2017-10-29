@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="nestest">
-  <pair x="200" y="400">
-    <text text="OKLM" font="glitch" />
-    <buttonBar>
+  <panel x="200" y="100">
+    <pair spacing="50">
+      <text text="TEST" font="glitch" />
       <button text="test" font="glitch" />
-      <button texture="nachinayuschiy" />
-    </buttonBar>
-  </pair>
+    </pair>
+    <pair spacing="50">
+      <text text="TESTT" font="glitch" />
+      <button text="ON" type="toggle" font="glitch" />
+    </pair>
+    <pair spacing="50">
+      <text text="TESTS" font="glitch" />
+      <button text="S1" type="setting" font="glitch">
+        <setting text="S2" font="glitch" />
+        <setting text="S3" font="glitch" />
+      </button>
+    </pair>
+  </panel>
 </screen>

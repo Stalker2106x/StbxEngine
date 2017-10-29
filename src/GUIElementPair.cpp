@@ -5,7 +5,7 @@ using namespace stb;
 
 GUIElementPair::GUIElementPair(GUIElement *first, GUIElement *second) : GUIElement("", Pair)
 {
-
+	_spacing = 0;
 }
 
 GUIElementPair::~GUIElementPair()
@@ -15,7 +15,6 @@ GUIElementPair::~GUIElementPair()
 
 void GUIElementPair::initialUpdate()
 {
-	_spacing = 0;
 }
 
 const sf::Vector2f GUIElementPair::getPosition()
@@ -38,10 +37,16 @@ void GUIElementPair::setSecond(GUIElement *element)
 	_second = element;
 }
 
+void GUIElementPair::setSpacing(int spacing)
+{
+	_spacing = spacing;
+}
+
+
 void GUIElementPair::setPosition(const sf::Vector2f &pos)
 {
 	_first->setPosition(pos);
-	_second->setPosition(pos + sf::Vector2f(_spacing /* + _first->getSize().x */, 0)); //tmp
+	_second->setPosition(pos + sf::Vector2f(_spacing + _first->getSize().x, 0));
 }
 
 bool GUIElementPair::update(const sf::Event &e)

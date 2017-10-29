@@ -27,7 +27,7 @@ namespace stb {
 	public:
 		GUITextButton<T>::GUITextButton(const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed) : T(triggerType)
 		{
-			_label.setString(label);
+			_skin = new TextSkin(label, sf::Color::White, sf::Color::Cyan);
 			_label.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 		}
 
@@ -38,7 +38,7 @@ namespace stb {
 		void GUITextButton<T>::initialUpdate()
 		{
 			GUIButton::initialUpdate();
-			_skin = new TextSkin(sf::Color::White, sf::Color::Cyan);
+			setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_skin)->normal);
 			if (_label.getGlobalBounds().contains(Engine::instance->getMousePosition()))
 				onHover(true);
 			else
@@ -70,8 +70,9 @@ namespace stb {
 			_label.setFillColor(color);
 		}
 
-		void GUITextButton<T>::setActiveSkin(const sf::Color color)
+		void GUITextButton<T>::setActiveSkin(const std::string text, sf::Color color)
 		{
+			_label.setString(text);
 			_label.setFillColor(color);
 		}
 

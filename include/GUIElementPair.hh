@@ -27,6 +27,7 @@ namespace stb {
 
 		void setFirst(GUIElement *element);
 		void setSecond(GUIElement *element);
+		void setSpacing(int spacing);
 		virtual void setPosition(const sf::Vector2f &pos);
 
 		virtual bool update(const sf::Event &e);
