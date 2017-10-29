@@ -46,6 +46,14 @@ void GUIButton::setRClickCallback(const std::function<void(void)> &fptr)
 void GUIButton::setSkin(Skin *skin)
 {
 	_skin = skin;
+	if (_skin->type == SkinText)
+	{
+			setActiveSkin(static_cast<TextSkin *>(_skin)->normal);
+	}
+	else if (_skin->type == SkinSprite)
+	{
+			setActiveSkin(static_cast<SpriteSkin *>(_skin)->normal);
+	}
 }
 
 bool GUIButton::onHover(bool triggered)
