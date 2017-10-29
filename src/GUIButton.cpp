@@ -319,7 +319,7 @@ void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 		_buttons[i]->setPosition(calcButtonPosition(i, pos));
 }
 
-const sf::Vector2f &GUIButtonBar::getPosition()
+const sf::Vector2f GUIButtonBar::getPosition()
 {
 	return (_buttons.size() > 0 ? _buttons[0]->getPosition() : sf::Vector2f(0,0));
 }

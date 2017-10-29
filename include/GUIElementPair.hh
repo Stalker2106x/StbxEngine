@@ -22,7 +22,7 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		virtual const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getPosition();
 		virtual const sf::Vector2f getSize();
 
 		void setFirst(GUIElement *element);

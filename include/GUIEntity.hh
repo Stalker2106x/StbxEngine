@@ -32,7 +32,7 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 		
 
-		virtual const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getPosition();
 		virtual const sf::Vector2f getSize();
 		
 		bool update(const sf::Event &e);
@@ -120,7 +120,7 @@ namespace stb {
 		void setFontsize(int fontsize);
 		void setWidth(const float &length);
 		virtual const sf::Vector2f getSize();
-		const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getPosition();
 		const std::string &getInput();
 
 		bool onHover(bool triggered);
@@ -156,7 +156,7 @@ namespace stb {
 		void setFontsize(int fontsize);
 		void setWidth(const float &length);
 		virtual const sf::Vector2f getSize();
-		const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getPosition();
 
 		bool onHover(bool triggered);
 
@@ -187,8 +187,8 @@ namespace stb {
 		void setColor(sf::Color *inputColor, sf::Color *valueColor);
 		void setFontsize(int fontsize);
 		void setWidth(const float &length);
-		const sf::Vector2f getSize();
-		const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition();
 
 		bool onHover(bool triggered);
 
@@ -219,7 +219,7 @@ namespace stb {
 		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);
 		void setSize(int length);
 		virtual const sf::Vector2f getSize();
-		const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getPosition();
 
 		bool onHover(bool triggered);
 

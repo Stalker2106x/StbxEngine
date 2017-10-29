@@ -212,7 +212,7 @@ void GUIMenu::setPosition(const sf::Vector2f &pos)
 }
 
 
-const sf::Vector2f &GUIMenu::getPosition()
+const sf::Vector2f GUIMenu::getPosition()
 {
 	return (_items.size() > 0 ? _items[0]->getPosition() : sf::Vector2f(0,0));
 }

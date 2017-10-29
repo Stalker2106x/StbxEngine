@@ -38,7 +38,7 @@ void GUISIndicator::setPosition(const sf::Vector2f &pos)
 }
 
 
-const sf::Vector2f &GUISIndicator::getPosition()
+const sf::Vector2f GUISIndicator::getPosition()
 {
 	return (_label->getPosition());
 }
@@ -119,7 +119,7 @@ const sf::Vector2f GUIEdit::getSize()
 	return (_container.getSize());
 }
 
-const sf::Vector2f &GUIEdit::getPosition()
+const sf::Vector2f GUIEdit::getPosition()
 {
 	return (_container.getPosition());
 }
@@ -230,7 +230,7 @@ const sf::Vector2f GUITextArea::getSize()
 	return (_container.getSize());
 }
 
-const sf::Vector2f &GUITextArea::getPosition()
+const sf::Vector2f GUITextArea::getPosition()
 {
 	return (_container.getPosition());
 }
@@ -286,7 +286,7 @@ void GUIText::setColor(sf::Color color)
 	_text.setFillColor(color);
 }
 
-const sf::Vector2f &GUIText::getPosition()
+const sf::Vector2f GUIText::getPosition()
 {
 	return (_text.getPosition());
 }
@@ -348,7 +348,7 @@ const sf::Vector2f GUICheckbox::getSize()
 	return (_container.getSize());
 }
 
-const sf::Vector2f &GUICheckbox::getPosition()
+const sf::Vector2f GUICheckbox::getPosition()
 {
 	return (_container.getPosition());
 }

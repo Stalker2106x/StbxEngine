@@ -68,9 +68,16 @@ void GUIPanel::setStyle(char style)
 
 void GUIPanel::addElement(GUIElement *element)
 {
-	sf::Vector2f pos = element->getPosition() - _frame.getPosition();
-	if (pos.x < 0 || pos.y < 0)
-		element->setPosition(_frame.getPosition());
+	sf::Vector2f pos = _frame.getPosition();
+
+	if (element->getPosition() == sf::Vector2f(0, 0)) //If position is not specified, let the container arrange
+	{
+		for (size_t i = 0; i < _elements.size(); i++)
+		{
+			pos.y += _elements[i]->getSize().y;
+		}
+		element->setPosition(pos);
+	}
 	_elements.push_back(element);
 }
 
@@ -92,7 +99,7 @@ void GUIPanel::setBackground(const std::string &resource)
 	_frame.setTexture(*texture);
 }
 
-const sf::Vector2f &GUIPanel::getPosition()
+const sf::Vector2f GUIPanel::getPosition()
 {
 	return (_frame.getPosition());
 }

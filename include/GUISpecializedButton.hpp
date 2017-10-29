@@ -75,7 +75,7 @@ namespace stb {
 			_label.setFillColor(color);
 		}
 
-		const sf::Vector2f &GUITextButton<T>::getPosition()
+		virtual const sf::Vector2f GUITextButton<T>::getPosition()
 		{
 			return (_label.getPosition());
 		}
@@ -164,7 +164,7 @@ namespace stb {
 			_sprite.setPosition(pos);
 		}
 
-		const sf::Vector2f &GUISpriteButton<T>::getPosition()
+		virtual const sf::Vector2f GUISpriteButton<T>::getPosition()
 		{
 			return (_sprite.getPosition());
 		}

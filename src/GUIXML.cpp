@@ -37,9 +37,11 @@ GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node)
 void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
 {
 	element->setId(node.attribute("id").as_string(DEFAULT_ID));
-	if (node.attribute("x"))
+	if (node.attribute("x") && node.attribute("y"))
+		element->setPosition(sf::Vector2f(node.attribute("x").as_float(), node.attribute("y").as_float()));
+	else if (node.attribute("x"))
 		element->setX(node.attribute("x").as_float());
-	if (node.attribute("y"))
+	else if (node.attribute("y"))
 		element->setY(node.attribute("y").as_float());
 }
 
@@ -56,46 +58,27 @@ GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
 
 GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 {
+	GUIButton *button = NULL;
+
 	if (node.attribute("texture")) //GUISpriteButton
 	{
 		if (node.attribute("type").as_string() == "toggle")
-		{
-			GUISpriteButton<GUIToggleButton> *element = new GUISpriteButton<GUIToggleButton>(node.attribute("texture").as_string());
-			return (element);
-		}
+			button = new GUISpriteButton<GUIToggleButton>(node.attribute("texture").as_string());
 		else if (node.attribute("type").as_string() == "setting")
-		{
-			GUISpriteButton<GUISettingButton> *element = new GUISpriteButton<GUISettingButton>(node.attribute("texture").as_string());
-			return (element);
-		}
+			button = new GUISpriteButton<GUISettingButton>(node.attribute("texture").as_string());
 		else
-		{
-			GUISpriteButton<GUIButton> *element = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
-			return (element);
-		}
+			button = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
 		if (node.attribute("type").as_string() == "toggle")
-		{
-			GUITextButton<GUIToggleButton> *element = new GUITextButton<GUIToggleButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
-			return (element);
-		}
+			button = new GUITextButton<GUIToggleButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 		else if (node.attribute("type").as_string() == "setting")
-		{
-			GUITextButton<GUISettingButton> *element = new GUITextButton<GUISettingButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
-			return (element);
-		}
+			button = new GUITextButton<GUISettingButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 		else
-		{
-			GUITextButton<GUIButton> *element = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
-			return (element);
-		}
+			button = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 	}
-	else
-	{
-		return (NULL);
-	}
+	return (button);
 }
 
 GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node)

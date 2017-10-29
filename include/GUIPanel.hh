@@ -46,7 +46,7 @@ namespace stb {
 		void setBackground(const std::string &resource);
 		void setStyle(char style);
 
-		virtual const sf::Vector2f &getPosition();
+		virtual const sf::Vector2f getPosition();
 		virtual const sf::Vector2f getSize();
 
 		void addElement(GUIElement *element);

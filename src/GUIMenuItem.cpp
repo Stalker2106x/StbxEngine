@@ -114,7 +114,7 @@ int &GUIMenuItem::getPadding()
 	return (_padding);
 }
 
-const sf::Vector2f &GUIMenuItem::getPosition()
+const sf::Vector2f GUIMenuItem::getPosition()
 {
 	if (_mode == TextMode)
 		return (static_cast<GUITextButton<GUIButton> *>(_label)->getPosition());

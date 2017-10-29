@@ -18,7 +18,7 @@ void GUIElementPair::initialUpdate()
 	_spacing = 0;
 }
 
-const sf::Vector2f &GUIElementPair::getPosition()
+const sf::Vector2f GUIElementPair::getPosition()
 {
 	return (_first->getPosition());
 }
