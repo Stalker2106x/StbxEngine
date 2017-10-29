@@ -3,12 +3,11 @@ BUG:
 -nested commands in console do not execute; syntax error
 -GUILink, make GUIMenuLink inherit from it, and GUILinkButton, a class that adds
 link button to gui. it should steal all of GUIMenuLink implementation, and clean
-off GUIMenuLink
+off GUIMenuLink (Re-evaluate this func)
 -GUIMenu will be destroyed and replaced by GUIElementPair and GUIElementGrid.
--Move MenuSetting & MenuDynamicSetting to GUI*""" so they rely on the new system
+-Allow GUISettingButton to be filled dynamically like GUIMenuDynamicSetting
 -Console module should use the new GUI Mechanics system.
 -GUISpriteButton spawns with incorrect skins and position.
--Refactoring needed on GUIXML parser to handle better buttons types.
 
 FEATURE:
 -show list of predicates under console input
