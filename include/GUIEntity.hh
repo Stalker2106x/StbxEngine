@@ -215,7 +215,7 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		void setPosition(const sf::Vector2f &pos);
+		virtual void setPosition(const sf::Vector2f &pos);
 		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);
 		void setSize(int length);
 		virtual const sf::Vector2f getSize();
@@ -230,6 +230,41 @@ namespace stb {
 		bool _checked;
 		sf::RectangleShape _container, _fill;
 	};
+
+	/*!
+	* @class GUISlider
+	* @brief Slider Setting item, accept any value within defined range
+	*
+	*        This item is a setting bar moving horizontally to get values from user.
+	*/
+	class GUISlider : public GUIElement
+	{
+	public:
+		GUISlider();
+		~GUISlider();
+
+		virtual void initialUpdate();
+
+		virtual void setPosition(const sf::Vector2f &pos);
+		void setRange(int min, int max);
+		void setBarWidth(int width);
+		void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
+
+		int getValue();
+		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition();
+
+		void updateSlider(const sf::Event &e, bool forceupdate = false);
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *);
+
+	private:
+		bool _sliding;
+		int _value;
+		int _range[2];
+		sf::RectangleShape _bar, _fill;
+	};
+
 }
 
 #endif /* GUIENTITY_HH_ */

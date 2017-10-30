@@ -371,3 +371,113 @@ void GUICheckbox::draw(sf::RenderWindow *win)
 	if (_checked)
 		win->draw(_fill);
 }
+
+
+//
+// GUISlider
+//
+
+GUISlider::GUISlider() : GUIElement("", Slider)
+{
+	setRange(0, 100);
+	_bar.setSize(sf::Vector2f(102, 10));
+	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
+	_bar.setFillColor(sf::Color(100, 250, 50));
+	_fill.setFillColor(sf::Color(100, 0, 250));
+}
+
+void GUISlider::setRange(int min, int max)
+{
+	_sliding = false;
+	_range[0] = min;
+	_range[1] = max;
+}
+
+GUISlider::~GUISlider()
+{
+
+}
+
+void GUISlider::initialUpdate()
+{
+
+}
+
+void GUISlider::setBarWidth(int width)
+{
+	_bar.setSize(sf::Vector2f(static_cast<float>(width), _bar.getSize().y));
+	_fill.setSize(_bar.getSize() - sf::Vector2f(2, 2));
+}
+
+void GUISlider::setBarColor(const sf::Color *barColor, const sf::Color *fillColor)
+{
+	if (barColor != NULL)
+		_bar.setFillColor(*barColor);
+	if (fillColor != NULL)
+		_fill.setFillColor(*fillColor);
+}
+
+void GUISlider::setPosition(const sf::Vector2f &pos)
+{
+	_bar.setPosition(pos);
+	_fill.setPosition(pos + sf::Vector2f(1,1));
+}
+
+int GUISlider::getValue()
+{
+	return (_value);
+}
+
+const sf::Vector2f GUISlider::getSize()
+{
+	return (_bar.getSize());
+}
+
+const sf::Vector2f GUISlider::getPosition()
+{
+	return (_bar.getPosition());
+}
+
+void GUISlider::updateSlider(const sf::Event &e, bool forceupdate)
+{
+	if (_sliding && (e.type == sf::Event::MouseMoved || forceupdate))
+	{
+		_value = static_cast<int>((Engine::getMousePosition().x - _bar.getPosition().x) * (_bar.getGlobalBounds().width / _range[1]));
+		if (_value < _range[0])
+			_value = _range[0];
+		else if (_value > _range[1])
+			_value = _range[1];
+		if (Engine::getMousePosition().x - (_bar.getPosition().x + 1) >= _bar.getGlobalBounds().width - 1)
+			_fill.setSize(sf::Vector2f(_bar.getGlobalBounds().width - 2, _fill.getSize().y));
+		else if (Engine::getMousePosition().x - (_bar.getPosition().x + 1) < 0)
+			_fill.setSize(sf::Vector2f(0, _fill.getSize().y));
+		else
+			_fill.setSize(sf::Vector2f(Engine::getMousePosition().x - (_bar.getPosition().x + 1), _fill.getSize().y));
+	}
+}
+
+bool GUISlider::update(const sf::Event &e)
+{
+	if (!_active)
+		return (false);
+	updateSlider(e);
+	if (e.type == sf::Event::MouseButtonPressed && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
+	{
+		if (_bar.getGlobalBounds().contains(Engine::getMousePosition()))
+		{
+			_sliding = true;
+			updateSlider(e, true);
+		}
+	}
+	else if (e.type == sf::Event::MouseButtonReleased && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
+	{
+		_sliding = false;
+	}
+	return (true);
+}
+
+void GUISlider::draw(sf::RenderWindow *win)
+{
+	win->draw(_bar);
+	win->draw(_fill);
+}

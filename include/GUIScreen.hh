@@ -25,12 +25,10 @@ namespace stb {
 		GUIScreen();
 		~GUIScreen();
 
+		void copy(GUIScreen *screen, bool destroy = true);
+
 		bool loadFromFile(const std::string &file, const std::string &screenId = "");
 
-#ifdef STBXENGINE_CORE
-		void parseScreen(const pugi::xml_node &screen);
-		bool isScreenParam(const pugi::xml_node &param);
-#endif
 	};
 
 }

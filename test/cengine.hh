@@ -15,7 +15,6 @@ public:
 	void draw();
 
 private:
-	stb::GUIScreen _mainMenu;
 };
 
 #endif /* !CENGINE_HH_ */

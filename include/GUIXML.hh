@@ -13,6 +13,7 @@
 #include <pugixml.hpp>
 #endif
 #include "GUIElement.hpp"
+#include "GUIElementGrid.hh"
 #include "GUIElementPair.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
@@ -26,17 +27,18 @@ namespace stb
 	class GUIXML
 	{
 	public:
-		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node, GUIElement *receiver = NULL);
 
 		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
 
 		static GUIElement *getGUIElementPairFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIElementGridFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUICheckboxFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIEditFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUISliderFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIPanelFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIMenuFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIScreenFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIIndicatorFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUITextFromXML(const pugi::xml_node &node);

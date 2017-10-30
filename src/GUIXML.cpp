@@ -5,33 +5,29 @@ using namespace stb;
 
 std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "pair", &GUIXML::getGUIElementPairFromXML },
+	{ "grid", &GUIXML::getGUIElementGridFromXML },
 	{ "button", &GUIXML::getGUIButtonFromXML },
 	{ "toggleButton", &GUIXML::getGUIButtonFromXML },
 	{ "settingButton", &GUIXML::getGUIButtonFromXML },
 	{ "buttonBar", &GUIXML::getGUIButtonBarFromXML },
 	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
 	{ "edit", &GUIXML::getGUIEditFromXML },
+	{ "slider", &GUIXML::getGUISliderFromXML },
 	{ "panel", &GUIXML::getGUIPanelFromXML },
-	{ "menu", &GUIXML::getGUIMenuFromXML },
 	{ "screen", &GUIXML::getGUIScreenFromXML },
 	{ "indicator", &GUIXML::getGUIIndicatorFromXML },
 	{ "text", &GUIXML::getGUITextFromXML },
 	{ "textArea", &GUIXML::getGUITextAreaFromXML }
 };
 
-GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node)
+GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node, GUIElement *receiver)
 {
-	GUIElement *element;
-
-	if (!node.name())
+	if (!node.name() || !GUIXMLElementParser.count(node.name())) //Unknown Element
 		return (NULL);
-	if (strcmp(node.name(), "menu") == 0) //tmp
-		element = GUIMenu::parseXML(node);
-	else
-		element = GUIXMLElementParser[node.name()](node);
-	GUIGenericFromXML(node, element);
-	element->initialUpdate();
-	return (element);
+	receiver = GUIXMLElementParser[node.name()](node);
+	GUIGenericFromXML(node, receiver);
+	receiver->initialUpdate();
+	return (receiver);
 }
 
 void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
@@ -54,6 +50,22 @@ GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
 	element->setFirst(getGUIElementFromXML(xmlElement));
 	xmlElement = xmlElement.next_sibling();
 	element->setSecond(getGUIElementFromXML(xmlElement));
+	return (element);
+}
+
+GUIElement *GUIXML::getGUIElementGridFromXML(const pugi::xml_node &node)
+{
+	GUIElementGrid *element = new GUIElementGrid(sf::Vector2i(node.attribute("columns").as_int(0), node.attribute("rows").as_int(0)));
+	pugi::xml_node xmlElement = node.first_child();
+
+	element->setSpacing(node.attribute("spacing").as_int(0));
+	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
+	{
+		if (GUIXMLElementParser.count(it.name()))
+		{
+			element->pushElement(getGUIElementFromXML(it));
+		}
+	}
 	return (element);
 }
 
@@ -159,6 +171,12 @@ GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node)
 	return (element);
 }
 
+GUIElement *GUIXML::getGUISliderFromXML(const pugi::xml_node &node)
+{
+	GUISlider *element = new GUISlider();
+	return (element);
+}
+
 GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node)
 {
 	GUIPanel *element = new GUIPanel();
@@ -172,18 +190,11 @@ GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node)
 	return (element);
 }
 
-GUIElement *GUIXML::getGUIMenuFromXML(const pugi::xml_node &node)
-{
-	GUIMenu *menu = new GUIMenu();
-	menu->parseMenu(node);
-	return (menu);
-}
-
 GUIElement *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node)
 {
 	GUIScreen *screen = new GUIScreen();
-	if (node.child("background"))
-		screen->setBackground(node.child_value("background"));
+	if (node.attribute("background"))
+		screen->setBackground(node.attribute("background").as_string());
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))

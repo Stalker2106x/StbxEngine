@@ -32,13 +32,7 @@ GUIPanel::~GUIPanel()
 
 void GUIPanel::initialUpdate()
 {
-	for (size_t i = 0; i < _elements.size(); i++)
-	{
-		if (_elements[i]->getType() == Menu) //temp
-		{
-			static_cast<GUIMenu *>(_elements[i])->initialUpdate();
-		}
-	}
+
 }
 
 void GUIPanel::clear()
@@ -135,7 +129,8 @@ void GUIPanel::draw(sf::RenderWindow *win)
 {
 	if (!_active)
 		return;
-	win->draw(_frame);
+	if (_frame.getTexture() != NULL)
+		win->draw(_frame);
 	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
 		(*it)->draw(win);
