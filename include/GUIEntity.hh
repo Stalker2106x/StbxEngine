@@ -230,6 +230,36 @@ namespace stb {
 		bool _checked;
 		sf::RectangleShape _container, _fill;
 	};
+
+	/*!
+	* @class GUISlider
+	* @brief Slider Setting item, accept any value within defined range
+	*
+	*        This item is a setting bar moving horizontally to get values from user.
+	*/
+	class GUISlider : public GUIElement
+	{
+	public:
+		GUISlider();
+		~GUISlider();
+
+		void setRange(int min, int max);
+		void setBarWidth(int width);
+		void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
+
+		int getValue();
+
+		void updateSlider(const sf::Event &e, bool forceupdate = false);
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *);
+
+	private:
+		bool _sliding;
+		int _value;
+		int _range[2];
+		sf::RectangleShape _bar, _fill;
+	};
+
 }
 
 #endif /* GUIENTITY_HH_ */

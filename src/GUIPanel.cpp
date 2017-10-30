@@ -32,13 +32,7 @@ GUIPanel::~GUIPanel()
 
 void GUIPanel::initialUpdate()
 {
-	for (size_t i = 0; i < _elements.size(); i++)
-	{
-		if (_elements[i]->getType() == Menu) //temp
-		{
-			static_cast<GUIMenu *>(_elements[i])->initialUpdate();
-		}
-	}
+
 }
 
 void GUIPanel::clear()

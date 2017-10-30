@@ -133,19 +133,19 @@
     <ClInclude Include="..\..\include\GUI.hh" />
     <ClInclude Include="..\..\include\Engine.hpp" />
     <ClInclude Include="..\..\include\GUIButton.hh" />
+    <ClInclude Include="..\..\include\GUIElementGrid.hh" />
     <ClInclude Include="..\..\include\GUIElementPair.hh" />
     <ClInclude Include="..\..\include\GUIEntity.hh" />
     <ClInclude Include="..\..\include\GUIPanel.hh" />
     <ClInclude Include="..\..\include\GUISpecializedButton.hpp" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
-    <ClInclude Include="..\..\include\GUIMenu.hh" />
-    <ClInclude Include="..\..\include\GUIMenuItem.hh" />
     <ClInclude Include="..\..\include\Resolver.hh" />
     <ClInclude Include="..\..\include\GUIScreen.hh" />
     <ClInclude Include="..\..\include\GUIXML.hh" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
+    <ClCompile Include="..\..\src\GUIElementGrid.cpp" />
     <ClCompile Include="..\..\src\GUIElementPair.cpp" />
     <ClCompile Include="..\..\src\GUIScreen.cpp" />
     <ClInclude Include="..\..\include\GUIElement.hpp" />
@@ -161,8 +161,6 @@
     <ClCompile Include="..\..\src\GUIPanel.cpp" />
     <ClCompile Include="..\..\src\GUIXML.cpp" />
     <ClCompile Include="..\..\src\Keybinds.cpp" />
-    <ClCompile Include="..\..\src\GUIMenu.cpp" />
-    <ClCompile Include="..\..\src\GUIMenuItem.cpp" />
     <ClCompile Include="..\..\src\Resolver.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -15,23 +15,18 @@ namespace stb {
 
 	enum GUIElementType {
 		Pair,
+		Grid,
 		Button,
 		ButtonBar,
 		Checkbox,
 		Edit,
 		Panel,
 		DraggablePanel,
-		Menu,
+		Slider,
 		Screen,
 		SIndicator,
 		Text,
-		TextArea,
-		//tmp
-		MenuItem,
-		Link,
-		Setting,
-		DynamicSetting,
-		Slider
+		TextArea
 	};
 
 	class GUIElement

@@ -2,7 +2,7 @@
 
 using namespace stb;
 
-GUIElementGrid::GUIElementGrid(const sf::Vector2i &size)
+GUIElementGrid::GUIElementGrid(const sf::Vector2i &size) : GUIElement("", Grid)
 {
 	_size = size;
 	_spacing = 0;
@@ -28,6 +28,7 @@ const sf::Vector2f GUIElementGrid::getPosition()
 const sf::Vector2f GUIElementGrid::getSize()
 {
 	//tmp
+	return (sf::Vector2f(0, 0));
 }
 
 void GUIElementGrid::pushElement(GUIElement *element)
@@ -51,6 +52,7 @@ bool GUIElementGrid::update(const sf::Event &e)
 	{
 		_elements[i]->update(e);
 	}
+	return (true);
 }
 
 void GUIElementGrid::draw(sf::RenderWindow *win)
