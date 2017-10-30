@@ -45,7 +45,7 @@ namespace stb {
 				onHover(false);
 		}
 
-		void GUITextButton<T>::setLabel(const std::string &label)
+		virtual void GUITextButton<T>::setLabel(const std::string &label)
 		{
 			_label.setString(label);
 		}
@@ -86,9 +86,9 @@ namespace stb {
 			return (sf::Vector2f(_label.getLocalBounds().width, _label.getLocalBounds().height));
 		}
 
-		bool GUITextButton<T>::onHover(bool triggered)
+		virtual bool GUITextButton<T>::onHover(bool triggered)
 		{
-			GUIButton::onHover(triggered);
+			T::onHover(triggered);
 			if (triggered)
 			{
 				_label.setFillColor(static_cast<TextSkin *>(_skin)->hover);
@@ -102,7 +102,7 @@ namespace stb {
 
 		bool GUITextButton<T>::update(const sf::Event &e)
 		{
-			if (!GUIButton::update(e))
+			if (!T::update(e))
 				return (false);
 			if (e.type == sf::Event::MouseMoved)
 			{
@@ -175,9 +175,9 @@ namespace stb {
 			return (sf::Vector2f(_sprite.getLocalBounds().width, _sprite.getLocalBounds().height));
 		}
 
-		bool GUISpriteButton<T>::onHover(bool triggered)
+		virtual bool GUISpriteButton<T>::onHover(bool triggered)
 		{
-			GUIButton::onHover(triggered);
+			T::onHover(triggered);
 			if (_skin == NULL)
 				return (false);
 			if (triggered)
@@ -193,7 +193,7 @@ namespace stb {
 
 		bool GUISpriteButton<T>::update(const sf::Event &e)
 		{
-			if (!GUIButton::update(e))
+			if (!T::update(e))
 				return (false);
 			if (e.type == sf::Event::MouseMoved)
 			{

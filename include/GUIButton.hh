@@ -136,6 +136,10 @@ namespace stb {
 		void RClick();
 
 		void setValues(std::vector<std::string> &values, int defaultIndex = 0);
+		void pushValue(const std::string &value);
+
+		virtual void setLabel(const std::string &label) {}; //Overloadable for inheritance
+
 		int getCurrentIndex();
 
 		void updateValue();

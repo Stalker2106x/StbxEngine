@@ -125,7 +125,7 @@ bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type o
 		if (_altSkin->type == SkinText)
 		{
 			if (_state)
-				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_altSkin)->hover);
+				setActiveSkin(static_cast<TextSkin *>(_altSkin)->text, static_cast<TextSkin *>(_altSkin)->hover);
 			else
 				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_skin)->hover);
 		}
@@ -142,7 +142,7 @@ bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type o
 		if (_altSkin->type == SkinText)
 		{
 			if (_state)
-				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_altSkin)->normal);
+				setActiveSkin(static_cast<TextSkin *>(_altSkin)->text, static_cast<TextSkin *>(_altSkin)->normal);
 			else
 				setActiveSkin(static_cast<TextSkin *>(_skin)->text, static_cast<TextSkin *>(_skin)->normal);
 		}
@@ -160,7 +160,8 @@ bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type o
 void GUIToggleButton::onClick()
 {
 	_state = (_state ? false : true);
-	(*_onClickCallback)();
+	onHover(true);
+	GUIButton::onClick();
 }
 
 bool GUIToggleButton::update(const sf::Event &e)
@@ -177,8 +178,8 @@ bool GUIToggleButton::update(const sf::Event &e)
 GUISettingButton::GUISettingButton(const sf::Event::EventType &triggerType) : GUIButton(triggerType)
 {
 	_index = 0;
-	setClickCallback(std::bind(&GUISettingButton::onClick, this));
-	setRClickCallback(std::bind(&GUISettingButton::onRClick, this));
+	setClickCallback(std::bind(&GUISettingButton::click, this));
+	setRClickCallback(std::bind(&GUISettingButton::RClick, this));
 }
 
 GUISettingButton::~GUISettingButton()
@@ -196,6 +197,11 @@ void GUISettingButton::setValues(std::vector<std::string> &values, int defaultIn
 	_values = values;
 	/*if (_values.size() > 0)
 		setLabel(_values[defaultIndex]);*/ //TMP
+}
+
+void GUISettingButton::pushValue(const std::string &value)
+{
+	_values.push_back(value);
 }
 
 int GUISettingButton::getCurrentIndex()
@@ -221,8 +227,8 @@ void GUISettingButton::RClick()
 
 void GUISettingButton::updateValue()
 {
-	/*if (_values.size() > 0)
-		setLabel(_values[_index]); */ //TMP
+	if (_values.size() > 0)
+		setLabel(_values[_index]);
 }
 
 //

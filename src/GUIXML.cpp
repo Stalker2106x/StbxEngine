@@ -63,19 +63,62 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 
 	if (node.attribute("texture")) //GUISpriteButton
 	{
-		if (node.attribute("type").as_string() == "toggle")
+		if (strcmp(node.attribute("type").as_string(), "toggle") == 0)
 			button = new GUISpriteButton<GUIToggleButton>(node.attribute("texture").as_string());
-		else if (node.attribute("type").as_string() == "setting")
+		else if (strcmp(node.attribute("type").as_string(), "setting") == 0)
+		{
 			button = new GUISpriteButton<GUISettingButton>(node.attribute("texture").as_string());
+			GUISpriteButton<GUISettingButton> *btn = dynamic_cast<GUISpriteButton<GUISettingButton> *>(button);
+			btn->pushValue(node.attribute("text").as_string(""));
+			for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
+			{
+				if (strcmp(it.name(), "setting") == 0)
+				{
+					btn->pushValue(it.attribute("text").as_string(""));
+				}
+			}
+		}
 		else
 			button = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
+		pugi::xml_node it = node.first_child();
+		sf::IntRect normal, hover;
+		if (it)
+		{
+			while (it)
+			{
+				if (strcmp(it.name(), "skin") == 0)
+				{
+					if (strcmp(it.attribute("type").as_string(), "hover") == 0)
+						hover = sf::IntRect(node.attribute("left").as_int(0), node.attribute("top").as_int(0), node.attribute("width").as_int(0), node.attribute("height").as_int(0));
+					else
+						normal = sf::IntRect(node.attribute("left").as_int(0), node.attribute("top").as_int(0), node.attribute("width").as_int(0), node.attribute("height").as_int(0));
+				}
+				it = it.next_sibling();
+			}
+			button->setSkin(new SpriteSkin(normal, hover));
+		}
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		if (node.attribute("type").as_string() == "toggle")
+		if (strcmp(node.attribute("type").as_string(), "toggle") == 0)
+		{
 			button = new GUITextButton<GUIToggleButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
-		else if (node.attribute("type").as_string() == "setting")
+			GUITextButton<GUIToggleButton> *btn = dynamic_cast<GUITextButton<GUIToggleButton> *>(button);
+			btn->setAltSkin(new TextSkin(node.attribute("activetext").as_string(""), sf::Color::White, sf::Color::Cyan));
+		}
+		else if (strcmp(node.attribute("type").as_string(), "setting") == 0)
+		{
 			button = new GUITextButton<GUISettingButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+			GUITextButton<GUISettingButton> *btn = dynamic_cast<GUITextButton<GUISettingButton> *>(button);
+			btn->pushValue(node.attribute("text").as_string(""));
+			for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
+			{
+				if (strcmp(it.name(), "setting") == 0)
+				{
+					btn->pushValue(it.attribute("text").as_string(""));
+				}
+			}
+		}
 		else
 			button = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 	}

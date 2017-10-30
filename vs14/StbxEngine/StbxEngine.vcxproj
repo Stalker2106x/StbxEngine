@@ -153,7 +153,7 @@
     <ClCompile Include="..\..\src\Console.cpp" />
     <ClCompile Include="..\..\src\Control.cpp" />
     <ClCompile Include="..\..\src\GUI.cpp">
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</BrowseInformation>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine.cpp" />
     <ClCompile Include="..\..\src\GUIButton.cpp" />

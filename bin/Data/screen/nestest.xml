@@ -3,17 +3,20 @@
   <panel x="200" y="100">
     <pair spacing="50">
       <text text="TEST" font="glitch" />
-      <button text="test" font="glitch" />
+      <button texture="buttons">
+        <skin type="normal" left="0" top="0" width="16" height="16" />
+        <skin type="hover" left="0" top="16" width="16" height="16" />
+      </button>
     </pair>
     <pair spacing="50">
       <text text="TESTT" font="glitch" />
-      <button text="ON" type="toggle" font="glitch" />
+      <button text="OFF" activetext="ON" type="toggle" font="glitch" />
     </pair>
     <pair spacing="50">
       <text text="TESTS" font="glitch" />
       <button text="S1" type="setting" font="glitch">
-        <setting text="S2" font="glitch" />
-        <setting text="S3" font="glitch" />
+        <setting text="S2" />
+        <setting text="S3" />
       </button>
     </pair>
   </panel>
