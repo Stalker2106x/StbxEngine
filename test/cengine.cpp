@@ -8,11 +8,11 @@ void f(void *menu)
 
 sEngine::sEngine()
 {
-	std::vector<std::string> resolutions = {
+	/*std::vector<std::string> resolutions = {
 		"800x600",
 		"1024x768",
 		"1920x1080"
-	};
+	};*/
 	//stb::GUIMenu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu)); DEPRECATED
 	//stb::GUIMenu::dynamicValue.emplace("Resolutions", resolutions); DEPRECATED
 	gui->changeScreen("nestest");

@@ -7,8 +7,6 @@ std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "pair", &GUIXML::getGUIElementPairFromXML },
 	{ "grid", &GUIXML::getGUIElementGridFromXML },
 	{ "button", &GUIXML::getGUIButtonFromXML },
-	{ "toggleButton", &GUIXML::getGUIButtonFromXML },
-	{ "settingButton", &GUIXML::getGUIButtonFromXML },
 	{ "buttonBar", &GUIXML::getGUIButtonBarFromXML },
 	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
 	{ "edit", &GUIXML::getGUIEditFromXML },
@@ -152,6 +150,7 @@ GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node)
 	}
 	if (element == NULL)
 		return (NULL);
+	element->setSpacing(node.attribute("spacing").as_int(0));
 	for (pugi::xml_node xmlButton = node.first_child(); xmlButton; xmlButton = xmlButton.next_sibling())
 	{
 		element->addButton(dynamic_cast<GUIButton *>(getGUIElementFromXML(xmlButton)));

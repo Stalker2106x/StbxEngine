@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="nestest" background="background">
-  <panel x="200" y="100">
+  <panel x="200" y="200">
     <pair spacing="50">
       <text text="TEST" font="glitch" />
       <slider />
     </pair>
-    <pair spacing="50">
+    <pair spacing="200%">
       <text text="TEST" font="glitch" />
-      <button text="test" font="glitch" />
+      <edit />
     </pair>
     <pair spacing="50">
       <text text="TESTT" font="glitch" />
-      <button text="OFF" activetext="ON" type="toggle" font="glitch" />
+      <checkbox />
     </pair>
     <pair spacing="50">
       <text text="TESTS" font="glitch" />
@@ -21,4 +21,31 @@
       </button>
     </pair>
   </panel>
+  <!--<panel x="500" y="200">
+    <pair spacing="50">
+      <text text="TEST" font="glitch" />
+      <slider />
+    </pair>
+    <pair spacing="200">
+      <text text="TEST" font="glitch" />
+      <buttonBar spacing="100">
+        <button text="S1" type="setting" font="glitch">
+          <setting text="S2" />
+          <setting text="S3" />
+        </button>
+        <button text="S1" activetext="SSS" type="toggle" font="glitch" />
+      </buttonBar>
+    </pair>
+    <pair spacing="50">
+      <text text="TESTT" font="glitch" />
+      <checkbox />
+    </pair>
+    <pair spacing="50">
+      <text text="TESTS" font="glitch" />
+      <button text="S1" type="setting" font="glitch">
+        <setting text="S2" />
+        <setting text="S3" />
+      </button>
+    </pair>
+  </panel>-->
 </screen>
