@@ -29,10 +29,6 @@ namespace stb {
 
 		bool loadFromFile(const std::string &file, const std::string &screenId = "");
 
-#ifdef STBXENGINE_CORE
-		void parseScreen(const pugi::xml_node &screen);
-		bool isScreenParam(const pugi::xml_node &param);
-#endif
 	};
 
 }

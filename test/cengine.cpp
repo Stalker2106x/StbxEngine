@@ -13,7 +13,6 @@ sEngine::sEngine()
 		"1024x768",
 		"1920x1080"
 	};
-	
 	//stb::GUIMenu::customAction.emplace("Settings", std::make_pair(f, &_mainMenu)); DEPRECATED
 	//stb::GUIMenu::dynamicValue.emplace("Resolutions", resolutions); DEPRECATED
 	gui->changeScreen("nestest");
@@ -23,11 +22,10 @@ sEngine::sEngine()
 
 bool sEngine::update(const sf::Event &e)
 {
-	_mainMenu.update(e);
 	return (true);
 }
 
 void sEngine::draw()
 {
-	_mainMenu.draw(_win);
+
 }
