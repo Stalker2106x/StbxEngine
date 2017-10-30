@@ -20,16 +20,14 @@ std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "textArea", &GUIXML::getGUITextAreaFromXML }
 };
 
-GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node)
+GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node, GUIElement *receiver)
 {
-	GUIElement *element;
-
 	if (!node.name() || !GUIXMLElementParser.count(node.name())) //Unknown Element
 		return (NULL);
-	element = GUIXMLElementParser[node.name()](node);
-	GUIGenericFromXML(node, element);
-	element->initialUpdate();
-	return (element);
+	receiver = GUIXMLElementParser[node.name()](node);
+	GUIGenericFromXML(node, receiver);
+	receiver->initialUpdate();
+	return (receiver);
 }
 
 void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
@@ -152,8 +150,8 @@ GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node)
 GUIElement *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node)
 {
 	GUIScreen *screen = new GUIScreen();
-	if (node.child("background"))
-		screen->setBackground(node.child_value("background"));
+	if (node.attribute("background"))
+		screen->setBackground(node.attribute("background").as_string());
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))

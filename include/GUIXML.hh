@@ -27,7 +27,7 @@ namespace stb
 	class GUIXML
 	{
 	public:
-		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node, GUIElement *receiver = NULL);
 
 		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
 

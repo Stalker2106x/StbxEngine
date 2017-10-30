@@ -13,6 +13,16 @@ GUIScreen::~GUIScreen()
 
 }
 
+void GUIScreen::copy(GUIScreen *screen, bool destroy)
+{
+	_active = screen->_active;
+	_id = screen->_id;
+	_elements = screen->_elements;
+	_frame = screen->_frame;
+	if (destroy)
+		delete (screen);
+}
+
 bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenId)
 {
 	pugi::xml_document doc;
@@ -40,31 +50,7 @@ bool GUIScreen::loadFromFile(const std::string &file, const std::string &screenI
 			screen = screen.next_sibling();
 		}
 	}
-	parseScreen(screen);
-	for (pugi::xml_node element = screen.first_child(); element; element = element.next_sibling())
-	{
-		if (isScreenParam(element))
-			continue;
-		addElement(GUIXML::getGUIElementFromXML(element));
-		//if (strcmp(element.name(),"menu") == 0)
-		//	_container.addElement(GUIMenu::parseXML(this, element));
-	} 
+	copy(static_cast<GUIScreen *>(GUIXML::getGUIElementFromXML(screen))); //Copy loaded screen to this
 	STBResolver<GUIScreen>::insert(_id, this);
-	return (true);
-}
-
-void GUIScreen::parseScreen(const pugi::xml_node &screen)
-{
-	_id = screen.attribute("id").as_string("");
-}
-
-bool GUIScreen::isScreenParam(const pugi::xml_node &param)
-{
-	if (strcmp(param.name(), "background") == 0)
-	{
-		setBackground(param.attribute("resource").as_string(""));
-	}
-	else
-		return (false);
 	return (true);
 }
