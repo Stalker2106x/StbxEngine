@@ -398,6 +398,11 @@ GUISlider::~GUISlider()
 
 }
 
+void GUISlider::initialUpdate()
+{
+
+}
+
 void GUISlider::setBarWidth(int width)
 {
 	_bar.setSize(sf::Vector2f(static_cast<float>(width), _bar.getSize().y));
@@ -412,9 +417,25 @@ void GUISlider::setBarColor(const sf::Color *barColor, const sf::Color *fillColo
 		_fill.setFillColor(*fillColor);
 }
 
+void GUISlider::setPosition(const sf::Vector2f &pos)
+{
+	_bar.setPosition(pos);
+	_fill.setPosition(pos + sf::Vector2f(1,1));
+}
+
 int GUISlider::getValue()
 {
 	return (_value);
+}
+
+const sf::Vector2f GUISlider::getSize()
+{
+	return (_bar.getSize());
+}
+
+const sf::Vector2f GUISlider::getPosition()
+{
+	return (_bar.getPosition());
 }
 
 void GUISlider::updateSlider(const sf::Event &e, bool forceupdate)

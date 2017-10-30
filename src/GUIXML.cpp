@@ -5,12 +5,14 @@ using namespace stb;
 
 std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "pair", &GUIXML::getGUIElementPairFromXML },
+	{ "grid", &GUIXML::getGUIElementGridFromXML },
 	{ "button", &GUIXML::getGUIButtonFromXML },
 	{ "toggleButton", &GUIXML::getGUIButtonFromXML },
 	{ "settingButton", &GUIXML::getGUIButtonFromXML },
 	{ "buttonBar", &GUIXML::getGUIButtonBarFromXML },
 	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
 	{ "edit", &GUIXML::getGUIEditFromXML },
+	{ "slider", &GUIXML::getGUISliderFromXML },
 	{ "panel", &GUIXML::getGUIPanelFromXML },
 	{ "screen", &GUIXML::getGUIScreenFromXML },
 	{ "indicator", &GUIXML::getGUIIndicatorFromXML },
@@ -50,6 +52,22 @@ GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node)
 	element->setFirst(getGUIElementFromXML(xmlElement));
 	xmlElement = xmlElement.next_sibling();
 	element->setSecond(getGUIElementFromXML(xmlElement));
+	return (element);
+}
+
+GUIElement *GUIXML::getGUIElementGridFromXML(const pugi::xml_node &node)
+{
+	GUIElementGrid *element = new GUIElementGrid(sf::Vector2i(node.attribute("columns").as_int(0), node.attribute("rows").as_int(0)));
+	pugi::xml_node xmlElement = node.first_child();
+
+	element->setSpacing(node.attribute("spacing").as_int(0));
+	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
+	{
+		if (GUIXMLElementParser.count(it.name()))
+		{
+			element->pushElement(getGUIElementFromXML(it));
+		}
+	}
 	return (element);
 }
 
@@ -109,6 +127,12 @@ GUIElement *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node)
 GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node)
 {
 	GUIEdit *element = new GUIEdit();
+	return (element);
+}
+
+GUIElement *GUIXML::getGUISliderFromXML(const pugi::xml_node &node)
+{
+	GUISlider *element = new GUISlider();
 	return (element);
 }
 

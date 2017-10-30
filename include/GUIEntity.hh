@@ -215,7 +215,7 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		void setPosition(const sf::Vector2f &pos);
+		virtual void setPosition(const sf::Vector2f &pos);
 		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);
 		void setSize(int length);
 		virtual const sf::Vector2f getSize();
@@ -243,11 +243,16 @@ namespace stb {
 		GUISlider();
 		~GUISlider();
 
+		virtual void initialUpdate();
+
+		virtual void setPosition(const sf::Vector2f &pos);
 		void setRange(int min, int max);
 		void setBarWidth(int width);
 		void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
 
 		int getValue();
+		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition();
 
 		void updateSlider(const sf::Event &e, bool forceupdate = false);
 		virtual bool update(const sf::Event &e);
