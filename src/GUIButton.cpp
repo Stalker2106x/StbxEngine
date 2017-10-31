@@ -119,6 +119,9 @@ void GUIToggleButton::setAltSkin(Skin *altSkin)
 
 bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type of btn
 {
+	static bool previous = triggered;
+	if (previous == triggered)
+		return (false);
 	GUIButton::onHover(triggered);
 	if (triggered)
 	{
@@ -154,6 +157,7 @@ bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type o
 				setActiveSkin(static_cast<SpriteSkin *>(_skin)->normal);
 		}
 	}
+	previous = triggered;
 	return (true);
 }
 
@@ -307,16 +311,16 @@ const sf::Vector2f GUIButtonBar::calcButtonPosition(const size_t &index, const s
 	{
 		if (_type == Horizontal)
 		{
-			size += _buttons[i]->getSize().x;
+			size += _buttons[i]->getSize().x + _spacing;
 		}
 		else if (_type == Vertical)
 		{
-			size += _buttons[i]->getSize().y;
+			size += _buttons[i]->getSize().y + _spacing;
 		}
 	}
 	if (_type == Vertical)
-		return (pos + sf::Vector2f(0, size + _spacing));
-	return (pos + sf::Vector2f(size + _spacing, 0)); //Horizontal
+		return (pos + sf::Vector2f(0, size));
+	return (pos + sf::Vector2f(size, 0)); //Horizontal
 }
 
 void GUIButtonBar::setPosition(const sf::Vector2f &pos)
