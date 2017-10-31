@@ -21,7 +21,7 @@
       </button>
     </pair>
   </panel>
-  <!--<panel x="500" y="200">
+  <panel x="500" y="200">
     <pair spacing="50">
       <text text="TEST" font="glitch" />
       <slider />
@@ -47,5 +47,5 @@
         <setting text="S3" />
       </button>
     </pair>
-  </panel>-->
+  </panel>
 </screen>

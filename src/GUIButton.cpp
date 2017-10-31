@@ -119,9 +119,6 @@ void GUIToggleButton::setAltSkin(Skin *altSkin)
 
 bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type of btn
 {
-	static bool previous = triggered;
-	if (previous == triggered)
-		return (false);
 	GUIButton::onHover(triggered);
 	if (triggered)
 	{
@@ -157,7 +154,6 @@ bool GUIToggleButton::onHover(bool triggered) //Set correct skin based on type o
 				setActiveSkin(static_cast<SpriteSkin *>(_skin)->normal);
 		}
 	}
-	previous = triggered;
 	return (true);
 }
 
