@@ -17,6 +17,8 @@
 
 # Visual Studio #
 #################
+*.VC.db
+*.sbr
 *.opensdf
 *.opendb
 *.suo
