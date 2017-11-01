@@ -12,6 +12,7 @@
 #define RESOLVER_HH_
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include <unordered_map>
 
 namespace stb {
@@ -24,6 +25,11 @@ namespace stb {
 	public:
 		Resolver() {};
 		virtual ~Resolver();
+
+		static void addLocation(const std::string &path)
+		{
+			locations.push_back((path.back() == '/' ? path : path + "/"));
+		}
 
 		static void insert(const std::string &name, T *resource)
 		{
@@ -48,25 +54,22 @@ namespace stb {
 		{
 			if (!unique && resources.count(name))
 				return (resources[name]);
-			std::string path = "./Data/";
 			T *obj = new T();
+			bool status = false;
 
-			if (!location.empty())
+			for (size_t i = 0; !status && location.empty() && i < locations.size(); i++)
 			{
-				path = location;
+				if (std::is_same<T, sf::Font>::value)
+				{
+					status = obj->loadFromFile(locations[i] + name + ".ttf");
+				}
+				else if (std::is_same<T, sf::Texture>::value)
+				{
+					status = obj->loadFromFile(locations[i] + name + ".png");
+				}
+				else
+					return (NULL); //Unhandled
 			}
-			if (std::is_same<T, sf::Font>::value)
-			{
-				if (location.empty()) path += "font/";
-				obj->loadFromFile(path + name + ".ttf");
-			}
-			else if (std::is_same<T, sf::Texture>::value)
-			{
-				if (location.empty()) path += "texture/";
-				obj->loadFromFile(path + name + ".png");
-			}
-			else
-				return (NULL); //Unhandled
 			if (!unique)
 			{
 				resources.emplace(name, obj);
@@ -84,20 +87,18 @@ namespace stb {
 		{
 			if (!unique && resources.count(name))
 				return (resources[name]);
-			std::string path = "./Data/";
 			T *obj = new T();
+			bool status = false;
 
-			if (!location.empty())
+			for (size_t i = 0; !status && location.empty() && i < locations.size(); i++)
 			{
-				path = location;
+				if (std::is_same<T, GUIScreen>::value)
+				{
+					status = obj->loadFromFile(locations[i] + name + ".xml", elem);
+				}
+				else
+					return (NULL); //Unhandled
 			}
-			if (std::is_same<T, GUIScreen>::value)
-			{
-				if (location.empty()) path += "screen/";
-				obj->loadFromFile(path + name + ".xml", elem);
-			}
-			else
-				return (NULL); //Unhandled
 			if (!unique)
 			{
 				if (elem.empty())

@@ -98,6 +98,8 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 	{
 		button = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 	}
+	/*if (node.attribute("target"))
+		button->setClickCallback(std::function(Engine::instance->gui->changeScreen()));*/
 	return (button);
 }
 
@@ -115,6 +117,7 @@ GUIElement *GUIXML::getGUIToggleButtonFromXML(const pugi::xml_node &node)
 		GUITextButton<GUIToggleButton> *btn = dynamic_cast<GUITextButton<GUIToggleButton> *>(button);
 		btn->setAltSkin(new TextSkin(node.attribute("activetext").as_string(""), sf::Color::White, sf::Color::Cyan));
 	}
+	return (button);
 }
 
 GUIElement *GUIXML::getGUISettingButtonFromXML(const pugi::xml_node &node)
@@ -147,6 +150,7 @@ GUIElement *GUIXML::getGUISettingButtonFromXML(const pugi::xml_node &node)
 			}
 		}
 	}
+	return (button);
 }
 
 GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node)
