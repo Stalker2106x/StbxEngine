@@ -7,6 +7,8 @@ std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "pair", &GUIXML::getGUIElementPairFromXML },
 	{ "grid", &GUIXML::getGUIElementGridFromXML },
 	{ "button", &GUIXML::getGUIButtonFromXML },
+	{ "toggleButton", &GUIXML::getGUIToggleButtonFromXML },
+	{ "settingButton", &GUIXML::getGUISettingButtonFromXML },
 	{ "buttonBar", &GUIXML::getGUIButtonBarFromXML },
 	{ "checkbox", &GUIXML::getGUICheckboxFromXML },
 	{ "edit", &GUIXML::getGUIEditFromXML },
@@ -73,24 +75,8 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 
 	if (node.attribute("texture")) //GUISpriteButton
 	{
-		if (strcmp(node.attribute("type").as_string(), "toggle") == 0)
-			button = new GUISpriteButton<GUIToggleButton>(node.attribute("texture").as_string());
-		else if (strcmp(node.attribute("type").as_string(), "setting") == 0)
-		{
-			button = new GUISpriteButton<GUISettingButton>(node.attribute("texture").as_string());
-			GUISpriteButton<GUISettingButton> *btn = dynamic_cast<GUISpriteButton<GUISettingButton> *>(button);
-			btn->pushValue(node.attribute("text").as_string(""));
-			for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
-			{
-				if (strcmp(it.name(), "setting") == 0)
-				{
-					btn->pushValue(it.attribute("text").as_string(""));
-				}
-			}
-		}
-		else
-			button = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
-		pugi::xml_node it = node.first_child();
+		button = new GUISpriteButton<GUIButton>(node.attribute("texture").as_string());
+		pugi::xml_node it = node.first_child(); //Get and set skins, should be moved to a generic func and called in all instances of button.
 		sf::IntRect normal, hover;
 		if (it)
 		{
@@ -110,29 +96,57 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		if (strcmp(node.attribute("type").as_string(), "toggle") == 0)
-		{
-			button = new GUITextButton<GUIToggleButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
-			GUITextButton<GUIToggleButton> *btn = dynamic_cast<GUITextButton<GUIToggleButton> *>(button);
-			btn->setAltSkin(new TextSkin(node.attribute("activetext").as_string(""), sf::Color::White, sf::Color::Cyan));
-		}
-		else if (strcmp(node.attribute("type").as_string(), "setting") == 0)
-		{
-			button = new GUITextButton<GUISettingButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
-			GUITextButton<GUISettingButton> *btn = dynamic_cast<GUITextButton<GUISettingButton> *>(button);
-			btn->pushValue(node.attribute("text").as_string(""));
-			for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
-			{
-				if (strcmp(it.name(), "setting") == 0)
-				{
-					btn->pushValue(it.attribute("text").as_string(""));
-				}
-			}
-		}
-		else
-			button = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		button = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 	}
 	return (button);
+}
+
+GUIElement *GUIXML::getGUIToggleButtonFromXML(const pugi::xml_node &node)
+{
+	GUIButton *button = NULL;
+
+	if (node.attribute("texture")) //GUISpriteButton
+	{
+		button = new GUISpriteButton<GUIToggleButton>(node.attribute("texture").as_string());
+	}
+	else if (node.attribute("text")) //GUITextButton
+	{
+		button = new GUITextButton<GUIToggleButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		GUITextButton<GUIToggleButton> *btn = dynamic_cast<GUITextButton<GUIToggleButton> *>(button);
+		btn->setAltSkin(new TextSkin(node.attribute("activetext").as_string(""), sf::Color::White, sf::Color::Cyan));
+	}
+}
+
+GUIElement *GUIXML::getGUISettingButtonFromXML(const pugi::xml_node &node)
+{
+	GUIButton *button = NULL;
+
+	if (node.attribute("texture")) //GUISpriteButton
+	{
+		button = new GUISpriteButton<GUISettingButton>(node.attribute("texture").as_string());
+		GUISpriteButton<GUISettingButton> *btn = dynamic_cast<GUISpriteButton<GUISettingButton> *>(button);
+		btn->pushValue(node.attribute("text").as_string(""));
+		for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
+		{
+			if (strcmp(it.name(), "setting") == 0)
+			{
+				btn->pushValue(it.attribute("text").as_string(""));
+			}
+		}
+	}
+	else if (node.attribute("text")) //GUITextButton
+	{
+		button = new GUITextButton<GUISettingButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		GUITextButton<GUISettingButton> *btn = dynamic_cast<GUITextButton<GUISettingButton> *>(button);
+		btn->pushValue(node.attribute("text").as_string(""));
+		for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
+		{
+			if (strcmp(it.name(), "setting") == 0)
+			{
+				btn->pushValue(it.attribute("text").as_string(""));
+			}
+		}
+	}
 }
 
 GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node)

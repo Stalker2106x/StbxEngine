@@ -34,6 +34,8 @@ namespace stb
 		static GUIElement *getGUIElementPairFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIElementGridFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIToggleButtonFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUISettingButtonFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUICheckboxFromXML(const pugi::xml_node &node);
 		static GUIElement *getGUIEditFromXML(const pugi::xml_node &node);
