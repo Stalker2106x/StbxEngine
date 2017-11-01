@@ -28,7 +28,7 @@ namespace stb {
 
 		static void addLocation(const std::string &path)
 		{
-			locations.push_back((path.back() == '/' ? path : path + "/"));
+			locations.push_back((path.back() == '/' ? path : path + '/'));
 		}
 
 		static void insert(const std::string &name, T *resource)
@@ -57,18 +57,15 @@ namespace stb {
 			T *obj = new T();
 			bool status = false;
 
-			for (size_t i = 0; !status && location.empty() && i < locations.size(); i++)
+			if (!location.empty())
 			{
-				if (std::is_same<T, sf::Font>::value)
-				{
-					status = obj->loadFromFile(locations[i] + name + ".ttf");
-				}
-				else if (std::is_same<T, sf::Texture>::value)
-				{
-					status = obj->loadFromFile(locations[i] + name + ".png");
-				}
-				else
-					return (NULL); //Unhandled
+				if (!load(obj, name, location))
+					return (NULL);
+				return (obj);
+			}
+			for (size_t i = 0; !status && i < locations.size(); i++)
+			{
+				status = load(obj, name, locations[i]);
 			}
 			if (!unique)
 			{
@@ -77,6 +74,19 @@ namespace stb {
 			return (obj);
 		}
 
+		static bool load(T *obj, const std::string &name, const std::string &location)
+		{
+			if (std::is_same<T, sf::Font>::value)
+			{
+				return (obj->loadFromFile(location + name + ".ttf"));
+			}
+			else if (std::is_same<T, sf::Texture>::value)
+			{
+				return (obj->loadFromFile(location + name + ".png"));
+			}
+			else
+				return (false); //Unhandled
+		}
 	};
 
 	template <typename T>
@@ -87,17 +97,17 @@ namespace stb {
 		{
 			if (!unique && resources.count(name))
 				return (resources[name]);
-			T *obj = new T();
+			T *obj = NULL;
 			bool status = false;
 
-			for (size_t i = 0; !status && location.empty() && i < locations.size(); i++)
+			if (!location.empty())
 			{
-				if (std::is_same<T, GUIScreen>::value)
-				{
-					status = obj->loadFromFile(locations[i] + name + ".xml", elem);
-				}
-				else
-					return (NULL); //Unhandled
+				obj = load(name, location, elem);
+				return (obj);
+			}
+			for (size_t i = 0; obj == NULL && i < locations.size(); i++)
+			{
+				obj = load(name, locations[i], elem);
 			}
 			if (!unique)
 			{
@@ -107,6 +117,16 @@ namespace stb {
 					resources.emplace(elem, obj);
 			}
 			return (obj);
+		}
+
+		static T *load(const std::string &name, const std::string &location, const std::string &elem = "")
+		{
+			if (std::is_same<T, GUIScreen>::value)
+			{
+				return (T::loadFromFile(location + name + ".xml", elem));
+			}
+			else
+				return (false); //Unhandled
 		}
 	};
 

@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="nestest" background="background">
-  <panel>
+  <panel spacing="10">
     <text text="Menu" font="glitch" />
     <pair spacing="100">
       <text text="toggle" font="glitch" />
       <toggleButton text="OFF" activetext="ON" font="glitch" />
+    </pair>
+    <pair spacing="100">
+      <text text="slider" font="glitch" />
+      <slider />
+    </pair>
+    <pair spacing="100">
+      <text text="edit" font="glitch" />
+      <edit />
+    </pair>
+    <pair spacing="100">
+      <text text="checkbox" font="glitch" />
+      <checkbox />
     </pair>
     <pair spacing="100">
       <text text="setting" font="glitch" />
@@ -17,4 +29,6 @@
     <button text="Apply" font="glitch"/>
     <button text="Back" font="glitch" target="opt"/>
   </panel>
+</screen>
+<screen id="alt" background="background">
 </screen>

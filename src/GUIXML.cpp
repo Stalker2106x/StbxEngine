@@ -185,6 +185,7 @@ GUIElement *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node)
 GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node)
 {
 	GUIEdit *element = new GUIEdit();
+	element->setWidth(node.attribute("width").as_float(50.0f));
 	return (element);
 }
 
@@ -197,6 +198,7 @@ GUIElement *GUIXML::getGUISliderFromXML(const pugi::xml_node &node)
 GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node)
 {
 	GUIPanel *element = new GUIPanel();
+	element->setSpacing(node.attribute("spacing").as_int(0));
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))

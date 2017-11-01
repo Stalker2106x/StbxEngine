@@ -25,9 +25,7 @@ namespace stb {
 		GUIScreen();
 		~GUIScreen();
 
-		void copy(GUIScreen *screen, bool destroy = true);
-
-		bool loadFromFile(const std::string &file, const std::string &screenId = "");
+		static GUIScreen *loadFromFile(const std::string &file, const std::string &screenId = "");
 
 	};
 

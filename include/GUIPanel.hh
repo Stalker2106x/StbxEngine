@@ -44,6 +44,7 @@ namespace stb {
 
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setBackground(const std::string &resource);
+		void setSpacing(int spacing);
 		void setStyle(char style);
 
 		virtual const sf::Vector2f getPosition();
@@ -59,6 +60,7 @@ namespace stb {
 
 	protected:
 		char _style;
+		int _spacing;
 		std::string _id;
 		sf::Sprite _frame;
 		GUIButtonBar _buttonBar;

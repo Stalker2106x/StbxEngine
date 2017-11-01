@@ -16,6 +16,7 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Co
 	ctexture.create(size.x, size.y);
 	_frame.setTexture(ctexture);
 	_frame.setColor(color);
+	_spacing = 0;
 }
 
 
@@ -23,6 +24,7 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::s
 {
 	_frame.setTexture(*SFResolver<sf::Texture>::resolve(name));
 	_frame.setScale(1 / size.x, 1 / size.y);
+	_spacing = 0;
 }
 
 GUIPanel::~GUIPanel()
@@ -68,7 +70,7 @@ void GUIPanel::addElement(GUIElement *element)
 	{
 		for (size_t i = 0; i < _elements.size(); i++)
 		{
-			pos.y += _elements[i]->getSize().y;
+			pos.y += _elements[i]->getSize().y + _spacing;
 		}
 		element->setPosition(pos);
 	}
@@ -81,7 +83,7 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 	_frame.setPosition(pos);
 	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
-		(*it)->setPosition(sf::Vector2f((*it)->getPosition().x + (pos.x - oldpos.x), (*it)->getPosition().y + (pos.y - oldpos.y)));
+		(*it)->setPosition(sf::Vector2f((*it)->getPosition().x + (pos.x - oldpos.x), (*it)->getPosition().y + ((pos.y - oldpos.y) + _spacing)));
 	}
 }
 
@@ -91,6 +93,11 @@ void GUIPanel::setBackground(const std::string &resource)
 	if (texture == NULL)
 		Engine::instance->console->output(COLOR_ERROR, "Panel: Error loading texture " + resource + " for panel " + _id);
 	_frame.setTexture(*texture);
+}
+
+void GUIPanel::setSpacing(int spacing)
+{
+	_spacing = spacing;
 }
 
 const sf::Vector2f GUIPanel::getPosition()
