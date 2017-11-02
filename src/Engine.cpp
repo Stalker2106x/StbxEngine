@@ -179,7 +179,7 @@ int Engine::mainLoop()
 {
   while (!_quit && _win->isOpen() && updateLoop())
     {
-      _win->clear(sf::Color::Yellow);
+      _win->clear(sf::Color::Black);
 	  draw();
 	  if (gui->isActive())
 		  gui->draw(_win);
