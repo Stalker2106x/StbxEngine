@@ -127,21 +127,21 @@ void Console::setLogTimestamp(int toggle)
     _logTimestamp = (_logTimestamp ? false : true);
 }
 
-sf::Color *Console::convertColorCode(std::string code, std::string esc)
+sf::Color Console::convertColorCode(std::string code, std::string esc)
 {
-	sf::Color *color = new sf::Color;
+	sf::Color color;
 
 	if (code.length() < (9 + esc.length()))
-		return (NULL);
+		return (sf::Color::White);
 	if (code.find(esc) == 0)
-		code = code.substr(strlen(COLOR_ESC), 9);
-	color->r = atoi(code.substr(0, 3).c_str());
-	color->g = atoi(code.substr(3, 3).c_str());
-	color->b = atoi(code.substr(6, 3).c_str());
+		code = code.substr(esc.length(), 9);
+	color.r = atoi(code.substr(0, 3).c_str());
+	color.g = atoi(code.substr(3, 3).c_str());
+	color.b = atoi(code.substr(6, 3).c_str());
 	if (code.length() >= (12 + esc.length()))
-		color->a = atoi(code.substr(9, 3).c_str());
+		color.a = atoi(code.substr(9, 3).c_str());
 	else
-	  color->a = 255;
+	  color.a = 255;
 	return (color);
 }
 
@@ -160,7 +160,7 @@ void Console::output(std::string msg)
 			output("Syntax: Invalid color code");
 			return;
 		}
-		_output.back()->setFillColor(*convertColorCode(msg));
+		_output.back()->setFillColor(convertColorCode(msg));
 		msg.erase(0, strlen(COLOR_ESC) + 9);
 	}
 	else

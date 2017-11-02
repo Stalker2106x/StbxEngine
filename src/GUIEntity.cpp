@@ -70,7 +70,7 @@ void GUISIndicator::draw(sf::RenderWindow *win)
 
 GUIEdit::GUIEdit(const std::string &id) : GUIElement(id, Edit)
 {
-	initialUpdate();
+	_focus = false;
 }
 
 GUIEdit::~GUIEdit()
@@ -80,13 +80,12 @@ GUIEdit::~GUIEdit()
 
 void GUIEdit::initialUpdate()
 {
-	_focus = false;
-	_value.setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 void GUIEdit::setFont(const std::string &fontResource)
 {
 	_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
+	_container.setSize(sf::Vector2f(static_cast<float>(_container.getSize().x), static_cast<float>(_value.getCharacterSize())));
 }
 
 void GUIEdit::setFontsize(int fontsize)
@@ -101,12 +100,14 @@ void GUIEdit::setPosition(const sf::Vector2f &pos)
 	_value.setPosition(pos + sf::Vector2f(1, 0));
 }
 
-void GUIEdit::setColor(sf::Color *inputColor, sf::Color *valueColor)
+void GUIEdit::setColor(sf::Color inputColor)
 {
-	if (inputColor)
-		_container.setFillColor(*inputColor);
-	if (valueColor)
-		_value.setFillColor(*valueColor);
+	_container.setFillColor(inputColor);
+}
+
+void GUIEdit::setTextColor(sf::Color textColor)
+{
+	_value.setFillColor(textColor);
 }
 
 void GUIEdit::setWidth(const float &length)

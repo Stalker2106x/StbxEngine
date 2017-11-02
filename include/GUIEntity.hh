@@ -116,7 +116,8 @@ namespace stb {
 
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
-		void setColor(sf::Color *inputColor, sf::Color *valueColor);
+		void setColor(sf::Color inputColor);
+		void setTextColor(sf::Color textColor);
 		void setFontsize(int fontsize);
 		void setWidth(const float &length);
 		virtual const sf::Vector2f getSize();

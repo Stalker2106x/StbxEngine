@@ -185,7 +185,10 @@ GUIElement *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node)
 GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node)
 {
 	GUIEdit *element = new GUIEdit();
-	element->setWidth(node.attribute("width").as_float(50.0f));
+	element->setFont(node.attribute("font").as_string(""));
+	element->setWidth(node.attribute("width").as_float(150.0f));
+	element->setColor(Console::convertColorCode(node.attribute("color").as_string("#000000000"), "#"));
+	element->setTextColor(Console::convertColorCode(node.attribute("textcolor").as_string("#255255255"), "#"));
 	return (element);
 }
 

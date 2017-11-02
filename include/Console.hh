@@ -47,7 +47,7 @@ namespace stb {
 		void setLogFile(const std::string &file);
 		void setLogTimestamp(int);
 
-		static sf::Color *convertColorCode(std::string code, std::string esc = "\\\\#");
+		static sf::Color convertColorCode(std::string code, std::string esc = "\\\\#");
 
 		void output(std::string msg);
 		void output(std::string color, std::string msg);

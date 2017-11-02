@@ -12,7 +12,7 @@
     </pair>
     <pair spacing="100">
       <text text="edit" font="glitch" />
-      <edit />
+      <edit font="glitch"/>
     </pair>
     <pair spacing="100">
       <text text="checkbox" font="glitch" />

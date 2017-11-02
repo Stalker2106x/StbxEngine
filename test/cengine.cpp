@@ -8,7 +8,7 @@ sEngine::sEngine()
 	stb::Resolver<sf::Texture>::addLocation("./Data/texture/");
 	stb::Resolver<stb::GUIScreen>::addLocation("./Data/screen/");
 	//Change none to any screen
-	gui->changeScreen("alt", "./Data/screen/main.xml");
+	gui->changeScreen("main");
 	//Add Draggable Panel
 	stb::GUIPanel *panel = gui->addDraggablePanel("windowz", sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
 	//Add FPS Indicator inside
