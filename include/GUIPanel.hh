@@ -33,7 +33,7 @@ namespace stb {
 	{
 	public:
 		GUIPanel() : GUIElement("", Panel), _buttonBar(Horizontal) {};
-		GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color);
+		GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color = sf::Color::Transparent);
 		GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name);
 		virtual ~GUIPanel();
 
@@ -43,7 +43,7 @@ namespace stb {
 		void drop();
 
 		virtual void setPosition(const sf::Vector2f &pos);
-		void setBackground(const std::string &resource);
+		void setBackground(const std::string &resource, const sf::Color &color = sf::Color::White);
 		void setSpacing(int spacing);
 		void setStyle(char style);
 

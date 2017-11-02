@@ -87,12 +87,13 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 	}
 }
 
-void GUIPanel::setBackground(const std::string &resource)
+void GUIPanel::setBackground(const std::string &resource, const sf::Color &color)
 {
 	sf::Texture *texture = SFResolver<sf::Texture>::resolve(resource);
 	if (texture == NULL)
 		Engine::instance->console->output(COLOR_ERROR, "Panel: Error loading texture " + resource + " for panel " + _id);
 	_frame.setTexture(*texture);
+	_frame.setColor(color);
 }
 
 void GUIPanel::setSpacing(int spacing)

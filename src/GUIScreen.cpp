@@ -3,7 +3,7 @@
 using namespace stb;
 
 GUIScreen::GUIScreen()
-	: GUIPanel("", Engine::instance->getWindowSize(), sf::Color::Transparent)
+	: GUIPanel("", Engine::instance->getWindowSize())
 {
 	_type = Screen;
 }

@@ -4,7 +4,6 @@ BUG:
 -GUILink, make GUIMenuLink inherit from it, and GUILinkButton, a class that adds
 link button to gui. it should steal all of GUIMenuLink implementation, and clean
 off GUIMenuLink (Re-evaluate this func)
--GUIMenu will be destroyed and replaced by GUIElementPair and GUIElementGrid.
 -Allow GUISettingButton to be filled dynamically like GUIMenuDynamicSetting
 -Console module should use the new GUI Mechanics system.
 
