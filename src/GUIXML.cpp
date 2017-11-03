@@ -98,8 +98,8 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node)
 	{
 		button = new GUITextButton<GUIButton>(node.attribute("text").as_string(""), node.attribute("font").as_string(""));
 	}
-	/*if (node.attribute("target"))
-		button->setClickCallback(std::function(Engine::instance->gui->changeScreen()));*/
+	if (node.attribute("target"))
+		button->setCommand("gui_changescreen '" + std::string(node.attribute("target").as_string()) + "'");
 	return (button);
 }
 

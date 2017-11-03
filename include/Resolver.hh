@@ -93,28 +93,27 @@ namespace stb {
 	class STBResolver : public Resolver<T>
 	{
 	public:
-		static T *resolve(const std::string &name, const std::string &location = "", const std::string &elem = "", bool unique = false)
+		static T *resolve(const std::string &elem, const std::string &name = "", const std::string &location = "", bool unique = false)
 		{
-			if (!unique && resources.count(name))
-				return (resources[name]);
+			if (!unique && resources.count(elem))
+				return (resources[elem]);
 			T *obj = NULL;
-			bool status = false;
 
 			if (!location.empty())
 			{
-				obj = load(name, location, elem);
+					obj = load(name, location, elem);
 				return (obj);
 			}
 			for (size_t i = 0; obj == NULL && i < locations.size(); i++)
 			{
-				obj = load(name, locations[i], elem);
+				if (name.empty())
+					obj = load(elem, locations[i], elem); //we try to retrieve it with elem name
+				else
+					obj = load(name, locations[i], elem);
 			}
 			if (!unique)
 			{
-				if (elem.empty())
-					resources.emplace(name, obj);
-				else
-					resources.emplace(elem, obj);
+				resources.emplace(elem, obj);
 			}
 			return (obj);
 		}

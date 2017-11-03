@@ -26,6 +26,7 @@ namespace stb {
 			{ "find", &findCmd },
 			{ "fps_max", &setMaxFPS },
 			{ "fullscreen", &setFullscreen },
+			{ "gui_changescreen", &changeScreen },
 			{ "gui_toggleelement", &toggleGUIElement },
 			{ "help", &help },
 			{ "log_enable", &toggleConLog },
@@ -245,11 +246,21 @@ namespace stb {
 			e.console->setLogFile((*argv)[0]);
 		}
 
+		void changeScreen(Engine &e, std::vector<std::string> *argv)
+		{
+			if (argv == NULL || argv->size() < 1)
+			{
+				e.console->output(COLOR_ERROR, "gui_changescreen: No id given");
+				return;
+			}
+			e.gui->changeScreen((*argv)[0].c_str());
+		}
+
 		void toggleGUIElement(Engine &e, std::vector<std::string> *argv)
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "hud_toggleelement: No id given");
+				e.console->output(COLOR_ERROR, "gui_toggleelement: No id given");
 				return;
 			}
 			e.gui->toggleHideElement((*argv)[0].c_str());

@@ -71,6 +71,7 @@ namespace stb {
 		virtual void initialUpdate();
 
 		bool isHovered() const;
+		void setCommand(const std::string &command);
 		void setClickCallback(const std::function<void(void)> &fptr);
 		void setRClickCallback(const std::function<void(void)> &fptr);
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
@@ -89,6 +90,7 @@ namespace stb {
 		bool _hover;
 		sf::Event::EventType _triggerType;
 		Skin *_skin;
+		std::string _command;
 		std::function<void(void)> *_onClickCallback;
 		std::function<void(void)> *_onRClickCallback;
 	};

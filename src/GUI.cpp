@@ -73,25 +73,32 @@ void GUI::drop()
 
 void GUI::changeScreen(const std::string &resource, const std::string &location)
 {
+	static std::string lastLocation;
 	GUIScreen *newScreen;
+	std::string resId, path;
 	int index;
 
 	for (index = 0; index < _elements.size() && _elements[index]->getType() != Screen; index++);
-	if (location.empty())
+	if (location.empty() && lastLocation.empty())
 	{
 		newScreen = STBResolver<GUIScreen>::resolve(resource);
 	}
 	else
 	{
-		std::string resId, path;
 		int sep;
 
-		path = location;
-		sep = location.find_last_of("/") + 1;
-		resId = location.substr(sep, location.find_last_of(".") - sep);
-		path.erase(location.find(resId), location.length() - location.find(resId));
-		newScreen = STBResolver<GUIScreen>::resolve(resId, path, resource);
+		path = (location.empty() ? lastLocation : location);
+		sep = path.find_last_of("/") + 1;
+		resId = path.substr(sep, path.find_last_of(".") - sep);
+		path.erase(path.find(resId), path.length() - path.find(resId));
+		newScreen = STBResolver<GUIScreen>::resolve(resource, resId, path);
 	}
+	if (newScreen == NULL)
+	{
+		Engine::instance->console->output(COLOR_ERROR, "Screen: Error. Could not load screen \"" + resource + "\"");
+		return;
+	}
+	lastLocation = (location.empty() ? path + resource + ".xml" : location);
 	if (!newScreen->isActive())
 	{
 		newScreen->initialUpdate();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<screen id="nestest" background="background">
+<screen id="main" background="background">
   <panel spacing="10">
     <text text="Menu" font="glitch" />
     <pair spacing="100">
@@ -27,8 +27,9 @@
       </settingButton>
     </pair>
     <button text="Apply" font="glitch"/>
-    <button text="Back" font="glitch" target="opt"/>
+    <button text="Back" font="glitch" target="alt"/>
   </panel>
 </screen>
 <screen id="alt" background="background">
+  <button text="Back" font="glitch" target="main"/>
 </screen>

@@ -33,6 +33,11 @@ bool GUIButton::isHovered() const
 	return (_hover);
 }
 
+void GUIButton::setCommand(const std::string &command)
+{
+	_command = command;
+}
+
 void GUIButton::setClickCallback(const std::function<void(void)> &fptr)
 {
 	_onClickCallback = new std::function<void(void)>(fptr);
@@ -70,8 +75,13 @@ bool GUIButton::onHover(bool triggered)
 
 void GUIButton::onClick()
 {
-	if (_onClickCallback != NULL)
-		(*_onClickCallback)();
+	if (!_command.empty())
+		Commands::parseCmd(*Engine::instance, _command);
+	else
+	{
+		if (_onClickCallback != NULL)
+			(*_onClickCallback)();
+	}
 }
 
 void GUIButton::onRClick()
