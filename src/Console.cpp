@@ -36,6 +36,7 @@ Console::~Console()
 
 void Console::initGraphics(const sf::Vector2i &winsize)
 {
+	//_panel = new GUIPanel() todo !!
 	_bg.setSize(sf::Vector2f(static_cast<float>(winsize.x), static_cast<float>((_lineCount * _fontSize) + (_fontSize + 4))));
 	_bg.setPosition(0,0);
 	_inputArea.setSize(sf::Vector2f(static_cast<float>(winsize.x - 10), static_cast<float>(_fontSize + 2)));

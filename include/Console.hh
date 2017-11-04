@@ -47,7 +47,7 @@ namespace stb {
 		void setLogFile(const std::string &file);
 		void setLogTimestamp(int);
 
-		static sf::Color convertColorCode(std::string code, std::string esc = "\\\\#");
+		static sf::Color convertColorCode(std::string code, std::string esc = COLOR_ESC);
 
 		void output(std::string msg);
 		void output(std::string color, std::string msg);
@@ -65,6 +65,7 @@ namespace stb {
 		Engine &_engine;
 
 		bool _active, _logEnabled, _logTimestamp;
+		//GUIPanel *_panel;
 		sf::RectangleShape _bg, _inputArea;
 		sf::Font _font;
 		sf::Text _inputValue, _cursor;
