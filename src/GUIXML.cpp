@@ -157,19 +157,17 @@ GUIElement *GUIXML::getGUISettingButtonFromXML(const pugi::xml_node &node, GUIEl
 GUIElement *GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node, GUIElement *parent)
 {
 	GUIButtonBar *element = NULL;
-	std::string type = node.attribute("orientation").as_string("horizontal");
+	std::string orientation = node.attribute("orientation").as_string("horizontal");
+	Orientation type;
 
-	if (type == "vertical")
-	{
-		element = new GUIButtonBar(parent, Vertical);
-	}
-	else if (type == "horizontal")
-	{
-		element = new GUIButtonBar(parent, Horizontal);
-	}
-	if (element == NULL)
+	if (orientation == "vertical")
+		type = Vertical;
+	else if (orientation == "horizontal")
+		type = Horizontal;
+	else
 		return (NULL);
-	element->setSpacing(node.attribute("spacing").as_int(0));
+	element = new GUIButtonBar(parent, type);
+	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), type, parent));
 	for (pugi::xml_node xmlButton = node.first_child(); xmlButton; xmlButton = xmlButton.next_sibling())
 	{
 		element->addButton(dynamic_cast<GUIButton *>(getGUIElementFromXML(xmlButton, element)));
@@ -187,7 +185,7 @@ GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node, GUIElement *pa
 {
 	GUIEdit *element = new GUIEdit(parent);
 	element->setFont(node.attribute("font").as_string(""));
-	element->setWidth(node.attribute("width").as_float(150.0f));
+	element->setWidth(convertSize<float>(node.attribute("width").as_string("150"), Horizontal, parent));
 	element->setColor(convertColorCode(node.attribute("color").as_string("#000000000"), "#"));
 	element->setTextColor(convertColorCode(node.attribute("textcolor").as_string("#255255255"), "#"));
 	return (element);
@@ -202,7 +200,7 @@ GUIElement *GUIXML::getGUISliderFromXML(const pugi::xml_node &node, GUIElement *
 GUIElement *GUIXML::getGUIPanelFromXML(const pugi::xml_node &node, GUIElement *parent)
 {
 	GUIPanel *element = new GUIPanel(parent);
-	element->setSpacing(node.attribute("spacing").as_int(0));
+	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), Vertical, parent));
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))

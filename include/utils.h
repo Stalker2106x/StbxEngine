@@ -34,7 +34,7 @@ namespace stb {
 
 		if ((pos = size.find("%")) != std::string::npos)
 		{
-			iss.str(size.substr(0, size.length() - pos));
+			iss.str(size.substr(0, size.length() - (pos - 1)));
 			iss >> computed;
 			if (parent == NULL)
 				computed = (o == Horizontal ? Engine::instance->getWindowSize().x : Engine::instance->getWindowSize().y) * (computed / 100.0f); //No parent, use window as parent
@@ -45,7 +45,7 @@ namespace stb {
 		{
 			if ((pos = size.find("px")) != std::string::npos)
 			{
-				size = size.substr(0, size.length() - pos);
+				size = size.substr(0, size.length() - (pos - 1));
 			}
 			iss.str(size);
 			iss >> computed;
