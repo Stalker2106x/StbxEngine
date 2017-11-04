@@ -11,10 +11,10 @@
 #ifndef CONSOLE_HH_
 #define CONSOLE_HH_
 
+#include <SFML/Graphics.hpp>
 #include <list>
 #include <deque>
 #include <fstream>
-#include <SFML/Graphics.hpp>
 #include "Commands.hh"
 #include "utils.h"
 

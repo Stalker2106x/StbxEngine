@@ -25,7 +25,7 @@ bool sEngine::update(const sf::Event &e)
 	return (true);
 }
 
-void sEngine::draw()
+void sEngine::draw(sf::RenderWindow *win)
 {
 
 }

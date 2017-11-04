@@ -12,7 +12,7 @@ public:
 	~sEngine() {};
 
 	bool update(const sf::Event &e);
-	void draw();
+	void draw(sf::RenderWindow *win);
 
 private:
 };

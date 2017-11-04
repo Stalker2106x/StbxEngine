@@ -44,9 +44,10 @@ namespace stb {
 		void videoParamSet(const std::string &, int);
 		sf::Image capture();
 
-		virtual void draw() = 0;
+		virtual bool update(const sf::Event &) = 0; //Overloaded by user
+		virtual void draw(sf::RenderWindow *) = 0; //Overloaded by user
+
 		bool updateLoop();
-		virtual bool update(const sf::Event &) = 0;
 		void updateFramerate();
 		int mainLoop();
 
