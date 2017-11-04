@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="main" background="background">
-  <panel spacing="5%">
+  <panel x="25%" spacing="5%">
     <text text="Menu" font="glitch" />
     <pair spacing="100">
       <text text="toggle" font="glitch" />
