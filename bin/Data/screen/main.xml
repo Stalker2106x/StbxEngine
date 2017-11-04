@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="main" background="background">
   <panel x="25%" spacing="5%">
-    <text text="Menu" font="glitch" />
+    <text text="Menu" />
     <pair spacing="100">
-      <text text="toggle" font="glitch" />
-      <toggleButton text="OFF" activetext="ON" font="glitch" />
+      <text text="toggle" />
+      <toggleButton text="OFF" activetext="ON" />
     </pair>
     <pair spacing="100px">
-      <text text="slider" font="glitch" />
+      <text text="slider" />
       <slider />
     </pair>
     <pair spacing="100">
-      <text text="edit" font="glitch" />
-      <edit font="glitch"/>
+      <text text="edit" />
+      <edit />
     </pair>
     <pair spacing="100">
-      <text text="checkbox" font="glitch" />
+      <text text="checkbox" />
       <checkbox />
     </pair>
     <pair spacing="100">
-      <text text="setting" font="glitch" />
-      <settingButton text="Set" font="glitch">
+      <text text="setting" />
+      <settingButton text="Set">
         <setting text="Set2" />
         <setting text="Set3" />
         <setting text="Set4" />
       </settingButton>
     </pair>
-    <button text="Apply" font="glitch"/>
-    <button text="Back" font="glitch" target="alt"/>
+    <button text="Apply" />
+    <button text="Back" target="alt"/>
   </panel>
 </screen>
 <screen id="alt" background="background">
-  <button text="Back" font="glitch" target="main"/>
+  <button text="Back" target="main"/>
 </screen>

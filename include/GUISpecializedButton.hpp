@@ -60,7 +60,7 @@ namespace stb {
 			_label.setPosition(pos);
 		}
 
-		void GUITextButton<T>::setFontsize(int size)
+		void GUITextButton<T>::setFontSize(int size)
 		{
 			_label.setCharacterSize(size);
 		}

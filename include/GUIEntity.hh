@@ -129,8 +129,6 @@ namespace stb {
 		virtual const sf::Vector2f getPosition();
 		const std::string &getInput();
 
-		bool onHover(bool triggered);
-
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 
@@ -151,7 +149,7 @@ namespace stb {
 	class GUIText : public GUIElement
 	{
 	public:
-		GUIText(GUIElement *parent, const std::string &text = "");
+		GUIText(GUIElement *parent, const std::string &text = "", const std::string &fontResource = "");
 		virtual ~GUIText();
 
 		virtual void initialUpdate();
@@ -159,12 +157,9 @@ namespace stb {
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(sf::Color color);
-		void setFontsize(int fontsize);
-		void setWidth(const float &length);
+		void setFontSize(int fontsize);
 		virtual const sf::Vector2f getSize();
 		virtual const sf::Vector2f getPosition();
-
-		bool onHover(bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -196,8 +191,6 @@ namespace stb {
 		virtual const sf::Vector2f getSize();
 		virtual const sf::Vector2f getPosition();
 
-		bool onHover(bool triggered);
-
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 
@@ -223,11 +216,9 @@ namespace stb {
 
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);
-		void setSize(int length);
+		void setSize(int length); //tmp
 		virtual const sf::Vector2f getSize();
 		virtual const sf::Vector2f getPosition();
-
-		bool onHover(bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

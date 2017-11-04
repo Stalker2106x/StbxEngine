@@ -251,9 +251,10 @@ void GUITextArea::draw(sf::RenderWindow *win)
 // GUIText
 //
 
-GUIText::GUIText(GUIElement *parent, const std::string &text) : GUIElement("", parent, Text)
+GUIText::GUIText(GUIElement *parent, const std::string &text, const std::string &fontResource) : GUIElement("", parent, Text)
 {
 	_text.setString(text);
+	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 }
 
 GUIText::~GUIText()
@@ -263,7 +264,6 @@ GUIText::~GUIText()
 
 void GUIText::initialUpdate()
 {
-	_text.setFont(*SFResolver<sf::Font>::resolve("glitch")); //tmp
 }
 
 void GUIText::setFont(const std::string &fontResource)
@@ -271,7 +271,7 @@ void GUIText::setFont(const std::string &fontResource)
 	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 }
 
-void GUIText::setFontsize(int fontsize)
+void GUIText::setFontSize(int fontsize)
 {
 	_text.setCharacterSize(fontsize);
 }

@@ -24,6 +24,16 @@ bool GUI::isActive()
 	return (_active);
 }
 
+void GUI::resetDefaults()
+{
+	defaults.font = "console";
+	defaults.fontSize = 16;
+	defaults.fontColor = "#255255255";
+	defaults.pairSpacing = 10;
+	defaults.panelSpacing = 5;
+	defaults.gridSpacing = 5;
+}
+
 GUIElement *GUI::getElement(const std::string &id)
 {
 	for (size_t i = 0; i < _elements.size(); i++)

@@ -47,7 +47,10 @@ GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node, GUIElem
 	GUIElementPair *element = new GUIElementPair(parent);
 	pugi::xml_node xmlElement = node.first_child();
 
-	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), Horizontal, parent));
+	if (node.attribute("spacing"))
+		element->setSpacing(convertSize<float>(node.attribute("spacing").as_string(), Horizontal, parent));
+	else
+		element->setSpacing(Engine::instance->gui->defaults.pairSpacing);
 	element->setFirst(getGUIElementFromXML(xmlElement, element));
 	xmlElement = xmlElement.next_sibling();
 	element->setSecond(getGUIElementFromXML(xmlElement, element));
@@ -59,7 +62,10 @@ GUIElement *GUIXML::getGUIElementGridFromXML(const pugi::xml_node &node, GUIElem
 	GUIElementGrid *element = new GUIElementGrid(parent, sf::Vector2i(node.attribute("columns").as_int(0), node.attribute("rows").as_int(0)));
 	pugi::xml_node xmlElement = node.first_child();
 
-	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), Horizontal, parent));
+	if (node.attribute("spacing"))
+		element->setSpacing(convertSize<float>(node.attribute("spacing").as_string(), Horizontal, parent));
+	else
+		element->setSpacing(Engine::instance->gui->defaults.gridSpacing);
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))
@@ -97,7 +103,9 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node, GUIElement *
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		button = new GUITextButton<GUIButton>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		button = new GUITextButton<GUIButton>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
+		GUITextButton<GUIButton> *btn = dynamic_cast<GUITextButton<GUIButton> *>(button);
+		btn->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
 	}
 	if (node.attribute("target"))
 		button->setCommand("gui_changescreen '" + std::string(node.attribute("target").as_string()) + "'");
@@ -114,8 +122,9 @@ GUIElement *GUIXML::getGUIToggleButtonFromXML(const pugi::xml_node &node, GUIEle
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		button = new GUITextButton<GUIToggleButton>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		button = new GUITextButton<GUIToggleButton>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
 		GUITextButton<GUIToggleButton> *btn = dynamic_cast<GUITextButton<GUIToggleButton> *>(button);
+		btn->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
 		btn->setAltSkin(new TextSkin(node.attribute("activetext").as_string(""), sf::Color::White, sf::Color::Cyan));
 	}
 	return (button);
@@ -134,14 +143,15 @@ GUIElement *GUIXML::getGUISettingButtonFromXML(const pugi::xml_node &node, GUIEl
 		{
 			if (strcmp(it.name(), "setting") == 0)
 			{
-				btn->pushValue(it.attribute("text").as_string(""));
+				btn->pushValue(it.attribute("texture").as_string("")); //Should be skin
 			}
 		}
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		button = new GUITextButton<GUISettingButton>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(""));
+		button = new GUITextButton<GUISettingButton>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
 		GUITextButton<GUISettingButton> *btn = dynamic_cast<GUITextButton<GUISettingButton> *>(button);
+		btn->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
 		btn->pushValue(node.attribute("text").as_string(""));
 		for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 		{
@@ -184,10 +194,10 @@ GUIElement *GUIXML::getGUICheckboxFromXML(const pugi::xml_node &node, GUIElement
 GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node, GUIElement *parent)
 {
 	GUIEdit *element = new GUIEdit(parent);
-	element->setFont(node.attribute("font").as_string(""));
+	element->setFont(node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
 	element->setWidth(convertSize<float>(node.attribute("width").as_string("150"), Horizontal, parent));
 	element->setColor(convertColorCode(node.attribute("color").as_string("#000000000"), "#"));
-	element->setTextColor(convertColorCode(node.attribute("textcolor").as_string("#255255255"), "#"));
+	element->setTextColor(convertColorCode(node.attribute("textcolor").as_string(Engine::instance->gui->defaults.fontColor.c_str()), "#"));
 	return (element);
 }
 
@@ -234,9 +244,9 @@ GUIElement *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node, GUIElemen
 
 GUIElement *GUIXML::getGUITextFromXML(const pugi::xml_node &node, GUIElement *parent)
 {
-	GUIText *element = new GUIText(parent, node.attribute("text").as_string(""));
+	GUIText *element = new GUIText(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
 
-	element->setFont(node.attribute("font").as_string(""));
+	element->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
 	return (element);
 }
 

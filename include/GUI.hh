@@ -19,6 +19,16 @@
 
 namespace stb {
 
+	struct GUIDefaults
+	{
+		int fontSize;
+		std::string font;
+		std::string fontColor;
+		int panelSpacing;
+		int pairSpacing;
+		int gridSpacing;
+	};
+
 	class GUI
 	{
 	public:
@@ -26,6 +36,7 @@ namespace stb {
 		~GUI();
 
 		bool isActive();
+		void resetDefaults();
 		GUIElement *getElement(const std::string &id);
 		bool removeElement(const std::string &id, bool del = false);
 		bool removeElement(int index, bool del = false);
@@ -49,6 +60,8 @@ namespace stb {
 		bool updateRT();
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *win);
+
+		GUIDefaults defaults;
 
 	private:
 		bool _active;

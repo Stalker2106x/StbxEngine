@@ -7,6 +7,9 @@ sEngine::sEngine()
 	stb::Resolver<sf::Font>::addLocation("./Data/font/");
 	stb::Resolver<sf::Texture>::addLocation("./Data/texture/");
 	stb::Resolver<stb::GUIScreen>::addLocation("./Data/screen/");
+	//Initialize GUI Defaults
+	gui->defaults.font = "Console";
+	gui->defaults.fontSize = 25;
 	//Change none to any screen
 	gui->changeScreen("main");
 	//Add Draggable Panel
