@@ -74,6 +74,10 @@ void GUIPanel::addElement(GUIElement *element)
 		}
 		element->setPosition(pos);
 	}
+	/*if (_frame.getLocalBounds().width < element->getSize().x) //Resize panel x
+		_frame.setScale(_frame.getScale().x / element->getSize().x, _frame.getScale().y);
+	if (_frame.getLocalBounds().height < pos.y + element->getSize().y) //Resize panel y
+		_frame.setScale(_frame.getScale().x, _frame.getScale().y / (pos.y + element->getSize().y));*/
 	_elements.push_back(element);
 }
 

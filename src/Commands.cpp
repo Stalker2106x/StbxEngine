@@ -1,6 +1,7 @@
 #include <fstream>
 #include "Engine.hpp"
 #include "Commands.hh"
+#include "utils.h"
 #ifndef _MSC_VER
 	#include <unistd.h>
 #else
@@ -334,8 +335,8 @@ namespace stb {
 			if (argv == NULL || argv->size() < 2
 				|| (*argv)[0].length() < 9 || (*argv)[1].length() < 9)
 				e.console->output(COLOR_ERROR, "con_color: Invalid colors or no colors given");
-			cbg = Console::convertColorCode((*argv)[0]);
-			cinput = Console::convertColorCode((*argv)[1]);
+			cbg = convertColorCode((*argv)[0]);
+			cinput = convertColorCode((*argv)[1]);
 			e.console->setColor(cbg, cinput);
 		}
 

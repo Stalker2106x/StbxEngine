@@ -11,6 +11,7 @@
 #include <queue>
 #include "GUIElement.hpp"
 #include "GUIButton.hh"
+#include "utils.h"
 
 namespace stb {
 
@@ -51,8 +52,6 @@ namespace stb {
 		virtual const sf::Vector2f getSize();
 
 		void addElement(GUIElement *element);
-
-		bool onButtonHover(const PanelButton &id, bool triggered);
 
 		virtual bool updateRT();
 		virtual bool update(const sf::Event &e);

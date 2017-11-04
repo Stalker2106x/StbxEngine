@@ -16,12 +16,12 @@
 #include <fstream>
 #include <SFML/Graphics.hpp>
 #include "Commands.hh"
+#include "utils.h"
 
 namespace stb {
 
 #define PROMPT		(">")
 #define CURSOR		("_")
-#define COLOR_ESC	("\\\\#")
 #define COLOR_ERROR	("\\\\#240077077")
 #define COLOR_SUCCESS	("\\\\#154205050")
 #define COLOR_INFO	("\\\\#000191255")
@@ -46,8 +46,6 @@ namespace stb {
 		void writeToLog(std::string &msg);
 		void setLogFile(const std::string &file);
 		void setLogTimestamp(int);
-
-		static sf::Color convertColorCode(std::string code, std::string esc = COLOR_ESC);
 
 		void output(std::string msg);
 		void output(std::string color, std::string msg);

@@ -17,8 +17,7 @@
 #include "GUIElementPair.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
-
-#define DEFAULT_ID	""
+#include "utils.h"
 
 namespace stb
 {

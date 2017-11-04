@@ -245,7 +245,7 @@ void GUISettingButton::updateValue()
 // GUIButtonBar
 //
 
-GUIButtonBar::GUIButtonBar(GUIElement *parent, BarType type) : GUIElement("", parent, ButtonBar)
+GUIButtonBar::GUIButtonBar(GUIElement *parent, Orientation type) : GUIElement("", parent, ButtonBar)
 {
 	_spacing = 0;
 	_type = type;

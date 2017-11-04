@@ -13,6 +13,7 @@
 #include <vector>
 #include "GUIElement.hpp"
 #include "GUISpecializedButton.hpp"
+#include "utils.h"
 
 namespace stb {
 	
@@ -157,14 +158,11 @@ namespace stb {
 	*
 	*        This class provides a stackable container for gui buttons
 	*/
-	enum BarType {
-		Horizontal,
-		Vertical
-	};
+
 	class GUIButtonBar : public GUIElement
 	{
 	public:
-		GUIButtonBar(GUIElement *parent, BarType type);
+		GUIButtonBar(GUIElement *parent, Orientation type);
 		virtual ~GUIButtonBar();
 
 		virtual void initialUpdate();
@@ -187,7 +185,7 @@ namespace stb {
 		std::vector<GUIButton *> _buttons;
 		int _spacing;
 		bool _inverted;
-		BarType _type;
+		Orientation _type;
 	};
 
 }

@@ -15,6 +15,7 @@
 #include "GUIButton.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
+#include "utils.h"
 
 namespace stb {
 

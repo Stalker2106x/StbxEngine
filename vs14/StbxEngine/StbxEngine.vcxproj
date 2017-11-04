@@ -142,12 +142,14 @@
     <ClInclude Include="..\..\include\Resolver.hh" />
     <ClInclude Include="..\..\include\GUIScreen.hh" />
     <ClInclude Include="..\..\include\GUIXML.hh" />
+    <ClInclude Include="..\..\include\utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
     <ClCompile Include="..\..\src\GUIElementGrid.cpp" />
     <ClCompile Include="..\..\src\GUIElementPair.cpp" />
     <ClCompile Include="..\..\src\GUIScreen.cpp" />
+    <ClCompile Include="..\..\src\utils.cpp" />
     <ClInclude Include="..\..\include\GUIElement.hpp" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />

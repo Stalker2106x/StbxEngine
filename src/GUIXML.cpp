@@ -34,7 +34,8 @@ void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
 {
 	element->setId(node.attribute("id").as_string(DEFAULT_ID));
 	if (node.attribute("x") && node.attribute("y"))
-		element->setPosition(sf::Vector2f(node.attribute("x").as_float(), node.attribute("y").as_float()));
+		element->setPosition(sf::Vector2f(convertSize<float>(node.attribute("x").as_string(), Horizontal, element->getParent()),
+										  convertSize<float>(node.attribute("y").as_string(), Vertical, element->getParent())));
 	else if (node.attribute("x"))
 		element->setX(node.attribute("x").as_float());
 	else if (node.attribute("y"))
@@ -46,7 +47,7 @@ GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node, GUIElem
 	GUIElementPair *element = new GUIElementPair(parent);
 	pugi::xml_node xmlElement = node.first_child();
 
-	element->setSpacing(node.attribute("spacing").as_int(0));
+	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), Horizontal, parent));
 	element->setFirst(getGUIElementFromXML(xmlElement, element));
 	xmlElement = xmlElement.next_sibling();
 	element->setSecond(getGUIElementFromXML(xmlElement, element));
@@ -58,7 +59,7 @@ GUIElement *GUIXML::getGUIElementGridFromXML(const pugi::xml_node &node, GUIElem
 	GUIElementGrid *element = new GUIElementGrid(parent, sf::Vector2i(node.attribute("columns").as_int(0), node.attribute("rows").as_int(0)));
 	pugi::xml_node xmlElement = node.first_child();
 
-	element->setSpacing(node.attribute("spacing").as_int(0));
+	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), Horizontal, parent));
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))
@@ -187,8 +188,8 @@ GUIElement *GUIXML::getGUIEditFromXML(const pugi::xml_node &node, GUIElement *pa
 	GUIEdit *element = new GUIEdit(parent);
 	element->setFont(node.attribute("font").as_string(""));
 	element->setWidth(node.attribute("width").as_float(150.0f));
-	element->setColor(Console::convertColorCode(node.attribute("color").as_string("#000000000"), "#"));
-	element->setTextColor(Console::convertColorCode(node.attribute("textcolor").as_string("#255255255"), "#"));
+	element->setColor(convertColorCode(node.attribute("color").as_string("#000000000"), "#"));
+	element->setTextColor(convertColorCode(node.attribute("textcolor").as_string("#255255255"), "#"));
 	return (element);
 }
 

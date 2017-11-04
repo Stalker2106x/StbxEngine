@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="main" background="background">
-  <panel spacing="10">
+  <panel spacing="5">
     <text text="Menu" font="glitch" />
     <pair spacing="100">
       <text text="toggle" font="glitch" />
       <toggleButton text="OFF" activetext="ON" font="glitch" />
     </pair>
-    <pair spacing="100">
+    <pair spacing="50%">
       <text text="slider" font="glitch" />
       <slider />
     </pair>
