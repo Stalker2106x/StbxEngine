@@ -1,9 +1,6 @@
 BUG:
 -screenshot command is unable to write (assert)
 -nested commands in console do not execute; syntax error
--GUILink, make GUIMenuLink inherit from it, and GUILinkButton, a class that adds
-link button to gui. it should steal all of GUIMenuLink implementation, and clean
-off GUIMenuLink (Re-evaluate this func)
 -Allow GUISettingButton to be filled dynamically like GUIMenuDynamicSetting
 -Console module should use the new GUI Mechanics system.
 
