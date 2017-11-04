@@ -23,7 +23,7 @@ namespace stb {
 	class GUISIndicator : public GUIElement
 	{
 	public:
-		GUISIndicator(const std::string &label = "");
+		GUISIndicator(const std::string &fontResource);
 		virtual ~GUISIndicator();
 
 		virtual void initialUpdate();
@@ -53,23 +53,27 @@ namespace stb {
 	{
 
 	public:
-		GUIIndicator(T &var) : GUISIndicator(""), _hook(var)
+		GUIIndicator(T &var, const std::string &fontResource) : GUISIndicator(fontResource), _hook(var)
 		{
-			_hookValue = _hook;
 			_label = NULL;
 			_value.setCharacterSize(12);
-			_value.setString(std::to_string(_hookValue));
+			_value.setString(std::to_string(_hook));
+			if (_label != NULL)
+				_label->setFont(*SFResolver<sf::Font>::resolve(fontResource));
+			_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 		}
 
-		GUIIndicator(const std::string &label, T &var) : GUISIndicator(label), _hook(var)
+		GUIIndicator(const std::string &label, const std::string &fontResource, T &var) : GUISIndicator(fontResource), _hook(var)
 		{
-			_hookValue = _hook;
 			_label = new sf::Text();
 			_label->setString(label);
 			_label->setFont(*SFResolver<sf::Font>::resolve("glitch"));
 			_label->setCharacterSize(12);
 			_value.setCharacterSize(12);
-			_value.setString(std::to_string(_hookValue));
+			_value.setString(std::to_string(_hook));
+			if (_label != NULL)
+				_label->setFont(*SFResolver<sf::Font>::resolve(fontResource));
+			_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 		}
 
 		virtual ~GUIIndicator()
@@ -79,11 +83,13 @@ namespace stb {
 
 		virtual bool updateRT() override
 		{
-			if (_hookValue != _hook)
+			static T prev;
+
+			if (_hook != prev)
 			{
-				_hookValue = _hook;
-				_value.setString(std::to_string(_hookValue));
+				_value.setString(std::to_string(_hook));
 			}
+			prev = _hook;
 			return (true);
 		}
 
@@ -95,7 +101,6 @@ namespace stb {
 		}
 
 	private:
-		T _hookValue;
 		T &_hook;
 	};
 

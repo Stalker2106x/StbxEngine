@@ -7,9 +7,8 @@ using namespace stb;
 // GUISIndicator
 //
 
-GUISIndicator::GUISIndicator(const std::string &label) : GUIElement(label, SIndicator)
+GUISIndicator::GUISIndicator(const std::string &fontResource) : GUIElement("", SIndicator)
 {
-	_value.setFont(*SFResolver<sf::Font>::resolve("glitch"));
 }
 
 GUISIndicator::~GUISIndicator()

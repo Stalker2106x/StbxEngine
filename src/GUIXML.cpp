@@ -229,8 +229,8 @@ GUIElement *GUIXML::getGUIScreenFromXML(const pugi::xml_node &node)
 
 GUIElement *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node)
 {
-	GUISIndicator *element = new GUISIndicator();
-	return (element);
+	//GUIIndicator *element = new GUIIndicator<>(node.attribute("text").as_string(), node.attribute("font").as_string(), *this);
+	return (NULL);
 }
 
 GUIElement *GUIXML::getGUITextFromXML(const pugi::xml_node &node)
