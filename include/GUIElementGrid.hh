@@ -17,7 +17,7 @@ namespace stb {
 	class GUIElementGrid : public GUIElement
 	{
 	public:
-		GUIElementGrid(const sf::Vector2i &size);
+		GUIElementGrid(GUIElement *parent, const sf::Vector2i &size);
 		~GUIElementGrid();
 
 		virtual void initialUpdate();

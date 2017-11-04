@@ -149,13 +149,15 @@ namespace stb {
 				e.gui->removeElement("__debuginfo", true);
 			else
 			{
-				debugpanel = e.gui->addPanel("__debuginfo", sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
-				debugpanel->addElement(new GUIIndicator<int>("Screen Width: ", "glitch", e.getWindowSize().x));
-				debugpanel->addElement(new GUIIndicator<int>("Screen Height: ", "glitch", e.getWindowSize().y));
-				debugpanel->addElement(new GUIIndicator<int>("FPS: ", "glitch", e.getFramerate()));
-				debugpanel->addElement(new GUIIndicator<float>("Mouse X: ", "glitch", e.getMouse().x));
-				debugpanel->addElement(new GUIIndicator<float>("Mouse Y: ", "glitch", e.getMouse().y));
-				debugpanel->addElement(new GUIIndicator<float>("Game Time: ", "glitch", e.getElapsedSeconds()));
+				debugpanel = new GUIPanel(NULL, sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
+				debugpanel->setId("__debuginfo");
+				debugpanel->addElement(new GUIIndicator<int>(debugpanel, "Screen Width: ", "glitch", e.getWindowSize().x));
+				debugpanel->addElement(new GUIIndicator<int>(debugpanel, "Screen Height: ", "glitch", e.getWindowSize().y));
+				debugpanel->addElement(new GUIIndicator<int>(debugpanel, "FPS: ", "glitch", e.getFramerate()));
+				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Mouse X: ", "glitch", e.getMouse().x));
+				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Mouse Y: ", "glitch", e.getMouse().y));
+				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Game Time: ", "glitch", e.getElapsedSeconds()));
+				e.gui->addElement(debugpanel);
 			}
 		}
 

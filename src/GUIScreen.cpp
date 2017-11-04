@@ -2,8 +2,8 @@
 
 using namespace stb;
 
-GUIScreen::GUIScreen()
-	: GUIPanel("", Engine::instance->getWindowSize())
+GUIScreen::GUIScreen(GUIElement *parent)
+	: GUIPanel(parent, Engine::instance->getWindowSize())
 {
 	_type = Screen;
 }

@@ -10,9 +10,11 @@ sEngine::sEngine()
 	//Change none to any screen
 	gui->changeScreen("main");
 	//Add Draggable Panel
-	stb::GUIPanel *panel = gui->addDraggablePanel("windowz", sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
+	stb::GUIDraggablePanel *panel = new stb::GUIDraggablePanel(NULL, sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
+	panel->setId("windowz");
+	gui->addElement(panel);
 	//Add FPS Indicator inside
-	panel->addElement(new stb::GUIIndicator<int>("Indicator :", "glitch", _framerate));
+	panel->addElement(new stb::GUIIndicator<int>(panel, "Indicator :", "glitch", _framerate));
 }
 
 bool sEngine::update(const sf::Event &e)

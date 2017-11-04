@@ -33,10 +33,8 @@ namespace stb {
 
 		void toggle();
 
-		GUIPanel *addPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color);
-		GUIPanel *addPanel(const std::string &id, const sf::Vector2i &size, const std::string &resource);
-		GUIDraggablePanel *addDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
-		GUIDraggablePanel *addDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
+		void addElement(GUIElement *element);
+
 		template <typename T>
 		void addIndicator(const sf::Vector2f &pos, int fontSize, std::string *label, T &var)
 		{

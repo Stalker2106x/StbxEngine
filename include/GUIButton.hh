@@ -65,7 +65,7 @@ namespace stb {
 	class GUIButton : public GUIElement
 	{
 	public:
-		GUIButton(const sf::Event::EventType &triggerType = sf::Event::EventType::MouseButtonPressed);
+		GUIButton(GUIElement *parent, const sf::Event::EventType &triggerType = sf::Event::EventType::MouseButtonPressed);
 		virtual ~GUIButton();
 
 		virtual void initialUpdate();
@@ -104,7 +104,7 @@ namespace stb {
 	class GUIToggleButton : public GUIButton
 	{
 	public:
-		GUIToggleButton(const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUIToggleButton(GUIElement *parent, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUIToggleButton();
 
 		virtual void initialUpdate();
@@ -129,7 +129,7 @@ namespace stb {
 	class GUISettingButton : public GUIButton
 	{
 	public:
-		GUISettingButton(const sf::Event::EventType &triggerType);
+		GUISettingButton(GUIElement *parent, const sf::Event::EventType &triggerType);
 		~GUISettingButton();
 
 		virtual void initialUpdate();
@@ -164,7 +164,7 @@ namespace stb {
 	class GUIButtonBar : public GUIElement
 	{
 	public:
-		GUIButtonBar(BarType type);
+		GUIButtonBar(GUIElement *parent, BarType type);
 		virtual ~GUIButtonBar();
 
 		virtual void initialUpdate();
@@ -179,9 +179,6 @@ namespace stb {
 		virtual const sf::Vector2f getSize();
 
 		GUIButton *addButton(GUIButton *button);
-		GUITextButton<GUIButton> *addTextButton(const std::string &label, const std::string &fontResource);
-		GUISpriteButton<GUIButton> *addSpriteButton(const std::string &resource);
-		GUISpriteButton<GUIToggleButton> *addToggleSpriteButton(const std::string &resource);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

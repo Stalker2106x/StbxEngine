@@ -27,31 +27,31 @@ namespace stb
 	class GUIXML
 	{
 	public:
-		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node, GUIElement *receiver = NULL);
+		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node, GUIElement *parent = NULL, GUIElement *receiver = NULL);
 
 		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
 
-		static GUIElement *getGUIElementPairFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIElementGridFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIToggleButtonFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUISettingButtonFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUICheckboxFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIEditFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUISliderFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIPanelFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIScreenFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUIIndicatorFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUITextFromXML(const pugi::xml_node &node);
-		static GUIElement *getGUITextAreaFromXML(const pugi::xml_node &node);
+		static GUIElement *getGUIElementPairFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIElementGridFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIToggleButtonFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUISettingButtonFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUICheckboxFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIEditFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUISliderFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIPanelFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIScreenFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUIIndicatorFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUITextFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUITextAreaFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
 
 	private:
 
 	};
 
 	//Pointer to GUIXML parsing function
-	typedef GUIElement *(*XMLParserFptr)(const pugi::xml_node &);
+	typedef GUIElement *(*XMLParserFptr)(const pugi::xml_node &, GUIElement *);
 
 	// This map binds XML Nodes names to corresponding C++ Parser
 	extern std::map<std::string, XMLParserFptr> GUIXMLElementParser;

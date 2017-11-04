@@ -2,7 +2,7 @@
 
 using namespace stb;
 
-GUIElementGrid::GUIElementGrid(const sf::Vector2i &size) : GUIElement("", Grid)
+GUIElementGrid::GUIElementGrid(GUIElement *parent, const sf::Vector2i &size) : GUIElement("", parent, Grid)
 {
 	_size = size;
 	_spacing = 0;

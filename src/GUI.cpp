@@ -115,36 +115,9 @@ void GUI::toggle()
 	_active = (_active ? false : true);
 }
 
-GUIPanel *GUI::addPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color)
+void GUI::addElement(GUIElement *element)
 {
-	GUIPanel *panel = new GUIPanel(id, size, color);
-
-	_elements.push_back(panel);
-	return (panel);
-}
-
-GUIPanel *GUI::addPanel(const std::string &id, const sf::Vector2i &size, const std::string &resource)
-{
-	GUIPanel *panel = new GUIPanel(id, size, resource);
-
-	_elements.push_back(panel);
-	return (panel);
-}
-
-GUIDraggablePanel *GUI::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
-{
-	GUIDraggablePanel *panel = new GUIDraggablePanel(id, size, headerColor, frameColor);
-
-	_elements.push_back(panel);
-	return (panel);
-}
-
-GUIDraggablePanel *GUI::addDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
-{
-	GUIDraggablePanel *panel = new GUIDraggablePanel(id, size, headerResource, frameResource);
-
-	_elements.push_back(panel);
-	return (panel);
+	_elements.push_back(element);
 }
 
 void GUI::toggleHideElement(const std::string &id)

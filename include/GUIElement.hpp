@@ -32,13 +32,14 @@ namespace stb {
 	class GUIElement
 	{
 	public:
-		GUIElement(const std::string &id, GUIElementType type) : _id(id), _type(type), _active(true) { }
+		GUIElement(const std::string &id, GUIElement *parent, GUIElementType type) : _id(id), _parent(parent), _type(type), _active(true) { }
 		virtual ~GUIElement() {};
 
 		virtual void initialUpdate() = 0;
 
 		const std::string &getId() { return (_id); };
 		const GUIElementType &getType() { return (_type); };
+		GUIElement *getParent() { return (_parent); };
 		virtual const sf::Vector2f getPosition() = 0;
 		virtual const sf::Vector2f getSize() = 0;
 
@@ -54,7 +55,9 @@ namespace stb {
 		virtual bool updateRT() { return (true); }; //Real time update, called more than one time between frames
 		virtual bool update(const sf::Event &e) = 0;
 		virtual void draw(sf::RenderWindow *win) = 0;
+
 	protected:
+		GUIElement *_parent;
 		GUIElementType _type;
 		std::string _id;
 		bool _active;

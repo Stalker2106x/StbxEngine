@@ -22,7 +22,7 @@ namespace stb {
 	class GUIScreen : public GUIPanel
 	{
 	public:
-		GUIScreen();
+		GUIScreen(GUIElement *parent);
 		~GUIScreen();
 
 		static GUIScreen *loadFromFile(const std::string &file, const std::string &screenId = "");

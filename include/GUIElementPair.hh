@@ -17,7 +17,7 @@ namespace stb {
 	class GUIElementPair : public GUIElement
 	{
 	public:
-		GUIElementPair(GUIElement *first = NULL, GUIElement *second = NULL);
+		GUIElementPair(GUIElement *parent, GUIElement *first = NULL, GUIElement *second = NULL);
 		~GUIElementPair();
 
 		virtual void initialUpdate();

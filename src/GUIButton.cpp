@@ -8,7 +8,7 @@ using namespace stb;
 // GUIButton
 //
 
-GUIButton::GUIButton(const sf::Event::EventType &triggerType) : GUIElement("", Button)
+GUIButton::GUIButton(GUIElement *parent, const sf::Event::EventType &triggerType) : GUIElement("", parent, Button)
 {
 	_onClickCallback = NULL;
 	_onRClickCallback = NULL;
@@ -108,7 +108,7 @@ bool GUIButton::update(const sf::Event &e)
 // GUIToggleSpriteButton
 //
 
-GUIToggleButton::GUIToggleButton(const sf::Event::EventType &triggerType) : GUIButton(triggerType)
+GUIToggleButton::GUIToggleButton(GUIElement *parent, const sf::Event::EventType &triggerType) : GUIButton(parent, triggerType)
 {
 	_state = false;
 }
@@ -185,7 +185,7 @@ bool GUIToggleButton::update(const sf::Event &e)
 // GUISettingButton
 //
 
-GUISettingButton::GUISettingButton(const sf::Event::EventType &triggerType) : GUIButton(triggerType)
+GUISettingButton::GUISettingButton(GUIElement *parent, const sf::Event::EventType &triggerType) : GUIButton(parent, triggerType)
 {
 	_index = 0;
 	setClickCallback(std::bind(&GUISettingButton::click, this));
@@ -245,7 +245,7 @@ void GUISettingButton::updateValue()
 // GUIButtonBar
 //
 
-GUIButtonBar::GUIButtonBar(BarType type) : GUIElement("", ButtonBar)
+GUIButtonBar::GUIButtonBar(GUIElement *parent, BarType type) : GUIElement("", parent, ButtonBar)
 {
 	_spacing = 0;
 	_type = type;
@@ -343,30 +343,6 @@ const sf::Vector2f GUIButtonBar::getPosition()
 GUIButton *GUIButtonBar::addButton(GUIButton *button)
 {
 	_buttons.push_back(button);
-	return (button);
-}
-
-GUITextButton<GUIButton> *GUIButtonBar::addTextButton(const std::string &label, const std::string &fontResource)
-{
-	GUITextButton<GUIButton> *button = new GUITextButton<GUIButton>(label, fontResource);
-
-	addButton(button);
-	return (button);
-}
-
-GUISpriteButton<GUIButton> *GUIButtonBar::addSpriteButton(const std::string &resource)
-{
-	GUISpriteButton<GUIButton> *button = new GUISpriteButton<GUIButton>(resource);
-
-	addButton(button);
-	return (button);
-}
-
-GUISpriteButton<GUIToggleButton> *GUIButtonBar::addToggleSpriteButton(const std::string &resource)
-{
-	GUISpriteButton<GUIToggleButton> *button = new GUISpriteButton<GUIToggleButton>(resource);
-
-	addButton(button);
 	return (button);
 }
 

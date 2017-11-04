@@ -7,7 +7,7 @@ using namespace stb;
 // GUISIndicator
 //
 
-GUISIndicator::GUISIndicator(const std::string &fontResource) : GUIElement("", SIndicator)
+GUISIndicator::GUISIndicator(GUIElement *parent, const std::string &fontResource) : GUIElement("", parent, SIndicator)
 {
 }
 
@@ -67,7 +67,7 @@ void GUISIndicator::draw(sf::RenderWindow *win)
 // GUIEdit
 //
 
-GUIEdit::GUIEdit(const std::string &id) : GUIElement(id, Edit)
+GUIEdit::GUIEdit(GUIElement *parent) : GUIElement("", parent, Edit)
 {
 	_focus = false;
 }
@@ -180,7 +180,7 @@ void GUIEdit::draw(sf::RenderWindow *win)
 // GUITextArea
 //
 
-GUITextArea::GUITextArea(const std::string &id) : GUIElement(id, TextArea)
+GUITextArea::GUITextArea(GUIElement *parent) : GUIElement("", parent, TextArea)
 {
 	initialUpdate();
 }
@@ -251,7 +251,7 @@ void GUITextArea::draw(sf::RenderWindow *win)
 // GUIText
 //
 
-GUIText::GUIText(const std::string &text) : GUIElement("", Text)
+GUIText::GUIText(GUIElement *parent, const std::string &text) : GUIElement("", parent, Text)
 {
 	_text.setString(text);
 }
@@ -310,7 +310,7 @@ void GUIText::draw(sf::RenderWindow *win)
 // GUICheckbox
 //
 
-GUICheckbox::GUICheckbox(const std::string &id) : GUIElement(id, Checkbox)
+GUICheckbox::GUICheckbox(GUIElement *parent) : GUIElement("", parent, Checkbox)
 {
 	initialUpdate();
 }
@@ -377,7 +377,7 @@ void GUICheckbox::draw(sf::RenderWindow *win)
 // GUISlider
 //
 
-GUISlider::GUISlider() : GUIElement("", Slider)
+GUISlider::GUISlider(GUIElement *parent) : GUIElement("", parent, Slider)
 {
 	setRange(0, 100);
 	_bar.setSize(sf::Vector2f(102, 10));

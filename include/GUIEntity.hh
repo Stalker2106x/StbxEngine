@@ -23,7 +23,7 @@ namespace stb {
 	class GUISIndicator : public GUIElement
 	{
 	public:
-		GUISIndicator(const std::string &fontResource);
+		GUISIndicator(GUIElement *parent, const std::string &fontResource);
 		virtual ~GUISIndicator();
 
 		virtual void initialUpdate();
@@ -53,7 +53,7 @@ namespace stb {
 	{
 
 	public:
-		GUIIndicator(T &var, const std::string &fontResource) : GUISIndicator(fontResource), _hook(var)
+		GUIIndicator(GUIElement *parent, T &var, const std::string &fontResource) : GUISIndicator(parent, fontResource), _hook(var)
 		{
 			_label = NULL;
 			_value.setCharacterSize(12);
@@ -63,7 +63,7 @@ namespace stb {
 			_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 		}
 
-		GUIIndicator(const std::string &label, const std::string &fontResource, T &var) : GUISIndicator(fontResource), _hook(var)
+		GUIIndicator(GUIElement *parent, const std::string &label, const std::string &fontResource, T &var) : GUISIndicator(parent, fontResource), _hook(var)
 		{
 			_label = new sf::Text();
 			_label->setString(label);
@@ -114,7 +114,7 @@ namespace stb {
 	class GUIEdit : public GUIElement
 	{
 	public:
-		GUIEdit(const std::string &id = "");
+		GUIEdit(GUIElement *parent);
 		virtual ~GUIEdit();
 
 		virtual void initialUpdate();
@@ -151,7 +151,7 @@ namespace stb {
 	class GUIText : public GUIElement
 	{
 	public:
-		GUIText(const std::string &text = "");
+		GUIText(GUIElement *parent, const std::string &text = "");
 		virtual ~GUIText();
 
 		virtual void initialUpdate();
@@ -183,7 +183,7 @@ namespace stb {
 	class GUITextArea : public GUIElement
 	{
 	public:
-		GUITextArea(const std::string &id = "");
+		GUITextArea(GUIElement *parent);
 		virtual ~GUITextArea();
 
 		virtual void initialUpdate();
@@ -216,7 +216,7 @@ namespace stb {
 	class GUICheckbox : public GUIElement
 	{
 	public:
-		GUICheckbox(const std::string &id = "");
+		GUICheckbox(GUIElement *parent);
 		virtual ~GUICheckbox();
 
 		virtual void initialUpdate();
@@ -246,7 +246,7 @@ namespace stb {
 	class GUISlider : public GUIElement
 	{
 	public:
-		GUISlider();
+		GUISlider(GUIElement *parent);
 		~GUISlider();
 
 		virtual void initialUpdate();

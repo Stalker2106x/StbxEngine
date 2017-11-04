@@ -9,7 +9,7 @@ using namespace stb;
 // GUIPanel
 //
 
-GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color) : GUIElement(id, ButtonBar), _buttonBar(Horizontal)
+GUIPanel::GUIPanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &color) : GUIElement("", parent, ButtonBar), _buttonBar(this, Horizontal)
 {
 	sf::Texture ctexture;
 
@@ -20,7 +20,7 @@ GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Co
 }
 
 
-GUIPanel::GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name) : GUIElement(id, ButtonBar), _buttonBar(Horizontal)
+GUIPanel::GUIPanel(GUIElement *parent, const sf::Vector2i &size, const std::string &name) : GUIElement("", parent, ButtonBar), _buttonBar(this, Horizontal)
 {
 	_frame.setTexture(*SFResolver<sf::Texture>::resolve(name));
 	_frame.setScale(1 / size.x, 1 / size.y);
@@ -149,8 +149,8 @@ void GUIPanel::draw(sf::RenderWindow *win)
 // GUIDynamicPanel
 //
 
-GUIDraggablePanel::GUIDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
-	: GUIPanel(id, size, frameColor)
+GUIDraggablePanel::GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
+	: GUIPanel(parent, size, frameColor)
 {
 	sf::Texture ctexture;
 
@@ -160,8 +160,8 @@ GUIDraggablePanel::GUIDraggablePanel(const std::string &id, const sf::Vector2i &
 	initialUpdate();
 }
 
-GUIDraggablePanel::GUIDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
-	: GUIPanel(id, size, frameResource)
+GUIDraggablePanel::GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
+	: GUIPanel(parent, size, frameResource)
 {
 	_header.setTexture(*SFResolver<sf::Texture>::resolve(headerResource));
 	_header.setScale(1 / size.x, 1 / 15);
@@ -181,16 +181,18 @@ void GUIDraggablePanel::initialUpdate()
 	_style |= PN_CLOSE | PN_LOCK;
 	if ((_style & PN_CLOSE) == PN_CLOSE)
 	{
-		GUISpriteButton<GUIButton> *btn = _buttonBar.addSpriteButton("buttons");
+		GUISpriteButton<GUIButton> *btn = new GUISpriteButton<GUIButton>(&_buttonBar, "buttons");
 		btn->setSkin(new SpriteSkin(sf::IntRect(0, 0, 16, 16), sf::IntRect(0, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggle, this));
+		_buttonBar.addButton(btn);
 	}
 	if ((_style & PN_LOCK) == PN_LOCK)
 	{
-		GUISpriteButton<GUIToggleButton> *btn = _buttonBar.addToggleSpriteButton("buttons");
+		GUISpriteButton<GUIToggleButton> *btn = new GUISpriteButton<GUIToggleButton>(&_buttonBar, "buttons");
 		btn->setSkin(new SpriteSkin(sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16)));
 		btn->setAltSkin(new SpriteSkin(sf::IntRect(32, 0, 16, 16), sf::IntRect(32, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggleLock, this));
+		_buttonBar.addButton(btn);
 	}
 	_buttonBar.invert();
 	setPosition(sf::Vector2f(0, 0));

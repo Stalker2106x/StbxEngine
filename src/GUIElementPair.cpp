@@ -3,7 +3,7 @@
 
 using namespace stb;
 
-GUIElementPair::GUIElementPair(GUIElement *first, GUIElement *second) : GUIElement("", Pair)
+GUIElementPair::GUIElementPair(GUIElement *parent, GUIElement *first, GUIElement *second) : GUIElement("", parent, Pair)
 {
 	_spacing = 0;
 }

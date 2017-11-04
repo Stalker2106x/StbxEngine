@@ -32,9 +32,9 @@ namespace stb {
 	class GUIPanel : public GUIElement
 	{
 	public:
-		GUIPanel() : GUIElement("", Panel), _buttonBar(Horizontal) {};
-		GUIPanel(const std::string &id, const sf::Vector2i &size, const sf::Color &color = sf::Color::Transparent);
-		GUIPanel(const std::string &id, const sf::Vector2i &size, const std::string &name);
+		GUIPanel(GUIElement *parent) : GUIElement("", parent, Panel), _buttonBar(this, Horizontal) {};
+		GUIPanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &color = sf::Color::Transparent);
+		GUIPanel(GUIElement *parent, const sf::Vector2i &size, const std::string &name);
 		virtual ~GUIPanel();
 
 		virtual void initialUpdate();
@@ -78,8 +78,8 @@ namespace stb {
 	class GUIDraggablePanel : public GUIPanel
 	{
 	public:
-		GUIDraggablePanel(const std::string &id, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
-		GUIDraggablePanel(const std::string &id, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
+		GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
+		GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 		virtual ~GUIDraggablePanel();
 		void initialUpdate();
 
