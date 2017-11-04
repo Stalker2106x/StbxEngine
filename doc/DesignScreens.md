@@ -3,34 +3,34 @@
 The GUI module provides all kind of drawable on screen elements, used for in-game HUD, menus, interaction panels, inventory...\n
 Every supported Item is described in the next section XML reference.\n
 The GUI module is accessible through the Engine class, which has a public pointer to it
-	stb::Engine::instance->gui //or accessible via a single "gui" in your inherited Engine.
+    stb::Engine::instance->gui //or accessible via a single "gui" in your inherited Engine.
 It uses "screens" mechanism, which consists of XML Layouts: Each screen in defined inside an XML file (a single file may be used to store all screens) linked between themselves via interaction with buttons, or others GUIElements.\n
 You can easily change to a screen by calling the gui method:
-	stb::Engine::instance->gui->changeScreen("ScreenID");
+    stb::Engine::instance->gui->changeScreen("ScreenID");
 where ScreenID is the corresponding ID set inside the XML file.\n
 NOTE: If the file storing the menu has a different name than ScreenID, you must add its name as second argument to changeScreen method as follows\n
-	stb::Engine::instance->gui->changeScreen("ScreenID", "ScreenFile");
+    stb::Engine::instance->gui->changeScreen("ScreenID", "ScreenFile");
 
 ## Designing GUI Screens ##
 
 Following what you have read in the last section, you may want to create your own screens as of now.\n
 To do so, create any XML file in your binary file tree, and open it with your favourite editor.\n
 First of all, you want to define the screen.\n
-    	<screen id="main">
-    	</screen>
+    <screen id="main">
+    </screen>
 This screen is already loadable into the GUI module, but first, lets add some background image, of name "lucky"\n
-    	<screen id="main" background="lucky">
-    	</screen>
+    <screen id="main" background="lucky">
+    </screen>
 Now, understand that we added a background but we could have added any option supported in the  next section table at the corresponding container and type.\n
 We will for example add a basic menu inside our "main" screen.\n
-    	<screen id="main" background="lucky">
-    		<text text="title" font="default" />
-    		<pair>
-    			<text text="name:" font="default" />
-    			<edit width="100px" />
-    		</pair>
-    		<button text="ok" font="default" />
-    	</screen>
+    <screen id="main" background="lucky">
+    	<text text="title" font="default" />
+    	<pair>
+    		<text text="name:" font="default" />
+    		<edit width="100px" />
+    	</pair>
+    	<button text="ok" font="default" />
+    </screen>
 Now if we load this menu, we can hopefully input text in the edit, and click button, but nothing is usable as is. We have to link button to action, and give some id to elements we want to extract data later on.
 
 ### StbxEngine XML Reference
@@ -106,36 +106,36 @@ Now if we load this menu, we can hopefully input text in the edit, and click but
 ### XML screen example
 
 Here is a valid example screen.xml:\n
-      <screen id="main" background="background">
-        <panel x="25%" spacing="5%">
-          <text text="Menu" font="glitch" />
-          <pair spacing="100">
-            <text text="toggle" font="glitch" />
-            <toggleButton text="OFF" activetext="ON" font="glitch" />
-          </pair>
-          <pair spacing="100px">
-            <text text="slider" font="glitch" />
-            <slider />
-          </pair>
-          <pair spacing="100">
-            <text text="edit" font="glitch" />
-            <edit font="glitch"/>
-          </pair>
-          <pair spacing="100">
-            <text text="checkbox" font="glitch" />
-            <checkbox />
-          </pair>
-          <pair spacing="100">
-            <text text="setting" font="glitch" />
-            <settingButton text="Set" font="glitch">
-              <setting text="Set2" />
-              <setting text="Set3" />
-              <setting text="Set4" />
-            </settingButton>
-          </pair>
-          <button text="Apply" font="glitch"/>
-          <button text="Back" font="glitch" target="alt"/>
-        </panel>
-      </screen>
+    <screen id="main" background="background">
+      <panel x="25%" spacing="5%">
+        <text text="Menu" font="glitch" />
+        <pair spacing="100">
+          <text text="toggle" font="glitch" />
+          <toggleButton text="OFF" activetext="ON" font="glitch" />
+        </pair>
+        <pair spacing="100px">
+          <text text="slider" font="glitch" />
+          <slider />
+        </pair>
+        <pair spacing="100">
+          <text text="edit" font="glitch" />
+          <edit font="glitch"/>
+        </pair>
+        <pair spacing="100">
+          <text text="checkbox" font="glitch" />
+          <checkbox />
+        </pair>
+        <pair spacing="100">
+          <text text="setting" font="glitch" />
+          <settingButton text="Set" font="glitch">
+            <setting text="Set2" />
+            <setting text="Set3" />
+            <setting text="Set4" />
+          </settingButton>
+        </pair>
+        <button text="Apply" font="glitch"/>
+        <button text="Back" font="glitch" target="alt"/>
+      </panel>
+    </screen>
 
       menu.loadFromFile("./Data/menu/menu.xml");
