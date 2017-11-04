@@ -16,21 +16,21 @@ NOTE: If the file storing the menu has a different name than ScreenID, you must 
 Following what you have read in the last section, you may want to create your own screens as of now.\n
 To do so, create any XML file in your binary file tree, and open it with your favourite editor.\n
 First of all, you want to define the screen.\n
-	<screen id="main">
-	</screen>
+    	<screen id="main">
+    	</screen>
 This screen is already loadable into the GUI module, but first, lets add some background image, of name "lucky"\n
-	<screen id="main" background="lucky">
-	</screen>
+    	<screen id="main" background="lucky">
+    	</screen>
 Now, understand that we added a background but we could have added any option supported in the  next section table at the corresponding container and type.\n
 We will for example add a basic menu inside our "main" screen.\n
-	<screen id="main" background="lucky">
-		<text text="title" font="default" />
-		<pair>
-			<text text="name:" font="default" />
-			<edit width="100px" />
-		</pair>
-		<button text="ok" font="default" />
-	</screen>
+    	<screen id="main" background="lucky">
+    		<text text="title" font="default" />
+    		<pair>
+    			<text text="name:" font="default" />
+    			<edit width="100px" />
+    		</pair>
+    		<button text="ok" font="default" />
+    	</screen>
 Now if we load this menu, we can hopefully input text in the edit, and click button, but nothing is usable as is. We have to link button to action, and give some id to elements we want to extract data later on.
 
 ### StbxEngine XML Reference
@@ -103,56 +103,39 @@ Now if we load this menu, we can hopefully input text in the edit, and click but
   <tr><td>lines</td><td>Attribute</td><td>Set height (in text "lines") of element</td><td>""</td><td>String</td></tr>
 </table>
 
-### Create your XML screen
+### XML screen example
 
-To instanciate a GUIScreen in your project, you have to create a valid XML resource to load it from.\n
-
-Here is a valid example screen.xml
-
-        <screen id="main">    <!-- We declare a screen with id "main" -->
-          <background>background</background>     <!-- We define the screen background -->
-          <menu>              <!-- We add a menu to the screen to hold all of our controls -->
-            <spacing>30</spacing>
-            <fontsize>16</fontsize>
-            <item type="Link" target="yebakg" location="./Data/screen/opt.xml">
-              <label>Link</label>
-            </item>
-            <item type="Setting">
-              <label>Refresh Rate</label>
-              <padding>150</padding>
-              <setting>50Hz</setting>
-              <setting>60Hz</setting>
-            </item>
-            <item type="DynamicSetting" filler="Resolutions" y="400">
-              <label>Resolution</label>
-            </item>s
-            <item type="Edit">
-              <label>Pseudo</label>
-              <padding>125</padding>
-              <inputlength>200</inputlength>
-              <inputcolor>#050050255</inputcolor>
-            </item>
-            <item type="Slider">
-              <label>Volume</label>
-              <padding>100</padding>
-              <barwidth>250</barwidth>
-              <min>0</min>
-              <max>100</max>
-            </item>
-            <item type="Checkbox">
-              <label>Checkbox</label>
-            </item>
-            <item type="Link" command="exit">
-              <label>Quit</label>
-              <color>#255255255</color>
-            </item>
-          </menu>
-        </screen>
-
-### Load your menu
-
-To load a menu, just call the function Menu::loadFromFile(const std::string &file)
-
-      Menu menu();
+Here is a valid example screen.xml:\n
+      <screen id="main" background="background">
+        <panel x="25%" spacing="5%">
+          <text text="Menu" font="glitch" />
+          <pair spacing="100">
+            <text text="toggle" font="glitch" />
+            <toggleButton text="OFF" activetext="ON" font="glitch" />
+          </pair>
+          <pair spacing="100px">
+            <text text="slider" font="glitch" />
+            <slider />
+          </pair>
+          <pair spacing="100">
+            <text text="edit" font="glitch" />
+            <edit font="glitch"/>
+          </pair>
+          <pair spacing="100">
+            <text text="checkbox" font="glitch" />
+            <checkbox />
+          </pair>
+          <pair spacing="100">
+            <text text="setting" font="glitch" />
+            <settingButton text="Set" font="glitch">
+              <setting text="Set2" />
+              <setting text="Set3" />
+              <setting text="Set4" />
+            </settingButton>
+          </pair>
+          <button text="Apply" font="glitch"/>
+          <button text="Back" font="glitch" target="alt"/>
+        </panel>
+      </screen>
 
       menu.loadFromFile("./Data/menu/menu.xml");
