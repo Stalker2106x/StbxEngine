@@ -109,6 +109,8 @@ GUIElement *GUIXML::getGUIButtonFromXML(const pugi::xml_node &node, GUIElement *
 	}
 	if (node.attribute("target"))
 		button->setCommand("gui_changescreen '" + std::string(node.attribute("target").as_string()) + "'");
+	if (node.attribute("command"))
+		button->setCommand(std::string(node.attribute("command").as_string()));
 	return (button);
 }
 
