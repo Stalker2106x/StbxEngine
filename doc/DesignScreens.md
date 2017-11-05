@@ -149,6 +149,3 @@ Here is a valid example screen.xml:\n
         <button text="Back" font="glitch" target="alt"/>
       </panel>
     </screen>
-    
-
-      menu.loadFromFile("./Data/menu/menu.xml");
