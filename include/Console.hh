@@ -15,6 +15,7 @@
 #include <list>
 #include <deque>
 #include <fstream>
+#include "GUIPanel.hh"
 #include "Commands.hh"
 #include "utils.h"
 
@@ -63,7 +64,7 @@ namespace stb {
 		Engine &_engine;
 
 		bool _active, _logEnabled, _logTimestamp;
-		//GUIPanel *_panel;
+		GUIPanel *_frame;
 		sf::RectangleShape _bg, _inputArea;
 		sf::Font _font;
 		sf::Text _inputValue, _cursor;

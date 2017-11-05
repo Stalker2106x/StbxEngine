@@ -36,9 +36,7 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 	//FONT SIZE
 	_inputValue.setCharacterSize(_fontSize);
 	_cursor.setCharacterSize(_fontSize);
-	//_panel = new GUIPanel() todo !!
-	_bg.setSize(sf::Vector2f(static_cast<float>(winsize.x), static_cast<float>((_lineCount * _fontSize) + (_fontSize + 4))));
-	_bg.setPosition(0,0);
+	_frame = new GUIPanel(NULL, sf::Vector2i(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)), sf::Color(50, 65, 90));
 	_inputArea.setSize(sf::Vector2f(static_cast<float>(winsize.x - 10), static_cast<float>(_fontSize + 2)));
 	_inputArea.setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
 	_inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea.getLocalBounds().height + 4)));
@@ -279,7 +277,7 @@ void Console::draw(sf::RenderWindow *win)
 	static bool drawCursor = false;
 	std::list<sf::Text *>::iterator begIter;
 
-	win->draw(_bg);
+	_frame->draw(win);
 	win->draw(_inputArea);
 	win->draw(_inputValue);
 	if (drawCursor)
