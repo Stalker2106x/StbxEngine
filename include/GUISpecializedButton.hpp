@@ -107,9 +107,15 @@ namespace stb {
 			if (e.type == sf::Event::MouseMoved)
 			{
 				if (_label.getGlobalBounds().contains(sf::Vector2f(static_cast<float>(e.mouseMove.x), static_cast<float>(e.mouseMove.y))))
-					onHover(true);
+				{
+					if (!_hover)
+						onHover(true);
+				}
 				else
-					onHover(false);
+				{
+					if (_hover)
+						onHover(false);
+				}
 			}
 			return (true);
 		}
@@ -178,8 +184,6 @@ namespace stb {
 		virtual bool GUISpriteButton<T>::onHover(bool triggered)
 		{
 			T::onHover(triggered);
-			if (_skin == NULL)
-				return (false);
 			if (triggered)
 			{
 				_sprite.setTextureRect(static_cast<SpriteSkin *>(_skin)->hover);
@@ -198,9 +202,15 @@ namespace stb {
 			if (e.type == sf::Event::MouseMoved)
 			{
 				if (_sprite.getGlobalBounds().contains(sf::Vector2f(static_cast<float>(e.mouseMove.x), static_cast<float>(e.mouseMove.y))))
-					onHover(true);
+				{
+					if (!_hover)
+						onHover(true);
+				}
 				else
-					onHover(false);
+				{
+					if (_hover)
+						onHover(false);
+				}
 			}
 			return (true);
 		}
