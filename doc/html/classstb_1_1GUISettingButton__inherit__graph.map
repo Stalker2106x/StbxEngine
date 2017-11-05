@@ -1,0 +1,4 @@
+<map id="stb::GUISettingButton" name="stb::GUISettingButton">
+<area shape="rect" id="node2" href="$classstb_1_1GUIButton.html" title="Abstract button superclass. " alt="" coords="29,80,145,107"/>
+<area shape="rect" id="node3" href="$classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="23,5,150,32"/>
+</map>

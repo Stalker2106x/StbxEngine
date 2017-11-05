@@ -41,7 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
+      <li><a href="https://www.sfml-dev.org/documentation/2.4.2/"><span>SFML&#160;Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -106,23 +106,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classstb_1_1GUIScreen.html">   22</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classstb_1_1GUIScreen.html">GUIScreen</a> : <span class="keyword">public</span> <a class="code" href="classstb_1_1GUIPanel.html">GUIPanel</a></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classstb_1_1GUIScreen.html">GUIScreen</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classstb_1_1GUIScreen.html">GUIScreen</a>(<a class="code" href="classstb_1_1GUIElement.html">GUIElement</a> *parent);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        ~<a class="code" href="classstb_1_1GUIScreen.html">GUIScreen</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">bool</span> loadFromFile(<span class="keyword">const</span> std::string &amp;file, <span class="keyword">const</span> std::string &amp;screenId = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">static</span> <a class="code" href="classstb_1_1GUIScreen.html">GUIScreen</a> *loadFromFile(<span class="keyword">const</span> std::string &amp;file, <span class="keyword">const</span> std::string &amp;screenId = <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifdef STBXENGINE_CORE</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span> parseScreen(<span class="keyword">const</span> pugi::xml_node &amp;screen);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">bool</span> isScreenParam(<span class="keyword">const</span> pugi::xml_node &amp;param);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !GUISCREEN_HH_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    };</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !GUISCREEN_HH_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="classstb_1_1GUIElement_html"><div class="ttname"><a href="classstb_1_1GUIElement.html">stb::GUIElement</a></div><div class="ttdoc">Abstract GUI Element superclass. </div><div class="ttdef"><b>Definition:</b> GUIElement.hpp:32</div></div>
 <div class="ttc" id="classstb_1_1GUIScreen_html"><div class="ttname"><a href="classstb_1_1GUIScreen.html">stb::GUIScreen</a></div><div class="ttdoc">Representation of out-of-game interfaces with various elements. </div><div class="ttdef"><b>Definition:</b> GUIScreen.hh:22</div></div>
 <div class="ttc" id="GUIMenu_8hh_html"><div class="ttname"><a href="GUIMenu_8hh.html">GUIMenu.hh</a></div></div>
-<div class="ttc" id="classstb_1_1GUIPanel_html"><div class="ttname"><a href="classstb_1_1GUIPanel.html">stb::GUIPanel</a></div><div class="ttdoc">Panel for GUI. </div><div class="ttdef"><b>Definition:</b> GUIPanel.hh:32</div></div>
+<div class="ttc" id="classstb_1_1GUIPanel_html"><div class="ttname"><a href="classstb_1_1GUIPanel.html">stb::GUIPanel</a></div><div class="ttdoc">Panel for GUI. </div><div class="ttdef"><b>Definition:</b> GUIPanel.hh:33</div></div>
 <div class="ttc" id="GUIXML_8hh_html"><div class="ttname"><a href="GUIXML_8hh.html">GUIXML.hh</a></div></div>
 <div class="ttc" id="namespacestb_html"><div class="ttname"><a href="namespacestb.html">stb</a></div><div class="ttdef"><b>Definition:</b> Commands.hh:14</div></div>
 </div><!-- fragment --></div><!-- contents -->

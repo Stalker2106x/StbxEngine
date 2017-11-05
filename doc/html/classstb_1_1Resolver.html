@@ -41,7 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
+      <li><a href="https://www.sfml-dev.org/documentation/2.4.2/"><span>SFML&#160;Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -110,6 +110,9 @@ Inheritance diagram for stb::Resolver&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a5f158351d58e2563d57ed68e0688d99d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f158351d58e2563d57ed68e0688d99d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>addLocation</b> (const std::string &amp;path)</td></tr>
+<tr class="separator:a5f158351d58e2563d57ed68e0688d99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bc0c1ccaaf677f95aa900f44ed97f20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bc0c1ccaaf677f95aa900f44ed97f20"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (const std::string &amp;name, T *resource)</td></tr>
 <tr class="separator:a7bc0c1ccaaf677f95aa900f44ed97f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,10 +125,9 @@ Static Protected Attributes</h2></td></tr>
 <tr class="memitem:ad04a62b80122c078ba0934cd53bec82c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad04a62b80122c078ba0934cd53bec82c"></a>
 static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>locations</b></td></tr>
 <tr class="separator:ad04a62b80122c078ba0934cd53bec82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1160046837895c6f988e240645b33b32"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1160046837895c6f988e240645b33b32"></a>
-static std::unordered_map<br class="typebreak" />
-&lt; std::string, T * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>resources</b></td></tr>
-<tr class="separator:a1160046837895c6f988e240645b33b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ac407ed2c7e27b9fa4dd7b6b2b49f03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ac407ed2c7e27b9fa4dd7b6b2b49f03"></a>
+static std::map&lt; std::string, T * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>resources</b></td></tr>
+<tr class="separator:a3ac407ed2c7e27b9fa4dd7b6b2b49f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />

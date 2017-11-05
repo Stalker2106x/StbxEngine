@@ -1,0 +1,5 @@
+<map id="stb::GUIToggleButton" name="stb::GUIToggleButton">
+<area shape="rect" id="node2" href="$classstb_1_1GUIButton.html" title="Abstract button superclass. " alt="" coords="163,95,279,121"/>
+<area shape="rect" id="node3" href="$classstb_1_1GUIElement.html" title="Abstract GUI Element superclass. " alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node4" href="$structstb_1_1Skin.html" title="stb::Skin" alt="" coords="234,5,311,32"/>
+</map>

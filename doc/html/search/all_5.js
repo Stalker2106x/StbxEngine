@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['keybinds',['Keybinds',['../classstb_1_1Keybinds.html',1,'stb']]],
-  ['keybinds_2ehh',['Keybinds.hh',['../Keybinds_8hh.html',1,'']]]
+  ['resolver',['Resolver',['../classstb_1_1Resolver.html',1,'stb']]],
+  ['resolver_2ehh',['Resolver.hh',['../Resolver_8hh.html',1,'']]]
 ];

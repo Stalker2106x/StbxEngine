@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>StbxEngine: Designing GUI Screens (Menus)</title>
+<title>StbxEngine: Working with GUI</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -41,7 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
+      <li><a href="https://www.sfml-dev.org/documentation/2.4.2/"><span>SFML&#160;Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -77,19 +77,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Designing GUI Screens (Menus) </div>  </div>
+<div class="title">Working with GUI </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The GUIScreen class is the starting point of the engine interfaces. It handles layout on screen of menus, sprites, and various GUIElements together.<br />
-The GUIMenu class is a GUIElement that can be added to GUIScreen, and represents a clickable menu that handle labels, controls/values and their various interactions.<br />
-It acts as a container for GUIMenuItem elements.<br />
-Each screen must be loaded from an XML resource file, described in the next section<br />
- </p><h3>StbxEngine XML Reference</h3>
+<div class="textblock"><p>The GUI module provides all kind of drawable on screen elements, used for in-game HUD, menus, interaction panels, inventory...<br />
+Every supported Item is described in the next section XML reference.<br />
+The GUI module is accessible through the Engine class, which has a public pointer to it </p><pre class="fragment">stb::Engine::instance-&gt;gui //or accessible via a single "gui" in your inherited Engine.
+</pre><p>It uses "screens" mechanism, which consists of XML Layouts: Each screen in defined inside an XML file (a single file may be used to store all screens) linked between themselves via interaction with buttons, or others GUIElements.<br />
+You can easily change to a screen by calling the gui method: </p><pre class="fragment">stb::Engine::instance-&gt;gui-&gt;changeScreen("ScreenID");
+</pre><p>where ScreenID is the corresponding ID set inside the XML file.<br />
+NOTE: If the file storing the menu has a different name than ScreenID, you must add its name as second argument to changeScreen method as follows<br />
+</p><pre class="fragment">stb::Engine::instance-&gt;gui-&gt;changeScreen("ScreenID", "ScreenFile");
+</pre><h2>Designing GUI Screens</h2>
+<p>Following what you have read in the last section, you may want to create your own screens as of now.<br />
+To do so, create any XML file in your binary file tree, and open it with your favourite editor.<br />
+First of all, you want to define the screen.<br />
+</p><pre class="fragment">&lt;screen id="main"&gt;
+&lt;/screen&gt;
+</pre><p>This screen is already loadable into the GUI module, but first, lets add some background image, of name "lucky"<br />
+</p><pre class="fragment">&lt;screen id="main" background="lucky"&gt;
+&lt;/screen&gt;
+</pre><p>Now, understand that we added a background but we could have added any option supported in the next section table at the corresponding container and type.<br />
+We will for example add a basic menu inside our "main" screen.<br />
+</p><pre class="fragment">&lt;screen id="main" background="lucky"&gt;
+    &lt;text text="title" font="default" /&gt;
+    &lt;pair&gt;
+        &lt;text text="name:" font="default" /&gt;
+        &lt;edit width="100px" /&gt;
+    &lt;/pair&gt;
+    &lt;button text="ok" font="default" /&gt;
+&lt;/screen&gt;
+</pre><p>Now if we load this menu, we can hopefully input text in the edit, and click button, but nothing is usable as is. We have to link button to action, and give some id to elements we want to extract data later on.</p>
+<h3>StbxEngine XML Reference</h3>
 <table class="doxtable">
 <tr>
-<th>Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value  </th></tr>
+<th colspan="2">Type</th><th>Option</th><th>XML</th><th>Description</th><th>Default Value</th><th>Accepted Value  </th></tr>
 <tr>
-<td colspan="2" rowspan="5">All Elements </td><td>id</td><td>Attribute</td><td>Sets the entity ID</td><td>""</td><td>Any String  </td></tr>
+<td colspan="2" rowspan="4">GUIElement (any) </td><td>id</td><td>Attribute</td><td>Sets the entity ID</td><td>""</td><td>Any String  </td></tr>
 <tr>
 <td>color</td><td>Element</td><td>Sets element color [DEPRECATED]</td><td>#255255255255</td><td>#RRRGGGBBBAAA </td></tr>
 <tr>
@@ -97,77 +121,78 @@ Each screen must be loaded from an XML resource file, described in the next sect
 <tr>
 <td>y</td><td>Attribute</td><td>Sets screen vertical coordinates of Element</td><td>Ordered by parent</td><td>Integer </td></tr>
 <tr>
-<td>padding</td><td>Element</td><td>Sets left offset. [DEPRECATED]</td><td>0</td><td>Integer </td></tr>
-<tr>
-<td colspan="2" rowspan="3">Button </td><td>target</td><td>Attribute</td><td>Set target screen to go to on click</td><td>None</td><td>String (Screen ID)  </td></tr>
+<td colspan="2" rowspan="3">button </td><td>target</td><td>Attribute</td><td>Set target screen to go to on click</td><td>None</td><td>String (Screen ID)  </td></tr>
 <tr>
 <td>action</td><td>Attribute</td><td>Set custom function identifier to call on click</td><td>None</td><td>String (Functor ID) </td></tr>
 <tr>
 <td>command</td><td>Attribute</td><td>Set console command to run on click</td><td>None</td><td>String (Command) </td></tr>
 <tr>
-<td colspan="2" rowspan="1">ButtonBar </td><td>N/A</td><td>Attribute</td><td></td><td></td><td></td></tr>
+<td colspan="2" rowspan="1">toggleButton </td><td>N/A</td><td></td><td></td><td></td><td></td></tr>
 <tr>
-<td colspan="2" rowspan="1">Checkbox </td><td>checked</td><td>Attribute</td><td></td><td></td><td></td></tr>
+<td colspan="2" rowspan="1">settingButton </td><td>value</td><td>Element</td><td>Push value in Button list (First in)</td><td>None</td><td>String (Value)  </td></tr>
 <tr>
-<td colspan="2" rowspan="2">Edit </td><td>maxLength</td><td>Attribute</td><td>Sets the maximum length of input string</td><td>-1</td><td>Integer (-1 for none)  </td></tr>
+<td colspan="2" rowspan="1">buttonBar </td><td>N/A</td><td>Attribute</td><td></td><td></td><td></td></tr>
 <tr>
-<td>geometry</td><td>Attribute</td><td></td><td></td><td></td></tr>
+<td colspan="2" rowspan="1">checkbox </td><td>checked</td><td>Attribute</td><td></td><td></td><td></td></tr>
 <tr>
-<td colspan="2" rowspan="1">Panel </td><td>geometry</td><td>Attribute</td><td>Sets x, y, width and height of panel</td><td>0,0,0,0</td><td>X,Y,WIDTH,HEIGHT (Integer)  </td></tr>
+<td colspan="2" rowspan="2">edit </td><td>maxLength</td><td>Attribute</td><td>Sets the maximum length of input string</td><td>-1</td><td>Integer (-1 for none)  </td></tr>
 <tr>
-<td colspan="2" rowspan="1">Screen </td><td colspan="5">Screen implements every option of Panel  </td></tr>
+<td>geometry</td><td>Attribute</td><td>Sets x, y, width and height of edit</td><td>0,0,0,0</td><td>X,Y,WIDTH,HEIGHT (Integer) </td></tr>
 <tr>
-<td colspan="2" rowspan="1">Indicator </td><td>N/A</td><td></td><td></td><td></td><td></td></tr>
+<td colspan="2" rowspan="2">pair </td><td>GUIElement</td><td>Element</td><td>Push element in pair (First in)</td><td></td><td>GUIElement (any)  </td></tr>
 <tr>
-<td colspan="2" rowspan="1">Text </td><td>text</td><td>Element</td><td>Set text of element</td><td>""</td><td>String  </td></tr>
+<td>spacing</td><td>Attribute</td><td>Sets horizontal spacing in pixels between elements of pair</td><td>0</td><td>Integer </td></tr>
 <tr>
-<td colspan="2" rowspan="2">TextArea </td><td>text</td><td>Element</td><td>Set text of element</td><td>""</td><td>String  </td></tr>
+<td colspan="2" rowspan="2">panel </td><td>GUIElement</td><td>Element</td><td>Push element in pair (First in)</td><td></td><td>GUIElement (any)  </td></tr>
 <tr>
-<td>lines</td><td>Element</td><td>Set height (in text "lines") of element</td><td>""</td><td>String </td></tr>
+<td>geometry</td><td>Attribute</td><td>Sets x, y, width and height of panel</td><td>0,0,0,0</td><td>X,Y,WIDTH,HEIGHT (Integer) </td></tr>
+<tr>
+<td colspan="2" rowspan="1">screen </td><td colspan="5">Screen implements every option of Panel  </td></tr>
+<tr>
+<td colspan="2" rowspan="1">indicator </td><td>N/A</td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td colspan="2" rowspan="2">text </td><td>text</td><td>Attribute</td><td>Set text of element</td><td>""</td><td>String  </td></tr>
+<tr>
+<td>font</td><td>Attribute</td><td>Set font of element text</td><td>Default</td><td>Font ID (String) </td></tr>
+<tr>
+<td colspan="2" rowspan="2">textArea </td><td>text</td><td>Attribute</td><td>Set text of element</td><td>""</td><td>String  </td></tr>
+<tr>
+<td>lines</td><td>Attribute</td><td>Set height (in text "lines") of element</td><td>""</td><td>String </td></tr>
 </table>
-<h3>Create your XML screen</h3>
-<p>To instanciate a GUIScreen in your project, you have to create a valid XML resource to load it from.<br />
- Here is a valid example screen.xml </p><pre class="fragment">    &lt;screen id="main"&gt;    
-      &lt;background&gt;background&lt;/background&gt;     
-      &lt;menu&gt;              
-        &lt;spacing&gt;30&lt;/spacing&gt;
-        &lt;fontsize&gt;16&lt;/fontsize&gt;
-        &lt;item type="Link" target="yebakg" location="./Data/screen/opt.xml"&gt;
-          &lt;label&gt;Link&lt;/label&gt;
-        &lt;/item&gt;
-        &lt;item type="Setting"&gt;
-          &lt;label&gt;Refresh Rate&lt;/label&gt;
-          &lt;padding&gt;150&lt;/padding&gt;
-          &lt;setting&gt;50Hz&lt;/setting&gt;
-          &lt;setting&gt;60Hz&lt;/setting&gt;
-        &lt;/item&gt;
-        &lt;item type="DynamicSetting" filler="Resolutions" y="400"&gt;
-          &lt;label&gt;Resolution&lt;/label&gt;
-        &lt;/item&gt;s
-        &lt;item type="Edit"&gt;
-          &lt;label&gt;Pseudo&lt;/label&gt;
-          &lt;padding&gt;125&lt;/padding&gt;
-          &lt;inputlength&gt;200&lt;/inputlength&gt;
-          &lt;inputcolor&gt;#050050255&lt;/inputcolor&gt;
-        &lt;/item&gt;
-        &lt;item type="Slider"&gt;
-          &lt;label&gt;Volume&lt;/label&gt;
-          &lt;padding&gt;100&lt;/padding&gt;
-          &lt;barwidth&gt;250&lt;/barwidth&gt;
-          &lt;min&gt;0&lt;/min&gt;
-          &lt;max&gt;100&lt;/max&gt;
-        &lt;/item&gt;
-        &lt;item type="Checkbox"&gt;
-          &lt;label&gt;Checkbox&lt;/label&gt;
-        &lt;/item&gt;
-        &lt;item type="Link" command="exit"&gt;
-          &lt;label&gt;Quit&lt;/label&gt;
-          &lt;color&gt;#255255255&lt;/color&gt;
-        &lt;/item&gt;
-      &lt;/menu&gt;
-    &lt;/screen&gt;
-</pre><h3>Load your menu</h3>
-<p>To load a menu, just call the function Menu::loadFromFile(const std::string &amp;file) </p><pre class="fragment">  Menu menu();
+<h3>XML screen example</h3>
+<p>Here is a valid example screen.xml:<br />
+</p><pre class="fragment">&lt;screen id="main" background="background"&gt;
+  &lt;panel x="25%" spacing="5%"&gt;
+    &lt;text text="Menu" font="glitch" /&gt;
+    &lt;pair spacing="100"&gt;
+      &lt;text text="toggle" font="glitch" /&gt;
+      &lt;toggleButton text="OFF" activetext="ON" font="glitch" /&gt;
+    &lt;/pair&gt;
+    &lt;pair spacing="100px"&gt;
+      &lt;text text="slider" font="glitch" /&gt;
+      &lt;slider /&gt;
+    &lt;/pair&gt;
+    &lt;pair spacing="100"&gt;
+      &lt;text text="edit" font="glitch" /&gt;
+      &lt;edit font="glitch"/&gt;
+    &lt;/pair&gt;
+    &lt;pair spacing="100"&gt;
+      &lt;text text="checkbox" font="glitch" /&gt;
+      &lt;checkbox /&gt;
+    &lt;/pair&gt;
+    &lt;pair spacing="100"&gt;
+      &lt;text text="setting" font="glitch" /&gt;
+      &lt;settingButton text="Set" font="glitch"&gt;
+        &lt;setting text="Set2" /&gt;
+        &lt;setting text="Set3" /&gt;
+        &lt;setting text="Set4" /&gt;
+      &lt;/settingButton&gt;
+    &lt;/pair&gt;
+    &lt;button text="Apply" font="glitch"/&gt;
+    &lt;button text="Back" font="glitch" target="alt"/&gt;
+  &lt;/panel&gt;
+&lt;/screen&gt;
+
 
   menu.loadFromFile("./Data/menu/menu.xml");</pre> </div></div><!-- contents -->
 <!-- start footer part -->

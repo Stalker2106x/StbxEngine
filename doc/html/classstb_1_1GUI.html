@@ -41,7 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
+      <li><a href="https://www.sfml-dev.org/documentation/2.4.2/"><span>SFML&#160;Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -89,6 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classstb_1_1GUI-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">stb::GUI Class Reference</div>  </div>
@@ -99,12 +100,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classstb_1_1GUI.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="GUI_8hh_source.html">GUI.hh</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for stb::GUI:</div>
+<div class="dyncontent">
+<div class="center"><img src="classstb_1_1GUI__coll__graph.png" border="0" usemap="#stb_1_1GUI_coll__map" alt="Collaboration graph"/></div>
+<map name="stb_1_1GUI_coll__map" id="stb_1_1GUI_coll__map">
+<area shape="rect" id="node2" href="structstb_1_1GUIDefaults.html" title="stb::GUIDefaults" alt="" coords="5,5,132,32"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a37487fcf0a1263be9dd3d93d3c0b1b8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37487fcf0a1263be9dd3d93d3c0b1b8c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
 <tr class="separator:a37487fcf0a1263be9dd3d93d3c0b1b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d056fc242b23d9b52b51b71479100ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d056fc242b23d9b52b51b71479100ba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>resetDefaults</b> ()</td></tr>
+<tr class="separator:a8d056fc242b23d9b52b51b71479100ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07e22d554e196a15398201bb0df2ad34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07e22d554e196a15398201bb0df2ad34"></a>
 <a class="el" href="classstb_1_1GUIElement.html">GUIElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getElement</b> (const std::string &amp;id)</td></tr>
 <tr class="separator:a07e22d554e196a15398201bb0df2ad34"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,18 +134,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>changeScreen</b> (con
 <tr class="memitem:ae3ae9ab56efd4f71d37aa1f03a78e77a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3ae9ab56efd4f71d37aa1f03a78e77a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>toggle</b> ()</td></tr>
 <tr class="separator:ae3ae9ab56efd4f71d37aa1f03a78e77a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae228f39d43e5971d0e3f1c62aba4aa1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae228f39d43e5971d0e3f1c62aba4aa1f"></a>
-<a class="el" href="classstb_1_1GUIPanel.html">GUIPanel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addPanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const sf::Color &amp;color)</td></tr>
-<tr class="separator:ae228f39d43e5971d0e3f1c62aba4aa1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6079accb2cbf332a34aabf04823d9778"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6079accb2cbf332a34aabf04823d9778"></a>
-<a class="el" href="classstb_1_1GUIPanel.html">GUIPanel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addPanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;resource)</td></tr>
-<tr class="separator:a6079accb2cbf332a34aabf04823d9778"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a7685c148d18a873fe0f026f95873f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a7685c148d18a873fe0f026f95873f7"></a>
-<a class="el" href="classstb_1_1GUIDraggablePanel.html">GUIDraggablePanel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addDraggablePanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const sf::Color &amp;headerColor, const sf::Color &amp;frameColor)</td></tr>
-<tr class="separator:a4a7685c148d18a873fe0f026f95873f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9cb1619d4a924278049130b7f76c5ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9cb1619d4a924278049130b7f76c5ae"></a>
-<a class="el" href="classstb_1_1GUIDraggablePanel.html">GUIDraggablePanel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addDraggablePanel</b> (const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;headerResource, const std::string &amp;frameResource)</td></tr>
-<tr class="separator:ab9cb1619d4a924278049130b7f76c5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c271e2d7c8f32dcf4c1d579d99ac75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7c271e2d7c8f32dcf4c1d579d99ac75"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addElement</b> (<a class="el" href="classstb_1_1GUIElement.html">GUIElement</a> *element)</td></tr>
+<tr class="separator:af7c271e2d7c8f32dcf4c1d579d99ac75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdba98f8a246fea4a995fd83de72a57b"><td class="memTemplParams" colspan="2"><a class="anchor" id="acdba98f8a246fea4a995fd83de72a57b"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:acdba98f8a246fea4a995fd83de72a57b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addIndicator</b> (const sf::Vector2f &amp;pos, int fontSize, std::string *label, T &amp;var)</td></tr>
@@ -151,6 +153,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf:
 <tr class="memitem:aaa179561cf9634755b27f968efb0833e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa179561cf9634755b27f968efb0833e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow *win)</td></tr>
 <tr class="separator:aaa179561cf9634755b27f968efb0833e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aead5d82185c3f521c1fa6e79c0000920"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aead5d82185c3f521c1fa6e79c0000920"></a>
+<a class="el" href="structstb_1_1GUIDefaults.html">GUIDefaults</a>&#160;</td><td class="memItemRight" valign="bottom"><b>defaults</b></td></tr>
+<tr class="separator:aead5d82185c3f521c1fa6e79c0000920"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Heads up display module. </p>

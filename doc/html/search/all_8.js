@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['textskin',['TextSkin',['../structstb_1_1TextSkin.html',1,'stb']]]
+  ['working_20with_20gui',['Working with GUI',['../md_doc_DesignScreens.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['heads_20up_20display',['Heads Up Display',['../md_doc_HeadsUpDisplay.html',1,'']]]
+  ['working_20with_20gui',['Working with GUI',['../md_doc_DesignScreens.html',1,'']]]
 ];

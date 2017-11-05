@@ -41,7 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
+      <li><a href="https://www.sfml-dev.org/documentation/2.4.2/"><span>SFML&#160;Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -108,14 +108,14 @@ Collaboration diagram for stb::Engine:</div>
 <div class="dyncontent">
 <div class="center"><img src="classstb_1_1Engine__coll__graph.png" border="0" usemap="#stb_1_1Engine_coll__map" alt="Collaboration graph"/></div>
 <map name="stb_1_1Engine_coll__map" id="stb_1_1Engine_coll__map">
-<area shape="rect" id="node2" href="classstb_1_1Console.html" title="Integrated toggleable developer console. " alt="" coords="5,5,107,32"/><area shape="rect" id="node3" href="classstb_1_1GUI.html" title="Heads up display module. " alt="" coords="131,5,205,32"/><area shape="rect" id="node4" href="classstb_1_1Keybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="229,5,336,32"/></map>
+<area shape="rect" id="node2" href="classstb_1_1Console.html" title="Integrated toggleable developer console. " alt="" coords="5,95,107,121"/><area shape="rect" id="node3" href="classstb_1_1GUI.html" title="Heads up display module. " alt="" coords="131,95,205,121"/><area shape="rect" id="node4" href="structstb_1_1GUIDefaults.html" title="stb::GUIDefaults" alt="" coords="105,5,231,32"/><area shape="rect" id="node5" href="classstb_1_1Keybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="229,95,336,121"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1ab3edb118ad5d8c30ca28d4e944a21c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ab3edb118ad5d8c30ca28d4e944a21c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Engine</b> (int width=800, int height=600)</td></tr>
-<tr class="separator:a1ab3edb118ad5d8c30ca28d4e944a21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae356948f6840eaee05f9e33070b7a392"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae356948f6840eaee05f9e33070b7a392"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (int width=800, int height=600)</td></tr>
+<tr class="separator:ae356948f6840eaee05f9e33070b7a392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afea0831cc12f3fa07b955b5faa6f6a3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afea0831cc12f3fa07b955b5faa6f6a3d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>openWindow</b> (int, int)</td></tr>
 <tr class="separator:afea0831cc12f3fa07b955b5faa6f6a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,15 +149,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>videoParamSet</b> (co
 <tr class="memitem:ac3285159890300145573a2edde697ad8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3285159890300145573a2edde697ad8"></a>
 sf::Image&#160;</td><td class="memItemRight" valign="bottom"><b>capture</b> ()</td></tr>
 <tr class="separator:ac3285159890300145573a2edde697ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afecb7f1506a3e5f381479bfb569b231f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afecb7f1506a3e5f381479bfb569b231f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()=0</td></tr>
-<tr class="separator:afecb7f1506a3e5f381479bfb569b231f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8281e8d614e170ed090a8d01ff24adcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8281e8d614e170ed090a8d01ff24adcd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateLoop</b> ()</td></tr>
-<tr class="separator:a8281e8d614e170ed090a8d01ff24adcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8974e65395654f5a5111fe448e046335"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8974e65395654f5a5111fe448e046335"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const sf::Event &amp;)=0</td></tr>
 <tr class="separator:a8974e65395654f5a5111fe448e046335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2161fcf911635f18fefa32c2800809f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2161fcf911635f18fefa32c2800809f4"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (sf::RenderWindow *)=0</td></tr>
+<tr class="separator:a2161fcf911635f18fefa32c2800809f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8281e8d614e170ed090a8d01ff24adcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8281e8d614e170ed090a8d01ff24adcd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateLoop</b> ()</td></tr>
+<tr class="separator:a8281e8d614e170ed090a8d01ff24adcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acffb53b7ad3223d06bbb1818ee11cfb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acffb53b7ad3223d06bbb1818ee11cfb7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>updateFramerate</b> ()</td></tr>
 <tr class="separator:acffb53b7ad3223d06bbb1818ee11cfb7"><td class="memSeparator" colspan="2">&#160;</td></tr>

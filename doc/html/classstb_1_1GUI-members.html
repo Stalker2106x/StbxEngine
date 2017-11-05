@@ -41,7 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
-      <li><a href="https://www.sfml-dev.org/documentation/2.0/"><span>SFML&#160;Documentation</span></a></li>
+      <li><a href="https://www.sfml-dev.org/documentation/2.4.2/"><span>SFML&#160;Documentation</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -94,12 +94,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addDraggablePanel</b>(const std::string &amp;id, const sf::Vector2i &amp;size, const sf::Color &amp;headerColor, const sf::Color &amp;frameColor) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>addDraggablePanel</b>(const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;headerResource, const std::string &amp;frameResource) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addIndicator</b>(const sf::Vector2f &amp;pos, int fontSize, std::string *label, T &amp;var) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>addPanel</b>(const std::string &amp;id, const sf::Vector2i &amp;size, const sf::Color &amp;color) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addPanel</b>(const std::string &amp;id, const sf::Vector2i &amp;size, const std::string &amp;resource) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>changeScreen</b>(const std::string &amp;resource, const std::string &amp;location=&quot;&quot;) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addElement</b>(GUIElement *element) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>addIndicator</b>(const sf::Vector2f &amp;pos, int fontSize, std::string *label, T &amp;var) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>changeScreen</b>(const std::string &amp;resource, const std::string &amp;location=&quot;&quot;) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>defaults</b> (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>draw</b>(sf::RenderWindow *win) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>drop</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getElement</b>(const std::string &amp;id) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
@@ -107,11 +105,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>isActive</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>removeElement</b>(const std::string &amp;id, bool del=false) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>removeElement</b>(int index, bool del=false) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>toggle</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>toggleHideElement</b>(const std::string &amp;id) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>update</b>(const sf::Event &amp;e) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>updateRT</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~GUI</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>resetDefaults</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>toggle</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>toggleHideElement</b>(const std::string &amp;id) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>update</b>(const sf::Event &amp;e) (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>updateRT</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~GUI</b>() (defined in <a class="el" href="classstb_1_1GUI.html">stb::GUI</a>)</td><td class="entry"><a class="el" href="classstb_1_1GUI.html">stb::GUI</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

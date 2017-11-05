@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['heads_20up_20display',['Heads Up Display',['../md_doc_HeadsUpDisplay.html',1,'']]]
+  ['keybinds',['Keybinds',['../classstb_1_1Keybinds.html',1,'stb']]],
+  ['keybinds_2ehh',['Keybinds.hh',['../Keybinds_8hh.html',1,'']]]
 ];

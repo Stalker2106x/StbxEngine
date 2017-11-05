@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['extend_20console',['Extend Console',['../md_doc_ExtendConsole.html',1,'']]]
+  ['getting_20started',['Getting Started',['../md_doc_GettingStarted.html',1,'']]]
 ];

@@ -1,8 +1,11 @@
 <map id="include/GUIXML.hh" name="include/GUIXML.hh">
-<area shape="rect" id="node2" href="$GUIElement_8hpp_source.html" title="GUIElement.hpp" alt="" coords="520,229,647,256"/>
-<area shape="rect" id="node5" href="$GUIElementPair_8hh.html" title="GUIElement Pairing class to associate two GUIElements together. " alt="" coords="223,155,363,181"/>
-<area shape="rect" id="node6" href="$GUIEntity_8hh.html" title="Implements standard GUI Entities. " alt="" coords="225,80,323,107"/>
-<area shape="rect" id="node12" href="$GUIPanel_8hh.html" title="GUI static or draggable panels. " alt="" coords="570,80,669,107"/>
-<area shape="rect" id="node7" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="387,155,495,181"/>
-<area shape="rect" id="node10" href="$Resolver_8hh.html" title="Resolver.hh" alt="" coords="104,155,199,181"/>
+<area shape="rect" id="node2" href="$GUIElement_8hpp_source.html" title="GUIElement.hpp" alt="" coords="744,304,871,331"/>
+<area shape="rect" id="node5" href="$GUIElementGrid_8hh.html" title="GUIElement Pairing class to associate two GUIElements together. " alt="" coords="826,229,970,256"/>
+<area shape="rect" id="node6" href="$GUIElementPair_8hh.html" title="GUIElement Pairing class to associate two GUIElements together. " alt="" coords="662,229,802,256"/>
+<area shape="rect" id="node7" href="$GUIEntity_8hh.html" title="Implements standard GUI Entities. " alt="" coords="258,80,357,107"/>
+<area shape="rect" id="node12" href="$utils_8h_source.html" title="utils.h" alt="" coords="995,229,1055,256"/>
+<area shape="rect" id="node17" href="$GUIPanel_8hh.html" title="GUI static or draggable panels. " alt="" coords="880,80,978,107"/>
+<area shape="rect" id="node8" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="454,155,562,181"/>
+<area shape="rect" id="node14" href="$Resolver_8hh.html" title="Resolver.hh" alt="" coords="126,229,220,256"/>
+<area shape="rect" id="node11" href="$GUISpecializedButton_8hpp_source.html" title="GUISpecializedButton.hpp" alt="" coords="347,229,535,256"/>
 </map>

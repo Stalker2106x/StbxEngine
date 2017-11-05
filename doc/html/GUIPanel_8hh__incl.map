@@ -1,4 +1,6 @@
 <map id="include/GUIPanel.hh" name="include/GUIPanel.hh">
-<area shape="rect" id="node4" href="$GUIElement_8hpp_source.html" title="GUIElement.hpp" alt="" coords="124,155,251,181"/>
-<area shape="rect" id="node7" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="235,80,343,107"/>
+<area shape="rect" id="node4" href="$GUIElement_8hpp_source.html" title="GUIElement.hpp" alt="" coords="237,229,364,256"/>
+<area shape="rect" id="node7" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="372,80,480,107"/>
+<area shape="rect" id="node11" href="$utils_8h_source.html" title="utils.h" alt="" coords="145,155,205,181"/>
+<area shape="rect" id="node10" href="$GUISpecializedButton_8hpp_source.html" title="GUISpecializedButton.hpp" alt="" coords="332,155,520,181"/>
 </map>
