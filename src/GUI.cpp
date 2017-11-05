@@ -12,6 +12,7 @@ using namespace stb;
 GUI::GUI()
 {
 	_active = true;
+	resetDefaults();
 }
 
 GUI::~GUI()
@@ -26,7 +27,7 @@ bool GUI::isActive()
 
 void GUI::resetDefaults()
 {
-	defaults.font = "console";
+	defaults.font = "Console";
 	defaults.fontSize = 16;
 	defaults.fontColor = "#255255255";
 	defaults.pairSpacing = 10;

@@ -10,8 +10,8 @@ template <>
 std::vector<std::string> Resolver<GUIScreen>::locations = std::vector<std::string>();
 
 template <>
-std::unordered_map<std::string, sf::Font *> SFResolver<sf::Font>::resources = std::unordered_map<std::string, sf::Font *>();
+std::map<std::string, sf::Font *> Resolver<sf::Font>::resources = std::map<std::string, sf::Font *>();
 template <>
-std::unordered_map<std::string, sf::Texture *> SFResolver<sf::Texture>::resources = std::unordered_map<std::string, sf::Texture *>();
+std::map<std::string, sf::Texture *> Resolver<sf::Texture>::resources = std::map<std::string, sf::Texture *>();
 template <>
-std::unordered_map<std::string, GUIScreen *> STBResolver<GUIScreen>::resources = std::unordered_map<std::string, GUIScreen *>();
+std::map<std::string, GUIScreen *> Resolver<GUIScreen>::resources = std::map<std::string, GUIScreen *>();

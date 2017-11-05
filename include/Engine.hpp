@@ -28,9 +28,10 @@ namespace stb {
 	class Engine
 	{
 	public:
-		Engine(int width = 800, int height = 600);
+		Engine();
 		~Engine();
 
+		void init(int width = 800, int height = 600);
 		bool openWindow(int, int);
 
 		void changeScreen(const std::string &resource, const std::string &location);

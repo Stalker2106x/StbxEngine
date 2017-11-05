@@ -13,6 +13,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <map>
 #include <unordered_map>
 
 namespace stb {
@@ -43,7 +44,7 @@ namespace stb {
 
 	protected:
 		static std::vector<std::string> locations;
-		static std::unordered_map<std::string, T *> resources;
+		static std::map<std::string, T *> resources;
 	};
 
 	template <typename T>

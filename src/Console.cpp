@@ -9,7 +9,6 @@ Console::Console(Engine &e) : _engine(e)
 {
 	_active = false;
 
-	_font = *SFResolver<sf::Font>::resolve("console");
 	_lineCount = 16;
 	_fontSize = 18;
 	_currentIndex = 0;
@@ -18,12 +17,6 @@ Console::Console(Engine &e) : _engine(e)
 	_input.push_back("");
 	_logFile = "Data/log.txt";
 	_logEnabled = false;
-	//FONT SET
-	_inputValue.setFont(_font);
-	_cursor.setFont(_font);
-	//FONT SIZE
-	_inputValue.setCharacterSize(_fontSize);
-	_cursor.setCharacterSize(_fontSize);
 	_cursor.setString(CURSOR);
 	e.keybinds->bind("f1", "toggleconsole");
 }
@@ -36,6 +29,13 @@ Console::~Console()
 
 void Console::initGraphics(const sf::Vector2i &winsize)
 {
+	//FONT SET
+	_font = *SFResolver<sf::Font>::resolve(Engine::instance->gui->defaults.font);
+	_inputValue.setFont(_font);
+	_cursor.setFont(_font);
+	//FONT SIZE
+	_inputValue.setCharacterSize(_fontSize);
+	_cursor.setCharacterSize(_fontSize);
 	//_panel = new GUIPanel() todo !!
 	_bg.setSize(sf::Vector2f(static_cast<float>(winsize.x), static_cast<float>((_lineCount * _fontSize) + (_fontSize + 4))));
 	_bg.setPosition(0,0);

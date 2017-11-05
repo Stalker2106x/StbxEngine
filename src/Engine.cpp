@@ -5,26 +5,30 @@ using namespace stb;
 
 stb::Engine *stb::Engine::instance = NULL;
 
-Engine::Engine(int width, int height)
+Engine::Engine()
 {
 	instance = this;
-	_gametime.restart();
 	_framerate = 0;
 	_lastSecondTick = sf::Time::Zero;
 	_quit = false;
 	_win = NULL;
 	_fullscreen = false;
 	_vsync = false;
-	keybinds = new Keybinds();
-	console = new Console(*this);
-	gui = new GUI();
-	openWindow(width, height);
-	keybinds->bindEnv(this);
 }
 
 Engine::~Engine()
 {
 	delete (_win);
+}
+
+void Engine::init(int width, int height)
+{
+	keybinds = new Keybinds();
+	console = new Console(*this);
+	gui = new GUI();
+	openWindow(width, height);
+	keybinds->bindEnv(this);
+	_gametime.restart();
 }
 
 bool Engine::openWindow(int width, int height)
