@@ -13,8 +13,7 @@
 #include <pugixml.hpp>
 #endif
 #include "GUIElement.hpp"
-#include "GUIElementGrid.hh"
-#include "GUIElementPair.hh"
+#include "GUIContainer.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
 #include "utils.h"

@@ -57,16 +57,13 @@
     <ClInclude Include="..\..\include\GUIElement.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\GUIElementPair.hh">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\GUISpecializedButton.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\GUIElementGrid.hh">
+    <ClInclude Include="..\..\include\utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\utils.h">
+    <ClInclude Include="..\..\include\GUIContainer.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -110,13 +107,10 @@
     <ClCompile Include="..\..\src\GUIXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\GUIElementPair.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\GUIElementGrid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GUIContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

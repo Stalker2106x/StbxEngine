@@ -1,6 +1,5 @@
 #include "Engine.hpp"
 #include "GUIPanel.hh"
-#include "GUIMenu.hh"
 #include "Resolver.hh"
 
 using namespace stb;

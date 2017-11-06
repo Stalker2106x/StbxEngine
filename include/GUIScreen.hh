@@ -13,9 +13,7 @@
 #ifdef STBXENGINE_CORE
 #include <pugixml.hpp>
 #endif
-
 #include "GUIXML.hh"
-#include "GUIMenu.hh"
 
 namespace stb {
 

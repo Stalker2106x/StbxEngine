@@ -133,8 +133,7 @@
     <ClInclude Include="..\..\include\GUI.hh" />
     <ClInclude Include="..\..\include\Engine.hpp" />
     <ClInclude Include="..\..\include\GUIButton.hh" />
-    <ClInclude Include="..\..\include\GUIElementGrid.hh" />
-    <ClInclude Include="..\..\include\GUIElementPair.hh" />
+    <ClInclude Include="..\..\include\GUIContainer.hh" />
     <ClInclude Include="..\..\include\GUIEntity.hh" />
     <ClInclude Include="..\..\include\GUIPanel.hh" />
     <ClInclude Include="..\..\include\GUISpecializedButton.hpp" />
@@ -146,8 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
-    <ClCompile Include="..\..\src\GUIElementGrid.cpp" />
-    <ClCompile Include="..\..\src\GUIElementPair.cpp" />
+    <ClCompile Include="..\..\src\GUIContainer.cpp" />
     <ClCompile Include="..\..\src\GUIScreen.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
     <ClInclude Include="..\..\include\GUIElement.hpp" />

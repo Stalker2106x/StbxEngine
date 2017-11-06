@@ -1,4 +1,5 @@
 #include "GUIScreen.hh"
+#include "Engine.hpp"
 
 using namespace stb;
 

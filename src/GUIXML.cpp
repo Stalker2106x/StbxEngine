@@ -1,5 +1,6 @@
 #include "GUIXML.hh"
 #include "GUIScreen.hh"
+#include "Engine.hpp"
 
 using namespace stb;
 
