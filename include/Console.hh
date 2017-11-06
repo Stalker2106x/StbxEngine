@@ -53,8 +53,7 @@ namespace stb {
 		void insertLastOutput(const std::string &msg);
 		void input();
 
-		void updateInput(const sf::Event &event);
-		void updateInputValue();
+		void updateEditValue();
 		void updateOutput();
 		void updateKeyboard(const sf::Event &event);
 
@@ -68,16 +67,14 @@ namespace stb {
 		bool _active, _logEnabled, _logTimestamp;
 		GUIPanel *_frame;
 		GUIEdit *_edit;
-		//sf::RectangleShape _inputArea;
 		sf::Font _font;
-		//sf::Text _inputValue, _cursor;
 		std::string _logFile;
 		std::ofstream _log;
 		sf::Vector2f _targetPos;
 
 		std::list<sf::Text *> _output;
 		std::deque<std::string> _inputList;
-		size_t _currentIndex, _outputIndex; // , _cursorIndex;
+		size_t _currentIndex, _outputIndex;
 		unsigned int _fontSize, _lineCount;
 	};
 

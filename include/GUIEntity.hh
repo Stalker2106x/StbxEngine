@@ -120,6 +120,7 @@ namespace stb {
 		virtual void initialUpdate();
 
 		void setText(const std::string &text);
+		void setFocus(bool focus);
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(sf::Color inputColor);
@@ -131,6 +132,8 @@ namespace stb {
 		virtual const sf::Vector2f getPosition();
 		int getCursorPos();
 		const std::string &getText();
+
+		void clear();
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

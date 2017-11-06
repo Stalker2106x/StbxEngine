@@ -71,8 +71,10 @@ GUIEdit::GUIEdit(GUIElement *parent, char cursor, const std::string &fontResourc
 {
 	_focus = false;
 	_index = 0;
+	setWidth(100);
 	_cursor.setString(cursor);
 	setFont(fontResource);
+	setFontsize(Engine::instance->gui->defaults.fontSize);
 }
 
 GUIEdit::~GUIEdit()
@@ -87,6 +89,12 @@ void GUIEdit::initialUpdate()
 void GUIEdit::setText(const std::string &text)
 {
 	_input = text;
+	setCursorPos(text.size());
+}
+
+void GUIEdit::setFocus(bool focus)
+{
+	_focus = focus;
 }
 
 void GUIEdit::setFont(const std::string &fontResource)
@@ -107,6 +115,7 @@ void GUIEdit::setPosition(const sf::Vector2f &pos)
 {
 	_container.setPosition(pos);
 	_value.setPosition(pos + sf::Vector2f(1, 0));
+	setCursorPos(_index);
 }
 
 void GUIEdit::setColor(sf::Color inputColor)
@@ -122,6 +131,8 @@ void GUIEdit::setTextColor(sf::Color textColor)
 
 void GUIEdit::setCursorPos(int index)
 {
+	if (_index != index)
+		_index = index;
 	if (_input.empty())
 		_cursor.setPosition(_value.getPosition());
 	else
@@ -152,6 +163,13 @@ int GUIEdit::getCursorPos()
 const std::string &GUIEdit::getText()
 {
 	return (_input);
+}
+
+void GUIEdit::clear()
+{
+	setCursorPos(0);
+	_input.clear();
+	_value.setString("");
 }
 
 bool GUIEdit::update(const sf::Event &e)
@@ -193,7 +211,7 @@ bool GUIEdit::update(const sf::Event &e)
 		}
 		else if (c == '\n')
 		{
-			_focus = false;
+			//do nothing...
 		}
 		else if (c != '\0')
 		{

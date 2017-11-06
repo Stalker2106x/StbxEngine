@@ -12,7 +12,6 @@ Console::Console(Engine &e) : _engine(e)
 	_fontSize = 18;
 	_currentIndex = 0;
 	_outputIndex = 0;
-	_inputList.push_back("");
 	_logFile = "Data/log.txt";
 	_logEnabled = false;
 	e.keybinds->bind("f1", "toggleconsole");
@@ -31,6 +30,9 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 	_frame = new GUIPanel(NULL, sf::Vector2i(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)), sf::Color(50, 65, 90));
 	_frame->setPosition(sf::Vector2f(0, -_frame->getSize().y));
 	_edit = new GUIEdit(_frame, CURSOR, Engine::instance->gui->defaults.font);
+	_edit->setWidth(winsize.x - 10);
+	_edit->setPosition(sf::Vector2f(5, _frame->getPosition().y + ((_lineCount + 1) * _fontSize) - (_edit->getSize().y + 4)));
+	_frame->addElement(_edit);
 	setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));
 }
 
@@ -39,10 +41,12 @@ void Console::toggle()
 	if (_active)
 	{
 		_targetPos = sf::Vector2f(0, -_frame->getSize().y);
+		_edit->setFocus(false);
 	}
 	else
 	{
 		_active = true;
+		_edit->setFocus(true);
 		_targetPos = sf::Vector2f(0, 0);
 	}
 }
@@ -162,55 +166,26 @@ void Console::insertLastOutput(const std::string &msg)
 
 void Console::input()
 {
-	if (_inputList[_currentIndex].size() < 1)
+	std::string input = _edit->getText();
+
+	if (input.size() < 1)
 		return;
-	output(PROMPT+_inputList[_currentIndex]);
-	Commands::parseCmd(_inputList[_currentIndex]);
-	if (_currentIndex == _inputList.size() - 1)
-		_inputList.push_back("");
-	else
-		_inputList.insert(--_inputList.end(), _inputList[_currentIndex]);
+	_edit->clear();
+	output(PROMPT+input);
+	Commands::parseCmd(input); //parse command
+	_inputList.insert(_inputList.end(), input);
 	if (_output.size() >= _lineCount)
     {
 		_outputIndex = (_output.size() - _lineCount) + 1;
 		updateOutput();
     }
-	_currentIndex = _inputList.size() - 1;
-	_edit->setCursorPos(0);
+	_currentIndex = _inputList.size();
 }
 
-void Console::updateInput(const sf::Event &event)
-{
-	char c;
-
-	c = Engine::getChar(event, alphanumeric);
-	if (c == '\b')
-	{
-		if (_inputList[_currentIndex].length() > 0)
-			_inputList[_currentIndex].erase(_edit->getCursorPos() - 1, 1);
-		_edit->setCursorPos(_edit->getCursorPos() - 1);
-	}
-	else if (c == '\n')
-		return;
-	else if (c != '\0')
-	{
-		std::string::iterator it;
-
-		if (_currentIndex != _inputList.size() - 1)
-		{
-			_inputList.back() = _inputList[_currentIndex];
-			_currentIndex = _inputList.size() - 1;
-			_edit->setCursorPos(_inputList.back().size());
-		}
-		_inputList.back().insert(_inputList.back().begin() + _edit->getCursorPos(), c);
-		_edit->setCursorPos(_edit->getCursorPos() + 1);
-	}
-	updateInputValue();
-}
-
-void Console::updateInputValue()
+void Console::updateEditValue()
 {
 	_edit->setText(_inputList[_currentIndex]);
+	_edit->setCursorPos(_inputList[_currentIndex].size());
 }
 
 void Console::updateOutput()
@@ -230,17 +205,22 @@ void Console::updateOutput()
 void Console::updateKeyboard(const sf::Event &event)
 {
 	if (event.key.code == sf::Keyboard::Return)
-		input();  
+		input();
 	else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
-		_edit->setCursorPos(_inputList[--_currentIndex].size());
+	{
+		_currentIndex--;
+		updateEditValue();
+	}
 	else if (event.key.code == sf::Keyboard::Down && _currentIndex < _inputList.size() - 1)
-		_edit->setCursorPos(_inputList[++_currentIndex].size());
+	{
+		_currentIndex++;
+		updateEditValue();
+	}
 	else if (event.key.code == sf::Keyboard::PageUp && _outputIndex > 1)
 		_outputIndex--;
 	else if (event.key.code == sf::Keyboard::PageDown && _outputIndex + _lineCount <= _output.size())
 		_outputIndex++;
 	updateOutput();
-	updateInputValue();
 }
 
 void Console::updateRT()
@@ -265,31 +245,24 @@ void Console::updateRT()
 	}
 }
 
-void Console::update(const sf::Event &event)
+void Console::update(const sf::Event &e)
 {
 	if (!_active)
 		return;
-	if (event.type == sf::Event::KeyPressed)
-		updateKeyboard(event);
-	updateInput(event);
+	_frame->update(e);
+	if (e.type == sf::Event::KeyPressed)
+		updateKeyboard(e);
 }
 
 void Console::draw(sf::RenderWindow *win)
 {
-	static sf::Clock cursorDelay;
-	static bool drawCursor = false;
 	std::list<sf::Text *>::iterator begIter;
 
 	_frame->draw(win);
 	_edit->draw(win);
-	/*if (cursorDelay.getElapsedTime().asMilliseconds() >= CURSOR_DELAY)
-    {
-		drawCursor = (drawCursor ? false : true);
-		cursorDelay.restart();
-    }*/
 	begIter = _output.begin();
 	std::advance(begIter, _outputIndex);
-	for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)
+	for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++) //Draw output
     {
 		win->draw(*(*begIter));
 		begIter++;
