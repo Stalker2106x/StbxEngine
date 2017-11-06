@@ -158,7 +158,6 @@ namespace stb {
 				debugpanel->addElement(new GUIIndicator<int>(debugpanel, "FPS: ", "glitch", e.getFramerate()));
 				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Mouse X: ", "glitch", e.getMouse().x));
 				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Mouse Y: ", "glitch", e.getMouse().y));
-				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Game Time: ", "glitch", e.getElapsedSeconds()));
 				e.gui->addElement(debugpanel);
 			}
 		}

@@ -114,29 +114,60 @@ namespace stb {
 	class GUIEdit : public GUIElement
 	{
 	public:
-		GUIEdit(GUIElement *parent);
+		GUIEdit(GUIElement *parent, char cursor, const std::string &fontResource);
 		virtual ~GUIEdit();
 
 		virtual void initialUpdate();
 
+		void setText(const std::string &text);
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(sf::Color inputColor);
 		void setTextColor(sf::Color textColor);
+		void setCursorPos(int index);
 		void setFontsize(int fontsize);
 		void setWidth(const float &length);
 		virtual const sf::Vector2f getSize();
 		virtual const sf::Vector2f getPosition();
-		const std::string &getInput();
+		const std::string &getText();
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 
 	private:
 		bool _focus;
+		int _index;
 		std::string _input;
-		sf::Text _value;
+		sf::Text _value, _cursor;
 		sf::RectangleShape _container;
+	};
+
+	/*!
+	* @class GUISprite
+	* @brief Standard image
+	*
+	*        This class is used for drawing images
+	*/
+
+	class GUISprite : public GUIElement
+	{
+	public:
+		GUISprite(GUIElement *parent, const std::string &resource = "");
+		virtual ~GUISprite();
+
+		virtual void initialUpdate();
+
+		void setPosition(const sf::Vector2f &pos);
+		void setTexture(const std::string &resource);
+		void setColor(sf::Color color);
+		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition();
+
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *win);
+
+	private:
+		sf::Sprite _sprite;
 	};
 
 	/*!

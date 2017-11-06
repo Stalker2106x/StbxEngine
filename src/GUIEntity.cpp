@@ -67,9 +67,12 @@ void GUISIndicator::draw(sf::RenderWindow *win)
 // GUIEdit
 //
 
-GUIEdit::GUIEdit(GUIElement *parent) : GUIElement("", parent, Edit)
+GUIEdit::GUIEdit(GUIElement *parent, char cursor, const std::string &fontResource) : GUIElement("", parent, Edit)
 {
 	_focus = false;
+	_index = 0;
+	_cursor.setString(cursor);
+	setFont(fontResource);
 }
 
 GUIEdit::~GUIEdit()
@@ -81,15 +84,22 @@ void GUIEdit::initialUpdate()
 {
 }
 
+void GUIEdit::setText(const std::string &text)
+{
+	_input = text;
+}
+
 void GUIEdit::setFont(const std::string &fontResource)
 {
 	_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
+	_cursor.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 	_container.setSize(sf::Vector2f(static_cast<float>(_container.getSize().x), static_cast<float>(_value.getCharacterSize())));
 }
 
 void GUIEdit::setFontsize(int fontsize)
 {
 	_value.setCharacterSize(fontsize);
+	_cursor.setCharacterSize(fontsize);
 	_container.setSize(sf::Vector2f(static_cast<float>(_container.getSize().x), static_cast<float>(_value.getCharacterSize())));
 }
 
@@ -107,6 +117,15 @@ void GUIEdit::setColor(sf::Color inputColor)
 void GUIEdit::setTextColor(sf::Color textColor)
 {
 	_value.setFillColor(textColor);
+	_cursor.setFillColor(textColor);
+}
+
+void GUIEdit::setCursorPos(int index)
+{
+	if (_input.empty())
+		_cursor.setPosition(_value.getPosition());
+	else
+		_cursor.setPosition(_value.getPosition().x + 1 + ((_value.getLocalBounds().width / _input.length()) * index), _value.getPosition().y);
 }
 
 void GUIEdit::setWidth(const float &length)
@@ -124,26 +143,34 @@ const sf::Vector2f GUIEdit::getPosition()
 	return (_container.getPosition());
 }
 
-const std::string &GUIEdit::getInput()
+const std::string &GUIEdit::getText()
 {
 	return (_input);
 }
 
 bool GUIEdit::update(const sf::Event &e)
 {
-	if (e.type == sf::Event::MouseButtonPressed && static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
+	if (e.type == sf::Event::MouseButtonPressed)
 	{
- 		if (!_focus && _container.getGlobalBounds().contains(Engine::getMousePosition()))
+		if (static_cast<int>(e.key.code) == static_cast<int>(sf::Mouse::Left))
 		{
-			_focus = true;
-			_input.push_back('.');
+			if (_container.getGlobalBounds().contains(Engine::getMousePosition()))
+			{
+				if (!_focus)
+					_focus = true;
+			}
+			else if (_focus)
+			{
+				_focus = false;
+			}
 		}
-		else if (_focus)
-		{
-			_focus = false;
-			_input.pop_back();
-		}
-		_value.setString(_input);
+	}
+	else if (e.type == sf::Event::KeyPressed)
+	{
+		if (_focus && e.key.code == sf::Keyboard::Left && _index > 0)
+			_index--;
+		else if (_focus && e.key.code == sf::Keyboard::Right && _index < _input.size())
+			_index++;
 	}
 	if (_focus)
 	{
@@ -152,19 +179,23 @@ bool GUIEdit::update(const sf::Event &e)
 		c = Engine::getChar(e, alphanumeric);
 		if (c == '\b')
 		{
-			if (_input.length() > 1)
-				_input.erase(_input.end() - 2);
+			if (_input.length() > 0 && _index > 0)
+			{
+				_input.erase(_input.begin() + (_index - 1));
+				_index--;
+			}
 		}
 		else if (c == '\n')
 		{
-			_input.pop_back();
 			_focus = false;
 		}
 		else if (c != '\0')
 		{
-			_input.insert(_input.end() - 1, c);
+			_input.insert(_input.begin() + _index, c);
+			_index++;
 		}
 		_value.setString(_input);
+		setCursorPos(_index);
 	}
 	return (true);
 }
@@ -173,6 +204,123 @@ void GUIEdit::draw(sf::RenderWindow *win)
 {
 	win->draw(_container);
 	win->draw(_value);
+	if (_focus)
+		win->draw(_cursor);
+}
+
+
+//
+// GUISprite
+//
+
+GUISprite::GUISprite(GUIElement *parent, const std::string &resource) : GUIElement("", parent, Text)
+{
+	setTexture(resource);
+}
+
+GUISprite::~GUISprite()
+{
+
+}
+
+void GUISprite::initialUpdate()
+{
+
+}
+
+void GUISprite::setPosition(const sf::Vector2f &pos)
+{
+	_sprite.setPosition(pos);
+}
+
+void GUISprite::setTexture(const std::string &resource)
+{
+	_sprite.setTexture(*SFResolver<sf::Texture>::resolve(resource));
+}
+
+void GUISprite::setColor(sf::Color color)
+{
+	_sprite.setColor(color);
+}
+
+const sf::Vector2f GUISprite::getPosition()
+{
+	return (_sprite.getPosition());
+}
+
+const sf::Vector2f GUISprite::getSize()
+{
+	return (sf::Vector2f(_sprite.getLocalBounds().width, _sprite.getLocalBounds().height));
+}
+
+bool GUISprite::update(const sf::Event &e)
+{
+	return (true);
+}
+
+void GUISprite::draw(sf::RenderWindow *win)
+{
+	win->draw(_sprite);
+}
+
+
+//
+// GUIText
+//
+
+GUIText::GUIText(GUIElement *parent, const std::string &text, const std::string &fontResource) : GUIElement("", parent, Text)
+{
+	_text.setString(text);
+	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
+}
+
+GUIText::~GUIText()
+{
+
+}
+
+void GUIText::initialUpdate()
+{
+}
+
+void GUIText::setFont(const std::string &fontResource)
+{
+	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
+}
+
+void GUIText::setFontSize(int fontsize)
+{
+	_text.setCharacterSize(fontsize);
+}
+
+void GUIText::setPosition(const sf::Vector2f &pos)
+{
+	_text.setPosition(pos);
+}
+
+void GUIText::setColor(sf::Color color)
+{
+	_text.setFillColor(color);
+}
+
+const sf::Vector2f GUIText::getPosition()
+{
+	return (_text.getPosition());
+}
+
+const sf::Vector2f GUIText::getSize()
+{
+	return (sf::Vector2f(_text.getLocalBounds().width, _text.getLocalBounds().height));
+}
+
+bool GUIText::update(const sf::Event &e)
+{
+	return (true);
+}
+
+void GUIText::draw(sf::RenderWindow *win)
+{
+	win->draw(_text);
 }
 
 
@@ -246,65 +394,6 @@ void GUITextArea::draw(sf::RenderWindow *win)
 	win->draw(_value);
 }
 
-
-//
-// GUIText
-//
-
-GUIText::GUIText(GUIElement *parent, const std::string &text, const std::string &fontResource) : GUIElement("", parent, Text)
-{
-	_text.setString(text);
-	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
-}
-
-GUIText::~GUIText()
-{
-
-}
-
-void GUIText::initialUpdate()
-{
-}
-
-void GUIText::setFont(const std::string &fontResource)
-{
-	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
-}
-
-void GUIText::setFontSize(int fontsize)
-{
-	_text.setCharacterSize(fontsize);
-}
-
-void GUIText::setPosition(const sf::Vector2f &pos)
-{
-	_text.setPosition(pos);
-}
-
-void GUIText::setColor(sf::Color color)
-{
-	_text.setFillColor(color);
-}
-
-const sf::Vector2f GUIText::getPosition()
-{
-	return (_text.getPosition());
-}
-
-const sf::Vector2f GUIText::getSize()
-{
-	return (sf::Vector2f(_text.getLocalBounds().width, _text.getLocalBounds().height));
-}
-
-bool GUIText::update(const sf::Event &e)
-{
-	return (true);
-}
-
-void GUIText::draw(sf::RenderWindow *win)
-{
-	win->draw(_text);
-}
 
 //
 // GUICheckbox

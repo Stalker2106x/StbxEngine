@@ -40,7 +40,7 @@ namespace stb {
 		int &getFramerate();
 		sf::Vector2f &getMouse();
 		sf::Clock &getGameTime();
-		float &getElapsedSeconds();
+		float getElapsedSeconds();
 		void handleArgs(int argc, char **argv);
 		void videoParamSet(const std::string &, int);
 		sf::Image capture();
@@ -69,7 +69,6 @@ namespace stb {
 		bool _quit, _fullscreen, _vsync;
 		int _framerate, _frames;
 		sf::Clock _gametime;
-		float _elapsedSeconds;
 		sf::Time _lastSecondTick;
 		sf::Vector2i _winsize;
 		sf::Vector2f _mouse;

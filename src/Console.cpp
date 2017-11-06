@@ -8,7 +8,6 @@ using namespace stb;
 Console::Console(Engine &e) : _engine(e)
 {
 	_active = false;
-
 	_lineCount = 16;
 	_fontSize = 18;
 	_currentIndex = 0;
@@ -37,8 +36,9 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 	_inputValue.setCharacterSize(_fontSize);
 	_cursor.setCharacterSize(_fontSize);
 	_frame = new GUIPanel(NULL, sf::Vector2i(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)), sf::Color(50, 65, 90));
+	_frame->setPosition(sf::Vector2f(0, -_frame->getSize().y));
 	_inputArea.setSize(sf::Vector2f(static_cast<float>(winsize.x - 10), static_cast<float>(_fontSize + 2)));
-	_inputArea.setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
+	_inputArea.setPosition(5, _frame->getPosition().y + ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
 	_inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea.getLocalBounds().height + 4)));
 	_cursor.setPosition(static_cast<float>(5 + (_fontSize * _cursorIndex)), static_cast<float>(_inputValue.getPosition().y));
 	setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));
@@ -46,7 +46,15 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 
 void Console::toggle()
 {
-	_active ? _active = false : _active = true;
+	if (_active)
+	{
+		_targetPos = sf::Vector2f(0, -_frame->getSize().y);
+	}
+	else
+	{
+		_active = true;
+		_targetPos = sf::Vector2f(0, 0);
+	}
 }
 
 void Console::clear()
@@ -68,7 +76,6 @@ void Console::setLineCount(const unsigned int &count)
 
 void Console::setColor(sf::Color bg, sf::Color input)
 {
-	_bg.setFillColor(bg);
 	_inputArea.setFillColor(input);
 	_inputValue.setOutlineColor(sf::Color::White);
 	_inputValue.setFillColor(sf::Color::Cyan);
@@ -260,6 +267,30 @@ void Console::updateKeyboard(const sf::Event &event)
 		_outputIndex++;
 	updateOutput();
 	updateInputValue();
+}
+
+void Console::updateRT()
+{
+	if (_frame->getPosition().y != _targetPos.y)
+	{
+		static sf::Time t = Engine::instance->getGameTime().getElapsedTime(); //get current time
+		bool trigg = ((Engine::instance->getGameTime().getElapsedTime() - t).asMilliseconds() > 4);
+
+		if (_frame->getPosition().y < _targetPos.y && trigg)
+		{
+			_frame->setPosition(_frame->getPosition() + sf::Vector2f(0, 5));
+			_inputArea.setPosition(_inputArea.getPosition() + sf::Vector2f(0, 5));
+		}
+		else if (_frame->getPosition().y > _targetPos.y && trigg)
+		{
+			_frame->setPosition(_frame->getPosition() - sf::Vector2f(0, 5));
+			_inputArea.setPosition(_inputArea.getPosition() - sf::Vector2f(0, 5));
+		}
+		if (trigg)
+			t = Engine::instance->getGameTime().getElapsedTime(); //reset
+		if (_frame->getPosition().y == _targetPos.y && _targetPos.y < 0)
+			_active = false;
+	}
 }
 
 void Console::update(const sf::Event &event)

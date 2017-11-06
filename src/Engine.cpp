@@ -97,9 +97,9 @@ sf::Clock &Engine::getGameTime()
 	return (_gametime);
 }
 
-float &Engine::getElapsedSeconds()
+float Engine::getElapsedSeconds()
 {
-	return (_elapsedSeconds);
+	return (_gametime.getElapsedTime().asSeconds());
 }
 
 void Engine::videoParamSet(const std::string &ent, int value)
@@ -144,8 +144,9 @@ bool Engine::updateLoop()
 
   if (gui->isActive())
 	  gui->updateRT();
+  if (console->isActive())
+	  console->updateRT();
   _mouse = getMousePosition();
-  _elapsedSeconds = _gametime.getElapsedTime().asSeconds();
   while (_win->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
