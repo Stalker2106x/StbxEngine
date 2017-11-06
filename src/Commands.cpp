@@ -92,8 +92,9 @@ namespace stb {
 			return (argv);
 		}
 
-		bool parseCmd(Engine &e, std::string cmd)
+		bool parseCmd(std::string cmd)
 		{
+			Engine &e = *Engine::instance;
 			std::vector<std::string> *argv;
 			std::string command;
 
@@ -187,7 +188,7 @@ namespace stb {
 				return;
 			}
 			while (std::getline(ifs, cmd))
-				parseCmd(e, cmd);
+				parseCmd(cmd);
 		}
 
 		void findCmd(Engine &e, std::vector<std::string> *argv)

@@ -76,7 +76,7 @@ bool GUIButton::onHover(bool triggered)
 void GUIButton::onClick()
 {
 	if (!_command.empty())
-		Commands::parseCmd(*Engine::instance, _command);
+		Commands::parseCmd(_command);
 	else
 	{
 		if (_onClickCallback != NULL)

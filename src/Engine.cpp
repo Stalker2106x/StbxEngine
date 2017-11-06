@@ -63,7 +63,7 @@ void Engine::handleArgs(int argc, char **argv)
 		  if ((i + 1) == argc)
 			cmd += " "+std::string(argv[i]);
 		  Engine::console->output(cmd);
-		  Commands::parseCmd(*this, cmd);
+		  Commands::parseCmd(cmd);
 		}
     }
 }

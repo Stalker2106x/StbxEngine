@@ -24,7 +24,7 @@ namespace stb {
 
 		bool convertBool(std::string &arg);
 		std::vector<std::string> *getArgs(std::string &command);
-		bool parseCmd(Engine &e, std::string);
+		bool parseCmd(std::string);
 
 		void bindCommand(Engine &e, std::vector<std::string> *);
 		void bindList(Engine &e, std::vector<std::string> *);

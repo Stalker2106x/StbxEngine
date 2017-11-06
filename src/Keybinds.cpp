@@ -102,7 +102,7 @@ void Keybinds::update(const sf::Event &e)
     switch (e.type)
       {
       case sf::Event::KeyPressed:
-	Commands::parseCmd(*_e, _binds.at(Control("", e.key.code)));
+	Commands::parseCmd(_binds.at(Control("", e.key.code)));
 	break;
       case sf::Event::MouseButtonPressed:
 	break;

@@ -176,7 +176,7 @@ void Console::input()
 	if (_input[_currentIndex].size() < 1)
 		return;
 	output(PROMPT+_input[_currentIndex]);
-	Commands::parseCmd(_engine, _input[_currentIndex]);
+	Commands::parseCmd(_input[_currentIndex]);
 	if (_currentIndex == _input.size() - 1)
 		_input.push_back("");
 	else
