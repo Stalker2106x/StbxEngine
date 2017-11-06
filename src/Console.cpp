@@ -227,8 +227,8 @@ void Console::updateRT()
 {
 	if (_frame->getPosition().y != _targetPos.y)
 	{
-		static sf::Time t = Engine::instance->getGameTime().getElapsedTime(); //get current time
-		bool trigg = ((Engine::instance->getGameTime().getElapsedTime() - t).asMilliseconds() > 4);
+		static sf::Time t = Engine::instance->getGameTime(); //get current time
+		bool trigg = ((Engine::instance->getGameTime() - t).asMilliseconds() > 3);
 
 		if (_frame->getPosition().y < _targetPos.y && trigg)
 		{
@@ -239,7 +239,7 @@ void Console::updateRT()
 			_frame->setPosition(_frame->getPosition() - sf::Vector2f(0, 5));
 		}
 		if (trigg)
-			t = Engine::instance->getGameTime().getElapsedTime(); //reset
+			t = Engine::instance->getGameTime(); //reset
 		if (_frame->getPosition().y == _targetPos.y && _targetPos.y < 0)
 			_active = false;
 	}

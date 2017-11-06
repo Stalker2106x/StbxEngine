@@ -39,7 +39,7 @@ namespace stb {
 		sf::Vector2i &getWindowSize();
 		int &getFramerate();
 		sf::Vector2f &getMouse();
-		sf::Clock &getGameTime();
+		sf::Time getGameTime();
 		float getElapsedSeconds();
 		void handleArgs(int argc, char **argv);
 		void videoParamSet(const std::string &, int);

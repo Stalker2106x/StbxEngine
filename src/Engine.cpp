@@ -92,9 +92,9 @@ sf::Vector2f &Engine::getMouse()
 	return (_mouse);
 }
 
-sf::Clock &Engine::getGameTime()
+sf::Time Engine::getGameTime()
 {
-	return (_gametime);
+	return (_gametime.getElapsedTime());
 }
 
 float Engine::getElapsedSeconds()
