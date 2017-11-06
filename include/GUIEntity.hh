@@ -129,6 +129,7 @@ namespace stb {
 		void setWidth(const float &length);
 		virtual const sf::Vector2f getSize();
 		virtual const sf::Vector2f getPosition();
+		int getCursorPos();
 		const std::string &getText();
 
 		virtual bool update(const sf::Event &e);

@@ -347,7 +347,7 @@ namespace stb {
 				e.console->output(COLOR_ERROR, "con_cursor: No char given");
 				return;
 			}
-			e.console->setCursor((*argv)[0][0]);
+			//e.console->setCursor((*argv)[0][0]); TMP
 		}
 
 		void setMaxFPS(Engine &e, std::vector<std::string> *argv)

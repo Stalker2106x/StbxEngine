@@ -16,13 +16,14 @@
 #include <deque>
 #include <fstream>
 #include "GUIPanel.hh"
+#include "GUIEntity.hh"
 #include "Commands.hh"
 #include "utils.h"
 
 namespace stb {
 
-#define PROMPT		(">")
-#define CURSOR		("_")
+#define PROMPT		('>')
+#define CURSOR		('_')
 #define COLOR_ERROR	("\\\\#240077077")
 #define COLOR_SUCCESS	("\\\\#154205050")
 #define COLOR_INFO	("\\\\#000191255")
@@ -42,7 +43,6 @@ namespace stb {
 		bool isActive() const;
 		void setLineCount(const unsigned int &count);
 		void setColor(sf::Color bg, sf::Color input);
-		void setCursor(char &c);
 		void setLogEnabled(bool state);
 		void writeToLog(std::string &msg);
 		void setLogFile(const std::string &file);
@@ -67,16 +67,17 @@ namespace stb {
 
 		bool _active, _logEnabled, _logTimestamp;
 		GUIPanel *_frame;
-		sf::RectangleShape _inputArea;
+		GUIEdit *_edit;
+		//sf::RectangleShape _inputArea;
 		sf::Font _font;
-		sf::Text _inputValue, _cursor;
+		//sf::Text _inputValue, _cursor;
 		std::string _logFile;
 		std::ofstream _log;
 		sf::Vector2f _targetPos;
 
 		std::list<sf::Text *> _output;
-		std::deque<std::string> _input;
-		size_t _currentIndex, _outputIndex, _cursorIndex;
+		std::deque<std::string> _inputList;
+		size_t _currentIndex, _outputIndex; // , _cursorIndex;
 		unsigned int _fontSize, _lineCount;
 	};
 

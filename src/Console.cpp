@@ -12,11 +12,9 @@ Console::Console(Engine &e) : _engine(e)
 	_fontSize = 18;
 	_currentIndex = 0;
 	_outputIndex = 0;
-	_cursorIndex = 0;
-	_input.push_back("");
+	_inputList.push_back("");
 	_logFile = "Data/log.txt";
 	_logEnabled = false;
-	_cursor.setString(CURSOR);
 	e.keybinds->bind("f1", "toggleconsole");
 }
 
@@ -30,17 +28,9 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 {
 	//FONT SET
 	_font = *SFResolver<sf::Font>::resolve(Engine::instance->gui->defaults.font);
-	_inputValue.setFont(_font);
-	_cursor.setFont(_font);
-	//FONT SIZE
-	_inputValue.setCharacterSize(_fontSize);
-	_cursor.setCharacterSize(_fontSize);
 	_frame = new GUIPanel(NULL, sf::Vector2i(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)), sf::Color(50, 65, 90));
 	_frame->setPosition(sf::Vector2f(0, -_frame->getSize().y));
-	_inputArea.setSize(sf::Vector2f(static_cast<float>(winsize.x - 10), static_cast<float>(_fontSize + 2)));
-	_inputArea.setPosition(5, _frame->getPosition().y + ((_lineCount + 1) * _fontSize) - (_inputArea.getLocalBounds().height + 4));
-	_inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea.getLocalBounds().height + 4)));
-	_cursor.setPosition(static_cast<float>(5 + (_fontSize * _cursorIndex)), static_cast<float>(_inputValue.getPosition().y));
+	_edit = new GUIEdit(_frame, CURSOR, Engine::instance->gui->defaults.font);
 	setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));
 }
 
@@ -76,15 +66,7 @@ void Console::setLineCount(const unsigned int &count)
 
 void Console::setColor(sf::Color bg, sf::Color input)
 {
-	_inputArea.setFillColor(input);
-	_inputValue.setOutlineColor(sf::Color::White);
-	_inputValue.setFillColor(sf::Color::Cyan);
-	_cursor.setFillColor(sf::Color::White);
-}
-
-void Console::setCursor(char &c)
-{
-	_cursor.setString(c);
+	_edit->setColor(input);
 }
 
 void Console::setLogEnabled(bool state)
@@ -180,21 +162,21 @@ void Console::insertLastOutput(const std::string &msg)
 
 void Console::input()
 {
-	if (_input[_currentIndex].size() < 1)
+	if (_inputList[_currentIndex].size() < 1)
 		return;
-	output(PROMPT+_input[_currentIndex]);
-	Commands::parseCmd(_input[_currentIndex]);
-	if (_currentIndex == _input.size() - 1)
-		_input.push_back("");
+	output(PROMPT+_inputList[_currentIndex]);
+	Commands::parseCmd(_inputList[_currentIndex]);
+	if (_currentIndex == _inputList.size() - 1)
+		_inputList.push_back("");
 	else
-		_input.insert(--_input.end(), _input[_currentIndex]);
+		_inputList.insert(--_inputList.end(), _inputList[_currentIndex]);
 	if (_output.size() >= _lineCount)
     {
 		_outputIndex = (_output.size() - _lineCount) + 1;
 		updateOutput();
     }
-	_currentIndex = _input.size() - 1;
-	_cursorIndex = 0;
+	_currentIndex = _inputList.size() - 1;
+	_edit->setCursorPos(0);
 }
 
 void Console::updateInput(const sf::Event &event)
@@ -204,8 +186,9 @@ void Console::updateInput(const sf::Event &event)
 	c = Engine::getChar(event, alphanumeric);
 	if (c == '\b')
 	{
-		if (_input[_currentIndex].length() > 0)
-			_input[_currentIndex].erase((_cursorIndex--) - 1, 1);
+		if (_inputList[_currentIndex].length() > 0)
+			_inputList[_currentIndex].erase(_edit->getCursorPos() - 1, 1);
+		_edit->setCursorPos(_edit->getCursorPos() - 1);
 	}
 	else if (c == '\n')
 		return;
@@ -213,24 +196,21 @@ void Console::updateInput(const sf::Event &event)
 	{
 		std::string::iterator it;
 
-		if (_currentIndex != _input.size() - 1)
+		if (_currentIndex != _inputList.size() - 1)
 		{
-			_input.back() = _input[_currentIndex];
-			_currentIndex = _input.size() - 1;
-			_cursorIndex = _input.back().size();
+			_inputList.back() = _inputList[_currentIndex];
+			_currentIndex = _inputList.size() - 1;
+			_edit->setCursorPos(_inputList.back().size());
 		}
-		it = _input.back().begin();
-		std::advance(it, _cursorIndex);
-		_input.back().insert(it, c);
-		_cursorIndex++;
+		_inputList.back().insert(_inputList.back().begin() + _edit->getCursorPos(), c);
+		_edit->setCursorPos(_edit->getCursorPos() + 1);
 	}
 	updateInputValue();
 }
 
 void Console::updateInputValue()
 {
-	_inputValue.setString(_input[_currentIndex]);
-	_cursor.setPosition(5 + ((_inputValue.getLocalBounds().width / _input[_currentIndex].length()) * _cursorIndex), _inputValue.getPosition().y);
+	_edit->setText(_inputList[_currentIndex]);
 }
 
 void Console::updateOutput()
@@ -251,16 +231,10 @@ void Console::updateKeyboard(const sf::Event &event)
 {
 	if (event.key.code == sf::Keyboard::Return)
 		input();  
-	else if (event.key.code == sf::Keyboard::Delete && _cursorIndex - _input[_currentIndex].size() > 0)
-		_input[_currentIndex].erase(_cursorIndex, 1);
 	else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
-		_cursorIndex = _input[--_currentIndex].size();
-	else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size() - 1)
-		_cursorIndex = _input[++_currentIndex].size();
-	else if (event.key.code == sf::Keyboard::Left && _cursorIndex > 0)
-	    _cursorIndex--;
-	else if (event.key.code == sf::Keyboard::Right && _cursorIndex < _input[_currentIndex].size())
-		_cursorIndex++;
+		_edit->setCursorPos(_inputList[--_currentIndex].size());
+	else if (event.key.code == sf::Keyboard::Down && _currentIndex < _inputList.size() - 1)
+		_edit->setCursorPos(_inputList[++_currentIndex].size());
 	else if (event.key.code == sf::Keyboard::PageUp && _outputIndex > 1)
 		_outputIndex--;
 	else if (event.key.code == sf::Keyboard::PageDown && _outputIndex + _lineCount <= _output.size())
@@ -279,12 +253,10 @@ void Console::updateRT()
 		if (_frame->getPosition().y < _targetPos.y && trigg)
 		{
 			_frame->setPosition(_frame->getPosition() + sf::Vector2f(0, 5));
-			_inputArea.setPosition(_inputArea.getPosition() + sf::Vector2f(0, 5));
 		}
 		else if (_frame->getPosition().y > _targetPos.y && trigg)
 		{
 			_frame->setPosition(_frame->getPosition() - sf::Vector2f(0, 5));
-			_inputArea.setPosition(_inputArea.getPosition() - sf::Vector2f(0, 5));
 		}
 		if (trigg)
 			t = Engine::instance->getGameTime().getElapsedTime(); //reset
@@ -309,15 +281,12 @@ void Console::draw(sf::RenderWindow *win)
 	std::list<sf::Text *>::iterator begIter;
 
 	_frame->draw(win);
-	win->draw(_inputArea);
-	win->draw(_inputValue);
-	if (drawCursor)
-		win->draw(_cursor);
-	if (cursorDelay.getElapsedTime().asMilliseconds() >= CURSOR_DELAY)
+	_edit->draw(win);
+	/*if (cursorDelay.getElapsedTime().asMilliseconds() >= CURSOR_DELAY)
     {
 		drawCursor = (drawCursor ? false : true);
 		cursorDelay.restart();
-    }
+    }*/
 	begIter = _output.begin();
 	std::advance(begIter, _outputIndex);
 	for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)

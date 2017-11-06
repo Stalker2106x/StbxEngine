@@ -143,6 +143,12 @@ const sf::Vector2f GUIEdit::getPosition()
 	return (_container.getPosition());
 }
 
+int GUIEdit::getCursorPos()
+{
+	return (_index);
+}
+
+
 const std::string &GUIEdit::getText()
 {
 	return (_input);
