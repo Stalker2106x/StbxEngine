@@ -237,7 +237,7 @@ void GUIEdit::draw(sf::RenderWindow *win)
 // GUISprite
 //
 
-GUISprite::GUISprite(GUIElement *parent, const std::string &resource) : GUIElement("", parent, Text)
+GUISprite::GUISprite(GUIElement *parent, const std::string &resource) : GUIElement("", parent, Sprite)
 {
 	setTexture(resource);
 }
@@ -294,8 +294,8 @@ void GUISprite::draw(sf::RenderWindow *win)
 
 GUIText::GUIText(GUIElement *parent, const std::string &text, const std::string &fontResource) : GUIElement("", parent, Text)
 {
-	_text.setString(text);
 	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
+	setText(text);
 }
 
 GUIText::~GUIText()
@@ -305,6 +305,18 @@ GUIText::~GUIText()
 
 void GUIText::initialUpdate()
 {
+}
+
+void GUIText::setText(std::string text)
+{
+	/*int charPerLine = ((_parent->getPosition().x + _parent->getSize().x) - getPosition().x) / _text.getCharacterSize(); // add newlines based on container
+
+	if (charPerLine > 0)
+	{
+		for (size_t i = charPerLine; i < text.length(); i += charPerLine)
+			text.insert(text.begin() + i, '\n');
+	}*/
+	_text.setString(text);
 }
 
 void GUIText::setFont(const std::string &fontResource)
@@ -345,77 +357,6 @@ bool GUIText::update(const sf::Event &e)
 void GUIText::draw(sf::RenderWindow *win)
 {
 	win->draw(_text);
-}
-
-
-//
-// GUITextArea
-//
-
-GUITextArea::GUITextArea(GUIElement *parent) : GUIElement("", parent, TextArea)
-{
-	initialUpdate();
-}
-
-GUITextArea::~GUITextArea()
-{
-
-}
-
-void GUITextArea::initialUpdate()
-{
-	_value.setFont(*SFResolver<sf::Font>::resolve("glitch"));
-}
-
-void GUITextArea::setFont(const std::string &fontResource)
-{
-	_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
-}
-
-void GUITextArea::setFontsize(int fontsize)
-{
-	_value.setCharacterSize(fontsize);
-	_container.setSize(sf::Vector2f(static_cast<float>(_container.getSize().x), static_cast<float>(_value.getCharacterSize())));
-}
-
-void GUITextArea::setPosition(const sf::Vector2f &pos)
-{
-	_container.setPosition(pos);
-	_value.setPosition(pos + sf::Vector2f(1, 0));
-}
-
-void GUITextArea::setColor(sf::Color *inputColor, sf::Color *valueColor)
-{
-	if (inputColor)
-		_container.setFillColor(*inputColor);
-	if (valueColor)
-		_value.setFillColor(*valueColor);
-}
-
-void GUITextArea::setWidth(const float &length)
-{
-	_container.setSize(sf::Vector2f(length, _container.getSize().y));
-}
-
-const sf::Vector2f GUITextArea::getSize()
-{
-	return (_container.getSize());
-}
-
-const sf::Vector2f GUITextArea::getPosition()
-{
-	return (_container.getPosition());
-}
-
-bool GUITextArea::update(const sf::Event &e)
-{
-	return (true);
-}
-
-void GUITextArea::draw(sf::RenderWindow *win)
-{
-	win->draw(_container);
-	win->draw(_value);
 }
 
 
@@ -593,4 +534,52 @@ void GUISlider::draw(sf::RenderWindow *win)
 {
 	win->draw(_bar);
 	win->draw(_fill);
+}
+
+
+//
+// GUISeparator
+//
+
+GUISeparator::GUISeparator(GUIElement *parent, const sf::Vector2f &size) : GUIElement("", parent, Separator)
+{
+	_size.width = size.x;
+	_size.height = size.y;
+}
+
+GUISeparator::~GUISeparator()
+{
+
+}
+
+void GUISeparator::initialUpdate()
+{
+
+}
+
+void GUISeparator::setPosition(const sf::Vector2f &pos)
+{
+	_size.left = pos.x;
+	_size.top = pos.y;
+}
+
+const sf::Vector2f GUISeparator::getSize()
+{
+	return (sf::Vector2f(_size.left, _size.top));
+}
+
+const sf::Vector2f GUISeparator::getPosition()
+{
+	return (sf::Vector2f(_size.width, _size.height));
+}
+
+bool GUISeparator::update(const sf::Event &e)
+{
+	if (!_active)
+		return (false);
+	return (true);
+}
+
+void GUISeparator::draw(sf::RenderWindow *win)
+{
 }

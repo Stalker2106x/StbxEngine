@@ -189,6 +189,7 @@ namespace stb {
 
 		virtual void initialUpdate();
 
+		void setText(std::string text);
 		void setFont(const std::string &fontResource);
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(sf::Color color);
@@ -201,37 +202,6 @@ namespace stb {
 
 	private:
 		sf::Text _text;
-	};
-
-	/*!
-	* @class GUITextArea
-	* @brief Frame for drawing paragraphs of text
-	*
-	*        This class represents a container for text paragraphs
-	*/
-
-	class GUITextArea : public GUIElement
-	{
-	public:
-		GUITextArea(GUIElement *parent);
-		virtual ~GUITextArea();
-
-		virtual void initialUpdate();
-
-		void setFont(const std::string &fontResource);
-		void setPosition(const sf::Vector2f &pos);
-		void setColor(sf::Color *inputColor, sf::Color *valueColor);
-		void setFontsize(int fontsize);
-		void setWidth(const float &length);
-		virtual const sf::Vector2f getSize();
-		virtual const sf::Vector2f getPosition();
-
-		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
-
-	private:
-		sf::Text _value;
-		sf::RectangleShape _container;
 	};
 
 	/*!
@@ -297,6 +267,30 @@ namespace stb {
 		sf::RectangleShape _bar, _fill;
 	};
 
+	/*!
+	* @class GUISeparator
+	* @brief Blank placeholder element
+	*
+	*        This item can be used to space elements insidd containers
+	*/
+	class GUISeparator : public GUIElement
+	{
+	public:
+		GUISeparator(GUIElement *parent, const sf::Vector2f &size);
+		~GUISeparator();
+
+		virtual void initialUpdate();
+
+		virtual void setPosition(const sf::Vector2f &pos);
+		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition();
+
+		virtual bool update(const sf::Event &e);
+		virtual void draw(sf::RenderWindow *);
+
+	private:
+		sf::FloatRect _size;
+	};
 }
 
 #endif /* GUIENTITY_HH_ */

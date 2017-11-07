@@ -41,8 +41,9 @@ namespace stb
 		static GUIElement *getGUIPanelFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
 		static GUIElement *getGUIScreenFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
 		static GUIElement *getGUIIndicatorFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUISpriteFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
 		static GUIElement *getGUITextFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUITextAreaFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static GUIElement *getGUISeparatorFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
 
 	private:
 

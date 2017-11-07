@@ -17,8 +17,9 @@ std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 	{ "panel", &GUIXML::getGUIPanelFromXML },
 	{ "screen", &GUIXML::getGUIScreenFromXML },
 	{ "indicator", &GUIXML::getGUIIndicatorFromXML },
+	{ "sprite", &GUIXML::getGUISpriteFromXML },
 	{ "text", &GUIXML::getGUITextFromXML },
-	{ "textArea", &GUIXML::getGUITextAreaFromXML }
+	{ "separator", &GUIXML::getGUISeparatorFromXML }
 };
 
 GUIElement *GUIXML::getGUIElementFromXML(const pugi::xml_node &node, GUIElement *parent, GUIElement *receiver)
@@ -244,6 +245,13 @@ GUIElement *GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node, GUIElemen
 	return (NULL);
 }
 
+GUIElement *GUIXML::getGUISpriteFromXML(const pugi::xml_node &node, GUIElement *parent)
+{
+	GUISprite *element = new GUISprite(parent, node.attribute("texture").as_string(""));
+
+	return (element);
+}
+
 GUIElement *GUIXML::getGUITextFromXML(const pugi::xml_node &node, GUIElement *parent)
 {
 	GUIText *element = new GUIText(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
@@ -252,8 +260,9 @@ GUIElement *GUIXML::getGUITextFromXML(const pugi::xml_node &node, GUIElement *pa
 	return (element);
 }
 
-GUIElement *GUIXML::getGUITextAreaFromXML(const pugi::xml_node &node, GUIElement *parent)
+GUIElement *GUIXML::getGUISeparatorFromXML(const pugi::xml_node &node, GUIElement *parent)
 {
-	GUITextArea *element = new GUITextArea(parent);
+	GUISeparator *element = new GUISeparator(parent, sf::Vector2f(node.attribute("width").as_float(0.0f), node.attribute("height").as_float(0.0f)));
+
 	return (element);
 }

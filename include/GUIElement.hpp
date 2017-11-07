@@ -25,8 +25,9 @@ namespace stb {
 		Slider,
 		Screen,
 		SIndicator,
+		Sprite,
 		Text,
-		TextArea
+		Separator
 	};
 
 	class GUIElement

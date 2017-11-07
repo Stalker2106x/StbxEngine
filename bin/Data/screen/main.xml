@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="main" background="background">
   <panel x="25%" spacing="5%">
+    <sprite texture="buttons" />
     <text text="Menu" />
     <pair spacing="100">
       <text text="toggle" />
