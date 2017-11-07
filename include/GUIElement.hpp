@@ -27,7 +27,8 @@ namespace stb {
 		SIndicator,
 		Sprite,
 		Text,
-		Separator
+		Separator,
+		Scrollbar
 	};
 
 	class GUIElement

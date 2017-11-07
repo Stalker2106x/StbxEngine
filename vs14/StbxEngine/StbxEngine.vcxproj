@@ -132,6 +132,7 @@
     <ClInclude Include="..\..\include\Control.hh" />
     <ClInclude Include="..\..\include\GUI.hh" />
     <ClInclude Include="..\..\include\Engine.hpp" />
+    <ClInclude Include="..\..\include\GUIAdvancedEntity.hh" />
     <ClInclude Include="..\..\include\GUIButton.hh" />
     <ClInclude Include="..\..\include\GUIContainer.hh" />
     <ClInclude Include="..\..\include\GUIEntity.hh" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
+    <ClCompile Include="..\..\src\GUIAdvancedEntity.cpp" />
     <ClCompile Include="..\..\src\GUIContainer.cpp" />
     <ClCompile Include="..\..\src\GUIScreen.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
