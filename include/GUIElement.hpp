@@ -9,6 +9,7 @@
 #define GUIELEMENT_HPP_
 
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include <string>
 #include "defs.h"
 
@@ -34,17 +35,18 @@ namespace stb {
 		Scrollbar
 	};
 
-	class GUIElement
+	class GUIElement : public std::enable_shared_from_this<GUIElement>
 	{
 	public:
-		GUIElement(const std::string &id, GUIElement *parent, GUIElementType type) : _id(id), _parent(parent), _type(type), _active(true) { }
+		GUIElement(const std::string &id, std::shared_ptr<GUIElement> parent, GUIElementType type) : _id(id), _parent(parent), _type(type), _active(true) { }
 		virtual ~GUIElement() {};
 
 		virtual void initialUpdate() = 0;
+		std::shared_ptr<GUIElement> getSPtr() { return shared_from_this(); };
 
 		const std::string &getId() { return (_id); };
 		const GUIElementType &getType() { return (_type); };
-		GUIElement *getParent() { return (_parent); };
+		std::shared_ptr<GUIElement> getParent() { return (_parent); };
 		virtual const sf::Vector2f getPosition() = 0;
 		virtual const sf::Vector2f getSize() = 0;
 
@@ -70,7 +72,7 @@ namespace stb {
 		virtual void draw(sf::RenderWindow *win) = 0;
 
 	protected:
-		GUIElement *_parent;
+		std::shared_ptr<GUIElement> _parent;
 		GUIElementType _type;
 		std::string _id;
 		bool _active;

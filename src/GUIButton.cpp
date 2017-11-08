@@ -8,7 +8,7 @@ using namespace stb;
 // GUIButton
 //
 
-GUIButton::GUIButton(GUIElement *parent, const sf::Event::EventType &triggerType) : GUIElement("", parent, Button)
+GUIButton::GUIButton(std::shared_ptr<GUIElement> parent, const sf::Event::EventType &triggerType) : GUIElement("", parent, Button)
 {
 	_onClickCallback = NULL;
 	_onRClickCallback = NULL;
@@ -108,7 +108,7 @@ bool GUIButton::update(const sf::Event &e)
 // GUIToggleSpriteButton
 //
 
-GUIToggleButton::GUIToggleButton(GUIElement *parent, const sf::Event::EventType &triggerType) : GUIButton(parent, triggerType)
+GUIToggleButton::GUIToggleButton(std::shared_ptr<GUIElement> parent, const sf::Event::EventType &triggerType) : GUIButton(parent, triggerType)
 {
 	_state = false;
 }
@@ -185,7 +185,7 @@ bool GUIToggleButton::update(const sf::Event &e)
 // GUISettingButton
 //
 
-GUISettingButton::GUISettingButton(GUIElement *parent, const sf::Event::EventType &triggerType) : GUIButton(parent, triggerType)
+GUISettingButton::GUISettingButton(std::shared_ptr<GUIElement> parent, const sf::Event::EventType &triggerType) : GUIButton(parent, triggerType)
 {
 	_index = 0;
 	setClickCallback(std::bind(&GUISettingButton::click, this));
@@ -245,7 +245,7 @@ void GUISettingButton::updateValue()
 // GUIButtonBar
 //
 
-GUIButtonBar::GUIButtonBar(GUIElement *parent, Orientation type) : GUIElement("", parent, ButtonBar)
+GUIButtonBar::GUIButtonBar(std::shared_ptr<GUIElement> parent, Orientation type) : GUIElement("", parent, ButtonBar)
 {
 	_spacing = 0;
 	_type = type;
@@ -267,9 +267,9 @@ void GUIButtonBar::invert()
 	_inverted = (_inverted ? false : true);
 }
 
-GUIButton *GUIButtonBar::getButton(const std::string &id)
+std::shared_ptr<GUIButton> GUIButtonBar::getButton(const std::string &id)
 {
-	std::vector<GUIButton *>::iterator it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
 
 	while (it != _buttons.end())
 	{
@@ -282,7 +282,7 @@ GUIButton *GUIButtonBar::getButton(const std::string &id)
 
 const sf::Vector2f GUIButtonBar::getSize()
 {
-	std::vector<GUIButton *>::iterator it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
 	sf::Vector2f size(0,0);
 
 	while (it != _buttons.end())
@@ -340,15 +340,14 @@ const sf::Vector2f GUIButtonBar::getPosition()
 	return (_buttons.size() > 0 ? _buttons[0]->getPosition() : sf::Vector2f(0,0));
 }
 
-GUIButton *GUIButtonBar::addButton(GUIButton *button)
+void GUIButtonBar::addButton(std::shared_ptr<GUIButton> button)
 {
 	_buttons.push_back(button);
-	return (button);
 }
 
 bool GUIButtonBar::update(const sf::Event &e)
 {
-	std::vector<GUIButton *>::iterator it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
 
 	while (it != _buttons.end())
 	{
@@ -360,7 +359,7 @@ bool GUIButtonBar::update(const sf::Event &e)
 
 void GUIButtonBar::draw(sf::RenderWindow *win)
 {
-	std::vector<GUIButton *>::iterator it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
 
 	while (it != _buttons.end())
 	{

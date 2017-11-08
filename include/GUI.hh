@@ -37,22 +37,21 @@ namespace stb {
 
 		bool isActive();
 		void resetDefaults();
-		GUIElement *getElement(const std::string &id);
+		std::shared_ptr<GUIElement> getElement(const std::string &id);
 		bool removeElement(const std::string &id, bool del = false);
 		bool removeElement(int index, bool del = false);
-		void drop();
 		void changeScreen(const std::string &resource, const std::string &location = "");
 
 		void toggle();
 
-		void addElement(GUIElement *element);
+		void addElement(std::shared_ptr<GUIElement> element);
 
 		template <typename T>
 		void addIndicator(const sf::Vector2f &pos, int fontSize, std::string *label, T &var)
 		{
 			_elements.push_back(new GUIIndicator<T>(label, var));
-			static_cast<GUISIndicator *>(_elements.back())->setPosition(pos);
-			static_cast<GUISIndicator *>(_elements.back())->setFontsize(fontSize);
+			static_cast<std::shared_ptr<GUISIndicator>>(_elements.back())->setPosition(pos);
+			static_cast<std::shared_ptr<GUISIndicator>>(_elements.back())->setFontsize(fontSize);
 		}
 
 		void toggleHideElement(const std::string &id);
@@ -65,7 +64,7 @@ namespace stb {
 
 	private:
 		bool _active;
-		std::deque<GUIElement *> _elements;
+		std::deque<std::shared_ptr<GUIElement>> _elements;
 		std::stack<std::pair<size_t, bool>> _drop;
 	};
 

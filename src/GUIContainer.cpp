@@ -6,7 +6,7 @@ using namespace stb;
 // GUIElementPair
 //
 
-GUIElementPair::GUIElementPair(GUIElement *parent, GUIElement *first, GUIElement *second) : GUIElement("", parent, Pair)
+GUIElementPair::GUIElementPair(std::shared_ptr<GUIElement> parent, std::shared_ptr<GUIElement> first, std::shared_ptr<GUIElement> second) : GUIElement("", parent, Pair)
 {
 	_spacing = 0;
 }
@@ -33,12 +33,12 @@ const sf::Vector2f GUIElementPair::getSize()
 	return (sf::Vector2f(first.x + _spacing + second.x, (first.y > second.y ? first.y : second.y)));
 }
 
-void GUIElementPair::setFirst(GUIElement *element)
+void GUIElementPair::setFirst(std::shared_ptr<GUIElement> element)
 {
 	_first = element;
 }
 
-void GUIElementPair::setSecond(GUIElement *element)
+void GUIElementPair::setSecond(std::shared_ptr<GUIElement> element)
 {
 	_second = element;
 }
@@ -80,7 +80,7 @@ void GUIElementPair::draw(sf::RenderWindow *win)
 // GUIElementGrid
 //
 
-GUIElementGrid::GUIElementGrid(GUIElement *parent, const sf::Vector2i &size) : GUIElement("", parent, Grid)
+GUIElementGrid::GUIElementGrid(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size) : GUIElement("", parent, Grid)
 {
 	_size = size;
 	_spacing = 0;
@@ -109,7 +109,7 @@ const sf::Vector2f GUIElementGrid::getSize()
 	return (sf::Vector2f(0, 0));
 }
 
-void GUIElementGrid::pushElement(GUIElement *element)
+void GUIElementGrid::pushElement(std::shared_ptr<GUIElement> element)
 {
 	_elements.push_back(element);
 }

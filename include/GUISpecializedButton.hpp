@@ -25,7 +25,7 @@ namespace stb {
 	class GUITextButton : public T
 	{
 	public:
-		GUITextButton<T>::GUITextButton(GUIElement *parent, const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed) : T(parent, triggerType)
+		GUITextButton<T>::GUITextButton(std::shared_ptr<GUIElement> parent, const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed) : T(parent, triggerType)
 		{
 			_skin = new TextSkin(label, sf::Color::White, sf::Color::Cyan);
 			_label.setFont(*SFResolver<sf::Font>::resolve(fontResource));
@@ -141,7 +141,7 @@ namespace stb {
 	class GUISpriteButton : public T
 	{
 	public:
-		GUISpriteButton<T>::GUISpriteButton(GUIElement *parent, const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed) : T(parent, triggerType)
+		GUISpriteButton<T>::GUISpriteButton(std::shared_ptr<GUIElement> parent, const std::string &resource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed) : T(parent, triggerType)
 		{
 			_sprite.setTexture(*SFResolver<sf::Texture>::resolve(resource));
 			_skin = NULL;

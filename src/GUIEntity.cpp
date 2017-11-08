@@ -7,7 +7,7 @@ using namespace stb;
 // GUISIndicator
 //
 
-GUISIndicator::GUISIndicator(GUIElement *parent, const std::string &fontResource) : GUIElement("", parent, SIndicator)
+GUISIndicator::GUISIndicator(std::shared_ptr<GUIElement> parent, const std::string &fontResource) : GUIElement("", parent, SIndicator)
 {
 }
 
@@ -67,7 +67,7 @@ void GUISIndicator::draw(sf::RenderWindow *win)
 // GUIEdit
 //
 
-GUIEdit::GUIEdit(GUIElement *parent, char cursor, const std::string &fontResource) : GUIElement("", parent, Edit)
+GUIEdit::GUIEdit(std::shared_ptr<GUIElement> parent, char cursor, const std::string &fontResource) : GUIElement("", parent, Edit)
 {
 	_focus = false;
 	_index = 0;
@@ -237,7 +237,7 @@ void GUIEdit::draw(sf::RenderWindow *win)
 // GUISprite
 //
 
-GUISprite::GUISprite(GUIElement *parent, const std::string &resource) : GUIElement("", parent, Sprite)
+GUISprite::GUISprite(std::shared_ptr<GUIElement> parent, const std::string &resource) : GUIElement("", parent, Sprite)
 {
 	setTexture(resource);
 }
@@ -292,7 +292,7 @@ void GUISprite::draw(sf::RenderWindow *win)
 // GUIText
 //
 
-GUIText::GUIText(GUIElement *parent, const std::string &text, const std::string &fontResource) : GUIElement("", parent, Text)
+GUIText::GUIText(std::shared_ptr<GUIElement> parent, const std::string &text, const std::string &fontResource) : GUIElement("", parent, Text)
 {
 	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 	setText(text);
@@ -364,7 +364,7 @@ void GUIText::draw(sf::RenderWindow *win)
 // GUICheckbox
 //
 
-GUICheckbox::GUICheckbox(GUIElement *parent) : GUIElement("", parent, Checkbox)
+GUICheckbox::GUICheckbox(std::shared_ptr<GUIElement> parent) : GUIElement("", parent, Checkbox)
 {
 	initialUpdate();
 }
@@ -431,7 +431,7 @@ void GUICheckbox::draw(sf::RenderWindow *win)
 // GUISlider
 //
 
-GUISlider::GUISlider(GUIElement *parent) : GUIElement("", parent, Slider)
+GUISlider::GUISlider(std::shared_ptr<GUIElement> parent) : GUIElement("", parent, Slider)
 {
 	setRange(0, 100);
 	_bar.setSize(sf::Vector2f(102, 10));
@@ -541,7 +541,7 @@ void GUISlider::draw(sf::RenderWindow *win)
 // GUISeparator
 //
 
-GUISeparator::GUISeparator(GUIElement *parent, const sf::Vector2f &size) : GUIElement("", parent, Separator)
+GUISeparator::GUISeparator(std::shared_ptr<GUIElement> parent, const sf::Vector2f &size) : GUIElement("", parent, Separator)
 {
 	_size.width = size.x;
 	_size.height = size.y;

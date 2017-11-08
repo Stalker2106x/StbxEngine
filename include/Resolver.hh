@@ -12,6 +12,7 @@
 #define RESOLVER_HH_
 
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include <vector>
 #include <map>
 #include <unordered_map>
@@ -25,14 +26,14 @@ namespace stb {
 	{
 	public:
 		Resolver() {};
-		virtual ~Resolver();
+		virtual ~Resolver() {};
 
 		static void addLocation(const std::string &path)
 		{
 			locations.push_back((path.back() == '/' ? path : path + '/'));
 		}
 
-		static void insert(const std::string &name, T *resource)
+		static void insert(const std::string &name, std::shared_ptr<T> resource)
 		{
 			resources.emplace(name, resource);
 		}
@@ -44,18 +45,18 @@ namespace stb {
 
 	protected:
 		static std::vector<std::string> locations;
-		static std::map<std::string, T *> resources;
+		static std::map<std::string, std::shared_ptr<T>> resources;
 	};
 
 	template <typename T>
 	class SFResolver : public Resolver<T>
 	{
 	public:
-		static T *resolve(const std::string &name, const std::string &location = "", bool unique = false)
+		static std::shared_ptr<T> resolve(const std::string &name, const std::string &location = "", bool unique = false)
 		{
 			if (!unique && resources.count(name))
 				return (resources[name]);
-			T *obj = new T();
+			std::shared_ptr<T> obj = std::make_shared<T>();
 			bool status = false;
 
 			if (!location.empty())
@@ -75,7 +76,7 @@ namespace stb {
 			return (obj);
 		}
 
-		static bool load(T *obj, const std::string &name, const std::string &location)
+		static bool load(std::shared_ptr<T> obj, const std::string &name, const std::string &location)
 		{
 			if (std::is_same<T, sf::Font>::value)
 			{
@@ -94,11 +95,11 @@ namespace stb {
 	class STBResolver : public Resolver<T>
 	{
 	public:
-		static T *resolve(const std::string &elem, const std::string &name = "", const std::string &location = "", bool unique = false)
+		static std::shared_ptr<T> resolve(const std::string &elem, const std::string &name = "", const std::string &location = "", bool unique = false)
 		{
 			if (!unique && resources.count(elem))
 				return (resources[elem]);
-			T *obj = NULL;
+			std::shared_ptr<T> obj = NULL;
 
 			if (!location.empty())
 			{
@@ -119,7 +120,7 @@ namespace stb {
 			return (obj);
 		}
 
-		static T *load(const std::string &name, const std::string &location, const std::string &elem = "")
+		static std::shared_ptr<T> load(const std::string &name, const std::string &location, const std::string &elem = "")
 		{
 			if (std::is_same<T, GUIScreen>::value)
 			{

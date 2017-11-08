@@ -145,19 +145,19 @@ namespace stb {
 
 		void debugInfo(Engine &e, std::vector<std::string> *)
 		{
-			GUIPanel *debugpanel;
+			std::shared_ptr<GUIPanel> debugpanel;
 
-			if ((debugpanel = static_cast<GUIPanel *>(e.gui->getElement("__debuginfo"))) != NULL)
+			if ((debugpanel = std::static_pointer_cast<GUIPanel>(e.gui->getElement("__debuginfo"))) != NULL)
 				e.gui->removeElement("__debuginfo", true);
 			else
 			{
-				debugpanel = new GUIPanel(NULL, sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
+				debugpanel = std::make_shared<GUIPanel>(NULL, sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
 				debugpanel->setId("__debuginfo");
-				debugpanel->addElement(new GUIIndicator<int>(debugpanel, "Screen Width: ", "glitch", e.getWindowSize().x));
-				debugpanel->addElement(new GUIIndicator<int>(debugpanel, "Screen Height: ", "glitch", e.getWindowSize().y));
-				debugpanel->addElement(new GUIIndicator<int>(debugpanel, "FPS: ", "glitch", e.getFramerate()));
-				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Mouse X: ", "glitch", e.getMouse().x));
-				debugpanel->addElement(new GUIIndicator<float>(debugpanel, "Mouse Y: ", "glitch", e.getMouse().y));
+				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "Screen Width: ", "glitch", e.getWindowSize().x));
+				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "Screen Height: ", "glitch", e.getWindowSize().y));
+				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "FPS: ", "glitch", e.getFramerate()));
+				debugpanel->addElement(std::make_shared<GUIIndicator<float>>(debugpanel->getSPtr(), "Mouse X: ", "glitch", e.getMouse().x));
+				debugpanel->addElement(std::make_shared<GUIIndicator<float>>(debugpanel->getSPtr(), "Mouse Y: ", "glitch", e.getMouse().y));
 				e.gui->addElement(debugpanel);
 			}
 		}

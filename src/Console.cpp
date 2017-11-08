@@ -27,9 +27,9 @@ void Console::initGraphics(const sf::Vector2i &winsize)
 {
 	//FONT SET
 	_font = *SFResolver<sf::Font>::resolve(Engine::instance->gui->defaults.font);
-	_frame = new GUIPanel(NULL, sf::Vector2i(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)), sf::Color(50, 65, 90));
+	_frame = std::make_shared<GUIPanel>(NULL, sf::Vector2i(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)), sf::Color(50, 65, 90));
 	_frame->setPosition(sf::Vector2f(0, -_frame->getSize().y));
-	_edit = new GUIEdit(_frame, CURSOR, Engine::instance->gui->defaults.font);
+	_edit = std::make_shared<GUIEdit>(_frame->getSPtr(), CURSOR, Engine::instance->gui->defaults.font);
 	_edit->setWidth(winsize.x - 10);
 	_edit->setPosition(sf::Vector2f(5, _frame->getPosition().y + ((_lineCount + 1) * _fontSize) - (_edit->getSize().y + 4)));
 	_frame->addElement(_edit);

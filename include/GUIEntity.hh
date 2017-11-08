@@ -23,7 +23,7 @@ namespace stb {
 	class GUISIndicator : public GUIElement
 	{
 	public:
-		GUISIndicator(GUIElement *parent, const std::string &fontResource);
+		GUISIndicator(std::shared_ptr<GUIElement> parent, const std::string &fontResource);
 		virtual ~GUISIndicator();
 
 		virtual void initialUpdate();
@@ -53,7 +53,7 @@ namespace stb {
 	{
 
 	public:
-		GUIIndicator(GUIElement *parent, T &var, const std::string &fontResource) : GUISIndicator(parent, fontResource), _hook(var)
+		GUIIndicator(std::shared_ptr<GUIElement> parent, T &var, const std::string &fontResource) : GUISIndicator(parent, fontResource), _hook(var)
 		{
 			_label = NULL;
 			_value.setCharacterSize(12);
@@ -63,7 +63,7 @@ namespace stb {
 			_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 		}
 
-		GUIIndicator(GUIElement *parent, const std::string &label, const std::string &fontResource, T &var) : GUISIndicator(parent, fontResource), _hook(var)
+		GUIIndicator(std::shared_ptr<GUIElement> parent, const std::string &label, const std::string &fontResource, T &var) : GUISIndicator(parent, fontResource), _hook(var)
 		{
 			_label = new sf::Text();
 			_label->setString(label);
@@ -114,7 +114,7 @@ namespace stb {
 	class GUIEdit : public GUIElement
 	{
 	public:
-		GUIEdit(GUIElement *parent, char cursor, const std::string &fontResource);
+		GUIEdit(std::shared_ptr<GUIElement> parent, char cursor, const std::string &fontResource);
 		virtual ~GUIEdit();
 
 		virtual void initialUpdate();
@@ -156,7 +156,7 @@ namespace stb {
 	class GUISprite : public GUIElement
 	{
 	public:
-		GUISprite(GUIElement *parent, const std::string &resource = "");
+		GUISprite(std::shared_ptr<GUIElement> parent, const std::string &resource = "");
 		virtual ~GUISprite();
 
 		virtual void initialUpdate();
@@ -184,7 +184,7 @@ namespace stb {
 	class GUIText : public GUIElement
 	{
 	public:
-		GUIText(GUIElement *parent, const std::string &text = "", const std::string &fontResource = "");
+		GUIText(std::shared_ptr<GUIElement> parent, const std::string &text = "", const std::string &fontResource = "");
 		virtual ~GUIText();
 
 		virtual void initialUpdate();
@@ -214,7 +214,7 @@ namespace stb {
 	class GUICheckbox : public GUIElement
 	{
 	public:
-		GUICheckbox(GUIElement *parent);
+		GUICheckbox(std::shared_ptr<GUIElement> parent);
 		virtual ~GUICheckbox();
 
 		virtual void initialUpdate();
@@ -242,7 +242,7 @@ namespace stb {
 	class GUISlider : public GUIElement
 	{
 	public:
-		GUISlider(GUIElement *parent);
+		GUISlider(std::shared_ptr<GUIElement> parent);
 		~GUISlider();
 
 		virtual void initialUpdate();
@@ -276,7 +276,7 @@ namespace stb {
 	class GUISeparator : public GUIElement
 	{
 	public:
-		GUISeparator(GUIElement *parent, const sf::Vector2f &size);
+		GUISeparator(std::shared_ptr<GUIElement> parent, const sf::Vector2f &size);
 		~GUISeparator();
 
 		virtual void initialUpdate();

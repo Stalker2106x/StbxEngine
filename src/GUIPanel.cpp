@@ -8,7 +8,7 @@ using namespace stb;
 // GUIPanel
 //
 
-GUIPanel::GUIPanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &color) : GUIElement("", parent, ButtonBar), _buttonBar(this, Horizontal)
+GUIPanel::GUIPanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const sf::Color &color) : GUIElement("", parent, ButtonBar), _buttonBar(getSPtr(), Horizontal)
 {
 	sf::Texture ctexture;
 
@@ -19,7 +19,7 @@ GUIPanel::GUIPanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color
 }
 
 
-GUIPanel::GUIPanel(GUIElement *parent, const sf::Vector2i &size, const std::string &name) : GUIElement("", parent, ButtonBar), _buttonBar(this, Horizontal)
+GUIPanel::GUIPanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const std::string &name) : GUIElement("", parent, ButtonBar), _buttonBar(getSPtr(), Horizontal)
 {
 	_frame.setTexture(*SFResolver<sf::Texture>::resolve(name));
 	_frame.setScale(1 / size.x, 1 / size.y);
@@ -38,22 +38,7 @@ void GUIPanel::initialUpdate()
 
 void GUIPanel::clear()
 {
-	for (auto it = _elements.begin(); it != _elements.end(); it++)
-	{
-		delete (*it);
-	}
 	_elements.clear();
-}
-
-void GUIPanel::drop()
-{
-	while (!_drop.empty())
-	{
-		if (_drop.front().second)
-			delete (_elements.at(_drop.front().first));
-		_elements.erase(_elements.begin() + _drop.front().first);
-		_drop.pop();
-	}
 }
 
 void GUIPanel::setStyle(char style)
@@ -61,7 +46,7 @@ void GUIPanel::setStyle(char style)
 	_style = style;
 }
 
-void GUIPanel::addElement(GUIElement *element)
+void GUIPanel::addElement(std::shared_ptr<GUIElement> element)
 {
 	sf::Vector2f pos = _frame.getPosition();
 
@@ -88,7 +73,7 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 
 void GUIPanel::setBackground(const std::string &resource, const sf::Color &color)
 {
-	sf::Texture *texture = SFResolver<sf::Texture>::resolve(resource);
+	std::shared_ptr<sf::Texture> texture = SFResolver<sf::Texture>::resolve(resource);
 	if (texture == NULL)
 		Engine::instance->console->output(COLOR_ERROR, "Panel: Error loading texture " + resource + " for panel " + _id);
 	_frame.setTexture(*texture);
@@ -128,7 +113,6 @@ bool GUIPanel::update(const sf::Event &e)
 		if (!(*it)->update(e))
 			return (false);
 	}
-	drop();
 	return (true);
 }
 
@@ -148,7 +132,7 @@ void GUIPanel::draw(sf::RenderWindow *win)
 // GUIDynamicPanel
 //
 
-GUIDraggablePanel::GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
+GUIDraggablePanel::GUIDraggablePanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor)
 	: GUIPanel(parent, size, frameColor)
 {
 	sf::Texture ctexture;
@@ -159,7 +143,7 @@ GUIDraggablePanel::GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &siz
 	initialUpdate();
 }
 
-GUIDraggablePanel::GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
+GUIDraggablePanel::GUIDraggablePanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource)
 	: GUIPanel(parent, size, frameResource)
 {
 	_header.setTexture(*SFResolver<sf::Texture>::resolve(headerResource));
@@ -180,14 +164,14 @@ void GUIDraggablePanel::initialUpdate()
 	_style |= PN_CLOSE | PN_LOCK;
 	if ((_style & PN_CLOSE) == PN_CLOSE)
 	{
-		GUISpriteButton<GUIButton> *btn = new GUISpriteButton<GUIButton>(&_buttonBar, "buttons");
+		std::shared_ptr<GUISpriteButton<GUIButton>> btn = std::make_shared<GUISpriteButton<GUIButton>>(_buttonBar.getSPtr(), "buttons");
 		btn->setSkin(new SpriteSkin(sf::IntRect(0, 0, 16, 16), sf::IntRect(0, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggle, this));
 		_buttonBar.addButton(btn);
 	}
 	if ((_style & PN_LOCK) == PN_LOCK)
 	{
-		GUISpriteButton<GUIToggleButton> *btn = new GUISpriteButton<GUIToggleButton>(&_buttonBar, "buttons");
+		std::shared_ptr<GUISpriteButton<GUIToggleButton>> btn = std::make_shared<GUISpriteButton<GUIToggleButton>>(_buttonBar.getSPtr(), "buttons");
 		btn->setSkin(new SpriteSkin(sf::IntRect(16, 0, 16, 16), sf::IntRect(16, 16, 16, 16)));
 		btn->setAltSkin(new SpriteSkin(sf::IntRect(32, 0, 16, 16), sf::IntRect(32, 16, 16, 16)));
 		btn->setClickCallback(std::bind(&GUIDraggablePanel::toggleLock, this));

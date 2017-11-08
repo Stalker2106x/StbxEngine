@@ -20,10 +20,10 @@ namespace stb {
 	class GUIScreen : public GUIPanel
 	{
 	public:
-		GUIScreen(GUIElement *parent);
+		GUIScreen(std::shared_ptr<GUIElement> parent);
 		~GUIScreen();
 
-		static GUIScreen *loadFromFile(const std::string &file, const std::string &screenId = "");
+		static std::shared_ptr<GUIScreen> loadFromFile(const std::string &file, const std::string &screenId = "");
 
 	};
 

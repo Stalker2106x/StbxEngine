@@ -16,7 +16,7 @@ namespace stb {
 	const sf::Color convertColorCode(std::string code, std::string esc = COLOR_ESC);
 	
 	template <typename T>
-	T convertSize(std::string size, Orientation o, GUIElement *parent)
+	T convertSize(std::string size, Orientation o, std::shared_ptr<GUIElement> parent)
 	{
 		std::istringstream iss;
 		T computed = 0;

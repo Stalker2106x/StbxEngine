@@ -22,7 +22,7 @@ namespace stb {
 	class GUIElementPair : public GUIElement
 	{
 	public:
-		GUIElementPair(GUIElement *parent, GUIElement *first = NULL, GUIElement *second = NULL);
+		GUIElementPair(std::shared_ptr<GUIElement> parent, std::shared_ptr<GUIElement> first = NULL, std::shared_ptr<GUIElement> second = NULL);
 		~GUIElementPair();
 
 		virtual void initialUpdate();
@@ -30,8 +30,8 @@ namespace stb {
 		virtual const sf::Vector2f getPosition();
 		virtual const sf::Vector2f getSize();
 
-		void setFirst(GUIElement *element);
-		void setSecond(GUIElement *element);
+		void setFirst(std::shared_ptr<GUIElement> element);
+		void setSecond(std::shared_ptr<GUIElement> element);
 		void setSpacing(int spacing);
 		virtual void setPosition(const sf::Vector2f &pos);
 
@@ -40,8 +40,8 @@ namespace stb {
 
 	protected:
 		int _spacing;
-		GUIElement *_first;
-		GUIElement *_second;
+		std::shared_ptr<GUIElement> _first;
+		std::shared_ptr<GUIElement> _second;
 	};
 
 	/*
@@ -53,7 +53,7 @@ namespace stb {
 	class GUIElementGrid : public GUIElement
 	{
 	public:
-		GUIElementGrid(GUIElement *parent, const sf::Vector2i &size);
+		GUIElementGrid(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size);
 		~GUIElementGrid();
 
 		virtual void initialUpdate();
@@ -61,7 +61,7 @@ namespace stb {
 		virtual const sf::Vector2f getPosition();
 		virtual const sf::Vector2f getSize();
 
-		void pushElement(GUIElement *element);
+		void pushElement(std::shared_ptr<GUIElement> element);
 		void setSpacing(int spacing);
 		virtual void setPosition(const sf::Vector2f &pos);
 
@@ -71,7 +71,7 @@ namespace stb {
 	protected:
 		int _spacing;
 		sf::Vector2i _size;
-		std::vector<GUIElement *> _elements;
+		std::vector<std::shared_ptr<GUIElement>> _elements;
 	};
 
 }

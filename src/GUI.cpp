@@ -35,7 +35,7 @@ void GUI::resetDefaults()
 	defaults.gridSpacing = 5;
 }
 
-GUIElement *GUI::getElement(const std::string &id)
+std::shared_ptr<GUIElement> GUI::getElement(const std::string &id)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
@@ -71,21 +71,10 @@ bool GUI::removeElement(int index, bool del)
 	return (true);
 }
 
-void GUI::drop()
-{
-	while (!_drop.empty())
-	{
-		if (_drop.top().second)
-			delete (_elements.at(_drop.top().first));
-		_elements.erase(_elements.begin() + _drop.top().first);
-		_drop.pop();
-	}
-}
-
 void GUI::changeScreen(const std::string &resource, const std::string &location)
 {
 	static std::string lastLocation;
-	GUIScreen *newScreen;
+	std::shared_ptr<GUIScreen> newScreen;
 	std::string resId, path;
 	int index;
 
@@ -126,7 +115,7 @@ void GUI::toggle()
 	_active = (_active ? false : true);
 }
 
-void GUI::addElement(GUIElement *element)
+void GUI::addElement(std::shared_ptr<GUIElement> element)
 {
 	_elements.push_back(element);
 }
@@ -155,7 +144,6 @@ bool GUI::update(const sf::Event &e)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 		_elements[i]->update(e);
-	drop();
 	return (true);
 }
 

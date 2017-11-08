@@ -17,7 +17,7 @@ namespace stb {
 	class GUIScrollbar : GUIElement
 	{
 	public:
-		GUIScrollbar(GUIElement *parent);
+		GUIScrollbar(std::shared_ptr<GUIElement> parent);
 		~GUIScrollbar();
 
 		virtual void initialUpdate();

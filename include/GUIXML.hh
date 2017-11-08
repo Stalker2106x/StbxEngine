@@ -25,32 +25,32 @@ namespace stb
 	class GUIXML
 	{
 	public:
-		static GUIElement *getGUIElementFromXML(const pugi::xml_node &node, GUIElement *parent = NULL, GUIElement *receiver = NULL);
+		static std::shared_ptr<GUIElement> getGUIElementFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL, std::shared_ptr<GUIElement> receiver = NULL);
 
-		static void GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element);
+		static void GUIGenericFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> element);
 
-		static GUIElement *getGUIElementPairFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIElementGridFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIButtonFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIToggleButtonFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUISettingButtonFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIButtonBarFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUICheckboxFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIEditFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUISliderFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIPanelFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIScreenFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUIIndicatorFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUISpriteFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUITextFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
-		static GUIElement *getGUISeparatorFromXML(const pugi::xml_node &node, GUIElement *parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIElementPairFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIElementGridFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIButtonFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIToggleButtonFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUISettingButtonFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIButtonBarFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUICheckboxFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIEditFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUISliderFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIPanelFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIScreenFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUIIndicatorFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUISpriteFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUITextFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
+		static std::shared_ptr<GUIElement> getGUISeparatorFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent = NULL);
 
 	private:
 
 	};
 
 	//Pointer to GUIXML parsing function
-	typedef GUIElement *(*XMLParserFptr)(const pugi::xml_node &, GUIElement *);
+	typedef std::shared_ptr<GUIElement> (*XMLParserFptr)(const pugi::xml_node &, std::shared_ptr<GUIElement>);
 
 	// This map binds XML Nodes names to corresponding C++ Parser
 	extern std::map<std::string, XMLParserFptr> GUIXMLElementParser;

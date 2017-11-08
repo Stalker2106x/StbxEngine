@@ -3,7 +3,7 @@
 
 using namespace stb;
 
-GUIScreen::GUIScreen(GUIElement *parent)
+GUIScreen::GUIScreen(std::shared_ptr<GUIElement> parent)
 	: GUIPanel(parent, Engine::instance->getWindowSize())
 {
 	_type = Screen;
@@ -14,13 +14,13 @@ GUIScreen::~GUIScreen()
 
 }
 
-GUIScreen *GUIScreen::loadFromFile(const std::string &file, const std::string &screenId)
+std::shared_ptr<GUIScreen> GUIScreen::loadFromFile(const std::string &file, const std::string &screenId)
 {
 	pugi::xml_document doc;
 	std::ifstream ifs(file);
 	pugi::xml_parse_result xml;
 	pugi::xml_node screen;
-	GUIScreen *pScreen;
+	std::shared_ptr<GUIScreen> pScreen;
 
 	if (!ifs)
 	{
@@ -42,7 +42,7 @@ GUIScreen *GUIScreen::loadFromFile(const std::string &file, const std::string &s
 			screen = screen.next_sibling();
 		}
 	}
-	pScreen = static_cast<GUIScreen *>(GUIXML::getGUIElementFromXML(screen));
+	pScreen = std::dynamic_pointer_cast<GUIScreen>(GUIXML::getGUIElementFromXML(screen));
 	STBResolver<GUIScreen>::insert(pScreen->_id, pScreen);
 	return (pScreen);
 }

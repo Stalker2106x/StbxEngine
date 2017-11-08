@@ -65,8 +65,8 @@ namespace stb {
 		Engine &_engine;
 
 		bool _active, _logEnabled, _logTimestamp;
-		GUIPanel *_frame;
-		GUIEdit *_edit;
+		std::shared_ptr<GUIPanel> _frame;
+		std::shared_ptr<GUIEdit> _edit;
 		sf::Font _font;
 		std::string _logFile;
 		std::ofstream _log;

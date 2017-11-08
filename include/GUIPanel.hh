@@ -33,15 +33,14 @@ namespace stb {
 	class GUIPanel : public GUIElement
 	{
 	public:
-		GUIPanel(GUIElement *parent) : GUIElement("", parent, Panel), _buttonBar(this, Horizontal) {};
-		GUIPanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &color = sf::Color::Transparent);
-		GUIPanel(GUIElement *parent, const sf::Vector2i &size, const std::string &name);
+		GUIPanel(std::shared_ptr<GUIElement> parent) : GUIElement("", parent, Panel), _buttonBar(getSPtr(), Horizontal) {};
+		GUIPanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const sf::Color &color = sf::Color::Transparent);
+		GUIPanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const std::string &name);
 		virtual ~GUIPanel();
 
 		virtual void initialUpdate();
 
 		void clear();
-		void drop();
 
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setBackground(const std::string &resource, const sf::Color &color = sf::Color::White);
@@ -51,7 +50,7 @@ namespace stb {
 		virtual const sf::Vector2f getPosition();
 		virtual const sf::Vector2f getSize();
 
-		void addElement(GUIElement *element);
+		void addElement(std::shared_ptr<GUIElement> element);
 
 		virtual bool updateRT();
 		virtual bool update(const sf::Event &e);
@@ -63,7 +62,7 @@ namespace stb {
 		std::string _id;
 		sf::Sprite _frame;
 		GUIButtonBar _buttonBar;
-		std::deque<GUIElement *> _elements;
+		std::deque<std::shared_ptr<GUIElement>> _elements;
 		std::queue<std::pair<size_t, bool>> _drop;
 	};
 
@@ -77,8 +76,8 @@ namespace stb {
 	class GUIDraggablePanel : public GUIPanel
 	{
 	public:
-		GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
-		GUIDraggablePanel(GUIElement *parent, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
+		GUIDraggablePanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const sf::Color &headerColor, const sf::Color &frameColor);
+		GUIDraggablePanel(std::shared_ptr<GUIElement> parent, const sf::Vector2i &size, const std::string &headerResource, const std::string &frameResource);
 		virtual ~GUIDraggablePanel();
 		void initialUpdate();
 
@@ -86,8 +85,6 @@ namespace stb {
 		virtual void toggle();
 
 		void setPosition(const sf::Vector2f &pos);
-
-		bool onButtonHover(const PanelButton &id, bool triggered);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);

@@ -66,7 +66,7 @@ namespace stb {
 	class GUIButton : public GUIElement
 	{
 	public:
-		GUIButton(GUIElement *parent, const sf::Event::EventType &triggerType = sf::Event::EventType::MouseButtonPressed);
+		GUIButton(std::shared_ptr<GUIElement> parent, const sf::Event::EventType &triggerType = sf::Event::EventType::MouseButtonPressed);
 		virtual ~GUIButton();
 
 		virtual void initialUpdate();
@@ -105,7 +105,7 @@ namespace stb {
 	class GUIToggleButton : public GUIButton
 	{
 	public:
-		GUIToggleButton(GUIElement *parent, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
+		GUIToggleButton(std::shared_ptr<GUIElement> parent, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed);
 		virtual ~GUIToggleButton();
 
 		virtual void initialUpdate();
@@ -130,7 +130,7 @@ namespace stb {
 	class GUISettingButton : public GUIButton
 	{
 	public:
-		GUISettingButton(GUIElement *parent, const sf::Event::EventType &triggerType);
+		GUISettingButton(std::shared_ptr<GUIElement> parent, const sf::Event::EventType &triggerType);
 		~GUISettingButton();
 
 		virtual void initialUpdate();
@@ -162,13 +162,13 @@ namespace stb {
 	class GUIButtonBar : public GUIElement
 	{
 	public:
-		GUIButtonBar(GUIElement *parent, Orientation type);
+		GUIButtonBar(std::shared_ptr<GUIElement> parent, Orientation type);
 		virtual ~GUIButtonBar();
 
 		virtual void initialUpdate();
 
 		void invert();
-		GUIButton *getButton(const std::string &id);
+		std::shared_ptr<GUIButton> getButton(const std::string &id);
 		void setSpacing(int spacing);
 		const sf::Vector2f calcButtonPosition(const size_t &index, const sf::Vector2f &pos);
 		virtual void setPosition(const sf::Vector2f &pos);
@@ -176,13 +176,13 @@ namespace stb {
 		virtual const sf::Vector2f getPosition();
 		virtual const sf::Vector2f getSize();
 
-		GUIButton *addButton(GUIButton *button);
+		void addButton(std::shared_ptr<GUIButton> button);
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
 
 	private:
-		std::vector<GUIButton *> _buttons;
+		std::vector<std::shared_ptr<GUIButton>> _buttons;
 		int _spacing;
 		bool _inverted;
 		Orientation _type;

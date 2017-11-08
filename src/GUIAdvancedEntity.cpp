@@ -3,7 +3,7 @@
 
 using namespace stb;
 
-GUIScrollbar::GUIScrollbar(GUIElement *parent) : GUIElement("", parent, Scrollbar)
+GUIScrollbar::GUIScrollbar(std::shared_ptr<GUIElement> parent) : GUIElement("", parent, Scrollbar)
 {
 	_upBtn = new GUISpriteButton<GUIButton>(NULL, "buttons");
 	_dnBtn = new GUISpriteButton<GUIButton>(NULL, "buttons");
