@@ -22,8 +22,8 @@ namespace stb {
 	};
 
 	enum WheelMove {
-		Up = -1,
-		Down = 1
+		WheelUp = -1,
+		WheelDown = 1
 	};
 
 	class Control

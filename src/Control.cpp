@@ -187,9 +187,9 @@ bool Control::isTriggered(const sf::Event &e)
       break;
     case MWheel:
       if (e.type == sf::Event::MouseWheelMoved && e.mouseWheel.delta >= 0)
-	return ((*_mwheel) == Up ? true : false);
+	return ((*_mwheel) == WheelUp ? true : false);
       else
-	return ((*_mwheel) == Up ? false : true);
+	return ((*_mwheel) == WheelUp ? false : true);
       break;
     default:
       return (false);

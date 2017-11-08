@@ -1,10 +1,8 @@
 /*!
-* @file      GUI.hh
-* @class     stb::GUI
-* @brief     Heads up display module
+* @file      utils.hh
+* @brief     None
 *
-*            This classes set provide usable GUI to draw info over the renderer frame.
-*            It acts as a container for GUI Elements like static or dynamic Panels and Indicators to be added anywhere on screen.
+*            N/A
 */
 #ifndef UTILS_H_
 #define UTILS_H_
@@ -14,21 +12,6 @@
 #include "GUIElement.hpp"
 
 namespace stb {
-
-#define DEFAULT_ID	""
-#define COLOR_ESC	("\\\\#")
-
-	enum Orientation {
-		Horizontal,
-		Vertical
-	};
-
-	enum Direction {
-		Left,
-		Up,
-		Right,
-		Down
-	};
 
 	const sf::Color convertColorCode(std::string code, std::string esc = COLOR_ESC);
 	

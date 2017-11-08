@@ -10,8 +10,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "defs.h"
 
 namespace stb {
+
+	enum Direction; //Forward declaration
 
 	enum GUIElementType {
 		Pair,
@@ -59,7 +62,7 @@ namespace stb {
 			if (d == Left)
 				setX(_parent->getPosition().x);
 			else if (d == Right)
-				setX(_parent->getPosition().x + _parent->getSize().x - getSize())
+				setX(_parent->getPosition().x + _parent->getSize().x - getSize().x);
 		}
 
 		virtual bool updateRT() { return (true); }; //Real time update, called more than one time between frames
