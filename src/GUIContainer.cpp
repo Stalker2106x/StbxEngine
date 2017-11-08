@@ -20,12 +20,12 @@ void GUIElementPair::initialUpdate()
 {
 }
 
-const sf::Vector2f GUIElementPair::getPosition()
+const sf::Vector2f GUIElementPair::getPosition() const
 {
 	return (_first->getPosition());
 }
 
-const sf::Vector2f GUIElementPair::getSize()
+const sf::Vector2f GUIElementPair::getSize() const
 {
 	sf::Vector2f first = (_first == NULL ? sf::Vector2f(0, 0) : _first->getSize());
 	sf::Vector2f second = (_second == NULL ? sf::Vector2f(0, 0) : _second->getSize());
@@ -96,14 +96,14 @@ void GUIElementGrid::initialUpdate()
 
 }
 
-const sf::Vector2f GUIElementGrid::getPosition()
+const sf::Vector2f GUIElementGrid::getPosition() const
 {
 	if (_elements.size() > 0)
 		return (_elements[0]->getPosition());
 	return (sf::Vector2f(0, 0));
 }
 
-const sf::Vector2f GUIElementGrid::getSize()
+const sf::Vector2f GUIElementGrid::getSize() const
 {
 	//tmp
 	return (sf::Vector2f(0, 0));

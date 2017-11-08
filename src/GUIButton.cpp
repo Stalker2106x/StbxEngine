@@ -280,9 +280,9 @@ std::shared_ptr<GUIButton> GUIButtonBar::getButton(const std::string &id)
 	return (NULL);
 }
 
-const sf::Vector2f GUIButtonBar::getSize()
+const sf::Vector2f GUIButtonBar::getSize() const
 {
-	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
+	auto it = _buttons.begin();
 	sf::Vector2f size(0,0);
 
 	while (it != _buttons.end())
@@ -335,7 +335,7 @@ void GUIButtonBar::setPosition(const sf::Vector2f &pos)
 		_buttons[i]->setPosition(calcButtonPosition(i, pos));
 }
 
-const sf::Vector2f GUIButtonBar::getPosition()
+const sf::Vector2f GUIButtonBar::getPosition() const
 {
 	return (_buttons.size() > 0 ? _buttons[0]->getPosition() : sf::Vector2f(0,0));
 }

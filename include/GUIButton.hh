@@ -173,8 +173,8 @@ namespace stb {
 		const sf::Vector2f calcButtonPosition(const size_t &index, const sf::Vector2f &pos);
 		virtual void setPosition(const sf::Vector2f &pos);
 
-		virtual const sf::Vector2f getPosition();
-		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition() const;
+		virtual const sf::Vector2f getSize() const;
 
 		void addButton(std::shared_ptr<GUIButton> button);
 

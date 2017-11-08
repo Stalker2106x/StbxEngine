@@ -27,8 +27,8 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		virtual const sf::Vector2f getPosition();
-		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition() const;
+		virtual const sf::Vector2f getSize() const;
 
 		void setFirst(std::shared_ptr<GUIElement> element);
 		void setSecond(std::shared_ptr<GUIElement> element);
@@ -58,8 +58,8 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		virtual const sf::Vector2f getPosition();
-		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition() const;
+		virtual const sf::Vector2f getSize() const;
 
 		void pushElement(std::shared_ptr<GUIElement> element);
 		void setSpacing(int spacing);

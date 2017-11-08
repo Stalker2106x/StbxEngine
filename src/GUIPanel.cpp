@@ -85,12 +85,12 @@ void GUIPanel::setSpacing(int spacing)
 	_spacing = spacing;
 }
 
-const sf::Vector2f GUIPanel::getPosition()
+const sf::Vector2f GUIPanel::getPosition() const
 {
 	return (_frame.getPosition());
 }
 
-const sf::Vector2f GUIPanel::getSize()
+const sf::Vector2f GUIPanel::getSize() const
 {
 	return (sf::Vector2f(_frame.getLocalBounds().width, _frame.getLocalBounds().height));
 }

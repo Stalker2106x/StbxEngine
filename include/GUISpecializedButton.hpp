@@ -76,12 +76,12 @@ namespace stb {
 			_label.setFillColor(color);
 		}
 
-		virtual const sf::Vector2f GUITextButton<T>::getPosition()
+		virtual const sf::Vector2f GUITextButton<T>::getPosition() const
 		{
 			return (_label.getPosition());
 		}
 
-		const sf::Vector2f GUITextButton<T>::getSize()
+		const sf::Vector2f GUITextButton<T>::getSize() const
 		{
 			return (sf::Vector2f(_label.getLocalBounds().width, _label.getLocalBounds().height));
 		}
@@ -171,12 +171,12 @@ namespace stb {
 			_sprite.setPosition(pos);
 		}
 
-		virtual const sf::Vector2f GUISpriteButton<T>::getPosition()
+		virtual const sf::Vector2f GUISpriteButton<T>::getPosition() const
 		{
 			return (_sprite.getPosition());
 		}
 
-		const sf::Vector2f GUISpriteButton<T>::getSize()
+		const sf::Vector2f GUISpriteButton<T>::getSize() const
 		{
 			return (sf::Vector2f(_sprite.getLocalBounds().width, _sprite.getLocalBounds().height));
 		}

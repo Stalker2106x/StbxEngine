@@ -24,12 +24,12 @@ void GUIScrollbar::setPosition(const sf::Vector2f &pos)
 	_container.setPosition(pos);
 }
 
-const sf::Vector2f GUIScrollbar::getSize()
+const sf::Vector2f GUIScrollbar::getSize() const
 {
 	return (_container.getSize());
 }
 
-const sf::Vector2f GUIScrollbar::getPosition()
+const sf::Vector2f GUIScrollbar::getPosition() const
 {
 	return (_container.getPosition());
 }

@@ -47,8 +47,8 @@ namespace stb {
 		void setSpacing(int spacing);
 		void setStyle(char style);
 
-		virtual const sf::Vector2f getPosition();
-		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition() const;
+		virtual const sf::Vector2f getSize() const;
 
 		void addElement(std::shared_ptr<GUIElement> element);
 

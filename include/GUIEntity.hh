@@ -32,8 +32,8 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 		
 
-		virtual const sf::Vector2f getPosition();
-		virtual const sf::Vector2f getSize();
+		virtual const sf::Vector2f getPosition() const;
+		virtual const sf::Vector2f getSize() const;
 		
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow *win);
@@ -128,8 +128,8 @@ namespace stb {
 		void setCursorPos(int index);
 		void setFontsize(int fontsize);
 		void setWidth(const float &length);
-		virtual const sf::Vector2f getSize();
-		virtual const sf::Vector2f getPosition();
+		virtual const sf::Vector2f getSize() const;
+		virtual const sf::Vector2f getPosition() const;
 		int getCursorPos();
 		const std::string &getText();
 
@@ -164,8 +164,8 @@ namespace stb {
 		void setPosition(const sf::Vector2f &pos);
 		void setTexture(const std::string &resource);
 		void setColor(sf::Color color);
-		virtual const sf::Vector2f getSize();
-		virtual const sf::Vector2f getPosition();
+		virtual const sf::Vector2f getSize() const;
+		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -194,8 +194,8 @@ namespace stb {
 		void setPosition(const sf::Vector2f &pos);
 		void setColor(sf::Color color);
 		void setFontSize(int fontsize);
-		virtual const sf::Vector2f getSize();
-		virtual const sf::Vector2f getPosition();
+		virtual const sf::Vector2f getSize() const;
+		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -222,8 +222,8 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setColor(const sf::Color *containerColor, const sf::Color *fillColor);
 		void setSize(int length); //tmp
-		virtual const sf::Vector2f getSize();
-		virtual const sf::Vector2f getPosition();
+		virtual const sf::Vector2f getSize() const;
+		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *win);
@@ -253,8 +253,8 @@ namespace stb {
 		void setBarColor(const sf::Color *barColor, const sf::Color *fillColor);
 
 		int getValue();
-		virtual const sf::Vector2f getSize();
-		virtual const sf::Vector2f getPosition();
+		virtual const sf::Vector2f getSize() const;
+		virtual const sf::Vector2f getPosition() const;
 
 		void updateSlider(const sf::Event &e, bool forceupdate = false);
 		virtual bool update(const sf::Event &e);
@@ -282,8 +282,8 @@ namespace stb {
 		virtual void initialUpdate();
 
 		virtual void setPosition(const sf::Vector2f &pos);
-		virtual const sf::Vector2f getSize();
-		virtual const sf::Vector2f getPosition();
+		virtual const sf::Vector2f getSize() const;
+		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow *);
