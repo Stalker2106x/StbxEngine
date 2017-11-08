@@ -357,7 +357,7 @@ bool GUIButtonBar::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIButtonBar::draw(sf::RenderWindow *win)
+void GUIButtonBar::draw(sf::RenderWindow &win)
 {
 	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
 

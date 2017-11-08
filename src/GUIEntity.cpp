@@ -54,13 +54,13 @@ bool GUISIndicator::update(const sf::Event &e)
 	return (true);
 }
 
-void GUISIndicator::draw(sf::RenderWindow *win)
+void GUISIndicator::draw(sf::RenderWindow &win)
 {
 	if (!_active)
 		return;
 	if (_label != NULL)
-		win->draw(*_label);
-	win->draw(_value);
+		win.draw(*_label);
+	win.draw(_value);
 }
 
 //
@@ -224,12 +224,12 @@ bool GUIEdit::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIEdit::draw(sf::RenderWindow *win)
+void GUIEdit::draw(sf::RenderWindow &win)
 {
-	win->draw(_container);
-	win->draw(_value);
+	win.draw(_container);
+	win.draw(_value);
 	if (_focus)
-		win->draw(_cursor);
+		win.draw(_cursor);
 }
 
 
@@ -282,9 +282,9 @@ bool GUISprite::update(const sf::Event &e)
 	return (true);
 }
 
-void GUISprite::draw(sf::RenderWindow *win)
+void GUISprite::draw(sf::RenderWindow &win)
 {
-	win->draw(_sprite);
+	win.draw(_sprite);
 }
 
 
@@ -354,9 +354,9 @@ bool GUIText::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIText::draw(sf::RenderWindow *win)
+void GUIText::draw(sf::RenderWindow &win)
 {
-	win->draw(_text);
+	win.draw(_text);
 }
 
 
@@ -419,11 +419,11 @@ bool GUICheckbox::update(const sf::Event &e)
 	return (true);
 }
 
-void GUICheckbox::draw(sf::RenderWindow *win)
+void GUICheckbox::draw(sf::RenderWindow &win)
 {
-	win->draw(_container);
+	win.draw(_container);
 	if (_checked)
-		win->draw(_fill);
+		win.draw(_fill);
 }
 
 
@@ -530,10 +530,10 @@ bool GUISlider::update(const sf::Event &e)
 	return (true);
 }
 
-void GUISlider::draw(sf::RenderWindow *win)
+void GUISlider::draw(sf::RenderWindow &win)
 {
-	win->draw(_bar);
-	win->draw(_fill);
+	win.draw(_bar);
+	win.draw(_fill);
 }
 
 
@@ -580,6 +580,6 @@ bool GUISeparator::update(const sf::Event &e)
 	return (true);
 }
 
-void GUISeparator::draw(sf::RenderWindow *win)
+void GUISeparator::draw(sf::RenderWindow &win)
 {
 }

@@ -27,7 +27,7 @@ namespace stb {
 		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *);
+		virtual void draw(sf::RenderWindow &);
 	private:
 		sf::RectangleShape _container, _slider;
 		GUISpriteButton<GUIButton> *_upBtn, *_dnBtn;

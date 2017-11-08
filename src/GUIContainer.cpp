@@ -68,7 +68,7 @@ bool GUIElementPair::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIElementPair::draw(sf::RenderWindow *win)
+void GUIElementPair::draw(sf::RenderWindow &win)
 {
 	if (_first != NULL)
 		_first->draw(win);
@@ -133,7 +133,7 @@ bool GUIElementGrid::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIElementGrid::draw(sf::RenderWindow *win)
+void GUIElementGrid::draw(sf::RenderWindow &win)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 	{

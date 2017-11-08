@@ -120,11 +120,11 @@ namespace stb {
 			return (true);
 		}
 
-		void GUITextButton<T>::draw(sf::RenderWindow *win)
+		void GUITextButton<T>::draw(sf::RenderWindow &win)
 		{
 			if (!_active)
 				return;
-			win->draw(_label);
+			win.draw(_label);
 		}
 
 	private:
@@ -215,11 +215,11 @@ namespace stb {
 			return (true);
 		}
 
-		void GUISpriteButton<T>::draw(sf::RenderWindow *win)
+		void GUISpriteButton<T>::draw(sf::RenderWindow &win)
 		{
 			if (!_active)
 				return;
-			win->draw(_sprite);
+			win.draw(_sprite);
 		}
 
 	protected:

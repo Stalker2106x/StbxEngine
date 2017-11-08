@@ -147,7 +147,7 @@ bool GUI::update(const sf::Event &e)
 	return (true);
 }
 
-void GUI::draw(sf::RenderWindow *win)
+void GUI::draw(sf::RenderWindow &win)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 		_elements[i]->draw(win);

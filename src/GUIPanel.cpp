@@ -116,12 +116,12 @@ bool GUIPanel::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIPanel::draw(sf::RenderWindow *win)
+void GUIPanel::draw(sf::RenderWindow &win)
 {
 	if (!_active)
 		return;
 	if (_frame.getTexture() != NULL)
-		win->draw(_frame);
+		win.draw(_frame);
 	for (auto it = _elements.begin(); it != _elements.end(); it++)
 	{
 		(*it)->draw(win);
@@ -229,11 +229,11 @@ bool GUIDraggablePanel::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIDraggablePanel::draw(sf::RenderWindow *win)
+void GUIDraggablePanel::draw(sf::RenderWindow &win)
 {
 	if (!_active)
 		return;
-	win->draw(_header);
+	win.draw(_header);
 	_buttonBar.draw(win);
 	GUIPanel::draw(win);
 }

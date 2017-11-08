@@ -54,7 +54,7 @@ namespace stb {
 
 		virtual bool updateRT();
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
+		virtual void draw(sf::RenderWindow &win);
 
 	protected:
 		char _style;
@@ -87,7 +87,7 @@ namespace stb {
 		void setPosition(const sf::Vector2f &pos);
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
+		virtual void draw(sf::RenderWindow &win);
 
 	private:
 		bool _dragging, _lock;

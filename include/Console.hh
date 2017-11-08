@@ -59,7 +59,7 @@ namespace stb {
 
 		void updateRT();
 		void update(const sf::Event &event);
-		void draw(sf::RenderWindow *win);
+		void draw(sf::RenderWindow &win);
 
 	private:
 		Engine &_engine;

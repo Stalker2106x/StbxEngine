@@ -254,7 +254,7 @@ void Console::update(const sf::Event &e)
 		updateKeyboard(e);
 }
 
-void Console::draw(sf::RenderWindow *win)
+void Console::draw(sf::RenderWindow &win)
 {
 	std::list<sf::Text *>::iterator begIter;
 
@@ -264,7 +264,7 @@ void Console::draw(sf::RenderWindow *win)
 	std::advance(begIter, _outputIndex);
 	for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++) //Draw output
     {
-		win->draw(*(*begIter));
+		win.draw(*(*begIter));
 		begIter++;
     }
 }

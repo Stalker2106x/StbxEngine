@@ -36,7 +36,7 @@ namespace stb {
 		virtual const sf::Vector2f getSize() const;
 		
 		bool update(const sf::Event &e);
-		void draw(sf::RenderWindow *win);
+		void draw(sf::RenderWindow &win);
 
 	protected:
 		sf::Text *_label, _value;
@@ -136,7 +136,7 @@ namespace stb {
 		void clear();
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
+		virtual void draw(sf::RenderWindow &win);
 
 	private:
 		bool _focus;
@@ -168,7 +168,7 @@ namespace stb {
 		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
+		virtual void draw(sf::RenderWindow &win);
 
 	private:
 		sf::Sprite _sprite;
@@ -198,7 +198,7 @@ namespace stb {
 		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
+		virtual void draw(sf::RenderWindow &win);
 
 	private:
 		sf::Text _text;
@@ -226,7 +226,7 @@ namespace stb {
 		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
+		virtual void draw(sf::RenderWindow &win);
 
 	private:
 		bool _checked;
@@ -258,7 +258,7 @@ namespace stb {
 
 		void updateSlider(const sf::Event &e, bool forceupdate = false);
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *);
+		virtual void draw(sf::RenderWindow &);
 
 	private:
 		bool _sliding;
@@ -286,7 +286,7 @@ namespace stb {
 		virtual const sf::Vector2f getPosition() const;
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *);
+		virtual void draw(sf::RenderWindow &);
 
 	private:
 		sf::FloatRect _size;

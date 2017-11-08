@@ -86,7 +86,7 @@ namespace stb {
 		virtual void onRClick();
 		
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win) = 0;
+		virtual void draw(sf::RenderWindow &win) = 0;
 	protected:
 		bool _hover;
 		sf::Event::EventType _triggerType;
@@ -179,7 +179,7 @@ namespace stb {
 		void addButton(std::shared_ptr<GUIButton> button);
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *win);
+		virtual void draw(sf::RenderWindow &win);
 
 	private:
 		std::vector<std::shared_ptr<GUIButton>> _buttons;

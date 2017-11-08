@@ -36,7 +36,7 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *);
+		virtual void draw(sf::RenderWindow &);
 
 	protected:
 		int _spacing;
@@ -66,7 +66,7 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos);
 
 		virtual bool update(const sf::Event &e);
-		virtual void draw(sf::RenderWindow *);
+		virtual void draw(sf::RenderWindow &);
 
 	protected:
 		int _spacing;

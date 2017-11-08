@@ -58,7 +58,7 @@ namespace stb {
 
 		bool updateRT();
 		bool update(const sf::Event &e);
-		void draw(sf::RenderWindow *win);
+		void draw(sf::RenderWindow &win);
 
 		GUIDefaults defaults;
 

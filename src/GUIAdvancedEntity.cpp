@@ -41,10 +41,10 @@ bool GUIScrollbar::update(const sf::Event &e)
 	return (true);
 }
 
-void GUIScrollbar::draw(sf::RenderWindow *win)
+void GUIScrollbar::draw(sf::RenderWindow &win)
 {
-	win->draw(_container);
-	win->draw(_slider);
+	win.draw(_container);
+	win.draw(_slider);
 	_upBtn->draw(win);
 	_dnBtn->draw(win);
 }

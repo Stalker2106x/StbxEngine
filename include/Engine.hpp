@@ -35,7 +35,7 @@ namespace stb {
 		bool openWindow(int, int);
 
 		void changeScreen(const std::string &resource, const std::string &location);
-		sf::RenderWindow *getWindowHandle();
+		sf::RenderWindow &getWindowHandle();
 		sf::Vector2i &getWindowSize();
 		int &getFramerate();
 		sf::Vector2f &getMouse();
@@ -46,7 +46,7 @@ namespace stb {
 		sf::Image capture();
 
 		virtual bool update(const sf::Event &) = 0; //Overloaded by user
-		virtual void draw(sf::RenderWindow *) = 0; //Overloaded by user
+		virtual void draw(sf::RenderWindow &) = 0; //Overloaded by user
 
 		bool updateLoop();
 		void updateFramerate();

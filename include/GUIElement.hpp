@@ -69,7 +69,7 @@ namespace stb {
 
 		virtual bool updateRT() { return (true); }; //Real time update, called more than one time between frames
 		virtual bool update(const sf::Event &e) = 0;
-		virtual void draw(sf::RenderWindow *win) = 0;
+		virtual void draw(sf::RenderWindow &win) = 0;
 
 	protected:
 		std::shared_ptr<GUIElement> _parent;

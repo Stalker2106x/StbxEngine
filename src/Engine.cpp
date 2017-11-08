@@ -73,9 +73,9 @@ void Engine::changeScreen(const std::string &resource, const std::string &locati
 	gui->changeScreen(resource, location);
 }
 
-sf::RenderWindow *Engine::getWindowHandle()
+sf::RenderWindow &Engine::getWindowHandle()
 {
-	return (_win);
+	return (*_win);
 }
 sf::Vector2i &Engine::getWindowSize()
 {
@@ -185,11 +185,11 @@ int Engine::mainLoop()
   while (!_quit && _win->isOpen() && updateLoop())
     {
       _win->clear(sf::Color::Black);
-	  draw(_win);
+	  draw(*_win);
 	  if (gui->isActive())
-		  gui->draw(_win);
+		  gui->draw(*_win);
 	  if (console->isActive())
-		  console->draw(_win);
+		  console->draw(*_win);
       _win->display();
 	  updateFramerate();
     }
@@ -198,7 +198,7 @@ int Engine::mainLoop()
 
 sf::Vector2f Engine::getMousePosition()
 {
-	return (static_cast<sf::Vector2f>(sf::Mouse::getPosition(*instance->getWindowHandle())));
+	return (static_cast<sf::Vector2f>(sf::Mouse::getPosition(instance->getWindowHandle())));
 }
 
 char Engine::getChar(sf::Event event, CharType type)
