@@ -23,6 +23,13 @@ namespace stb {
 		Vertical
 	};
 
+	enum Direction {
+		Left,
+		Up,
+		Right,
+		Down
+	};
+
 	const sf::Color convertColorCode(std::string code, std::string esc = COLOR_ESC);
 	
 	template <typename T>

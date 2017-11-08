@@ -54,6 +54,14 @@ namespace stb {
 
 		virtual void toggle() { _active = (_active ? false : true); };
 
+		void dock(Direction d)
+		{
+			if (d == Left)
+				setX(_parent->getPosition().x);
+			else if (d == Right)
+				setX(_parent->getPosition().x + _parent->getSize().x - getSize())
+		}
+
 		virtual bool updateRT() { return (true); }; //Real time update, called more than one time between frames
 		virtual bool update(const sf::Event &e) = 0;
 		virtual void draw(sf::RenderWindow *win) = 0;

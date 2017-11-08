@@ -10,3 +10,6 @@
 [submodule "extlib/clip"]
 	path = extlib/clip
 	url = https://github.com/dacap/clip.git
+[submodule "extlib/ionic"]
+	path = extlib/ionic
+	url = https://github.com/ionic-team/ionicons.git

@@ -42,6 +42,10 @@ void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, GUIElement *element)
 		element->setX(convertSize<float>(node.attribute("x").as_string(), Horizontal, element->getParent()));
 	else if (node.attribute("y"))
 		element->setY(convertSize<float>(node.attribute("y").as_string(), Vertical, element->getParent()));
+	if (node.attribute("dock"))
+	{
+
+	}
 }
 
 GUIElement *GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node, GUIElement *parent)
