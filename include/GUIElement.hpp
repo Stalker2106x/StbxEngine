@@ -35,14 +35,14 @@ namespace stb {
 		Scrollbar
 	};
 
-	class GUIElement : public std::enable_shared_from_this<GUIElement>
+	class GUIElement
 	{
 	public:
 		GUIElement(const std::string &id, std::shared_ptr<GUIElement> parent, GUIElementType type) : _id(id), _parent(parent), _type(type), _active(true) { }
 		virtual ~GUIElement() {};
 
 		virtual void initialUpdate() = 0;
-		std::shared_ptr<GUIElement> getSPtr() { return shared_from_this(); };
+		std::shared_ptr<GUIElement> getSPtr() { return std::shared_ptr<GUIElement>(this); };
 
 		const std::string &getId() { return (_id); };
 		const GUIElementType &getType() { return (_type); };

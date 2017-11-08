@@ -151,7 +151,7 @@ namespace stb {
 				e.gui->removeElement("__debuginfo", true);
 			else
 			{
-				debugpanel = std::make_shared<GUIPanel>(NULL, sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
+				debugpanel = std::make_shared<GUIPanel>(nullptr, sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
 				debugpanel->setId("__debuginfo");
 				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "Screen Width: ", "glitch", e.getWindowSize().x));
 				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "Screen Height: ", "glitch", e.getWindowSize().y));

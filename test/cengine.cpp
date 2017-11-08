@@ -15,7 +15,7 @@ sEngine::sEngine()
 	//Change none to any screen
 	gui->changeScreen("main");
 	//Add Draggable Panel
-	std::shared_ptr<stb::GUIDraggablePanel> panel = std::make_shared<stb::GUIDraggablePanel>(NULL, sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
+	std::shared_ptr<stb::GUIDraggablePanel> panel = std::make_shared<stb::GUIDraggablePanel>(nullptr, sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
 	panel->setId("windowz");
 	gui->addElement(panel);
 	//Add FPS Indicator inside
