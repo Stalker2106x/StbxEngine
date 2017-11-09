@@ -31,7 +31,7 @@ namespace stb {
 
 		virtual void initialUpdate();
 
-		void setFontsize(int fontSize);
+		void setFontSize(int fontSize);
 		virtual void setPosition(const sf::Vector2f &pos);
 		
 

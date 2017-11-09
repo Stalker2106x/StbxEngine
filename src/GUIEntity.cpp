@@ -20,7 +20,7 @@ void GUISIndicator::initialUpdate()
 
 }
 
-void GUISIndicator::setFontsize(int fontSize)
+void GUISIndicator::setFontSize(int fontSize)
 {
 	_value.setCharacterSize(fontSize);
 }
@@ -287,6 +287,7 @@ void GUISprite::draw(sf::RenderWindow &win)
 GUIText::GUIText(std::shared_ptr<GUIElement> parent, const std::string &text, const std::string &fontResource) : GUIElement("", parent, Text)
 {
 	_text.setFont(*SFResolver<sf::Font>::resolve(fontResource));
+	_text.setCharacterSize(GUIDefaults.fontSize);
 	setText(text);
 }
 
