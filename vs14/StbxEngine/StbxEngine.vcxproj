@@ -130,6 +130,7 @@
     <ClInclude Include="..\..\include\Commands.hh" />
     <ClInclude Include="..\..\include\Console.hh" />
     <ClInclude Include="..\..\include\Control.hh" />
+    <ClInclude Include="..\..\include\defs.h" />
     <ClInclude Include="..\..\include\GUI.hh" />
     <ClInclude Include="..\..\include\Engine.hpp" />
     <ClInclude Include="..\..\include\GUIAdvancedEntity.hh" />

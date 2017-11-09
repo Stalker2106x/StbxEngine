@@ -53,6 +53,7 @@ namespace stb {
 		bool isActive() { return (_active); };
 
 		void setId(const std::string &id) {	_id = id; };
+		void setParent(std::shared_ptr<GUIElement> parent) { _parent = parent; };
 		virtual void setX(float x) { setPosition(sf::Vector2f(x, getPosition().y)); };
 		virtual void setY(float y) { setPosition(sf::Vector2f(getPosition().x, y)); };
 		virtual void setPosition(const sf::Vector2f &pos) = 0;

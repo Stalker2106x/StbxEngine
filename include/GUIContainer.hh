@@ -23,6 +23,7 @@ namespace stb {
 	{
 	public:
 		GUIElementPair(std::shared_ptr<GUIElement> parent, std::shared_ptr<GUIElement> first = NULL, std::shared_ptr<GUIElement> second = NULL);
+		static std::shared_ptr<GUIElementPair> GUIElementPair::make_pair(std::shared_ptr<GUIElement> parent, std::shared_ptr<GUIElement> first, std::shared_ptr<GUIElement> second);
 		~GUIElementPair();
 
 		virtual void initialUpdate();

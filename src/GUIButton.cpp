@@ -269,7 +269,7 @@ void GUIButtonBar::invert()
 
 std::shared_ptr<GUIButton> GUIButtonBar::getButton(const std::string &id)
 {
-	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::const_iterator it = _buttons.begin();
 
 	while (it != _buttons.end())
 	{
@@ -282,7 +282,7 @@ std::shared_ptr<GUIButton> GUIButtonBar::getButton(const std::string &id)
 
 const sf::Vector2f GUIButtonBar::getSize() const
 {
-	auto it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::const_iterator it = _buttons.begin();
 	sf::Vector2f size(0,0);
 
 	while (it != _buttons.end())
@@ -347,7 +347,7 @@ void GUIButtonBar::addButton(std::shared_ptr<GUIButton> button)
 
 bool GUIButtonBar::update(const sf::Event &e)
 {
-	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::const_iterator it = _buttons.begin();
 
 	while (it != _buttons.end())
 	{
@@ -359,7 +359,7 @@ bool GUIButtonBar::update(const sf::Event &e)
 
 void GUIButtonBar::draw(sf::RenderWindow &win)
 {
-	std::vector<std::shared_ptr<GUIButton>>::iterator it = _buttons.begin();
+	std::vector<std::shared_ptr<GUIButton>>::const_iterator it = _buttons.begin();
 
 	while (it != _buttons.end())
 	{

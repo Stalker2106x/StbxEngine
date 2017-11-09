@@ -1,6 +1,7 @@
 #include <fstream>
 #include "Engine.hpp"
 #include "Commands.hh"
+#include "GUIContainer.hh"
 #include "utils.h"
 #ifndef _MSC_VER
 	#include <unistd.h>
@@ -148,16 +149,26 @@ namespace stb {
 			std::shared_ptr<GUIPanel> debugpanel;
 
 			if ((debugpanel = std::static_pointer_cast<GUIPanel>(e.gui->getElement("__debuginfo"))) != NULL)
-				e.gui->removeElement("__debuginfo", true);
+				e.gui->removeElement("__debuginfo");
 			else
 			{
 				debugpanel = std::make_shared<GUIPanel>(nullptr, sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
 				debugpanel->setId("__debuginfo");
-				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "Screen Width: ", "glitch", e.getWindowSize().x));
-				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "Screen Height: ", "glitch", e.getWindowSize().y));
-				debugpanel->addElement(std::make_shared<GUIIndicator<int>>(debugpanel->getSPtr(), "FPS: ", "glitch", e.getFramerate()));
-				debugpanel->addElement(std::make_shared<GUIIndicator<float>>(debugpanel->getSPtr(), "Mouse X: ", "glitch", e.getMouse().x));
-				debugpanel->addElement(std::make_shared<GUIIndicator<float>>(debugpanel->getSPtr(), "Mouse Y: ", "glitch", e.getMouse().y));
+				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
+					std::make_shared<stb::GUIText>(nullptr, "Screen Width: "),
+					std::make_shared<stb::GUIIndicator<int>>(nullptr, e.getWindowSize().x)));
+				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
+					std::make_shared<stb::GUIText>(nullptr, "Screen Height: "),
+					std::make_shared<stb::GUIIndicator<int>>(nullptr, e.getWindowSize().y)));
+				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
+					std::make_shared<stb::GUIText>(nullptr, "FPS: "),
+					std::make_shared<stb::GUIIndicator<int>>(nullptr, e.getFramerate())));
+				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
+					std::make_shared<stb::GUIText>(nullptr, "Mouse X: "),
+					std::make_shared<stb::GUIIndicator<float>>(nullptr, e.getMouse().x)));
+				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
+					std::make_shared<stb::GUIText>(nullptr, "Mouse Y: "),
+					std::make_shared<stb::GUIIndicator<float>>(nullptr, e.getMouse().y)));
 				e.gui->addElement(debugpanel);
 			}
 		}
@@ -192,7 +203,7 @@ namespace stb {
 
 		void findCmd(Engine &e, std::vector<std::string> *argv)
 		{
-			cmdMap::iterator iter;
+			cmdMap::const_iterator iter;
 			std::vector<std::string> available;
 
 			if (argv == NULL || argv->size() < 1)
@@ -378,7 +389,7 @@ namespace stb {
 		{
 			e.console->output(COLOR_INFO, "Available commands: ");
 			e.console->output("");
-			for (cmdMap::iterator it = cmdlist.begin(); it != cmdlist.end(); it++)
+			for (cmdMap::const_iterator it = cmdlist.begin(); it != cmdlist.end(); it++)
 			{
 				e.console->insertLastOutput(it->first);
 				if (std::next(it, 1) != cmdlist.end())

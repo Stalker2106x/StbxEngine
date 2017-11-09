@@ -8,7 +8,7 @@
 #define GUIPANEL_HH_
 
 #include <deque>
-#include <queue>
+#include <stack>
 #include "GUIElement.hpp"
 #include "GUIButton.hh"
 #include "utils.h"
@@ -41,6 +41,8 @@ namespace stb {
 		virtual void initialUpdate();
 
 		void clear();
+		bool removeElement(int index);
+		void drop();
 
 		virtual void setPosition(const sf::Vector2f &pos);
 		void setBackground(const std::string &resource, const sf::Color &color = sf::Color::White);
@@ -63,7 +65,7 @@ namespace stb {
 		sf::Sprite _frame;
 		GUIButtonBar _buttonBar;
 		std::deque<std::shared_ptr<GUIElement>> _elements;
-		std::queue<std::pair<size_t, bool>> _drop;
+		std::stack<size_t> _drop;
 	};
 
 	/*!

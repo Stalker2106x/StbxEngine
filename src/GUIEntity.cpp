@@ -13,8 +13,6 @@ GUISIndicator::GUISIndicator(std::shared_ptr<GUIElement> parent, const std::stri
 
 GUISIndicator::~GUISIndicator()
 {
-	if (_label != NULL)
-		delete (_label);
 }
 
 void GUISIndicator::initialUpdate()
@@ -24,27 +22,23 @@ void GUISIndicator::initialUpdate()
 
 void GUISIndicator::setFontsize(int fontSize)
 {
-	if (_label != NULL)
-		_label->setCharacterSize(fontSize);
 	_value.setCharacterSize(fontSize);
 }
 
 void GUISIndicator::setPosition(const sf::Vector2f &pos)
 {
-	if (_label != NULL)
-		_label->setPosition(pos);
-	_value.setPosition(_label->getPosition() + sf::Vector2f(_label->getLocalBounds().width + 5, 0));
+	_value.setPosition(pos);
 }
 
 
 const sf::Vector2f GUISIndicator::getPosition() const
 {
-	return (_label->getPosition());
+	return (_value.getPosition());
 }
 
 const sf::Vector2f GUISIndicator::getSize() const
 {
-	return (sf::Vector2f(_label->getLocalBounds().width, _label->getLocalBounds().height));
+	return (sf::Vector2f(_value.getLocalBounds().width, _value.getLocalBounds().height));
 }
 
 bool GUISIndicator::update(const sf::Event &e)
@@ -58,8 +52,6 @@ void GUISIndicator::draw(sf::RenderWindow &win)
 {
 	if (!_active)
 		return;
-	if (_label != NULL)
-		win.draw(*_label);
 	win.draw(_value);
 }
 
@@ -74,7 +66,7 @@ GUIEdit::GUIEdit(std::shared_ptr<GUIElement> parent, char cursor, const std::str
 	setWidth(100);
 	_cursor.setString(cursor);
 	setFont(fontResource);
-	setFontsize(Engine::instance->gui->defaults.fontSize);
+	setFontsize(GUIDefaults.fontSize);
 }
 
 GUIEdit::~GUIEdit()

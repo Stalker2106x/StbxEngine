@@ -11,6 +11,16 @@ GUIElementPair::GUIElementPair(std::shared_ptr<GUIElement> parent, std::shared_p
 	_spacing = 0;
 }
 
+std::shared_ptr<GUIElementPair> GUIElementPair::make_pair(std::shared_ptr<GUIElement> parent, std::shared_ptr<GUIElement> first, std::shared_ptr<GUIElement> second)
+{
+	std::shared_ptr<GUIElementPair> pair = std::make_shared<GUIElementPair>(parent);
+	first->setParent(pair->getSPtr());
+	pair->setFirst(first);
+	second->setParent(pair->getSPtr());
+	pair->setSecond(second);
+	return (pair);
+}
+
 GUIElementPair::~GUIElementPair()
 {
 

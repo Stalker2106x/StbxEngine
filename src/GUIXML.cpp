@@ -56,7 +56,7 @@ std::shared_ptr<GUIElement> GUIXML::getGUIElementPairFromXML(const pugi::xml_nod
 	if (node.attribute("spacing"))
 		element->setSpacing(convertSize<float>(node.attribute("spacing").as_string(), Horizontal, parent));
 	else
-		element->setSpacing(Engine::instance->gui->defaults.pairSpacing);
+		element->setSpacing(GUIDefaults.pairSpacing);
 	element->setFirst(getGUIElementFromXML(xmlElement, element->getSPtr()));
 	xmlElement = xmlElement.next_sibling();
 	element->setSecond(getGUIElementFromXML(xmlElement, element->getSPtr()));
@@ -71,7 +71,7 @@ std::shared_ptr<GUIElement> GUIXML::getGUIElementGridFromXML(const pugi::xml_nod
 	if (node.attribute("spacing"))
 		element->setSpacing(convertSize<float>(node.attribute("spacing").as_string(), Horizontal, parent));
 	else
-		element->setSpacing(Engine::instance->gui->defaults.gridSpacing);
+		element->setSpacing(GUIDefaults.gridSpacing);
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
 		if (GUIXMLElementParser.count(it.name()))
@@ -109,9 +109,9 @@ std::shared_ptr<GUIElement> GUIXML::getGUIButtonFromXML(const pugi::xml_node &no
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		button = std::make_shared<GUITextButton<GUIButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
+		button = std::make_shared<GUITextButton<GUIButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
 		std::shared_ptr<GUITextButton<GUIButton>> btn = std::static_pointer_cast<GUITextButton<GUIButton>>(button);
-		btn->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
+		btn->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
 	}
 	if (node.attribute("target"))
 		button->setCommand("gui_changescreen '" + std::string(node.attribute("target").as_string()) + "'");
@@ -130,9 +130,9 @@ std::shared_ptr<GUIElement> GUIXML::getGUIToggleButtonFromXML(const pugi::xml_no
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		button = std::make_shared<GUITextButton<GUIToggleButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
+		button = std::make_shared<GUITextButton<GUIToggleButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
 		std::shared_ptr<GUITextButton<GUIToggleButton>> btn = std::static_pointer_cast<GUITextButton<GUIToggleButton>>(button);
-		btn->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
+		btn->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
 		btn->setAltSkin(new TextSkin(node.attribute("activetext").as_string(""), sf::Color::White, sf::Color::Cyan));
 	}
 	return (button);
@@ -157,9 +157,9 @@ std::shared_ptr<GUIElement> GUIXML::getGUISettingButtonFromXML(const pugi::xml_n
 	}
 	else if (node.attribute("text")) //GUITextButton
 	{
-		button = std::make_shared<GUITextButton<GUISettingButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
+		button = std::make_shared<GUITextButton<GUISettingButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
 		std::shared_ptr<GUITextButton<GUISettingButton>> btn = std::static_pointer_cast<GUITextButton<GUISettingButton>>(button);
-		btn->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
+		btn->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
 		btn->pushValue(node.attribute("text").as_string(""));
 		for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 		{
@@ -201,10 +201,10 @@ std::shared_ptr<GUIElement> GUIXML::getGUICheckboxFromXML(const pugi::xml_node &
 
 std::shared_ptr<GUIElement> GUIXML::getGUIEditFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	std::shared_ptr<GUIEdit> element = std::make_shared<GUIEdit>(parent, node.attribute("cursor").as_string("_")[0], node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
+	std::shared_ptr<GUIEdit> element = std::make_shared<GUIEdit>(parent, node.attribute("cursor").as_string("_")[0], node.attribute("font").as_string(GUIDefaults.font.c_str()));
 	element->setWidth(convertSize<float>(node.attribute("width").as_string("150"), Horizontal, parent));
 	element->setColor(convertColorCode(node.attribute("color").as_string("#000000000"), "#"));
-	element->setTextColor(convertColorCode(node.attribute("textcolor").as_string(Engine::instance->gui->defaults.fontColor.c_str()), "#"));
+	element->setTextColor(convertColorCode(node.attribute("textcolor").as_string(GUIDefaults.fontColor.c_str()), "#"));
 	return (element);
 }
 
@@ -258,9 +258,9 @@ std::shared_ptr<GUIElement> GUIXML::getGUISpriteFromXML(const pugi::xml_node &no
 
 std::shared_ptr<GUIElement> GUIXML::getGUITextFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	std::shared_ptr<GUIText> element = std::make_shared<GUIText>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(Engine::instance->gui->defaults.font.c_str()));
+	std::shared_ptr<GUIText> element = std::make_shared<GUIText>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
 
-	element->setFontSize(node.attribute("fontSize").as_int(Engine::instance->gui->defaults.fontSize));
+	element->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
 	return (element);
 }
 

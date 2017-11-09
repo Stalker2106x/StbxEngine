@@ -27,12 +27,12 @@ bool GUI::isActive()
 
 void GUI::resetDefaults()
 {
-	defaults.font = "Console";
-	defaults.fontSize = 16;
-	defaults.fontColor = "#255255255";
-	defaults.pairSpacing = 10;
-	defaults.panelSpacing = 5;
-	defaults.gridSpacing = 5;
+	GUIDefaults.font = "Console";
+	GUIDefaults.fontSize = 16;
+	GUIDefaults.fontColor = "#255255255";
+	GUIDefaults.pairSpacing = 10;
+	GUIDefaults.panelSpacing = 5;
+	GUIDefaults.gridSpacing = 5;
 }
 
 std::shared_ptr<GUIElement> GUI::getElement(const std::string &id)
@@ -45,7 +45,7 @@ std::shared_ptr<GUIElement> GUI::getElement(const std::string &id)
 	return (NULL);
 }
 
-bool GUI::removeElement(const std::string &id, bool del)
+bool GUI::removeElement(const std::string &id)
 {
 	if (id.empty())
 		return (false);
@@ -55,20 +55,29 @@ bool GUI::removeElement(const std::string &id, bool del)
 		{
 			if (_elements[i]->isActive())
 				_elements[i]->toggle();
-			_drop.push(std::make_pair(i, del));
+			_elements.erase(_elements.begin() + i);
 		}
 	}
 	return (true);
 }
 
-bool GUI::removeElement(int index, bool del)
+bool GUI::removeElement(int index)
 {
 	if (index < 0 || index > _elements.size())
 		return (false);
 	if (_elements[index]->isActive())
 		_elements[index]->toggle();
-	_drop.push(std::make_pair(index, del));
+	_drop.push(index);
 	return (true);
+}
+
+void GUI::drop()
+{
+	while (!_drop.empty())
+	{
+		_elements.erase(_elements.begin() + _drop.top());
+		_drop.pop();
+	}
 }
 
 void GUI::changeScreen(const std::string &resource, const std::string &location)
@@ -144,6 +153,7 @@ bool GUI::update(const sf::Event &e)
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 		_elements[i]->update(e);
+	drop(); //Discard deleted elements
 	return (true);
 }
 

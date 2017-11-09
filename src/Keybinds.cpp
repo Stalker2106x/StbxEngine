@@ -30,7 +30,7 @@ void Keybinds::unbindall()
 
 bool Keybinds::unbind(std::string element)
 {
-  std::map<Control, std::string>::iterator it;
+  std::map<Control, std::string>::const_iterator it;
 
   try {
   if ((it = _binds.find(Control::keys.at(element))) != _binds.end())
@@ -70,9 +70,9 @@ bool Keybinds::bind(std::string control, std::string action)
 void Keybinds::listAllBinds()
 {
 	_e->console->output("");
-  for (std::map<Control, std::string>::iterator it = _binds.begin(); it != _binds.end(); it++)
+  for (std::map<Control, std::string>::const_iterator it = _binds.begin(); it != _binds.end(); it++)
     {
-      _e->console->insertLastOutput(it->second+" = "+it->first.getBindStr());
+      _e->console->insertLastOutput(it->second + " = " + it->first.getBindStr());
       if (std::next(it, 1) != _binds.end())
 	  _e->console->insertLastOutput(", ");
     }
@@ -80,18 +80,18 @@ void Keybinds::listAllBinds()
 
 Control *Keybinds::getKey(const std::string &action)
 {
-  try {
-    if (Commands::cmdlist.find(action) != Commands::cmdlist.end())
-      {
-	for (std::map<Control, std::string>::iterator it = _binds.begin(); it != _binds.end(); it++)
-	  {
-	    if ((*it).second == action)
-	      {
-		return (new Control(it->first.getBindStr()));
-	      }
-	  }
-      }
-  }
+	try {
+		if (Commands::cmdlist.find(action) != Commands::cmdlist.end())
+		{
+			for (std::map<Control, std::string>::const_iterator it = _binds.begin(); it != _binds.end(); it++)
+			{
+				if (it->second == action)
+				{
+					return (new Control(it->first.getBindStr()));
+				}
+			}
+		}
+	}
   catch (...) { return (NULL); }
   return (NULL);
 }

@@ -9,7 +9,6 @@
 
 #include <sstream>
 #include <SFML/Graphics.hpp>
-#include "GUIElement.hpp"
 
 namespace stb {
 
@@ -27,6 +26,17 @@ namespace stb {
 		Right,
 		Down
 	};
+
+	struct GUIResourceDefaults
+	{
+		int fontSize;
+		std::string font;
+		std::string fontColor;
+		int panelSpacing;
+		int pairSpacing;
+		int gridSpacing;
+	};
+	extern GUIResourceDefaults GUIDefaults;
 
 }
 

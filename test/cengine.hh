@@ -2,6 +2,7 @@
 #define CENGINE_HH_
 
 #include "../include/Engine.hpp"
+#include "../include/GUIContainer.hh"
 #include "../include/GUIScreen.hh"
 
 class sEngine : public stb::Engine

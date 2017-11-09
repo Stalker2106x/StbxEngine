@@ -41,6 +41,25 @@ void GUIPanel::clear()
 	_elements.clear();
 }
 
+bool GUIPanel::removeElement(int index)
+{
+	if (index < 0 || index > _elements.size())
+		return (false);
+	if (_elements[index]->isActive())
+		_elements[index]->toggle();
+	_drop.push(index);
+	return (true);
+}
+
+void GUIPanel::drop()
+{
+	while (!_drop.empty())
+	{
+		_elements.erase(_elements.begin() + _drop.top());
+		_drop.pop();
+	}
+}
+
 void GUIPanel::setStyle(char style)
 {
 	_style = style;
@@ -65,7 +84,7 @@ void GUIPanel::setPosition(const sf::Vector2f &pos)
 {
 	sf::Vector2f oldpos = _frame.getPosition();
 	_frame.setPosition(pos);
-	for (auto it = _elements.begin(); it != _elements.end(); it++)
+	for (std::deque<std::shared_ptr<GUIElement>>::const_iterator it = _elements.begin(); it != _elements.end(); it++)
 	{
 		(*it)->setPosition(sf::Vector2f((*it)->getPosition().x + (pos.x - oldpos.x), (*it)->getPosition().y + ((pos.y - oldpos.y) + _spacing)));
 	}
@@ -97,7 +116,7 @@ const sf::Vector2f GUIPanel::getSize() const
 
 bool GUIPanel::updateRT()
 {
-	for (auto it = _elements.begin(); it != _elements.end(); it++)
+	for (std::deque<std::shared_ptr<GUIElement>>::const_iterator it = _elements.begin(); it != _elements.end(); it++)
 	{
 		(*it)->updateRT();
 	}
@@ -108,11 +127,12 @@ bool GUIPanel::update(const sf::Event &e)
 {
 	if (!_active)
 		return (false);
-	for (auto it = _elements.begin(); it != _elements.end(); it++)
+	for (std::deque<std::shared_ptr<GUIElement>>::const_iterator it = _elements.begin(); it != _elements.end(); it++)
 	{
 		if (!(*it)->update(e))
 			return (false);
 	}
+	drop(); //Discard deleted elements
 	return (true);
 }
 
@@ -122,7 +142,7 @@ void GUIPanel::draw(sf::RenderWindow &win)
 		return;
 	if (_frame.getTexture() != NULL)
 		win.draw(_frame);
-	for (auto it = _elements.begin(); it != _elements.end(); it++)
+	for (std::deque<std::shared_ptr<GUIElement>>::const_iterator it = _elements.begin(); it != _elements.end(); it++)
 	{
 		(*it)->draw(win);
 	}

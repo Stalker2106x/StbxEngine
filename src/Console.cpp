@@ -26,10 +26,10 @@ Console::~Console()
 void Console::initGraphics(const sf::Vector2i &winsize)
 {
 	//FONT SET
-	_font = *SFResolver<sf::Font>::resolve(Engine::instance->gui->defaults.font);
+	_font = *SFResolver<sf::Font>::resolve(GUIDefaults.font);
 	_frame = std::make_shared<GUIPanel>(nullptr, sf::Vector2i(winsize.x, (_lineCount * _fontSize) + (_fontSize + 4)), sf::Color(50, 65, 90));
 	_frame->setPosition(sf::Vector2f(0, -_frame->getSize().y));
-	_edit = std::make_shared<GUIEdit>(_frame->getSPtr(), CURSOR, Engine::instance->gui->defaults.font);
+	_edit = std::make_shared<GUIEdit>(_frame->getSPtr(), CURSOR, GUIDefaults.font);
 	_edit->setWidth(winsize.x - 10);
 	_edit->setPosition(sf::Vector2f(5, _frame->getPosition().y + ((_lineCount + 1) * _fontSize) - (_edit->getSize().y + 4)));
 	_frame->addElement(_edit);
@@ -190,7 +190,7 @@ void Console::updateEditValue()
 
 void Console::updateOutput()
 {
-	std::list<sf::Text *>::iterator begIter = _output.begin();
+	std::list<sf::Text *>::const_iterator begIter = _output.begin();
 	float posy = 0;
 
 	std::advance(begIter, _outputIndex);
@@ -256,7 +256,7 @@ void Console::update(const sf::Event &e)
 
 void Console::draw(sf::RenderWindow &win)
 {
-	std::list<sf::Text *>::iterator begIter;
+	std::list<sf::Text *>::const_iterator begIter;
 
 	_frame->draw(win);
 	_edit->draw(win);

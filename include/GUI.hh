@@ -15,19 +15,10 @@
 #include "GUIButton.hh"
 #include "GUIEntity.hh"
 #include "GUIPanel.hh"
+#include "defs.h"
 #include "utils.h"
 
 namespace stb {
-
-	struct GUIDefaults
-	{
-		int fontSize;
-		std::string font;
-		std::string fontColor;
-		int panelSpacing;
-		int pairSpacing;
-		int gridSpacing;
-	};
 
 	class GUI
 	{
@@ -36,10 +27,11 @@ namespace stb {
 		~GUI();
 
 		bool isActive();
-		void resetDefaults();
+		static void resetDefaults();
 		std::shared_ptr<GUIElement> getElement(const std::string &id);
-		bool removeElement(const std::string &id, bool del = false);
-		bool removeElement(int index, bool del = false);
+		bool removeElement(const std::string &id);
+		bool removeElement(int index);
+		void drop();
 		void changeScreen(const std::string &resource, const std::string &location = "");
 
 		void toggle();
@@ -60,12 +52,10 @@ namespace stb {
 		bool update(const sf::Event &e);
 		void draw(sf::RenderWindow &win);
 
-		GUIDefaults defaults;
-
 	private:
 		bool _active;
 		std::deque<std::shared_ptr<GUIElement>> _elements;
-		std::stack<std::pair<size_t, bool>> _drop;
+		std::stack<size_t> _drop;
 	};
 
 }

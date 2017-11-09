@@ -11,8 +11,11 @@
 #include <SFML/Graphics.hpp>
 #include "GUIButton.hh"
 #include "Resolver.hh"
+#include "defs.h"
 
 namespace stb {
+
+	class GUI; //Forward declaration
 
 	/*!
 	* @class GUISIndicator
@@ -39,7 +42,7 @@ namespace stb {
 		void draw(sf::RenderWindow &win);
 
 	protected:
-		sf::Text *_label, _value;
+		sf::Text _value;
 	};
 
 	/*!
@@ -53,38 +56,26 @@ namespace stb {
 	{
 
 	public:
-		GUIIndicator(std::shared_ptr<GUIElement> parent, T &var, const std::string &fontResource) : GUISIndicator(parent, fontResource), _hook(var)
+		GUIIndicator(std::shared_ptr<GUIElement> parent, T &var, const std::string &fontResource = GUIDefaults.font) : GUISIndicator(parent, fontResource), _hook(var)
 		{
-			_label = NULL;
-			_value.setCharacterSize(12);
+			_value.setCharacterSize(GUIDefaults.fontSize);
 			_value.setString(std::to_string(_hook));
-			if (_label != NULL)
-				_label->setFont(*SFResolver<sf::Font>::resolve(fontResource));
-			_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
-		}
-
-		GUIIndicator(std::shared_ptr<GUIElement> parent, const std::string &label, const std::string &fontResource, T &var) : GUISIndicator(parent, fontResource), _hook(var)
-		{
-			_label = new sf::Text();
-			_label->setString(label);
-			_label->setFont(*SFResolver<sf::Font>::resolve("glitch"));
-			_label->setCharacterSize(12);
-			_value.setCharacterSize(12);
-			_value.setString(std::to_string(_hook));
-			if (_label != NULL)
-				_label->setFont(*SFResolver<sf::Font>::resolve(fontResource));
 			_value.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 		}
 
 		virtual ~GUIIndicator()
 		{
-			delete (_label);
+
 		}
 
 		virtual bool updateRT() override
 		{
 			static T prev;
+			static sf::Time stamp = Engine::instance->getGameTime();
 
+			if ((Engine::instance->getGameTime() - stamp).asMilliseconds() < 15)
+				return (false);
+			stamp = Engine::instance->getGameTime();
 			if (_hook != prev)
 			{
 				_value.setString(std::to_string(_hook));
@@ -184,7 +175,7 @@ namespace stb {
 	class GUIText : public GUIElement
 	{
 	public:
-		GUIText(std::shared_ptr<GUIElement> parent, const std::string &text = "", const std::string &fontResource = "");
+		GUIText(std::shared_ptr<GUIElement> parent, const std::string &text = "", const std::string &fontResource = GUIDefaults.font);
 		virtual ~GUIText();
 
 		virtual void initialUpdate();

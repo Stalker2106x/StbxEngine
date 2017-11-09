@@ -2,6 +2,8 @@
 
 namespace stb {
 
+	GUIResourceDefaults GUIDefaults;
+
 	const sf::Color convertColorCode(std::string code, std::string esc)
 	{
 		sf::Color color;
