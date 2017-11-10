@@ -2,7 +2,7 @@
 <screen id="main" background="background">
   <panel x="25%" spacing="5%">
     <text text="ion-alert-circled" font="icon" />
-    <text text="ion-android-home" font="icon" />
+    <button text="ion-android-home" font="icon" target="alt" />
     <text text="Menu" />
     <pair spacing="100">
       <text text="toggle" />

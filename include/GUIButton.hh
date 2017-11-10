@@ -29,12 +29,12 @@ namespace stb {
 
 	struct TextSkin : public Skin
 	{
-		std::string text;
+		std::wstring text;
 		sf::Color normal;
 		sf::Color hover;
 
 		TextSkin() { type = SkinText; }
-		TextSkin(std::string t, sf::Color n, sf::Color h)
+		TextSkin(std::wstring t, sf::Color n, sf::Color h)
 		{
 			type = SkinText;
 			text = t;
@@ -78,7 +78,7 @@ namespace stb {
 		virtual void setPosition(const sf::Vector2f &pos) = 0;
 		void setSkin(Skin *skin);
 
-		virtual void setActiveSkin(const std::string text, sf::Color color) {}; //Overloadable for inheritance
+		virtual void setActiveSkin(const std::wstring text, sf::Color color) {}; //Overloadable for inheritance
 		virtual void setActiveSkin(const sf::IntRect geometry) {}; //Overloadable for inheritance
 
 		virtual bool onHover(bool triggered);

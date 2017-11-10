@@ -188,9 +188,6 @@ namespace stb {
 		virtual const sf::Vector2f getSize() const;
 		virtual const sf::Vector2f getPosition() const;
 
-		const std::wstring getIconCode(const std::string &id);
-		wchar_t convertUnicode(const std::string &unicode);
-
 		virtual bool update(const sf::Event &e);
 		virtual void draw(sf::RenderWindow &win);
 

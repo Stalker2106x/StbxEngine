@@ -348,45 +348,6 @@ const sf::Vector2f GUIText::getSize() const
 	return (sf::Vector2f(_text.getLocalBounds().width, _text.getLocalBounds().height));
 }
 
-const std::wstring GUIText::getIconCode(const std::string &id)
-{
-	pugi::xml_document doc;
-	std::ifstream ifs("../extlib/ionicons/fonts/ionicons.svg");
-	pugi::xml_parse_result xml;
-	pugi::xml_node node;
-
-	if (!ifs)
-	{
-		Engine::instance->console->output(COLOR_ERROR, "Error: FontIcons: SVG resource not found");
-		return (NULL);
-	}
-	if (!(xml = doc.load(ifs)))
-	{
-		Engine::instance->console->output(COLOR_ERROR, "Error: FontIcons: resource SVG parsing failed");
-		return (NULL);
-	}
-	node = doc.child(L"svg").child(L"defs").child(L"font").first_child();
-	while (wcscmp(node.name(), L"glyph") != 0)
-		node = node.next_sibling();
-	while (node != doc.child(L"font").last_child())
-	{
-		if (node.attribute(L"glyph-name").as_string() == pugi::as_wide(id))
-			return (node.attribute(L"unicode").as_string());
-		node = node.next_sibling();
-	}
-}
-
-wchar_t GUIText::convertUnicode(const std::string &unicode)
-{
-	std::string hex = unicode.substr(unicode.find("x"), 4);
-	std::stringstream ss;
-	int c;
-
-	ss << std::hex << hex;
-	ss >> c;
-	return (static_cast<wchar_t>(c));
-}
-
 bool GUIText::update(const sf::Event &e)
 {
 	return (true);

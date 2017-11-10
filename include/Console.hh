@@ -24,9 +24,6 @@ namespace stb {
 
 #define PROMPT		('>')
 #define CURSOR		('_')
-#define COLOR_ERROR	("\\\\#240077077")
-#define COLOR_SUCCESS	("\\\\#154205050")
-#define COLOR_INFO	("\\\\#000191255")
 #define CURSOR_DELAY	(500)
 
 	class Console

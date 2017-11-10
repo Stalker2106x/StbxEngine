@@ -27,7 +27,7 @@ namespace stb {
 	public:
 		GUITextButton<T>::GUITextButton(std::shared_ptr<GUIElement> parent, const std::string &label, const std::string &fontResource, const sf::Event::EventType &triggerType = sf::Event::MouseButtonPressed) : T(parent, triggerType)
 		{
-			_skin = new TextSkin(label, sf::Color::White, sf::Color::Cyan);
+			_skin = new TextSkin((fontResource == "icon" ? getIconCode(label) : pugi::as_wide(label)), sf::Color::White, sf::Color::Cyan);
 			_label.setFont(*SFResolver<sf::Font>::resolve(fontResource));
 		}
 
@@ -70,7 +70,7 @@ namespace stb {
 			_label.setFillColor(color);
 		}
 
-		void GUITextButton<T>::setActiveSkin(const std::string text, sf::Color color)
+		void GUITextButton<T>::setActiveSkin(const std::wstring text, sf::Color color)
 		{
 			_label.setString(text);
 			_label.setFillColor(color);

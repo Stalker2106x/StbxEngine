@@ -133,7 +133,7 @@ std::shared_ptr<GUIElement> GUIXML::getGUIToggleButtonFromXML(const pugi::xml_no
 		button = std::make_shared<GUITextButton<GUIToggleButton>>(parent, pugi::as_utf8(node.attribute(L"text").as_string(L"")), (node.attribute(L"font") ? pugi::as_utf8(node.attribute(L"font").as_string()) : GUIDefaults.font.c_str()));
 		std::shared_ptr<GUITextButton<GUIToggleButton>> btn = std::static_pointer_cast<GUITextButton<GUIToggleButton>>(button);
 		btn->setFontSize(node.attribute(L"fontSize").as_int(GUIDefaults.fontSize));
-		btn->setAltSkin(new TextSkin(pugi::as_utf8(node.attribute(L"activetext").as_string(L"")), sf::Color::White, sf::Color::Cyan));
+		btn->setAltSkin(new TextSkin(node.attribute(L"activetext").as_string(L""), sf::Color::White, sf::Color::Cyan));
 	}
 	return (button);
 }
