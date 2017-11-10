@@ -24,9 +24,9 @@ std::map<std::string, XMLParserFptr> stb::GUIXMLElementParser = {
 
 std::shared_ptr<GUIElement> GUIXML::getGUIElementFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent, std::shared_ptr<GUIElement> receiver)
 {
-	if (!node.name() || !GUIXMLElementParser.count(node.name())) //Unknown Element
+	if (!node.name() || !GUIXMLElementParser.count(pugi::as_utf8(node.name()))) //Unknown Element
 		return (NULL);
-	receiver = GUIXMLElementParser[node.name()](node, parent);
+	receiver = GUIXMLElementParser[pugi::as_utf8(node.name())](node, parent);
 	GUIGenericFromXML(node, receiver);
 	receiver->initialUpdate();
 	return (receiver);
@@ -34,15 +34,15 @@ std::shared_ptr<GUIElement> GUIXML::getGUIElementFromXML(const pugi::xml_node &n
 
 void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> element)
 {
-	element->setId(node.attribute("id").as_string(DEFAULT_ID));
-	if (node.attribute("x") && node.attribute("y"))
-		element->setPosition(sf::Vector2f(convertSize<float>(node.attribute("x").as_string(), Horizontal, element->getParent()),
-										  convertSize<float>(node.attribute("y").as_string(), Vertical, element->getParent())));
-	else if (node.attribute("x"))
-		element->setX(convertSize<float>(node.attribute("x").as_string(), Horizontal, element->getParent()));
-	else if (node.attribute("y"))
-		element->setY(convertSize<float>(node.attribute("y").as_string(), Vertical, element->getParent()));
-	if (node.attribute("dock"))
+	element->setId(pugi::as_utf8(node.attribute(L"id").as_string(DEFAULT_ID)));
+	if (node.attribute(L"x") && node.attribute(L"y"))
+		element->setPosition(sf::Vector2f(convertSize<float>(pugi::as_utf8(node.attribute(L"x").as_string()), Horizontal, element->getParent()),
+										  convertSize<float>(pugi::as_utf8(node.attribute(L"y").as_string()), Vertical, element->getParent())));
+	else if (node.attribute(L"x"))
+		element->setX(convertSize<float>(pugi::as_utf8(node.attribute(L"x").as_string()), Horizontal, element->getParent()));
+	else if (node.attribute(L"y"))
+		element->setY(convertSize<float>(pugi::as_utf8(node.attribute(L"y").as_string()), Vertical, element->getParent()));
+	if (node.attribute(L"dock"))
 	{
 
 	}
@@ -53,8 +53,8 @@ std::shared_ptr<GUIElement> GUIXML::getGUIElementPairFromXML(const pugi::xml_nod
 	std::shared_ptr<GUIElementPair> element = std::make_shared<GUIElementPair>(parent);
 	pugi::xml_node xmlElement = node.first_child();
 
-	if (node.attribute("spacing"))
-		element->setSpacing(convertSize<float>(node.attribute("spacing").as_string(), Horizontal, parent));
+	if (node.attribute(L"spacing"))
+		element->setSpacing(convertSize<float>(pugi::as_utf8(node.attribute(L"spacing").as_string()), Horizontal, parent));
 	else
 		element->setSpacing(GUIDefaults.pairSpacing);
 	element->setFirst(getGUIElementFromXML(xmlElement, element->getSPtr()));
@@ -65,16 +65,16 @@ std::shared_ptr<GUIElement> GUIXML::getGUIElementPairFromXML(const pugi::xml_nod
 
 std::shared_ptr<GUIElement> GUIXML::getGUIElementGridFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	std::shared_ptr<GUIElementGrid> element = std::make_shared<GUIElementGrid>(parent, sf::Vector2i(node.attribute("columns").as_int(0), node.attribute("rows").as_int(0)));
+	std::shared_ptr<GUIElementGrid> element = std::make_shared<GUIElementGrid>(parent, sf::Vector2i(node.attribute(L"columns").as_int(0), node.attribute(L"rows").as_int(0)));
 	pugi::xml_node xmlElement = node.first_child();
 
-	if (node.attribute("spacing"))
-		element->setSpacing(convertSize<float>(node.attribute("spacing").as_string(), Horizontal, parent));
+	if (node.attribute(L"spacing"))
+		element->setSpacing(convertSize<float>(pugi::as_utf8(node.attribute(L"spacing").as_string()), Horizontal, parent));
 	else
 		element->setSpacing(GUIDefaults.gridSpacing);
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
-		if (GUIXMLElementParser.count(it.name()))
+		if (GUIXMLElementParser.count(pugi::as_utf8(it.name())))
 		{
 			element->pushElement(getGUIElementFromXML(it, element->getSPtr()));
 		}
@@ -86,37 +86,37 @@ std::shared_ptr<GUIElement> GUIXML::getGUIButtonFromXML(const pugi::xml_node &no
 {
 	std::shared_ptr<GUIButton> button;
 
-	if (node.attribute("texture")) //GUISpriteButton
+	if (node.attribute(L"texture")) //GUISpriteButton
 	{
-		button = std::make_shared<GUISpriteButton<GUIButton>>(parent, node.attribute("texture").as_string());
+		button = std::make_shared<GUISpriteButton<GUIButton>>(parent, pugi::as_utf8(node.attribute(L"texture").as_string()));
 		pugi::xml_node it = node.first_child(); //Get and set skins, should be moved to a generic func and called in all instances of button.
 		sf::IntRect normal, hover;
 		if (it)
 		{
 			while (it)
 			{
-				if (strcmp(it.name(), "skin") == 0)
+				if (wcscmp(it.name(), L"skin") == 0)
 				{
-					if (strcmp(it.attribute("type").as_string(), "hover") == 0)
-						hover = sf::IntRect(node.attribute("left").as_int(0), node.attribute("top").as_int(0), node.attribute("width").as_int(0), node.attribute("height").as_int(0));
+					if (it.attribute(L"type").as_string() == L"hover")
+						hover = sf::IntRect(node.attribute(L"left").as_int(0), node.attribute(L"top").as_int(0), node.attribute(L"width").as_int(0), node.attribute(L"height").as_int(0));
 					else
-						normal = sf::IntRect(node.attribute("left").as_int(0), node.attribute("top").as_int(0), node.attribute("width").as_int(0), node.attribute("height").as_int(0));
+						normal = sf::IntRect(node.attribute(L"left").as_int(0), node.attribute(L"top").as_int(0), node.attribute(L"width").as_int(0), node.attribute(L"height").as_int(0));
 				}
 				it = it.next_sibling();
 			}
 			button->setSkin(new SpriteSkin(normal, hover));
 		}
 	}
-	else if (node.attribute("text")) //GUITextButton
+	else if (node.attribute(L"text")) //GUITextButton
 	{
-		button = std::make_shared<GUITextButton<GUIButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
+		button = std::make_shared<GUITextButton<GUIButton>>(parent, pugi::as_utf8(node.attribute(L"text").as_string(L"")), (node.attribute(L"font") ? pugi::as_utf8(node.attribute(L"font").as_string()) : GUIDefaults.font.c_str()));
 		std::shared_ptr<GUITextButton<GUIButton>> btn = std::static_pointer_cast<GUITextButton<GUIButton>>(button);
-		btn->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
+		btn->setFontSize(node.attribute(L"fontSize").as_int(GUIDefaults.fontSize));
 	}
-	if (node.attribute("target"))
-		button->setCommand("gui_changescreen '" + std::string(node.attribute("target").as_string()) + "'");
-	if (node.attribute("command"))
-		button->setCommand(std::string(node.attribute("command").as_string()));
+	if (node.attribute(L"target"))
+		button->setCommand("gui_changescreen '" + std::string(pugi::as_utf8(node.attribute(L"target").as_string())) + "'");
+	if (node.attribute(L"command"))
+		button->setCommand(std::string(pugi::as_utf8(node.attribute(L"command").as_string(L""))));
 	return (button);
 }
 
@@ -124,16 +124,16 @@ std::shared_ptr<GUIElement> GUIXML::getGUIToggleButtonFromXML(const pugi::xml_no
 {
 	std::shared_ptr <GUIButton> button;
 
-	if (node.attribute("texture")) //GUISpriteButton
+	if (node.attribute(L"texture")) //GUISpriteButton
 	{
-		button = std::make_shared<GUISpriteButton<GUIToggleButton>>(parent, node.attribute("texture").as_string());
+		button = std::make_shared<GUISpriteButton<GUIToggleButton>>(parent, pugi::as_utf8(node.attribute(L"texture").as_string()));
 	}
-	else if (node.attribute("text")) //GUITextButton
+	else if (node.attribute(L"text")) //GUITextButton
 	{
-		button = std::make_shared<GUITextButton<GUIToggleButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
+		button = std::make_shared<GUITextButton<GUIToggleButton>>(parent, pugi::as_utf8(node.attribute(L"text").as_string(L"")), (node.attribute(L"font") ? pugi::as_utf8(node.attribute(L"font").as_string()) : GUIDefaults.font.c_str()));
 		std::shared_ptr<GUITextButton<GUIToggleButton>> btn = std::static_pointer_cast<GUITextButton<GUIToggleButton>>(button);
-		btn->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
-		btn->setAltSkin(new TextSkin(node.attribute("activetext").as_string(""), sf::Color::White, sf::Color::Cyan));
+		btn->setFontSize(node.attribute(L"fontSize").as_int(GUIDefaults.fontSize));
+		btn->setAltSkin(new TextSkin(pugi::as_utf8(node.attribute(L"activetext").as_string(L"")), sf::Color::White, sf::Color::Cyan));
 	}
 	return (button);
 }
@@ -142,30 +142,30 @@ std::shared_ptr<GUIElement> GUIXML::getGUISettingButtonFromXML(const pugi::xml_n
 {
 	std::shared_ptr <GUIButton> button;
 
-	if (node.attribute("texture")) //GUISpriteButton
+	if (node.attribute(L"texture")) //GUISpriteButton
 	{
-		button = std::make_shared<GUISpriteButton<GUISettingButton>>(parent, node.attribute("texture").as_string());
+		button = std::make_shared<GUISpriteButton<GUISettingButton>>(parent, pugi::as_utf8(node.attribute(L"texture").as_string()));
 		std::shared_ptr<GUISpriteButton<GUISettingButton>> btn = std::static_pointer_cast<GUISpriteButton<GUISettingButton>>(button);
-		btn->pushValue(node.attribute("text").as_string(""));
+		btn->pushValue(pugi::as_utf8(node.attribute(L"text").as_string(L"")));
 		for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 		{
-			if (strcmp(it.name(), "setting") == 0)
+			if (wcscmp(it.name(), L"setting") == 0)
 			{
-				btn->pushValue(it.attribute("texture").as_string("")); //Should be skin
+				btn->pushValue(pugi::as_utf8(it.attribute(L"texture").as_string(L""))); //Should be skin
 			}
 		}
 	}
-	else if (node.attribute("text")) //GUITextButton
+	else if (node.attribute(L"text")) //GUITextButton
 	{
-		button = std::make_shared<GUITextButton<GUISettingButton>>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
+		button = std::make_shared<GUITextButton<GUISettingButton>>(parent, pugi::as_utf8(node.attribute(L"text").as_string(L"")), (node.attribute(L"font") ? pugi::as_utf8(node.attribute(L"font").as_string()) : GUIDefaults.font.c_str()));
 		std::shared_ptr<GUITextButton<GUISettingButton>> btn = std::static_pointer_cast<GUITextButton<GUISettingButton>>(button);
-		btn->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
-		btn->pushValue(node.attribute("text").as_string(""));
+		btn->setFontSize(node.attribute(L"fontSize").as_int(GUIDefaults.fontSize));
+		btn->pushValue(pugi::as_utf8(node.attribute(L"text").as_string(L"")));
 		for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 		{
-			if (strcmp(it.name(), "setting") == 0)
+			if (wcscmp(it.name(), L"setting") == 0)
 			{
-				btn->pushValue(it.attribute("text").as_string(""));
+				btn->pushValue(pugi::as_utf8(it.attribute(L"text").as_string(L"")));
 			}
 		}
 	}
@@ -175,7 +175,7 @@ std::shared_ptr<GUIElement> GUIXML::getGUISettingButtonFromXML(const pugi::xml_n
 std::shared_ptr<GUIElement> GUIXML::getGUIButtonBarFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
 	std::shared_ptr<GUIButtonBar> element;
-	std::string orientation = node.attribute("orientation").as_string("horizontal");
+	std::string orientation = pugi::as_utf8(node.attribute(L"orientation").as_string(L"horizontal"));
 	Orientation type;
 
 	if (orientation == "vertical")
@@ -185,7 +185,7 @@ std::shared_ptr<GUIElement> GUIXML::getGUIButtonBarFromXML(const pugi::xml_node 
 	else
 		return (NULL);
 	element = std::make_shared<GUIButtonBar>(parent, type);
-	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), type, parent));
+	element->setSpacing(convertSize<float>(pugi::as_utf8(node.attribute(L"spacing").as_string(L"0")), type, parent));
 	for (pugi::xml_node xmlButton = node.first_child(); xmlButton; xmlButton = xmlButton.next_sibling())
 	{
 		element->addButton(std::static_pointer_cast<GUIButton>(getGUIElementFromXML(xmlButton, element->getSPtr())));
@@ -201,10 +201,10 @@ std::shared_ptr<GUIElement> GUIXML::getGUICheckboxFromXML(const pugi::xml_node &
 
 std::shared_ptr<GUIElement> GUIXML::getGUIEditFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	std::shared_ptr<GUIEdit> element = std::make_shared<GUIEdit>(parent, node.attribute("cursor").as_string("_")[0], node.attribute("font").as_string(GUIDefaults.font.c_str()));
-	element->setWidth(convertSize<float>(node.attribute("width").as_string("150"), Horizontal, parent));
-	element->setColor(convertColorCode(node.attribute("color").as_string("#000000000"), "#"));
-	element->setTextColor(convertColorCode(node.attribute("textcolor").as_string(GUIDefaults.fontColor.c_str()), "#"));
+	std::shared_ptr<GUIEdit> element = std::make_shared<GUIEdit>(parent, pugi::as_utf8(node.attribute(L"cursor").as_string(L"_"))[0], (node.attribute(L"font") ? pugi::as_utf8(node.attribute(L"font").as_string()) : GUIDefaults.font.c_str()));
+	element->setWidth(convertSize<float>(pugi::as_utf8(node.attribute(L"width").as_string(L"150")), Horizontal, parent));
+	element->setColor(convertColorCode(pugi::as_utf8(node.attribute(L"color").as_string(L"#000000000")), "#"));
+	element->setTextColor(convertColorCode((node.attribute(L"textcolor") ? pugi::as_utf8(node.attribute(L"textcolor").as_string()) : GUIDefaults.fontColor.c_str()), "#"));
 	return (element);
 }
 
@@ -217,10 +217,10 @@ std::shared_ptr<GUIElement> GUIXML::getGUISliderFromXML(const pugi::xml_node &no
 std::shared_ptr<GUIElement> GUIXML::getGUIPanelFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
 	std::shared_ptr<GUIPanel> element = std::make_shared<GUIPanel>(parent);
-	element->setSpacing(convertSize<float>(node.attribute("spacing").as_string("0"), Vertical, parent));
+	element->setSpacing(convertSize<float>(pugi::as_utf8(node.attribute(L"spacing").as_string(L"0")), Vertical, parent));
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
-		if (GUIXMLElementParser.count(it.name()))
+		if (GUIXMLElementParser.count(pugi::as_utf8(it.name())))
 		{
 			element->addElement(getGUIElementFromXML(it, element->getSPtr()));
 		}
@@ -231,11 +231,11 @@ std::shared_ptr<GUIElement> GUIXML::getGUIPanelFromXML(const pugi::xml_node &nod
 std::shared_ptr<GUIElement> GUIXML::getGUIScreenFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
 	std::shared_ptr<GUIScreen> screen = std::make_shared<GUIScreen>(parent);
-	if (node.attribute("background"))
-		screen->setBackground(node.attribute("background").as_string());
+	if (node.attribute(L"background"))
+		screen->setBackground(pugi::as_utf8(node.attribute(L"background").as_string()));
 	for (pugi::xml_node it = node.first_child(); it; it = it.next_sibling())
 	{
-		if (GUIXMLElementParser.count(it.name()))
+		if (GUIXMLElementParser.count(pugi::as_utf8(it.name())))
 		{
 			screen->addElement(getGUIElementFromXML(it, screen->getSPtr()));
 		}
@@ -245,28 +245,28 @@ std::shared_ptr<GUIElement> GUIXML::getGUIScreenFromXML(const pugi::xml_node &no
 
 std::shared_ptr<GUIElement> GUIXML::getGUIIndicatorFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	//GUIIndicator *element = new GUIIndicator<>(node.attribute("text").as_string(), node.attribute("font").as_string(), *this);
+	//GUIIndicator *element = new GUIIndicator<>(node.attribute(L"text").as_string(), node.attribute(L"font").as_string(), *this);
 	return (NULL);
 }
 
 std::shared_ptr<GUIElement> GUIXML::getGUISpriteFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	std::shared_ptr<GUISprite> element = std::make_shared<GUISprite>(parent, node.attribute("texture").as_string(""));
+	std::shared_ptr<GUISprite> element = std::make_shared<GUISprite>(parent, pugi::as_utf8(node.attribute(L"texture").as_string(L"")));
 
 	return (element);
 }
 
 std::shared_ptr<GUIElement> GUIXML::getGUITextFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	std::shared_ptr<GUIText> element = std::make_shared<GUIText>(parent, node.attribute("text").as_string(""), node.attribute("font").as_string(GUIDefaults.font.c_str()));
+	std::shared_ptr<GUIText> element = std::make_shared<GUIText>(parent, pugi::as_utf8(node.attribute(L"text").as_string(L"")), (node.attribute(L"font") ? pugi::as_utf8(node.attribute(L"font").as_string()) : GUIDefaults.font.c_str()));
 
-	element->setFontSize(node.attribute("fontSize").as_int(GUIDefaults.fontSize));
+	element->setFontSize(node.attribute(L"fontSize").as_int(GUIDefaults.fontSize));
 	return (element);
 }
 
 std::shared_ptr<GUIElement> GUIXML::getGUISeparatorFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
 {
-	std::shared_ptr<GUISeparator> element = std::make_shared<GUISeparator>(parent, sf::Vector2f(node.attribute("width").as_float(0.0f), node.attribute("height").as_float(0.0f)));
+	std::shared_ptr<GUISeparator> element = std::make_shared<GUISeparator>(parent, sf::Vector2f(node.attribute(L"width").as_float(0.0f), node.attribute(L"height").as_float(0.0f)));
 
 	return (element);
 }

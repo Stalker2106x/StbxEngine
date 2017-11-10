@@ -12,7 +12,7 @@
 
 namespace stb {
 
-#define DEFAULT_ID	""
+#define DEFAULT_ID	L""
 #define COLOR_ESC	("\\\\#")
 
 	enum Orientation {

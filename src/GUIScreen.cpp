@@ -35,7 +35,7 @@ std::shared_ptr<GUIScreen> GUIScreen::loadFromFile(const std::string &file, cons
 	screen = doc.first_child();
 	if (!screenId.empty()) //Getting desired screen of id screenId
 	{
-		while (screen.attribute("id").value() != screenId)
+		while (screen.attribute(L"id").value() != pugi::as_wide(screenId))
 		{
 			if (screen == doc.last_child())
 				return (false);

@@ -11,7 +11,6 @@
 
 #ifdef STBXENGINE_CORE
 #include <pugixml.hpp>
-#endif
 #include "GUIElement.hpp"
 #include "GUIContainer.hh"
 #include "GUIEntity.hh"
@@ -20,8 +19,6 @@
 
 namespace stb
 {
-#ifdef STBXENGINE_CORE
-	
 	class GUIXML
 	{
 	public:
@@ -54,7 +51,8 @@ namespace stb
 
 	// This map binds XML Nodes names to corresponding C++ Parser
 	extern std::map<std::string, XMLParserFptr> GUIXMLElementParser;
-#endif
 }
+
+#endif
 
 #endif /* !GUIXML_HH_ */

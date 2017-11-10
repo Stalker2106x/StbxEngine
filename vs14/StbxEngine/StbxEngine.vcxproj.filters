@@ -89,9 +89,6 @@
     <ClCompile Include="..\..\src\Keybinds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
-      <Filter>Source Files\ThirdParty</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Resolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -121,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\GUIAdvancedEntity.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
+      <Filter>Source Files\ThirdParty</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
