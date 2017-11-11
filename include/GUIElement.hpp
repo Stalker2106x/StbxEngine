@@ -66,6 +66,10 @@ namespace stb {
 				setX(_parent->getPosition().x);
 			else if (d == Right)
 				setX(_parent->getPosition().x + _parent->getSize().x - getSize().x);
+			else if (d == Up)
+				setY(_parent->getPosition().y);
+			else if (d == Down)
+				setY(_parent->getPosition().y + _parent->getSize().y - getSize().y);
 		}
 
 		virtual bool updateRT() { return (true); }; //Real time update, called more than one time between frames

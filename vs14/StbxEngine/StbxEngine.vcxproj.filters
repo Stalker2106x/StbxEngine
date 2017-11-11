@@ -42,9 +42,6 @@
     <ClInclude Include="..\..\include\GUIButton.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\GUIPanel.hh">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\GUIEntity.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -70,6 +67,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\GUIPanel.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

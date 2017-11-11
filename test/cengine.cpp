@@ -17,11 +17,14 @@ sEngine::sEngine()
 	//Add Draggable Panel
 	std::shared_ptr<stb::GUIDraggablePanel> panel = std::make_shared<stb::GUIDraggablePanel>(nullptr, sf::Vector2i(400, 200), sf::Color(64, 64, 64), sf::Color(110, 110, 110));
 	panel->setId("windowz");
+	panel->setPosition(sf::Vector2f(10, 10));
 	gui->addElement(panel);
 	//Create FPS Indicator inside
-	panel->addElement(stb::GUIElementPair::make_pair(panel,
-						std::make_shared<stb::GUIText>(nullptr, "Indicator :", "glitch"),
-						std::make_shared<stb::GUIIndicator<int>>(nullptr, _framerate, "glitch")));
+	std::shared_ptr<stb::GUIElementPair> pair = stb::GUIElementPair::make_pair(panel,
+		std::make_shared<stb::GUIText>(nullptr, "Indicator :", "glitch"),
+		std::make_shared<stb::GUIIndicator<int>>(nullptr, _framerate, "glitch"));
+	pair->dock(stb::Direction::Right);
+	panel->addElement(pair);
 }
 
 bool sEngine::update(const sf::Event &e)

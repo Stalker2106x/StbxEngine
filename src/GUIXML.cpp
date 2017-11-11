@@ -43,9 +43,7 @@ void GUIXML::GUIGenericFromXML(const pugi::xml_node &node, std::shared_ptr<GUIEl
 	else if (node.attribute(L"y"))
 		element->setY(convertSize<float>(pugi::as_utf8(node.attribute(L"y").as_string()), Vertical, element->getParent()));
 	if (node.attribute(L"dock"))
-	{
-
-	}
+		element->dock(convertDirection(pugi::as_utf8(node.attribute(L"dock").as_string())));
 }
 
 std::shared_ptr<GUIElement> GUIXML::getGUIElementPairFromXML(const pugi::xml_node &node, std::shared_ptr<GUIElement> parent)
