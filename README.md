@@ -1,5 +1,8 @@
 # STABAX ENGINE #
 
+# This is a custom STBX GUI experimental version #
+# WORK IN PROGRESS... OR ABANDONED ? #
+
 ## Contributors ##
 + Stabax Corp.
 + Maxime 'stalker2106' Martens
@@ -39,9 +42,9 @@ Check out our [latest guide here](http://vault.maximemartens.fr/stbxengine/doc/m
 
 ### Get library
 
-To begin writing your game, clone latest revision of engine: 
+To begin writing your game, clone latest revision of engine:
 	#!bash
-	
+
 	git clone http://bitbucket.org/stalker2106/stbxengine.git
 
 ## Build it! ##
@@ -50,7 +53,7 @@ To begin writing your game, clone latest revision of engine:
 
 build the library binary depending on your needs with command line:
 	#!bash
-	
+
 	make static
 OR
 	make dynamic
