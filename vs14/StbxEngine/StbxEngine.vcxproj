@@ -135,38 +135,18 @@
     <ClInclude Include="..\..\include\Console.hh" />
     <ClInclude Include="..\..\include\Control.hh" />
     <ClInclude Include="..\..\include\defs.h" />
-    <ClInclude Include="..\..\include\GUI.hh" />
     <ClInclude Include="..\..\include\Engine.hpp" />
-    <ClInclude Include="..\..\include\GUIAdvancedEntity.hh" />
-    <ClInclude Include="..\..\include\GUIButton.hh" />
-    <ClInclude Include="..\..\include\GUIContainer.hh" />
-    <ClInclude Include="..\..\include\GUIEntity.hh" />
-    <ClInclude Include="..\..\include\GUIPanel.hh" />
-    <ClInclude Include="..\..\include\GUISpecializedButton.hpp" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
     <ClInclude Include="..\..\include\Resolver.hh" />
-    <ClInclude Include="..\..\include\GUIScreen.hh" />
-    <ClInclude Include="..\..\include\GUIXML.hh" />
     <ClInclude Include="..\..\include\utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
-    <ClCompile Include="..\..\src\GUIAdvancedEntity.cpp" />
-    <ClCompile Include="..\..\src\GUIContainer.cpp" />
-    <ClCompile Include="..\..\src\GUIScreen.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
-    <ClInclude Include="..\..\include\GUIElement.hpp" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
     <ClCompile Include="..\..\src\Control.cpp" />
-    <ClCompile Include="..\..\src\GUI.cpp">
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine.cpp" />
-    <ClCompile Include="..\..\src\GUIButton.cpp" />
-    <ClCompile Include="..\..\src\GUIEntity.cpp" />
-    <ClCompile Include="..\..\src\GUIPanel.cpp" />
-    <ClCompile Include="..\..\src\GUIXML.cpp" />
     <ClCompile Include="..\..\src\Keybinds.cpp" />
     <ClCompile Include="..\..\src\Resolver.cpp" />
   </ItemGroup>

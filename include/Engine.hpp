@@ -15,7 +15,6 @@
 #include <SFML/Graphics.hpp>
 #include "Console.hh"
 #include "Keybinds.hh"
-#include "GUI.hh"
 
 namespace stb {
 
@@ -61,7 +60,6 @@ namespace stb {
 
 		Keybinds *keybinds;
 		Console *console;
-		GUI *gui;
 
 		static Engine *instance; //Public hook on engine instance
 

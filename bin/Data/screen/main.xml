@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen id="main" background="background">
-  <button text="ion-android-home" font="icon" target="alt" dock="right" />
-  <panel x="25%" spacing="5%">
+  <button text="ion-android-home" font="icon" target="alt" />
+  <panel x="25%" spacing="5%" background="background">
     <text text="Menu" />
     <pair spacing="100">
       <text text="toggle" />

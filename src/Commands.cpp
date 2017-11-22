@@ -1,7 +1,7 @@
 #include <fstream>
+#include <memory>
 #include "Engine.hpp"
 #include "Commands.hh"
-#include "GUIContainer.hh"
 #include "utils.h"
 #ifndef _MSC_VER
 	#include <unistd.h>
@@ -146,31 +146,7 @@ namespace stb {
 
 		void debugInfo(Engine &e, std::vector<std::string> *)
 		{
-			std::shared_ptr<GUIPanel> debugpanel;
-
-			if ((debugpanel = std::static_pointer_cast<GUIPanel>(e.gui->getElement("__debuginfo"))) != NULL)
-				e.gui->removeElement("__debuginfo");
-			else
-			{
-				debugpanel = std::make_shared<GUIPanel>(nullptr, sf::Vector2i(150, 250), sf::Color(47, 79, 79, 150));
-				debugpanel->setId("__debuginfo");
-				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
-					std::make_shared<stb::GUIText>(nullptr, "Screen Width: "),
-					std::make_shared<stb::GUIIndicator<int>>(nullptr, e.getWindowSize().x)));
-				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
-					std::make_shared<stb::GUIText>(nullptr, "Screen Height: "),
-					std::make_shared<stb::GUIIndicator<int>>(nullptr, e.getWindowSize().y)));
-				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
-					std::make_shared<stb::GUIText>(nullptr, "FPS: "),
-					std::make_shared<stb::GUIIndicator<int>>(nullptr, e.getFramerate())));
-				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
-					std::make_shared<stb::GUIText>(nullptr, "Mouse X: "),
-					std::make_shared<stb::GUIIndicator<float>>(nullptr, e.getMouse().x)));
-				debugpanel->addElement(GUIElementPair::make_pair(debugpanel,
-					std::make_shared<stb::GUIText>(nullptr, "Mouse Y: "),
-					std::make_shared<stb::GUIIndicator<float>>(nullptr, e.getMouse().y)));
-				e.gui->addElement(debugpanel);
-			}
+			//none
 		}
 
 		void echo(Engine &e, std::vector<std::string> *argv)
@@ -262,22 +238,12 @@ namespace stb {
 
 		void changeScreen(Engine &e, std::vector<std::string> *argv)
 		{
-			if (argv == NULL || argv->size() < 1)
-			{
-				e.console->output(COLOR_ERROR, "gui_changescreen: No id given");
-				return;
-			}
-			e.gui->changeScreen((*argv)[0].c_str());
+			//none
 		}
 
 		void toggleGUIElement(Engine &e, std::vector<std::string> *argv)
 		{
-			if (argv == NULL || argv->size() < 1)
-			{
-				e.console->output(COLOR_ERROR, "gui_toggleelement: No id given");
-				return;
-			}
-			e.gui->toggleHideElement((*argv)[0].c_str());
+			//none
 		}
 
 		void timestampLog(Engine &e, std::vector<std::string> *argv)

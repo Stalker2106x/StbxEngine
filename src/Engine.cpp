@@ -25,7 +25,6 @@ void Engine::init(int width, int height)
 {
 	keybinds = new Keybinds();
 	console = new Console(*this);
-	gui = new GUI();
 	openWindow(width, height);
 	keybinds->bindEnv(this);
 	_gametime.restart();
@@ -66,11 +65,6 @@ void Engine::handleArgs(int argc, char **argv)
 		  Commands::parseCmd(cmd);
 		}
     }
-}
-
-void Engine::changeScreen(const std::string &resource, const std::string &location)
-{
-	gui->changeScreen(resource, location);
 }
 
 sf::RenderWindow &Engine::getWindowHandle()
@@ -142,10 +136,6 @@ bool Engine::updateLoop()
 {
   sf::Event event;
 
-  if (gui->isActive())
-	  gui->updateRT();
-  if (console->isActive())
-	  console->updateRT();
   _mouse = getMousePosition();
   while (_win->pollEvent(event))
     {
@@ -156,8 +146,6 @@ bool Engine::updateLoop()
 		}
 		if (console->isActive())
 			console->update(event);
-		if (gui->isActive())
-			gui->update(event);
 		keybinds->update(event);
 		if (update(event) == false)
 		{
@@ -186,10 +174,8 @@ int Engine::mainLoop()
     {
       _win->clear(sf::Color::Black);
 	  draw(*_win);
-	  if (gui->isActive())
-		  gui->draw(*_win);
 	  if (console->isActive())
-		  console->draw(*_win);
+		  console->draw(_win);
       _win->display();
 	  updateFramerate();
     }
