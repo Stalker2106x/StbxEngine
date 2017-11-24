@@ -13,3 +13,6 @@
 [submodule "extlib/ionicons"]
 	path = extlib/ionicons
 	url = https://github.com/ionic-team/ionicons.git
+[submodule "extlib/imgui-sfml"]
+	path = extlib/imgui-sfml
+	url = https://github.com/eliasdaler/imgui-sfml.git
