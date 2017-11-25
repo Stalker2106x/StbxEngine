@@ -16,6 +16,11 @@
 #include "Console.hh"
 #include "Keybinds.hh"
 
+#ifdef STBXENGINE_CORE
+#include "imgui.h"
+#include "imgui-SFML.h"
+#endif
+
 namespace stb {
 
 	enum CharType {
@@ -33,7 +38,6 @@ namespace stb {
 		void init(int width = 800, int height = 600);
 		bool openWindow(int, int);
 
-		void changeScreen(const std::string &resource, const std::string &location);
 		sf::RenderWindow &getWindowHandle();
 		sf::Vector2i &getWindowSize();
 		int &getFramerate();
@@ -66,7 +70,7 @@ namespace stb {
 	protected:
 		bool _quit, _fullscreen, _vsync;
 		int _framerate, _frames;
-		sf::Clock _gametime;
+		sf::Clock _gametime, _delta;
 		sf::Time _lastSecondTick;
 		sf::Vector2i _winsize;
 		sf::Vector2f _mouse;

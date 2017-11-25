@@ -66,4 +66,5 @@ namespace stb {
 		else if (direction == "right")
 			return (Right);
 	}
+
 }

@@ -77,7 +77,7 @@
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\..\extlib\pugixml\src;$(SolutionDir)\..\extlib\imgui;$(SolutionDir)\..\extlib\sfml\include;$(SolutionDir)\..\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\extlib\imgui-sfml;$(SolutionDir)\..\extlib\pugixml\src;$(SolutionDir)\..\extlib\imgui;$(SolutionDir)\..\extlib\sfml\include;$(SolutionDir)\..\include;$(IncludePath)</IncludePath>
     <TargetName>libsengine</TargetName>
     <OutDir>$(SolutionDir)\..\bin\</OutDir>
   </PropertyGroup>
@@ -120,8 +120,7 @@
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>D:\Projets\stbxengine14\extlib\sfml\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
