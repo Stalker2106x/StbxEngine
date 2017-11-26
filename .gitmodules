@@ -7,15 +7,9 @@
 [submodule "extlib/stblib"]
 	path = extlib/stblib
 	url = https://stalker2106@bitbucket.org/baxlan/stblib.git
-[submodule "extlib/clip"]
-	path = extlib/clip
-	url = https://github.com/dacap/clip.git
 [submodule "extlib/ionicons"]
 	path = extlib/ionicons
 	url = https://github.com/ionic-team/ionicons.git
-[submodule "extlib/imgui-sfml"]
-	path = extlib/imgui-sfml
-	url = https://github.com/eliasdaler/imgui-sfml.git
 [submodule "extlib/TGUI"]
 	path = extlib/TGUI
 	url = https://github.com/texus/TGUI.git
