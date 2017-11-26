@@ -40,8 +40,6 @@ bool Engine::openWindow(int width, int height)
 	_win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
 			(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
 	Engine::console->initGraphics(_winsize);
-	ImGui::SFML::Init(*_win);
-	ImGui::NewFrame();
 	return (true);
 }
 
@@ -146,7 +144,6 @@ bool Engine::updateLoop()
 		  _win->close();
 		  return (false);
 		}
-		ImGui::SFML::ProcessEvent(event);
 		if (console->isActive())
 			console->update(event);
 		keybinds->update(event);
@@ -156,8 +153,6 @@ bool Engine::updateLoop()
 		  return (false);
 		}
     }
-  ImGui::EndFrame();
-  ImGui::SFML::Update(*_win, _delta.restart());
   return (true);
 }
 
@@ -179,7 +174,6 @@ int Engine::mainLoop()
     {
       _win->clear(sf::Color::Black);
 	  draw(*_win);
-	  ImGui::SFML::Render(*_win);
 	  if (console->isActive())
 		  console->draw(_win);
       _win->display();
@@ -229,5 +223,4 @@ std::string Engine::getTimestamp()
 void Engine::quit()
 {
   _quit = true;
-  ImGui::SFML::Shutdown();
 }

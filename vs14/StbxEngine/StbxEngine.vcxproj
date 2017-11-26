@@ -140,9 +140,6 @@
     <ClInclude Include="..\..\include\utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\extlib\imgui-sfml\imgui-SFML.cpp" />
-    <ClCompile Include="..\..\extlib\imgui\imgui.cpp" />
-    <ClCompile Include="..\..\extlib\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
     <ClCompile Include="..\..\src\Commands.cpp" />

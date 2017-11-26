@@ -16,3 +16,6 @@
 [submodule "extlib/imgui-sfml"]
 	path = extlib/imgui-sfml
 	url = https://github.com/eliasdaler/imgui-sfml.git
+[submodule "extlib/TGUI"]
+	path = extlib/TGUI
+	url = https://github.com/texus/TGUI.git

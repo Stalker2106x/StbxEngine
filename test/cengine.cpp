@@ -1,6 +1,5 @@
 #include "cengine.hh"
 #include "../include/Resolver.hh"
-#include "imgui/imgui.h"
 
 sEngine::sEngine()
 {
@@ -19,8 +18,4 @@ bool sEngine::update(const sf::Event &e)
 
 void sEngine::draw(sf::RenderWindow &win)
 {
-	//ImGui
-	ImGui::Begin("Frame");
-	ImGui::Button("OVERBUTTON");
-	ImGui::End();
 }
