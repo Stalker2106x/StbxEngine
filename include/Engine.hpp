@@ -13,7 +13,9 @@
 #define ENGINE_HPP_
 
 #include <SFML/Graphics.hpp>
+#include <TGUI/TGUI.hpp>
 #include "Console.hh"
+#include "Keybinds.hh"
 #include "Keybinds.hh"
 
 namespace stb {
@@ -59,6 +61,7 @@ namespace stb {
 
 		Keybinds *keybinds;
 		Console *console;
+		tgui::Gui *gui;
 
 		static Engine *instance; //Public hook on engine instance
 

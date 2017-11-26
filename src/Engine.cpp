@@ -40,6 +40,7 @@ bool Engine::openWindow(int width, int height)
 	_win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
 			(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
 	Engine::console->initGraphics(_winsize);
+	gui = new tgui::Gui(*_win);
 	return (true);
 }
 
@@ -152,6 +153,15 @@ bool Engine::updateLoop()
 		  _win->close();
 		  return (false);
 		}
+		// When the window is resized, the view is changed
+		else if (event.type == sf::Event::Resized)
+		{
+			_win->setView(sf::View(sf::FloatRect(0, 0, (float)event.size.width, (float)event.size.height)));
+			gui->setView(_win->getView());
+		}
+
+		// Pass the event to all the widgets
+		gui->handleEvent(event);
     }
   return (true);
 }
@@ -176,6 +186,8 @@ int Engine::mainLoop()
 	  draw(*_win);
 	  if (console->isActive())
 		  console->draw(_win);
+	  // Draw all created widgets
+	  gui->draw();
       _win->display();
 	  updateFramerate();
     }

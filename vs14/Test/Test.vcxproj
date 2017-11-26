@@ -76,7 +76,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)..\bin\</OutDir>
     <IntDir />
-    <IncludePath>$(SolutionDir)\..\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\..\include;D:\Projets\StbxEngine14\extlib\TGUI\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
