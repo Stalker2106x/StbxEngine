@@ -302,7 +302,7 @@ namespace stb {
 				return;
 			}
 			e.console->setLineCount(atoi((*argv)[0].c_str()));
-			e.console->initGraphics(e.getWindowSize());
+			e.console->initGraphics(e.getWindowSize(), *e.gui);
 		}
 
 		void setConColor(Engine &e, std::vector<std::string> *argv)
@@ -401,7 +401,7 @@ namespace stb {
 				return;
 			}
 			e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));
-			e.console->initGraphics(e.getWindowSize());
+			e.console->initGraphics(e.getWindowSize(), *e.gui);
 		}
 
 	}

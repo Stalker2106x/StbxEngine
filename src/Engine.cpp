@@ -39,8 +39,8 @@ bool Engine::openWindow(int width, int height)
 	_win->setKeyRepeatEnabled(false);
 	_win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
 			(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
-	Engine::console->initGraphics(_winsize);
 	gui = new tgui::Gui(*_win);
+	Engine::console->initGraphics(_winsize, *gui);
 	return (true);
 }
 
@@ -184,10 +184,9 @@ int Engine::mainLoop()
     {
       _win->clear(sf::Color::Black);
 	  draw(*_win);
-	  if (console->isActive())
-		  console->draw(_win);
-	  // Draw all created widgets
 	  gui->draw();
+	  if (console->isActive())
+		  console->draw(*_win);
       _win->display();
 	  updateFramerate();
     }

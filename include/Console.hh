@@ -15,6 +15,7 @@
 #include <deque>
 #include <fstream>
 #include <SFML/Graphics.hpp>
+#include <TGUI/TGUI.hpp>
 #include "Commands.hh"
 
 namespace stb {
@@ -33,7 +34,7 @@ namespace stb {
 		Console(Engine &e);
 		~Console();
 
-		void initGraphics(const sf::Vector2i &winsize);
+		void initGraphics(const sf::Vector2i &winsize, tgui::Gui &gui);
 
 		void toggle();
 		void clear();
@@ -59,13 +60,14 @@ namespace stb {
 		void updateOutput();
 		void updateKeyboard(const sf::Event &event);
 		void update(const sf::Event &event);
-		void draw(sf::RenderWindow *win);
+		void draw(sf::RenderWindow &win);
 
 	private:
 		Engine &_engine;
 
 		bool _active, _logEnabled, _logTimestamp;
-		sf::RectangleShape _bg, _inputArea;
+		sf::RectangleShape _bg;
+		tgui::EditBox::Ptr _inputArea;
 		sf::Font _font;
 		sf::Text _inputValue, _cursor;
 		std::string _logFile;

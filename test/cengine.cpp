@@ -10,9 +10,10 @@ sEngine::sEngine()
 	stb::Resolver<stb::GUIScreen>::addLocation("./Data/screen/");
 	//init engine
 	init();
-	auto picture = tgui::Picture::create("./Data/texture/background.png");
-	picture->setSize({ "100%", "100%" });
-	gui->add(picture);
+	/*auto picture = tgui::Picture::create("./Data/texture/background.png");
+	picture->setSize({ "10%", "10%" });
+	picture->moveToBack();
+	gui->add(picture);*/
 }
 
 bool sEngine::update(const sf::Event &e)
