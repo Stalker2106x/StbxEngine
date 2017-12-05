@@ -26,6 +26,7 @@ namespace stb {
 		return (color);
 	}
 
+#ifdef PUGIXML_WCHAR_MODE
 	const std::wstring getIconCode(const std::string &id)
 	{
 		pugi::xml_document doc;
@@ -54,6 +55,7 @@ namespace stb {
 		}
 		return (L""); //Unknown Glyph
 	}
+#endif
 
 	const Direction convertDirection(const std::string &direction)
 	{

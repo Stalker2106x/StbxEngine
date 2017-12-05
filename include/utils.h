@@ -15,7 +15,9 @@
 namespace stb {
 
 	const sf::Color convertColorCode(std::string code, std::string esc = COLOR_ESC);
+#ifdef PUGIXML_WCHAR_MODE
 	const std::wstring getIconCode(const std::string &id);
+#endif
 	const Direction convertDirection(const std::string &direction);
 }
 
