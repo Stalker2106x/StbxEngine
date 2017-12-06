@@ -37,7 +37,7 @@ void Console::initGraphics(const sf::Vector2i &winsize, tgui::Gui &gui)
 {
 	_console = tgui::Panel::create();
 	_console->setPosition(0, 0);
-	_console->setSize("100%", "33%");
+	//_console->setSize("100%", "33%");
 	gui.add(_console);
 	_inputArea = tgui::EditBox::create();
 	_inputArea->setSize("95%", "5%");

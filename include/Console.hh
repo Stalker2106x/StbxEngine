@@ -66,7 +66,7 @@ namespace stb {
 		Engine &_engine;
 
 		bool _active, _logEnabled, _logTimestamp;
-		sf::RectangleShape _bg;
+		tgui::Panel::Ptr _console;
 		tgui::EditBox::Ptr _inputArea;
 		sf::Font _font;
 		sf::Text _inputValue, _cursor;
