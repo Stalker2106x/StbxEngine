@@ -43,7 +43,6 @@ namespace stb {
 		void printCWD(Engine &e, std::vector<std::string> *);
 		void quit(Engine &e, std::vector<std::string> *);
 		void screenshot(Engine &e, std::vector<std::string> *argv);
-		void setLineCount(Engine &e, std::vector<std::string> *);
 		void setConColor(Engine &e, std::vector<std::string> *);
 		void setConCursor(Engine &e, std::vector<std::string> *);
 		void setMaxFPS(Engine &e, std::vector<std::string> *);

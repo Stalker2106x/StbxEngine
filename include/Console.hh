@@ -40,22 +40,18 @@ namespace stb {
 		void clear();
 
 		bool isActive() const;
-		void setLineCount(const unsigned int &count);
 		void setColor(sf::Color bg, sf::Color input);
-		void setCursor(char &c);
 		void setLogEnabled(bool state);
-		void writeToLog(std::string &msg);
+		void writeToLog(const std::string &msg);
 		void setLogFile(const std::string &file);
 		void setLogTimestamp(int);
 
 		static sf::Color *convertColorCode(std::string code, std::string esc = "\\\\#");
 
-		void output(std::string msg);
-		void output(std::string color, std::string msg);
-		void insertLastOutput(const std::string &msg);
-		void input();
+		void output(const std::string &msg);
+		void input(const std::string &msg);
+		static void inputFromGUI(std::deque<std::string> &input, const tgui::EditBox::Ptr &inputArea);
 
-		void updateOutput();
 		void updateKeyboard(const sf::Event &event);
 		void update(const sf::Event &event);
 		void draw(sf::RenderWindow &win);
@@ -65,15 +61,11 @@ namespace stb {
 
 		bool _active, _logEnabled, _logTimestamp;
 		tgui::Panel::Ptr _console;
+		tgui::ListBox::Ptr _outputArea;
 		tgui::EditBox::Ptr _inputArea;
-		sf::Font _font;
 		std::string _logFile;
 		std::ofstream _log;
-
-		std::list<sf::Text *> _output;
-		std::deque<std::string> _input;
-		size_t _currentIndex, _outputIndex, _cursorIndex;
-		unsigned int _fontSize, _lineCount;
+		std::deque<std::string> _input, _output;
 	};
 
 }

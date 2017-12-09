@@ -17,7 +17,6 @@ namespace stb {
 			{ "bind", &bindCommand },
 			{ "bindlist", &bindList },
 			{ "clear", &consoleClear },
-			{ "con_maxline", &setLineCount },
 			{ "con_color", &setConColor },
 			{ "con_cursor", &setConCursor },
 			{ "cwd", &printCWD },
@@ -52,7 +51,7 @@ namespace stb {
 				return (false);
 			else
 			{
-				Engine::instance->console->output(COLOR_ERROR, "Syntax: Invalid argument, expected boolean");
+				Engine::instance->console->output("Syntax: Invalid argument, expected boolean");
 				throw std::invalid_argument("bool");
 			}
 			return (false);
@@ -117,7 +116,7 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 2)
 			{
-				e.console->output(COLOR_ERROR, "bind: Missing argument");
+				e.console->output("bind: Missing argument");
 				return;
 			}
 			std::string bind = (*argv)[0];
@@ -126,7 +125,7 @@ namespace stb {
 			std::transform(bind.begin(), bind.end(), bind.begin(), ::tolower);
 			std::transform(action.begin(), action.end(), action.begin(), ::tolower);
 			if (!e.keybinds->bind(bind, action))
-				e.console->output(COLOR_ERROR, "bind: Cannot bind key; key or action invalid?");
+				e.console->output("bind: Cannot bind key; key or action invalid?");
 		}
 
 		void bindList(Engine &e, std::vector<std::string> *)
@@ -164,13 +163,13 @@ namespace stb {
 
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "exec: Nothing to execute");
+				e.console->output("exec: Nothing to execute");
 				return;
 			}
 			ifs.open((*argv)[0]);
 			if (!ifs.is_open())
 			{
-				e.console->output(COLOR_ERROR, "exec: Cannot open \"" + (*argv)[0] + "\"");
+				e.console->output("exec: Cannot open \"" + (*argv)[0] + "\"");
 				return;
 			}
 			while (std::getline(ifs, cmd))
@@ -184,7 +183,7 @@ namespace stb {
 
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "find: Nothing to search for");
+				e.console->output("find: Nothing to search for");
 				return;
 			}
 			for (iter = cmdlist.begin(); iter != cmdlist.end(); iter++)
@@ -195,8 +194,6 @@ namespace stb {
 			for (size_t i = 0; i < available.size(); i++)
 			{
 				e.console->output(available[i]);
-				if (i < available.size() - 1)
-					e.console->insertLastOutput(", ");
 			}
 			if (available.empty())
 				e.console->output("find: No commands found");
@@ -206,7 +203,7 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "log_enable: No param given");
+				e.console->output("log_enable: No param given");
 				return;
 			}
 			bool v;
@@ -220,7 +217,7 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "log_write: Nothing to write");
+				e.console->output("log_write: Nothing to write");
 				return;
 			}
 			e.console->writeToLog((*argv)[0]);
@@ -230,7 +227,7 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "log_file: No path given");
+				e.console->output("log_file: No path given");
 				return;
 			}
 			e.console->setLogFile((*argv)[0]);
@@ -291,18 +288,7 @@ namespace stb {
 				file += (*argv)[0] + ".png";
 			id++;
 			if (!shot.saveToFile(file))
-				e.console->output(COLOR_ERROR, "screenshot: Unable to save screenshot");
-		}
-
-		void setLineCount(Engine &e, std::vector<std::string> *argv)
-		{
-			if (argv == NULL || argv->size() < 1)
-			{
-				e.console->output(COLOR_ERROR, "con_maxline: No value given");
-				return;
-			}
-			e.console->setLineCount(atoi((*argv)[0].c_str()));
-			e.console->initGraphics(e.getWindowSize(), *e.gui);
+				e.console->output("screenshot: Unable to save screenshot");
 		}
 
 		void setConColor(Engine &e, std::vector<std::string> *argv)
@@ -311,7 +297,7 @@ namespace stb {
 
 			if (argv == NULL || argv->size() < 2
 				|| (*argv)[0].length() < 9 || (*argv)[1].length() < 9)
-				e.console->output(COLOR_ERROR, "con_color: Invalid colors or no colors given");
+				e.console->output("con_color: Invalid colors or no colors given");
 			cbg = convertColorCode((*argv)[0]);
 			cinput = convertColorCode((*argv)[1]);
 			e.console->setColor(cbg, cinput);
@@ -321,7 +307,7 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "con_cursor: No char given");
+				e.console->output("con_cursor: No char given");
 				return;
 			}
 			//e.console->setCursor((*argv)[0][0]); TMP
@@ -331,7 +317,7 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "fps_max: No value given");
+				e.console->output("fps_max: No value given");
 				return;
 			}
 			e.videoParamSet("FPS", atoi((*argv)[0].c_str()));
@@ -353,13 +339,11 @@ namespace stb {
 
 		void help(Engine &e, std::vector<std::string> *)
 		{
-			e.console->output(COLOR_INFO, "Available commands: ");
+			e.console->output("Available commands: ");
 			e.console->output("");
 			for (cmdMap::const_iterator it = cmdlist.begin(); it != cmdlist.end(); it++)
 			{
-				e.console->insertLastOutput(it->first);
-				if (std::next(it, 1) != cmdlist.end())
-					e.console->insertLastOutput(", ");
+				e.console->output(it->first);
 			}
 		}
 
@@ -381,11 +365,11 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 1)
 			{
-				e.console->output(COLOR_ERROR, "unbind: No key or action given");
+				e.console->output("unbind: No key or action given");
 				return;
 			}
 			if (!e.keybinds->unbind((*argv)[0]))
-				e.console->output(COLOR_ERROR, "unbind: Unable to unbind key or action");
+				e.console->output("unbind: Unable to unbind key or action");
 		}
 
 		void unbindall(Engine &e, std::vector<std::string> *)
@@ -397,7 +381,7 @@ namespace stb {
 		{
 			if (argv == NULL || argv->size() < 2)
 			{
-				e.console->output(COLOR_ERROR, "videomode: Mode incorrect or no mode given");
+				e.console->output("videomode: Mode incorrect or no mode given");
 				return;
 			}
 			e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));

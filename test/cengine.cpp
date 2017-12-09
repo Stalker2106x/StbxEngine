@@ -12,10 +12,11 @@ sEngine::sEngine()
 	stb::PathResolver<stb::RSound>::addLocation("./Data/sound/");
 	//init engine
 	init();
+	/*
 	auto picture = tgui::Picture::create("./Data/texture/background.png");
 	picture->setSize("10%", "10%");
 	picture->moveToBack();
-	gui->add(picture);
+	gui->add(picture);*/
 }
 
 bool sEngine::update(const sf::Event &e)

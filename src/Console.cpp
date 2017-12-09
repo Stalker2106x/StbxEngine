@@ -8,12 +8,6 @@ using namespace stb;
 
 Console::Console(Engine &e) : _engine(e)
 {
-	_font = *SFResolver<sf::Font>::resolve("console");
-	_lineCount = 16;
-	_fontSize = 18;
-	_currentIndex = 0;
-	_outputIndex = 0;
-	_cursorIndex = 0;
 	_input.push_back("");
 	_logFile = "Data/log.txt";
 	_logEnabled = false;
@@ -30,13 +24,18 @@ void Console::initGraphics(const sf::Vector2i &winsize, tgui::Gui &gui)
 {
 	_console = tgui::Panel::create();
 	_console->setPosition(0, 0);
-	_console->setSize(400, 400);
+	_console->setSize(winsize.x, "33%");
+	_console->getRenderer()->setBackgroundColor(tgui::Color(25, 39, 51));
 	gui.add(_console);
-	_console->add(tgui::Picture::create("./Data/texture/background.jpg"));
 	_inputArea = tgui::EditBox::create();
-	_inputArea->setSize("95%", _fontSize + 2);
-	_inputArea->setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea->getSize().y + 4));
+	_inputArea->setSize(winsize.x - 10, 15);
+	_inputArea->setPosition(5, _console->getSize().y - _inputArea->getSize().y - 5);
+	_inputArea->connect("ReturnKeyPressed", [&]() { input(_inputArea->getText()); });
 	_console->add(_inputArea);
+	_outputArea = tgui::ListBox::create();
+	_outputArea->setSize(winsize.x - 10, _console->getSize().y - _inputArea->getSize().y - 15);
+	_outputArea->setPosition(5, 5);
+	_console->add(_outputArea);
 	setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));
 	toggle();
 }
@@ -46,30 +45,23 @@ void Console::toggle()
 	_active ? _active = false : _active = true;
 	if (_active)
 	{
-		_inputArea->show();
+		_console->show();
 		_inputArea->focus();
 	}
 	else
 	{
-		_inputArea->hide();
+		_console->hide();
 	}
 }
 
 void Console::clear()
 {
-	_outputIndex = 0;
 	_output.clear();
 }
 
 bool Console::isActive() const
 {
 	return (_active);
-}
-
-void Console::setLineCount(const unsigned int &count)
-{
-	_lineCount = count;
-	updateOutput();
 }
 
 void Console::setColor(sf::Color bg, sf::Color input)
@@ -97,7 +89,7 @@ void Console::setLogEnabled(bool state)
 	}
 }
 
-void Console::writeToLog(std::string &msg)
+void Console::writeToLog(const std::string &msg)
 {
 	if (!_log.is_open())
 		_log.open(_logFile, std::ofstream::out | std::ofstream::app);
@@ -142,122 +134,33 @@ sf::Color *Console::convertColorCode(std::string code, std::string esc)
 	return (color);
 }
 
-void Console::output(std::string msg)
+void Console::output(const std::string &msg)
 {
-	if (_output.size() >= _lineCount)
-		_outputIndex++;
-	_output.push_back(new sf::Text());
-	_output.back()->setFont(_font);
-	_output.back()->setCharacterSize(_fontSize);
-	if (msg.find(COLOR_ESC) == 0)
-	{
-		if (msg.length() < strlen(COLOR_ESC) + 9)
-		{
-			_output.pop_back();
-			output("Syntax: Invalid color code");
-			return;
-		}
-		_output.back()->setFillColor(*convertColorCode(msg));
-		msg.erase(0, strlen(COLOR_ESC) + 9);
-	}
-	else
-		_output.back()->setFillColor(sf::Color::White);
-	_output.back()->setString(msg);
+	_output.push_back(msg);
+	_outputArea->addItem(msg);
 	if (_logEnabled)
 		writeToLog(msg);
-	updateOutput();
 }
 
-void Console::output(std::string color, std::string msg)
+void Console::input(const std::string &msg)
 {
-	output(color + msg);
-}
-
-void Console::insertLastOutput(const std::string &msg)
-{
-	sf::Text *text = new sf::Text(msg, _font, _fontSize);
-
-	if ((_output.back()->getLocalBounds().width + text->getLocalBounds().width) > _engine.getWindowSize().x)
-		_output.push_back(text);
-	else
-	{
-		delete (text);
-		_output.back()->setString(_output.back()->getString() + msg);
-	}
-
-}
-
-void Console::input()
-{
-	if (_input[_currentIndex].size() < 1)
-		return;
-	output(PROMPT + _input[_currentIndex]);
-	Commands::parseCmd(_input[_currentIndex]);
-	if (_currentIndex == _input.size() - 1)
-		_input.push_back("");
-	else
-		_input.insert(--_input.end(), _input[_currentIndex]);
-	if (_output.size() >= _lineCount)
-	{
-		_outputIndex = (_output.size() - _lineCount) + 1;
-		updateOutput();
-	}
-	_currentIndex = _input.size() - 1;
-	_cursorIndex = 0;
-}
-
-void Console::updateOutput()
-{
-	std::list<sf::Text *>::iterator begIter = _output.begin();
-	float posy = 0;
-
-	std::advance(begIter, _outputIndex);
-	for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)
-	{
-		(*begIter)->setPosition(5, posy);
-		posy += _fontSize;
-		begIter++;
-	}
+	_input.push_back(msg);
+	_inputArea->setText("");
+	Commands::parseCmd(_input.back());
 }
 
 void Console::updateKeyboard(const sf::Event &event)
 {
-	if (event.key.code == sf::Keyboard::Return)
-		input();
-	else if (event.key.code == sf::Keyboard::Delete && _cursorIndex - _input[_currentIndex].size() > 0)
-		_input[_currentIndex].erase(_cursorIndex, 1);
-	else if (event.key.code == sf::Keyboard::Up && _currentIndex > 0)
-		_cursorIndex = _input[--_currentIndex].size();
-	else if (event.key.code == sf::Keyboard::Down && _currentIndex < _input.size() - 1)
-		_cursorIndex = _input[++_currentIndex].size();
-	else if (event.key.code == sf::Keyboard::Left && _cursorIndex > 0)
-		_cursorIndex--;
-	else if (event.key.code == sf::Keyboard::Right && _cursorIndex < _input[_currentIndex].size())
-		_cursorIndex++;
-	else if (event.key.code == sf::Keyboard::PageUp && _outputIndex > 1)
-		_outputIndex--;
-	else if (event.key.code == sf::Keyboard::PageDown && _outputIndex + _lineCount <= _output.size())
-		_outputIndex++;
-	updateOutput();
+
 }
 
 void Console::update(const sf::Event &event)
 {
 	if (!_active)
 		return;
-	if (event.type == sf::Event::KeyPressed)
-		updateKeyboard(event);
 }
 
 void Console::draw(sf::RenderWindow &win)
 {
-	std::list<sf::Text *>::iterator begIter;
 
-	begIter = _output.begin();
-	std::advance(begIter, _outputIndex);
-	for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)
-	{
-		win.draw(*(*begIter));
-		begIter++;
-	}
 }
