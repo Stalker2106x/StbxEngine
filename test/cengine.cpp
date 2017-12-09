@@ -5,15 +5,17 @@
 sEngine::sEngine()
 {
 	//Initialize paths
-	stb::Resolver<sf::Font>::addLocation("./Data/font/");
-	stb::Resolver<sf::Texture>::addLocation("./Data/texture/");
-	stb::Resolver<stb::GUIScreen>::addLocation("./Data/screen/");
+	stb::SFResolver<sf::Font>::addLocation("./Data/font/");
+	stb::SFResolver<sf::Texture>::addLocation("./Data/texture/");
+
+	stb::PathResolver<stb::RTexture>::addLocation("./Data/texture/");
+	stb::PathResolver<stb::RSound>::addLocation("./Data/sound/");
 	//init engine
 	init();
-	/*auto picture = tgui::Picture::create("./Data/texture/background.png");
-	picture->setSize({ "10%", "10%" });
+	auto picture = tgui::Picture::create("./Data/texture/background.png");
+	picture->setSize("10%", "10%");
 	picture->moveToBack();
-	gui->add(picture);*/
+	gui->add(picture);
 }
 
 bool sEngine::update(const sf::Event &e)

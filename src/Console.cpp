@@ -17,13 +17,6 @@ Console::Console(Engine &e) : _engine(e)
 	_input.push_back("");
 	_logFile = "Data/log.txt";
 	_logEnabled = false;
-	//FONT SET
-	_inputValue.setFont(_font);
-	_cursor.setFont(_font);
-	//FONT SIZE
-	_inputValue.setCharacterSize(_fontSize);
-	_cursor.setCharacterSize(_fontSize);
-	_cursor.setString(CURSOR);
 	e.keybinds->bind("f1", "toggleconsole");
 }
 
@@ -37,14 +30,13 @@ void Console::initGraphics(const sf::Vector2i &winsize, tgui::Gui &gui)
 {
 	_console = tgui::Panel::create();
 	_console->setPosition(0, 0);
-	_console->setSize("100%", "33%");
+	_console->setSize(400, 400);
 	gui.add(_console);
+	_console->add(tgui::Picture::create("./Data/texture/background.jpg"));
 	_inputArea = tgui::EditBox::create();
-	_inputArea->setSize("95%", "5%");
-	_inputArea->setPosition("2.5%", "94%");
+	_inputArea->setSize("95%", _fontSize + 2);
+	_inputArea->setPosition(5, ((_lineCount + 1) * _fontSize) - (_inputArea->getSize().y + 4));
 	_console->add(_inputArea);
-	_inputValue.setPosition(6, ((_lineCount + 1) * _fontSize) - ((_inputArea->getSize().y + 4)));
-	_cursor.setPosition(static_cast<float>(5 + (_fontSize * _cursorIndex)), static_cast<float>(_inputValue.getPosition().y));
 	setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));
 	toggle();
 }
@@ -55,6 +47,7 @@ void Console::toggle()
 	if (_active)
 	{
 		_inputArea->show();
+		_inputArea->focus();
 	}
 	else
 	{
@@ -83,14 +76,6 @@ void Console::setColor(sf::Color bg, sf::Color input)
 {
 	//_bg.setFillColor(bg);
 	//_inputArea->setColor(input);
-	_inputValue.setOutlineColor(sf::Color::White);
-	_inputValue.setFillColor(sf::Color::Cyan);
-	_cursor.setFillColor(sf::Color::White);
-}
-
-void Console::setCursor(char &c)
-{
-	_cursor.setString(c);
 }
 
 void Console::setLogEnabled(bool state)
@@ -221,42 +206,6 @@ void Console::input()
 	_cursorIndex = 0;
 }
 
-void Console::updateInput(const sf::Event &event)
-{
-	char c;
-
-	c = Engine::getChar(event, alphanumeric);
-	if (c == '\b')
-	{
-		if (_input[_currentIndex].length() > 0)
-			_input[_currentIndex].erase((_cursorIndex--) - 1, 1);
-	}
-	else if (c == '\n')
-		return;
-	else if (c != '\0')
-	{
-		std::string::iterator it;
-
-		if (_currentIndex != _input.size() - 1)
-		{
-			_input.back() = _input[_currentIndex];
-			_currentIndex = _input.size() - 1;
-			_cursorIndex = _input.back().size();
-		}
-		it = _input.back().begin();
-		std::advance(it, _cursorIndex);
-		_input.back().insert(it, c);
-		_cursorIndex++;
-	}
-	updateInputValue();
-}
-
-void Console::updateInputValue()
-{
-	_inputValue.setString(_input[_currentIndex]);
-	_cursor.setPosition(5 + ((_inputValue.getLocalBounds().width / _input[_currentIndex].length()) * _cursorIndex), _inputValue.getPosition().y);
-}
-
 void Console::updateOutput()
 {
 	std::list<sf::Text *>::iterator begIter = _output.begin();
@@ -290,7 +239,6 @@ void Console::updateKeyboard(const sf::Event &event)
 	else if (event.key.code == sf::Keyboard::PageDown && _outputIndex + _lineCount <= _output.size())
 		_outputIndex++;
 	updateOutput();
-	updateInputValue();
 }
 
 void Console::update(const sf::Event &event)
@@ -299,23 +247,12 @@ void Console::update(const sf::Event &event)
 		return;
 	if (event.type == sf::Event::KeyPressed)
 		updateKeyboard(event);
-	updateInput(event);
 }
 
 void Console::draw(sf::RenderWindow &win)
 {
-	static sf::Clock cursorDelay;
-	static bool drawCursor = false;
 	std::list<sf::Text *>::iterator begIter;
 
-	win.draw(_inputValue);
-	if (drawCursor)
-		win.draw(_cursor);
-	if (cursorDelay.getElapsedTime().asMilliseconds() >= CURSOR_DELAY)
-	{
-		drawCursor = (drawCursor ? false : true);
-		cursorDelay.restart();
-	}
 	begIter = _output.begin();
 	std::advance(begIter, _outputIndex);
 	for (size_t i = 1; i < _lineCount && begIter != _output.end(); i++)

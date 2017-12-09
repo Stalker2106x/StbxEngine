@@ -26,6 +26,7 @@ void Engine::init(int width, int height)
 	keybinds = new Keybinds();
 	console = new Console(*this);
 	openWindow(width, height);
+	console->initGraphics(_winsize, *gui);
 	keybinds->bindEnv(this);
 	_gametime.restart();
 }
@@ -40,7 +41,6 @@ bool Engine::openWindow(int width, int height)
 	_win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
 			(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
 	gui = new tgui::Gui(*_win);
-	Engine::console->initGraphics(_winsize, *gui);
 	return (true);
 }
 

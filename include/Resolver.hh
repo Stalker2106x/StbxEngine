@@ -18,16 +18,22 @@
 #include <unordered_map>
 
 namespace stb {
+	
+	enum ResolverType {
+		RTexture,
+		RMusic,
+		RSound
+	};
 
-	class GUIScreen; //Forward
+	inline bool file_exists(const std::string& name) {
+		struct stat buffer;
+		return (stat(name.c_str(), &buffer) == 0);
+	}
 
 	template <typename T>
-	class Resolver
+	class SFResolver
 	{
 	public:
-		Resolver() {};
-		virtual ~Resolver() {};
-
 		static void addLocation(const std::string &path)
 		{
 			locations.push_back((path.back() == '/' ? path : path + '/'));
@@ -43,18 +49,9 @@ namespace stb {
 			return (resources.count(name));
 		}
 
-	protected:
-		static std::vector<std::string> locations;
-		static std::map<std::string, std::shared_ptr<T>> resources;
-	};
-
-	template <typename T>
-	class SFResolver : public Resolver<T>
-	{
-	public:
 		static std::shared_ptr<T> resolve(const std::string &name, const std::string &location = "", bool unique = false)
 		{
-			if (!unique && resources.count(name))
+			if (!unique && exists(name))
 				return (resources[name]);
 			std::shared_ptr<T> obj = std::make_shared<T>();
 			bool status = false;
@@ -89,46 +86,47 @@ namespace stb {
 			else
 				return (false); //Unhandled
 		}
+	private:
+		static std::vector<std::string> locations;
+		static std::map<std::string, std::shared_ptr<T>> resources;
 	};
 
-	template <typename T>
-	class STBResolver : public Resolver<T>
+	template <ResolverType>
+	class PathResolver
 	{
 	public:
-		static std::shared_ptr<T> resolve(const std::string &elem, const std::string &name = "", const std::string &location = "", bool unique = false)
+		static void addLocation(const std::string &path)
+		{
+			locations.push_back((path.back() == '/' ? path : path + '/'));
+		}
+
+		static void insert(const std::string &name, std::string resource)
+		{
+			resources.emplace(name, resource);
+		}
+
+		static bool exists(const std::string &name)
+		{
+			return (resources.count(name));
+		}
+
+		static const std::string &resolve(const std::string &name)
 		{
 			if (!unique && resources.count(elem))
 				return (resources[elem]);
-			std::shared_ptr<T> obj = NULL;
-
-			if (!location.empty())
+			for (size_t i = 0; i < locations.size(); i++)
 			{
-					obj = load(name, location, elem);
-				return (obj);
+					if (file_exists(locations[i] + name))
+					{
+						resources.emplace(name, locations[i] + name);
+						return (resources[name]);
+					}
 			}
-			for (size_t i = 0; obj == NULL && i < locations.size(); i++)
-			{
-				if (name.empty())
-					obj = load(elem, locations[i], elem); //we try to retrieve it with elem name
-				else
-					obj = load(name, locations[i], elem);
-			}
-			if (!unique)
-			{
-				resources.emplace(elem, obj);
-			}
-			return (obj);
+			return ("");
 		}
 
-		static std::shared_ptr<T> load(const std::string &name, const std::string &location, const std::string &elem = "")
-		{
-			if (std::is_same<T, GUIScreen>::value)
-			{
-				return (T::loadFromFile(location + name + ".xml", elem));
-			}
-			else
-				return (false); //Unhandled
-		}
+	private:
+		static std::vector<std::string> locations;
 	};
 
 }

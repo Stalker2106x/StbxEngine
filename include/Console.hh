@@ -55,8 +55,6 @@ namespace stb {
 		void insertLastOutput(const std::string &msg);
 		void input();
 
-		void updateInput(const sf::Event &event);
-		void updateInputValue();
 		void updateOutput();
 		void updateKeyboard(const sf::Event &event);
 		void update(const sf::Event &event);
@@ -69,7 +67,6 @@ namespace stb {
 		tgui::Panel::Ptr _console;
 		tgui::EditBox::Ptr _inputArea;
 		sf::Font _font;
-		sf::Text _inputValue, _cursor;
 		std::string _logFile;
 		std::ofstream _log;
 
