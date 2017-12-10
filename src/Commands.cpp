@@ -102,7 +102,7 @@ namespace stb {
 			std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 			if (cmdlist.find(command) == cmdlist.end())
 			{
-				e.console->output(COLOR_ERROR + command + ": Unknown command");
+				e.console->output(command + ": Unknown command");
 				return (false);
 			}
 			argv = getArgs(cmd);
