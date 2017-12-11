@@ -16,6 +16,9 @@
     <Filter Include="Source Files\ThirdParty">
       <UniqueIdentifier>{7ff54c3b-ce1a-4ff8-8e8b-dc5a7e769461}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ThirdParty">
+      <UniqueIdentifier>{5bf5f7e3-00aa-4b56-b8f9-bd73f7751e8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Commands.hh">
@@ -42,6 +45,12 @@
     <ClInclude Include="..\..\include\defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Database.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SQL\otlv4.h">
+      <Filter>Header Files\ThirdParty</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Commands.cpp">
@@ -67,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
       <Filter>Source Files\ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Database.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

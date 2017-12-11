@@ -1,6 +1,10 @@
 #include "Engine.hpp"
 #include "Console.hh"
 
+//OTL Library load
+#define OTL_ODBC
+#include "SQL/otlv4.h"
+
 using namespace stb;
 
 stb::Engine *stb::Engine::instance = NULL;
@@ -28,6 +32,7 @@ void Engine::init(int width, int height)
 	openWindow(width, height);
 	console->initGraphics(_winsize, *gui);
 	keybinds->bindEnv(this);
+	otl_connect::otl_initialize();
 	_gametime.restart();
 }
 
