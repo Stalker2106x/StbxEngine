@@ -48,7 +48,7 @@
     <ClInclude Include="..\..\include\Database.hh">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\SQL\otlv4.h">
+    <ClInclude Include="..\..\include\SHA\picosha2.h">
       <Filter>Header Files\ThirdParty</Filter>
     </ClInclude>
   </ItemGroup>
