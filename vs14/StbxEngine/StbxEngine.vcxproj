@@ -133,7 +133,6 @@
     <ClInclude Include="..\..\include\Commands.hh" />
     <ClInclude Include="..\..\include\Console.hh" />
     <ClInclude Include="..\..\include\Control.hh" />
-    <ClInclude Include="..\..\include\Database.hh" />
     <ClInclude Include="..\..\include\defs.h" />
     <ClInclude Include="..\..\include\Engine.hpp" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
@@ -143,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
-    <ClCompile Include="..\..\src\Database.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
