@@ -57,6 +57,9 @@ namespace stb {
 		static std::string getTimestamp();
 		static sf::Vector2f getMousePosition();
 
+		template <typename T>
+		static T *getInstance() { return (dynamic_cast<T *>(instance)); };
+
 		void quit();
 
 		Keybinds *keybinds;
