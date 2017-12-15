@@ -33,7 +33,7 @@ namespace stb {
 		~Engine();
 
 		void init(int width = 800, int height = 600);
-		bool openWindow(int, int);
+		bool openWindow(int, int, const std::string &windowTitle = "StbxEngine ALPHA");
 
 		sf::RenderWindow &getWindowHandle();
 		sf::Vector2i &getWindowSize();

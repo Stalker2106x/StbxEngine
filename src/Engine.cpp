@@ -1,10 +1,6 @@
 #include "Engine.hpp"
 #include "Console.hh"
 
-//OTL Library load
-#define OTL_ODBC
-#include "SQL/otlv4.h"
-
 using namespace stb;
 
 stb::Engine *stb::Engine::instance = NULL;
@@ -32,18 +28,17 @@ void Engine::init(int width, int height)
 	openWindow(width, height);
 	console->initGraphics(_winsize, *gui);
 	keybinds->bindEnv(this);
-	otl_connect::otl_initialize();
 	_gametime.restart();
 }
 
-bool Engine::openWindow(int width, int height)
+bool Engine::openWindow(int width, int height, const std::string &windowTitle)
 {
 	_winsize = sf::Vector2i(width, height);
 	if (_win != NULL)
 	delete (_win);
 	_win = new sf::RenderWindow();
 	_win->setKeyRepeatEnabled(false);
-	_win->create(sf::VideoMode(_winsize.x, _winsize.y), "Stbx Engine ALPHA",
+	_win->create(sf::VideoMode(_winsize.x, _winsize.y), windowTitle,
 			(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
 	gui = new tgui::Gui(*_win);
 	return (true);
