@@ -60,7 +60,7 @@ namespace stb {
 		template <typename T>
 		static T *getInstance() { return (dynamic_cast<T *>(instance)); };
 
-		void quit();
+		virtual void quit();
 
 		Keybinds *keybinds;
 		Console *console;
