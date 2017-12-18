@@ -21,26 +21,27 @@ Engine::~Engine()
 	delete (_win);
 }
 
-void Engine::init(int width, int height)
+void Engine::init(int width, int height, const std::string &windowTitle)
 {
 	keybinds = new Keybinds();
 	console = new Console(*this);
+	_windowTitle = windowTitle;
 	openWindow(width, height);
+	gui = new tgui::Gui(*_win);
 	console->initGraphics(_winsize, *gui);
 	keybinds->bindEnv(this);
 	_gametime.restart();
 }
 
-bool Engine::openWindow(int width, int height, const std::string &windowTitle)
+bool Engine::openWindow(int width, int height)
 {
-	_winsize = sf::Vector2i(width, height);
 	if (_win != NULL)
-	delete (_win);
+		delete (_win);
+	_winsize = sf::Vector2i(width, height);
 	_win = new sf::RenderWindow();
 	_win->setKeyRepeatEnabled(false);
-	_win->create(sf::VideoMode(_winsize.x, _winsize.y), windowTitle,
-			(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
-	gui = new tgui::Gui(*_win);
+	_win->create(sf::VideoMode(_winsize.x, _winsize.y), _windowTitle,
+		(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
 	return (true);
 }
 

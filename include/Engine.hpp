@@ -32,8 +32,8 @@ namespace stb {
 		Engine();
 		~Engine();
 
-		void init(int width = 800, int height = 600);
-		bool openWindow(int, int, const std::string &windowTitle = "StbxEngine ALPHA");
+		void init(int width = 800, int height = 600, const std::string &windowTitle = "StbxEngine Window");
+		bool openWindow(int, int);
 
 		sf::RenderWindow &getWindowHandle();
 		sf::Vector2i &getWindowSize();
@@ -71,6 +71,7 @@ namespace stb {
 	protected:
 		bool _quit, _fullscreen, _vsync;
 		int _framerate, _frames;
+		std::string _windowTitle;
 		sf::Clock _gametime;
 		sf::Time _lastSecondTick;
 		sf::Vector2i _winsize;

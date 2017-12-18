@@ -45,6 +45,7 @@ void Console::toggle()
 	_active ? _active = false : _active = true;
 	if (_active)
 	{
+		_console->moveToFront();
 		_console->show();
 		_inputArea->focus();
 	}
