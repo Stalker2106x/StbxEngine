@@ -385,7 +385,7 @@ namespace stb {
 				return;
 			}
 			e.openWindow(atoi((*argv)[0].c_str()), atoi((*argv)[1].c_str()));
-			e.console->initGraphics(e.getWindowSize(), *e.gui);
+			e.console->initGraphics(*e.gui);
 		}
 
 	}

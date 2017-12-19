@@ -36,7 +36,8 @@ namespace stb {
 		bool openWindow(int, int);
 
 		sf::RenderWindow &getWindowHandle();
-		sf::Vector2i &getWindowSize();
+		static tgui::Layout &getWindowWidth();
+		static tgui::Layout &getWindowHeight();
 		int &getFramerate();
 		sf::Vector2f &getMouse();
 		sf::Time getGameTime();
@@ -74,7 +75,7 @@ namespace stb {
 		std::string _windowTitle;
 		sf::Clock _gametime;
 		sf::Time _lastSecondTick;
-		sf::Vector2i _winsize;
+		tgui::Layout _winWidth, _winHeight;
 		sf::Vector2f _mouse;
 		sf::RenderWindow *_win;
 	};

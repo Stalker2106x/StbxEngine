@@ -28,7 +28,9 @@ void Engine::init(int width, int height, const std::string &windowTitle)
 	_windowTitle = windowTitle;
 	openWindow(width, height);
 	gui = new tgui::Gui(*_win);
-	console->initGraphics(_winsize, *gui);
+	_winWidth = tgui::bindWidth(*gui);
+	_winHeight = tgui::bindHeight(*gui);
+	console->initGraphics(*gui);
 	keybinds->bindEnv(this);
 	_gametime.restart();
 }
@@ -37,10 +39,9 @@ bool Engine::openWindow(int width, int height)
 {
 	if (_win != NULL)
 		delete (_win);
-	_winsize = sf::Vector2i(width, height);
 	_win = new sf::RenderWindow();
 	_win->setKeyRepeatEnabled(false);
-	_win->create(sf::VideoMode(_winsize.x, _winsize.y), _windowTitle,
+	_win->create(sf::VideoMode(width, height), _windowTitle,
 		(_fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
 	return (true);
 }
@@ -73,9 +74,15 @@ sf::RenderWindow &Engine::getWindowHandle()
 {
 	return (*_win);
 }
-sf::Vector2i &Engine::getWindowSize()
+
+tgui::Layout &Engine::getWindowWidth()
 {
-  return (_winsize);
+	return (instance->_winWidth);
+}
+
+tgui::Layout &Engine::getWindowHeight()
+{
+	return (instance->_winHeight);
 }
 
 int &Engine::getFramerate()
@@ -105,12 +112,12 @@ void Engine::videoParamSet(const std::string &ent, int value)
   else if (ent == "TFULLSCREEN")
     {
       _fullscreen = (_fullscreen ? false : true);
-      openWindow(_winsize.x, _winsize.y);
+      openWindow(_winWidth.getValue(), _winHeight.getValue());
     }
   else if (ent == "FULLSCREEN" && static_cast<bool>(value) != _fullscreen)
     {
       _fullscreen = static_cast<bool>(value);
-      openWindow(_winsize.x, _winsize.y);
+      openWindow(_winWidth.getValue(), _winHeight.getValue());
     }
   else if (ent == "TVSYNC")
     {

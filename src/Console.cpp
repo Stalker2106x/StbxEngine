@@ -20,20 +20,20 @@ Console::~Console()
 		_log.close();
 }
 
-void Console::initGraphics(const sf::Vector2i &winsize, tgui::Gui &gui)
+void Console::initGraphics(tgui::Gui &gui)
 {
 	_console = tgui::Panel::create();
 	_console->setPosition(0, 0);
-	_console->setSize(winsize.x, "33%");
+	_console->setSize(Engine::getWindowWidth(), "33%");
 	_console->getRenderer()->setBackgroundColor(tgui::Color(25, 39, 51));
 	gui.add(_console);
 	_inputArea = tgui::EditBox::create();
-	_inputArea->setSize(winsize.x - 10, 15);
+	_inputArea->setSize(Engine::getWindowWidth() - 10, 15);
 	_inputArea->setPosition(5, _console->getSize().y - _inputArea->getSize().y - 5);
 	_inputArea->connect("ReturnKeyPressed", [&]() { input(_inputArea->getText()); });
 	_console->add(_inputArea);
 	_outputArea = tgui::ListBox::create();
-	_outputArea->setSize(winsize.x - 10, _console->getSize().y - _inputArea->getSize().y - 15);
+	_outputArea->setSize(Engine::getWindowWidth() - 10, _console->getSize().y - _inputArea->getSize().y - 15);
 	_outputArea->setPosition(5, 5);
 	_console->add(_outputArea);
 	setColor(sf::Color(50, 65, 90), sf::Color(80, 100, 135));

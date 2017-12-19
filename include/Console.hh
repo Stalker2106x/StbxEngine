@@ -34,7 +34,7 @@ namespace stb {
 		Console(Engine &e);
 		~Console();
 
-		void initGraphics(const sf::Vector2i &winsize, tgui::Gui &gui);
+		void initGraphics(tgui::Gui &gui);
 
 		void toggle();
 		void clear();
