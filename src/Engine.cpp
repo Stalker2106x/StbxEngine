@@ -4,6 +4,8 @@
 using namespace stb;
 
 stb::Engine *stb::Engine::instance = NULL;
+tgui::Gui *stb::Engine::gui = NULL;
+Console *stb::Engine::console = NULL;
 
 Engine::Engine()
 {
@@ -141,6 +143,25 @@ sf::Image Engine::capture()
   return (screen);
 }
 
+void Engine::GUIAdd(const tgui::Widget::Ptr widget)
+{
+	gui->add(widget);
+}
+
+void Engine::GUIRemove(const tgui::Widget::Ptr widget)
+{
+	_widgetsDrop.push(widget);
+}
+
+void Engine::GUISafeRemove()
+{
+	while (!_widgetsDrop.empty())
+	{
+		gui->remove(_widgetsDrop.front());
+		_widgetsDrop.pop();
+	}
+}
+
 bool Engine::updateLoop()
 {
   sf::Event event;
@@ -161,13 +182,13 @@ bool Engine::updateLoop()
 		  _win->close();
 		  return (false);
 		}
+		GUISafeRemove();
 		// When the window is resized, the view is changed
-		else if (event.type == sf::Event::Resized)
+		if (event.type == sf::Event::Resized)
 		{
 			_win->setView(sf::View(sf::FloatRect(0, 0, (float)event.size.width, (float)event.size.height)));
 			gui->setView(_win->getView());
 		}
-
 		// Pass the event to all the widgets
 		gui->handleEvent(event);
     }
