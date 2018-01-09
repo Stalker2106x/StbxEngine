@@ -47,7 +47,9 @@ namespace stb {
 		sf::Image capture();
 
 		void GUIAdd(const tgui::Widget::Ptr widget);
+		void GUIAddTo(const tgui::Widget::Ptr widget, const tgui::Widget::Ptr parent);
 		void GUIRemove(const tgui::Widget::Ptr widget);
+		void GUIRemoveFrom(const tgui::Widget::Ptr widget, const tgui::Widget::Ptr parent);
 
 		static char getChar(sf::Event event, CharType type);
 		static struct tm *getTime();
@@ -66,7 +68,9 @@ namespace stb {
 		static Engine *instance; //Public hook on engine instance
 
 	protected:
-		void GUISafeRemove();
+		void GUISafeProcess();
+		void GUISafeRemove();		
+		void GUISafeAdd();
 
 		virtual bool update(const sf::Event &) = 0; //Overloaded by user
 		virtual void draw(sf::RenderWindow &) = 0; //Overloaded by user
@@ -76,7 +80,7 @@ namespace stb {
 
 		bool _quit, _fullscreen, _vsync;
 		int _framerate, _frames;
-		std::queue<tgui::Widget::Ptr> _widgetsDrop;
+		std::queue<std::pair<tgui::Widget::Ptr, tgui::Widget::Ptr>> _widgetsStack, _widgetsDrop;
 		std::string _windowTitle;
 		sf::Clock _gametime;
 		sf::Time _lastSecondTick;
