@@ -175,13 +175,13 @@ void Engine::GUISafeAdd()
 	{
 		if (_widgetsStack.front().second == nullptr) //No parent
 		{
-			gui->add(_widgetsDrop.front().first);
+			gui->add(_widgetsStack.front().first);
 		}
 		else
 		{
-			std::dynamic_pointer_cast<tgui::Container>(_widgetsDrop.front().second)->add(_widgetsDrop.front().first);
+			std::dynamic_pointer_cast<tgui::Container>(_widgetsStack.front().second)->add(_widgetsStack.front().first);
 		}
-		_widgetsDrop.pop();
+		_widgetsStack.pop();
 	}
 }
 
