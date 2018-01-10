@@ -143,61 +143,17 @@ sf::Image Engine::capture()
   return (screen);
 }
 
-void Engine::GUIAdd(const tgui::Widget::Ptr widget)
+void Engine::executeFromMain(std::function<void(void)> fptr)
 {
-	_widgetsStack.push(std::make_pair(widget, nullptr));
+	_executeStack.push(fptr);
 }
 
-void Engine::GUIAddTo(const tgui::Widget::Ptr widget, const tgui::Widget::Ptr parent)
+void Engine::executeStack()
 {
-	_widgetsStack.push(std::make_pair(widget, parent));
-}
-
-void Engine::GUIRemove(const tgui::Widget::Ptr widget)
-{
-	_widgetsDrop.push(std::make_pair(widget, nullptr));
-}
-
-void Engine::GUIRemoveFrom(const tgui::Widget::Ptr widget, const tgui::Widget::Ptr parent)
-{
-	_widgetsDrop.push(std::make_pair(widget, parent));
-}
-
-void Engine::GUISafeProcess()
-{
-	GUISafeRemove();
-	GUISafeAdd();
-}
-
-void Engine::GUISafeAdd()
-{
-	while (!_widgetsStack.empty())
+	while (!_executeStack.empty())
 	{
-		if (_widgetsStack.front().second == nullptr) //No parent
-		{
-			gui->add(_widgetsStack.front().first);
-		}
-		else
-		{
-			std::dynamic_pointer_cast<tgui::Container>(_widgetsStack.front().second)->add(_widgetsStack.front().first);
-		}
-		_widgetsStack.pop();
-	}
-}
-
-void Engine::GUISafeRemove()
-{
-	while (!_widgetsDrop.empty())
-	{
-		if (_widgetsDrop.front().second == nullptr) //No parent
-		{
-			gui->remove(_widgetsDrop.front().first);
-		}
-		else
-		{
-			std::dynamic_pointer_cast<tgui::Container>(_widgetsDrop.front().second)->remove(_widgetsDrop.front().first);
-		}
-		_widgetsDrop.pop();
+		_executeStack.front()();
+		_executeStack.pop();
 	}
 }
 
@@ -221,7 +177,7 @@ bool Engine::updateLoop()
 		  _win->close();
 		  return (false);
 		}
-		GUISafeProcess();
+		executeStack();
 		// When the window is resized, the view is changed
 		if (event.type == sf::Event::Resized)
 		{
