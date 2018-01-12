@@ -162,6 +162,7 @@ bool Engine::updateLoop()
   sf::Event event;
 
   _mouse = getMousePosition();
+  executeStack();
   while (_win->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
@@ -177,7 +178,6 @@ bool Engine::updateLoop()
 		  _win->close();
 		  return (false);
 		}
-		executeStack();
 		// When the window is resized, the view is changed
 		if (event.type == sf::Event::Resized)
 		{
