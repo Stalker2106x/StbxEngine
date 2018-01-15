@@ -39,7 +39,7 @@ void Client::receiveServerInfo()
 	std::shared_ptr<Packet> packet = nullptr;
 
 	_game.addPlayer(DBWEngine::getInstance<DBWEngine>()->profile);
-	while ((packet = _handler.extractPacket()) == nullptr || packet->code != Packet::Server::SOk)
+	while ((packet = _handler.extractPacket()) == nullptr || packet->code != Packet::Code::Server::SOk)
 	{
 		if (clock.getElapsedTime() > sf::seconds(60))
 		{
@@ -65,17 +65,17 @@ void Client::handshake()
 		//DBWEngine::getInstance<DBWEngine>()->abortClient("Server info not received.\nConnection aborted.");
 		return;
 	}
-	else if (packet->code == Packet::Handshake::Welcome)
+	else if (packet->code == Packet::Code::Handshake::Welcome)
 	{
 		_id = packet->getData<int8_t>();
 		//DBWEngine::getInstance<DBWEngine>()->profile->setServerId(_id);
 	}
-	else if (packet->code == Packet::Server::Full)
+	else if (packet->code == Packet::Code::Server::Full)
 	{
 		//DBWEngine::getInstance<DBWEngine>()->abortClient("Server full.\nConnection aborted.");
 		return;
 	}
-	if (Packet::send(*_socket, Packet::Client::CInfo, _id, _game.selfHost(), VERSION, DBWEngine::getInstance<DBWEngine>()->profile->getStabaxUid()) != sf::Socket::Done)
+	if (Packet::send(*_socket, Packet::Code::Client::CInfo, _id, _game.selfHost(), VERSION, DBWEngine::getInstance<DBWEngine>()->profile->getStabaxUid()) != sf::Socket::Done)
 	{
 		//throw(std::exception("Network error"));
 	}
@@ -85,19 +85,19 @@ void Client::handshake()
 		//DBWEngine::getInstance<DBWEngine>()->abortClient("Server info not received.\nConnection aborted.");
 		return;
 	}
-	else if (packet->code == Packet::Server::Mismatch)
+	else if (packet->code == Packet::Code::Server::Mismatch)
 	{
 		//DBWEngine::getInstance<DBWEngine>()->abortClient("Server version differs from yours.\nConnection aborted.");
 		return;
 	}
-	else if (packet->code == Packet::Server::SInfo) //Server info -> should be stored inside a struct.
+	else if (packet->code == Packet::Code::Server::SInfo) //Server info -> should be stored inside a struct.
 	{
 		std::string name = packet->getData<std::string>();
 		int8_t slots = packet->getData<int8_t>();
 
 		//Setup server info in game properties (packet has info)
 	}
-	if (Packet::send(*_socket, Packet::Client::COk, _id) != sf::Socket::Done)
+	if (Packet::send(*_socket, Packet::Code::Client::COk, _id) != sf::Socket::Done)
 	{
 		throw(std::exception("Network error"));
 	}

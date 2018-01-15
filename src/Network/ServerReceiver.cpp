@@ -18,7 +18,7 @@ void ServerReceiver::dropClient(clientNode &client, bool kick)
 	client.first = nullptr;
 	client.second = ClientInfo(client.second.id);
 	if (!kick)
-		Packet::broadcast(_clients, Packet::Client::Drop, client.second.id, client.second.id);
+		Packet::broadcast(_clients, Packet::Code::Client::Drop, client.second.id, client.second.id);
 	std::cout << "Client " << client.second.id << " disconnected.";
 	_mutex.unlock();
 }

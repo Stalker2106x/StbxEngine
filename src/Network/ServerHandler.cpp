@@ -5,9 +5,9 @@
 ServerHandler::ServerHandler(clientArray &clients, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, std::condition_variable &clientsReady, ServerReceiver &receiver) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _clients(clients), _clientsReady(clientsReady), _receiver(receiver)
 {
 	_functors = {
-		{ Packet::Client::Ready, &ServerHandler::setClientReady },
-		{ Packet::Client::Message, &ServerHandler::broadcastMessage },
-		{ Packet::Client::Drop, &ServerHandler::kickPlayer }
+		{ Packet::Code::Client::Ready, &ServerHandler::setClientReady },
+		{ Packet::Code::Client::Message, &ServerHandler::broadcastMessage },
+		{ Packet::Code::Client::Drop, &ServerHandler::kickPlayer }
 	};
 }
 
@@ -45,7 +45,7 @@ void ServerHandler::broadcastMessage(std::shared_ptr<Packet> packet)
 {
 	std::string msg = packet->getData<std::string>();
 
-	Packet::broadcast(_clients, Packet::Client::Message, -1, packet->clientId, msg);
+	Packet::broadcast(_clients, Packet::Code::Client::Message, -1, packet->clientId, msg);
 }
 
 void ServerHandler::kickPlayer(std::shared_ptr<Packet> packet)
@@ -56,7 +56,7 @@ void ServerHandler::kickPlayer(std::shared_ptr<Packet> packet)
 
 	if (client.second.host == true)
 	{
-		Packet::broadcast(_clients, Packet::Client::Drop, -1, droppedClient.second.id);
+		Packet::broadcast(_clients, Packet::Code::Client::Drop, -1, droppedClient.second.id);
 		_receiver.dropClient(droppedClient);
 	}
 }

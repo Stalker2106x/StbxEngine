@@ -136,12 +136,31 @@
     <ClInclude Include="..\..\include\defs.h" />
     <ClInclude Include="..\..\include\Engine.hpp" />
     <ClInclude Include="..\..\include\Keybinds.hh" />
+    <ClInclude Include="..\..\include\Network\Client.hh" />
+    <ClInclude Include="..\..\include\Network\ClientHandler.hh" />
+    <ClInclude Include="..\..\include\Network\ClientReceiver.hh" />
+    <ClInclude Include="..\..\include\Network\Handler.hh" />
+    <ClInclude Include="..\..\include\Network\networkdefs.h" />
+    <ClInclude Include="..\..\include\Network\Packet.hh" />
+    <ClInclude Include="..\..\include\Network\Receiver.hh" />
+    <ClInclude Include="..\..\include\Network\Server.hh" />
+    <ClInclude Include="..\..\include\Network\ServerHandler.hh" />
+    <ClInclude Include="..\..\include\Network\ServerReceiver.hh" />
     <ClInclude Include="..\..\include\Resolver.hh" />
     <ClInclude Include="..\..\include\SHA\picosha2.h" />
     <ClInclude Include="..\..\include\utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
+    <ClCompile Include="..\..\src\Network\Client.cpp" />
+    <ClCompile Include="..\..\src\Network\ClientHandler.cpp" />
+    <ClCompile Include="..\..\src\Network\ClientReceiver.cpp" />
+    <ClCompile Include="..\..\src\Network\Handler.cpp" />
+    <ClCompile Include="..\..\src\Network\Packet.cpp" />
+    <ClCompile Include="..\..\src\Network\Receiver.cpp" />
+    <ClCompile Include="..\..\src\Network\Server.cpp" />
+    <ClCompile Include="..\..\src\Network\ServerHandler.cpp" />
+    <ClCompile Include="..\..\src\Network\ServerReceiver.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
