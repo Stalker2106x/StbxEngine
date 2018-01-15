@@ -1,4 +1,6 @@
-#include "ClientReceiver.hh"
+#include "Network/ClientReceiver.hh"
+
+using namespace stb;
 
 ClientReceiver::ClientReceiver(packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting) : Receiver(packetStack, mutex, signalMutex, packetsWaiting)
 {
@@ -20,7 +22,7 @@ void ClientReceiver::receiveLoop()
 		status = _socket->receive(*data);
 		if (status == sf::Socket::Disconnected)
 		{
-			DBWEngine::getInstance<DBWEngine>()->abortClient("Lost connection to host");
+			//DBWEngine::getInstance<DBWEngine>()->abortClient("Lost connection to host");
 			return;
 		}
 		else if (status == sf::Socket::Done)
@@ -29,7 +31,7 @@ void ClientReceiver::receiveLoop()
 			insertPacket(packet);
 		}
 	}
-	DBWEngine::getInstance<DBWEngine>()->abortClient();
+	//DBWEngine::getInstance<DBWEngine>()->abortClient();
 }
 
 void ClientReceiver::start(std::shared_ptr<sf::TcpSocket> socket)

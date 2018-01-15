@@ -5,22 +5,26 @@
 #include "ServerHandler.hh"
 #include "networkdefs.h"
 
-class ServerReceiver : public Receiver
-{
-public:
-	ServerReceiver(packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, clientArray &clientList, std::condition_variable &packetsWaiting);
-	~ServerReceiver();
+namespace stb {
 
-	void dropClient(clientNode &client, bool kick = false);
-	void bindClient(sf::Socket &socket);
+	class ServerReceiver : public Receiver
+	{
+	public:
+		ServerReceiver(packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, clientArray &clientList, std::condition_variable &packetsWaiting);
+		~ServerReceiver();
 
-	virtual void receiveLoop();
-	void start();
-	virtual void close();
+		void dropClient(clientNode &client, bool kick = false);
+		void bindClient(sf::Socket &socket);
 
-private:
-	std::shared_ptr<sf::SocketSelector> _selector;
-	clientArray &_clients;
-};
+		virtual void receiveLoop();
+		void start();
+		virtual void close();
+
+	private:
+		std::shared_ptr<sf::SocketSelector> _selector;
+		clientArray &_clients;
+	};
+
+}
 
 #endif /* !SERVERRECEIVER_HH_ */

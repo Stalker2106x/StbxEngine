@@ -1,6 +1,8 @@
 #include "Network/Receiver.hh"
 #include "Network/Server.hh"
 
+using namespace stb;
+
 Receiver::Receiver(packetStack &packetStack, std:: mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting) : _packetStack(packetStack), _mutex(mutex), _signalMutex(signalMutex), _packetsWaiting(packetsWaiting)
 {
 }

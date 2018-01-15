@@ -3,30 +3,26 @@
 
 #include "Handler.hh"
 
-class ClientHandler : public Handler
-{
-public:
-	//Generic Handler typedef
-	typedef void (ClientHandler::*packetFunctor)(std::shared_ptr<Packet>);
-	typedef std::map<int16_t, packetFunctor> packetFunctorMap;
+namespace stb {
 
-	ClientHandler(ClientGame &game, sf::TcpSocket &socket, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting);
-	~ClientHandler();
+	class ClientHandler : public Handler
+	{
+	public:
+		//Generic Handler typedef
+		typedef void (ClientHandler::*packetFunctor)(std::shared_ptr<Packet>);
+		typedef std::map<int16_t, packetFunctor> packetFunctorMap;
 
-	virtual void processLoop();
+		ClientHandler(sf::TcpSocket &socket, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting);
+		~ClientHandler();
 
-	//Functors
-	void getPlayer(std::shared_ptr<Packet> packet);
-	void dropPlayer(std::shared_ptr<Packet> packet);
-	void getMessage(std::shared_ptr<Packet> packet);
-	void togglePlayerReady(std::shared_ptr<Packet> packet);
-	void startGame(std::shared_ptr<Packet> packet);
-	void disconnect(std::shared_ptr<Packet> packet);
+		virtual void processLoop();
 
-private:
-	sf::TcpSocket &_socket;//Hook on socket
-	ClientGame &_game; //Hook on game
-	packetFunctorMap _functors;
-};
+
+	private:
+		sf::TcpSocket &_socket;//Hook on socket
+		packetFunctorMap _functors;
+	};
+
+}
 
 #endif /* !CLIENTHANDLER_HH_ */

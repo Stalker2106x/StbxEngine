@@ -2,10 +2,11 @@
 #include "Network/ServerReceiver.hh"
 #include "Network/Server.hh"
 
+using namespace stb;
+
 ServerHandler::ServerHandler(clientArray &clients, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, std::condition_variable &clientsReady, ServerReceiver &receiver) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _clients(clients), _clientsReady(clientsReady), _receiver(receiver)
 {
 	_functors = {
-		{ Packet::Code::Client::Ready, &ServerHandler::setClientReady },
 		{ Packet::Code::Client::Message, &ServerHandler::broadcastMessage },
 		{ Packet::Code::Client::Drop, &ServerHandler::kickPlayer }
 	};

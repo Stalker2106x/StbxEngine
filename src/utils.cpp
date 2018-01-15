@@ -57,16 +57,4 @@ namespace stb {
 	}
 #endif
 
-	const Direction convertDirection(const std::string &direction)
-	{
-		if (direction == "up")
-			return (Up);
-		else if (direction == "down")
-			return (Down);
-		else if (direction == "left")
-			return (Left);
-		else if (direction == "right")
-			return (Right);
-	}
-
 }

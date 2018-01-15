@@ -4,6 +4,7 @@
 using namespace stb;
 
 stb::Engine *stb::Engine::instance = NULL;
+Profile *stb::Engine::profile = NULL;
 tgui::Gui *stb::Engine::gui = NULL;
 Console *stb::Engine::console = NULL;
 

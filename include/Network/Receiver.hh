@@ -8,23 +8,27 @@
 #include "Packet.hh"
 #include "Handler.hh"
 
-class Receiver
-{
-public:
-	Receiver(packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting);
-	~Receiver();
+namespace stb {
 
-	void insertPacket(std::shared_ptr<Packet> pk);
-	
-	virtual void receiveLoop() = 0;
-	virtual void close();
+	class Receiver
+	{
+	public:
+		Receiver(packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting);
+		~Receiver();
 
-protected:
-	std::condition_variable &_packetsWaiting;
-	std::mutex &_mutex, &_signalMutex;
-	bool _quit;
-	std::shared_ptr<std::thread> _thread;
-	packetStack &_packetStack;
-};
+		void insertPacket(std::shared_ptr<Packet> pk);
+
+		virtual void receiveLoop() = 0;
+		virtual void close();
+
+	protected:
+		std::condition_variable &_packetsWaiting;
+		std::mutex &_mutex, &_signalMutex;
+		bool _quit;
+		std::shared_ptr<std::thread> _thread;
+		packetStack &_packetStack;
+	};
+
+}
 
 #endif /* !RECEIVER_HH_ */

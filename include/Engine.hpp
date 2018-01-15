@@ -14,6 +14,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <TGUI/TGUI.hpp>
+#include "Profile.hh"
 #include "Console.hh"
 #include "Keybinds.hh"
 #include "Keybinds.hh"
@@ -61,6 +62,7 @@ namespace stb {
 
 		Keybinds *keybinds;
 		static Console *console;
+		static Profile *profile;
 		static tgui::Gui *gui;
 		static Engine *instance; //Public hook on engine instance
 

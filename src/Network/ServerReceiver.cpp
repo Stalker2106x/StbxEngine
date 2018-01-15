@@ -1,6 +1,8 @@
 #include "Network/ServerReceiver.hh"
 #include "Network/Server.hh"
 
+using namespace stb;
+
 ServerReceiver::ServerReceiver(packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, clientArray &clientList, std::condition_variable &packetsWaiting) : Receiver(packetStack, mutex, signalMutex, packetsWaiting), _clients(clientList)
 {
 	_selector = std::make_shared<sf::SocketSelector>();

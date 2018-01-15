@@ -146,6 +146,7 @@
     <ClInclude Include="..\..\include\Network\Server.hh" />
     <ClInclude Include="..\..\include\Network\ServerHandler.hh" />
     <ClInclude Include="..\..\include\Network\ServerReceiver.hh" />
+    <ClInclude Include="..\..\include\Profile.hh" />
     <ClInclude Include="..\..\include\Resolver.hh" />
     <ClInclude Include="..\..\include\SHA\picosha2.h" />
     <ClInclude Include="..\..\include\utils.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="..\..\src\Network\Server.cpp" />
     <ClCompile Include="..\..\src\Network\ServerHandler.cpp" />
     <ClCompile Include="..\..\src\Network\ServerReceiver.cpp" />
+    <ClCompile Include="..\..\src\Profile.cpp" />
     <ClCompile Include="..\..\src\utils.cpp" />
     <ClCompile Include="..\..\src\Commands.cpp" />
     <ClCompile Include="..\..\src\Console.cpp" />
