@@ -107,7 +107,11 @@ sEngine::sEngine()
 	init();
 	//BEGIN GAME INIT
 	Engine::profile = &stb::Profile("Stabax", "Yebamod0");
-	_client.connectServer("localhost"); //Test
+	tgui::Button::Ptr button = tgui::Button::create("Connect");
+	button->connect("Pressed", [&] {
+		_client.connectServer("localhost"); //Test
+	});
+	gui->add(button);
 }
 
 bool sEngine::update(const sf::Event &e)
