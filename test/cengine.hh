@@ -57,7 +57,9 @@ public:
 	void draw(sf::RenderWindow &win);
 
 private:
-	sServer _server;
+	tgui::Panel::Ptr _tooltip;
+	std::shared_ptr<sf::CircleShape> _cell;
+	std::shared_ptr<sServer> _server;
 	sClient _client;
 };
 

@@ -107,18 +107,62 @@ sEngine::sEngine()
 	init();
 	//BEGIN GAME INIT
 	Engine::profile = &stb::Profile("Stabax", "Yebamod0");
-	tgui::Button::Ptr button = tgui::Button::create("Connect");
-	button->connect("Pressed", [&] {
-		_client.connectServer("localhost"); //Test
+	tgui::Button::Ptr sbutton = tgui::Button::create("Host");
+	sbutton->setPosition("20%", "0%");
+	sbutton->connect("Pressed", [&] {
+		_server = std::make_shared<sServer>(); //Test server
 	});
-	gui->add(button);
+	gui->add(sbutton);
+	tgui::Button::Ptr cbutton = tgui::Button::create("Connect");
+	cbutton->connect("Pressed", [=] {
+		static bool connected = false;
+		if (!connected)
+		{
+			_client.connectServer("localhost"); //Test client
+			cbutton->setText("Disconnect");
+			connected = true;
+		}
+		else
+		{
+			_client.disconnect();
+			cbutton->setText("Connect");
+			connected = false;
+		}
+	});
+	gui->add(cbutton);
+	_tooltip = tgui::Panel::create();
+	_tooltip->setSize(150, 150);
+	_tooltip->getRenderer()->setBackgroundColor(tgui::Color::Blue);
+	_tooltip->hide();
+	gui->add(_tooltip);
+	_cell = std::make_shared<sf::CircleShape>();
+	_cell->setFillColor(sf::Color::Green);
+	_cell->setRadius(20);
+	_cell->setPosition(_winWidth.getValue() / 2, _winHeight.getValue() / 2);
 }
 
 bool sEngine::update(const sf::Event &e)
 {
+	static bool out = true;
+
+	if (_cell->getGlobalBounds().contains(_mouse))
+	{
+		if (out == true)
+		{
+			_tooltip->show();
+			out = false;
+		}
+		_tooltip->setPosition(_mouse);
+	}
+	else if (!_cell->getGlobalBounds().contains(_mouse) && out == false)
+	{
+		_tooltip->hide();
+		out = true;
+	}
 	return (true);
 }
 
 void sEngine::draw(sf::RenderWindow &win)
 {
+	win.draw(*_cell);
 }
