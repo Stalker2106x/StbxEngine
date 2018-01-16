@@ -128,16 +128,18 @@ namespace stb {
 
 		//insert in packet
 		template <typename T>
-		sf::Packet &operator<<(T data)
+		Packet &operator<<(T data)
 		{
-			return ((*_data) << data);
+			(*_data) << data;
+			return (*this);
 		}
 
 		//extract from packet
 		template <typename T>
-		sf::Packet &operator>>(T data)
+		Packet &operator>>(T data)
 		{
-			return ((*_data) >> data);
+			(*_data) >> data;
+			return (*this);
 		}
 
 		int16_t code;
