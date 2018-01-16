@@ -19,6 +19,8 @@ namespace stb {
 		Handler(packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting);
 		~Handler();
 
+		void addHandle(std::pair<int, packetFunctor> &functor);
+
 		void start();
 		void stop();
 
@@ -30,6 +32,7 @@ namespace stb {
 
 	protected:
 		bool _quit;
+		packetFunctorMap _functors;
 		packetStack &_packetStack;
 		std::condition_variable &_packetsWaiting;
 		std::mutex &_mutex, &_signalMutex;

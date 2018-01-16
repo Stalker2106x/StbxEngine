@@ -4,9 +4,9 @@ using namespace stb;
 
 ClientHandler::ClientHandler(sf::TcpSocket &socket, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _socket(socket)
 {
-	_functors = {
+	/*_functors = {
 		{Packet::Code::Client::Ready, nullptr},
-	};
+	};*/
 }
 
 ClientHandler::~ClientHandler()
@@ -30,6 +30,6 @@ void ClientHandler::processLoop()
 			continue;
 		packetFunctor f = _functors[packet->code];
 
-		(this->*f)(packet);
+		f(packet);
 	}
 }

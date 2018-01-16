@@ -8,10 +8,6 @@ namespace stb {
 	class ClientHandler : public Handler
 	{
 	public:
-		//Generic Handler typedef
-		typedef void (ClientHandler::*packetFunctor)(std::shared_ptr<Packet>);
-		typedef std::map<int16_t, packetFunctor> packetFunctorMap;
-
 		ClientHandler(sf::TcpSocket &socket, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting);
 		~ClientHandler();
 

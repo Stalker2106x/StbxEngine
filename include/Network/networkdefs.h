@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include <deque>
+#include <functional>
 
 namespace stb {
 
@@ -60,11 +61,14 @@ namespace stb {
 	};
 
 	class Packet; //Forward
+	class ClientHandler;
 
 	typedef std::pair<std::shared_ptr<sf::TcpSocket>, ClientInfo> clientNode;
 	typedef std::vector<clientNode> clientArray;
 	typedef std::deque<std::shared_ptr<Packet>> packetStack;
 
+	typedef std::function<void(std::shared_ptr<Packet>)>  packetFunctor;
+	typedef std::map<int16_t, packetFunctor> packetFunctorMap;
 }
 
 #endif /* !NETWORKDEFS_HH_ */

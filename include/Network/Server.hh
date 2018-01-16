@@ -28,6 +28,9 @@ namespace stb {
 		void run();
 		void shutdown();
 
+		void addHandle(std::pair<int, packetFunctor> &functor);
+		void addHandle(std::vector<std::pair<int, packetFunctor>> &functors);
+
 		//Overload feature
 		virtual void loop() = 0;
 		virtual void setClientData(stb::Packet &data) = 0;

@@ -8,6 +8,7 @@
 #include "Packet.hh"
 #include "ClientHandler.hh"
 #include "ClientReceiver.hh"
+#include "networkdefs.h"
 
 namespace stb {
 
@@ -24,6 +25,9 @@ namespace stb {
 		void receiveClientList();
 		void handshake();
 		bool connectServer(std::string ip);
+
+		void addHandle(std::pair<int, packetFunctor> &functor);
+		void addHandle(std::vector<std::pair<int, packetFunctor>> &functors);
 
 		//Overload features
 		virtual void receiveServerInfo(Packet &serverInfo) = 0;

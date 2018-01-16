@@ -17,6 +17,7 @@ Engine::Engine()
 	_win = NULL;
 	_fullscreen = false;
 	_vsync = false;
+	stb::Profile::loadConfig();
 }
 
 Engine::~Engine()

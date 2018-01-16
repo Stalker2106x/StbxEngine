@@ -6,10 +6,10 @@ using namespace stb;
 
 ServerHandler::ServerHandler(clientArray &clients, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, std::condition_variable &clientsReady, ServerReceiver &receiver) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _clients(clients), _clientsReady(clientsReady), _receiver(receiver)
 {
-	_functors = {
-		{ Packet::Code::Client::Message, &ServerHandler::broadcastMessage },
+	/*_functors = {
+		{ Packet::Code::Client::Message, std::bind(ServerHandler::broadcastMessage) },
 		{ Packet::Code::Client::Drop, &ServerHandler::kickPlayer }
-	};
+	};*/
 }
 
 ServerHandler::~ServerHandler()
@@ -37,7 +37,7 @@ void ServerHandler::processLoop()
 				continue;
 			packetFunctor f = _functors[packet->code];
 
-			(this->*f)(packet);
+			f(packet);
 		}
 	}
 }

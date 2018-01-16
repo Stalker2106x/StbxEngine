@@ -13,6 +13,11 @@ Handler::~Handler()
 		stop();
 }
 
+void Handler::addHandle(std::pair<int, packetFunctor> &functor)
+{
+	_functors.emplace(functor);
+}
+
 void Handler::start()
 {
 	_thread = std::make_shared<std::thread>(&Handler::processLoop, this);

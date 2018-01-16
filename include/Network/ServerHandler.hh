@@ -12,10 +12,6 @@ namespace stb {
 	class ServerHandler : public Handler
 	{
 	public:
-		//Generic Handler typedef
-		typedef void (ServerHandler::*packetFunctor)(std::shared_ptr<Packet>);
-		typedef std::map<int16_t, packetFunctor> packetFunctorMap;
-
 		ServerHandler(clientArray &clients, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, std::condition_variable &clientsReady, ServerReceiver &receiver);
 		~ServerHandler();
 
@@ -29,7 +25,6 @@ namespace stb {
 		ServerReceiver &_receiver; //Hook on receiver to manage clients
 		std::condition_variable &_clientsReady;
 		clientArray &_clients;
-		packetFunctorMap _functors;
 	};
 
 }

@@ -21,6 +21,19 @@ Server::~Server()
 	}
 }
 
+void Server::addHandle(std::pair<int, packetFunctor> &functor)
+{
+	_handler.addHandle(functor);
+}
+
+void Server::addHandle(std::vector<std::pair<int, packetFunctor>> &functors)
+{
+	for (size_t i = 0; i < functors.size(); i++)
+	{
+		addHandle(functors[i]);
+	}
+}
+
 clientNode &Server::getClient(int8_t clientId)
 {
 	for (int8_t i = 0; i < _clients.size(); i++)
