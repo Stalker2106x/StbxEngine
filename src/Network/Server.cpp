@@ -6,7 +6,7 @@ using namespace stb;
 
 clientArray Server::_clients; //Static declaration
 
-Server::Server(const VersionInfo &version, const VersionInfo &supportedVersion, const std::string &name, const int port, const int slots) : _name(name), _port(port), _slots(slots), _receiver(_packetStack, _mutex, _signalMutex, _clients, _packetsWaiting), _handler(_clients, _packetStack, _mutex, _signalMutex, _packetsWaiting, _clientsReady, _receiver), _version(version), _supportedVersion(supportedVersion)
+Server::Server(const VersionInfo &version, const VersionInfo &supportedVersion, const std::string &name, const int port, const int slots) : _name(name), _port(port), _slots(slots), _receiver(_packetStack, _mutex, _signalMutex, _clients, _packetsWaiting), _handler(_clients, _packetStack, _mutex, _signalMutex, _packetsWaiting, _clientsReady, *this), _version(version), _supportedVersion(supportedVersion)
 {
 	_quit = false;
 	_handler.start();
@@ -21,14 +21,14 @@ Server::~Server()
 	}
 }
 
-void Server::addHandle(std::pair<int, packetFunctor> &functor)
+void Server::addHandle(std::pair<int, packetFunctor<Server>> &functor)
 {
-	_handler.addHandle(functor);
+	_handler.addHandle<Server>(functor);
 }
 
-void Server::addHandle(std::initializer_list<std::pair<int, packetFunctor>> &functors)
+void Server::addHandle(std::initializer_list<std::pair<int, packetFunctor<Server>>> &functors)
 {
-	for (std::initializer_list<std::pair<int, packetFunctor>>::iterator it = functors.begin(); it != functors.end(); it++)
+	for (std::initializer_list<std::pair<int, packetFunctor<Server>>>::iterator it = functors.begin(); it != functors.end(); it++)
 	{
 		addHandle(functors);
 	}
@@ -42,6 +42,11 @@ clientNode &Server::getClient(int8_t clientId)
 			return (_clients[i]);
 	}
 	throw (std::exception("unknownclient"));
+}
+
+ServerReceiver &Server::getReceiver()
+{
+	return (_receiver);
 }
 
 bool Server::isVersionSupported(const VersionInfo &version)

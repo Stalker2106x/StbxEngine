@@ -19,6 +19,7 @@ namespace stb {
 		~Server();
 
 		static clientNode &getClient(int8_t clientId);
+		ServerReceiver &getReceiver();
 		bool isVersionSupported(const VersionInfo &version);
 
 		void sendClientsInfo(clientNode &client);
@@ -28,8 +29,8 @@ namespace stb {
 		void run();
 		void shutdown();
 
-		void addHandle(std::pair<int, packetFunctor> &functor);
-		void addHandle(std::initializer_list<std::pair<int, packetFunctor>> &functors);
+		void addHandle(std::pair<int, packetFunctor<Server>> &functor);
+		void addHandle(std::initializer_list<std::pair<int, packetFunctor<Server>>> &functors);
 
 		//Overload feature
 		virtual void loop() = 0;

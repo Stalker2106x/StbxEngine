@@ -4,7 +4,7 @@
 
 using namespace stb;
 
-ServerHandler::ServerHandler(clientArray &clients, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, std::condition_variable &clientsReady, ServerReceiver &receiver) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _clients(clients), _clientsReady(clientsReady), _receiver(receiver)
+ServerHandler::ServerHandler(clientArray &clients, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, std::condition_variable &clientsReady, Server &server) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _clients(clients), _clientsReady(clientsReady), _server(server)
 {
 }
 
@@ -31,9 +31,9 @@ void ServerHandler::processLoop()
 			packet = extractPacket(_clients[i].second.id);
 			if (packet == nullptr) //No packet
 				continue;
-			packetFunctor f = _functors[packet->code];
+			packetFunctor<Server> f = _functors[packet->code];
 
-			f(packet);
+			f(&_server, packet);
 		}
 	}
 }

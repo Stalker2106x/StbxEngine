@@ -4,7 +4,7 @@
 
 using namespace stb;
 
-Client::Client(const VersionInfo &version, bool self) : _receiver(_packetStack, _mutex, _signalMutex, _packetsWaiting), _handler(*_socket, _packetStack, _mutex, _signalMutex, _packetsWaiting), _version(version)
+Client::Client(const VersionInfo &version, bool self) : _receiver(_packetStack, _mutex, _signalMutex, _packetsWaiting), _handler(*_socket, _packetStack, _mutex, _signalMutex, _packetsWaiting, *this), _version(version)
 {
 	_selfServer = self;
 	_socket = std::make_shared<sf::TcpSocket>();
@@ -16,19 +16,25 @@ Client::~Client()
 
 }
 
+ClientReceiver &Client::getReceiver()
+{
+	return (_receiver);
+}
+
+
 sf::TcpSocket &Client::getSocket()
 {
 	return (*_socket);
 }
 
-void Client::addHandle(std::pair<int, packetFunctor> &functor)
+void Client::addHandle(std::pair<int, packetFunctor<Client>> &functor)
 {
-	_handler.addHandle(functor);
+	_handler.addHandle<Client>(functor);
 }
 
-void Client::addHandle(std::initializer_list<std::pair<int, packetFunctor>> &functors)
+void Client::addHandle(std::initializer_list<std::pair<int, packetFunctor<Client>>> &functors)
 {
-	for (std::initializer_list<std::pair<int, packetFunctor>>::iterator it = functors.begin(); it != functors.end(); it++)
+	for (std::initializer_list<std::pair<int, packetFunctor<Client>>>::iterator it = functors.begin(); it != functors.end(); it++)
 	{
 		addHandle(functors);
 	}

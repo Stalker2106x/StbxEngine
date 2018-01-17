@@ -2,7 +2,7 @@
 
 using namespace stb;
 
-ClientHandler::ClientHandler(sf::TcpSocket &socket, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _socket(socket)
+ClientHandler::ClientHandler(sf::TcpSocket &socket, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, Client &client) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _socket(socket), _client(client)
 {
 }
 
@@ -25,8 +25,8 @@ void ClientHandler::processLoop()
 		packet = extractPacket();
 		if (packet == nullptr)
 			continue;
-		packetFunctor f = _functors[packet->code];
+		packetFunctor<Client> f = _functors[packet->code];
 
-		f(packet);
+		f(&_client, packet);
 	}
 }

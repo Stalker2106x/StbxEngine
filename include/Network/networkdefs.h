@@ -67,8 +67,10 @@ namespace stb {
 	typedef std::vector<clientNode> clientArray;
 	typedef std::deque<std::shared_ptr<Packet>> packetStack;
 
-	typedef std::function<void(std::shared_ptr<Packet>)>  packetFunctor;
-	typedef std::map<int16_t, packetFunctor> packetFunctorMap;
+	template <typename T>
+	using packetFunctor = std::function<void(T *instance, std::shared_ptr<Packet>)>;
+	template <typename T>
+	using packetFunctorMap = std::map<int16_t, packetFunctor<T>>;
 }
 
 #endif /* !NETWORKDEFS_HH_ */
