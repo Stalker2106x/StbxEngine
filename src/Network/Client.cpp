@@ -27,19 +27,6 @@ sf::TcpSocket &Client::getSocket()
 	return (*_socket);
 }
 
-void Client::addHandle(std::pair<int, packetFunctor<Client>> &functor)
-{
-	_handler.addHandle<Client>(functor);
-}
-
-void Client::addHandle(std::initializer_list<std::pair<int, packetFunctor<Client>>> &functors)
-{
-	for (std::initializer_list<std::pair<int, packetFunctor<Client>>>::iterator it = functors.begin(); it != functors.end(); it++)
-	{
-		addHandle(functors);
-	}
-}
-
 void Client::disconnect(bool unexpected)
 {
 	_receiver.close();

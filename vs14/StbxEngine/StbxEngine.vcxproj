@@ -156,7 +156,6 @@
     <ClCompile Include="..\..\src\Network\Client.cpp" />
     <ClCompile Include="..\..\src\Network\ClientHandler.cpp" />
     <ClCompile Include="..\..\src\Network\ClientReceiver.cpp" />
-    <ClCompile Include="..\..\src\Network\Handler.cpp" />
     <ClCompile Include="..\..\src\Network\Packet.cpp" />
     <ClCompile Include="..\..\src\Network\Receiver.cpp" />
     <ClCompile Include="..\..\src\Network\Server.cpp" />

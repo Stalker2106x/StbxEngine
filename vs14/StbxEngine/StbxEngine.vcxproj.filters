@@ -134,9 +134,6 @@
     <ClCompile Include="..\..\src\Network\Packet.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Network\Handler.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Network\Receiver.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>

@@ -29,9 +29,18 @@ namespace stb {
 		}
 
 		template <typename T>
-		void addHandle(std::pair<int, packetFunctor<T>> &functor)
+		void addHandle(std::pair<int, packetFunctor<T>> functor)
 		{
 			_functors.emplace(functor);
+		}
+
+		template <typename T>
+		void addHandle(std::initializer_list<std::pair<int, packetFunctor<T>>> &functors)
+		{
+			for (std::initializer_list<std::pair<int, packetFunctor<T>>>::iterator it = functors.begin(); it != functors.end(); it++)
+			{
+				addHandle(*it);
+			}
 		}
 
 		void start()

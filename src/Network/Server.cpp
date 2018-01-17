@@ -21,19 +21,6 @@ Server::~Server()
 	}
 }
 
-void Server::addHandle(std::pair<int, packetFunctor<Server>> &functor)
-{
-	_handler.addHandle<Server>(functor);
-}
-
-void Server::addHandle(std::initializer_list<std::pair<int, packetFunctor<Server>>> &functors)
-{
-	for (std::initializer_list<std::pair<int, packetFunctor<Server>>>::iterator it = functors.begin(); it != functors.end(); it++)
-	{
-		addHandle(functors);
-	}
-}
-
 clientNode &Server::getClient(int8_t clientId)
 {
 	for (int8_t i = 0; i < _clients.size(); i++)

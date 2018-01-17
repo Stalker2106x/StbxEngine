@@ -26,10 +26,7 @@ namespace stb {
 		void receiveClientList();
 		void handshake();
 		bool connectServer(std::string ip);
-
-		void addHandle(std::pair<int, packetFunctor<Client>> &functor);
-		void addHandle(std::initializer_list<std::pair<int, packetFunctor<Client>>> &functors);
-
+		
 		//Overload features
 		virtual void receiveServerInfo(Packet &serverInfo) = 0;
 		virtual void receivePlayer(Packet &playerData) = 0;
