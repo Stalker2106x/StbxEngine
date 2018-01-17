@@ -29,7 +29,7 @@ namespace stb {
 		void shutdown();
 
 		void addHandle(std::pair<int, packetFunctor> &functor);
-		void addHandle(std::vector<std::pair<int, packetFunctor>> &functors);
+		void addHandle(std::initializer_list<std::pair<int, packetFunctor>> &functors);
 
 		//Overload feature
 		virtual void loop() = 0;

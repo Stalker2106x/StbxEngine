@@ -6,10 +6,6 @@ using namespace stb;
 
 ServerHandler::ServerHandler(clientArray &clients, packetStack &packetStack, std::mutex &mutex, std::mutex &signalMutex, std::condition_variable &packetsWaiting, std::condition_variable &clientsReady, ServerReceiver &receiver) : Handler(packetStack, mutex, signalMutex, packetsWaiting), _clients(clients), _clientsReady(clientsReady), _receiver(receiver)
 {
-	/*_functors = {
-		{ Packet::Code::Client::Message, std::bind(ServerHandler::broadcastMessage) },
-		{ Packet::Code::Client::Drop, &ServerHandler::kickPlayer }
-	};*/
 }
 
 ServerHandler::~ServerHandler()
@@ -39,25 +35,5 @@ void ServerHandler::processLoop()
 
 			f(packet);
 		}
-	}
-}
-
-void ServerHandler::broadcastMessage(std::shared_ptr<Packet> packet)
-{
-	std::string msg = packet->getData<std::string>();
-
-	Packet::broadcast(_clients, Packet::Code::Client::Message, -1, packet->clientId, msg);
-}
-
-void ServerHandler::kickPlayer(std::shared_ptr<Packet> packet)
-{
-	clientNode &client = Server::getClient(packet->clientId);
-	int8_t droppedClientId = packet->getData<int8_t>();
-	clientNode &droppedClient = Server::getClient(droppedClientId);
-
-	if (client.second.host == true)
-	{
-		Packet::broadcast(_clients, Packet::Code::Client::Drop, -1, droppedClient.second.id);
-		_receiver.dropClient(droppedClient);
 	}
 }

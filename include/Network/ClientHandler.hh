@@ -13,7 +13,6 @@ namespace stb {
 
 		virtual void processLoop();
 
-
 	private:
 		sf::TcpSocket &_socket;//Hook on socket
 		packetFunctorMap _functors;

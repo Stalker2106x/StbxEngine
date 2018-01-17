@@ -26,11 +26,11 @@ void Client::addHandle(std::pair<int, packetFunctor> &functor)
 	_handler.addHandle(functor);
 }
 
-void Client::addHandle(std::vector<std::pair<int, packetFunctor>> &functors)
+void Client::addHandle(std::initializer_list<std::pair<int, packetFunctor>> &functors)
 {
-	for (size_t i = 0; i < functors.size(); i++)
+	for (std::initializer_list<std::pair<int, packetFunctor>>::iterator it = functors.begin(); it != functors.end(); it++)
 	{
-		addHandle(functors[i]);
+		addHandle(functors);
 	}
 }
 
