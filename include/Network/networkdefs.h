@@ -53,9 +53,11 @@ namespace stb {
 	struct ServerInfo {
 		std::string name;
 		int8_t slots;
-		ServerInfo(std::string n, int8_t s = DEFAULT_SERVER_SLOTS)
+		int port;
+		ServerInfo(std::string n, int p, int8_t s = DEFAULT_SERVER_SLOTS)
 		{
 			name = n;
+			port = p;
 			slots = s;
 		}
 	};
@@ -68,7 +70,7 @@ namespace stb {
 	typedef std::deque<std::shared_ptr<Packet>> packetStack;
 
 	template <typename T>
-	using packetFunctor = std::function<void(T *instance, std::shared_ptr<Packet>)>;
+	using packetFunctor = std::function<void(std::shared_ptr<Packet>)>;
 	template <typename T>
 	using packetFunctorMap = std::map<int16_t, packetFunctor<T>>;
 }

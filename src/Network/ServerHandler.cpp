@@ -33,7 +33,7 @@ void ServerHandler::processLoop()
 				continue;
 			packetFunctor<Server> f = _functors[packet->code];
 
-			f(&_server, packet);
+			f(packet);
 		}
 	}
 }

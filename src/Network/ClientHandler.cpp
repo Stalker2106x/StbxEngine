@@ -27,6 +27,6 @@ void ClientHandler::processLoop()
 			continue;
 		packetFunctor<Client> f = _functors[packet->code];
 
-		f(&_client, packet);
+		f(packet);
 	}
 }

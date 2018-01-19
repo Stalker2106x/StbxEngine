@@ -6,7 +6,7 @@ using namespace stb;
 
 clientArray Server::_clients; //Static declaration
 
-Server::Server(const VersionInfo &version, const VersionInfo &supportedVersion, const std::string &name, const int port, const int slots) : _name(name), _port(port), _slots(slots), _receiver(_packetStack, _mutex, _signalMutex, _clients, _packetsWaiting), _handler(_clients, _packetStack, _mutex, _signalMutex, _packetsWaiting, _clientsReady, *this), _version(version), _supportedVersion(supportedVersion)
+Server::Server(const VersionInfo &version, const VersionInfo &supportedVersion, const std::string &name, const int port, const int slots) : _receiver(_packetStack, _mutex, _signalMutex, _clients, _packetsWaiting), _handler(_clients, _packetStack, _mutex, _signalMutex, _packetsWaiting, _clientsReady, *this), _version(version), _supportedVersion(supportedVersion), _info(name, port, slots)
 {
 	_quit = false;
 	_handler.start();
@@ -99,7 +99,7 @@ void Server::handshake(clientNode &client)
 		return;
 	}
 	client.second.uid = packet->getData<int32_t>();
-	Packet::send(*client.first, Packet::Code::Server::SInfo, _name, _slots); //send server info
+	Packet::send(*client.first, Packet::Code::Server::SInfo, _info.name, _info.slots); //send server info
 	if ((packet = _handler.extractPacket(client.second.id, Packet::Code::Client::COk, sf::milliseconds(50), DEFAULT_TIMEOUT)) == nullptr) //Wait for client Acknowledge
 	{
 		onClientTimeout();
@@ -120,7 +120,7 @@ uint8_t Server::reserveSlot()
 		if (_clients[i].first == nullptr)
 			return (_clients[i].second.id);
 	}
-	if (_clients.size() < _slots)
+	if (_clients.size() < _info.slots)
 		return (static_cast<uint8_t>(_clients.size() + 1));
 	return (-1); // No slot
 }
@@ -161,7 +161,7 @@ void Server::listenLoop()
 //Add overload for user
 void Server::run()
 {
-	if (_listener.listen(_port) != sf::Socket::Done) //Binding
+	if (_listener.listen(_info.port) != sf::Socket::Done) //Binding
 	{
 		onBindError();
 	}

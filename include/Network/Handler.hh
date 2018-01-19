@@ -39,7 +39,7 @@ namespace stb {
 		{
 			for (std::initializer_list<std::pair<int, packetFunctor<T>>>::iterator it = functors.begin(); it != functors.end(); it++)
 			{
-				addHandle(*it);
+				addHandle<T>(*it);
 			}
 		}
 

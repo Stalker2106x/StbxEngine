@@ -5,17 +5,19 @@
 + Maxime 'stalker2106' Martens
 
 ## About ##
-StbxEngine is a basic implementation of Game Engine; with a modular pattern. It provides a 2D context (extendable to 3D with openGL) with pre-built modules such as Developer console, XML Menu component, HUD with custom panels, wether draggables or static, and many more !
+StbxEngine is a basic, hassle-free, feature-full implementation of a modern C++ Game Engine.
+It provides a SFML-Powered 2D context (extendable to 3D with openGL) with pre-built modules.
 
-This projects aims to give developers a way to program video games with basic C++ Knowledge
+This projects aims to give developers a way to program video games with basic C++ Knowledge;
+No more time-wasting tasks, start writing the game code right away!
 
 ## Build Status ##
 
-You can check build status for latest version [at this address](http://vault.maximemartens.fr/stbxengine/)
+You can check build status for latest version [at this address](http://stabax.org/stbxengine/)
 
 ## Documentation ##
 
-This library is documented online [at this address](http://vault.maximemartens.fr/stbxengine/doc/)
+This library is documented online [at this address](http://stabax.org/stbxengine/doc/)
 
 ## License ##
 
@@ -29,36 +31,38 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Dependencies ##
-+ PugiXML for XML Parsing
 + SFML for Graphics and Window
   * Optionally OpenGL for rendering 3D context
++ Texu's GUI for rendering interfaces
++ PugiXML for XML Parsing
++ Nlohmann's Json for Json Parsing
+
 
 ### Getting started ###
 
-Check out our [latest guide here](http://vault.maximemartens.fr/stbxengine/doc/md_doc_GettingStarted.html)
+Check out our [latest guide here](http://stabax.org/stbxengine/doc/md_doc_GettingStarted.html)
 
-### Get library
+## Build the library! ##
 
-To begin writing your game, clone latest revision of engine: 
-	#!bash
-	
-	git clone http://bitbucket.org/stalker2106/stbxengine.git
+### Command Line (Make/GCC/Clang)
 
-## Build it! ##
+The engine project uses CMake. therefore, make sure you have it installed on target machine.
+You can then run cmake generation for your desired environemment:
 
-### Command Line (GCC/Clang)
+    #!/bin/bash
 
-build the library binary depending on your needs with command line:
-	#!bash
-	
-	make static
-OR
-	make dynamic
+    cmake ./build/
 
-### Visual Studio (2013)
+### Visual Studio (2015)
 
 Navigate to @REPO/vs/ folder, open StbxEngine.sln solution to build it using Visual Studio.
 
 ## Compile with engine ##
 
-Add library binary previously built to your linker settings or add "-lsengine" to your linker command line
+### Command Line (Make/GCC/Clang)
+
+You can directly link with StbxEngine by adding "-lsengine" to your linker command line.
+
+### Visual Studio (2015)
+
+Add library binary previously built (sengine.lib) to your linker settings.

@@ -46,9 +46,7 @@ namespace stb {
 		std::condition_variable _packetsWaiting, _clientsReady;
 		std::mutex _mutex, _signalMutex;
 		bool _quit;
-		std::string _name;
-		uint8_t _slots;
-		int _port;
+		ServerInfo _info;
 		ServerReceiver _receiver;
 		ServerHandler _handler;
 		packetStack _packetStack;
