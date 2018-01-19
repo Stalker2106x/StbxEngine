@@ -1,6 +1,5 @@
 <map id="stb::Engine" name="stb::Engine">
-<area shape="rect" id="node2" href="$classstb_1_1Console.html" title="Integrated toggleable developer console. " alt="" coords="5,95,107,121"/>
-<area shape="rect" id="node3" href="$classstb_1_1GUI.html" title="Heads up display module. " alt="" coords="131,95,205,121"/>
-<area shape="rect" id="node4" href="$structstb_1_1GUIDefaults.html" title="stb::GUIDefaults" alt="" coords="105,5,231,32"/>
-<area shape="rect" id="node5" href="$classstb_1_1Keybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="229,95,336,121"/>
+<area shape="rect" id="node2" href="$classstb_1_1Console.html" title="Integrated toggleable developer console. " alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node3" href="$classstb_1_1Keybinds.html" title="Dictionnary of current bound keys at runtime. " alt="" coords="131,5,237,32"/>
+<area shape="rect" id="node4" href="$classstb_1_1Profile.html" title="stb::Profile" alt="" coords="262,5,351,32"/>
 </map>

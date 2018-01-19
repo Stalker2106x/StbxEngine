@@ -1,8 +1,3 @@
 <map id="include/Console.hh" name="include/Console.hh">
-<area shape="rect" id="node6" href="$GUIPanel_8hh.html" title="GUI static or draggable panels. " alt="" coords="349,80,447,107"/>
-<area shape="rect" id="node14" href="$utils_8h_source.html" title="utils.h" alt="" coords="108,229,168,256"/>
-<area shape="rect" id="node16" href="$Commands_8hh.html" title="Contains definition of basic console commands. " alt="" coords="552,80,668,107"/>
-<area shape="rect" id="node8" href="$GUIElement_8hpp_source.html" title="GUIElement.hpp" alt="" coords="404,304,531,331"/>
-<area shape="rect" id="node10" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="329,155,437,181"/>
-<area shape="rect" id="node13" href="$GUISpecializedButton_8hpp_source.html" title="GUISpecializedButton.hpp" alt="" coords="295,229,483,256"/>
+<area shape="rect" id="node7" href="$Commands_8hh.html" title="Contains definition of basic console commands. " alt="" coords="561,80,677,107"/>
 </map>

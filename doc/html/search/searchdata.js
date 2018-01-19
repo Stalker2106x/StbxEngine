@@ -1,21 +1,24 @@
 var indexSectionsWithContent =
 {
-  0: "cekm",
-  1: "cekm",
-  2: "cekm"
+  0: "ceghkprswx",
+  1: "cegkprsx",
+  2: "cekr",
+  3: "eghsw"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "files"
+  2: "files",
+  3: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Classes",
-  2: "Files"
+  2: "Files",
+  3: "Pages"
 };
 

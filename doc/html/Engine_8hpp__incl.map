@@ -1,14 +1,7 @@
 <map id="include/Engine.hpp" name="include/Engine.hpp">
-<area shape="rect" id="node3" href="$Console_8hh.html" title="Console.hh" alt="" coords="243,80,336,107"/>
-<area shape="rect" id="node19" href="$Keybinds_8hh.html" title="Keybinds.hh" alt="" coords="55,304,153,331"/>
-<area shape="rect" id="node21" href="$GUI_8hh.html" title="GUI.hh" alt="" coords="637,80,702,107"/>
-<area shape="rect" id="node7" href="$GUIPanel_8hh.html" title="GUI static or draggable panels. " alt="" coords="681,155,780,181"/>
-<area shape="rect" id="node15" href="$utils_8h_source.html" title="utils.h" alt="" coords="730,304,790,331"/>
-<area shape="rect" id="node17" href="$Commands_8hh.html" title="Contains definition of basic console commands. " alt="" coords="402,304,518,331"/>
-<area shape="rect" id="node9" href="$GUIElement_8hpp_source.html" title="GUIElement.hpp" alt="" coords="1178,379,1305,405"/>
-<area shape="rect" id="node11" href="$GUIButton_8hh.html" title="Buttons placeable on GUI. " alt="" coords="921,229,1029,256"/>
-<area shape="rect" id="node14" href="$GUISpecializedButton_8hpp_source.html" title="GUISpecializedButton.hpp" alt="" coords="866,304,1054,331"/>
-<area shape="rect" id="node20" href="$Control_8hh.html" title="Control.hh" alt="" coords="44,379,132,405"/>
-<area shape="rect" id="node23" href="$GUIEntity_8hh.html" title="Implements standard GUI Entities. " alt="" coords="559,155,657,181"/>
-<area shape="rect" id="node24" href="$Resolver_8hh.html" title="Resolver.hh" alt="" coords="594,304,689,331"/>
+<area shape="rect" id="node4" href="$Profile_8hh_source.html" title="Profile.hh" alt="" coords="863,80,944,107"/>
+<area shape="rect" id="node15" href="$Console_8hh.html" title="Console.hh" alt="" coords="501,80,594,107"/>
+<area shape="rect" id="node18" href="$Keybinds_8hh.html" title="Keybinds.hh" alt="" coords="11,80,110,107"/>
+<area shape="rect" id="node17" href="$Commands_8hh.html" title="Contains definition of basic console commands. " alt="" coords="489,155,605,181"/>
+<area shape="rect" id="node19" href="$Control_8hh.html" title="Control.hh" alt="" coords="22,155,110,181"/>
 </map>

@@ -1,6 +1,3 @@
 <map id="include/Keybinds.hh" name="include/Keybinds.hh">
-<area shape="rect" id="node2" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="23,80,166,107"/>
-<area shape="rect" id="node3" href="$GUIMenuItem_8hh.html" title="GUI Menu items (links, settings, sliders, text inputs, ...) " alt="" coords="5,155,184,181"/>
-<area shape="rect" id="node4" href="$GUIMenu_8hh.html" title="include/GUIMenu.hh" alt="" coords="20,229,169,256"/>
-<area shape="rect" id="node5" href="$GUIScreen_8hh.html" title="include/GUIScreen.hh" alt="" coords="15,304,174,331"/>
+<area shape="rect" id="node2" href="$Engine_8hpp.html" title="include/Engine.hpp" alt="" coords="7,80,150,107"/>
 </map>

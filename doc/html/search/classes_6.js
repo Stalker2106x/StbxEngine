@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['textskin',['TextSkin',['../structstb_1_1TextSkin.html',1,'stb']]]
+  ['sfresolver',['SFResolver',['../classstb_1_1SFResolver.html',1,'stb']]]
 ];

@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classstb_1_1Resolver.html" title="Resource resolving utility: get resource of given type by its name. " alt="" coords="5,31,145,57"/>
-<area shape="rect" id="node2" href="$classstb_1_1SFResolver.html" title="stb::SFResolver\&lt; T \&gt;" alt="" coords="198,5,354,32"/>
-<area shape="rect" id="node3" href="$classstb_1_1STBResolver.html" title="stb::STBResolver\&lt; T \&gt;" alt="" coords="193,56,359,83"/>
+<area shape="rect" id="node1" href="$classpugi_1_1xml__writer.html" title="pugi::xml_writer" alt="" coords="5,31,128,57"/>
+<area shape="rect" id="node2" href="$classpugi_1_1xml__writer__file.html" title="pugi::xml_writer_file" alt="" coords="190,5,337,32"/>
+<area shape="rect" id="node3" href="$classpugi_1_1xml__writer__stream.html" title="pugi::xml_writer_stream" alt="" coords="176,56,351,83"/>
 </map>
