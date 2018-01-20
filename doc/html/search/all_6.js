@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['resolver',['Resolver',['../classstb_1_1Resolver.html',1,'stb']]],
-  ['resolver_2ehh',['Resolver.hh',['../Resolver_8hh.html',1,'']]]
+  ['set_20up_20your_20environment',['Set up your environment',['../md_doc_SetUpEnvironment.html',1,'']]],
+  ['sfresolver',['SFResolver',['../classstb_1_1SFResolver.html',1,'stb']]]
 ];

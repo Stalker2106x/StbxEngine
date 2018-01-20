@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pathresolver',['PathResolver',['../classstb_1_1PathResolver.html',1,'stb']]],
-  ['profile',['Profile',['../classstb_1_1Profile.html',1,'stb']]]
+  ['resolver',['Resolver',['../classstb_1_1Resolver.html',1,'stb']]],
+  ['resolver_2ehh',['Resolver.hh',['../Resolver_8hh.html',1,'']]]
 ];

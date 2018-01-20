@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>StbxEngine: Member List</title>
+<title>StbxEngine: Your first engine</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="https://www.sfml-dev.org/documentation/2.4.2/"><span>SFML&#160;Documentation</span></a></li>
       <li>
@@ -60,13 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-    </ul>
-  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,24 +74,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><b>stb</b></li><li class="navelem"><a class="el" href="classstb_1_1PathResolver.html">PathResolver</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">stb::PathResolver&lt; ResolverType &gt; Member List</div>  </div>
+<div class="title">Your first engine </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p>The StbxEngine library resides on a simple yet powerful concept: the "Engine" ecosystem.<br />
+The base class of the project is the <a class="el" href="classstb_1_1Engine.html" title="Main class for graphic conception. ">stb::Engine</a> class, which you should inherit from, and<br />
+implement update/draw logic from your game. Basically, most of StbxEngine component act as<br />
+Extendable interfaces that you inherit from, or feed with functors.<br />
+ For example, the simplest project hello world could be made with the following code:<br />
+</p><pre class="fragment">class MyGame : public stb::Engine //Inherit from StbxEngine class
+{
+public:
+    MyGame()
+  {
+    init(); //Call init to start Engine/window
+  }
 
-<p>This is the complete list of members for <a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a>, including all inherited members.</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addLocation</b>(const std::string &amp;path) (defined in <a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a>)</td><td class="entry"><a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>exists</b>(const std::string &amp;name) (defined in <a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a>)</td><td class="entry"><a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>insert</b>(const std::string &amp;name, std::string resource) (defined in <a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a>)</td><td class="entry"><a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>resolve</b>(const std::string &amp;name) (defined in <a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a>)</td><td class="entry"><a class="el" href="classstb_1_1PathResolver.html">stb::PathResolver&lt; ResolverType &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-</table></div><!-- contents -->
+    bool update(const sf::Event &amp;e)
+  {
+    //Your game logic goes here
+  }
+
+    void draw(sf::RenderWindow &amp;win)
+  {
+    //Render your game here
+  }
+};
+
+int main(int argc, char **argv)
+{
+  MyGame game; //Instanciate your game
+
+  if (argc &gt; 0)
+    engine.handleArgs(argc, argv); //If arguments present, handle them (Note: you can call handleArgs without testing.)
+  engine.mainLoop(); //Start the game loop.
+  return (0);
+}
+</pre><p>With this architecture, every aspect of the game has its container:<br />
+Please note: EVERY Drawable class you write should implement this update/draw logic<br />
+The draw function should only draw, and therefore should be const passive to its owner.<br />
+The update method is called BEFORE each frame is drawn on screen; the draw method is called when everything has updated.<br />
+</p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
