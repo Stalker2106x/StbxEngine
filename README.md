@@ -17,7 +17,7 @@ You can check build status for latest version [at this address](http://stabax.or
 
 ## Documentation ##
 
-This library is documented online [at this address](http://stabax.org/stbxengine/doc/)
+This library is documented online [at this address](http://stabax.org/doc/stbxengine/)
 
 ## License ##
 
