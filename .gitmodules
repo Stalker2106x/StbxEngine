@@ -1,12 +1,6 @@
-[submodule "extlib/pugixml"]
-	path = extlib/pugixml
-	url = https://github.com/zeux/pugixml.git
 [submodule "extlib/sfml"]
 	path = extlib/sfml
 	url = https://github.com/SFML/SFML.git
-[submodule "extlib/stblib"]
-	path = extlib/stblib
-	url = https://stalker2106@bitbucket.org/baxlan/stblib.git
 [submodule "extlib/ionicons"]
 	path = extlib/ionicons
 	url = https://github.com/ionic-team/ionicons.git
