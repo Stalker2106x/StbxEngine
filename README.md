@@ -34,7 +34,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 + SFML for Graphics and Window
   * Optionally OpenGL for rendering 3D context
 + Texu's GUI for rendering interfaces
-+ PugiXML for XML Parsing
 + Nlohmann's Json for Json Parsing
 
 
