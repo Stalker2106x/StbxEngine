@@ -17,14 +17,17 @@ namespace stb {
 
 		typedef void(*cmdFptr)(std::vector<std::string> *);
 		typedef std::map<std::string, cmdFptr> cmdMap;
+		typedef std::map<std::string, std::string> aliasMap;
 		static cmdMap cmdlist; //Association map
+		static aliasMap aliaslist; //Association map
 
 		//Command Manipulation
-		static bool convertBool(std::string &arg);
-		static std::vector<std::string> *getArgs(std::string &command);
-		static bool parseCmd(std::string);
+		static bool convertBool(std::string arg);
+		static std::vector<std::string> *getArgs(const std::string &command, std::vector<std::string> *argv);
+		static bool parseCmd(const std::string &cmd, std::vector<std::string> *argv = NULL);
 
 		//Command system functors
+		static void alias(std::vector<std::string> *);
 		static void bindCommand(std::vector<std::string> *);
 		static void bindList(std::vector<std::string> *);
 		static void consoleClear(std::vector<std::string> *);
