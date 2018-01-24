@@ -1,8 +1,9 @@
 #include <fstream>
 #include <memory>
-#include "Engine.hpp"
 #include "Commands.hh"
+#include "Engine.hpp"
 #include "utils.h"
+
 #ifndef _MSC_VER
 	#include <unistd.h>
 #else
@@ -12,7 +13,8 @@
 
 using namespace stb;
 
-Commands::cmdMap Commands::cmdlist = {
+cmdMap Commands::cmdlist = {
+	{ "alias", &alias},
 	{ "bind", &bindCommand },
 	{ "bindlist", &bindList },
 	{ "clear", &consoleClear },
@@ -54,14 +56,19 @@ bool Commands::convertBool(std::string arg)
 	return (false);
 }
 
-std::vector<std::string> *Commands::getArgs(const std::string &command, std::vector<std::string> *argv)
+argumentArray *Commands::getArgs(const std::string &command, argumentArray *argv)
 {
 	std::string buffer;
 	char delimiter;
 	size_t pos;
+	bool insert = false;
 
 	if (command.find(' ') == std::string::npos) return (NULL); //If no word break, no args, leave...
-	if (argv == NULL) argv = new std::vector<std::string>(); //If argv is not set, allocate it
+	if (argv == NULL)
+	{
+		argv = new argumentArray(); //If argv is not set, allocate it
+		insert = true; //Set inserting to true to prevent misordered args
+	}
 	buffer = command;
 	while ((pos = buffer.find(' ')) != std::string::npos)
 	{
@@ -80,14 +87,16 @@ std::vector<std::string> *Commands::getArgs(const std::string &command, std::vec
 			buffer.erase(0, 1);
 		}
 		if ((pos = buffer.find(delimiter)) != std::string::npos)
-			argv->push_back(buffer.substr(0, pos));
+			buffer = buffer.substr(0, pos);
+		if (insert)
+			argv->push_front(buffer);
 		else
 			argv->push_back(buffer);
 	}
 	return (argv);
 }
 
-bool Commands::parseCmd(const std::string &cmd, std::vector<std::string> *argv)
+bool Commands::parseCmd(const std::string &cmd, argumentArray *argv)
 {
 	std::string command;
 	bool alias = false;
@@ -117,7 +126,7 @@ bool Commands::parseCmd(const std::string &cmd, std::vector<std::string> *argv)
 // Command functors
 //
 
-void Commands::alias(std::vector<std::string> *argv)
+void Commands::alias(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 2)
 	{
@@ -132,7 +141,7 @@ void Commands::alias(std::vector<std::string> *argv)
 	aliaslist.emplace(alias, command);
 }
 
-void Commands::bindCommand(std::vector<std::string> *argv)
+void Commands::bindCommand(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 2)
 	{
@@ -148,27 +157,27 @@ void Commands::bindCommand(std::vector<std::string> *argv)
 		Engine::console->output("bind: Cannot bind key; key or action invalid?");
 }
 
-void Commands::bindList(std::vector<std::string> *)
+void Commands::bindList(argumentArray *)
 {
 	Engine::instance->keybinds->listAllBinds();
 }
 
-void Commands::consoleClear(std::vector<std::string> *)
+void Commands::consoleClear(argumentArray *)
 {
 	Engine::console->clear();
 }
 
-void Commands::consoleToggle(std::vector<std::string> *)
+void Commands::consoleToggle(argumentArray *)
 {
 	Engine::console->toggle();
 }
 
-void Commands::debugInfo(std::vector<std::string> *)
+void Commands::debugInfo(argumentArray *)
 {
 	//none
 }
 
-void Commands::echo(std::vector<std::string> *argv)
+void Commands::echo(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 		Engine::console->output("");
@@ -176,7 +185,7 @@ void Commands::echo(std::vector<std::string> *argv)
 		Engine::console->output((*argv)[0]);
 }
 
-void Commands::execute(std::vector<std::string> *argv)
+void Commands::execute(argumentArray *argv)
 {
 	std::ifstream ifs;
 	std::string cmd;
@@ -196,7 +205,7 @@ void Commands::execute(std::vector<std::string> *argv)
 		parseCmd(cmd);
 }
 
-void Commands::findCmd(std::vector<std::string> *argv)
+void Commands::findCmd(argumentArray *argv)
 {
 	cmdMap::const_iterator iter;
 	std::vector<std::string> available;
@@ -219,7 +228,7 @@ void Commands::findCmd(std::vector<std::string> *argv)
 		Engine::console->output("find: No commands found");
 }
 
-void Commands::toggleConLog(std::vector<std::string> *argv)
+void Commands::toggleConLog(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -233,7 +242,7 @@ void Commands::toggleConLog(std::vector<std::string> *argv)
 	Engine::console->setLogEnabled(v);
 }
 
-void Commands::writeToLog(std::vector<std::string> *argv)
+void Commands::writeToLog(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -243,7 +252,7 @@ void Commands::writeToLog(std::vector<std::string> *argv)
 	Engine::console->writeToLog((*argv)[0]);
 }
 
-void Commands::setConLog(std::vector<std::string> *argv)
+void Commands::setConLog(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -253,12 +262,12 @@ void Commands::setConLog(std::vector<std::string> *argv)
 	Engine::console->setLogFile((*argv)[0]);
 }
 
-void Commands::toggleGUIElement(std::vector<std::string> *argv)
+void Commands::toggleGUIElement(argumentArray *argv)
 {
 	//none
 }
 
-void Commands::timestampLog(std::vector<std::string> *argv)
+void Commands::timestampLog(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -272,7 +281,7 @@ void Commands::timestampLog(std::vector<std::string> *argv)
 	Engine::console->setLogTimestamp(static_cast<int>(v));
 }
 
-void Commands::printCWD(std::vector<std::string> *)
+void Commands::printCWD(argumentArray *)
 {
 	char *cwd;
 
@@ -285,12 +294,12 @@ void Commands::printCWD(std::vector<std::string> *)
 	delete (cwd);
 }
 
-void Commands::quit(std::vector<std::string> *)
+void Commands::quit(argumentArray *)
 {
 	Engine::instance->quit();
 }
 
-void Commands::screenshot(std::vector<std::string> *argv)
+void Commands::screenshot(argumentArray *argv)
 {
 	static int id = 0;
 	sf::Image shot;
@@ -306,7 +315,7 @@ void Commands::screenshot(std::vector<std::string> *argv)
 		Engine::console->output("screenshot: Unable to save screenshot");
 }
 
-void Commands::setConColor(std::vector<std::string> *argv)
+void Commands::setConColor(argumentArray *argv)
 {
 	sf::Color cbg, cinput;
 
@@ -318,7 +327,7 @@ void Commands::setConColor(std::vector<std::string> *argv)
 	Engine::console->setColor(cbg, cinput);
 }
 
-void Commands::setConCursor(std::vector<std::string> *argv)
+void Commands::setConCursor(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -328,7 +337,7 @@ void Commands::setConCursor(std::vector<std::string> *argv)
 	//Engine::console->setCursor((*argv)[0][0]); TMP
 }
 
-void Commands::setMaxFPS(std::vector<std::string> *argv)
+void Commands::setMaxFPS(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -338,7 +347,7 @@ void Commands::setMaxFPS(std::vector<std::string> *argv)
 	Engine::instance->videoParamSet("FPS", atoi((*argv)[0].c_str()));
 }
 
-void Commands::setFullscreen(std::vector<std::string> *argv)
+void Commands::setFullscreen(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -352,7 +361,7 @@ void Commands::setFullscreen(std::vector<std::string> *argv)
 	Engine::instance->videoParamSet("FULLSCREEN", static_cast<int>(v));
 }
 
-void Commands::help(std::vector<std::string> *)
+void Commands::help(argumentArray *)
 {
 	Engine::console->output("Available commands: ");
 	Engine::console->output("");
@@ -362,7 +371,7 @@ void Commands::help(std::vector<std::string> *)
 	}
 }
 
-void Commands::setVSync(std::vector<std::string> *argv)
+void Commands::setVSync(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -376,7 +385,7 @@ void Commands::setVSync(std::vector<std::string> *argv)
 	Engine::instance->videoParamSet("VSYNC", v);
 }
 
-void Commands::unbind(std::vector<std::string> *argv)
+void Commands::unbind(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 1)
 	{
@@ -387,12 +396,12 @@ void Commands::unbind(std::vector<std::string> *argv)
 		Engine::console->output("unbind: Unable to unbind key or action");
 }
 
-void Commands::unbindall(std::vector<std::string> *)
+void Commands::unbindall(argumentArray *)
 {
 	Engine::instance->keybinds->unbindall();
 }
 
-void Commands::windowSize(std::vector<std::string> *argv)
+void Commands::windowSize(argumentArray *argv)
 {
 	if (argv == NULL || argv->size() < 2)
 	{
