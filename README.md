@@ -35,11 +35,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   * Optionally OpenGL for rendering 3D context
 + Texu's GUI for rendering interfaces
 + Nlohmann's Json for Json Parsing
++ PicoSHA2 for credentials hash
 
 
 ### Getting started ###
 
-Check out our [latest guide here](http://stabax.org/stbxengine/doc/md_doc_GettingStarted.html)
+Check out our [latest guide here](http://stabax.org/doc/stbxengine/md_doc_GettingStarted.html)
 
 ## Build the library! ##
 

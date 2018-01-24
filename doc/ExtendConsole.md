@@ -5,39 +5,37 @@ It comes with default actions and commands included as follows:\n
 
 <table>
 <tr><th>command</th><th>action</th></tr>
-<tr><td>bind</td><td>bind a command to a key</td></tr>
+<tr><td>bind [string:key] [string:command]</td><td>bind a [command] to a [key]</td></tr>
 <tr><td>bindlist</td><td>show list of bound commands</td></tr>
 <tr><td>clear</td><td>clear console screen</td></tr>
-<tr><td>con_color</td><td>set color of console</td></tr>
-<tr><td>con_cursor</td><td>set console cursor</td></tr>
+<tr><td>con_color [string:color]</td><td>set color (hex format: "#RRGGBB") of console background</td></tr>
 <tr><td>cwd</td><td>print current working directory of executable</td></tr>
 <tr><td>debuginfo</td><td>toggle show/hide debugInfo panel</td></tr>
-<tr><td>echo</td><td>print text in console</td></tr>
-<tr><td>exec</td><td>execute a file containing commands</td></tr>
-<tr><td>exit</td><td>quit engine</td></tr>
-<tr><td>find</td><td>find a command with given string</td></tr>
-<tr><td>fps_max</td><td>set max FPS</td></tr>
-<tr><td>fullscreen</td><td>toggle Fullscreen mode</td></tr>
-<tr><td>gui_changescreen</td><td>change screen</td></tr>
-<tr><td>gui_toggleelement</td><td>toggle GUI Element</td></tr>
-<tr><td>help</td><td>show help</td></tr>
-<tr><td>log_enable</td><td>toggle on/off logging of console</td></tr>
-<tr><td>log_write</td><td>write To Log</td></tr>
-<tr><td>log_file</td><td>setConLog</td></tr>
-<tr><td>log_timestamp</td><td>timestampLog</td></tr>
-<tr><td>screenshot</td><td>screenshot</td></tr>
-<tr><td>toggleconsole</td><td>consoleToggle</td></tr>
-<tr><td>unbind</td><td>unbind</td></tr>
-<tr><td>unbindall</td><td>&unbindall</td></tr>
-<tr><td>videomode</td><td>&windowSize</td></tr>
-<tr><td>vsync</td><td>setVSync</td></tr>
+<tr><td>echo [string:message]</td><td>print [message] in console</td></tr>
+<tr><td>exec [string:file]</td><td>execute a [file] line by line as commands</td></tr>
+<tr><td>exit</td><td>quit engine to desktop</td></tr>
+<tr><td>find [string:predicate]</td><td>find a command that contains the [predicate]</td></tr>
+<tr><td>fps_max [integer:fps]</td><td>set maximum [fps] (frames per second) of window</td></tr>
+<tr><td>fullscreen (boolean:toggle)</td><td>(toggle) Fullscreen mode on or off. (no parameter toggles opposite current state)</td></tr>
+<tr><td>gui_toggleelement [string:id]</td><td>show/hide GUI Element of id [id]</td></tr>
+<tr><td>help</td><td>show a list of all commands</td></tr>
+<tr><td>log_enable (boolean:toggle)</td><td>(toggle) logging of console on or off (no parameter toggles opposite current state)</td></tr>
+<tr><td>log_write [string:message]</td><td>write [message] to log</td></tr>
+<tr><td>log_file [string:path]</td><td>set console log file [path]</td></tr>
+<tr><td>log_timestamp (boolean:toggle)</td><td>(toggle) timestamp on or off in log file (no parameter toggles opposite current state)</td></tr>
+<tr><td>screenshot</td><td>take a screenshot of the current scene</td></tr>
+<tr><td>toggleconsole</td><td>show/hide console</td></tr>
+<tr><td>unbind [string:key]</td><td>unbind given [key]</td></tr>
+<tr><td>unbindall</td><td>unbind every bound key</td></tr>
+<tr><td>videomode [string:resolution]</td><td>set [resolution] of window (format: "WIDTHxHEIGHT" with integer values)</td></tr>
+<tr><td>vsync (boolean:toggle)</td><td>(toggle) Virtual Synchronisation on or off. (no parameter toggles opposite current state)</td></tr>
 </table>
 
 To add commands to console, you must emplace your command and its function pointer to Commands::cmdMap\n
 
 The following example shows how to add a simple "echoerror" command to console\n
 
-    //Emplace your commands preferably before init of engine
+    //Emplace your commands preferably before init of engine in case anything uses it inside init itself
     stb::Commands::cmdlist.emplace("echoerror", &echoerror);
 
     void echoerror(Engine &e, std::vector<std::string> *argv) //Every console command should have this signature
