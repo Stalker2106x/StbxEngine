@@ -18,7 +18,6 @@ namespace stb {
 			{ "bindlist", &bindList },
 			{ "clear", &consoleClear },
 			{ "con_color", &setConColor },
-			{ "con_cursor", &setConCursor },
 			{ "cwd", &printCWD },
 			{ "debuginfo", &debugInfo },
 			{ "echo", &echo },
@@ -27,7 +26,6 @@ namespace stb {
 			{ "find", &findCmd },
 			{ "fps_max", &setMaxFPS },
 			{ "fullscreen", &setFullscreen },
-			{ "gui_changescreen", &changeScreen },
 			{ "gui_toggleelement", &toggleGUIElement },
 			{ "help", &help },
 			{ "log_enable", &toggleConLog },
@@ -231,11 +229,6 @@ namespace stb {
 				return;
 			}
 			e.console->setLogFile((*argv)[0]);
-		}
-
-		void changeScreen(Engine &e, std::vector<std::string> *argv)
-		{
-			//none
 		}
 
 		void toggleGUIElement(Engine &e, std::vector<std::string> *argv)
