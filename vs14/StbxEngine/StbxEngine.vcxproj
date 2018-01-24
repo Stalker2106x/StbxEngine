@@ -141,6 +141,7 @@
     <ClInclude Include="..\..\include\Network\ClientReceiver.hh" />
     <ClInclude Include="..\..\include\Network\Handler.hh" />
     <ClInclude Include="..\..\include\Network\networkdefs.h" />
+    <ClInclude Include="..\..\include\Network\NetworkManager.hh" />
     <ClInclude Include="..\..\include\Network\Packet.hh" />
     <ClInclude Include="..\..\include\Network\Receiver.hh" />
     <ClInclude Include="..\..\include\Network\Server.hh" />
