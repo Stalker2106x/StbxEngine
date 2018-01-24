@@ -69,7 +69,6 @@ bool Keybinds::bind(std::string control, std::string action)
 
 void Keybinds::listAllBinds()
 {
-	_e->console->output("");
   for (std::map<Control, std::string>::const_iterator it = _binds.begin(); it != _binds.end(); it++)
     {
       _e->console->output(it->second + " = " + it->first.getBindStr());

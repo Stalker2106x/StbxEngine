@@ -1,4 +1,3 @@
-#include <pugixml.hpp>
 #include <fstream>
 #include "Engine.hpp"
 #include "utils.h"
@@ -25,36 +24,4 @@ namespace stb {
 			color.a = 255;
 		return (color);
 	}
-
-#ifdef PUGIXML_WCHAR_MODE
-	const std::wstring getIconCode(const std::string &id)
-	{
-		pugi::xml_document doc;
-		std::ifstream ifs("../extlib/ionicons/fonts/ionicons.svg");
-		pugi::xml_parse_result xml;
-		pugi::xml_node node;
-
-		if (!ifs)
-		{
-			Engine::instance->console->output(COLOR_ERROR, "Error: FontIcons: SVG resource not found");
-			return (NULL);
-		}
-		if (!(xml = doc.load(ifs)))
-		{
-			Engine::instance->console->output(COLOR_ERROR, "Error: FontIcons: resource SVG parsing failed");
-			return (NULL);
-		}
-		node = doc.child(L"svg").child(L"defs").child(L"font").first_child();
-		while (wcscmp(node.name(), L"glyph") != 0)
-			node = node.next_sibling();
-		while (node != doc.child(L"font").last_child())
-		{
-			if (node.attribute(L"glyph-name").as_string() == pugi::as_wide(id))
-				return (node.attribute(L"unicode").as_string());
-			node = node.next_sibling();
-		}
-		return (L""); //Unknown Glyph
-	}
-#endif
-
 }

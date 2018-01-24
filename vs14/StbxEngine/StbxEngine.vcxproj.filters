@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\ThirdParty">
-      <UniqueIdentifier>{7ff54c3b-ce1a-4ff8-8e8b-dc5a7e769461}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ThirdParty">
-      <UniqueIdentifier>{5bf5f7e3-00aa-4b56-b8f9-bd73f7751e8c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Network">
       <UniqueIdentifier>{08c99a87-6694-4dc6-bfe3-f1b8e4ca134e}</UniqueIdentifier>
     </Filter>
@@ -50,9 +44,6 @@
     </ClInclude>
     <ClInclude Include="..\..\include\defs.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\SHA\picosha2.h">
-      <Filter>Header Files\ThirdParty</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Network\Client.hh">
       <Filter>Header Files\Network</Filter>
@@ -109,9 +100,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\utils.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp">
-      <Filter>Source Files\ThirdParty</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Network\Client.cpp">
       <Filter>Source Files\Network</Filter>

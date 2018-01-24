@@ -20,13 +20,13 @@
 
 namespace stb {
 
-#define PROMPT		(">")
-#define CURSOR		("_")
-#define COLOR_ESC	("\\\\#")
-#define COLOR_ERROR	("\\\\#240077077")
+#define PROMPT			(">")
+#define COLOR_ESC		("\\\\#")
+#define COLOR_ERROR		("\\\\#240077077")
 #define COLOR_SUCCESS	("\\\\#154205050")
-#define COLOR_INFO	("\\\\#000191255")
-#define CURSOR_DELAY	(500)
+#define COLOR_INFO		("\\\\#000191255")
+
+	class Engine; //Forward
 
 	class Console
 	{

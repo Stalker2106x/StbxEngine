@@ -148,11 +148,9 @@
     <ClInclude Include="..\..\include\Network\ServerReceiver.hh" />
     <ClInclude Include="..\..\include\Profile.hh" />
     <ClInclude Include="..\..\include\Resolver.hh" />
-    <ClInclude Include="..\..\include\SHA\picosha2.h" />
     <ClInclude Include="..\..\include\utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\extlib\pugixml\src\pugixml.cpp" />
     <ClCompile Include="..\..\src\Network\Client.cpp" />
     <ClCompile Include="..\..\src\Network\ClientHandler.cpp" />
     <ClCompile Include="..\..\src\Network\ClientReceiver.cpp" />
