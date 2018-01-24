@@ -58,7 +58,7 @@ bool Commands::convertBool(std::string arg)
 
 argumentArray *Commands::getArgs(const std::string &command, argumentArray *argv)
 {
-	std::string buffer;
+	std::string buffer, arg;
 	char delimiter;
 	size_t pos;
 	bool insert = false;
@@ -86,12 +86,14 @@ argumentArray *Commands::getArgs(const std::string &command, argumentArray *argv
 			delimiter = buffer[0];
 			buffer.erase(0, 1);
 		}
-		if ((pos = buffer.find(delimiter)) != std::string::npos)
-			buffer = buffer.substr(0, pos);
-		if (insert)
-			argv->push_front(buffer);
+		if ((pos = buffer.find(delimiter)) != std::string::npos) //If arg is not last, extract it
+			arg = buffer.substr(0, pos);
 		else
-			argv->push_back(buffer);
+			arg = buffer;
+		if (insert)
+			argv->push_front(arg);
+		else
+			argv->push_back(arg);
 	}
 	return (argv);
 }
