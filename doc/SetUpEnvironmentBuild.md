@@ -35,7 +35,7 @@ cmake-gui within it.\n
 You should have the same path in the two input boxes on top of the dialog, append "/build/" to the build path to keep your directory clean.\n
 When you have selected the right pathes, click configure button (highlighted in red on the picture), then choose the appropriate compiler.\n
 
-![Configure Cmake TGUI](../assets/configure.png)
+![Configure Cmake TGUI](./assets/configure.png)
 
 When done, you should have all the values in the main frame highlighted in RED.\n
 Then, fill in the surrounded fields with the correct values (like shown on picture).\n
@@ -43,7 +43,7 @@ Once done, you can click generate button to get you project/Makefile, and start 
 NOTE: Check carefully the type of the built binary, you need to UNCHECK the build shared checkbox
       (you probably want to select Release over Debug for configuration type for most cases)\n
 
-![Generate Project/Makefile TGUI](../assets/generate.png)
+![Generate Project/Makefile TGUI](./assets/generate.png)
 
 
 When done, time to build StbxEngine in bones and flesh !\n
