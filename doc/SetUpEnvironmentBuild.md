@@ -1,5 +1,14 @@
 ## Set up your environment (Build yourself)
 
+### Prerequisites
+
+To setup your environment will need a few tools, such as :\n
+  -Git to download the repository and all the submodule dependencies\n
+  -C++ Compiler with C++11 support\n
+  -CMake for configuring project for your environment\n
+
+### Getting latest sources on master branch
+
 First of all, you must grab the latest sources from the bitbucket repository and build them by yourself!\n
 Don't worry, this step is usually easy if you already have all the Prerequisites setup.\n
 To do so, open your command prompt and clone the repository:\n
