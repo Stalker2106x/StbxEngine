@@ -7,12 +7,12 @@ It supports Windows, Linux and MacOS out of the box, and hopefully Android & iOS
 
 There is two ways of using StbxEngine in your projects:\n
 
-You can use precompiled StbxEngine binaires for your platform.
-This method is the simplest, and should work out of the box for most platforms.
+You can use precompiled StbxEngine binaires for your platform.\n
+This method is the simplest, and should work out of the box for most platforms.\n
 Follow the [Precompiled libs guide](./md_doc_SetUpEnvironmentPrecompiled.html) 
 
-You can build the whole library AND dependencies to compile for any target platform (even a not pre-built one).
-This is preferred for advanced users, if you use a standard platform and want a fast approach to the Engine, give the previous method a shot!
+You can build the whole library AND dependencies to compile for any target platform (even a not pre-built one).\n
+This is preferred for advanced users, if you use a standard platform and want a fast approach to the Engine, give the previous method a shot!\n
 Follow the [Build youself guide](./md_doc_SetUpEnvironmentBuild.html)
 
 ### Start developing your game

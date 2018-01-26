@@ -13,6 +13,7 @@
 
 using namespace stb;
 
+aliasMap Commands::aliaslist;
 cmdMap Commands::cmdlist = {
 	{ "alias", &alias},
 	{ "bind", &bindCommand },

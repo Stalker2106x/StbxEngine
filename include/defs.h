@@ -23,18 +23,6 @@ namespace stb {
 		Right,
 		Down
 	};
-
-	struct GUIResourceDefaults
-	{
-		int fontSize;
-		std::string font;
-		std::string fontColor;
-		int panelSpacing;
-		int pairSpacing;
-		int gridSpacing;
-	};
-	extern GUIResourceDefaults GUIDefaults;
-
 }
 
 #endif /* DEFS_H_ */

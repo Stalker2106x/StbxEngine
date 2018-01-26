@@ -50,7 +50,6 @@ namespace stb {
 
 		void output(const std::string &msg);
 		void input(const std::string &msg);
-		static void inputFromGUI(std::deque<std::string> &input, const tgui::EditBox::Ptr &inputArea);
 
 		void updateKeyboard(const sf::Event &event);
 		void update(const sf::Event &event);
