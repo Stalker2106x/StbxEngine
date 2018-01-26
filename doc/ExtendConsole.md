@@ -1,7 +1,9 @@
 ## Extend Console ##
 
 The Engine has a very flexible Console component.\n
-It comes with default actions and commands included as follows:\n
+It comes with default actions and commands included described in next section.\n
+
+### Default Commands ###
 
 <table>
 <tr><th>command</th><th>action</th></tr>
@@ -31,17 +33,19 @@ It comes with default actions and commands included as follows:\n
 <tr><td>vsync (boolean:toggle)</td><td>(toggle) Virtual Synchronisation on or off. (no parameter toggles opposite current state)</td></tr>
 </table>
 
-To add commands to console, you must emplace your command and its function pointer to Commands::cmdMap\n
+### Adding your own commands ###
+
+To add commands to console, you must emplace your command and its function pointer to Commands::cmdlist\n
 
 The following example shows how to add a simple "echoerror" command to console\n
 
     //Emplace your commands preferably before init of engine in case anything uses it inside init itself
     stb::Commands::cmdlist.emplace("echoerror", &echoerror);
 
-    void echoerror(Engine &e, std::vector<std::string> *argv) //Every console command should have this signature
+    void echoerror(argumentArray *argv) //Every console command should have this signature, argumentArray is a simple std::deque<std::string>
     {
-	     if (argv && argv->size() < 1) //You can check argv "c-style"
-	      e.console->output(COLOR_ERROR, "Nothing to echo");
+	     if (argv && argv->size() < 1) //You can check argv in "c-style"
+	      Engine::console->output("Nothing to echo");
 	     else
-	      e.console->output(COLOR_ERROR, (*argv)[0]); //You can access command arguments from within the vector
+	      Engine::console->output((*argv)[0]); //You can access command arguments from within the argv deque
     }
