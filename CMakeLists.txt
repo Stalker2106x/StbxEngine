@@ -1,45 +1,51 @@
 cmake_minimum_required(VERSION 2.6)
 
-#Cmake SENGINE first DEP
-#add_subdirectory(../)
+###################
+# STBXENGINE MAKE #
+###################
+project (stbxengine)
 
-##########
-# SENGINE
-##########
-project (sengine)
+#CMAKE options
+set(SFML_ROOT "./extlib/sfml/" CACHE PATH "SFML root directory (where lib, include are present)")
+set(TGUI_ROOT "./extlib/TGUI/" CACHE PATH "TGUI root directory (where lib, include are present)")
+option(BUILD_STATIC "Builds static or dynamic library" ON)
+option(BUILD_TESTS "Build tests" OFF)
 
-#Source files
-file(GLOB
-  SOURCES
-  "src/*.cpp"
+#STBX CORE FILES
+file(GLOB_RECURSE
+     source_files
+     src/*
 )
-file(GLOB
-  HEADERS
-  "include/*.hh"
-  "include/*.hpp"
-  "include/*.h"
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+#THIRDPARTY
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules" ${CMAKE_MODULE_PATH}) #Set FindXXX.cmake path
+set(JPEG_LIBRARY "./extlib/jpeg.lib")
+set(FREETYPE_LIBRARY "./extlib/freetype.lib")
+set(SFML_STATIC_LIBRARIES TRUE) #We need static SFML
+find_package(SFML 2 REQUIRED graphics window system network) # Find SFML v2.x
+if(NOT SFML_FOUND)
+    message(FATAL_ERROR "Could not find SFML")
+endif()
+find_package(TGUI 0.8 REQUIRED) # Find TGUI v0.8
+if(NOT TGUI_FOUND)
+    message(FATAL_ERROR "Could not find TGUI")
+endif()
+
+
+#Global Parameters
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+
+#Build sequence
+if (BUILD_STATIC)
+    add_library(stbxengine STATIC ${source_files})
+else()
+    add_library(stbxengine SHARED ${source_files})
+endif()
+target_link_libraries(stbxengine
+      ${SFML_LIBRARIES}
+      ${SFML_DEPENDENCIES}
+      ${TGUI_LIBRARY}
 )
-file(GLOB
-  PUGIXML_SOURCES
-  "extlib/pugixml/src/pugixml.*"
-)
-
-#Define Includes
-include_directories(include)
-include_directories(extlib/pugixml/src/)
-include_directories(extlib/sfml/include/)
-
-#Compile Flags
-set(CMAKE_CXX_FLAGS "-Wall -pedantic -std=c++11")
-
-#Specific Flags
-set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3 /MTd")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-
-#macros
-add_definitions(-DSTBXENGINE_CORE)
-
-#build sengine
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY {$CMAKE_SOURCE_DIR}/bin)
-add_library(sengine STATIC ${SOURCES} ${HEADERS} ${PUGIXML_SOURCES})
-set_target_properties(sengine PROPERTIES LINKER_LANGUAGE CXX)
