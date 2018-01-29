@@ -22,7 +22,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules" ${CMAKE_MODULE_PATH}) #Set FindXXX.cmake path
 set(JPEG_LIBRARY "./extlib/jpeg.lib")
 set(FREETYPE_LIBRARY "./extlib/freetype.lib")
-set(SFML_STATIC_LIBRARIES TRUE) #We need static SFML
+set(SFML_STATIC_LIBRARIES ${BUILD_STATIC}) #We set dynamic/static SFML/TGUI
 find_package(SFML 2 REQUIRED graphics window system network) # Find SFML v2.x
 if(NOT SFML_FOUND)
     message(FATAL_ERROR "Could not find SFML")
